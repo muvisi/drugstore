@@ -1,0 +1,255 @@
+<div class="animated fadeIn">
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-header">
+<strong> <i class="cui-magnifying-glass icons"></i> Insure Check</strong>
+
+</div>
+<div class="card-body">
+  <div class="row">
+    <div class="col-sm-3">
+      <label><b class="text-primary">INSURANCE NAME</b></label>
+      <input [(ngModel)]="name" [typeahead]="payers" (typeaheadLoading)="payerSearch(name)"
+        (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
+        placeholder="insurance" class="form-control" type="text">
+    </div>
+    <div class="col-sm-3">
+      <label><b class="text-primary"> SCHEME NAME</b></label>
+      <input [(ngModel)]="scheme" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(scheme)"
+        (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" placeholder="schemes"
+        class="form-control" type="text">
+    </div>
+    <div class="col-sm-2">
+      <label class="text-primary"><b>MEMBER NUMBER</b></label>
+      <input [(ngModel)]="member" [typeahead]="members" (typeaheadLoading)="search(member)" [typeaheadOptionsLimit]="7"
+        typeaheadOptionField="member_number" (typeaheadOnSelect)="OnMember($event)" placeholder="members"
+        class="form-control" type="text">
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+<div class="input-group">
+  <input type="text" id="input2-group2" name="input2-group2" class="form-control" placeholder="search for recent insure checks using the member number"
+  >
+  <span class="input-group-append">
+    <button type="button" class="btn btn-primary btn-sm" > <i class="fa fa-search"></i> Submit</button>
+  </span>
+</div>
+</div>
+</div>
+
+<div class="row">
+
+<div class="col-sm-12">
+
+<tabset>
+
+<tab>
+  <ng-template tabHeading><i class="icon-list" aria-hidden="true"></i> All&nbsp;
+  </ng-template>
+  <div class="row" style="overflow-y:scroll; height:250px;">
+    <div class="col-sm-12">
+      <ul  *ngFor="let member of searchedMembers" class="list-inline list-inline-separate">
+        <li (click)="details(member)">
+          <span class="media-heading text-bold"><b style="font-size:10px;">{{member.member_data.name}}</b>
+          </span>
+          <ul class="list-inline list-inline-separate text-muted">
+            <li><b class="text-primary" style="font-size:10px;">{{member.payer.name}}</b> </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</tab>
+
+
+<tab>
+<ng-template tabHeading><i class="fa fa-blind" aria-hidden="true"></i> Outpatient&nbsp;
+</ng-template>
+<div class="row">
+  <table border=0 class="rounded-list">
+    <tr>
+      <td>
+        <ol *ngFor="let member of searchedMembers">
+          <li *ngIf="member.visit_type === 'Outnpatient'">
+            <p style="font-size:12px;"><strong>MEMBER NUMBER :</strong><b class="text-primary"
+                style="margin-left:10px;">{{member.search_number}}</b> <strong
+                style="margin-left:20px;">MEMBER:</strong> <b class="text-primary" style="margin-left:8px;">
+                {{member.member_data.name}}</b>
+              <strong style="margin-left:20px;">INSURANCE:</strong> <b class="text-primary" style="margin-left:8px;">
+                {{member.payer.name}}</b>
+            </p>
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </table>
+</div>
+</tab>
+<tab>
+<ng-template tabHeading><i class="fa fa-bed"></i> Inpatient&nbsp;</ng-template>
+
+<div class="row">
+  <div class="col-sm-12">
+    <ul *ngFor="let member of searchedMembers" class="list-inline list-inline-separate">
+      <li (click)="details(member)"  *ngIf="member.visit_type === 'Inpatient'">
+        <span class="media-heading text-bold"><b style="font-size:10px;">{{member.member_data.name}}</b>
+        </span>
+        <ul class="list-inline list-inline-separate text-muted">
+          <li><b class="text-primary" style="font-size:10px;">{{member.payer.name}}</b> </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+</tab>
+<tab>
+<ng-template tabHeading><i class="fa fa-heart"> </i> Maternity&nbsp;</ng-template>
+<div class="row">
+  <div class="col-sm-12">
+    <ul *ngFor="let member of searchedMembers" class="list-inline list-inline-separate">
+      <li (click)="details(member)" *ngIf="member.visit_type === 'Maternity'">
+        <span class="media-heading text-bold"><b style="font-size:10px;">{{member.member_data.name}}</b>
+        </span>
+        <ul class="list-inline list-inline-separate text-muted">
+          <li><b class="text-primary" style="font-size:10px;">{{member.payer.name}}</b> </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+</tab>
+<tab>
+<ng-template tabHeading><i class="cui-tags icons"></i> Dental &nbsp;</ng-template>
+<div class="row">
+  <div class="col-sm-12">
+    <ul *ngFor="let member of searchedMembers" class="list-inline list-inline-separate">
+      <li (click)="details(member)" *ngIf="member.visit_type === 'Dental'">
+        <span class="media-heading text-bold"><b style="font-size:10px;">{{member.member_data.name}}</b>
+        </span>
+        <ul class="list-inline list-inline-separate text-muted">
+          <li><b class="text-primary" style="font-size:10px;">{{member.payer.name}}</b> </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+</tab>
+<tab>
+<ng-template tabHeading><i class="icon-eyeglass"></i> Optical &nbsp;</ng-template>
+<div class="row">
+  <div class="col-sm-12">
+    <ul *ngFor="let member of searchedMembers" class="list-inline list-inline-separate">
+      <li (click)="details(member)" *ngIf="member.visit_type === 'Optical'">
+        <span class="media-heading text-bold"><b style="font-size:10px;">{{member.member_data.name}}</b>
+        </span>
+        <ul class="list-inline list-inline-separate text-muted">
+          <li><b class="text-primary" style="font-size:10px;">{{member.payer.name}}</b> </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</tab>
+<tab>
+<ng-template tabHeading><i class="cui-share icons"></i> Refferal &nbsp;</ng-template>
+<div class="row">
+  <div class="col-sm-12">
+    <ul *ngFor="let member of searchedMembers" class="list-inline list-inline-separate">
+      <li (click)="details(member)" *ngIf="member.visit_type === 'Refferal'">
+        <span class="media-heading text-bold"><b style="font-size:10px;">{{member.member_data.name}}</b>
+        </span>
+        <ul class="list-inline list-inline-separate text-muted">
+          <li><b class="text-primary" style="font-size:10px;">{{member.payer.name}}</b> </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</tab>
+<!-- <tab>
+<ng-template tabHeading><i class="fa fa-money"></i> Cash &nbsp;</ng-template>
+<div class="row">
+  <table border=0 class="rounded-list">
+    <tr>
+      <td>
+        <ol *ngFor="let member of searchedMembers">
+          <li *ngIf="member.visit_type === 'Cash'">
+            <p style="font-size:12px;"><strong>MEMBER NUMBER :</strong><b class="text-primary"
+                style="margin-left:10px;">{{member.search_number}}</b> <strong
+                style="margin-left:20px;">MEMBER:</strong> <b class="text-primary" style="margin-left:8px;">
+                {{member.member_data.name}}</b>
+              <strong style="margin-left:20px;">INSURANCE:</strong> <b class="text-primary" style="margin-left:8px;">
+                {{member.payer.name}}</b>
+            </p>
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </table>
+</div>
+</tab> -->
+</tabset>
+</div>
+</div>
+
+<div bsModal #myModal="bs-modal" class="modal fade" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">Select visit Reason</h6>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true"> <i class="icon-close"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <div class="card">
+          <ul class="list-group list-group-flush" *ngFor = "let reason of  ['Inpatient','Outpatient']">
+            <li class="list-group-item" (click)="selectedReason(reason);childModal.show()">{{reason}}</li>
+      
+          </ul>
+        </div> -->
+        
+        <div class="row">
+          <div class="col-sm-6" *ngFor = "let reason of  ['Inpatient','Outpatient','Mainvisit','Consultation','Revisit','Follow-up','Surgery','Maternity','Optical','Dental']"><button type="button" class="btn1 btn1-primary btn-lg outline" (click)="selectedReason(reason);myModal.hide();childModal.show()">{{reason}}</button><br /><br /></div>
+            
+        </div>
+        <!-- <button type="button" class="btn btn-primary btn-lg outline">Main visit</button>
+        <button type="button" class="btn btn-primary btn-lg outline">Follow up</button>
+        <button type="button" class="btn btn-primary btn-lg outline">Dental</button> -->
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-nested-name2">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 id="dialog-nested-name2" class="modal-title pull-left">Validate Your Password</h6>
+        <button type="button" class="close icon-close pull-right" aria-label="Close" (click)="childModal.hide()">
+          <!-- <span aria-hidden="true">&times;</span> -->
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <input type="password" class="form-control" name="pass" [(ngModel)]="info.pin" (keyup.enter)="view()">
+        <br />
+        <button type="button" class="btn btn-primary" (click)="view()"> <i class="icon-check"></i> Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

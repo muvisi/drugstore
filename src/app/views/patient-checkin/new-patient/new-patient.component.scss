@@ -1,0 +1,92 @@
+div{
+	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+}
+input[type = "text"],[type = "email"] {
+   font-size:9px;
+   font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+   font-weight: bold;
+   color:#BE33FF;   
+}
+::placeholder {
+	font-size:8px;
+	font-weight: bold; 
+	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+}
+label {
+    font-size: 10px;
+    color: #20a8d8;
+}
+
+select {
+   font-size: 8px;
+   font-weight: bold;
+}
+ fieldset 
+	{
+		border: 1px solid #ddd !important;
+		margin: 0;
+		padding: 10px;       
+		position: relative;
+		border-radius:4px;
+		padding-left:10px!important;
+	}	
+	
+		legend
+		{
+			font-size:14px;
+			// font-weight:bold;
+			margin-bottom: 0px; 
+			width: 20%; 
+			border: 1px solid #ddd;
+			border-radius: 4px; 
+			padding: 5px 5px 5px 10px; 
+			background-color: #ffffff;
+			font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+		}
+.list-group ul li{
+height: 2px;
+font-size: 9px;
+}
+.list-group-item{
+	height: 33px;
+}			
+
+
+table{
+	width: 100%;
+	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+}
+tr.mat-header-row {
+	height:33px;
+	background-color: darkblue;
+	
+}
+
+td.mat-cell{
+	font-size:11px;
+}
+tr.mat-row, tr.mat-footer-row {
+  height: 32px;
+}
+
+th.mat-header-cell {
+	text-align: left;
+	color:white;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+th.mat-header-cell:first-child, td.mat-cell:first-child, td.mat-footer-cell:first-child {
+  padding-left: 24px;
+}
+
+th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-child {
+  padding-right: 24px;
+}
+::ng-deep .mat-checkbox-checked.mat-primary .mat-checkbox-background .mat-checkbox-background , .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
+  background: pink!important;
+}

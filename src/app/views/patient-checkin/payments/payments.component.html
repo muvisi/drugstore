@@ -1,0 +1,178 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <b>Payments</b>
+      <span class="pull-right" style="font-size:12px;font-weight: bold;"><b class="text-primary"> <i class="cui-dollar"></i> {{total | number}}</b></span>
+      </div>
+      <div class="card-body">
+       <div class="row">
+         <div class="col-sm-12">
+            <mat-checkbox [checked]="isCash" (change)="onCash()" name="cash" >
+              Cash
+            </mat-checkbox>
+            
+            <mat-checkbox  [checked]="isMpesa" (change)="onMpesa()" style="margin-left:8px;">Mpesa</mat-checkbox>
+            <mat-checkbox style="margin-left:8px;" [checked]="isInsurance" (change)="onInsurance()">Insurance</mat-checkbox>
+            <button class="btn btn-info btn-sm pull-right"(click)="submitPayment()" [disabled]="!(isCash || isMpesa || isInsurance) || !status"> Submit Payments</button>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-6">
+                <fieldset *ngIf="isCash">
+                  <legend style="width:50%">Cash</legend>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <label>Amount</label>
+                      <input type="number" class="form-control" placeholder="cash amount" [(ngModel)]="cash" (ngModelChange)="calculate()" name="aa"  >
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-sm-12">
+                <fieldset *ngIf="isMpesa">
+                  <legend>Mpesa</legend>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <label>Amount</label>
+                      <input type="number" class="form-control"  name="mpesa" placeholder="Mpesa amount" [(ngModel)]="mpesa.amount" (ngModelChange)="calculate()" >
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Phone</label>
+                      <input type="number" class="form-control" name="mpesa" placeholder="Phone Number" [(ngModel)]="mpesa.phone">
+                    </div>
+                    <div class="col-sm-5">
+                      <label>Transaction Number</label>
+                      <input type="text" class="form-control" placeholder="Transaction Number" [(ngModel)]="mpesa.trx">
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          
+          <br />
+          </div>
+          
+          <div class="col-sm-12" *ngIf="isInsurance">
+            <fieldset>
+              <legend>INSURE CHECK</legend>
+              <div class="row">
+              <div class="col-sm-9 table-responsive"  >
+                <div class="row">
+                <div class="col-sm-4">
+                  <label>Name</label>
+                  <input [(ngModel)]="name" [typeahead]="insureCheck"  (typeaheadOnSelect)="searchName()"  typeaheadOptionField="member_data.name"  class="form-control" type="text" (input)="SearchName()">
+                </div>
+                <div class="col-sm-8">
+                  <button class="btn btn-info btn-sm pull-right"  >Insure Check</button>
+                </div>
+                </div>
+                <br />
+                <div style="overflow-y:scroll; height:100px;">
+                  <table class="table table-condensed table-sm" style="font-size:10px;">
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Member No</th>
+                        <th>Visit type</th>
+                        <th>Status</th>
+                        <th>Payer</th>
+                        <th>Date</th>
+                        <th>Select</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of insureCheck;let i= index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.member_data.name}}</td>
+                        <td>{{item.search_number}}</td>
+                        <td>{{item.visit_type}}</td>
+                        <td><span class="badge badge-success" *ngIf="item.member_data.status == true">ACTIVE</span></td>
+                        <td>{{item.member_data.payer}}</td>
+                        <td>{{item.date | date}}</td>
+                        <td>
+                          <mat-radio-button (click)="setMember(item)"></mat-radio-button>
+                        </td>
+                      </tr>
+                  
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="col-sm-12" *ngIf="valid">
+                    <label>INSURANCE AMOUNT</label>
+                    <input type="number" placeholder="insurance amount" class="form-control" name="ee" [(ngModel)]="amount" (ngModelChange)="calculate()" >
+                  </div>
+              </div>
+              </div>
+            </fieldset>
+            <br />
+          </div>
+       </div>
+       <br />
+       <div class="row">
+         <div class="col-sm-9">
+           <fieldset>
+             <legend>Billed Services</legend>
+            <table class="table table-condensed table-sm ">
+              <tr
+                style="font-weight:700;font-size:11px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                <td>Serial No</td>
+                <td>Service</td>
+                <td>Bill Number</td>
+                <td>Invoice</td>
+                <td>Cost</td>
+              </tr>
+              <tr *ngFor="let item of bills;let i = index"
+                style="font-size:11px;color:dodgerblue;font-weight:500;font-family: 'Lucida Sans'">
+                <td>{{i+1}}</td>
+                <td> {{item.service}}</td>
+                <td>{{item.bill_number}}</td>
+                <td>{{item.invoice__no}}</td>
+                <td style="font-weight:bold">{{item.rate | number}}</td>
+              </tr>
+            </table>
+           </fieldset>
+         </div>
+         <div class="col-sm-3">
+           <fieldset>
+             <legend><i class="icon-calculator"></i> Calculator</legend>
+             <div class="row">
+               <div class="col-sm-12">
+                 <h6 style="font-size:11px;"><b>Grand Total :</b> <b class="text-primary" style="font-family: graduate;margin-left: 5px;">{{total | number}}/=</b></h6>
+                 <h6 style="font-size:11px;"><b>Paid amount :</b> <b class="text-primary" style="font-family: graduate;margin-left: 5px;">{{0 |number}}/=</b></h6>
+               </div>
+             </div>
+           </fieldset>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="modal fade" bsModal #passwordModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <label>Validate Password</label>
+            <input type="password" class="form-control" placeholder="Enter your password" [(ngModel)]="pin" >
+        
+          </div>
+          <div class="col-sm-12">
+            <br/>
+            <button class="btn btn-success btn-sm" (click)="insureCheck()">Ok</button>
+            <button class="btn btn-danger btn-sm" style="margin-left:12px;" (click)="hideModal()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,171 @@
+
+<div class="row">
+  <div class="col-6 col-lg-2">
+    <div class="card">
+      <div class="card-body p-0 clearfix">
+        <i class="fa fa-plus bg-primary p-3 font-2xl mr-3 float-left"></i>
+         <h6>Month Sales</h6>
+        <div class="h5 text-primary mb-0 mt-2">{{13450008 | number}}</div>
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+  <div class="col-6 col-lg-2">
+    <div class="card">
+      <div class="card-body p-0 clearfix">
+        <i class="fa fa-minus bg-info p-3 font-2xl mr-3 float-left"></i>
+        <h6>Monthly Expenses</h6>
+        <div class="h5 text-primary mb-0 mt-2">{{10450008 | number}}</div>
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+  <div class="col-6 col-lg-2">
+    <div class="card">
+      <div class="card-body p-0 clearfix">
+        <i class="icon-speedometer bg-warning p-3 font-2xl mr-3 float-left"></i>
+       <h6>Stock Levels</h6>
+       <i class="icon-calculator text-primary" style="font-size:18px;"></i>
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+  <div class="col-6 col-lg-2">
+    <div class="card">
+      <div class="card-body p-0 clearfix">
+        <i class="fa fa-cart-arrow-down bg-success p-3 font-2xl mr-3 float-left"></i>
+       <h6>Orders</h6>
+      <div class="h5 text-primary mb-0 mt-2">{{30}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-lg-2">
+    <div class="card">
+      <div class="card-body p-0 clearfix">
+        <i class="fa fa-cart-plus bg-danger p-3 font-2xl mr-3 float-left"></i>
+        <h6>Create Order</h6>
+        <i class="icon-basket-loaded text-primary" style="font-size:18px;"></i>
+      
+      </div>
+    </div>
+  </div>
+    <div class="col-6 col-lg-2">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-area-chart bg-primary p-3 font-2xl mr-3 float-left"></i>
+          <h6>Reporting</h6>
+          <i class="icon-feed text-primary" style="font-size:18px;"></i>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm-5">
+    <fusioncharts class="graph" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
+    </fusioncharts>
+  </div>
+  <div class="col-sm-7">
+    <div class="card">
+      <div class="card-body">
+        <h5>Latest Expenses</h5>
+        <div class="table-responsive">
+          <table class="table table-condensed table-sm" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <thead>
+              <tr>
+                <th>category</th>
+                <th>amount</th>
+                <th>Department</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Computers</td>
+                <td>56,000</td>
+                <td>ICT</td>
+              </tr>
+              <tr>
+                <td>Computers</td>
+                <td>56,000</td>
+                <td>ICT</td>
+              </tr>
+              <tr>
+                <td>Computers</td>
+                <td>56,000</td>
+                <td>ICT</td>
+              </tr>
+              <tr>
+                <td>Computers</td>
+                <td>56,000</td>
+                <td>ICT</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-sm-5">
+    <fusioncharts  class="graph" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
+    </fusioncharts>
+  </div>
+  <div class="col-sm-7">
+    <div class="card">
+      <div class="card-body">
+        <h5>Latest Orders</h5>
+        <div class="table-responsive">
+          <table class="table table-condensed table-sm"
+            style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>amount</th>
+                <th>Quantity</th>
+                <th>Department</th>
+                <th>Ordered Company</th>
+                <th>status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Panadol</td>
+                <td>56,000</td>
+                <td>5600</td>
+                <td>LAB</td>
+                <td>HEALTHIX</td>
+                <td><i class="fa fa-circle text-warning"></i> Pending</td>
+              </tr>
+              <tr>
+                <td>Panadol</td>
+                <td>56,000</td>
+                <td>5600</td>
+                <td>LAB</td>
+                <td>HEALTHIX</td>
+                <td><i class="fa fa-circle text-warning"></i> Pending</td>
+              </tr>
+            <tr>
+              <td>Panadol</td>
+              <td>56,000</td>
+              <td>5600</td>
+              <td>LAB</td>
+              <td>HEALTHIX</td>
+              <td><i class="fa fa-circle text-warning"></i> Pending</td>
+            </tr>
+            <tr>
+              <td>Panadol</td>
+              <td>56,000</td>
+              <td>5600</td>
+              <td>LAB</td>
+              <td>HEALTHIX</td>
+              <td><i class="fa fa-circle text-warning"></i> Pending</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

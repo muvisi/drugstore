@@ -1,0 +1,463 @@
+
+
+
+
+<div class="card" >
+  <div class="card-body">
+  
+
+<mat-horizontal-stepper [linear]="false" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Provider Details</ng-template>
+    <div class="row">
+      <div class="col-sm-8">
+        <fieldset>
+          <legend>Clinc/Provider Details</legend>
+
+          <div class="col-2"></div>
+          <div class="col-sm-8">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Provider</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="provider"
+                  [(ngModel)]="hospital.name" [disabled]="true">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Location</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="location"
+                  [(ngModel)]="hospital.location" [disabled]="true">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Address</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="address"
+                  [(ngModel)]="hospital.postal_address" [disabled]="true">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Contact No</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="contact"
+                  [(ngModel)]="hospital.contact_number" [disabled]="true">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">County</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="county" class="form-control" placeholder="county"
+                  [(ngModel)]="hospital.county" [disabled]="true">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Country</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="country" class="form-control" placeholder="Country"
+                  [(ngModel)]="hospital.country" [disabled]="true">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-success btn-sm"> <i class="icon-plus"></i> Branch</button>
+          </div>
+
+        </fieldset>
+      </div>
+      <div class="col-sm-4">
+        <fieldset>
+          <legend>Branches</legend>
+          <h6>No branches yet</h6>
+        </fieldset>
+      </div>
+    </div>
+
+    <!-- <div>
+        <button  class="btn btn-success btn-sm" [disabled]="!providerForm.valid"  mat-button matStepperNext>Next</button>
+      </div> -->
+  </mat-step>
+  <mat-step>
+
+    <ng-template matStepLabel>Add Users</ng-template>
+    <div class="row">
+      <div class="col-sm-8">
+        <fieldset>
+          <legend>Add Employee</legend>
+
+          <div class="col-2"></div>
+          <div class="col-sm-10">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="select1">Role</label>
+              <div class="col-md-9">
+                <select id="select1" name="select1" class="form-control" [(ngModel)]="employee.role"
+                  placeholder="select role">
+                  <option value="doctor" [selected]>Doctor</option>
+                  <option value="nurse">Nurse</option>
+
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Hospital</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="branch" placeholder="type branch" [typeahead]="provider_list"
+                  (typeaheadOnSelect)="setHospital($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
+                  class="form-control" type="text">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Name</label>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-4">
+                    <input type="text" id="text-input" name="first_name" class="form-control" placeholder="first name"
+                      [(ngModel)]="employee.first_name">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="text" id="text-input" name="other_names" class="form-control" placeholder="Middle name"
+                      [(ngModel)]="employee.surname">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="text" id="text-input" name="last name" class="form-control" placeholder="last name"
+                      [(ngModel)]="employee.last_name">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Username</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="username" class="form-control" placeholder="username"
+                  [(ngModel)]="employee.username">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Employee Number</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="employee_no" class="form-control" placeholder="employee number"
+                  [(ngModel)]="employee.employee_no">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Department</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="department" class="form-control" placeholder="Country"
+                  [(ngModel)]="employee.department">
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label">Email</label>
+              <div class="col-md-9">
+                <input type="email" id="text-input" name="email" class="form-control" placeholder="email"
+                  [(ngModel)]="employee.email">
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-success btn-sm" (click)="addUser()"> <i class="icon-plus"></i> employee_no</button>
+          </div>
+
+        </fieldset>
+      </div>
+      <div class="col-sm-4">
+        <fieldset>
+          <legend>Employees</legend>
+          <!-- <ul *ngFor ="let user of employees">
+              <li style="font-size:10px">{{user.name | uppercase}}</li>
+  
+            </ul> -->
+          <div *ngFor="let user of employees">
+
+            <h6 style="font-size:9px;">
+
+              <b class="text-primary">{{user.name | uppercase}}</b><br />
+              Department - <b class="text-primary">{{user.department}}</b>
+            </h6>
+          </div>
+          <br />
+        </fieldset>
+      </div>
+    </div>
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel> Add Drugs</ng-template>
+    <div class="row">
+      <div class="col-sm-12">
+        <fieldset style="min-height:400px;">
+          <legend> Add Drugs</legend>
+          <div class="row">
+            <div class="col-sm-4">
+              <input type="text" name="procedure" class="form-control" placeholder="name"
+                [(ngModel)]="drugName" [typeahead]="prescription" 
+                (typeaheadOnSelect)="onSelectPrescription($event)" typeaheadGroupField="strength"   [typeaheadOptionsLimit]="7" [typeaheadOptionField]="mapTypeaheadField()">
+
+            </div>
+
+            <div class="col-sm-3">
+              <input type="text" id="text-input" name="category" class="form-control" placeholder="type" [(ngModel)]="selectedPrescription.prescription_type">
+
+            </div>
+            <div class="col-sm-2">
+              <input type="text" id="text-input" name="strength" class="form-control" placeholder="strength"
+                [(ngModel)]="selectedPrescription.strength">
+            
+            </div>
+            <div class="col-sm-2">
+              <input type="number" id="text-input" name="cost" class="form-control" placeholder="cost" [(ngModel)]="selectedPrescription.cost">
+
+            </div>
+            
+            <div class="col-sm-1">
+              <button class="btn btn-info btn-sm" [disabled] = "!selectedPrescription.cost" (click)="addPrescriptions()"> <i class="icon-plus"></i>Select</button>
+
+            </div>
+          </div>
+
+          <br />
+          <br />
+          <div class="row" *ngIf="drugs.length">
+            <fieldset>
+              <legend>Selected Drugs</legend>
+              <div class="col-sm-12">
+                <button class="btn btn-success btn-sm pull-right" (click)="saveDrugs()">Save Drugs</button>
+              </div>
+              <br />
+              <br />
+              <div class="col-sm-12 table-responsive">
+                <table class="table table-condensed table-sm">
+                  <thead>
+                    <tr style="font-size:9px;">
+                      <th>Drug</th>
+                      <th>Category</th>
+                      <th>Strength</th>
+                      <th>Price</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of drugs" class="text-primary" style="font-weight:bold;font-size:9px;">
+                      <td>{{item.propriet_name}}</td>
+                      <td>{{item.prescription_type |lowercase}}</td>
+                      <td>{{item.strength}}</td>
+                      <td>{{item.cost | number}}</td>
+                      <td><i class="icon-trash" (click)="deleteDrug(item)" style="color:red"></i></td>
+              
+                    </tr>
+              
+                  </tbody>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+          
+        </fieldset>
+      </div>
+
+    </div>
+
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel> Add Services</ng-template>
+    <div class="row">
+      <div class="col-sm-10">
+        <fieldset style="min-height:400px;">
+          <legend> Add Service</legend>
+          <div class="row">
+            <div class="col-sm-4">
+            <input type="text" [(ngModel)]="name" [typeahead]="services"  [typeaheadOptionsInScrollableView]="5"  typeaheadOptionField="name" (typeaheadOnSelect)="onSelect($event)" class="form-control" placeholder="service name">
+            </div>
+
+            <div class="col-sm-3">
+              <input type="text" id="text-input" name="category" class="form-control" placeholder="Category" [(ngModel)]="selectedService.category">
+
+            </div>
+            <div class="col-sm-3">
+              <input type="number" id="cost1" name="cost1" class="form-control" placeholder="cost" [(ngModel)]="selectedService.cost" minlength="4" required>
+
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-success btn-sm" (click)="addService()" [disabled]="!selectedService.cost"> <i class="icon-plus"></i>select</button>
+
+            </div>
+          </div>
+          <br />
+          <div class="row" *ngIf="selectedServices.length">
+            <div class="col-sm-12">
+
+              <fieldset>
+                <legend>Selected Services:</legend>
+                <button class="btn btn-info btn-sm pull-right" (click)="submitServices()">Submit</button>
+
+                <table class="table table-borderless table-sm">
+                  <thead>
+                    <tr style="font-size:11px;">
+                      <th>Service</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Cost</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of selectedServices" class="text-primary" style="font-weight:bold;font-size:10px;">
+                      <td>{{item.name | lowercase}}</td>
+                      <td>{{item.category | lowercase}}</td>
+                      <td>{{item.description | lowercase }}</td>
+                      <td>{{item.cost | number}}</td>
+                      <td> <i class="icon-close" style="font-weight:bolder;font-size:15px;color:red" role="button" (click)="deleteService(item)"></i> </td>
+                    </tr>
+                
+                  </tbody>
+                </table>
+              
+              </fieldset>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+    </div>
+
+  </mat-step>
+  <!-- <mat-step>
+    <ng-template matStepLabel>Components</ng-template>
+    <div class="row">
+      <div class="col-sm-8">
+        <fieldset>
+          <legend>Components</legend>
+          <div class="col-sm-2">
+            <mat-checkbox (click)="set">Insure Check</mat-checkbox>
+          </div>
+          <div class="col-sm-2">
+            <mat-checkbox>Claims</mat-checkbox>
+          </div>
+          <div class="col-sm-2">
+            <mat-checkbox>Authorization Letters</mat-checkbox>
+          </div>
+          <div class="col-sm-2">
+            <mat-checkbox>Pharmacy</mat-checkbox>
+          </div>
+          <div class="col-sm-2">
+            <mat-checkbox>Labs</mat-checkbox>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-4">
+        <fieldset>
+        <legend>Activated Components</legend>
+        </fieldset>
+      </div>
+    </div>
+   
+  </mat-step> -->
+
+  <mat-step>
+    <ng-template matStepLabel>Provider services</ng-template>
+      <fieldset>
+        <legend>Available services</legend>
+        <div class="row" *ngIf="providerServices.length">
+          <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="Service Name">
+          </div>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="code">
+          </div>
+        </div>
+        <br />
+        <div class="col-sm-12 table-responsive">
+          <table class="table table-condensed table-sm" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <thead>
+              <tr style="font-size:11px;">
+                <th>Service</th>
+                <th>Category</th>
+                <th>code</th>
+                <th>Cost</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of providerServices" class="text-primary" style="font-weight:bold;font-size:10px;">
+                <td>{{item.name | lowercase}}</td>
+                <td>{{item.category | lowercase}}</td>
+                <td>{{item.code | lowercase}}</td>
+                <td>{{item.cost | number}}</td>
+                <td><i class="icon-note" style="color:red;font-weight:900"></i></td>
+                <td (click)="dropService(item)"><i class="icon-trash" style="color:red;font-weight:900"></i></td>
+              </tr>
+        
+            </tbody>
+          </table>
+        </div>
+      </fieldset>
+      
+      
+   
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Provider Drugs</ng-template>
+  <div class="row">
+    <div class="col-sm-12">
+      <fieldset>
+        <legend>Available Drugs</legend>
+        <div class="row">
+          <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="propriet name(drug name)">
+          </div>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="propriet name">
+          </div>
+        </div>
+        <br />
+       <fieldset class="col-sm-10">
+         <legend >Pharmacy Drugs</legend>
+          <div class="col-sm-12 table-responsive" *ngIf="drugsSelected.length"
+            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <table class="table table-condensed table-sm">
+              <thead>
+                <tr style="font-size:12px;">
+                  <th>Drug</th>
+                  <th>Category</th>
+                  <th>Strength</th>
+                  <th>Price</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of drugsSelected" class="text-primary" style="font-weight:bold;font-size:11px;">
+                  <td>{{item.propriet_name}}</td>
+                  <td>{{item.prescription_type |lowercase}}</td>
+                  <td>{{item.strength}}</td>
+                  <td>{{item.cost | number}}</td>
+                  <td><i class="icon-note" style="color:red;font-weight:900"></i></td>
+                  <td (click)="dropDrug(item)"><i class="icon-trash" style="color:red;font-weight:900"></i></td>
+                </tr>
+          
+              </tbody>
+            </table>
+          </div>
+       </fieldset>
+  
+      </fieldset>
+    </div>
+  </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+  </div>
+</div>

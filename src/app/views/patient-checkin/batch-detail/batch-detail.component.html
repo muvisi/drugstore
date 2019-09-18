@@ -1,0 +1,65 @@
+
+  <div class="card">
+    <br>
+    <div class="row container-fluid">
+   <div class="col-sm-8">
+        <span class="badge badge-info" style="font-size:10px;border-radius:2px"> <i class="fa fa-filter"></i> ALL</span>
+        <span class="badge badge-success" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i class="icon-check"></i>
+          SUCCESSFUL {{successfulCount}}</span>
+        <span class="badge badge-danger" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i class="icon-ban"></i>
+          NON -EXISTING</span>
+        <span class="badge badge-primary" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i class="icon-close"></i>
+          UNCODED {{uncodedCount}}</span>
+        <span class="badge badge-warning" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i
+            class="icon-shield"></i> MISSMATCHED {{unmatchedCount}}</span>
+   </div>
+      <div class="col-sm-4">
+        <button class="btn btn-danger btn-sm pull-right" style="margin-left:5px;" [disabled]="batch.status != 'NEW'"><b>Delete</b></button>
+        <button class="btn btn-success btn-sm pull-right" [disabled]="showDispatchButton || batch.status !='NEW'" (click)="sendBatch()"><b>Dispatch</b></button>
+      </div>
+    </div>
+    <br />
+    <div class="row container-fluid">
+      <div class="col-sm-12 table-responsive ">
+        <table class="table table-condensed table-hover table-sm"
+          style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+          <thead>
+            <tr style="font-size:10px;font-weight:bold;background-color: darkblue;color:white" >
+              <th>S.NO</th>
+              <th>BILL AMT</th>
+              <th>ERRORS</th>
+              <th >PATIENT</th>
+              <th >STATUS</th>
+              <th>VOUCHER NUMBER</th>
+              <th>SCHEME NAME</th>
+              <th>PAYER</th>
+              
+              <!-- <th><i class="icon-wallet"></i> Amount</th>
+                          <th><i class="cui-calendar"></i>Check in</th>
+                          <th><i class="icon-clock"></i> Time</th> -->
+      
+            </tr>
+          </thead>
+          <tbody id="displ">
+            <tr *ngFor="let claim of batchClaims;let i = index" style="font-weight:bold;font-size:10px;" (click)="claimDetails(claim)">
+              <td>{{i+1}}</td>
+              <td>{{claim.bill_amount | number}}</td>
+              <td> 
+                <span *ngIf="claim?.errors" class="badge badge-danger" style="border-radius:2px;font-size: 11px;">{{claim.errors}}</span>
+                <span *ngIf="!claim?.errors" class="badge badge-success"  style="border-radius:2px;font-size: 11px;">Successful</span>
+              </td>
+              <td> {{claim.patient_name | uppercase}}</td>
+              <td > {{claim.processing_status}}</td>
+              <td> {{claim.voucher_no}}</td>
+              <td> {{claim.scheme_name}}</td>
+              <td> {{claim.credit_party_name}}</td>
+             
+      
+      
+            </tr>
+      
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

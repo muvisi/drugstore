@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-sm-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <input type="text" class="form-control" [(ngModel)]="name" placeholder="Patient Name" (input)="SearchName()">
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="National ID" (input)= "Search()">
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" placeholder="VISIT NUMBER"  (input)= "SearchVisit()" [(ngModel)]="visitNumber" >
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" placeholder="PATIENT" (input)= "SearchByPatient()" [(ngModel)]="patientNumber" >
+                        </div>
+                        <!-- <div class="col-3">
+                            <input type="text" class="form-control" placeholder="PHONE " (input)= "SearchPhone()" [(ngModel)]="phone" >
+                        </div> -->
+                        
+                    </div>
+                </div>
+                <!-- <div class="col-sm-4"> <button class="btn btn-default pull-right" style="background-color:#5e64ff" (click)="childModal.show()"><b style="color:white"> <i class="icon-plus"></i> Add Patient</b></button> </div> -->
+            </div>
+    <div class="table-responsive">
+    <table class="table table-condensed table-hover table-sm" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+        <thead style="background-color:#d1d8dd;">
+            <tr  style="font-size:14px;font-weight:bold;">
+                <th>S.No</th>
+                <th>Patient Name</th>
+                <th> Patient no</th>
+                <th> Encounter no</th>
+                <th> National id</th>
+                <th> priority</th>
+                <th> phone</th>
+                <th> Status</th>
+                <th> Date</th>
+                <th> Time</th>
+
+            </tr>
+        </thead>
+        <tbody id="displ">
+            <tr *ngFor="let visit of visits;let i = index" style="font-weight:bold;font-size:9px;color: dodgerblue" (click)="patientDetails(visit)" >
+                <td>{{i+1}}</td>
+                <td>   {{ visit.name | uppercase}}</td>
+                <td>   {{visit.patient.patient_no}}</td>
+                <td>   {{visit.visit_no}}</td>
+                <td>   {{visit.patient.national_id}}</td>
+                <td>   {{visit.priority}}</td>
+                <td>   {{visit.patient.phone}}</td>
+                <td>   {{visit.status}}</td>
+                <td>   {{ visit.check_in | date: 'yyyy-MM-dd'}}</td>
+                <td>{{ visit.check_in | date : 'shortTime'}}</td>
+                <!-- <td style="font-weight:bold;font-size:11px;" > <button class="btn btn-info btn-sm" (click)="setPatient(visit);staticModal.show()"><i class="icon-plus"></i> New visit</button></td> -->
+                
+            </tr>
+            <!-- <tr *ngIf="!visits.length">
+                <td colspan="8"> <h6 class="text-center">No matching record</h6>
+                    <h4 class="text-center"><button class="btn btn-default" style="background-color:#5e64ff"><b style="color:white"> <i class="icon-plus"></i> Add
+                            Patient</b></button></h4>
+                </td>
+            </tr> -->
+    
+        </tbody>
+    </table>
+    </div>
+        </div>
+    </div>
+    </div>
+</div>

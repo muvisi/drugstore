@@ -1,0 +1,657 @@
+<tabset [pills]="false">
+  <tab title="Tab title">
+    <span *tabHeading>
+      Patietn Billing
+    </span>
+  <div class="row">
+    <div class="col-sm-2">
+      <h6 class="text-center">
+        <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
+          style="height: 120px;"><br>
+        <span1 style="font-size:12px;border-radius:2px;font-weight:200px;" class="badge badge-info text-center">
+          {{patientInfo.first_name}}
+          {{patientInfo.other_names}} {{patientInfo.last_name}}</span1>
+      </h6>
+    </div>
+    <div class="col-sm-10">
+      <fieldset class="col-md-12">
+        <legend>Patient Information</legend>
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="row">
+              <div class="col-sm-4">
+                <m>Name</m>
+              </div>
+              <div class="col-sm-8"><span class="text-primary">{{patientInfo.first_name}} {{patientInfo.other_names}}
+                  {{patientInfo.last_name}}</span></div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-4">
+                <m>Sex</m>
+              </div>
+              <div class="col-sm-8"><span class="text-primary">{{patientInfo.gender}}</span></div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-4">
+                <m>Patient No</m>
+              </div>
+              <div class="col-sm-8"><span class="text-primary">{{patientInfo.patient_no}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <m>National id</m>
+              </div>
+              <div class="col-sm-8"><span class="text-primary">{{patientInfo.national_id}}</span></div>
+            </div>
+  
+          </div>
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-5">
+                <m>Visit no</m>
+              </div>
+              <div class="col-sm-7"><span class="text-primary">{{patientInfo.visit_no}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5">
+                <m>Visit type</m>
+              </div>
+              <div class="col-sm-7"><span class="text-primary">{{patientInfo.visit_type}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5">
+                <m>Check in</m>
+              </div>
+              <div class="col-sm-7"><span class="text-primary">{{patientInfo.check_in | date}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5">
+                <m>Priority</m>
+              </div>
+              <div class="col-sm-7"><span class="text-primary">{{patientInfo.priority}}</span></div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="row">
+              <div class="col-sm-4">
+                <m>D.o.b</m>
+              </div>
+              <div class="col-sm-8"><span class="text-primary">{{patientInfo.dob}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <m>Age</m>
+              </div>
+              <div class="col-sm-8"><span class="text-primary">{{patientInfo.age}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <m>Nhif</m>
+              </div>
+              <div class="col-sm-8"><span class="text-primary">{{patientInfo.nhif_number}}</span></div>
+            </div>
+  
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div>
+      <div class="modal fade" bsModal #billModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+      aria-labelledby="dialog-static-name">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h6>Add Bills <i class="icon-close pull-right" (click)="billModal.hide()"></i></h6>
+    
+            <div class="row">
+    
+              <div class="col-sm-7">
+    
+                <input type="text" class="form-control" (typeaheadOnSelect)="onSelect($event)" name="test"
+                  placeholder="****** Type procedure and select to add *******" typeaheadOptionField="name"
+                  [(ngModel)]="name" [typeahead]="services" [typeaheadOptionsLimit]="12">
+    
+              </div>
+              <div class="col-sm-2">
+                <input type="text" placeholder="cost" [(ngModel)]="selectedOption.cost" class="form-control">
+              </div>
+              <div class="col-sm-3">
+                <button class="btn btn-success btn-sm" (click)="saveService()"> <i class="icon-plus"></i> bill
+                  Service</button>
+              </div>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <fieldset class="col-sm-12">
+      <legend>Hospital Charges</legend>
+      <div class="col-sm-12">
+  
+        <button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-left: 10px;" printTitle="INVOICE"
+          printSectionId="print-section" ngxPrint><i class="cui-print"></i> PRINT INVOICE</button>
+        <button class="btn btn-success btn-sm pull-right" style="margin-top:-15px;" (click)="billModal.show()"><i
+            class="fa fa-plus"></i> ADD BILL</button>
+        <button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-right: 10px;"><i
+            class="cui-dollar"></i> TOTAL <span
+            style="color:white;font-size:13px;font-weight: bold">{{total | number}}</span></button>
+        <button class="btn btn-warning btn-sm pull-right"
+          style="margin-top:-15px;margin-right: 10px;background-color:solid violet" (click)="confirm()"
+          [disabled]="pending_amount <= 0"><i class="fa fa-money"></i> PAY BILLS <span
+            style="color:red;font-size:13px;font-weight: bold">{{pending_amount | number}}</span></button>
+  
+  
+      </div>
+      <br>
+      <div class="col-sm-12 table-responsive" *ngIf="patientInfo.bills">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="service">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+            <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+            <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="bill number">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Bill Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="invoice">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="rate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+            <td mat-cell *matCellDef="let element"> {{element.rate}}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="reverse">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Reverse</th>
+            <td mat-cell *matCellDef="let element"> <button (click)="reverseBill(element)"><i class="cui-action-undo"
+                  style="color:red;font-weight:900"></i> Reverse</button></td>
+          </ng-container>
+  
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let element"><span class="badge badge-danger" *ngIf="element.status =='0'"
+                style="font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;font-size:9px;">Not Paid</span>
+              <span class="badge badge-success" *ngIf="element.status =='1'"
+                style="font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif">Paid Amt</span>
+            </td>
+          </ng-container>
+  
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  
+        <br>
+      </div>
+    </fieldset>
+  
+  </div>
+ 
+  
+  <div class="modal fade" bsModal #confirmModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <h6>Are you Insured?</h6>
+            </div>
+            <div class="col-sm-12">
+              <mat-radio-button (click)="openPay('Yes')">Yes</mat-radio-button>
+            </div>
+            <div class="col-sm-12">
+              <mat-radio-button (click)="openPay('No')">No</mat-radio-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" bsModal #payBills="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h6>Choose Payment Mode
+            <span class=" text-primary pull-right" style="font-size:14px;font-weight:bold;"> <i class="cui-dollar"></i>
+              {{pending_amount | number}}</span>
+          </h6>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-checkbox [checked]="isMpesa" (change)="onMpesa()">Mpesa</mat-checkbox>
+            </div>
+            <div class="col-sm-4">
+              <mat-checkbox [checked]="isCash" (change)="onCash()">Cash</mat-checkbox>
+            </div>
+            <div class="col-sm-4" *ngIf="isInsurance">
+              <mat-checkbox [checked]="isInsurance">Insurance</mat-checkbox>
+            </div>
+  
+          </div>
+          <div class="row">
+            <div class="col-sm-12" *ngIf="isInsurance">
+              <label>Insurance Amount</label>
+              <input type="number" [disabled]="status" class="form-control" placeholder="insurance amount"
+                [(ngModel)]="amount" (ngModelChange)="calculate()">
+            </div>
+            <div class="col-sm-12" *ngIf="isCash">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Cash </label>
+                  <input type="number" min="0" class="form-control" placeholder="Cash Amount" [(ngModel)]="cash"
+                    (ngModelChange)="calculate()" [disabled]="status">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12" *ngIf="isMpesa">
+              <label>Mpesa Deposit</label>
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" placeholder="Transaction No" [(ngModel)]="mpesa.trx">
+                </div>
+                <div class="col-sm-6">
+                  <input type="number" class="form-control" placeholder="insurance amount" [(ngModel)]="mpesa.amount"
+                    (ngModelChange)="calculate()" [disabled]="status">
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div>
+            <button class="btn btn-danger btn-sm pull-right" (click)="payBills.hide()">Cancel</button>
+            <button class="btn btn-success btn-sm pull-right" style="margin-right:8px;" (click)="submitPayment()"
+              [disabled]="bill_amount < pending_amount">Submit</button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  <!-- PRINT INVOICE -->
+  <div class="row" id="print-section" hidden>
+    <h6 align="center"><img src="assets/img/avatars/logo.png" alt="" style="width:120px;height:60px;"></h6>
+    <h4 align="center" style="margin-top:-12px;font-size: 25px;">Healthix Hospital Patient Bill Statement</h4>
+    <div class="row" style="margin-left:110px;margin-top: -13px;">
+      <h5 align="center" style="margin-left:-130px;margin-top:-28px;"><span
+          style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, serif;font-size:15px;">
+          PATIENT NAME: <b style="color:dodgerblue">
+            {{patientInfo.first_name}} {{patientInfo.other_names}} {{patientInfo.last_name}}
+          </b></span></h5>
+    </div>
+    <div class="row" style="margin-left:195px;margin-top: -20px;">
+      <span
+        style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', serif;font-size:13px;">VISIT
+        NO<b style="color:dodgerblue">
+          {{patientInfo.visit_no}}
+        </b></span>
+      <span style="margin-left:20px;font-size:13px;" class="text-primary">VISIT TYPE <b
+          style="color:dodgerblue">{{patientInfo.visit_type | uppercase}}</b></span>
+  
+    </div>
+    <div class="row" style="margin-left:143px">
+      <span
+        style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', serif;font-size:14px;">CHECK
+        IN: <b style="color:dodgerblue">
+          {{patientInfo.check_in | date}} {{patientInfo.check_in | date:'shortTime'}}
+        </b></span>
+      <span style="margin-left:40px;font-size:14px;" class="text-primary">PATIENT ID <b
+          style="color:dodgerblue">{{patientInfo.patient_no}}</b></span>
+  
+      <!-- <span style="margin-left:124px;font-size:14px;" class="text-primary">CHECK OUT <b
+          style="color:dodgerblue">{{patientInfo.check_out | date}}</b></span>
+     -->
+    </div>
+    <br>
+    <div class="row">
+      <fieldset class="col-sm-12">
+        <legend>HOSPITAL CHARGES </legend>
+        <div class="watermark">
+        </div>
+        <div class="col-sm-12 table-responsive" *ngIf="patientInfo.bills">
+          <table class="table table-condensed table-sm" style="width:100%;">
+            <tr
+              style="text-transform:uppercase;color:dodgerblue;background-color:gainsboro;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif">
+              <td>S.No</td>
+              <td>Service</td>
+              <td>Category</td>
+              <td>Bill Number</td>
+              <td>Invoice</td>
+              <td style="text-align: right">Cost</td>
+            </tr>
+            <tr *ngFor="let item of patientInfo.bills;let i = index"
+              style="font-size: 13px;line-height:22px;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;">
+              <td>{{i+1}}</td>
+              <td> {{item.service}}</td>
+              <td> {{item.category}}</td>
+              <td>{{item.bill_number}}</td>
+              <td>{{item.invoice__no}}</td>
+              <td style="font-weight:bold;text-align: right">{{item.rate | number}}</td>
+            </tr>
+            <br>
+            <tr style="font-weight:500;color:dodgerblue;border-bottom: 1px solid black">
+              <td>Total</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="font-weight:bold;text-align: right">{{total |number}}</td>
+            </tr>
+            <tr>
+              <td>Balance</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="font-weight:bold ;text-align:right;">{{0}}</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </fieldset>
+    </div>
+    <br />
+    <div class="row" style="font-size:13px;">
+      <span>Billed By : <b style="font-size:12px;">{{user.username | uppercase}}</b> </span> <br>
+      <span>Billed Date : <b style="font-size:12px;">{{patientInfo.check_in | date}}</b> </span>
+      <span style="margin-left:90px;float:right;">
+        <h6 style="font-size:19px;">
+          Were deducted on my confinement <br>
+          <hr>
+          Sign_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+          <hr>
+          Relationship/Contact no
+        </h6>
+      </span>
+    </div>
+  </div>
+  </tab>
+  <tab title="Insure Check" [disabled]="!patientInfo?.insure_check?.length">
+    <span *tabHeading>
+      Insurance Details
+    </span>
+            <tabset>
+              <tab>
+                <ng-template tabHeading><span style="font-size:12px;">Patient Information</span> </ng-template>
+              
+                <div class="row">
+                  <div class="col-sm-4"><img title="profile image" class="img-circle img-responsive center"
+                      src="assets/img/avatars/download.png" style="margin-left:90px;height: 140px;">
+                    <br /><br />
+                    <ul class="list-group">
+                      <li class="list-group-item" contenteditable="false">
+                        <h5 align="center" style="font-size:12px;" class="text-primary">
+                          {{memberInfo?.name || memberInfo?.member_data?.name}}</h5>
+                      </li>
+                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i
+                              class="fa fa-address-card-o"></i> National id</strong></span>
+                        <b style="font-size:10px;" class="text-primary">{{memberInfo?.national_id}}</b>
+                      </li>
+                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i class="icon-calendar"></i>
+                            D.O.B</strong></span>
+                        <b style="font-size:10px;" class="text-primary">{{memberInfo?.dob || memberInfo?.member_data?.dob |date}}</b>
+                      </li>
+                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-people"></i>
+                            Gender</strong></span>
+                        <span
+                          *ngIf="memberInfo?.gender  == 'F'||memberInfo?.gender =='FEMALE' || memberInfo?.gender =='Female' || memberInfo?.gender == 'female' "><b
+                            style="font-size:10px;" class="text-primary">FEMALE</b></span>
+                        <span
+                          *ngIf="memberInfo?.gender == 'M' || memberInfo?.gender == 'Male' || memberInfo?.gender =='MALE' || memberInfo?.gender=='male'"><b
+                            style="font-size:10px;" class="text-primary">MALE</b></span>
+                      </li>
+              
+                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i
+                              class="icon-screen-smartphone"></i> Phone</strong></span>
+                        <b style="font-size:10px;" class="text-primary">{{  memberInfo?.phone || memberInfo?.member_data?.phone}}</b>
+                      </li>
+                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-cursor"></i>
+                            PhysicalAddress</strong></span>
+                        <b style="font-size:10px;"
+                          class="text-primary">{{ memberInfo?.physical_address || memberInfo?.member_data?.physical_address }}</b>
+                      </li>
+                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i
+                              class="icon-envelope-open"></i> Email</strong></span>
+                        <b style="font-size:10px;" class="text-primary">{{ memberInfo?.email || memberInfo?.member_data?.email }}</b>
+              
+                      </li>
+                    </ul>
+              
+                  </div>
+                  <div class="col-sm-8 container-fluid">
+              
+                    <div class="panel panel-default target">
+                      <div class="panel-body">
+                        <div class="row">
+                          <fieldset class="col-md-12">
+                            <legend>Member Information</legend>
+              
+                            <div class="panel panel-default">
+                              <div class="panel-body">
+                                <div class="row">
+                                  <div class="col-sm-3"><span style="font-size:10px;">MEMBER NUMBER</span></div>
+                                  <div class="col-sm-3"><span style="font-size:10px;">RELATIONSHIP</span></div>
+                                  <div class="col-sm-3"><span style="font-size:10px;">PRINCIPAL</span></div>
+                                  <div class="col-sm-3" style="font-size:10px;"> <span>AGE</span></div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-3"> <b style="font-size:10px;"
+                                      class="text-primary">{{memberInfo?.member_number || memberInfo?.member_data?.member_number}}</b>
+                                  </div>
+                                  <div class="col-sm-3"><b style="font-size:10px;"
+                                      class="text-primary">{{memberInfo?.relationship ||memberInfo?.member_data?.relationship | uppercase}}</b>
+                                  </div>
+                                  <div class="col-sm-3"><b style="font-size:10px;" class="text-primary"><i
+                                        class="icon-check text-success"></i></b></div>
+                                  <div class="col-sm-3"><b style="font-size:10px;"
+                                      class="text-primary">{{memberInfo?.age || memberInfo?.member_data?.age}}</b></div>
+                                </div>
+                              </div>
+                            </div>
+              
+                          </fieldset>
+              
+                          <div class="clearfix"></div>
+              
+                        </div>
+                        <br />
+              
+                        <div class="row">
+                          <fieldset class="col-md-12">
+                            <legend>Daily LImits</legend>
+              
+                            <div class="panel panel-default">
+                              <div class="panel-body">
+                                <div class="row">
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT
+                                  </div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i>
+                                    OUTPATIENT</div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i>
+                                    MATERNITY</div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i>
+                                    DENTAL</div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i>
+                                    OPTICAL</div>
+                                </div>
+                              </div>
+                            </div>
+              
+                          </fieldset>
+              
+                          <div class="clearfix"></div>
+              
+                        </div>
+                        <br />
+                        <div class="row">
+                          <fieldset class="col-md-12">
+                            <legend>Annual Limits</legend>
+              
+                            <div class="panel panel-default">
+                              <div class="panel-body">
+                                <div class="row">
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT
+                                  </div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i>
+                                    OUTPATIENT</div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i>
+                                    MATERNITY</div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i>
+                                    DENTAL</div>
+                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i>
+                                    OPTICAL</div>
+                                </div>
+                              </div>
+                            </div>
+              
+                          </fieldset>
+              
+                          <div class="clearfix"></div>
+              
+                        </div>
+                      </div>
+              
+                    </div>
+                    <br />
+              
+                    <div class="row">
+              
+                      <fieldset class="col-md-12">
+                        <legend>Insurance Details</legend>
+                        <style>
+                          .panel-body {
+                            font-size: 12px;
+                          }
+                        </style>
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <div class="row">
+                              <div class="col-sm-3"><b style="font-size:9px;">NAME</b></div>
+                              <div class="col-sm-3"><b style="font-size:9px;">SCHEME</b></div>
+                              <div class="col-sm-4"><b style="font-size:9px;">PLAN</b></div>
+                              <div class="col-sm-2"><b style="font-size:9px;">COPAY</b></div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">
+                                {{memberInfo?.payer?.name || memberInfo?.payer }}</div>
+                              <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">
+                                {{memberInfo?.scheme || memberInfo?.member_data?.scheme}}</div>
+                              <div class="col-sm-4 text-primary" style="font-size:9px;font-weight: bold;">
+                                {{memberInfo?.plan || memberInfo?.member_data?.plan}}</div>
+                              <div class="col-sm-2 text-primary">0</div>
+                            </div>
+                          </div>
+                        </div>
+              
+                      </fieldset>
+                    </div>
+              
+                  </div>
+                </div>
+              
+              </tab>
+              <tab>
+                <ng-template tabHeading> <span style="font-size:12px;">Benefits</span></ng-template>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <mat-form-field>
+                        <input matInput (keyup)="applySearch($event.target.value)" placeholder="search exclusion">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="mat-elevation-z8">
+                      <table mat-table [dataSource]="covered_benefits">
+                        <ng-container matColumnDef="benefit">
+                          <th mat-header-cell *matHeaderCellDef>Benefit</th>
+                          <td mat-cell *matCellDef="let element"> {{element.benefit__benefit}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="category">
+                          <th mat-header-cell *matHeaderCellDef>Category</th>
+                          <td mat-cell *matCellDef="let element"> {{element.benefit__category}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="balance">
+                          <th mat-header-cell *matHeaderCellDef>Balance</th>
+                          <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+                        </ng-container>
+              
+                        <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
+                      </table>
+                      <!-- <mat-paginator #paginator3 [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator> -->
+                    </div>
+              
+                  </div>
+                </div>
+              </tab>
+              <tab>
+                <ng-template tabHeading> <span style="font-size:12px;">Exclusion</span></ng-template>
+                <div class="row" >
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <mat-form-field>
+                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search exclusion">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="mat-elevation-z8">
+                      <table mat-table [dataSource]="dataSource1" matSort>
+              
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="benefit">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Exclusion</th>
+                          <td mat-cell *matCellDef="let element"> {{element.benefit}} </td>
+                        </ng-container>
+              
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="category">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Category </th>
+                          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                        </ng-container>
+              
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="updated">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated</th>
+                          <td mat-cell *matCellDef="let element"> {{element.updated | date : 'yyyy-MM-dd'}} </td>
+                        </ng-container>
+              
+                        <ng-container matColumnDef="Time">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                          <td mat-cell *matCellDef="let element"> {{element.updated | date : 'shortTime'}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="exclusionColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns:exclusionColumns;"></tr>
+                      </table>
+              
+                      <mat-paginator #paginator [pageSizeOptions]="[12,22]" showFirstLastButtons></mat-paginator>
+                    </div>
+              
+                  </div>
+                </div>
+              </tab>
+            </tabset>
+  </tab>
+</tabset>

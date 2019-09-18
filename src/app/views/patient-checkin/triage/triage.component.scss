@@ -1,0 +1,22 @@
+
+mat-form-field { 
+    font-size: 11px;
+    width: 100%;
+  }
+mat-hint{
+    font-size: 9px;
+    font-weight: 600;
+}
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color:red;
+    height: 15px;
+    width: 15px;
+  }
+ legend{
+   width: 200px;
+   color: dodgerblue;
+   font-weight: 900;
+ } 
+ ::placeholder{
+   font-weight: bold;
+ }

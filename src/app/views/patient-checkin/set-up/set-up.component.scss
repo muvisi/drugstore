@@ -1,0 +1,51 @@
+    // fieldset 
+	// {
+	// 	border: 1px solid #ddd !important;
+	// 	margin: 0;
+	// 	// xmin-width: 0;
+	// 	padding: 10px;       
+	// 	position: relative;
+	// 	border-radius:4px;
+	// 	padding-left:10px!important;
+	// }	
+
+legend
+{
+font-size:12px;
+font-weight:bold;
+margin-bottom: 0px; 
+width:25%; 
+border: 1px solid #ddd;
+border-radius: 4px; 
+padding: 5px 5px 5px 10px; 
+background-color: #ffffff;
+}
+
+input[type="text"] {
+font-size: 10px;
+color: steelblue;
+font-weight: bold;
+text-transform: uppercase;
+}	
+input[type="number"] {
+font-size: 10px;
+color: steelblue;
+font-weight: bold;
+text-transform: uppercase;
+}
+input[type="email"] {
+font-size: 10px;
+color: steelblue;
+font-weight: bold;
+text-transform: uppercase;
+}
+.col-form-label{
+text-align: right;
+}
+#select1 select {
+font-size: 10px;
+color: steelblue;
+font-weight: bold;
+text-transform: lowercase;
+
+}

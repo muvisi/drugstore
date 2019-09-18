@@ -1,0 +1,48 @@
+input[type="text"] {
+font-size:9px;
+font-weight: bold;
+text-transform: uppercase;
+color:#63c2de;;
+
+}
+input[type="number"] {
+font-size:9px;
+font-weight: bold;
+text-transform: uppercase;
+color:#63c2de;;
+
+}
+input[type="password"] {
+font-size:9px;
+font-weight: bold;
+text-transform: uppercase;
+color:#63c2de;;
+
+}
+fieldset 
+{
+border: 1px solid #ddd !important;
+margin: 0;
+padding: 10px;       
+position: relative;
+border-radius:4px;
+padding-left:10px!important;
+}	
+
+legend
+{
+font-size:10px;
+font-weight:bold;
+margin-bottom: 0px; 
+width: 35%; 
+border-radius: 4px; 
+padding: 5px 5px 5px 10px; 
+}
+::placeholder{
+    text-transform:lowercase;
+    
+}
+label {
+    font-weight: bold;
+    font-size: 10px;
+}

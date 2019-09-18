@@ -1,0 +1,84 @@
+
+<div class="card">
+<div class="card-body">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group row">
+        <div class="col-3">
+          <input type="text" class="form-control" [(ngModel)]="name" placeholder="Patient name" (input)="SearchName()">
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Member number" (input)="Search()">
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control" placeholder="Visit number" (input)="SearchVisit()"
+            [(ngModel)]="visitNumber">
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control" placeholder="Patient number" (input)="SearchByPatient()"
+            [(ngModel)]="patientNumber">
+        </div>
+        <!-- <div class="col-3">
+                                  <input type="text" class="form-control" placeholder="PHONE " (input)= "SearchPhone()" [(ngModel)]="phone" >
+                              </div> -->
+  
+      </div>
+    </div>
+    <!-- <div class="col-sm-4"> <button class="btn btn-default pull-right" style="background-color:#5e64ff" (click)="childModal.show()"><b style="color:white"> <i class="icon-plus"></i> Add Patient</b></button> </div> -->
+  </div>
+<div class="row">
+  <div class="col-sm-12 table-responsive">
+<table class="table table-condensed table-hover table-sm">
+  <thead style="background-color:darkblue">
+    <tr style="font-size:10px;color:white">
+      <th>S.No</th>
+      <th> MEMBER NUMBER</th>
+      <th> PATIENT NO</th>
+      <th>VISIT NUMBER</th>
+      <th> INSURANCE COMPANY</th>
+      <th> MEMBER NUMBER</th>
+      <th> VISIT TYPE</th>
+      <th> AMOUNT</th>
+      <!-- <th><i class="icon-wallet"></i> Amount</th>
+      <th><i class="cui-calendar"></i>Check in</th>
+      <th><i class="icon-clock"></i> Time</th> -->
+
+    </tr>
+  </thead>
+  <tbody id="displ">
+    <tr *ngFor="let visit of claims;let i = index" style="font-size:9px" (click)="claimDetails(visit)">
+      <td>{{i+1}}.</td>
+      <td > {{visit.member|uppercase}}</td>
+      <td > {{visit.patient_number}}</td>
+      <td > {{visit.visit_number}}</td>
+      <td> {{visit.insurance_company}}</td>
+      <td >  {{visit.member_number}}</td>
+      <td> {{visit.visit_type}}</td>
+      <th >{{visit.amount|number}}</th>
+    </tr>
+   
+
+  </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+</div>
+</div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

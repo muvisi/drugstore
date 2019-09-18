@@ -1,0 +1,1175 @@
+<tabset>
+ 
+  <tab>
+    
+    <div class="row">
+
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-2" [disabled]="isInsurance">
+                        <mat-checkbox [checked]="isInsurance" (click)="insureCheck()" style="font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;" >Are you insured?</mat-checkbox>
+                      </div>
+                      <div class="col-sm-8">
+                        <button class="btn btn-info btn-sm pull-left" style="color: white;font-weight:600px;" (click)="revisitModal.show()">Ever visit the hospital?</button>
+                      </div>
+                      <div class="col-sm-2">
+                    <button class="btn btn-success btn-sm pull-right" style="margin-left:5px" (click)="status()"
+                    [disabled]="!patient.first_name || !patient.other_names || !patient.last_name || !patient.last_name || !
+                                                      patient.gender || ! patient.visit_type || !patient.priority || ! patient.dob || !patient.national_id || !patient.residence || !patient.county || ! patient.city">
+                    <b>Next</b>  <i class="cui-chevron-right"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+               
+           
+              
+              </div>
+    </div>
+  
+    <ng-template tabHeading><b style="color:#20a8d8;font-size: 12px;"><i class="icon-plus"></i> Add patient</b></ng-template>
+     
+<div class="modal fade" bsModal #revisitModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ID Number">
+            </mat-form-field>
+          </div>
+        
+          <div class="col-sm-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Name">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Patient Number">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 table-responsive">
+            <div>
+              <table mat-table [dataSource]="dataSource" matSort>
+        
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.first_name | uppercase}} {{element.other_names | uppercase}}
+                    {{element.last_name | uppercase}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="patient_no">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient Number </th>
+                  <td mat-cell *matCellDef="let element"> {{element.patient_no}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="national_id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> National Id </th>
+                  <td mat-cell *matCellDef="let element"> {{element.national_id}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="gender">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+                  <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="dob">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>D.O.B</th>
+                  <td mat-cell *matCellDef="let element"> {{element.dob}} </td>
+                </ng-container>
+        
+        
+                <ng-container matColumnDef="phone">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+                  <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="county">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>County</th>
+                  <td mat-cell *matCellDef="let element"> {{element.county | uppercase}} </td>
+                </ng-container>        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></tr>
+              </table>
+              <mat-paginator #paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-12">
+          <button class="btn btn-danger btn-sm pull-right" (click)="revisitModal.hide()"> Cancel</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <fieldset class="col-md-12">
+          <legend>Patient Details</legend>
+        <div class="row">
+          <div class="col-sm-12">
+            <form novalidate>
+
+              <div class="row" >
+                <div class="form-group col-sm-2">
+                  <label for="ccmonth">First Name</label>
+                  <input type="text" style="height:28px;" class="form-control" name="first-name" [(ngModel)]="patient.first_name" [disabled]="valid">
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="ccyear">Middle Name</label>
+                  <input style="height:28px;" type="text" class="form-control" name="middle" [(ngModel)]="patient.other_names" [disabled]="valid">
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">Last Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="patient.last_name" name="last" [disabled]="valid"
+                      style="height:30px;">
+                  </div>
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="ccmonth">Visit Type</label>
+                  <select class="form-control" name="visit type" [(ngModel)]="patient.visit_type" [disabled]="valid"
+                    style="height:28px;">
+                    <option
+                      *ngFor="let visit  of  ['Main Visit', 'Follow -Up',  'Doctor Consultation', 'Follow up with doctors Consultation', 'Inpatient', 'Revisit','Optical','Maternity','Dental']"
+                      value="{{visit}}">{{visit}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">D.O.B</label>
+                    <input type="text" placeholder="Datepicker" name="dob" class="form-control" bsDatepicker [(ngModel)]="patient.dob"
+                      (ngModelChange)="calculateAge(patient.dob)" [disabled]="valid" style="height:28px;">
+                  </div>
+                </div>
+                
+                <div class="col-sm-2">
+                  <mat-radio-group [(ngModel)]="patient.gender" name=gender>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label>Gender</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <mat-radio-button value="Female" checked>Female</mat-radio-button>
+                    </div>
+                    <div class="col-sm-6">
+                      <mat-radio-button  value="Male">Male</mat-radio-button>
+                    </div>
+                  </div>
+                </mat-radio-group>
+                </div>
+              </div>
+            
+              <div class="row">
+                
+                <div class="form-group col-sm-2">
+                  <label for="ccmonth">National id</label>
+                  <input type="text" class="form-control" name="id" [(ngModel)]="patient.national_id" [disabled]="valid">
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="ccyear">Occupation</label>
+                  <input type="text" class="form-control" name="occupation" [(ngModel)]="patient.occupation" [disabled]="valid">
+                </div>
+               
+                <div class="form-group col-sm-2">
+                  <label for="ccmonth">Phone</label>
+                  <input type="text" class="form-control" name="phone" [(ngModel)]="patient.phone" [disabled]="valid">
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="ccyear">Email</label>
+                  <input type="text" class="form-control" name="email" [(ngModel)]="patient.email" [disabled]="valid">
+                </div>
+                <div class="form-group col-sm-4">
+                  <mat-radio-group [(ngModel)]="patient.priority" name="priority">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label>Priority</label>
+                      </div>
+                
+                      <div class="col-sm-4">
+                        <mat-radio-button value="Normal">Normal</mat-radio-button>
+                      </div>
+                      <div class="col-sm-4">
+                        <mat-radio-button value="Legal">Legal</mat-radio-button>
+                      </div>
+                      <div class="col-sm-4">
+                        <mat-radio-button value="Vip">Vip</mat-radio-button>
+                      </div>
+                
+                    </div>
+                  </mat-radio-group>
+                
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">nhif number</label>
+                    <input type="text" name="nhif" class="form-control" [(ngModel)]="patient.nhif_number">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">County</label>
+                    <input type="text" placeholder="county" class="form-control" [(ngModel)]="patient.county" name="county">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">City</label>
+                    <input type="text" placeholder="city" class="form-control" [(ngModel)]="patient.city" name="city">
+                  </div>
+                </div>
+              
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">Residence</label>
+                    <input type="text" placeholder="residence" class="form-control" [(ngModel)]="patient.residence" name="residence">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">Postal address</label>
+                    <input type="text" placeholder="physical address" class="form-control" [(ngModel)]="patient.physical_address"
+                      name="country">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">Postal Code</label>
+                    <input type="text" placeholder="postal code" class="form-control" [(ngModel)]="patient.postal_code"
+                      name="code">
+                  </div>
+                </div>
+                
+              </div>
+          
+
+            </form>
+
+          </div>
+        </div>
+        <br />
+        <fieldset class="col-sm-12" *ngIf="isGuardian">
+          <legend>Guardian details</legend>
+        
+          <div class="panel panel-flat">
+            <div class="panel-body">
+              <div class="row">
+                <div class="form-group col-sm-2">
+                  <label for="ccmonth">First Name</label>
+                  <input type="text" class="form-control" name="guardian-first-name" [(ngModel)]="guardian.first_name"
+                    placeholder="first name">
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="ccyear">Middle Name</label>
+                  <input type="text" class="form-control" name="guardian-name" [(ngModel)]="guardian.other_names"
+                    placeholder="middle name">
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">Last Name</label>
+                    <input type="text" placeholder="country" class="form-control" name="gln" [(ngModel)]="guardian.last_name"
+                      placeholder="last name">
+                  </div>
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="ccmonth">National id</label>
+                  <input type="text" class="form-control" name="gid" [(ngModel)]="guardian.national_id"
+                    placeholder="national_id">
+                </div>
+                <div class="form-group col-sm-2">
+                  <label for="ccyear">Email</label>
+                  <input type="email" class="form-control" name="gemail" [(ngModel)]="guardian.email" placeholder="email">
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="cvv">Phone</label>
+                    <input type="text" placeholder="phone" class="form-control" name="gphone" [(ngModel)]="guardian.phone">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+        
+               
+                <div class="form-group col-sm-2">
+                
+                    <mat-radio-group [(ngModel)]="guardian.gender" name="ggender">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <label>Gender</label>
+                        </div>
+                        <div class="col-sm-6">
+                          <mat-radio-button value="Female">Female</mat-radio-button>
+                        </div>
+                        <div class="col-sm-6">
+                          <mat-radio-button value="Male">Male</mat-radio-button>
+                        </div>
+                      </div>
+                    </mat-radio-group>
+                  
+                
+                </div>
+                <!-- <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="cvv"><b>D.O.B</b></label>
+                    <input type="text" placeholder="select date" name="fdob" [(ngModel)]="guardian.dob" style="height:28px;"
+                      class="form-control" bsDatepicker>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        
+        </fieldset>
+        <br />
+        <fieldset class="col-sm-12" *ngIf="isKin">
+          <legend>Next of kin</legend>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cvv"><b>Name</b></label>
+                <input type="text" placeholder="Name" class="form-control" [(ngModel)]="kin.name" name="country">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cvv"><b>Phone</b></label>
+                <input type="text" placeholder="phone number" class="form-control" [(ngModel)]="kin.phone" name="country">
+              </div>
+            </div>
+        
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cvv"><b>Relationship</b></label>
+                <input type="text" placeholder="Relationship" class="form-control" [(ngModel)]="kin.relationship"
+                  name="country">
+              </div>
+            </div>
+        
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cvv"><b>Email</b></label>
+                <input type="text" placeholder="email" class="form-control" [(ngModel)]="kin.email" name="coy">
+              </div>
+            </div>
+        
+          </div>
+        
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cvv"><b>County</b></label>
+                <input type="text" placeholder="county" class="form-control" [(ngModel)]="kin.county" name="ncounty">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cvv"><b>City</b></label>
+                <input type="text" placeholder="city" class="form-control" [(ngModel)]="kin.city" name="ncity">
+              </div>
+            </div>
+        
+            <div class="col-sm-2">
+              <div class="form-group">
+                <label for="cvv"><b>Residence</b></label>
+                <input type="text" placeholder="residence" class="form-control" [(ngModel)]="kin.residence" name="residence">
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <label for="cvv"><b>postal address</b></label>
+                <input type="text" placeholder="Physical address" class="form-control" [(ngModel)]="kin.physical_address"
+                  name="country">
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <label for="cvv"><b>Postal Code</b></label>
+                <input type="text" placeholder="postal code" class="form-control" [(ngModel)]="kin.postal_code" name="country">
+              </div>
+            </div>
+          </div>
+        
+        </fieldset>
+        
+        </fieldset>
+        <br>
+        <div class="row">
+        <div class="col-sm-12">
+          <button class="btn btn-success btn-sm pull-right" style="margin-left:5px" (click)="status()"
+            [disabled]="!patient.first_name || !patient.other_names || !patient.last_name || !patient.last_name || !
+                                                            patient.gender || ! patient.visit_type || !patient.priority || ! patient.dob || !patient.national_id || !patient.residence || !patient.county || ! patient.city">
+            <b>Next</b>  <i class="cui-chevron-right"></i></button>
+        </div>
+        </div>
+        
+        
+        <div class="clearfix"></div>
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
+        
+
+        <div class="modal fade" bsModal #succesModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+          aria-labelledby="dialog-static-name">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <!-- <div class="modal-header" style="height:10px;">
+                <h6 id="dialog-static-name" class="modal-title pull-left">Record Type </h6>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideWindow()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div> -->
+              <div class="modal-body">
+                <b>Record type</b><br>
+                <div class="row container" style="margin-top:3px;" >
+                  <mat-radio-group aria-label="Select an option" [(ngModel)]="record">
+                    <mat-radio-button value="true" >Active</mat-radio-button><br />
+                    <mat-radio-button value="false" >Record</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+          
+              <button class="btn btn-danger btn-sm pull-right" (click)="succesModal.hide()">Cancel</button>
+              <button class="btn btn-success btn-sm pull-right"  style="margin-right:10px;" (click)="savePatient()">Next</button>
+                </div>
+          
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+          aria-labelledby="dialog-static-name">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h5 style="text-transform:uppercase;font-size:11px">Patient Billing</h5>
+                    <div class="row">
+        
+                      <div class="col-sm-6">
+        
+                        <input type="text" class="form-control" (typeaheadOnSelect)="onSelect($event)" name="test"
+                          placeholder="**Procedure**" typeaheadOptionField="name" [(ngModel)]="name" [typeahead]="services"
+                          [typeaheadOptionsLimit]="12" (typeaheadLoading)="searchProcedure(name)">
+        
+                      </div>
+                      <div class="col-sm-2">
+                        <input type="text" placeholder="cost" [(ngModel)]="selectedOption.cost" class="form-control">
+                      </div>
+                      <div class="col-sm-2">
+                        <button class="btn btn-success btn-sm" (click)="saveService()"> <i class="icon-plus"></i> bill
+                          Service</button>
+                      </div>
+                      <div class="col-sm-2">
+                        <h5 *ngIf="total>0" class="text-primary"> <i class="cui-dollar"></i> {{total| number}}</h5>
+                      </div>
+                    </div>
+                    <br />
+                    <fieldset *ngIf="patientInfo.bills">
+                      <legend style="width:40%">billed services</legend>
+                      <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                          <table class="table table-condensed table-sm ">
+                            <tr
+                              style="font-weight:700;font-size:11px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                              <td>Serial No</td>
+                              <td>Service</td>
+                              <td>Bill Number</td>
+                              <td>Invoice</td>
+                              <td>Cost</td>
+                              <td>Delete</td>
+                            </tr>
+                            <tr *ngFor="let item of patientInfo.bills;let i = index"
+                              style="font-size:11px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                              <td>{{i+1}}</td>
+                              <td> {{item.service}}</td>
+                              <td>{{item.bill_number}}</td>
+                              <td>{{item.invoice__no}}</td>
+                              <td style="font-weight:bold">{{item.rate | number}}</td>
+                              <td (click)="deleteProcedure(item)"><i class="icon-trash" style="color:red;font-weight:900"></i>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <br />
+                    <div>
+                      <button class="btn btn-danger btn-sm pull-right" style="margin-left:5px;" [disabled]="total > 0"> <i
+                          class="icon-check"></i> Cancel</button>
+                      <button *ngIf="patientInfo.procedures" (click)="choosePayment()" class="btn btn-info btn-sm pull-right"
+                        [disabled]="total <= 0"> <i class="icon-check"></i> Payment Method</button>
+        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" bsModal #paymentModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+          aria-labelledby="dialog-static-name">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <mat-checkbox [checked]="isCash" (change)="onCash()" name="cash">CASH</mat-checkbox>
+                  </div>
+                  <div class="col-sm-3">
+                    <mat-checkbox [checked]="isMpesa" (change)="onMpesa()">MPESA</mat-checkbox>
+                  </div>
+                  <div class="col-sm-3">
+                    <mat-checkbox [checked]="isInsurance" (change)="onInsurance()" *ngIf="isInsurance">INSURANCE</mat-checkbox>
+                  </div>
+                  <div class="col-sm-3">
+                    <h5 *ngIf="total>0" class="text-primary"> <i class="cui-dollar"></i> {{total| number}}</h5>
+                  </div>
+                  <div class="col-sm-12">
+                    <fieldset *ngIf="isInsurance">
+                      <legend style="width: 60%">Insurance Amount</legend>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <label>Amount</label>
+                          <input type="number" class="form-control" placeholder="cash amount" [(ngModel)]="amount"
+                            (ngModelChange)="calculate()" name="cx">
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset *ngIf="isCash">
+                      <legend>Cash</legend>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <label>Amount</label>
+                          <input type="number" class="form-control" placeholder="cash amount" [(ngModel)]="cash"
+                            (ngModelChange)="calculate()" name="aa">
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+        
+                  <div class="col-sm-12">
+                    <br>
+                    <fieldset *ngIf="isMpesa">
+                      <legend>Mpesa</legend>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <label>Amount</label>
+                          <input type="number" class="form-control" name="mpesa" [(ngModel)]="mpesa.amount"
+                            (ngModelChange)="calculate()">
+                        </div>
+                        <!-- <div class="col-sm-4">
+                          <label>Phone No</label>
+                          <input type="number" class="form-control" name="mpesa" [(ngModel)]="mpesa.phone">
+                        </div> -->
+                        <div class="col-sm-5">
+                          <label>Transaction Number</label>
+                          <input type="text" class="form-control" [(ngModel)]="mpesa.trx">
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+        
+                  <div class="col-sm-12">
+                    <br>
+                    <button class="btn btn-success btn-sm pull-right" (click)="submitPayment()"
+                      [disabled]="!show"> <i class="icon-check"></i> Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  </tab>
+  <tab>
+    <ng-template tabHeading><b style="color:#20a8d8;font-size: 12px;"><i class="icon-note"></i> Insurance Details</b>
+    </ng-template>
+  <div class="col-md-12 mb-4">
+
+    <tabset>
+      <tab>
+        <ng-template tabHeading><b style="font-size:12px;">Patient Information</b> </ng-template>
+  
+        <div class="row" *ngIf="memberInfo?.member_data">
+          <div class="col-sm-4"><img title="profile image" class="img-circle img-responsive center"
+              src="assets/img/avatars/download.png" style="margin-left:90px;height: 140px;">
+            <br /><br />
+            <ul class="list-group">
+              <li class="list-group-item" contenteditable="false">
+                <h5 align="center" style="font-size:12px;" class="text-primary">
+                  {{memberInfo?.name || memberInfo?.member_data?.name}}</h5>
+              </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i
+                      class="fa fa-address-card-o"></i> National id</strong></span>
+                <b style="font-size:10px;" class="text-primary">{{memberInfo?.national_id}}</b>
+              </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i
+                      class="icon-calendar"></i> D.O.B</strong></span>
+                <b style="font-size:10px;" class="text-primary">{{memberInfo?.dob || memberInfo?.member_data?.dob |date}}</b>
+              </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-people"></i>
+                    Gender</strong></span>
+                <span
+                  *ngIf="memberInfo?.gender || memberInfo?.member_data?.gender == 'F'||memberInfo?.gender || memberInfo?.member_data?.gender =='FEMALE' || memberInfo?.gender || memberInfo?.member_data?.gender =='Female' || memberInfo?.gender || memberInfo?.member_data?.gender == 'female' "><b
+                    style="font-size:10px;" class="text-primary">FEMALE</b></span>
+                <span
+                  *ngIf="memberInfo?.gender || memberInfo?.member_data?.gender == 'M' || memberInfo?.gender || memberInfo?.member_data?.gender == 'Male' || memberInfo?.gender || memberInfo?.member_data?.gender =='MALE' || memberInfo?.gender || memberInfo?.member_data?.gender=='male'"><b
+                    style="font-size:10px;" class="text-primary">MALE</b></span>
+              </li>
+  
+              <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i
+                      class="icon-screen-smartphone"></i> Phone</strong></span>
+                <b style="font-size:10px;"
+                  class="text-primary">{{  memberInfo?.phone || memberInfo?.member_data?.phone}}</b>
+              </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-cursor"></i>
+                    PhysicalAddress</strong></span>
+                <b style="font-size:10px;"
+                  class="text-primary">{{ memberInfo?.physical_address || memberInfo?.member_data?.physical_address }}</b>
+              </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i
+                      class="icon-envelope-open"></i> Email</strong></span>
+                <b style="font-size:10px;"
+                  class="text-primary">{{ memberInfo?.email || memberInfo?.member_data?.email }}</b>
+  
+              </li>
+            </ul>
+  
+          </div>
+          <div class="col-sm-8 container-fluid">
+  
+            <div class="panel panel-default target">
+              <div class="panel-body">
+                <div class="row">
+                  <fieldset class="col-md-12">
+                    <legend>Member Information</legend>
+  
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-sm-3"><span style="font-size:10px;">MEMBER NUMBER</span></div>
+                          <div class="col-sm-3"><span style="font-size:10px;">RELATIONSHIP</span></div>
+                          <div class="col-sm-3"><span style="font-size:10px;">PRINCIPAL</span></div>
+                          <div class="col-sm-3" style="font-size:10px;"> <span>AGE</span></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3"> <b style="font-size:10px;"
+                              class="text-primary">{{memberInfo?.member_number || memberInfo?.member_data?.member_number}}</b>
+                          </div>
+                          <div class="col-sm-3"><b style="font-size:10px;"
+                              class="text-primary">{{memberInfo?.relationship ||memberInfo?.member_data?.relationship | uppercase}}</b>
+                          </div>
+                          <div class="col-sm-3"><b style="font-size:10px;" class="text-primary"><i
+                                class="icon-check text-success"></i></b></div>
+                          <div class="col-sm-3"><b style="font-size:10px;"
+                              class="text-primary">{{memberInfo?.age || memberInfo?.member_data?.age}}</b></div>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </fieldset>
+  
+                  <div class="clearfix"></div>
+  
+                </div>
+                <br />
+  
+                <div class="row">
+                  <fieldset class="col-md-12">
+                    <legend>Daily LImits</legend>
+  
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT
+                          </div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i>
+                            OUTPATIENT</div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i>
+                            MATERNITY</div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i>
+                            DENTAL</div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i>
+                            OPTICAL</div>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </fieldset>
+  
+                  <div class="clearfix"></div>
+  
+                </div>
+                <br />
+                <div class="row">
+                  <fieldset class="col-md-12">
+                    <legend>Annual Limits</legend>
+  
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT
+                          </div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i>
+                            OUTPATIENT</div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i>
+                            MATERNITY</div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i>
+                            DENTAL</div>
+                          <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i>
+                            OPTICAL</div>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </fieldset>
+  
+                  <div class="clearfix"></div>
+  
+                </div>
+              </div>
+  
+            </div>
+            <br />
+  
+            <div class="row">
+  
+              <fieldset class="col-md-12">
+                <legend>Insurance Details</legend>
+                <style>
+                  .panel-body {
+                    font-size: 12px;
+                  }
+                </style>
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-sm-3"><b style="font-size:9px;">NAME</b></div>
+                      <div class="col-sm-3"><b style="font-size:9px;">SCHEME</b></div>
+                      <div class="col-sm-4"><b style="font-size:9px;">PLAN</b></div>
+                      <div class="col-sm-2"><b style="font-size:9px;">COPAY</b></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">
+                        {{memberInfo?.payer?.name || memberInfo?.payer }}</div>
+                      <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">
+                        {{memberInfo?.scheme || memberInfo?.member_data?.scheme}}</div>
+                      <div class="col-sm-4 text-primary" style="font-size:9px;font-weight: bold;">
+                        {{memberInfo?.plan || memberInfo?.member_data?.plan}}</div>
+                      <div class="col-sm-2 text-primary">0</div>
+                    </div>
+                  </div>
+                </div>
+  
+              </fieldset>
+            </div>
+  
+          </div>
+        </div>
+      
+  <div class="row" *ngIf="!memberInfo?.member_data">
+    <h6 style="margin-left: 12px;color:red;">************Member Not Insured************</h6>
+  </div>
+      </tab>
+      <tab>
+        <ng-template tabHeading> <b style="font-size:12px;">Benefits</b></ng-template>
+          <div class="row">
+            <div class="col-sm-10" *ngIf="memberInfo?.member_data.benefits.length">
+              <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="covered_benefits">
+                  <ng-container matColumnDef="benefit">
+                    <th mat-header-cell *matHeaderCellDef>Benefit</th>
+                    <td mat-cell *matCellDef="let element"> {{element.benefit__benefit}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef>Category</th>
+                    <td mat-cell *matCellDef="let element"> {{element.benefit__category}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="balance">
+                    <th mat-header-cell *matHeaderCellDef>Balance</th>
+                    <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+                  </ng-container>
+          
+                  <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
+                </table>
+                <!-- <mat-paginator #paginator3 [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator> -->
+              </div>
+          
+            </div>
+          </div>
+          <div class="row">
+            <h6 *ngIf="!memberInfo?.member_data.benefits.length"  style="margin-left:20px;color:red;">************Member has no benefits************</h6>
+          </div>
+
+      </tab>
+      <tab>
+        <ng-template tabHeading> <b style="font-size:12px;">Exclusion</b></ng-template>
+        <div class="row" *ngIf="memberInfo?.member_data">
+          <div class="col-sm-10">
+            <div class="row">
+              <div class="col-sm-4">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Text">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource1" matSort>
+        
+                <!-- Position Column -->
+                <ng-container matColumnDef="benefit">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Exclusion</th>
+                  <td mat-cell *matCellDef="let element"> {{element.benefit}} </td>
+                </ng-container>
+        
+                <!-- Name Column -->
+                <ng-container matColumnDef="category">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Category </th>
+                  <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                </ng-container>
+        
+                <!-- Weight Column -->
+                <ng-container matColumnDef="updated">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated</th>
+                  <td mat-cell *matCellDef="let element"> {{element.updated | date : 'yyyy-MM-dd'}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="Time">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                  <td mat-cell *matCellDef="let element"> {{element.updated | date : 'shortTime'}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="exclusionColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns:exclusionColumns;"></tr>
+              </table>
+        
+              <mat-paginator #paginator2 [pageSizeOptions]="[12,22]" showFirstLastButtons></mat-paginator>
+            </div>
+        
+          </div>
+        </div>
+        <div class="row">
+          <h6 *ngIf="!memberInfo?.member_data" style="margin-left:12px;color:red;">**********Member Not Insured************</h6>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  </tab>
+  <!-- <tab>
+    <ng-template tabHeading><b style="color:#20a8d8;font-size: 12px;"><i class="icon-info"></i> Existing Patient</b>
+    </ng-template>
+    <div class="row">
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="ID Number">
+      </mat-form-field>
+    </div>
+
+      <div class="col-sm-2">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Name">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Patient Number">
+      </mat-form-field>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-sm-12 table-responsive">
+      <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort >
+      
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.first_name | uppercase}} {{element.other_names | uppercase}} {{element.last_name | uppercase}} </td>
+        </ng-container>
+   
+        <ng-container matColumnDef="patient_no">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.patient_no}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="national_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> National Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.national_id}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+          <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>D.O.B</th>
+          <td mat-cell *matCellDef="let element"> {{element.dob}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="county">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>County</th>
+          <td mat-cell *matCellDef="let element"> {{element.county | uppercase}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Postal</th>
+          <td mat-cell *matCellDef="let element"> {{element.physical_address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Postal Code</th>
+          <td mat-cell *matCellDef="let element"> {{element.postal_code}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></tr>
+      </table>
+  <mat-paginator #paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+  </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="modal fade" bsModal #cashModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <h5 style="text-transform:uppercase;font-size:11px">Patient Billing</h5>
+              <div class="row">
+              
+                <div class="col-sm-6">
+              
+                  <input type="text" class="form-control" (typeaheadOnSelect)="onSelect($event)" name="test"
+                    placeholder="**Procedure**" typeaheadOptionField="name" [(ngModel)]="name"
+                    [typeahead]="services" [typeaheadOptionsLimit]="12"  (typeaheadLoading)="searchProcedure(name)">
+              
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" placeholder="cost" [(ngModel)]="selectedOption.cost" class="form-control">
+                </div>
+                <div class="col-sm-2">
+                  <button class="btn btn-success btn-sm" (click)="saveService()"> <i class="icon-plus"></i> bill Service</button>
+                </div>
+                <div class="col-sm-2"><h5 *ngIf="total>0" class="text-primary"> <i class="cui-dollar"></i>  {{total| number}}</h5></div>
+              </div>
+              <br />
+              <fieldset *ngIf="patientInfo.bills">
+                <legend style="width:40%" >billed services</legend>
+                <div class="row">
+                  <div class="col-sm-12 table-responsive" >
+                    <table class="table table-condensed table-sm ">
+                      <tr
+                        style="font-weight:700;font-size:11px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <td>Serial No</td>
+                        <td>Service</td>
+                        <td>Bill Number</td>
+                        <td>Invoice</td>
+                        <td>Cost</td>
+                        <td>Delete</td>
+                      </tr>
+                      <tr *ngFor="let item of patientInfo.bills;let i = index"
+                        style="font-size:11px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <td>{{i+1}}</td>
+                        <td> {{item.service}}</td>
+                        <td>{{item.bill_number}}</td>
+                        <td>{{item.invoice__no}}</td>
+                        <td style="font-weight:bold">{{item.rate | number}}</td>
+                        <td (click)="deleteProcedure(item)"><i class="icon-trash" style="color:red;font-weight:900"></i></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </fieldset>
+              <br />
+              <div>
+                <button class="btn btn-danger btn-sm pull-right" style="margin-left:5px;" [disabled]="total > 0"> <i class="icon-check"></i> Cancel</button>
+                <button *ngIf="patientInfo.procedures" (click)="cashPayment()"  class="btn btn-info btn-sm pull-right" [disabled]="total <= 0"> <i class="icon-check"></i> Payment Method</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" bsModal #paymentModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-3"> <mat-checkbox [checked]="isCash" (change)="onCash()" name="cash">CASH</mat-checkbox> </div>
+          <div class="col-sm-3"> <mat-checkbox [checked]="isMpesa" (change)="onMpesa()" >MPESA</mat-checkbox></div>
+          <div class="col-sm-6"><h5 *ngIf="total>0" class="text-primary"> <i class="cui-dollar"></i> {{total| number}}</h5></div>
+          <div class="col-sm-12">
+            <fieldset *ngIf="isCash">
+              <legend>Cash</legend>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Amount</label>
+                  <input type="number" class="form-control" placeholder="cash amount" [(ngModel)]="cash"
+                    (ngModelChange)="calculate()" name="aa">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          
+          <div class="col-sm-12">
+            <br>
+            <fieldset *ngIf="isMpesa">
+              <legend>Mpesa</legend>
+              <div class="row">
+                <div class="col-sm-3">
+                  <label>Amount</label>
+                  <input type="number" class="form-control" name="mpesa"  [(ngModel)]="mpesa.amount"
+                    (ngModelChange)="calculate()">
+                </div>
+                <div class="col-sm-4">
+                  <label>Phone No</label>
+                  <input type="number" class="form-control" name="mpesa"  [(ngModel)]="mpesa.phone">
+                </div>
+                <div class="col-sm-5">
+                  <label>Transaction Number</label>
+                  <input type="text" class="form-control"[(ngModel)]="mpesa.trx">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        
+          <div class="col-sm-12">
+            <br>
+            <button class="btn btn-success btn-sm pull-right" (click)="submitPayment()" [disabled]="!(isCash || isMpesa) || !show"> <i class="icon-check"></i> Submit</button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="modal fade" bsModal #patientDetails="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h6> <i class="icon-check text-primary"></i> Confirm Details</h6>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <label>Patient No</label>
+            <input type="text"  class="form-control" [disabled]="true" [(ngModel)]="selectedPatient.patient_no">
+          </div>
+          <div class="col-sm-3">
+            <label>First Name</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.first_name">
+          </div>
+          <div class="col-sm-3">
+            <label>Middle Name</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.other_names">
+          </div>
+          <div class="col-sm-3">
+            <label>Last Name</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.last_name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label>Id/passport No</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.national_id">
+          </div>
+          <div class="col-sm-3">
+            <label>Nhif Number</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.nhif_number">
+          </div>
+          <div class="col-sm-3">
+            <label>Gender</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.gender">
+          </div>
+          <div class="col-sm-3">
+            <label>Phone</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.phone">
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label>Email</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.email">
+          </div>
+          <div class="col-sm-3">
+            <label>Occupation</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.occupation">
+          </div>
+          <div class="col-sm-3">
+            <label>County</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.county">
+          </div>
+          <div class="col-sm-3">
+            <label>City</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedPatient.city">
+          </div>
+          
+        </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <label>Residence</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedPatient.residence">
+            </div>
+            <div class="col-sm-3">
+              <label>Postal Address</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedPatient.physical_address">
+            </div>
+            <div class="col-sm-3">
+              <label>Postcal code</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedPatient.postal_code">
+            </div>
+          <div class="form-group col-sm-3">
+            <label for="ccmonth"> Select type</label>
+            <select class="form-control" name="visit type" [(ngModel)]="selectedPatient.visit_type" [disabled]="valid"
+              style="height:28px;">
+              <option
+                *ngFor="let visit  of  ['Main Visit', 'Follow -Up',  'Doctor Consultation', 'Follow up with doctors Consultation', 'Inpatient', 'Revisit','Optical','Maternity','Dental']"
+                value="{{visit}}">{{visit}}</option>
+            </select>
+          </div>
+          </div>
+        <div>
+          
+          <button type="button" class="pull-right btn btn-danger btn-sm" aria-label="Close" (click)="patientDetails.hide()">
+            <i class="icon-close"></i> Cancel
+          </button>
+          <button type="button" [disabled]="!selectedPatient.visit_type" class="pull-right btn btn-success btn-sm" aria-label="Close" (click)="revisit()" style="margin-right:9px;">
+            <i class="icon-check"></i> Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </tab> -->
+</tabset>

@@ -1,0 +1,50 @@
+fieldset 
+{
+border: 1px solid #ddd !important;
+margin: 0;
+xmin-width: 0;
+padding: 10px;       
+position: relative;
+border-radius:4px;
+background-color:white;
+padding-left:20px!important;
+}	
+
+legend
+{
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 0px; 
+	width: 20%; 
+	border: 1px solid #ddd;
+	border-radius: 4px; 
+	padding: 5px 5px 5px 10px; 
+	background-color:white;
+}
+
+.icon-background6 {
+color:#1E88E5;
+}		
+
+th{
+    font-weight: normal;
+}
+input[type="checkbox"]{
+  width: 15px; /*Desired width*/
+  height: 15px; /*Desired height*/
+}
+
+td input[type="checkbox"]{
+  margin-top: 13px;
+  margin-left: 12px;
+}
+
+.btn-primary1 {
+color:white !important;
+text-transform: uppercase;
+background:#6f42c1;
+padding: 10px;
+border: 2px solid #6f42c1 !important;
+border-radius: 6px;
+display: inline-block;
+}

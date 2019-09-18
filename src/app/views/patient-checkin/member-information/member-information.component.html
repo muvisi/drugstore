@@ -1,0 +1,253 @@
+<div class="col-md-12 mb-4">
+
+  <tabset>
+    <tab>
+      <ng-template tabHeading><b style="font-size:12px;">Patient Information</b> </ng-template>
+
+      <div class="row">
+        <div class="col-sm-4"><img title="profile image" class="img-circle img-responsive center"
+            src="assets/img/avatars/download.png" style="margin-left:90px;height: 140px;">
+          <br /><br />
+          <ul class="list-group">
+            <li class="list-group-item" contenteditable="false">
+              <h5 align="center" style="font-size:12px;" class="text-primary">{{memberInfo?.name || memberInfo.member_data?.name}}</h5>
+            </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i class="fa fa-address-card-o"></i> National id</strong></span>
+              <b style="font-size:10px;" class="text-primary">{{memberInfo?.national_id || memberInfo.member_data?.national_id}}</b>
+            </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i class="icon-calendar"></i> D.O.B</strong></span> 
+            <b style="font-size:10px;" class="text-primary">{{memberInfo?.dob || memberInfo.member_data?.dob}}</b>
+            </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-people"></i> Gender</strong></span>
+              <span  *ngIf="memberInfo.gender || memberInfo.member_data.gender == 'F'||memberInfo.gender || memberInfo.member_data.gender =='FEMALE' || memberInfo.gender || memberInfo.member_data.gender =='Female' || memberInfo.gender || memberInfo.member_data.gender == 'female' "><b style="font-size:10px;" class="text-primary">FEMALE</b></span>
+              <span  *ngIf="memberInfo.gender || memberInfo.member_data.gender == 'M' || memberInfo.gender || memberInfo.member_data.gender == 'Male' || memberInfo.gender || memberInfo.member_data.gender =='MALE' || memberInfo.gender || memberInfo.member_data.gender=='male'"><b style="font-size:10px;" class="text-primary">MALE</b></span>
+            </li>
+           
+            <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-screen-smartphone"></i> Phone</strong></span> 
+              <b style="font-size:10px;" class="text-primary">{{  memberInfo?.phone || memberInfo.member_data?.phone}}</b>
+            </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-cursor"></i> PhysicalAddress</strong></span>
+           <b style="font-size:10px;" class="text-primary">{{ memberInfo?.physical_address || memberInfo.member_data?.physical_address }}</b>
+            </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i class="icon-envelope-open"></i> Email</strong></span> 
+              <b style="font-size:10px;" class="text-primary">{{ memberInfo?.email || memberInfo.member_data?.email }}</b>
+              
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-sm-8 container-fluid">
+
+          <div class="panel panel-default target">
+            <div class="panel-body">
+              <div class="row">
+                <fieldset class="col-md-12">
+                  <legend>Member Information</legend>
+
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-sm-3"><span style="font-size:10px;">MEMBER NUMBER</span></div>
+                        <div class="col-sm-3"><span style="font-size:10px;">RELATIONSHIP</span></div>
+                        <div class="col-sm-3"><span style="font-size:10px;" >PRINCIPAL</span></div>
+                        <div class="col-sm-3" style="font-size:10px;"> <span>AGE</span></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3"> <b style="font-size:10px;" class="text-primary">{{memberInfo?.member_number || memberInfo.member_data?.member_number}}</b></div>
+                        <div class="col-sm-3"><b style="font-size:10px;" class="text-primary">{{memberInfo?.relationship ||memberInfo.member_data?.relationship | uppercase}}</b></div>
+                        <div class="col-sm-3"><b style="font-size:10px;" class="text-primary"><i class="icon-check text-success"></i></b></div>
+                        <div class="col-sm-3"><b style="font-size:10px;" class="text-primary">{{memberInfo?.age || memberInfo.member_data?.age}}</b></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </fieldset>
+
+                <div class="clearfix"></div>
+
+              </div>
+<br />
+
+              <div class="row">
+                <fieldset class="col-md-12">
+                  <legend>Daily LImits</legend>
+              
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT</div>
+                        <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i> OUTPATIENT</div>
+                        <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i> MATERNITY</div>
+                        <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i> DENTAL</div>
+                        <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i> OPTICAL</div>
+                      </div>
+                    </div>
+                  </div>
+              
+                </fieldset>
+              
+                <div class="clearfix"></div>
+              
+              </div>
+              <br />
+              <div class="row">
+                <fieldset class="col-md-12">
+                  <legend>Annual Limits</legend>
+              
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                    <div class="row">
+                      <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT</div>
+                      <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i> OUTPATIENT</div>
+                      <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i> MATERNITY</div>
+                      <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i> DENTAL</div>
+                      <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i> OPTICAL</div>
+                    </div>
+                    </div>
+                  </div>
+              
+                </fieldset>
+              
+                <div class="clearfix"></div>
+              
+              </div>
+            </div>
+
+          </div>
+          <br />
+
+          <div class="row">
+
+            <fieldset class="col-md-12">
+              <legend>Insurance Details</legend>
+<style>
+.panel-body{
+  font-size: 12px;
+}
+</style>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-3"><b style="font-size:9px;">NAME</b></div>
+                    <div class="col-sm-3"><b style="font-size:9px;">SCHEME</b></div>
+                    <div class="col-sm-4"><b style="font-size:9px;">PLAN</b></div>
+                    <div class="col-sm-2"><b style="font-size:9px;">COPAY</b></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">{{memberInfo.payer.name || memberInfo.payer }}</div>
+                    <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">{{memberInfo.scheme || memberInfo.member_data.scheme}}</div>
+                    <div class="col-sm-4 text-primary" style="font-size:9px;font-weight: bold;">{{memberInfo.plan || memberInfo.member_data.plan}}</div>
+                    <div class="col-sm-2 text-primary">0</div>
+                  </div>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button class="btn btn-success btn-sm pull-right" style="margin-top:4px;font-weight:bold" (click)="treatment()"> <i class="fa fa-stethoscope"></i> Select for treatment</button>
+          <button class="btn btn-info btn-sm pull-right" style="margin-top:4px;margin-right:10px;font-weight:bold;color: white" (click)="patientModal.show()"> <i class="cui-dollar"></i> Bill Patient</button>
+        </div>
+      </div>
+
+
+      <div class="modal fade" bsModal #patientModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+        aria-labelledby="dialog-static-name">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h6>Select Patient</h6>
+                </div>
+                <hr>
+                  <div class="col-sm-12">
+                  <input [(ngModel)]="selectedValue" [typeahead]="patients" typeaheadOptionField="visit_no" (typeaheadOnSelect)="onSelect($event)" class="form-control" type="text" placeholder="Type visit number">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </tab>
+    <tab>
+      <ng-template tabHeading> <b style="font-size:12px;">Benefits</b></ng-template>
+     <div class="row">
+       <div class="col-sm-10">
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="covered_benefits">
+            <ng-container matColumnDef="benefit">
+              <th mat-header-cell *matHeaderCellDef>Benefit</th>
+              <td mat-cell *matCellDef="let element"> {{element.benefit__benefit}} </td>
+            </ng-container>
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef>Category</th>
+              <td mat-cell *matCellDef="let element"> {{element.benefit__category}} </td>
+            </ng-container>
+            <ng-container matColumnDef="balance">
+              <th mat-header-cell *matHeaderCellDef>Balance</th>
+              <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
+          </table>
+          <mat-paginator #paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+       </div>
+     </div>
+    </tab>
+   <tab>
+  <ng-template tabHeading> <b style="font-size:12px;">Exclusion</b></ng-template>
+    <div class="row">
+      <div class="col-sm-10">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Text">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+        
+            <!-- Position Column -->
+            <ng-container matColumnDef="benefit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Exclusion</th>
+              <td mat-cell *matCellDef="let element"> {{element.benefit}} </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Category </th>
+              <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="updated">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated</th>
+              <td mat-cell *matCellDef="let element"> {{element.updated | date : 'yyyy-MM-dd'}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="Time">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+              <td mat-cell *matCellDef="let element"> {{element.updated | date : 'shortTime'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        
+          <mat-paginator #paginator1 [pageSizeOptions]="[12,22]" showFirstLastButtons></mat-paginator>
+        </div>
+
+      </div>
+    </div>
+   </tab>
+  </tabset>
+</div>

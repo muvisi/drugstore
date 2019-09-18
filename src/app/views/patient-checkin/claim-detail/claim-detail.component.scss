@@ -1,0 +1,74 @@
+.details {
+    margin-left: 12px;
+    font-size:10px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+};
+.details b{
+    color: dodgerblue;
+    margin-left: 5px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.card-header{
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.card {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+input[type="text"] {
+font-size:10px;
+}
+
+
+table{
+	width: 100%;
+	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+}
+tr.mat-header-row {
+	height:30px;
+	background-color: darkblue;
+	
+}
+
+td.mat-cell{
+	font-size:10px;
+}
+tr.mat-row, tr.mat-footer-row {
+  height: 30px;
+}
+
+th.mat-header-cell {
+	text-align: left;
+  color:white;
+  font-weight: bold;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+th.mat-header-cell:first-child, td.mat-cell:first-child, td.mat-footer-cell:first-child {
+  padding-left: 24px;
+}
+
+th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-child {
+  padding-right: 24px;
+}
+th {
+  background-color: darkblue;
+  font-size:12px;
+  color: white;
+  font-weight: 100px;
+	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+}
+td{
+  font-size:12px;
+   margin-left: 24px;
+}

@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header"><b style="font-size:10px;text-transform: uppercase" class="text-primary">Batch List</b></div>
+  <div class="card-body">
+    <div class="col-sm-12 table-responsive ">
+      <table class="table table-condensed table-hover table-sm">
+        <thead>
+          <tr style="font-size:10px;font-weight:bold;background-color:darkblue">
+            <th style="color: white">S.NO</th>
+            <th style="color: white"> BATCH STATUS</th>
+            <th style="color: white">DISPATCH  USER</th>
+            <th style="color: white">BATCH  NUMBER</th>
+            <th class="text-danger" >NON EXISTING CLAIMS</th>
+            <th class="text-warning">MISSMATCHED AMOUNT</th>
+            <th class="text-danger">UNCODED  CLAIMS
+            </th>
+            <th class="text-success">SUCCESSFULLY UPLOADED</th>
+            <th style="color: white">CLAIMS IN BATCH</th>
+            <th style="color: white">BATCH AMOUNT</th>
+            <th style="color: white">BATCH  DATE</th>
+            <!-- <th><i class="icon-wallet"></i> Amount</th>
+                    <th><i class="cui-calendar"></i>Check in</th>
+                    <th><i class="icon-clock"></i> Time</th> -->
+    
+          </tr>
+        </thead>
+        <tbody id="displ">
+
+          <tr *ngFor="let batch of batches;let i = index" style="font-weight:bold;font-size:10px;"  (click)="batchDetails(batch)">
+            <td>{{i+1}}</td>
+            <td><span class="badge badge-danger" *ngIf="batch.status == 'NEW'" style="border-radius:2px;font-size:10px;">Not Dispatched</span>
+              <span class="badge badge-success" *ngIf="batch.status == 'SENT'" style="border-radius:2px;font-size:10px;">Dispatched</span>
+            </td>
+            <td> {{batch.user.name | uppercase}}</td>
+            <td> {{batch.no}}</td>
+            <td class="text-danger"> {{batch.unmatched}}</td>
+            <td class="text-warning"> {{batch.amountConflicting}}</td>
+            <td class="text-danger"> {{batch.uncoded}}</td>
+            <td class="text-success"> {{batch.successful}}</td>
+            <td> {{batch.batchclaim.length}}</td>
+            <td> {{batch.amount}}</td>
+            <td>{{batch.date | date }}</td>
+          
+    
+          </tr>
+    
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

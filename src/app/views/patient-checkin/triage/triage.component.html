@@ -1,0 +1,145 @@
+<div class="card">
+    <div class="card-header">
+      Triage Information
+    </div>
+    <div class="card-body">
+    <form [formGroup]="triageForm" (ngSubmit)="onSubmit()">
+     <fieldset>
+       <legend>VITALS</legend>
+       <div class="row">
+        <div class="col-sm-2">
+           <mat-form-field appearance="outline">
+               <mat-label>Body Temperature</mat-label>
+               <input matInput placeholder="Temperature value" type="number" formControlName="temperature" [ngClass]="{ 'is-invalid': submitted && f.temperature.errors }" >
+               <i matSuffix class="fa fa-thermometer-half"></i>
+               <mat-hint>Temperature in °C</mat-hint>
+               
+             </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+           <mat-form-field appearance="outline">
+               <mat-label>Pulse Rate</mat-label>
+               <input matInput placeholder="pulse rate value" type="number" formControlName="pulse"  [ngClass]="{ 'is-invalid': submitted && f.pulse.errors }">
+               <i matSuffix class="fa fa-heartbeat"></i>
+               <mat-hint>Pulse Rate</mat-hint>
+             </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+           <mat-form-field appearance="outline">
+               <mat-label>Blood Pressure (systolic)</mat-label>
+               <input matInput placeholder="systolic value" type="number" (ngModelChange)="test()"  formControlName="systolic"  [ngClass]="{ 'is-invalid': submitted && f.systolic.errors }">
+               <i matSuffix class="fa fa-yelp"></i>
+               <mat-hint>Blood Pressure (systolic)</mat-hint>
+             </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+           <mat-form-field appearance="outline">
+               <mat-label>Blood Pressure (diastolic)</mat-label>
+               <input matInput placeholder="diastolic value" type="number" (ngModelChange)="test()" formControlName="diastolic"  [ngClass]="{ 'is-invalid': submitted && f.diastolic.errors }">
+               <i matSuffix class="fa fa-yelp"></i>
+               <mat-hint>Blood Pressure (diastolic)</mat-hint>
+             </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+           <mat-form-field appearance="outline">
+               <mat-label>Blood Pressure </mat-label>
+               <input matInput placeholder="blood pressure"  [value]="pressure" type="text"  readonly>
+               <i matSuffix class="fa fa-yelp"></i>
+               <mat-hint>Blood Pressure</mat-hint>
+             </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+           <div class="col-sm-2">
+                   <mat-form-field appearance="outline">
+                       <mat-label>Height</mat-label>
+                       <input matInput placeholder="height" type="number" (ngModelChange)="calculateBmi()" formControlName="height"  [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
+                       <i matSuffix class="fa fa-yelp"></i>
+                       <mat-hint>Height in centimetres</mat-hint>
+                     </mat-form-field>
+                </div>  
+
+                <div class="col-sm-2">
+                       <mat-form-field appearance="outline">
+                           <mat-label>Weight</mat-label>
+                           <input matInput placeholder="weight" type="number" (ngModelChange)="calculateBmi()" formControlName="weight"  [ngClass]="{ 'is-invalid': submitted && f.weight.errors }">
+                           <i matSuffix class="fa fa-yelp"></i>
+                           <mat-hint>Weight in Kilograms</mat-hint>
+                         </mat-form-field>
+                    </div>     
+                    <div class="col-sm-2">
+                           <mat-form-field appearance="outline">
+                               <mat-label>Respiratory</mat-label>
+                               <input matInput placeholder="respiratory" type="number" formControlName="respiratory"  [ngClass]="{ 'is-invalid': submitted && f.respiratory.errors }">
+                               <i matSuffix class="fa fa-yelp"></i>
+                               <mat-hint>Respiratory</mat-hint>
+                             </mat-form-field>
+                        </div>               
+                <div class="col-sm-2">
+                       <mat-form-field appearance="outline">
+                           <mat-label>BMI</mat-label>
+                           <input matInput placeholder="BMI" [value]="bmi"  readonly>
+                           <i matSuffix class="fa fa-yelp"></i>
+                           <mat-hint>bmi</mat-hint>
+                         </mat-form-field>
+                    </div>          
+    </div>
+     </fieldset>
+<div class="row" style="margin-top:14px;">
+ <div class="col-sm-12">
+        <fieldset>
+                <Legend>ALLERGIES</Legend>
+                <div class="row">
+                      <div class="col-sm-1" *ngFor="let allergy of allergies">
+                              <mat-checkbox (click)="addAllergy(allergy.name)" style="font-weight:400">{{allergy.name | uppercase}}</mat-checkbox>
+                          </div>
+                </div>
+            </fieldset>
+ </div>
+ <br>
+
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-12">
+   
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+<div class="row">
+  <div class="col-sm-7">
+    <fieldset>
+      <legend>NURSE NOTES</legend>
+      <ckeditor [(ngModel)]="notes" [ngModelOptions]="{standalone: true}" placeholder="Nurse Notes"></ckeditor>
+    
+    </fieldset>   
+  </div>
+  <div class="col-sm-5">
+    <fieldset>
+      <legend>PROCEDURES</legend>
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field appearance="outline">
+          <mat-label>Procedure</mat-label>
+          <input matInput placeholder="procedure">
+          <i matSuffix class="fa fa-yelp"></i>
+    
+        </mat-form-field>
+      </div>
+    </div>
+    </fieldset>   
+  </div>
+</div>
+  </div>
+</div>
+<br>
+<div>
+  <button class="btn btn-info btn-sm pull-right" type="submit"> Submit</button>
+
+</div>
+     </form>
+     
+    </div>
+
+  </div>

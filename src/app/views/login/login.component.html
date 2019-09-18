@@ -1,0 +1,66 @@
+
+
+    <div class="container-fluid" style="z-index:1;position:fixed">
+
+        <div class="row" >
+            <div class="col-sm-12" style="height:60px;background-color:#333333">
+              <!-- <h3 style="margin-top:10px;">Kimisitu Sacco</h3>
+               -->
+              <img src="assets/img/avatars/logo.png" alt="" style="height:60px;">
+            </div>
+            </div>
+        </div>
+        
+        <div class="app-body" style="background:transparent url('assets/img/avatars/bg.jpg') no-repeat center center /cover">
+        
+          <main class="main d-flex align-items-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 mx-auto">
+                  <div class="card-group">
+                    <div class="card p-4">
+                      <div class="card-body">
+                        <form>
+                          <h1 align="center">Login</h1>
+                          
+                          <h1  align ="center"> 
+                              <span class="icon-lock-open details-favoriteicon" aria-hidden="true"></span></h1>
+                          <style>
+                          .details-favoriteicon {
+                            color: #A6CF39;
+                            /* border: 3px solid dodgerblue; */
+                            
+                            font-size: 70px;
+                          }</style>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)] = "data.username" autocomplete="username" required>
+                          </div>
+                          <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-lock"></i></span>
+                            </div>
+                            <input type="password" name="password" class="form-control" [(ngModel)]="data.password" placeholder="Password" autocomplete="current-password" (keyup.enter)="login()" required>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <button type="button"  class="btn btn-primary" style="width:100%" (click)="login()" [disabled]="data.password == ''&& data.username == ''">Login</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+        
+
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
+      <!-- <lib-ngx-notification></lib-ngx-notification> -->
+

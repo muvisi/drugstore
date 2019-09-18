@@ -1,0 +1,184 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            Claim headers
+            <h6 class="pull-right" style="font-size:12px">Copay <b class="text-success">{{claim?.copay | number}}/=</b></h6>
+            <h6 class="pull-right" style="font-size:12px;margin-right: 12px">Total Claim Amount <b class="text-success">{{claim.amount | number}}/=</b></h6>
+          </div>
+          <br />
+        <div class="row">
+          <div class="col-sm-7 details">
+            <img class="img-fluid img-thumbnail" src="assets/img/avatars/download.png" alt="patient" style="height:160px;float: left;">
+
+            <div class="row">
+              <div class="col-sm-4"><label for="">PRINCIPAL MEMBER</label></div>
+              <div class="col-sm-8"><b>{{claim.member |uppercase}}</b></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4"><label for="">INSURANCE: </label></div>
+              <div class="col-sm-8"><b>{{claim.insurance_company}}</b></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4"><label for="">SCHEME </label></div>
+              <div class="col-sm-8"><b>{{claim.scheme_name}}</b></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4"><label for="">SCHEME CODE</label></div>
+              <div class="col-sm-8"><b></b></div>
+            </div>
+          
+            <div class="row">
+              <div class="col-sm-4"><label for="">CR NUMBER </label></div>
+              <div class="col-sm-8"><b>{{claim.crno}}</b></div>
+            </div>
+          </div>
+        <div class="col-sm-3 details">
+          <div class="row">
+            <div class="col-sm-6"><label for="">PATIENT NUMBER:</label></div>
+            <div class="col-sm-6"><b>{{claim.crno}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6"><label>VISIT NUMBER: </label></div>
+            <div class="col-sm-6"><b>{{claim.visit_number}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6"><label for="">CHECK IN:</label></div>
+            <div class="col-sm-6"><b>{{claim.check_in | date}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6"><label for="">CHECK OUT:</label></div>
+            <div class="col-sm-6"><b>{{claim.check_out | date}}</b></div>
+          </div>
+        
+          <div class="row">
+            <div class="col-sm-6"><label for="">EMPLOYER:</label></div>
+            <div class="col-sm-6"><b></b></div>
+          </div>
+        </div>
+      <div class="col-sm-1 details">
+        <label>INVOICES</label>
+        <table>
+          <tr *ngFor="let item of claim.invoices">
+            <td style="color:dodgerblue">{{item.invoice_number}}</td>
+          </tr>
+        </table>
+      </div>
+         </div>
+         <br />
+         
+        </div>
+      </div>
+    </div>
+<div class="row">
+ <div class="col-sm-12">
+  <div class="card">
+    <div class="card-header bg-primary">
+      <h5 class="text-left no-margin" style="font-size:14px;"><b>Diagnosis(ICD10)</b></h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+          <div class="col-sm-8" *ngIf="diagnoses.length">
+            <div class="mat-elevation-z8 table-responsive">
+              <table mat-table [dataSource]="dataSource">
+            
+                <!-- Position Column -->
+                <ng-container matColumnDef="description">
+                  <th mat-header-cell *matHeaderCellDef>Description</th>
+                  <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="code">
+                  <th mat-header-cell *matHeaderCellDef>Code</th>
+                  <td mat-cell *matCellDef="let element"> {{element.diagnosis_code}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef>Date</th>
+                  <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                </ng-container>
+
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+
+          </div>
+          <h6 *ngIf="!diagnoses.length">No ICD10 Available</h6>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+            <button class="btn btn-success btn-sm" (click)="staticModal.show()"> <i class="icon-note"></i> Code </button>
+    </div>
+  </div>
+
+ </div>
+  </div>
+  
+  
+  <div *ngFor ="let section of claimSections">
+ <div class="card"  *ngIf="section !== 'diagnosis'">
+    <div class="card-header bg-primary">
+      <h5 class="text-left no-margin" style="font-size:10px;"><b>{{section | uppercase}}</b></h5>
+    </div>
+    <div class="card-body">
+     <div class="row">
+       <div class="col-sm-9">
+          <table class="table table-condensed table-sm mat-elevation-z8">
+            <tbody>
+              <tr>
+                <th>Invoice number</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Unit price</th>
+                <th>Total price</th>
+              </tr>
+              <tr *ngFor="let detail of claim.claim_detail" style="color:dodgerblue">
+                <td *ngIf="detail.category == section">{{ detail.invoice_number }}</td>
+                <td *ngIf="detail.category == section">{{ detail.description }}</td>
+                <td *ngIf="detail.category == section">{{ detail.category }}</td>
+                <td *ngIf="detail.category == section">{{ detail.quantity }}</td>
+                <td *ngIf="detail.category == section">{{ detail.unit_price }}</td>
+                <td *ngIf="detail.category == section">{{ detail.unit_price * detail.quantity  |number }}</td>
+              </tr>
+          
+            </tbody>
+          </table>
+       </div>
+     </div>
+    
+    </div>
+ </div>
+</div>
+  </div>
+</div>
+
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+  <h6 style="font-size:13px;">Add Diagnosis</h6>
+<div class="row">
+<div class="col-sm-6">
+  
+<input [(ngModel)]="name" (typeaheadLoading) = "search(name)"  placeholder="Diagnosis" [typeahead]="icd" typeaheadOptionField="description" (typeaheadOnSelect)="onSelect($event)" class="form-control" type="text">
+</div>
+<div class="col-sm-3">
+    <input type="text" placeholder="code" class="form-control" [(ngModel)]="selectedIcd.code">
+</div>
+<br />
+<br />
+</div>
+  <button class="btn btn-danger btn-sm" (click)="staticModal.hide()"> Close</button>
+      </div>
+    </div>
+    </div>
+
+</div>
