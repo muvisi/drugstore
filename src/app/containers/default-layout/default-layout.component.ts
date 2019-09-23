@@ -12,7 +12,7 @@ export class DefaultLayoutComponent implements OnDestroy {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
-  user = localStorage.getItem('username');
+  user = JSON.parse(sessionStorage.getItem('user'));
   constructor(private router: Router, @Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {

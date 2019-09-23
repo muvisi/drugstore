@@ -45,6 +45,9 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { TriageComponent } from './triage/triage.component';
 import { CreateClaimComponent } from './create-claim/create-claim.component';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { LabOrdersComponent } from './lab-orders/lab-orders.component';
+import { LabOrdersItemsComponent } from './lab-orders-items/lab-orders-items.component';
+import { LabTestsComponent } from './lab-tests/lab-tests.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -74,7 +77,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     LabComponent,
     LabResultsComponent,
     CreateClaimComponent,
-    TriageComponent
+    TriageComponent,
+    LabOrdersComponent,
+    LabOrdersItemsComponent,
+    LabTestsComponent
   ],
   imports: [
     CommonModule,

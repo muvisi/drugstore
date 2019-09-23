@@ -62,16 +62,15 @@ export class LoginComponent implements OnInit  {
       this.loading = true;
       localStorage.clear();
       this.User.logIn(this.data).subscribe((res) => {
-      localStorage.setItem('Token', res.token);
-      localStorage.setItem('username', res.username);
-      localStorage.setItem('user', JSON.stringify(res));
+      sessionStorage.setItem('Token', res.token);
+      sessionStorage.setItem('user', JSON.stringify(res));
       this.router.navigateByUrl('dashboard');
       this.loading = false;
       this.toastr.success('Login Success');
       }, (err) => {
       console.log(err);
       this.loading = false;
-      localStorage.removeItem('Token');
+      sessionStorage.removeItem('Token');
       this.toastr.error('Wrong Credentials');
       });
   }

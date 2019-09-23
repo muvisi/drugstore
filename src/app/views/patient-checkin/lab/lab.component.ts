@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit} from '@angular/core';
 import { ServiceService } from '../../../service.service';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 @Component({
   selector: 'app-lab',
@@ -9,27 +8,21 @@ import { ServiceService } from '../../../service.service';
   styleUrls: ['./lab.component.scss']
 })
 export class LabComponent implements OnInit {
-  displayedColumns: string[] = ['created', 'patient', 'visit', 'doctor', 'name'];
-  dataSource;
-
-  @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-
-  constructor( public service: ServiceService) { }
+  report: any = { };
+  constructor( public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) { }
 
   ngOnInit() {
-    this.requests();
+    this.getReports();
   }
-  requests() {
-    this.service.getLabRequests().subscribe((res) => {
-    console.log(res);
-    this.dataSource = new MatTableDataSource <[]>(res);
-    this.dataSource.paginator = this.paginator;
+  getReports() {
+    this.service.labReport().subscribe((res) => {
+      this.report = res;
     });
   }
-applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  viewOrders(status) {
+    this.navCtrl.navigate('/dashboard/lab-orders/', {status: status});
   }
-  view(data) {
-    console.log(data);
+  labTests() {
+    this.navCtrl.navigate('/dashboard/lab-tests');
   }
 }

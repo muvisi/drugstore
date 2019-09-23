@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 const endpoint = 'http://134.209.199.123/';
 // const endpoint = 'http://localhost:8000/';
-const token = localStorage.getItem('Token');
+const token = sessionStorage.getItem('Token');
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -133,11 +133,23 @@ searchProcedure(data): Observable<any> {
     return this.http.post(endpoint + 'elab/create_lab-request/', data, httpOptions).pipe(
       map(this.extractData));
   }
+  labOrders(data): Observable<any> {
+    return this.http.get(endpoint + 'elab/samples/?status=' + data);
+  }
+  labOrderItems(data): Observable<any> {
+    return this.http.get(endpoint + 'elab/order/' + data + '/');
+  }
+  labReport(): Observable<any> {
+    return this.http.get(endpoint + 'elab/samples_report/');
+  }
   sendBatch(data) {
     return this.http.post(endpoint + 'claims/send_batch_to_insurance/', data, httpOptions).pipe(
       map(this.extractData));
   }
-
+  labTests() {
+    return this.http.get(endpoint + 'elab/orders/').pipe(
+      map(this.extractData));
+  }
   insuranceBill(id) {
     return this.http.post(endpoint + 'payments/insurance/', id, httpOptions).pipe(
       map(this.extractData));
@@ -236,7 +248,7 @@ searchProcedure(data): Observable<any> {
       ));
   }
 getPayers(): Observable<any> {
-    return this.http.get(endpoint + 'services/payers/').pipe(
+    return this.http.get(endpoint + 'services/payers/', httpOptions).pipe(
     map(this.extractData));
 
   }

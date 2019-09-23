@@ -27,7 +27,9 @@ import { LabResultsComponent} from '../patient-checkin/lab-results/lab-results.c
 import { CreateClaimComponent } from '../patient-checkin/create-claim/create-claim.component';
 import { MemberInformationComponent } from '../patient-checkin/member-information/member-information.component';
 import { AuthGuard } from '../../auth.guard';
-
+import { LabOrdersComponent } from '../patient-checkin/lab-orders/lab-orders.component';
+import { LabOrdersItemsComponent } from '../patient-checkin/lab-orders-items/lab-orders-items.component';
+import { LabTestsComponent } from '../patient-checkin/lab-tests/lab-tests.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,26 @@ const routes: Routes = [
     data: {
       title: 'labs'
     }
+  },
+  {
+    path: 'lab-tests',
+    component: LabTestsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'tests component'
+    }
+  },
+  {
+    path: 'lab-orders',
+    component: LabOrdersComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'labs'
+    }
+  },
+  {
+    path: 'sample-orders',
+    component: LabOrdersItemsComponent,
   },
   {
     path: 'eclaims-dashboard',

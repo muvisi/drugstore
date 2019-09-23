@@ -529,6 +529,9 @@
                     <mat-checkbox [checked]="isMpesa" (change)="onMpesa()">MPESA</mat-checkbox>
                   </div>
                   <div class="col-sm-3">
+                    <mat-checkbox [checked]="isCash" (change)="onCash()" name="cash">CARD</mat-checkbox>
+                  </div>
+                  <div class="col-sm-3">
                     <mat-checkbox [checked]="isInsurance" (change)="onInsurance()" *ngIf="isInsurance">INSURANCE</mat-checkbox>
                   </div>
                   <div class="col-sm-3">

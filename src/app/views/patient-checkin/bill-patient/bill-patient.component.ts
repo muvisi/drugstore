@@ -50,7 +50,7 @@ export class BillPatientComponent implements OnInit {
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent,
   private toastr: ToastrService, public router: Router) {
     this.visit_no = this.navCtrl.get('data');
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user = JSON.parse(sessionStorage.getItem('user'));
     this.patient = this.navCtrl.get('patient');
     console.log(this.navCtrl.get('patient'));
     if (this.patient != null) {
