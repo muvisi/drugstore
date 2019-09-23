@@ -63,7 +63,7 @@ constructor(public navCtrl: NgxNavigationWithDataComponent, public service: Serv
 private router: Router, private toastr: ToastrService) {
 this.id = this.navCtrl.get('id');
 this.patient();
-this.user = JSON.parse(localStorage.getItem('user'));
+this.user = JSON.parse(sessionStorage.getItem('user'));
 if (this.id === undefined) {
   this.router.navigate(['/dashboard/patients/diagnosis&treatment']);
 }

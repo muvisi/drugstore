@@ -37,7 +37,7 @@ export class SetUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user = JSON.parse(sessionStorage.getItem('user'));
     console.log('user details', this.user);
     this.service.getHospital(this.user.hospital).subscribe((res) => {
     this.hospital = res;

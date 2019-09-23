@@ -90,7 +90,7 @@
         <fieldset>
                 <Legend>ALLERGIES</Legend>
                 <div class="row">
-                      <div class="col-sm-1" *ngFor="let allergy of allergies">
+                      <div class="col-sm-2" *ngFor="let allergy of allergies">
                               <mat-checkbox (click)="addAllergy(allergy.name)" style="font-weight:400">{{allergy.name | uppercase}}</mat-checkbox>
                           </div>
                 </div>
