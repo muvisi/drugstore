@@ -17,10 +17,11 @@ export class TriageComponent implements OnInit {
   notes = '';
   bmi = 0;
   pressure = '';
+  priority = '';
   constructor(public navCtrl: NgxNavigationWithDataComponent, private formBuilder: FormBuilder, public service: ServiceService,
     public toastr: ToastrService) {
    this.patient = this.navCtrl.get('data');
-   console.log('dddddd', this.patient);
+  
   }
 
   ngOnInit() {
@@ -32,6 +33,9 @@ export class TriageComponent implements OnInit {
       pulse: ['', Validators.required],
       height: ['', Validators.required],
       respiratory: [''],
+      bmi: [''],
+      blood_pressure: [''],
+      bsa: ['']
   });
 this.alleryList();
 }
@@ -41,6 +45,16 @@ alleryList() {
   this.allergies = res.results;
   });
   }
+get foodAllergies(){
+  return this.allergies.filter(x => x.category ==='Foods')
+}
+get metalAllergies(){
+  return this.allergies.filter(x => x.category ==='Metals')
+}
+
+get insectAllergies(){
+  return this.allergies.filter(x => x.category ==='Insect stings or bites')
+}
 
 get f() { return this.triageForm.controls; }
 

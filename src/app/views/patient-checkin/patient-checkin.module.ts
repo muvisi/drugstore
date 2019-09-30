@@ -7,7 +7,7 @@ import { RegisterPatientComponent } from './register-patient/register-patient.co
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MatStepperModule, MatIconModule, MatTableModule, MatPaginatorModule,
 MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatChipsModule,
-MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule} from '@angular/material';
 import { PatientRecordsComponent } from './patient-records/patient-records.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { InsureCheckComponent } from './insure-check/insure-check.component';
@@ -48,6 +48,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { LabOrdersComponent } from './lab-orders/lab-orders.component';
 import { LabOrdersItemsComponent } from './lab-orders-items/lab-orders-items.component';
 import { LabTestsComponent } from './lab-tests/lab-tests.component';
+import { AuthorizationLetterComponent } from './authorization-letter/authorization-letter.component';
+import { AuthletterRequestComponent } from './authletter-request/authletter-request.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -80,7 +82,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     TriageComponent,
     LabOrdersComponent,
     LabOrdersItemsComponent,
-    LabTestsComponent
+    LabTestsComponent,
+    AuthorizationLetterComponent,
+    AuthletterRequestComponent
   ],
   imports: [
     CommonModule,
@@ -113,6 +117,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatDatepickerModule,
     MatNativeDateModule,
     CKEditorModule,
+    MatExpansionModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 

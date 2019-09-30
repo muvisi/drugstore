@@ -1,12 +1,9 @@
 
 mat-form-field { 
-    font-size: 11px;
+    font-size: 14px;
     width: 100%;
   }
-mat-hint{
-    font-size: 9px;
-    font-weight: 600;
-}
+
 ::ng-deep .mat-checkbox .mat-checkbox-frame {
     border-color:red;
     height: 15px;
@@ -19,4 +16,7 @@ mat-hint{
  } 
  ::placeholder{
    font-weight: bold;
+ }
+ mat-label{
+   font-weight: 800;
  }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../../service.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 @Component({
@@ -8,72 +10,23 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
   styleUrls: ['./patient-list.component.scss']
 })
 export class PatientListComponent implements OnInit {
-  visits;
-  name;
-  patientNumber;
-  visitNumber;
-  searchText;
-  phone;
+  @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
+  dataSource;
+  Columns: string[] = ['name','patient_no','visit_no','national_id','priority','phone','status','date','time']
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) { }
 
   ngOnInit() {
-    this.visits = [];
     this.patientsList();
 
   }
-  Search() {
-    if (this.searchText !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.national_id.match(this.searchText);
-      });
-    } else {
-      this.ngOnInit();
-    }
+  
+  search(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  SearchName() {
-    if (this.name !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.name.toLowerCase().match(this.name.toLowerCase());
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchVisit() {
-    if (this.visitNumber !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.visit_no.match(this.visitNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchByPatient() {
-    if (this.patientNumber !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.patient_no.match(this.patientNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchPhone() {
-    if (this.phone !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.phone.match(this.phone);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
 patientsList() {
    this.service.getTreatments().subscribe((res) => {
-    //  console.log(res);
-     this.visits = res.results;
+    this.dataSource = new MatTableDataSource <[]>(res.results);
+    this.dataSource.paginator = this.paginator;
    }
    );
 }

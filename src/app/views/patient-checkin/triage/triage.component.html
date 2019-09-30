@@ -1,18 +1,15 @@
-<div class="card">
-    <div class="card-header">
-      Triage Information
-    </div>
-    <div class="card-body">
-    <form [formGroup]="triageForm" (ngSubmit)="onSubmit()">
-     <fieldset>
-       <legend>VITALS</legend>
-       <div class="row">
+<div class="row">
+  <div class="col-sm-12">
+    <tabset>
+      <tab heading="VITALS">
+          <form [formGroup]="triageForm" novalidate>
+        <div class="row">
         <div class="col-sm-2">
            <mat-form-field appearance="outline">
                <mat-label>Body Temperature</mat-label>
                <input matInput placeholder="Temperature value" type="number" formControlName="temperature" [ngClass]="{ 'is-invalid': submitted && f.temperature.errors }" >
                <i matSuffix class="fa fa-thermometer-half"></i>
-               <mat-hint>Temperature in °C</mat-hint>
+               
                
              </mat-form-field>
         </div>
@@ -21,7 +18,6 @@
                <mat-label>Pulse Rate</mat-label>
                <input matInput placeholder="pulse rate value" type="number" formControlName="pulse"  [ngClass]="{ 'is-invalid': submitted && f.pulse.errors }">
                <i matSuffix class="fa fa-heartbeat"></i>
-               <mat-hint>Pulse Rate</mat-hint>
              </mat-form-field>
         </div>
         <div class="col-sm-2">
@@ -29,7 +25,6 @@
                <mat-label>Blood Pressure (systolic)</mat-label>
                <input matInput placeholder="systolic value" type="number" (ngModelChange)="test()"  formControlName="systolic"  [ngClass]="{ 'is-invalid': submitted && f.systolic.errors }">
                <i matSuffix class="fa fa-yelp"></i>
-               <mat-hint>Blood Pressure (systolic)</mat-hint>
              </mat-form-field>
         </div>
         <div class="col-sm-2">
@@ -37,17 +32,23 @@
                <mat-label>Blood Pressure (diastolic)</mat-label>
                <input matInput placeholder="diastolic value" type="number" (ngModelChange)="test()" formControlName="diastolic"  [ngClass]="{ 'is-invalid': submitted && f.diastolic.errors }">
                <i matSuffix class="fa fa-yelp"></i>
-               <mat-hint>Blood Pressure (diastolic)</mat-hint>
+          
              </mat-form-field>
         </div>
         <div class="col-sm-2">
            <mat-form-field appearance="outline">
                <mat-label>Blood Pressure </mat-label>
-               <input matInput placeholder="blood pressure"  [value]="pressure" type="text"  readonly>
-               <i matSuffix class="fa fa-yelp"></i>
-               <mat-hint>Blood Pressure</mat-hint>
+               <input matInput placeholder="blood pressure"  [value]="pressure" type="text" formControlName="blood_pressure"    readonly>
+ 
              </mat-form-field>
         </div>
+        <div class="col-sm-2">
+            <mat-form-field appearance="outline">
+                <mat-label>BSA </mat-label>
+                <input matInput placeholder="BSA"  type="text" formControlName="bsa"    readonly>
+                <i matSuffix class="fa fa-yelp"></i>
+              </mat-form-field>
+         </div>
     </div>
     <div class="row">
            <div class="col-sm-2">
@@ -55,7 +56,6 @@
                        <mat-label>Height</mat-label>
                        <input matInput placeholder="height" type="number" (ngModelChange)="calculateBmi()" formControlName="height"  [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
                        <i matSuffix class="fa fa-yelp"></i>
-                       <mat-hint>Height in centimetres</mat-hint>
                      </mat-form-field>
                 </div>  
 
@@ -64,7 +64,6 @@
                            <mat-label>Weight</mat-label>
                            <input matInput placeholder="weight" type="number" (ngModelChange)="calculateBmi()" formControlName="weight"  [ngClass]="{ 'is-invalid': submitted && f.weight.errors }">
                            <i matSuffix class="fa fa-yelp"></i>
-                           <mat-hint>Weight in Kilograms</mat-hint>
                          </mat-form-field>
                     </div>     
                     <div class="col-sm-2">
@@ -72,74 +71,168 @@
                                <mat-label>Respiratory</mat-label>
                                <input matInput placeholder="respiratory" type="number" formControlName="respiratory"  [ngClass]="{ 'is-invalid': submitted && f.respiratory.errors }">
                                <i matSuffix class="fa fa-yelp"></i>
-                               <mat-hint>Respiratory</mat-hint>
+                         
                              </mat-form-field>
                         </div>               
                 <div class="col-sm-2">
                        <mat-form-field appearance="outline">
                            <mat-label>BMI</mat-label>
-                           <input matInput placeholder="BMI" [value]="bmi"  readonly>
+                           <input matInput placeholder="BMI" [value]="bmi"  formControlName="bmi"   readonly>
                            <i matSuffix class="fa fa-yelp"></i>
-                           <mat-hint>bmi</mat-hint>
                          </mat-form-field>
                     </div>          
     </div>
-     </fieldset>
-<div class="row" style="margin-top:14px;">
- <div class="col-sm-12">
-        <fieldset>
-                <Legend>ALLERGIES</Legend>
+          </form>
+          <div class="row">
+              <div class="col-sm-6">
+                <fieldset>
+                  <legend>PRIORITY</legend>
+                  <div class="row">
+                      <div class="col-sm-4">
+                          <mat-radio-group [(ngModel)]="priority" name="priority">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <mat-radio-button value="Normal"[checked]="true">Normal</mat-radio-button>
+                            </div>
+                            <div class="col-sm-6">
+                              <mat-radio-button  value="Urgent">Urgent</mat-radio-button>
+                            </div>
+                          </div>
+                        </mat-radio-group>
+                        </div>
+                        <div class="col-sm-2">
+                          <mat-checkbox>Proceed to Doctor</mat-checkbox>
+                        </div>
+                    </div>
+                </fieldset>
+                
+              </div>
+            </div>
+      </tab>
+      <tab heading="ALLERGIES">
+          <div class="row">
+              <div class="col-sm-12">
+                  <fieldset>
+                      <legend>ALLERGIC DRUGS</legend>
+                      <div class="row">
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input matInput placeholder="Type Drug Name" >
+                              </mat-form-field>
+                        </div>
+                      </div>
+                    </fieldset>
+              </div>
+            </div>
+          
+        <div class="row">
+          <div class="col-sm-12" style="margin-top:20px;">
+             <fieldset>
+                <Legend>FOOD ALLERGIES</Legend>
+          
                 <div class="row">
-                      <div class="col-sm-2" *ngFor="let allergy of allergies">
+                      <div class="col-sm-2" *ngFor="let allergy of foodAllergies">
                               <mat-checkbox (click)="addAllergy(allergy.name)" style="font-weight:400">{{allergy.name | uppercase}}</mat-checkbox>
                           </div>
                 </div>
             </fieldset>
- </div>
- <br>
+          </div>
+          
+          <div class="col-sm-12" style="margin-top:20px;">
+              <fieldset>
+                 <Legend>INSECT BITES ALLERGIES</Legend>
+                 <div class="row">
+                       <div class="col-sm-2" *ngFor="let allergy of insectAllergies">
+                               <mat-checkbox (click)="addAllergy(allergy.name)" style="font-weight:400">{{allergy.name | uppercase}}</mat-checkbox>
+                           </div>
+                 </div>
+             </fieldset>
+           </div>
+           <br>
+           <br>
+           <div class="col-sm-12" style="margin-top:20px;">
+              <fieldset>
+                 <Legend>METAL ALLERGIES</Legend>
+                 <div class="row">
+                       <div class="col-sm-2" *ngFor="let allergy of metalAllergies">
+                               <mat-checkbox (click)="addAllergy(allergy.name)" style="font-weight:400">{{allergy.name | uppercase}}</mat-checkbox>
+                           </div>
+                 </div>
+             </fieldset>
+           </div>
+        </div>
+      </tab>
+      <tab heading="MINOR PROCEDURES & NOTES">
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset>
+                    <legend>OBSERVATION NOTES</legend>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <mat-checkbox>Weak or Absent breathin</mat-checkbox>
+                      </div>
+                      <div class="col-sm-3">
+                          <mat-checkbox>Obstructed Breathing</mat-checkbox>
+                        </div>
+                        <div class="col-sm-3">
+                            <mat-checkbox>Severe Respiratory Stress</mat-checkbox>
+                        </div>  
+                        <div class="col-sm-3">
+                            <mat-checkbox>Unintentional Weight Loss</mat-checkbox>
+                        </div> 
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-2">
+                          <mat-form-field>
+                              <input matInput placeholder="Observation Type">
+                            </mat-form-field>
+                      </div>
+                      <div class="col-sm-2">
+                          <mat-form-field>
+                              <input matInput placeholder="Observation Code" >
+                            </mat-form-field>
+                      </div>
+                      <div class="col-sm-2">
+                          <mat-form-field>
+                              <input matInput placeholder="Onset of Symptoms" >
+                            </mat-form-field>
+                      </div>
+                      <div class="col-sm-2">
+                          <mat-form-field>
+                              <input matInput placeholder="Next Appointment" >
+                            </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <mat-form-field appearance="outline">
+                              <mat-label>Observation Notes</mat-label>
+                              <textarea matInput placeholder="Write Observation notes" cols="12" value=""></textarea>
+                              <i class="icon-note" matSuffix></i>
+                              
+                            </mat-form-field>
+                      </div>
+                    </div>
+                  </fieldset> 
+            </div>
+          
+          <div class="col-sm-12" style="margin-top:10px;">
+              <fieldset>
+                  <legend>PROCEDURES</legend>
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <mat-form-field appearance="outline">
+                              <mat-label>Procedure</mat-label>
+                              <input matInput placeholder="search Procedure">
+                              <i class="icon-magnifier" matSuffix></i>
 
-</div>
-<br>
-<div class="row">
-  <div class="col-sm-12">
-   
+                            </mat-form-field>
+                      </div>
+                    </div>
+                </fieldset> 
+          </div>
+        </div>
+      </tab>
+    </tabset>
   </div>
 </div>
-<div class="row">
-  <div class="col-sm-12">
-<div class="row">
-  <div class="col-sm-7">
-    <fieldset>
-      <legend>NURSE NOTES</legend>
-      <ckeditor [(ngModel)]="notes" [ngModelOptions]="{standalone: true}" placeholder="Nurse Notes"></ckeditor>
-    
-    </fieldset>   
-  </div>
-  <div class="col-sm-5">
-    <fieldset>
-      <legend>PROCEDURES</legend>
-    <div class="row">
-      <div class="col-sm-9">
-        <mat-form-field appearance="outline">
-          <mat-label>Procedure</mat-label>
-          <input matInput placeholder="procedure">
-          <i matSuffix class="fa fa-yelp"></i>
-    
-        </mat-form-field>
-      </div>
-    </div>
-    </fieldset>   
-  </div>
-</div>
-  </div>
-</div>
-<br>
-<div>
-  <button class="btn btn-info btn-sm pull-right" type="submit"> Submit</button>
-
-</div>
-     </form>
-     
-    </div>
-
-  </div>
