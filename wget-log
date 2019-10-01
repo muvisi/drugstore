@@ -1,0 +1,95 @@
+--2019-09-27 17:13:30--  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Resolving download.ap.bittorrent.com (download.ap.bittorrent.com)... 67.215.238.66
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-27 17:28:32--  (try: 2)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-27 17:43:34--  (try: 3)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-27 17:58:37--  (try: 4)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-27 18:13:41--  (try: 5)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-27 18:28:46--  (try: 6)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-27 18:43:52--  (try: 7)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-27 18:59:00--  (try: 8)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... Read error (Connection timed out) in headers.
+Retrying.
+
+--2019-09-28 23:09:20--  (try: 9)  http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04
+Connecting to download.ap.bittorrent.com (download.ap.bittorrent.com)|67.215.238.66|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2259698 (2.2M) [application/octet-stream]
+Saving to: ‘utserver.tar.gz’
+
+     0K .......... .......... .......... .......... ..........  2% 56.4K 38s
+    50K .......... .......... .......... .......... ..........  4% 22.2K 66s
+   100K .......... .......... .......... .......... ..........  6% 15.3K 88s
+   150K .......... .......... .......... .......... ..........  9% 14.4K 99s
+   200K .......... .......... .......... .......... .......... 11% 20.3K 97s
+   250K .......... .......... .......... .......... .......... 13%  119K 81s
+   300K .......... .......... .......... .......... .......... 15% 36.1K 75s
+   350K .......... .......... .......... .......... .......... 18% 18.5K 76s
+   400K .......... .......... .......... .......... .......... 20% 76.8K 68s
+   450K .......... .......... .......... .......... .......... 22% 35.0K 65s
+   500K .......... .......... .......... .......... .......... 24% 19.0K 65s
+   550K .......... .......... .......... .......... .......... 27% 24.2K 63s
+   600K .......... .......... .......... .......... .......... 29% 18.9K 63s
+   650K .......... .......... .......... .......... .......... 31% 29.8K 60s
+   700K .......... .......... .......... .......... .......... 33% 46.5K 56s
+   750K .......... .......... .......... .......... .......... 36% 37.1K 53s
+   800K .......... .......... .......... .......... .......... 38% 24.2K 52s
+   850K .......... .......... .......... .......... .......... 40% 58.5K 48s
+   900K .......... .......... .......... .......... .......... 43% 39.2K 46s
+   950K .......... .......... .......... .......... .......... 45%  109K 42s
+  1000K .......... .......... .......... .......... .......... 47% 20.5K 41s
+  1050K .......... .......... .......... .......... .......... 49% 40.3K 39s
+  1100K .......... .......... .......... .......... .......... 52%  100K 36s
+  1150K .......... .......... .......... .......... .......... 54%  187K 33s
+  1200K .......... .......... .......... .......... .......... 56% 46.9K 31s
+  1250K .......... .......... .......... .......... .......... 58% 72.4K 29s
+  1300K .......... .......... .......... .......... .......... 61% 63.5K 27s
+  1350K .......... .......... .......... .......... .......... 63% 42.6K 25s
+  1400K .......... .......... .......... .......... .......... 65%  145K 23s
+  1450K .......... .......... .......... .......... .......... 67% 16.6K 22s
+  1500K .......... .......... .......... .......... .......... 70% 3.32K 26s
+  1550K .......... .......... .......... .......... .......... 72%  121M 23s
+  1600K .......... .......... .......... .......... .......... 74%  121M 21s
+  1650K .......... .......... .......... .......... .......... 77% 91.5M 18s
+  1700K .......... .......... .......... .......... .......... 79%  104M 16s
+  1750K .......... .......... .......... .......... .......... 81%  104M 14s
+  1800K .......... .......... .......... .......... .......... 83% 67.7M 12s
+  1850K .......... .......... .......... .......... .......... 86% 54.2M 10s
+  1900K .......... .......... .......... .......... .......... 88% 74.2M 8s
+  1950K .......... .......... .......... .......... .......... 90% 83.3M 6s
+  2000K .......... .......... .......... .......... .......... 92% 84.3K 5s
+  2050K .......... .......... .......... .......... .......... 95% 29.9K 3s
+  2100K .......... .......... .......... .......... .......... 97% 21.1K 2s
+  2150K .......... .......... .......... .......... .......... 99% 30.1K 0s
+  2200K ......                                                100% 41.9K=68s
+
+2019-09-28 23:10:29 (32.4 KB/s) - ‘utserver.tar.gz’ saved [2259698/2259698]
+

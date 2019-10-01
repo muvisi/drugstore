@@ -30,6 +30,8 @@ import { AuthGuard } from '../../auth.guard';
 import { LabOrdersComponent } from '../patient-checkin/lab-orders/lab-orders.component';
 import { LabOrdersItemsComponent } from '../patient-checkin/lab-orders-items/lab-orders-items.component';
 import { LabTestsComponent } from '../patient-checkin/lab-tests/lab-tests.component';
+import { AuthorizationLetterComponent } from '../patient-checkin/authorization-letter/authorization-letter.component';
+import { AuthletterRequestComponent} from '../patient-checkin/authletter-request/authletter-request.component';
 
 const routes: Routes = [
   {
@@ -50,11 +52,19 @@ const routes: Routes = [
     }
   },
   {
-    path: 'inventory',
-    component: InventoryComponent,
+    path: 'authletter',
+    component: AuthorizationLetterComponent,
     canActivate: [AuthGuard],
     data: {
-      title: 'parients-dashboard'
+      title: 'authletter'
+    }
+  },
+  {
+    path: 'authletter-requests',
+    component: AuthletterRequestComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'authletter'
     }
   },
   {
@@ -94,7 +104,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'patients/register',
+    path: 'patients/records',
     component: RegisterPatientComponent,
     canActivate: [AuthGuard],
     data: {

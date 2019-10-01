@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { Routes, RouterModule , PreloadingStrategy } from '@angular/router';
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
 
@@ -8,7 +7,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-
+import { CustomPreloadingStrategy } from './preloading';
 export const routes: Routes = [
   // {
   //   path: '',
@@ -57,19 +56,24 @@ export const routes: Routes = [
     children: [
       {
         path: 'base',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
+        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule),
+        data: { preload: true }
       },
       {
         path: 'charts',
-        loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
+        loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule),
+        data: { preload: false }
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
+        data: { preload: true }
       },
       {
         path: 'dispatch',
-        loadChildren: () => import('./views/patient-checkin/patient-checkin.module').then(m => m.PatientCheckinModule)
+        loadChildren: () => import('./views/patient-checkin/patient-checkin.module').then(m => m.PatientCheckinModule),
+        data: { preload: false }
+
       }
     ]
   },
@@ -77,7 +81,9 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes,{
+    preloadingStrategy: CustomPreloadingStrategy
+  })],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

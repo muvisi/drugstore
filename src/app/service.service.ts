@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 // import { Response } from '@angular/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-const endpoint = 'http://134.209.199.123/';
-// const endpoint = 'http://localhost:8000/';
+// const endpoint = 'http://134.209.199.123/';
+const endpoint = 'http://localhost:8000/';
 const token = sessionStorage.getItem('Token');
 const httpOptions = {
   headers: new HttpHeaders({
@@ -59,6 +59,16 @@ export class ServiceService {
   }
   getServices(): Observable<any> {
     return this.http.get(endpoint + 'data/service/').pipe(
+      map(this.extractData));
+
+  }
+  getXray(): Observable<any> {
+    return this.http.get(endpoint + 'data/service/?search=X-RAY'+'&limit=100').pipe(
+      map(this.extractData));
+
+  }
+  getCtscan(): Observable<any> {
+    return this.http.get(endpoint + 'data/service/?search=CT SCAN'+'&limit=100').pipe(
       map(this.extractData));
 
   }
@@ -373,3 +383,4 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
 }
+ 
