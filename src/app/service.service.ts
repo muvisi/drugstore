@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 // import { Response } from '@angular/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// const endpoint = 'http://134.209.199.123/';
-const endpoint = 'http://localhost:8000/';
+const endpoint = 'http://134.209.199.123/';
+// const endpoint = 'http://localhost:8000/';
 const token = sessionStorage.getItem('Token');
 const httpOptions = {
   headers: new HttpHeaders({
