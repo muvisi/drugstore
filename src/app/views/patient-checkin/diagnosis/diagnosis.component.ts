@@ -7,10 +7,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable, from } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 @Component({
 selector: 'app-triage',
 templateUrl: './diagnosis.component.html',
-styleUrls: ['./diagnosis.component.scss']
+styleUrls: ['./diagnosis.component.scss'],
+providers: [DatePipe]
 })
 export class DiagnosisComponent implements OnInit {
 @ViewChild('diagnosis', {static: true}) diagnosis: ModalDirective;
@@ -20,9 +22,10 @@ export class DiagnosisComponent implements OnInit {
 @ViewChild('paginator2', {static: true}) paginator2: MatPaginator;
 @ViewChild('paginator3', {static: true}) paginator3: MatPaginator;
 data;
-procedureColumns: string[] = ['Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity'];
-diagnosisColumns: string[] = ['Diagnosis', 'Code'];
-drugColumns: string[] = ['Drug', 'Generic', 'Code', 'Refills', 'Form', 'Dosage'];
+procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity'];
+diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code'];
+drugColumns: string[] = ['name', 'generic_name','dosage','frequency', 'duration', 'route','notes','form'];
+frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','1 day','2 days'];
 triage = {};
 id;
 loading;
@@ -60,7 +63,7 @@ allergy: any = {};
 selectedDrug: any = { };
 
 constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService,
-private router: Router, private toastr: ToastrService) {
+private router: Router, private toastr: ToastrService, private datePipe: DatePipe) {
 this.id = this.navCtrl.get('id');
 this.patient();
 this.user = JSON.parse(sessionStorage.getItem('user'));
@@ -71,7 +74,6 @@ if (this.id === undefined) {
 
 ngOnInit() {
 this.loading = true;
-console.log('Tumefika', this.navCtrl.get('id'));
 this.getServices();
 console.clear();
 this.patient();
@@ -105,6 +107,7 @@ addAllergy() {
   }
 
 savePrescription() {
+  console.log(this.selectedDrug)
   const data = {
     'visit_no': this.patientInfo.visit_no,
     'data': this.selectedDrug,
@@ -155,6 +158,7 @@ this.diagnosesList = res.results;
 
 onDrug(item) {
 this.selectedDrug = item.item;
+console.log(this.selectedDrug);
 }
 submitClaim() {
 this.service.closeClaim({'id': this.patientInfo.visit_no}).subscribe((res) => {
@@ -311,6 +315,8 @@ this.diagnoses.splice(index, 1);
     });
   }
   saveService() {
+    this.selectedOption.date = this.datePipe.transform(this.selectedOption.date, 'yyyy-MM-dd');
+    console.log(this.selectedOption)
     this.service.generateBill(this.selectedOption).subscribe((res) => {
       console.log(res);
       this.patient();

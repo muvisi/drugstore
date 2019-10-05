@@ -1,79 +1,94 @@
-<div class="card">
+<div class="card" id="print-section">
   <div class="card-body">
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="form-group row">
-          <div class="col-3">
-            <input type="text" class="form-control" [(ngModel)]="name" placeholder="PATIENT NAME"
-              (input)="SearchName()">
-          </div>
-          <div class="col-3">
-            <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="National ID"
-              (input)="Search()">
-          </div>
-          <div class="col-3">
-            <input type="text" class="form-control" placeholder="VISIT NUMBER" (input)="SearchVisit()"
-              [(ngModel)]="visitNumber">
-          </div>
-          <div class="col-3">
-            <input type="text" class="form-control" placeholder="PATIENT NO" (input)="SearchByPatient()"
-              [(ngModel)]="patientNumber">
-          </div>
-          <!-- <div class="col-3">
-                                    <input type="text" class="form-control" placeholder="PHONE " (input)= "SearchPhone()" [(ngModel)]="phone" >
-                                </div> -->
-
+    <div class="row container-fluid">
+        <div class="col-sm-12">
+            <address style="font-size: 13px;">
+                <span style="font-size:20;font-weight:bold">HEALTHIX HOSPITAL</span> <br>
+                <span style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                    637833-00200 Nairobi,<br>
+                    contact +254 7 789-1234,hospital@gmail.com
+                </span>
+                </address>
         </div>
-      </div>
-      <!-- <div class="col-sm-4"> <button class="btn btn-default pull-right" style="background-color:#5e64ff" (click)="childModal.show()"><b style="color:white"> <i class="icon-plus"></i> Add Patient</b></button> </div> -->
-    </div>
-    <div class="row">
-      <div class="col-sm-12 table-responsive">
-        <table class="table table-condensed table-hover table-sm">
-          <thead style="background-color:#d1d8dd;">
-            <tr
-              style="font-size:11px;font-weight:bold;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-
-              <th>Serial No</th>
-              <td><i class="icon-user-following"></i> Patient</td>
-              <th> <i class="fa fa-heart"></i> Patient no</th>
-              <th> <i class="icon-plus"></i> Encounter no</th>
-              <th> <i class="icon-tag"></i> National id</th>
-              <th> <i class="icon-bell"></i> Priority</th>
-              <th> <i class="icon-call-out"></i> Phone</th>
-              <th><i class="fa fa-circle text-success"></i> Status</th>
-              <th><i class="cui-calendar"></i>Check in</th>
-              <th><i class="icon-clock"></i> Time</th>
-
-            </tr>
-          </thead>
-          <tbody id="displ">
-            <tr *ngFor="let visit of visits;let i = index"
-              style="font-weight:bold;font-size:9px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"
-              (click)="patientPayment(visit)">
-              <td>{{i+1}}</td>
-              <td> {{visit.name | uppercase}}</td>
-              <td> {{visit.patient.patient_no}}</td>
-              <td> {{visit.visit_no}}</td>
-              <td> {{visit.patient.national_id}}</td>
-              <td> {{visit.priority}}</td>
-              <td> {{visit.patient.phone}}</td>
-              <td>{{visit.status}}</td>
-              <td>{{ visit.check_in | date: 'yyyy-MM-dd'}}</td>
-              <td> {{ visit.check_in | date : 'shortTime'}}</td>
-
-              <!-- <td (click)="patientDetails(visit)"> <button class="btn btn-primary btn-sm"><i class="cui-note"></i></button>
-      </td> -->
-              <!-- <td style="font-weight:bold;font-size:11px;"> <button class="btn btn-info btn-sm"
-          (click)="setPatient(visit);staticModal.show()"><i class="icon-plus"></i> New visit</button></td> -->
-
-            </tr>
+        <div class="col-sm-12">
+          <h1>INVOICE</h1>
+        </div>
+        
+          <div class="col-sm-5" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+            <div class="row">
+              <div class="col-sm-4">Charge Date</div>
+              <div class="col-sm-5">2019-09-39</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">Net</div>
+                <div class="col-sm-5">24000</div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">Currency</div>
+                  <div class="col-sm-5">KSH</div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">User</div>
+                  <div class="col-sm-5">Davi</div>
+                </div>
+          </div>
+          <div class="col-sm-5">
+              <div class="row">
+                  <div class="col-sm-4">Billed To</div>
+                  <div class="col-sm-5">Virginia Mukonyo</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">Visit Number</div>
+                    <div class="col-sm-5">1000227288</div>
+                  </div>
+                <div class="row">
+                    <div class="col-sm-4">Phone</div>
+                    <div class="col-sm-5">0724566210</div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-4">Email</div>
+                      <div class="col-sm-5">davia@gmail.com</div>
+                  </div>
+            </div>
             
+            <div class="col-sm-12">
+                <br>
+                <table class="table table-bordered">  <tr> 
+                  <th>Item / Desc.</th>
+                   <th>Qty.</th>
+                    <th>@</th>
+                     <th>Price</th>
+                     </tr> 
+                     <tr> 
+                       <td>Paperclips (Box)</td> 
+                       <td>100</td>
+                        <td>1.15</td>
+                         <td>115.00</td> 
+                        </tr>
+                         <tr>
+                            <td>Paper (Case)</td> 
+                          <td>10</td>
+                           <td>45.99</td
+                            > <td>459.90</td> 
+                          </tr>
+                           <tr> 
+                             <td>Wastepaper Baskets</td>
+                              <td>2</td>
+                               <td>17.99</td> 
+                               <td>35.98</td> 
+                              </tr> 
+                              <tr> <th colspan="3">Subtotal</th> 
+                              <td>610.88</td> </tr> <tr> <th colspan="3">Tax</th>
+                               <td>42.76</td>
+                               </tr>
+                               <tr class="total"> <th colspan="3">Total</th>
+                                <td>653.64</td> </tr> </table>
 
-          </tbody>
-        </table>
-
-      </div>
+                  </div>
     </div>
   </div>
 </div>
+<button
+  [useExistingCss]="true"
+    printSectionId="print-section"
+    ngxPrint>print</button>

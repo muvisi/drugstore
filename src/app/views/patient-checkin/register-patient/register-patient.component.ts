@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { ServiceService } from '../../../service.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 @Component({
@@ -15,9 +16,10 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 export class RegisterPatientComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   searchText;
   dataSource;
-  Columns: string[] = ['name','patient_no','visit_no','national_id','priority','phone','status','date','time']
+  Columns: string[] = ['name','patient_no','visit_no','national_id','priority','phone','status','date','time','referral','new_visit']
   constructor(private datePipe: DatePipe, public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) {
 
   }
@@ -29,14 +31,15 @@ export class RegisterPatientComponent implements OnInit {
   search(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
- patientDetails(item)  {
-this.navCtrl.navigate('/dashboard/patients/treatment', { id: item.visit_no});
+ revisit(item)  {
+ this.navCtrl.navigate('/dashboard/patients/new-patient/', { revisit: item.patient});
 }
 
 encounter() {
   this.service.patientVisit().subscribe((res) => {
     this.dataSource = new MatTableDataSource <[]>(res.results);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   });
   }
 

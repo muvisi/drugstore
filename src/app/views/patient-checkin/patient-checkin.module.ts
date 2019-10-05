@@ -7,7 +7,7 @@ import { RegisterPatientComponent } from './register-patient/register-patient.co
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MatStepperModule, MatIconModule, MatTableModule, MatPaginatorModule,
 MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatChipsModule,
-MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule} from '@angular/material';
+MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule, MatButtonModule} from '@angular/material';
 import { PatientRecordsComponent } from './patient-records/patient-records.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { InsureCheckComponent } from './insure-check/insure-check.component';
@@ -117,7 +117,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatDatepickerModule,
     MatNativeDateModule,
     CKEditorModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButtonModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 

@@ -1,48 +1,22 @@
-input[type="text"] {
-font-size:9px;
-font-weight: bold;
-text-transform: uppercase;
-color:#63c2de;;
-
+table{
+    width: 100%;
 }
-input[type="number"] {
-font-size:9px;
-font-weight: bold;
-text-transform: uppercase;
-color:#63c2de;;
-
+td.mat-cell{
+	font-size:13px;
 }
-input[type="password"] {
-font-size:9px;
-font-weight: bold;
-text-transform: uppercase;
-color:#63c2de;;
-
+tr.mat-row, tr.mat-footer-row {
+    height: 32px;
+  }
+ tr.mat-header-row {
+	height:38px;	
 }
-fieldset 
-{
-border: 1px solid #ddd !important;
-margin: 0;
-padding: 10px;       
-position: relative;
-border-radius:4px;
-padding-left:10px!important;
-}	
-
-legend
-{
-font-size:10px;
-font-weight:bold;
-margin-bottom: 0px; 
-width: 35%; 
-border-radius: 4px; 
-padding: 5px 5px 5px 10px; 
+mat-form-field{
+    width: 100%;
 }
-::placeholder{
-    text-transform:lowercase;
-    
+mat-card-subtitle{
+    margin-left: -12px;
 }
-label {
-    font-weight: bold;
-    font-size: 10px;
+.filter{
+    font-size: 19px;
+    color: dodgerblue;
 }

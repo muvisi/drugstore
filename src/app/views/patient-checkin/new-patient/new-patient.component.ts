@@ -81,8 +81,21 @@ export class NewPatientComponent  implements OnInit {
   selectedOption: any = {};
   savedPatient: any = {};
   memberData: any = {};
+  patientRevisit: any;
   constructor(public service: ServiceService, private toastr: ToastrService, public router: Router,
     public navCtrl: NgxNavigationWithDataComponent) {
+      this.patientRevisit = this.navCtrl.get('revisit');
+      if(this.patientRevisit != null) {
+        this.patient = this.patientRevisit;
+        const dob = new Date(this.patient['dob']);
+        this.patient['dob'] = dob;
+        this.calculateAge(dob);
+        if(this.patient.kin){
+          this.kin = this.patient.kin[0];
+        } else{
+          this.guardian = this.patient.guardian[0];
+        }
+      };
     console.log('member info11', this.navCtrl.get('patient'));
     this.memberInfo = this.navCtrl.get('patient');
     if (this.memberInfo != null ) {
@@ -92,7 +105,6 @@ export class NewPatientComponent  implements OnInit {
         this.covered_benefits.paginator = this.paginator3;
         this.covered_benefits.sort = this.sort;
         this.isInsurance = true;
-        console.log(this.memberInfo.member_data);
         this.memberData = this.memberInfo.member_data;
         this.member_number = this.memberData['member_number'];
         const dob = new Date(this.memberData['dob']);

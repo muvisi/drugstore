@@ -1,178 +1,94 @@
 <div class="row">
   <div class="col-sm-12">
-    <div class="card">
-      <div class="card-header">
-        <b>Payments</b>
-      <span class="pull-right" style="font-size:12px;font-weight: bold;"><b class="text-primary"> <i class="cui-dollar"></i> {{total | number}}</b></span>
-      </div>
-      <div class="card-body">
-       <div class="row">
-         <div class="col-sm-12">
-            <mat-checkbox [checked]="isCash" (change)="onCash()" name="cash" >
-              Cash
-            </mat-checkbox>
-            
-            <mat-checkbox  [checked]="isMpesa" (change)="onMpesa()" style="margin-left:8px;">Mpesa</mat-checkbox>
-            <mat-checkbox style="margin-left:8px;" [checked]="isInsurance" (change)="onInsurance()">Insurance</mat-checkbox>
-            <button class="btn btn-info btn-sm pull-right"(click)="submitPayment()" [disabled]="!(isCash || isMpesa || isInsurance) || !status"> Submit Payments</button>
-          </div>
+    <mat-card>
+        <mat-card-header>
+    
+              <mat-card-subtitle> <i class="fa fa-filter filter" ></i> FILTERS</mat-card-subtitle>
+      
+         </mat-card-header>
 
+      <div class="row">
           <div class="col-sm-12">
             <div class="row">
-              <div class="col-sm-6">
-                <fieldset *ngIf="isCash">
-                  <legend style="width:50%">Cash</legend>
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <label>Amount</label>
-                      <input type="number" class="form-control" placeholder="cash amount" [(ngModel)]="cash" (ngModelChange)="calculate()" name="aa"  >
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="col-sm-12">
-                <fieldset *ngIf="isMpesa">
-                  <legend>Mpesa</legend>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <label>Amount</label>
-                      <input type="number" class="form-control"  name="mpesa" placeholder="Mpesa amount" [(ngModel)]="mpesa.amount" (ngModelChange)="calculate()" >
-                    </div>
-                    <div class="col-sm-4">
-                      <label>Phone</label>
-                      <input type="number" class="form-control" name="mpesa" placeholder="Phone Number" [(ngModel)]="mpesa.phone">
-                    </div>
-                    <div class="col-sm-5">
-                      <label>Transaction Number</label>
-                      <input type="text" class="form-control" placeholder="Transaction Number" [(ngModel)]="mpesa.trx">
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
+                <div class="col-sm-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Filter by invoice" (keyup)="search($event.target.value)">
+                        <i class="icon-note" matSuffix></i>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="search by bill number" (keyup)="search($event.target.value)">
+                        <i class="icon-user-following" matSuffix></i>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="search service" (keyup)="search($event.target.value)">
+                        <i class="icon-magnifier" matSuffix></i>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-1">
+                    <mat-form-field>
+                        <mat-label>Status</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let status of statuses" [value]="status.value">
+                            {{status.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
             </div>
-          
-          <br />
           </div>
-          
-          <div class="col-sm-12" *ngIf="isInsurance">
-            <fieldset>
-              <legend>INSURE CHECK</legend>
-              <div class="row">
-              <div class="col-sm-9 table-responsive"  >
-                <div class="row">
-                <div class="col-sm-4">
-                  <label>Name</label>
-                  <input [(ngModel)]="name" [typeahead]="insureCheck"  (typeaheadOnSelect)="searchName()"  typeaheadOptionField="member_data.name"  class="form-control" type="text" (input)="SearchName()">
-                </div>
-                <div class="col-sm-8">
-                  <button class="btn btn-info btn-sm pull-right"  >Insure Check</button>
-                </div>
-                </div>
-                <br />
-                <div style="overflow-y:scroll; height:100px;">
-                  <table class="table table-condensed table-sm" style="font-size:10px;">
-                    <thead>
-                      <tr>
-                        <th>S.No</th>
-                        <th>Name</th>
-                        <th>Member No</th>
-                        <th>Visit type</th>
-                        <th>Status</th>
-                        <th>Payer</th>
-                        <th>Date</th>
-                        <th>Select</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of insureCheck;let i= index">
-                        <td>{{i+1}}</td>
-                        <td>{{item.member_data.name}}</td>
-                        <td>{{item.search_number}}</td>
-                        <td>{{item.visit_type}}</td>
-                        <td><span class="badge badge-success" *ngIf="item.member_data.status == true">ACTIVE</span></td>
-                        <td>{{item.member_data.payer}}</td>
-                        <td>{{item.date | date}}</td>
-                        <td>
-                          <mat-radio-button (click)="setMember(item)"></mat-radio-button>
-                        </td>
-                      </tr>
-                  
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                  <div class="col-sm-12" *ngIf="valid">
-                    <label>INSURANCE AMOUNT</label>
-                    <input type="number" placeholder="insurance amount" class="form-control" name="ee" [(ngModel)]="amount" (ngModelChange)="calculate()" >
-                  </div>
-              </div>
-              </div>
-            </fieldset>
-            <br />
-          </div>
-       </div>
-       <br />
-       <div class="row">
-         <div class="col-sm-9">
-           <fieldset>
-             <legend>Billed Services</legend>
-            <table class="table table-condensed table-sm ">
-              <tr
-                style="font-weight:700;font-size:11px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-                <td>Serial No</td>
-                <td>Service</td>
-                <td>Bill Number</td>
-                <td>Invoice</td>
-                <td>Cost</td>
-              </tr>
-              <tr *ngFor="let item of bills;let i = index"
-                style="font-size:11px;color:dodgerblue;font-weight:500;font-family: 'Lucida Sans'">
-                <td>{{i+1}}</td>
-                <td> {{item.service}}</td>
-                <td>{{item.bill_number}}</td>
-                <td>{{item.invoice__no}}</td>
-                <td style="font-weight:bold">{{item.rate | number}}</td>
-              </tr>
-            </table>
-           </fieldset>
-         </div>
-         <div class="col-sm-3">
-           <fieldset>
-             <legend><i class="icon-calculator"></i> Calculator</legend>
-             <div class="row">
-               <div class="col-sm-12">
-                 <h6 style="font-size:11px;"><b>Grand Total :</b> <b class="text-primary" style="font-family: graduate;margin-left: 5px;">{{total | number}}/=</b></h6>
-                 <h6 style="font-size:11px;"><b>Paid amount :</b> <b class="text-primary" style="font-family: graduate;margin-left: 5px;">{{0 |number}}/=</b></h6>
-               </div>
-             </div>
-           </fieldset>
-         </div>
-       </div>
       </div>
-    </div>
+    </mat-card>
   </div>
-
   
-<div class="modal fade" bsModal #passwordModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
-  aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <label>Validate Password</label>
-            <input type="password" class="form-control" placeholder="Enter your password" [(ngModel)]="pin" >
+  <div class="col-sm-12" style="margin-top:20px;">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>PATIENT NAME</th>
+        <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="visit_no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>VISIT NUMBER</th>
+        <td mat-cell *matCellDef="let element"> {{element.visit_no}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="invoice_no">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> INVOICE</th>
+        <td mat-cell *matCellDef="let element"> {{element.invoice_no}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bill_number">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>BILL NUMBER</th>
+        <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
+        </ng-container>
+        <ng-container matColumnDef="service">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>SERVICE</th>
+        <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+        </ng-container>
+        <ng-container matColumnDef="rate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>COST</th>
+        <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>QUANTITY</th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>TOTAL</th>
+            <td mat-cell *matCellDef="let element"> {{element.amount | number}} </td>
+        </ng-container>
+        <ng-container matColumnDef="created">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>DATE</th>
+            <td mat-cell *matCellDef="let element"> {{element.created | date :'yyyy-MM-dd'}} </td>
+        </ng-container>
         
-          </div>
-          <div class="col-sm-12">
-            <br/>
-            <button class="btn btn-success btn-sm" (click)="insureCheck()">Ok</button>
-            <button class="btn btn-danger btn-sm" style="margin-left:12px;" (click)="hideModal()">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[18 ,25]" showFirstLastButtons></mat-paginator>
   </div>
-</div>
 </div>

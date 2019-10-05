@@ -66,27 +66,27 @@
 </div>
 </div>
 <div class="col-sm-12">
+                <mat-radio-group [(ngModel)]="data.authorization_type" #radioGroup="matRadioGroup">
 <div class="row">
 <div class="col-sm-12 hd"><u>AUTHORIZATION TYPE</u></div>
 <div class="col-sm-3">
-<mat-radio-button>Admission</mat-radio-button>
+<mat-radio-button value="Admission">Admission</mat-radio-button>
 </div>
 <div class="col-sm-3">
-<mat-radio-button>Maternity</mat-radio-button>
+<mat-radio-button value="Maternity">Maternity</mat-radio-button>
 </div>
 <div class="col-sm-3">
-<mat-radio-button>Planned Procedure</mat-radio-button>
+<mat-radio-button value="Planned Procedure">Planned Procedure</mat-radio-button>
 </div>
 <div class="col-sm-3">
-<mat-radio-button>Dental Procedure</mat-radio-button>
+<mat-radio-button value="Dental  Procedure">Dental Procedure</mat-radio-button>
 </div>
 <div class="col-sm-3">
-<mat-radio-button>Optical Procedure</mat-radio-button>
-</div>        
+<mat-radio-button value="Optical Procedure" >Optical Procedure</mat-radio-button>
+</div>      
 </div>
+</mat-radio-group>
 </div>
-
-
 </div>
 </fieldset>
 </div>
@@ -125,7 +125,7 @@
 <div class="col-sm-4">
 <mat-form-field appearance="outline">
 <mat-label>DOCTOR NAME</mat-label>
-<input matInput placeholder="Placeholder" value="JAMES MUNYASYA" readonly>
+<input matInput placeholder="Placeholder"  value="JAMES MUNYASYA" readonly>
 </mat-form-field>
 </div>
 <div class="col-sm-4">
@@ -137,7 +137,7 @@
 <div class="col-sm-4">
 <mat-form-field appearance="outline">
 <mat-label>SPECIALITY</mat-label>
-<input matInput placeholder="Placeholder" value="THE NAIROBI HOSPITAL" readonly>
+<input matInput placeholder="Placeholder" value="CARDIOLOGIST" readonly>
 </mat-form-field>
 </div>
 
@@ -151,7 +151,7 @@
 <div class="col-sm-4">
 <mat-form-field appearance="outline">
 <mat-label>PROVIDER NAME</mat-label>
-<input matInput placeholder="Placeholder" value="THE NAIROBI HOSPITAL" readonly>
+<input matInput placeholder="Placeholder" value="THE NAIROBI HOSPITAL"  readonly>
 </mat-form-field>
 </div>
 <div class="col-sm-4">
@@ -177,28 +177,6 @@
 </tab>
 <tab>
 <ng-template tabHeading><i class="fa fa-user-md" style="color: #20a8d8;"></i> <span class="header">Diagnosis</span></ng-template>
-<mat-accordion>
-<mat-expansion-panel>
-<mat-expansion-panel-header>
-<mat-panel-title>
-<span style="margin-left: 8px;">PAST MEDICAL HISTORY</span>
-</mat-panel-title>
-</mat-expansion-panel-header>
-<div class="row">
-<div class="col-sm-6">
-<fieldset>
-<legend>Diagnosis</legend>
-</fieldset>
-</div>
-<div class="col-sm-6">
-<fieldset>
-<legend>Medication</legend>
-</fieldset>
-</div>
-</div>
-</mat-expansion-panel>
-
-</mat-accordion>
 <br>
 <mat-card>
 <mat-content>
@@ -256,19 +234,19 @@ placeholder="search diagnosis">
 
 <div class="col-sm-2">
 <mat-form-field appearance="outline">
-<input matInput placeholder="Sysmptoms Onset date" bsDatepicker>
+<input matInput placeholder="Sysmptoms Onset date" [(ngModel)]="data.sysmptoms_onset" bsDatepicker>
 </mat-form-field>
 
 </div>
 <div class="col-sm-2">
 <mat-form-field appearance="outline">
-<input matInput placeholder="Date first diagnosed" bsDatepicker>
+<input matInput placeholder="Date first diagnosed" [(ngModel)]="data.diagnosis_date" bsDatepicker>
 </mat-form-field>
 
 </div>
 <div class="col-sm-2">
 <mat-form-field appearance="outline">
-<input matInput placeholder="When Last treated" bsDatepicker>
+<input matInput placeholder="When Last treated" [(ngModel)]="data.last_treatment_date" bsDatepicker>
 </mat-form-field>
 
 </div>
@@ -282,7 +260,7 @@ Refferal Letter <br>
 <div class="row">
 <div class="col-sm-12">
 <mat-form-field appearance="outline">
-<textarea matInput rows="10" placeholder="Observeation Notes"></textarea>
+<textarea matInput rows="10" placeholder="Observeation Notes" [(ngModel)]="data.notes"></textarea>
 <i class="icon-note" matSuffix></i>
 </mat-form-field>
 </div>
@@ -383,7 +361,7 @@ placeholder="search scan">
 <div class="col-sm-2">
 <mat-form-field>
 <mat-label>WARD TYPE</mat-label>
-<mat-select [(ngModel)]="ward" name="ward">
+<mat-select [(ngModel)]="data.ward" name="ward">
 <mat-option *ngFor="let ward of wards" [value]="ward">
 {{ward}}
 </mat-option>
@@ -394,14 +372,14 @@ placeholder="search scan">
 </div>
 <div class="col-sm-2">
 <mat-form-field >
-<input matInput placeholder="Date of Admission" bsDatepicker>
+<input matInput placeholder="Date of Admission" [(ngModel)]="data.admission_date" bsDatepicker>
 </mat-form-field>
 
 </div>
 <div class="col-sm-2">
 <mat-form-field>
 <mat-label>Estimated Admission Days</mat-label>
-<input type="text" matInput placeholder="No of days">
+<input type="number" matInput placeholder="No of days" [(ngModel)]="data.expected_stay">
 </mat-form-field>
 
 </div>
@@ -516,7 +494,7 @@ placeholder="search scan">
 <div class="row">
 <div class="col-sm-8">
 <fieldset>
-<legend>Billes Services</legend>
+<legend>Billed Services</legend>
 <div class="row">
 
 <div class="col-sm-4">
@@ -532,13 +510,14 @@ placeholder="search scan">
 </mat-form-field>
 </div>
 <div class="col-sm-8">
-<span class="pull-right"> <i class="cui-dollar"></i> <span >{{total}}</span></span>  
+<span class="pull-right"> <i class="cui-dollar"> <span class="text-success">KSH</span> </i> <span style="font-family: Comic Sans MS;font-weight:800" >{{total | number}}</span></span>  
 </div>
 <div class="col-sm-12">
 <div class="custom-table">
 <table >
 <thead>
 <tr>
+<th>S/No</th>
 <th>Name</th>
 <th>Category</th>
 <th>Cost</th>
@@ -546,7 +525,8 @@ placeholder="search scan">
 </tr>
 </thead>
 <tbody>
-<tr *ngFor="let item of selectedServices">
+<tr *ngFor="let item of selectedServices;let i = index">
+<td>{{i+1}}</td>
 <td>{{item.name}}</td>
 <td>{{item.category}}</td>
 <td>{{item.cost}}</td>
@@ -566,7 +546,7 @@ placeholder="search scan">
 <tab>
 <ng-template tabHeading><i class="icon-eye" style="color: #20a8d8;"></i> <span class="header">Preview</span></ng-template>
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-10">
 <fieldset>
 <legend>Member Details</legend>
 <div class="row">
@@ -635,17 +615,15 @@ placeholder="search scan">
 </div>
 <br>
 <div class="row">
-        <div class="col-sm-8">
-                <fieldset>
-                <legend>Nurse Observeation</legend>
-                </fieldset>
-        </div>
-</div>
-<br>
-<div class="row">
-<div class="col-sm-8">
+<div class="col-sm-10">
  <fieldset>
     <legend>Provider Details</legend>
+    <div class="row">
+        <div class="col-sm-4"> <u>Authorization Type</u> <br> <span class="text-primary hx">{{data.authorization_type |uppercase}}</span> </div>
+        <div class="col-sm-4" *ngIf="data.ward"> <u>Ward Type </u><br>  <span class="text-primary hx">{{data.ward |uppercase}}</span> </div>
+        <div class="col-sm-4" *ngIf="data.expectedStay"> <u>Estemated Stay</u> <br>  <span class="text-primary hx">{{expectedStay}} days</span> </div>
+    </div>
+    <br>
     <div class="row">
                 <div class="col-sm-4">
                 <mat-form-field appearance="outline">
@@ -662,7 +640,7 @@ placeholder="search scan">
                 <div class="col-sm-4">
                 <mat-form-field appearance="outline">
                 <mat-label>SPECIALITY</mat-label>
-                <input matInput placeholder="Placeholder" value="THE NAIROBI HOSPITAL" readonly>
+                <input matInput placeholder="Placeholder" value="CARDIOLOGIST" readonly>
                 </mat-form-field>
                 </div>
                 
@@ -672,7 +650,7 @@ placeholder="search scan">
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-10">
         <fieldset>
         <legend>Diagnosis</legend>
         <div class="row" *ngIf="diagnosis.length">
@@ -705,7 +683,32 @@ placeholder="search scan">
 </div>
 <br>
 <div class="row">
-  <div class="col-sm-8">
+        <div class="col-sm-10">
+                <fieldset>
+                <legend>Nurse Observeation</legend>
+                <div class="row">
+                   <div class="col-sm-3">Sysmptoms Onset: <span class="text-primary hx">{{data.sysmptoms_onset | date}}</span></div>
+                   <div class="col-sm-3">Diagnosis Date: <span class="text-primary hx">{{data.diagnosis_date | date}}</span></div>
+                   <div class="col-sm-3">Last Treament Date: <span class="text-primary hx">{{data.last_treatment_date | date}}</span></div>
+                   <div class="col-sm-3">Admission  Date: <span class="text-primary hx">{{ data.admission_date| date}}</span></div>
+
+                </div>
+                
+                
+                <div class="row">
+                <div class="col-sm-12">
+                <mat-form-field appearance="outline">
+                <textarea matInput rows="4" placeholder="Observeation Notes" [(ngModel)]="data.notes" readonly></textarea>
+                <i class="icon-note" matSuffix></i>
+                </mat-form-field>
+                </div>
+                </div> 
+                </fieldset>
+        </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-10">
         <fieldset>
           <legend>Services</legend>
           <div class="row">
@@ -733,6 +736,12 @@ placeholder="search scan">
           </div>
         </fieldset>
   </div>
+</div>
+<br>
+<div class="row">
+        <div class="col-sm-10">
+                <button class="btn btn-success btn-sm pull-right" (click)="send()">Send Authorization</button>
+        </div>
 </div>
 </tab>
 </tabset>

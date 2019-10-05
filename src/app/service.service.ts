@@ -135,6 +135,10 @@ searchProcedure(data): Observable<any> {
     return this.http.post(endpoint + 'patients/close_claim/', id, httpOptions).pipe(
       map(this.extractData));
   }
+  createAuthletter(data) {
+    return this.http.post(endpoint + 'authletters/create_auth/',data, httpOptions).pipe(
+      map(this.extractData));
+  }
   generateBill(id) {
     return this.http.post(endpoint + 'payments/generate-bill/', id , httpOptions).pipe(
       map(this.extractData));
@@ -213,7 +217,14 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
 
   }
-
+getBills(): Observable<any>{
+  return this.http.get(endpoint + 'payments/bill/', httpOptions).pipe(
+    map(this.extractData));
+}
+searchBills(data): Observable<any>{
+  return this.http.get(endpoint + 'payments/bill/?search='+ data, httpOptions).pipe(
+    map(this.extractData));
+}
   patientVisit(): Observable<any> {
     return this.http.get(endpoint + 'patients/patient-visits/').pipe(
       map(this.extractData));

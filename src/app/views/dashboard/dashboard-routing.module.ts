@@ -184,7 +184,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'patients/patient-list',
+    path: 'invoice',
     component: PaymentListComponent,
     canActivate: [AuthGuard],
     data: {
