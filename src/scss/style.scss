@@ -3,6 +3,9 @@
 @import "~@coreui/coreui/scss/coreui";
 @import "custom";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 9999!important;
+}
 fieldset 
 	{
 		border: 1px solid #ddd !important;

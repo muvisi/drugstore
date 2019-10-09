@@ -1,0 +1,27 @@
+<div class="align-items-center dex">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="clearfix">
+            <h4 class="pt-3"><strong>Enter the Visit number.</strong></h4>
+          </div>
+          <div class="input-prepend input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-search"></i></span>
+            </div>
+            <input [(ngModel)]="text"
+       [typeahead]="prescriptions"
+       (typeaheadOnSelect)="onVisit($event)"
+       [typeaheadOptionsLimit]="7"
+       typeaheadOptionField="visit_no"
+       placeholder="Enter visit number"
+       class="form-control">
+            <span class="input-group-append">
+              <button class="btn btn-info" type="button">Search</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

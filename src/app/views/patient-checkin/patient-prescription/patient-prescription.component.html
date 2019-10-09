@@ -1,0 +1,335 @@
+<div class="row"  >
+    <div class="col-sm-12">
+        <mat-card>
+            <div class="row">
+                
+                <div class="col-sm-2">
+                        <mat-card>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <img src="../../../../assets/img/avatars/icon.png" style="width: 120px;" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 sidename">
+                                    <h5 class="text-primary"> <strong>{{patient.name}}</strong> </h5>
+                                </div>
+                            </mat-card>
+                </div>
+                <div class="col-sm-3" style="margin-top: 18px;">
+                    <div class="row">
+                        <div class="col-sm-3 headers">Name</div>
+                        <div class="col-sm-9">{{patient.name | uppercase}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 headers">Age</div>
+                        <div class="col-sm-9">{{patient.age}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 headers">D.O.B</div>
+                        <div class="col-sm-9">{{patient.dob}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 headers">Phone</div>
+                        <div class="col-sm-9">{{patient.phone}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 headers">Email</div>
+                        <div class="col-sm-9">{{patient.email}}</div>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="margin-top: 18px;">
+                        <div class="row">
+                                <div class="col-sm-3 headers">Residence</div>
+                                <div class="col-sm-9">{{patient.residence | uppercase}}</div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-sm-3 headers">Address</div>
+                                    <div class="col-sm-9">{{patient.physical_address}}</div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-sm-3 headers">Postal Code</div>
+                                    <div class="col-sm-9">{{patient.postal_code}}</div>
+                            </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                            <div class="col-sm-12">
+                                    <span style="float: right" >  <span style="text-transform: uppercase;font-weight:bold">Visit Number:</span> <b class="text-primary">{{patient.visit_no}}</b></span>
+                                </div>
+                    </div>
+                </div>
+               
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-8">
+                        <span> <strong>PRESCRIPTIONS</strong></span>
+                        <button class="pull-right btn btn-info btn-sm"  printTitle="{{patient.name | uppercase}} PRESCRIPTIONS"   [useExistingCss]="true" printSectionId="print-section" ngxPrint> <i class="cui-print"></i> print prescription</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <br>
+            <div class="col-sm-8">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                            <ng-container matColumnDef="service">
+                              <th mat-header-cell *matHeaderCellDef> Name </th>
+                              <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                            </ng-container>
+                    
+                            <ng-container matColumnDef="generic_name">
+                              <th mat-header-cell *matHeaderCellDef> Generic Name </th>
+                              <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="dosage">
+                              <th mat-header-cell *matHeaderCellDef> Dosage</th>
+                              <td mat-cell *matCellDef="let element"> {{element.dosage}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="strength">
+                                    <th mat-header-cell *matHeaderCellDef> Strength</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.strength}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="form">
+                                    <th mat-header-cell *matHeaderCellDef>Form </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.form }} </td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="cost">
+                                    <th mat-header-cell *matHeaderCellDef>Cost</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.rate | number:'1.2-2'}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="quantity">
+                                    <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.quantity }} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="status">
+                                    <th mat-header-cell *matHeaderCellDef>Payment Status</th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                            <span class="badge badge-danger" style="font-size: 13px;" *ngIf="element.status == '0'">Not Paid</span> 
+                                        <span class="badge badge-success" *ngIf="element.status == '1'" style="font-size: 13px;">Paid</span> 
+                                    </td>
+                            </ng-container>
+                            <ng-container matColumnDef="edit">
+                                    <th mat-header-cell *matHeaderCellDef> Edit </th>
+                                    <td mat-cell *matCellDef="let element"> <i class="icon-note"></i> </td>
+                                  </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                          </table>
+                          
+            </div>
+            </div>
+            <br>
+            <div class="row">
+                <br>
+                <div class="col-sm-8">
+                    <button class=" btn btn-success  btn-sm pull-right" (click)="staticModal.show()"> <i class="fa fa-plus"></i> Add Prescription</button>
+                    <button class="btn btn-info btn-sm  pull-right" style="margin-right:10px;" (click)="back()"> <i class="cui-arrow-left"></i> Back</button>
+
+                </div>
+            </div>
+        </mat-card>
+
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+ <div class="modal-body">
+ 
+    <div class="row">
+        <div class="col-sm-12">
+                <h5><b>Add Prescription</b></h5>
+        </div>
+        <div class="col-sm-12">
+            <div class="row">
+                    <div class="col-sm-3">
+                            <mat-form-field>
+                              <input type="text" matInput placeholder="Prescription" [(ngModel)]="selectedDrug.name" [typeahead]="drugs"
+                              [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="name"
+                              (typeaheadLoading)="searchDrug(selectedDrug.name)"
+                              (typeaheadOnSelect)="onDrug($event)" placeholder="Prescription Name"
+                              typeaheadGroupField="strength">
+                            </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                            <mat-form-field>
+                              <input type="text" matInput [(ngModel)]="selectedDrug.generic_name" placeholder="Generic Name" readonly>
+                            </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                            <mat-form-field>
+                              <input type="text" matInput [(ngModel)]="selectedDrug.strength" placeholder="Strength" readonly>
+                            </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                            <mat-form-field>
+                              <input type="text" matInput [(ngModel)]="selectedDrug.form" placeholder="Drug Form" readonly>
+                            </mat-form-field>
+                     </div>
+                     <div class="col-sm-3">
+                            <mat-form-field>
+                              <input type="text" matInput [(ngModel)]="selectedDrug.cost" placeholder="Cost">
+                            </mat-form-field>
+                     </div>
+                     <div class="col-sm-3">
+                            <mat-form-field>
+                              <input type="text" matInput [(ngModel)]="selectedDrug.quantity" placeholder="Quantity">
+                            </mat-form-field>
+                     </div>
+                     <div class="col-sm-3">
+                            <mat-form-field>
+                                    <input type="text" matInput [(ngModel)]="selectedDrug.dosage" placeholder="Dosage" [typeahead]="dosage"
+                                    [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="meaning">
+                                  </mat-form-field>
+                        </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <button class="btn btn-danger btn-sm pull-right" (click)="staticModal.hide()"> <b>Close</b> </button>
+            <button class="btn btn-success btn-sm pull-right" (click)="savePrescription()" style="margin-right: 8px"> <i class="fa fa-plus"></i><b> Add</b></button>
+
+        </div>
+    </div>
+ </div>
+</div>
+</div>
+</div>
+    </div>
+</div>
+
+<div class="card" id="print-section" hidden>
+        <div class="card-body">
+          <div class="row container-fluid">
+              <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-6">
+                        <address>
+                            <h2 style="font-family:PTSans-Regular;font-weight: bolder">HEALTHIX HOSPITAL</h2>
+                            <span class="address" style="font-size: 18px;">
+                                 <i class="icon-location-pin"></i> 637833-00200 Nairobi,<br>
+                                <i class="icon-call-in"></i> contact +254 7 789-1234,<br>
+                                <i class="icon-envelope-letter"></i> hospital@gmail.com
+                            </span>
+                            </address>
+                    </div>
+                    <div class="col-sm-6">
+                      <img src="../../../../assets/img/avatars/logo.png" style="float: right" alt="">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary">{{ patient?.invoice?.no}}</span></h3>
+              
+              </div>
+              
+                <div class="col-sm-5" style="font-size: 16px;">
+                  <div class="row">
+                    <div class="col-sm-4">Charge Date</div>
+                    <div class="col-sm-5">{{ patient?.invoice?.created | date}}</div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-4">Net</div>
+                      <div class="col-sm-5">{{amount | number:'1.2-2'}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Currency</div>
+                        <div class="col-sm-5">KSH</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Cashier</div>
+                        <div class="col-sm-5">Davi</div>
+                      </div>
+                </div>
+                <div class="col-sm-5" style="font-size: 16px;">
+                    <div class="row">
+                        <div class="col-sm-4" >Billed to</div>
+                        <div class="col-sm-5"><strong>{{patient.name}}</strong></div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-4">Visit number</div>
+                          <div class="col-sm-5">{{patient.visit_no}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">Gender</div>
+                            <div class="col-sm-5">{{patient.gender}}</div>
+                        </div>
+                      <div class="row">
+                          <div class="col-sm-4">Phone</div>
+                          <div class="col-sm-5">{{patient.phone}}</div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-sm-4">Email</div>
+                            <div class="col-sm-5">davia@gmail.com</div>
+                        </div> -->
+                  </div>
+                  
+                  <div class="col-sm-12">
+                      <br>
+                      <table class="table table-condensed" style="font-size: 16px;">  <tr> 
+                          <th>Item / Desc.</th>
+                          <th>Category.</th>
+                          <th>Strength.</th>
+                          <th>Qty.</th>
+                          <th>Cost</th>
+                          <th>Total</th>
+                          </tr> 
+                          <tr *ngFor="let item of patient.prescriptions" style="font-weight: bolder"> 
+                          <td>{{item.service}}</td>
+                          <td >{{item.category | lowercase}}</td> 
+                          <td>{{item.strength}}</td>
+                          <td>{{item.quantity}}</td>
+                          <td>{{item.rate | number:'1.2-2'}}</td>
+                          <td>{{item.rate * item.quantity | number:'1.2-2'}}</td> 
+                          </tr>
+      
+                          <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          </tr> 
+                           </table>
+      
+                        </div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 total">
+                          <div class="row">
+                            <div class="col-sm-5"> Subtotal </div>
+                            <div class="col-sm-7">{{amount | number }}</div>
+                          </div>
+                          <hr>
+                          <div class="row">
+                              <div class="col-sm-5">Total Amount </div>
+                              <div class="col-sm-7"></div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-5">Tax </div>
+                                <div class="col-sm-7">{{0.00}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5"><strong class="text-success">AMOUNT DUE</strong></div>
+                                <div class="col-sm-7"><strong>{{amount | number:'1.2-2'}}</strong></div>
+                              </div>
+                            
+                          
+                        </div>
+                        <div class="col-sm-12 footer">
+                          <div class="row">
+                            <div class="col-sm-6">
+                                powered by healthix uilabs
+                            </div>
+                            <div class="col-sm-6"><p class="pull-right"> <img src="../../../../assets/img/avatars/logo.png" style="height: 40px" alt=""> </p></div>
+                          </div>
+                        </div>
+                      
+          </div>
+        </div>
+      </div>
+      

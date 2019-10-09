@@ -77,6 +77,11 @@ export const navItems: NavData[] = [
     ]
   },
   {
+    name: 'Pharmacy',
+    url: '/dashboard/pharmacy',
+    icon: 'fa fa-medkit',
+  },
+  {
     name: 'Insurecheck',
     url: '/dashboard/patients/insure-check/',
     icon: 'icon-magnifier-add',
@@ -108,11 +113,7 @@ export const navItems: NavData[] = [
     url: '/dashboard/lab',
     icon: 'icon-chemistry',
   },
-  {
-    name: 'Inventory',
-    url: '/dashboard/inventory',
-    icon: 'icon-grid',
-  },
+
   {
     name: 'Stock',
     url: '/dashboard/stock-level',

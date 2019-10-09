@@ -23,6 +23,7 @@ import { BatchDetailComponent } from '../patient-checkin/batch-detail/batch-deta
 import { InventoryComponent } from '../patient-checkin/inventory/inventory.component';
 import { StockLevelComponent } from '../patient-checkin/stock-level/stock-level.component';
 import { LabComponent } from '../patient-checkin/lab/lab.component';
+import { PharmacyComponent } from '../patient-checkin/pharmacy/pharmacy.component';
 import { LabResultsComponent} from '../patient-checkin/lab-results/lab-results.component';
 import { CreateClaimComponent } from '../patient-checkin/create-claim/create-claim.component';
 import { MemberInformationComponent } from '../patient-checkin/member-information/member-information.component';
@@ -32,6 +33,7 @@ import { LabOrdersItemsComponent } from '../patient-checkin/lab-orders-items/lab
 import { LabTestsComponent } from '../patient-checkin/lab-tests/lab-tests.component';
 import { AuthorizationLetterComponent } from '../patient-checkin/authorization-letter/authorization-letter.component';
 import { AuthletterRequestComponent} from '../patient-checkin/authletter-request/authletter-request.component';
+import { PatientPrescriptionComponent } from '../patient-checkin/patient-prescription/patient-prescription.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,14 @@ const routes: Routes = [
   {
     path: 'patients',
     component: PatientDashboardComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'parients-dashboard'
+    }
+  },
+  {
+    path: 'pharmacy',
+    component: PharmacyComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'parients-dashboard'
@@ -273,14 +283,14 @@ const routes: Routes = [
       title: 'bill-patient'
     }
   }
-  // ,
-  // {
-  //   path : 'register-member',
-  //   component : AddmemberComponent ,
-  //   data: {
-  //     title: 'News'
-  //   }
-  //   },
+  ,
+  {
+    path : 'pharmacy/patient-prescription',
+    component : PatientPrescriptionComponent,
+    data: {
+      title: 'News'
+    }
+    },
   //   {
   //     path : 'Tags',
   //     component : TagsComponent ,

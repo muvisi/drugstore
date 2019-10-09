@@ -5,13 +5,13 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 const endpoint = 'http://134.209.199.123/';
 // const endpoint = 'http://localhost:8000/';
-const token = sessionStorage.getItem('Token');
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Bearer ' + token
-  })
-};
+// const token = sessionStorage.getItem('Token');
+// const  = {
+//   headers: new HttpHeaders({
+//     'Content-Type':  'application/json',
+//     'Authorization': 'Bearer ' + token
+//   })
+// };
 @Injectable({
   providedIn: 'root'
 })
@@ -53,12 +53,17 @@ export class ServiceService {
 
   }
   reverseBill(data): Observable<any> {
-    return this.http.post(endpoint + 'payments/reverse_bills/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'payments/reverse_bills/', data ).pipe(
       map(this.extractData));
 
   }
   getServices(): Observable<any> {
     return this.http.get(endpoint + 'data/service/').pipe(
+      map(this.extractData));
+
+  }
+  serviceSearch(data): Observable<any> {
+    return this.http.get(endpoint + 'data/service/?search='+ data).pipe(
       map(this.extractData));
 
   }
@@ -84,6 +89,16 @@ export class ServiceService {
   }
   getProcedures(): Observable<any> {
     return this.http.get(endpoint + 'data/service/?category=PROCEDURES').pipe(
+      map(this.extractData));
+
+  }
+  allPatientsPrescription(): Observable<any> {
+    return this.http.get(endpoint + 'treatment/patients_prescription/').pipe(
+      map(this.extractData));
+
+  }
+  patientPrescription(data): Observable<any>{
+    return this.http.post(endpoint + 'treatment/patient_prescription/', data).pipe(
       map(this.extractData));
 
   }
@@ -128,23 +143,23 @@ searchProcedure(data): Observable<any> {
 
   }
   schemes(id) {
-    return this.http.post(endpoint + 'covers/schemes/', id, httpOptions).pipe(
+    return this.http.post(endpoint + 'covers/schemes/', id).pipe(
       map(this.extractData));
   }
   closeClaim(id) {
-    return this.http.post(endpoint + 'patients/close_claim/', id, httpOptions).pipe(
+    return this.http.post(endpoint + 'patients/close_claim/', id).pipe(
       map(this.extractData));
   }
   createAuthletter(data) {
-    return this.http.post(endpoint + 'authletters/create_auth/',data, httpOptions).pipe(
+    return this.http.post(endpoint + 'authletters/create_auth/',data ).pipe(
       map(this.extractData));
   }
   generateBill(id) {
-    return this.http.post(endpoint + 'payments/generate-bill/', id , httpOptions).pipe(
+    return this.http.post(endpoint + 'payments/generate-bill/', id , ).pipe(
       map(this.extractData));
   }
   labRequest(data) {
-    return this.http.post(endpoint + 'elab/create_lab-request/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'elab/create_lab-request/', data ).pipe(
       map(this.extractData));
   }
   labOrders(data): Observable<any> {
@@ -157,7 +172,7 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'elab/samples_report/');
   }
   sendBatch(data) {
-    return this.http.post(endpoint + 'claims/send_batch_to_insurance/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'claims/send_batch_to_insurance/', data ).pipe(
       map(this.extractData));
   }
   labTests() {
@@ -165,27 +180,27 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
   }
   insuranceBill(id) {
-    return this.http.post(endpoint + 'payments/insurance/', id, httpOptions).pipe(
+    return this.http.post(endpoint + 'payments/insurance/', id).pipe(
       map(this.extractData));
   }
   revisit(data) {
-    return this.http.post(endpoint + 'patients/patient_revisit/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'patients/patient_revisit/', data ).pipe(
       map(this.extractData));
   }
   saveClaim(data) {
-    return this.http.post(endpoint + 'claims/save_claim/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'claims/save_claim/', data ).pipe(
       map(this.extractData));
   }
   payBill(data) {
-    return this.http.post(endpoint + 'payments/pay_bills/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'payments/pay_bills/', data ).pipe(
       map(this.extractData));
   }
   insureCheck(data) {
-    return this.http.post(endpoint + 'insurecheck/insure_check/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'insurecheck/insure_check/', data ).pipe(
       map(this.extractData));
   }
   insure_details(data) {
-    return this.http.post(endpoint + 'insurecheck/insure_details/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'insurecheck/insure_details/', data ).pipe(
       map(this.extractData));
   }
   getVisit(data) {
@@ -213,16 +228,16 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
   }
   getpendingMembers(): Observable<any> {
-    return this.http.get(endpoint + 'members/pending_members/', httpOptions).pipe(
+    return this.http.get(endpoint + 'members/pending_members/', ).pipe(
       map(this.extractData));
 
   }
 getBills(): Observable<any>{
-  return this.http.get(endpoint + 'payments/bill/', httpOptions).pipe(
+  return this.http.get(endpoint + 'payments/bill/', ).pipe(
     map(this.extractData));
 }
 searchBills(data): Observable<any>{
-  return this.http.get(endpoint + 'payments/bill/?search='+ data, httpOptions).pipe(
+  return this.http.get(endpoint + 'payments/bill/?search='+ data ).pipe(
     map(this.extractData));
 }
   patientVisit(): Observable<any> {
@@ -241,12 +256,12 @@ searchBills(data): Observable<any>{
   }
 
   triageDetail(data): Observable<any> {
-    return this.http.post<any>(endpoint + 'triage/save-triage/', JSON.stringify(data), httpOptions).pipe(
+    return this.http.post<any>(endpoint + 'triage/save-triage/', JSON.stringify(data), ).pipe(
     map(this.extractData
     ));
   }
   registerPatient(data): Observable<any> {
-    return this.http.post<any>(endpoint + 'patients/create-patient/', JSON.stringify(data), httpOptions).pipe(
+    return this.http.post<any>(endpoint + 'patients/create-patient/', JSON.stringify(data), ).pipe(
       map(this.extractData
       ));
   }
@@ -259,17 +274,17 @@ searchBills(data): Observable<any>{
   }
 
   createUser(data): Observable<{}> {
-    return this.http.post<{}>(endpoint + 'users/create-user/', data, httpOptions).pipe(
+    return this.http.post<{}>(endpoint + 'users/create-user/', data ).pipe(
       map(this.extractData
       ));
   }
   addAllergy(data): Observable<any> {
-    return this.http.post<{}>(endpoint + 'treatment/add_allergy/', data, httpOptions).pipe(
+    return this.http.post<{}>(endpoint + 'treatment/add_allergy/', data ).pipe(
       map(this.extractData
       ));
   }
 getPayers(): Observable<any> {
-    return this.http.get(endpoint + 'services/payers/', httpOptions).pipe(
+    return this.http.get(endpoint + 'services/payers/', ).pipe(
     map(this.extractData));
 
   }
@@ -297,7 +312,7 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
   getHospital(id): Observable<any> {
-    return this.http.get(endpoint + 'hospitals/' + id + '/', httpOptions).pipe(
+    return this.http.get(endpoint + 'hospitals/' + id + '/', ).pipe(
       map(this.extractData));
 
   }
@@ -325,19 +340,19 @@ searchScheme(payer, searchTerm): Observable<any> {
     const data = {
       'id': id
     };
-    return this.http.post(endpoint + 'hospitals/provider/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'hospitals/provider/', data ).pipe(
       map(this.extractData));
 
   }
 
   saveDrugs(data): Observable<any> {
-    return this.http.post(endpoint + 'services/save_drugs/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'services/save_drugs/', data ).pipe(
       map(this.extractData));
 
   }
 
   createBatch(data): Observable<any> {
-    return this.http.post(endpoint + 'claims/claim_batching/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'claims/claim_batching/', data ).pipe(
       map(this.extractData));
 
   }
@@ -353,17 +368,17 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
   saveDiagnosis(data): Observable<any> {
-    return this.http.post(endpoint + 'treatment/add_diagnosis/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'treatment/add_diagnosis/', data ).pipe(
       map(this.extractData));
 
   }
   savePrescription(data): Observable<any> {
-    return this.http.post(endpoint + 'treatment/add_prescription/', data, httpOptions).pipe(
+    return this.http.post(endpoint + 'treatment/add_prescription/', data ).pipe(
       map(this.extractData));
 
   }
   getProviderDrugs(id): Observable<any> {
-    return this.http.get(endpoint + 'services/provider/' + id + '/', httpOptions).pipe(
+    return this.http.get(endpoint + 'services/provider/' + id + '/', ).pipe(
       map(this.extractData));
 
   }
@@ -374,22 +389,22 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
   getProviderServices(id): Observable<any> {
-    return this.http.get(endpoint + 'services/provider_services/' + id + '/', httpOptions).pipe(
+    return this.http.get(endpoint + 'services/provider_services/' + id + '/', ).pipe(
       map(this.extractData));
 
   }
   deletePrescription(id): Observable<any> {
-    return this.http.delete(endpoint + 'services/prescription/' + id + '/', httpOptions).pipe(
+    return this.http.delete(endpoint + 'services/prescription/' + id + '/', ).pipe(
       map(this.extractData));
 
   }
   deleteBillItem(id): Observable<any> {
-    return this.http.delete(endpoint + 'payments/delete_bill/' + id + '/', httpOptions).pipe(
+    return this.http.delete(endpoint + 'payments/delete_bill/' + id + '/', ).pipe(
       map(this.extractData));
 
   }
   deleteService(id): Observable<any> {
-    return this.http.delete(endpoint + 'services/service/' + id + '/', httpOptions).pipe(
+    return this.http.delete(endpoint + 'services/service/' + id + '/', ).pipe(
       map(this.extractData));
 
   }

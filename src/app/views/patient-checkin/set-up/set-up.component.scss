@@ -21,31 +21,34 @@ padding: 5px 5px 5px 10px;
 background-color: #ffffff;
 }
 
-input[type="text"] {
-font-size: 10px;
-color: steelblue;
-font-weight: bold;
-text-transform: uppercase;
-}	
-input[type="number"] {
-font-size: 10px;
-color: steelblue;
-font-weight: bold;
-text-transform: uppercase;
+
+mat-form-field{
+	width: 100%;
+	font-size: 12px;
 }
-input[type="email"] {
-font-size: 10px;
-color: steelblue;
-font-weight: bold;
-text-transform: uppercase;
+.circle {
+	display: inline-block;
+	border-radius: 60px;
+	box-shadow: 0px 0px 2px ;
+	padding: 0.5em 0.6em;
+	background-color: aquamarine;
+	color: green;
+  
+  }
+table{
+	width: 100%;
+	font-family: lato light;
 }
-.col-form-label{
-text-align: right;
+td{
+	font-weight: bold;
+	font-size: 14px;
 }
-#select1 select {
-font-size: 10px;
-color: steelblue;
-font-weight: bold;
-text-transform: lowercase;
+th{
+	font-weight: bolder;
+	font-size: 17px;
 
 }
+::ng-deep { .cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; } }
+
+
+  

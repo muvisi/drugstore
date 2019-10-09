@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { JwtModule } from '@auth0/angular-jwt';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
@@ -48,6 +48,9 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { from } from 'rxjs';
+export function tokenGetter() {
+  return sessionStorage.getItem('Token');
+}
 
 @NgModule({
   imports: [
@@ -68,7 +71,14 @@ import { from } from 'rxjs';
     HideableHeaderModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['http://134.209.199.123/'],
+        blacklistedRoutes: ['http://134.209.199.123/users/login']
+      }
+    })
 
   ],
   declarations: [

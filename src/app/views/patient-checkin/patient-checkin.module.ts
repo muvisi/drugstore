@@ -50,6 +50,8 @@ import { LabOrdersItemsComponent } from './lab-orders-items/lab-orders-items.com
 import { LabTestsComponent } from './lab-tests/lab-tests.component';
 import { AuthorizationLetterComponent } from './authorization-letter/authorization-letter.component';
 import { AuthletterRequestComponent } from './authletter-request/authletter-request.component';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { PatientPrescriptionComponent } from './patient-prescription/patient-prescription.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -84,7 +86,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     LabOrdersItemsComponent,
     LabTestsComponent,
     AuthorizationLetterComponent,
-    AuthletterRequestComponent
+    AuthletterRequestComponent,
+    PharmacyComponent,
+    PatientPrescriptionComponent
   ],
   imports: [
     CommonModule,
