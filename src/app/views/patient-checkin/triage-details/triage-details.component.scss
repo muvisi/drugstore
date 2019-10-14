@@ -1,54 +1,7 @@
-::placeholder{
-    color:#47cf73;
-    text-transform:uppercase;
-    font-weight: bold;
-    font-size:8px;
-
+table{
+  width: 100%;
+  font-family: lato;
 }
-
-input{
-    font-size: 10px;
-    font-weight: bold;
-    color:purple;
-}
-
-
-label {
-    font-size: 10px;
-    font-weight:bold;
-}
-// legend{
-//     margin-left: 2px;
-//     fo
-// }
-
-::-webkit-input-placeholder { /* Chrome */
-  color: #20a8d8;
-  transition: opacity 250ms ease-in-out;
-}
-:focus::-webkit-input-placeholder {
-  opacity: 0.5;
-}
-:-ms-input-placeholder { /* IE 10+ */
-   color: #20a8d8;
-  transition: opacity 250ms ease-in-out;
-}
-:focus:-ms-input-placeholder {
-  opacity: 0.5;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: #20a8d8;
-  opacity: 1;
-  transition: opacity 250ms ease-in-out;
-}
-:focus::-moz-placeholder {
-  opacity: 0.5;
-}
-:-moz-placeholder { /* Firefox 4 - 18 */
-   color: #20a8d8;
-  opacity: 1;
-  transition: opacity 250ms ease-in-out;
-}
-:focus:-moz-placeholder {
-  opacity: 0.5;
+mat-form-field{
+  width: 100%;
 }
