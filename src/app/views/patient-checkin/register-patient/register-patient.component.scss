@@ -1,88 +1,58 @@
-fieldset 
-{
-border: 1px solid #ddd !important;
-margin: 0;
-padding: 10px;       
-position: relative;
-border-radius:4px;
-background-color:white;
-padding-left:20px!important;
-}	
 
-legend
-{
-	font-size:14px;
-	font-weight:bold;
-	margin-bottom: 0px; 
-	width: 20%; 
-	border: 1px solid #ddd;
-	border-radius: 4px; 
-	padding: 5px 5px 5px 10px; 
-	background-color:white;
-}
-
-.icon-background6 {
-color:#1E88E5;
-}		
-
-th{
-    font-weight: normal;
-}
-input[type="checkbox"]{
-  width: 15px; /*Desired width*/
-  height: 15px; /*Desired height*/
-}
-
-td input[type="checkbox"]{
-  margin-top: 13px;
-  margin-left: 12px;
-}
 table {
-    width: 100%;
-}
-table{
 	width: 100%;
-	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
-tr.mat-header-row {
-	height:33px;
-	background-color: darkblue;
-	
-}
-mat-paginator{
-  height: 20px;
+	font-family: lato light;
 }
 td.mat-cell{
 	font-size:11px;
-}
-tr.mat-row, tr.mat-footer-row {
-  height: 32px;
-}
+	font-weight: bolder;
 
-th.mat-header-cell {
-	text-align: left;
-    color:white;
-    text-transform: uppercase;
-    font-size: 10px;
-    font-weight: bold;
 }
+tr{
+font-size: 10px;
+}
+// table{
+// 	width: 100%;
+// }
+// tr.mat-header-row {
+// 	height:33px;
+// 	background-color: darkblue;
+	
+// }
+// mat-paginator{
+//   height: 20px;
+// }
+// td.mat-cell{
+// 	font-size:11px;
+// }
+// tr.mat-row, tr.mat-footer-row {
+//   height: 32px;
+// }
 
-th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
-  padding: 0;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
+// th.mat-header-cell {
+// 	text-align: left;
+//     color:white;
+//     text-transform: uppercase;
+//     font-size: 10px;
+//     font-weight: bold;
+// }
 
-th.mat-header-cell:first-child, td.mat-cell:first-child, td.mat-footer-cell:first-child {
-  padding-left: 24px;
-}
+// th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+//   padding: 0;
+//   border-bottom-width: 1px;
+//   border-bottom-style: solid;
+// }
 
-th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-child {
-  padding-right: 24px;
-}
-::ng-deep .mat-checkbox-checked.mat-primary .mat-checkbox-background .mat-checkbox-background , .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
-  background: pink!important;
-}
+// th.mat-header-cell:first-child, td.mat-cell:first-child, td.mat-footer-cell:first-child {
+//   padding-left: 24px;
+// }
+
+// th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-child {
+//   padding-right: 24px;
+// }
+// ::ng-deep .mat-checkbox-checked.mat-primary .mat-checkbox-background .mat-checkbox-background , .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
+//   background: pink!important;
+// }
 mat-form-field{
 	width: 100%;
 	font-size:12px;

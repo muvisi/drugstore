@@ -4,6 +4,7 @@
 <div class="col-sm-12">
     <input  (keyup)="applyFilter($event.target.value)" placeholder="search for a patient" class="form-control">
   <br />
+  
   <table #table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>

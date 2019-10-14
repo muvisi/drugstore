@@ -4,12 +4,10 @@ table {
 }
 table{
 	width: 100%;
-	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-family:lato light;
 }
 tr.mat-header-row {
-	height:33px;
-	background-color: darkblue;
-	
+	height:38px;
 }
 
 td.mat-cell{
@@ -20,8 +18,8 @@ tr.mat-row, tr.mat-footer-row {
 }
 
 th.mat-header-cell {
-	text-align: left;
-    color:white;
+  text-align: left;
+  color: #20a8d8;
     text-transform: uppercase;
     font-size: 10px;
     font-weight: bold;

@@ -3,22 +3,9 @@
     list-style: none;
 }
 div{
-	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-family: lato light;
 }
 
-#list3  li h6  {
-    font-size: 9px;
-}
-input[type="text"] {
-   font-size: 10px;
-   color: steelblue;
-   font-weight: bold;
-}
-input[type="number"] {
-   font-size: 10px;
-   color: steelblue;
-   font-weight: bold;
-}
 .list-group ul li{
 height: 2px;
 font-size: 9px;
@@ -62,32 +49,32 @@ label {
 	font-size: 8px;
 	font-weight: bold;
 	text-transform: uppercase;
-	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-family:lato light;
 
 }
 span{
 	font-size: 10px;
 	text-transform: uppercase;
+	font-weight: bold;
+	font-family: lato;
 	
 }
 m{
-font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
-font-size: 12px;
+font-family:lato light;
+font-size: 13px;
 text-transform: uppercase;
-font-weight: 520;
+font-weight: 600;
 }
 
 span{
-	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-family:lato light;
 }
 table{
 	width: 100%;
-	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+	font-family:lato;  
 }
 tr.mat-header-row {
-	height:33px;
-	background-color: darkblue;
-	
+	height:38px;
 }
 
 td.mat-cell{
@@ -99,7 +86,7 @@ tr.mat-row, tr.mat-footer-row {
 
 th.mat-header-cell {
 	text-align: left;
-	color:white;
+	font-size: 16px;
 }
 
 th.mat-header-cell, td.mat-cell, td.mat-footer-cell {

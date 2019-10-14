@@ -20,8 +20,8 @@ import { EclaimsDashboardComponent } from '../patient-checkin/eclaims-dashboard/
 import { BatchingComponent } from '../patient-checkin/batching/batching.component';
 import { BatchesComponent } from '../patient-checkin/batches/batches.component';
 import { BatchDetailComponent } from '../patient-checkin/batch-detail/batch-detail.component';
-import { InventoryComponent } from '../patient-checkin/inventory/inventory.component';
 import { StockLevelComponent } from '../patient-checkin/stock-level/stock-level.component';
+import { HospitalComponent } from '../patient-checkin/hospital/hospital.component';
 import { LabComponent } from '../patient-checkin/lab/lab.component';
 import { PharmacyComponent } from '../patient-checkin/pharmacy/pharmacy.component';
 import { LabResultsComponent} from '../patient-checkin/lab-results/lab-results.component';
@@ -214,6 +214,14 @@ const routes: Routes = [
   {
     path: 'set-up',
     component: SetUpComponent ,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'claims'
+    }
+  },
+  {
+    path: 'set-up/hospital',
+    component: HospitalComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'claims'

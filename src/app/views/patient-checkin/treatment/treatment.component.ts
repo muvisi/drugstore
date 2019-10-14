@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../../service.service';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { MatPaginator } from '@angular/material';
 
 
 @Component({
@@ -9,6 +12,9 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
   styleUrls: ['./treatment.component.scss']
 })
 export class TreatmentComponent implements OnInit {
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  dataSource;
   visits;
   name;
   patientNumber;
@@ -16,6 +22,7 @@ export class TreatmentComponent implements OnInit {
   searchText;
   phone;
   visit_no;
+  displayedColumns:string[]=['name','patient_no','visit_no','national_id','priority','phone','check_in','visit_type','status']
   constructor(public service: ServiceService , public navCtrl: NgxNavigationWithDataComponent) { }
 
   ngOnInit() {
@@ -25,6 +32,9 @@ export class TreatmentComponent implements OnInit {
 getPatients() {
   this.service.getTreatments().subscribe((res) => {
     this.visits = res.results;
+    this.dataSource = new MatTableDataSource(res.results);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   });
 }
 treat(item) {

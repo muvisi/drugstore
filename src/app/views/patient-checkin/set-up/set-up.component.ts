@@ -3,6 +3,7 @@ import { ServiceService } from '../../../service.service';
 import { ToastrService } from 'ngx-toastr';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ModalDirective } from 'ngx-bootstrap';
 @Component({
@@ -21,10 +22,12 @@ export class SetUpComponent implements OnInit {
   @ViewChild('serviceModal', { static: false }) serviceModal: ModalDirective;
   @ViewChild('drugModal', { static: false }) drugModal: ModalDirective;
   @ViewChild('drugUpdateModal', { static: false }) drugUpdateModal: ModalDirective;
+  @ViewChild('profileModal', { static: false }) profileModal: ModalDirective;
+  @ViewChild('branchModal', { static: false }) branchModal: ModalDirective;
   selected = 'doctor';
   user;
   hospital: any ={};
-  branch;
+  branch: any ={};
   employee: any ={};
   employees:any;
   prescription =[];
@@ -37,14 +40,16 @@ export class SetUpComponent implements OnInit {
   providerServices:any;
   services;
   name;
+  text;
+  selectedUser: any = {};
   selectedService:any = {};
   selectedServices = [];
-  displayedColumns: string[] = ['name', 'username', 'phone', 'email','role','department','speciality','status','lock','delete'];
+  displayedColumns: string[] = ['name', 'username', 'phone', 'email','role','department','speciality','profile','status','delete'];
   hospitalColumns: string[] = ['name', 'provider_type','reg_no','contact_number', 'email','country','county','location','physical_address','postal_code'];
   columns: string[] = ['name', 'category', 'code', 'cost','delete'];
   drugColumns: string[] = ['name', 'generic_name', 'code', 'form','strength','quantity','cost','pack_cost','edit','delete'];
 
-  constructor(public service: ServiceService , private toastr: ToastrService) {
+  constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent) {
   }
 
   ngOnInit() {
@@ -71,6 +76,9 @@ export class SetUpComponent implements OnInit {
   }
   setHospital(item) {
     this.employee.hospital = item.item.id;
+  }
+  hospitalDetails(item){
+    this.navCtrl.navigate('/dashboard/set-up/hospital/',{data: item})
   }
 
 addService() {
@@ -211,4 +219,45 @@ this.service.saveDrugs(data).subscribe((res) => {
       })
     }
   }
+  deleteUser(item){
+    console.log(item);
+  }
+  deactivate(item){
+    
+    if(item.is_active){
+      const data={
+        "is_active":false,
+        "email":item.email
+      }
+      this.service.deactivateUser(data,item.id).subscribe((res)=>{
+        console.log(res);
+        this.toastr.error('Successfully deactivated user' + ' '+ item.name);
+        this.selectedUser = res;
+        this.employeesList();
+      })
+    } else{
+      console.log('calllddd');
+      const data={
+        "is_active":true,
+        "email":item.email
+      }
+      this.service.deactivateUser(data,item.id).subscribe((res)=>{
+        this.selectedUser = res;
+      this.toastr.info('Successfully activated user' + ' '+ item.name);
+        this.employeesList();
+      })
+    }
+   
+  }
+ addBranch(){
+   console.log(this.branch);
+   this.service.createHospitalBranch(this.branch).subscribe((res)=>{
+     console.log(res);
+     this.toastr.success('Successfully created a Branch');
+     this.branchModal.hide();
+   },(error) => {
+        this.toastr.error('Branch creation Failed');
+   });
+ }
+  
 }

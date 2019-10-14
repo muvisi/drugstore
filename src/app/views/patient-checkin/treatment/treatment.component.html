@@ -1,82 +1,65 @@
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="form-group row">
-                    <div class="col-3">
-                        <input type="text" class="form-control" [(ngModel)]="name" placeholder="PATIENT NAME"
-                            (input)="SearchName()">
-                    </div>
-                    <div class="col-3">
-                        <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="National ID"
-                            (input)="Search()">
-                    </div>
-                    <div class="col-3">
-                        <input type="text" class="form-control" placeholder="VISIT NUMBER" (input)="SearchVisit()"
-                            [(ngModel)]="visitNumber">
-                    </div>
-                    <div class="col-3">
-                        <input type="text" class="form-control" placeholder="PATIENT NO" (input)="SearchByPatient()"
-                            [(ngModel)]="patientNumber">
-                    </div>
-                    <!-- <div class="col-3">
-                                    <input type="text" class="form-control" placeholder="PHONE " (input)= "SearchPhone()" [(ngModel)]="phone" >
-                                </div> -->
-    
-                </div>
-            </div>
-            <!-- <div class="col-sm-4"> <button class="btn btn-default pull-right" style="background-color:#5e64ff" (click)="childModal.show()"><b style="color:white"> <i class="icon-plus"></i> Add Patient</b></button> </div> -->
-        </div>
-        <div class="row">
-            <div class="col-sm-12 table-responsive">
-                <table class="table table-condensed table-hover table-sm">
-                    <thead style="background-color:#d1d8dd;">
-                        <tr style="font-weight:bold;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-                            <th>S.No</th>
-                            <th> Name</th>
-                            <th> Patient no</th>
-                            <th> Encounter no</th>
-                            <th> National id</th>
-                            <th> Priority</th>
-                            <th> Phone number</th>
-                            <th>Status</th>
-                            <th>Check in</th>
-                            <th>Time</th>
-    
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let visit of visits;let i = index" style="font-weight:bold;font-size:10px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"
-                            (click)="treat(visit)">
-                            <td>{{i+1}}</td>
-                            <td>{{visit.name | uppercase}}</td>
-                            <td>{{visit.patient.patient_no}}</td>
-                            <td >{{visit.visit_no}}</td>
-                            <td>  {{visit.patient.national_id}}</td>
-                            <td > {{visit.priority}}</td>
-                            <td>  {{visit.patient.phone}}</td>
-                            <td>{{visit.status}}</td>
-    
-                            <td>{{ visit.check_in | date: 'yyyy-MM-dd'}}</td>
-                            <td>{{ visit.check_in | date : 'shortTime'}}</td>
-    
-                            <!-- <td (click)="patientDetails(visit)"> <button class="btn btn-primary btn-sm"><i class="cui-note"></i></button>
-            </td> -->
-                            <!-- <td style="font-weight:bold;font-size:11px;"> <button class="btn btn-info btn-sm"
-                (click)="setPatient(visit);staticModal.show()"><i class="icon-plus"></i> New visit</button></td> -->
-    
-                        </tr>
-                        <tr *ngIf="!visits.length">
-                            <td colspan="8">
-                                <h6 class="text-center"> No records</h6>
-    
-                            </td>
-                        </tr>
-    
-                    </tbody>
-                </table>
-    
-            </div>
-        </div>
-    </div>
+<mat-card>
+      <mat-card-subtitle>Filters</mat-card-subtitle>    
+      <div class="row">
+          <div class="col-sm-2">
+                <mat-form-field>
+                        <input matInput type="text" placeholder="Filter by visit number" [(ngModel)]="searchText">
+                        <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    
+                      
+          </div>
+      </div> 
+</mat-card>
+<br>
+<div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="patient_no">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient No </th>
+                  <td mat-cell *matCellDef="let element"> {{element.patient.patient_no}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="visit_no">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Visit No</th>
+                  <td mat-cell *matCellDef="let element"> {{element.visit_no}} </td>
+                </ng-container>
+          
+                <ng-container matColumnDef="national_id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> National ID/Birth No </th>
+                  <td mat-cell *matCellDef="let element"> {{element.patient.national_id}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="priority">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority</th>
+                        <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+                      </ng-container>
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+                    <td mat-cell *matCellDef="let element"> {{element.patient.phone}} </td>
+                    </ng-container>
+
+            <ng-container matColumnDef="check_in">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Check In</th>
+                    <td mat-cell *matCellDef="let element"> {{element.check_in | date:'yyyy-MM-dd'}} </td>
+                    </ng-container> 
+            <ng-container matColumnDef="visit_type">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Type</th>
+                    <td mat-cell *matCellDef="let element"> {{element.visit_type}} </td>
+                    </ng-container>   
+                    
+            <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                    </ng-container>        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="treat(row)"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[18, 50]" showFirstLastButtons></mat-paginator>
 </div>

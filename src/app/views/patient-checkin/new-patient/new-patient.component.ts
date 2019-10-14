@@ -3,12 +3,12 @@ import { Component, OnInit, ViewChild , Input} from '@angular/core';
 import { ServiceService } from '../../../service.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { TypeaheadDirective } from 'ngx-bootstrap';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-new-patient',
   templateUrl: './new-patient.component.html',
@@ -28,12 +28,9 @@ export class NewPatientComponent  implements OnInit {
   @ViewChild('paginator3', {static: true}) paginator3: MatPaginator;
   @ViewChild('paginator2', {static: true}) paginator2: MatPaginator;
   @ViewChild('paginator1', {static: true}) paginator1: MatPaginator;
-  @Input() checked: Boolean;
-  @Input() customTypeahead;
-  @Input() typeaheadSearchFields = [];
   exclusionColumns: string[] = ['benefit', 'category', 'updated', 'Time'];
   benefitColumns: string[] = ['benefit', 'category', 'balance'];
-  displayedColumns: string[] = ['name', 'patient_no', 'national_id', 'gender', 'dob', 'phone', 'county'];
+  displayedColumns: string[] = ['service', 'bill_number', 'invoice__no', 'rate', 'delete'];
   loading;
   dataSource;
   dataSource1;
@@ -82,8 +79,9 @@ export class NewPatientComponent  implements OnInit {
   savedPatient: any = {};
   memberData: any = {};
   patientRevisit: any;
+  registerForm: FormGroup;
   constructor(public service: ServiceService, private toastr: ToastrService, public router: Router,
-    public navCtrl: NgxNavigationWithDataComponent) {
+    public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder) {
       this.patientRevisit = this.navCtrl.get('revisit');
       if(this.patientRevisit != null) {
         this.patient = this.patientRevisit;
@@ -95,8 +93,10 @@ export class NewPatientComponent  implements OnInit {
         } else{
           this.guardian = this.patient.guardian[0];
         }
+        delete this.patient.kin;
+        delete this.patient.guardian;
+        console.log('bbb',this.patient);
       };
-    console.log('member info11', this.navCtrl.get('patient'));
     this.memberInfo = this.navCtrl.get('patient');
     if (this.memberInfo != null ) {
 
@@ -134,15 +134,16 @@ export class NewPatientComponent  implements OnInit {
         console.log(this.patient.name);
       }
     }
+    
     }
 
   ngOnInit() {
     this.savedPatient = {};
     this.getServices();
-    this.getPatients();
     this.Payers();
     this.getBenefits();
   }
+  get f() { return this.registerForm.controls; }
   getBenefits() {
     this.service.benefitsListing().subscribe((res) => {
       this.benefits = res.results;
@@ -201,7 +202,6 @@ export class NewPatientComponent  implements OnInit {
   schemeSearch(text) {
     console.log(text);
     this.service.searchScheme(this.payerId, text).subscribe((res) => {
-      console.log('scheme search results', res);
       this.schemes = res.results;
     }
     );
@@ -214,7 +214,6 @@ export class NewPatientComponent  implements OnInit {
   }
   getServices() {
     this.service.getServices().subscribe((res) => {
-      console.log('service', res);
       this.services = res.results;
     });
   }
@@ -283,7 +282,6 @@ status() {
         if (this.memberInfo != null ) {
           data['insure_check'] = this.memberInfo.id;
          }
-        console.log(data);
         this.service.registerPatient(data).subscribe((res) => {
           console.log(res);
           // this.toastr.success('successfully created the patient');
@@ -295,7 +293,6 @@ status() {
           this.succesModal.hide();
           this.visit_no = res.visit_no;
           this.staticModal.show();
-          // this.navCtrl.navigate('/dashboard/patients/bill-patient', { data: res.visit_no });
         }, (error) => {
           this.toastr.success(error);
         });
@@ -321,19 +318,11 @@ status() {
           this.visit_no = res.visit_no;
           this.succesModal.hide();
           this.staticModal.show();
-          // this.navCtrl.navigate('/dashboard/patients/bill-patient', { data: res.visit_no });
 
         });
       }
   }
-getPatients() {
-this.service.patientsList().subscribe((res) => {
-this.visits = res.results;
-this.dataSource = new MatTableDataSource<any>(this.visits);
-this.dataSource.sort = this.sort;
-this.dataSource.paginator = this.paginator;
-});
-}
+
 setVisit(visit) {
   this.selectedPatient = visit;
   this.visitModal.show();
@@ -345,6 +334,7 @@ setVisit(visit) {
     this.service.getVisit(data).subscribe((res) => {
       this.patientInfo = res;
       let amount = 0;
+      this.dataSource = new MatTableDataSource(this.patientInfo.bills);
       this.patientInfo.bills.forEach(element => {
         amount += element.rate;
       });

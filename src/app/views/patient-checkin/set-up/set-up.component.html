@@ -96,7 +96,7 @@
           </div>
      </div>
     </mat-step>
-    <mat-step label="Branches" state="user">
+    <mat-step label="Branches" state="branch">
       <br>
       <div class="row">
           <div class="col-sm-2">
@@ -105,7 +105,7 @@
               </mat-form-field>
             </div>
             <div class="col-sm-1">
-                <button mat-mini-fab> <i class="fa fa-plus"></i></button>
+                <button mat-mini-fab (click)="branchModal.show()"> <i class="fa fa-plus"></i></button>
               </div>
       </div>
             <div class="col-sm-12 mat-elevation-z8">
@@ -154,10 +154,100 @@
                        </td>
                    </ng-container> 
                    <tr mat-header-row *matHeaderRowDef="hospitalColumns"></tr>
-                   <tr mat-row *matRowDef="let row; columns: hospitalColumns;"></tr>
+                   <tr mat-row *matRowDef="let row; columns: hospitalColumns;" (click)="hospitalDetails(row)"></tr>
                  </table>
             </div>
-            
+             
+
+<div class="modal fade" bsModal #branchModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+
+ <div class="modal-body">
+   <div class="row">
+     <div class="col-sm-12">
+       <h5> <mat-icon>account_tree</mat-icon> Add Branch   <button type="button" class="close pull-right" aria-label="Close" (click)="branchModal.hide()"></button>
+        </h5>
+     </div>
+     <div class="col-sm-4">
+        <mat-form-field>
+            <input type="text" id="text-input"   placeholder="Branch Name"
+            [(ngModel)]="branch.name" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+          <mat-form-field>
+              <mat-label>Hospital</mat-label>
+              <mat-select [(ngModel)]="branch.hospital">
+                <mat-option *ngFor="let item of provider_list" [value]="item.id">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          <!-- <mat-form-field>
+              <input [(ngModel)]="text" placeholder="Provider/Hospital" [typeahead]="provider_list"
+          (typeaheadOnSelect)="setHospital($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
+         type="text" matInput>
+          </mat-form-field> -->
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field>
+                <input type="text" id="text-input" name="first_name"  placeholder="Registration No"
+                [(ngModel)]="branch.reg_no" matInput>
+            </mat-form-field>
+       </div>
+       <div class="col-sm-4">
+          <mat-form-field>
+              <input type="text" id="text-input"  placeholder="Country"
+              [(ngModel)]="branch.country" matInput>
+      </mat-form-field>
+      </div>  
+      <div class="col-sm-4">
+          <mat-form-field>
+              <input type="text" id="text-input"  placeholder="County"
+              [(ngModel)]="branch.county" matInput>
+      </mat-form-field>
+      </div>  
+       <div class="col-sm-4">
+          <mat-form-field>
+              <input type="text" id="text-input"   placeholder="Location"
+              [(ngModel)]="branch.location" matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field>
+                <input type="text" id="text-input"  placeholder="Contact Number"
+                [(ngModel)]="branch.contact_number" matInput>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+              <mat-form-field>
+                  <input type="text" id="text-input"  placeholder="Postal Address"
+                  [(ngModel)]="branch.postal_address" matInput>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field>
+                    <input type="text" id="text-input"   placeholder="Postal Code"
+                    [(ngModel)]="branch.postal_code" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+          <mat-form-field>
+              <input type="text" id="text-input"  placeholder="Email"
+              [(ngModel)]="branch.email" matInput>
+      </mat-form-field>
+     </div>  
+     <div class="col-sm-4">
+       <button mat-raised-button (click)="addBranch()"> <i class="fa fa-plus"></i>  Add Branch</button>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+</div>
+
     </mat-step>
     <mat-step label="Users" state="user">
         <br>
@@ -212,13 +302,13 @@
                               <button mat-raised-button class="btn btn-success"  *ngIf="element.is_active">ACTIVE</button>
                             </td>
                         </ng-container> 
-                        <ng-container matColumnDef="lock">
-                            <th mat-header-cell *matHeaderCellDef >Lock</th>
-                            <td mat-cell *matCellDef="let element"> {{element.speciality | lowercase}} </td>
+                        <ng-container matColumnDef="profile">
+                            <th mat-header-cell *matHeaderCellDef >View profile</th>
+                            <td mat-cell *matCellDef="let element" > <button  (click)="profileModal.show();selectedUser = element" mat-raised-button color="primary" >  <i class="icon-eye" style="font-size: 30px;"></i></button> </td>
                         </ng-container>  
                         <ng-container matColumnDef="delete">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                            <td mat-cell *matCellDef="let element" ><mat-icon color="warn">delete_sweep</mat-icon> </td>
+                            <td mat-cell *matCellDef="let element" (click)="deleteUser(element)"><mat-icon color="warn">delete_sweep</mat-icon> </td>
                             </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -226,6 +316,75 @@
                  </div>
                </div>
             </div>
+       
+            
+        <div class="modal fade" bsModal #profileModal="bs-modal" [config]="{backdrop: 'static'}"
+            tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+         <div class="modal-dialog modal-lg">
+           <div class="modal-content">
+             <div class="modal-body">
+              
+               <div class="row">
+                 <div class="col-sm-12">
+                   <div class="row">
+                     <div class="col-sm-4">
+                       <mat-card>
+                          <div class="col-sm-12">
+                              <button mat-raised-button  (click)="profileModal.hide()" ><i class="cui-arrow-left"></i></button>
+                           </div>
+                            <div class="col-sm-12">
+                                <img src="../../../../assets/img/avatars/icon.png" width="140px" alt="">
+                            </div>
+                            <div class="col-sm-12 text-primary">
+                              <span style="font-weight: 400">{{selectedUser.name| uppercase}}</span>
+                            </div>
+                            <div class="col-sm-12">
+                                <span class="muted" style="text-transform: capitalize;font-family: lato light"><b style="margin-left: 40px;">{{selectedUser.role}}</b></span>
+                            </div>
+                            <!-- <div class="col-sm-12">
+                              <span><b style="text-transform: capitalize;font-family: lato">Profile</b></span><br>
+                            </div> -->
+                       </mat-card>
+                     </div>
+                     <div class="col-sm-8">
+                       <mat-card>
+                          <h4 style="font-family: lato"><u>User Details</u></h4>
+                          <div class="row" style="font-weight: bolder;font-family:lato light">
+                            <div class="col-sm-12">
+                              Department : {{selectedUser.department}}
+                            </div>
+                            <div class="col-sm-12">
+                               <div class="row">
+                                <div class="col-sm-7">
+                                    Email : {{selectedUser.email}}
+                                </div>
+                                <div class="col-sm-4">Phone : {{selectedUser.phone}}</div>
+                               </div>
+                              </div>
+                              <div class="col-sm-12">
+                                Status <br>
+                               <button class="btn btn-success btn-sm" *ngIf="selectedUser.is_active">ACTIVE</button>
+                                <button class="btn btn-danger btn-sm" *ngIf="!selectedUser.is_active">INACTIVE</button>
+
+                              </div>
+                          </div>
+                          <mat-card-actions>
+                             <div class="row">
+                               <div class="col-sm-12">
+                                  <button mat-raised-button  (click)="deactivate(selectedUser)"> <i class="icon-lock"></i></button>
+                              <button mat-button>SHARE</button>
+                               </div>
+                             </div>
+                           </mat-card-actions>
+                       </mat-card>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>        
           
     <div class="modal fade" bsModal #userModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
@@ -674,7 +833,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 </mat-step>
     <!-- Icon overrides. -->
     <ng-template matStepperIcon="phone">
-      <mat-icon>home</mat-icon>
+      <mat-icon>home_work</mat-icon>
     </ng-template>
     <ng-template matStepperIcon="chat">
       <mat-icon>forum</mat-icon>
@@ -687,5 +846,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
       </ng-template>
       <ng-template matStepperIcon="drug">
           <mat-icon>local_hospital</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="branch">
+          <mat-icon>account_tree</mat-icon>
       </ng-template>
   </mat-horizontal-stepper>

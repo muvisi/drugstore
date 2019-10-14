@@ -50,9 +50,9 @@ export const navItems: NavData[] = [
         icon: 'cui-laptop'
       },
       {
-        name: 'Patient Services',
+        name: 'Billing',
         url: '/dashboard/patients/services',
-        icon: 'icon-notebook'
+        icon: 'fa fa-database'
       },
       {
         name: 'Add Patient',

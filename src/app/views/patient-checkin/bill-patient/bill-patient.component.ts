@@ -22,7 +22,7 @@ export class BillPatientComponent implements OnInit {
   @ViewChild('confirmModal', {'static': true}) confirmModal: ModalDirective;
   @ViewChild(MatSort, {'static': true}) sort: MatSort;
   @ViewChild('paginator', {'static': true}) paginator: MatPaginator;
-  displayedColumns: string[] = ['service', 'category', 'bill number', 'invoice', 'rate', 'reverse', 'status'];
+  displayedColumns: string[] = ['service', 'category', 'bill_number', 'invoice__no', 'rate', 'reverse', 'status'];
   benefitColumns: string[] = ['benefit', 'category', 'balance'];
   exclusionColumns: string[] = ['benefit', 'category', 'updated', 'Time'];
   services;

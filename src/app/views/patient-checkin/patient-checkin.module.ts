@@ -52,6 +52,7 @@ import { AuthorizationLetterComponent } from './authorization-letter/authorizati
 import { AuthletterRequestComponent } from './authletter-request/authletter-request.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { PatientPrescriptionComponent } from './patient-prescription/patient-prescription.component';
+import { HospitalComponent } from './hospital/hospital.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -88,7 +89,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     AuthorizationLetterComponent,
     AuthletterRequestComponent,
     PharmacyComponent,
-    PatientPrescriptionComponent
+    PatientPrescriptionComponent,
+    HospitalComponent
   ],
   imports: [
     CommonModule,

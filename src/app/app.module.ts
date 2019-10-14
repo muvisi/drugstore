@@ -75,7 +75,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['http://134.209.199.123/'],
+        whitelistedDomains: ['http://134.209.199.123/','http://134.209.199.123'],
         blacklistedRoutes: ['http://134.209.199.123/users/login']
       }
     })

@@ -1,17 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-// import { Response } from '@angular/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-const endpoint = 'http://134.209.199.123/';
-// const endpoint = 'http://localhost:8000/';
-// const token = sessionStorage.getItem('Token');
-// const  = {
-//   headers: new HttpHeaders({
-//     'Content-Type':  'application/json',
-//     'Authorization': 'Bearer ' + token
-//   })
-// };
+const endpoint = 'http://localhost:8000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,8 +20,6 @@ export class ServiceService {
     return (error: any): Observable<T> => {
       console.error(error);
       console.log(`${operation} failed: ${error.message}`);
-
-// tslint:disable-next-line: deprecation
       return of(result as T);
     };
   }
@@ -261,11 +250,15 @@ searchBills(data): Observable<any>{
     ));
   }
   registerPatient(data): Observable<any> {
-    return this.http.post<any>(endpoint + 'patients/create-patient/', JSON.stringify(data), ).pipe(
+    return this.http.post(endpoint + 'patients/create-patient/',data).pipe(
       map(this.extractData
       ));
   }
-
+  createHospitalBranch(data): Observable<any> {
+    return this.http.post<any>(endpoint + 'hospitals/create_branch/', data).pipe(
+      map(this.extractData
+      ));
+  }
   logIn(data): Observable<any> {
   console.log(data);
   return this.http.post(endpoint + 'users/login/', data).pipe(
@@ -278,6 +271,12 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+  deactivateUser(data,id): Observable<{}> {
+    return this.http.put(endpoint + 'users/user/'+id+'/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+
   addAllergy(data): Observable<any> {
     return this.http.post<{}>(endpoint + 'treatment/add_allergy/', data ).pipe(
       map(this.extractData
