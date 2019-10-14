@@ -2,6 +2,15 @@
   <div class="col-sm-12">
     <tabset>
       <tab heading="VITALS">
+        <!-- <div class="row" style="font-display: lato light">
+          <div class="col-sm-3 pull-right">
+            <b>PATIENT NAME :</b><b class="text-primary">{{patient.name}}</b>
+          </div>
+          <div class="col-sm-3 pull-right">
+              <b>VISIT NUMBER :</b><b class="text-primary">{{patient.visit_no}}</b>
+            </div>
+        </div> -->
+        <br>
           <form [formGroup]="triageForm" novalidate>
         <div class="row">
         <div class="col-sm-2">
@@ -101,7 +110,7 @@
                         </mat-radio-group>
                         </div>
                         <div class="col-sm-2">
-                          <mat-checkbox>Proceed to Doctor</mat-checkbox>
+                          <mat-checkbox (click)="status=!status">Proceed to Doctor</mat-checkbox>
                         </div>
                     </div>
                 </fieldset>
@@ -169,37 +178,37 @@
                     <legend>OBSERVATION NOTES</legend>
                     <div class="row">
                       <div class="col-sm-3">
-                        <mat-checkbox>Weak or Absent breathin</mat-checkbox>
+                        <mat-checkbox (click)="addObservation('Weak or Absent breathing')">Weak or Absent breathing</mat-checkbox>
                       </div>
                       <div class="col-sm-3">
-                          <mat-checkbox>Obstructed Breathing</mat-checkbox>
+                          <mat-checkbox (click)="addObservation('Obstructed Breathing')">Obstructed Breathing</mat-checkbox>
                         </div>
                         <div class="col-sm-3">
-                            <mat-checkbox>Severe Respiratory Stress</mat-checkbox>
+                            <mat-checkbox (click)="addObservation('Severe Respiratory Stres')">Severe Respiratory Stress</mat-checkbox>
                         </div>  
                         <div class="col-sm-3">
-                            <mat-checkbox>Unintentional Weight Loss</mat-checkbox>
+                            <mat-checkbox (click)="addObservation('Unintentional Weight Loss')" >Unintentional Weight Loss</mat-checkbox>
                         </div> 
                     </div>
                     <div class="row">
                       <div class="col-sm-2">
                           <mat-form-field>
-                              <input matInput placeholder="Observation Type">
+                              <input matInput placeholder="Observation Type" [(ngModel)]="observations.observation_type">
                             </mat-form-field>
                       </div>
                       <div class="col-sm-2">
                           <mat-form-field>
-                              <input matInput placeholder="Observation Code" >
+                              <input matInput placeholder="Observation Code" [(ngModel)]="observations.code">
                             </mat-form-field>
                       </div>
                       <div class="col-sm-2">
                           <mat-form-field>
-                              <input matInput placeholder="Onset of Symptoms" >
+                              <input matInput [(ngModel)]="observations.symptoms_onset" placeholder="Onset of Symptoms" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" >
                             </mat-form-field>
                       </div>
                       <div class="col-sm-2">
                           <mat-form-field>
-                              <input matInput placeholder="Next Appointment" >
+                              <input matInput placeholder="Next Appointment" bsDatepicker [(ngModel)]="observations.appointment_date" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
                             </mat-form-field>
                       </div>
                     </div>
@@ -207,7 +216,7 @@
                       <div class="col-sm-12">
                           <mat-form-field appearance="outline">
                               <mat-label>Observation Notes</mat-label>
-                              <textarea matInput placeholder="Write Observation notes" cols="12" value=""></textarea>
+                              <textarea matInput placeholder="Write Observation notes" cols="12" value="" [(ngModel)]="observations.notes"></textarea>
                               <i class="icon-note" matSuffix></i>
                               
                             </mat-form-field>
@@ -231,6 +240,14 @@
                     </div>
                 </fieldset> 
           </div>
+          
+        </div>
+        <br>
+        <div class="row">
+          <br>
+            <div class="col-sm-12">
+                <button mat-raised-button color="primary" class="pull-right" (click)="onSubmit()"> <i class="fa fa-plus"></i> Save</button>
+              </div>
         </div>
       </tab>
     </tabset>

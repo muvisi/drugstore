@@ -577,10 +577,11 @@
                           <div class="col-sm-4 obr" *ngIf="patientInfo.nurse_report?.notes[0]?.appointment_date">Appointment Date: <x class="text-primary"> {{patientInfo.nurse_report?.notes[0]?.appointment_date | date}}</x></div>
                       </div>
                       </div>
+    
                       <div class="col-sm-12" *ngIf="patientInfo.nurse_report?.notes[0]?.notes">
                           <mat-form-field appearance="outline">
                               <mat-label>Nurse Observation</mat-label>
-                              <textarea name="notes" id=""  rows="3" Value="patientInfo.nurse_report?.notes[0]?.notes"  matInput readonly></textarea>
+                              <textarea name="notes" id=""  rows="3" value="{{patientInfo.nurse_report?.notes[0]?.notes}}"  matInput readonly></textarea>
                             </mat-form-field>
                       </div>
                </div>
@@ -590,9 +591,26 @@
                       <mat-checkbox [checked]="true" [disabled]="true">{{item.name}}</mat-checkbox>
                     </div>
                   </div>
+                  <br>
                 </div>
 
             </div>
+               <div class="row">
+                  <div class="col-sm-6">
+                     <div class="col-sm-12">
+                        <fieldset>
+                            <legend>
+                              Allergies
+                            </legend>
+                            <div class="row">
+                                <div class="col-sm-4" *ngFor="let item of patientInfo.nurse_report.allergies">
+                                    <mat-checkbox [checked]="true" [disabled]="true">{{item.name}}</mat-checkbox>
+                                  </div>
+                            </div>
+                          </fieldset>
+                     </div>
+                </div>
+               </div>
         <br>
         <div class="row">
           <div class="col-sm-4">
