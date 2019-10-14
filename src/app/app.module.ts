@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import * as env from '../environments/environment';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtModule } from '@auth0/angular-jwt';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
@@ -48,6 +48,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { from } from 'rxjs';
+import { TokenInterceptor } from './interceptor';
 export function tokenGetter() {
   return sessionStorage.getItem('Token');
 }
@@ -71,15 +72,7 @@ export function tokenGetter() {
     HideableHeaderModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxLoadingModule.forRoot({}),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ['http://134.209.199.123/','http://134.209.199.123'],
-        blacklistedRoutes: ['http://134.209.199.123/users/login']
-      }
-    })
-
+    NgxLoadingModule.forRoot({})
   ],
   declarations: [
     AppComponent,
@@ -94,7 +87,12 @@ export function tokenGetter() {
     useClass: HashLocationStrategy
   },
   AuthGuard,
-  NgxNavigationWithDataComponent
+  NgxNavigationWithDataComponent,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }
   // ServiceService
 ],
   bootstrap: [ AppComponent ],

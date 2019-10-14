@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-const endpoint = 'http://localhost:8000/';
+const endpoint = 'http://134.209.199.123/';
 @Injectable({
   providedIn: 'root'
 })
@@ -185,7 +185,7 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
   }
   insureCheck(data) {
-    return this.http.post(endpoint + 'insurecheck/insure_check/', data ).pipe(
+    return this.http.post(endpoint + 'insurecheck/insure_check/',data).pipe(
       map(this.extractData));
   }
   insure_details(data) {
