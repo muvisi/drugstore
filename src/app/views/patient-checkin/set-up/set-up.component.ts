@@ -45,7 +45,7 @@ export class SetUpComponent implements OnInit {
   selectedService:any = {};
   selectedServices = [];
   displayedColumns: string[] = ['name', 'username', 'phone', 'email','role','department','speciality','profile','status','delete'];
-  hospitalColumns: string[] = ['name', 'provider_type','reg_no','contact_number', 'email','country','county','location','physical_address','postal_code'];
+  hospitalColumns: string[] = ['name', 'provider_type','reg_no','contact_number','country'];
   columns: string[] = ['name', 'category', 'code', 'cost','delete'];
   drugColumns: string[] = ['name', 'generic_name', 'code', 'form','strength','quantity','cost','pack_cost','edit','delete'];
 

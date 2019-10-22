@@ -1,58 +1,34 @@
 mat-form-field{
 	width: 100%;
 }
-input[type="text"]{
+ ::placeholder{
 	font-family: lato light;
-  }
- fieldset 
-	{
-		border: 1px solid #ddd !important;
-		margin: 0;
-		padding: 10px;       
-		position: relative;
-		border-radius:4px;
-		padding-left:10px!important;
-	}	
-	
-		legend
-		{
-			font-size:14px;
-			// font-weight:bold;
-			margin-bottom: 0px; 
-			width: 40%; 
-			border: 1px solid #ddd;
-			border-radius: 4px; 
-			padding: 5px 5px 5px 10px; 
-			background-color: #ffffff;
-			font-family:lato;
-			text-transform: capitalize;
-
-		}
-label{
+ } 
+	  
+ .prefix{
 	font-family: lato light;
-
-}		
-.list-group ul li{
-height: 2px;
-font-size: 9px;
+	font-size:22px;
+ }
+ .cls{
+	 font-family: lato;
+ }
+ table{
+	 width: 100%;
+ }
+ .txt{
+	 text-align: left;
+	 font-size: 13px;
+	 font-weight: bolder;
+ }
+.row{
+	font-family: lato light;
 }
-.list-group-item{
-	height: 33px;
-}			
+::ng-deep .mat-card .principal{
+    border: solid dodgerblue;
 
+   }
 
-table{
-	width: 100%;
-	font-family:lato light;   
-}
+   ::ng-deep .mat-card .payment{
+    border: solid  #A6CF39;
 
-
-td.mat-cell{
-	font-size:11px;
-}
-
-
-th.mat-header-cell {
-	text-align: left;
-	font-weight: bolder;
-}
+   }   

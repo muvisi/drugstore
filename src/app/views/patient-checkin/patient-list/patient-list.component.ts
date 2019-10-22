@@ -12,7 +12,7 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 export class PatientListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   dataSource;
-  Columns: string[] = ['name','patient_no','visit_no','national_id','priority','phone','status','date','time']
+  Columns: string[] = ['sn','name','patient_no','visit_no','national_id','priority','phone','status','date','time']
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) { }
 
   ngOnInit() {

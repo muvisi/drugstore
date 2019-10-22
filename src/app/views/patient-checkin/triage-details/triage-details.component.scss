@@ -1,7 +1,11 @@
 table{
   width: 100%;
-  font-family: lato;
+  font-family: lato light;
 }
 mat-form-field{
   width: 100%;
+}
+td.mat-cell{
+  font-size:12px;
+  font-weight: bold;
 }

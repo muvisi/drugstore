@@ -2,21 +2,39 @@
 mat-form-field { 
     font-size: 14px;
     width: 100%;
+    font-family: lato light;
+    font-weight: bold;
   }
 
 ::ng-deep .mat-checkbox .mat-checkbox-frame {
-    border-color:red;
     height: 15px;
     width: 15px;
   }
- legend{
-   width: 200px;
-   color: dodgerblue;
-   font-weight: 900;
- } 
- ::placeholder{
-   font-weight: bold;
+ mat-slider{
+   width: 100%;
  }
  mat-label{
-   font-weight: 800;
+   font-weight: 500;
+ }
+ h6{
+   font-size: 12px;
+  
+ }
+ mat-card-title{
+   font-size:14px;
+ }
+ table{
+   width: 100%;
+ }
+ div{
+   font-family: lato light;
+ }
+ .mat-checkbox{
+   font-family: lato light;
+   font-weight: bold;
+ }
+ mat-card-title{
+   font-family: lato light;
+   font-weight: bold;
+   font-size: 14px;
  }

@@ -9,22 +9,25 @@
 <div class="card-body">
   <div class="row">
     <div class="col-sm-3">
-      <label><b class="text-primary">INSURANCE NAME</b></label>
+  <mat-form-field>
       <input [(ngModel)]="name" [typeahead]="payers" (typeaheadLoading)="payerSearch(name)"
-        (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
-        placeholder="insurance" class="form-control" type="text">
+      (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
+      placeholder="Search Insurance"  type="text" matInput>
+  </mat-form-field>
     </div>
     <div class="col-sm-3">
-      <label><b class="text-primary"> SCHEME NAME</b></label>
-      <input [(ngModel)]="scheme" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(scheme)"
+     <mat-form-field>
+        <input [(ngModel)]="scheme" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(scheme)"
         (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" placeholder="schemes"
-        class="form-control" type="text">
+         type="text" matInput>
+     </mat-form-field>
     </div>
     <div class="col-sm-2">
-      <label class="text-primary"><b>MEMBER NUMBER</b></label>
-      <input [(ngModel)]="member" [typeahead]="members" (typeaheadLoading)="search(member)" [typeaheadOptionsLimit]="7"
+    <mat-form-field>
+        <input [(ngModel)]="member" [typeahead]="members" (typeaheadLoading)="search(member)" [typeaheadOptionsLimit]="7"
         typeaheadOptionField="member_number" (typeaheadOnSelect)="OnMember($event)" placeholder="members"
-        class="form-control" type="text">
+       type="text" matInput>
+    </mat-form-field>
     </div>
   </div>
 </div>

@@ -97,157 +97,126 @@
      </div>
     </mat-step>
     <mat-step label="Branches" state="branch">
-      <br>
       <div class="row">
-          <div class="col-sm-2">
-              <mat-form-field>
-              <input type="text" matInput placeholder="Search">
-              </mat-form-field>
-            </div>
-            <div class="col-sm-1">
-                <button mat-mini-fab (click)="branchModal.show()"> <i class="fa fa-plus"></i></button>
-              </div>
-      </div>
+        <div class="col-sm-4">
+            <mat-card>
+              <mat-card-title><b><u>ADD BRANCH</u></b></mat-card-title>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <input type="text" id="text-input"   placeholder="Branch Name"
+                            [(ngModel)]="branch.name" matInput>
+                        </mat-form-field>
+                      </div>
+                     <div class="col-sm-12">
+                         <mat-form-field>
+                             <mat-label>Hospital</mat-label>
+                             <mat-select [(ngModel)]="branch.hospital">
+                               <mat-option *ngFor="let item of provider_list" [value]="item.id">
+                                 {{item.name}}
+                               </mat-option>
+                             </mat-select>
+                           </mat-form-field>
+                       </div>
+                       <div class="col-sm-12">
+                           <div class="row">
+                             <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input type="text" id="text-input" name="first_name"  placeholder="Registration No"
+                                    [(ngModel)]="branch.reg_no" matInput>
+                                </mat-form-field>
+                             </div>
+                             <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input type="text" id="text-input"  placeholder="Contact Number"
+                                    [(ngModel)]="branch.contact_number" matInput>
+                                </mat-form-field>
+                             </div>
+                           </div>
+                      </div>
+                      
+                     
+                     <div class="col-sm-12">
+                         <div class="row">
+                           <div class="col-sm-6">
+                             <mat-form-field>
+                             <input type="text" id="text-input"  placeholder="Country"
+                             [(ngModel)]="branch.country" matInput>
+                     </mat-form-field></div>
+                           <div class="col-sm-6">
+                              <mat-form-field>
+                                  <input type="text" id="text-input"  placeholder="County"
+                                  [(ngModel)]="branch.county" matInput>
+                          </mat-form-field>
+                           </div>
+                         </div>
+                     </div>  
+                      <div class="col-sm-12">
+                         <mat-form-field>
+                             <input type="text" id="text-input"   placeholder="Location"
+                             [(ngModel)]="branch.location" matInput>
+                         </mat-form-field>
+                       </div>
+                       
+                     <div class="col-sm-12">
+                        <mat-form-field>
+                            <input type="text" id="text-input"  placeholder="Postal Address"
+                            [(ngModel)]="branch.postal_address" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field>
+                            <input type="text" id="text-input"   placeholder="Postal Code"
+                            [(ngModel)]="branch.postal_code" matInput>
+                </mat-form-field>
+                    </div>
+                     <div class="col-sm-12">
+                         <mat-form-field>
+                             <input type="text" id="text-input"  placeholder="Email"
+                             [(ngModel)]="branch.email" matInput>
+                     </mat-form-field>
+                    </div>  
+                    <div class="col-sm-8">
+                      <button mat-raised-button (click)="addBranch()"> <i class="fa fa-plus"></i> Save</button>
+                    </div>
+                  </div>
+            </mat-card>
+        </div>
+        <div class="col-sm-8">
             <div class="col-sm-12 mat-elevation-z8">
-               <table mat-table [dataSource]="hospitalList" #uSort="matSort"  matSort>
-                   <ng-container matColumnDef="name">
-                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
-                   <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
-                   </ng-container>
-                   <ng-container matColumnDef="provider_type">
-                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Provider Type</th>
-                   <td mat-cell *matCellDef="let element"> {{element.provider_type}} </td>
-                   </ng-container>
-
-                   <ng-container matColumnDef="reg_no">
-                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration No</th>
-                   <td mat-cell *matCellDef="let element"> {{element.reg_no}} </td>
-                   </ng-container>
-                   <ng-container matColumnDef="contact_number">
-                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Number</th>
-                   <td mat-cell *matCellDef="let element"> {{element.contact_number}} </td>
-                   </ng-container>
-                   <ng-container matColumnDef="email">
-                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-                   <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-                   </ng-container>
-                   <ng-container matColumnDef="country">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
-                      <td mat-cell *matCellDef="let element"> {{element.country}} </td>
-                      </ng-container>
-                      <ng-container matColumnDef="county">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>County</th>
-                          <td mat-cell *matCellDef="let element"> {{element.county}} </td>
-                          </ng-container>
-                   <ng-container matColumnDef="location">
-                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
-                   <td mat-cell *matCellDef="let element"> {{element.location}} </td>
-                   </ng-container>
-                   <ng-container matColumnDef="physical_address">
-                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Physical Address</th>
-                   <td mat-cell *matCellDef="let element"> {{element.postal_address}} </td>
-                   </ng-container>  
-                   <ng-container matColumnDef="postal_code">
-                       <th mat-header-cell *matHeaderCellDef >Postal code</th>
-                       <td mat-cell *matCellDef="let element"> 
-                          {{element.postal_code}} 
-                       </td>
-                   </ng-container> 
-                   <tr mat-header-row *matHeaderRowDef="hospitalColumns"></tr>
-                   <tr mat-row *matRowDef="let row; columns: hospitalColumns;" (click)="hospitalDetails(row)"></tr>
-                 </table>
-            </div>
-             
-
-<div class="modal fade" bsModal #branchModal="bs-modal" [config]="{backdrop: 'static'}"
-tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-<div class="modal-dialog modal-lg">
-<div class="modal-content">
-
- <div class="modal-body">
-   <div class="row">
-     <div class="col-sm-12">
-       <h5> <mat-icon>account_tree</mat-icon> Add Branch   <button type="button" class="close pull-right" aria-label="Close" (click)="branchModal.hide()"></button>
-        </h5>
-     </div>
-     <div class="col-sm-4">
-        <mat-form-field>
-            <input type="text" id="text-input"   placeholder="Branch Name"
-            [(ngModel)]="branch.name" matInput>
-        </mat-form-field>
-      </div>
-      <div class="col-sm-4">
-          <mat-form-field>
-              <mat-label>Hospital</mat-label>
-              <mat-select [(ngModel)]="branch.hospital">
-                <mat-option *ngFor="let item of provider_list" [value]="item.id">
-                  {{item.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          <!-- <mat-form-field>
-              <input [(ngModel)]="text" placeholder="Provider/Hospital" [typeahead]="provider_list"
-          (typeaheadOnSelect)="setHospital($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
-         type="text" matInput>
-          </mat-form-field> -->
+                <table mat-table [dataSource]="hospitalList" #uSort="matSort"  matSort>
+                    <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="provider_type">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Provider Type</th>
+                    <td mat-cell *matCellDef="let element"> {{element.provider_type}} </td>
+                    </ng-container>
+ 
+                    <ng-container matColumnDef="reg_no">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration No</th>
+                    <td mat-cell *matCellDef="let element"> {{element.reg_no}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="contact_number">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Number</th>
+                    <td mat-cell *matCellDef="let element"> {{element.contact_number}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="country">
+                       <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+                       <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                       </ng-container>
+                     
+                  
+   
+                    <tr mat-header-row *matHeaderRowDef="hospitalColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: hospitalColumns;" (click)="hospitalDetails(row)"></tr>
+                  </table>
+             </div>
+              
         </div>
-        <div class="col-sm-4">
-            <mat-form-field>
-                <input type="text" id="text-input" name="first_name"  placeholder="Registration No"
-                [(ngModel)]="branch.reg_no" matInput>
-            </mat-form-field>
-       </div>
-       <div class="col-sm-4">
-          <mat-form-field>
-              <input type="text" id="text-input"  placeholder="Country"
-              [(ngModel)]="branch.country" matInput>
-      </mat-form-field>
-      </div>  
-      <div class="col-sm-4">
-          <mat-form-field>
-              <input type="text" id="text-input"  placeholder="County"
-              [(ngModel)]="branch.county" matInput>
-      </mat-form-field>
-      </div>  
-       <div class="col-sm-4">
-          <mat-form-field>
-              <input type="text" id="text-input"   placeholder="Location"
-              [(ngModel)]="branch.location" matInput>
-          </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-            <mat-form-field>
-                <input type="text" id="text-input"  placeholder="Contact Number"
-                [(ngModel)]="branch.contact_number" matInput>
-            </mat-form-field>
-          </div>
-          <div class="col-sm-4">
-              <mat-form-field>
-                  <input type="text" id="text-input"  placeholder="Postal Address"
-                  [(ngModel)]="branch.postal_address" matInput>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-4">
-                <mat-form-field>
-                    <input type="text" id="text-input"   placeholder="Postal Code"
-                    [(ngModel)]="branch.postal_code" matInput>
-        </mat-form-field>
       </div>
-      <div class="col-sm-4">
-          <mat-form-field>
-              <input type="text" id="text-input"  placeholder="Email"
-              [(ngModel)]="branch.email" matInput>
-      </mat-form-field>
-     </div>  
-     <div class="col-sm-4">
-       <button mat-raised-button (click)="addBranch()"> <i class="fa fa-plus"></i>  Add Branch</button>
-     </div>
-   </div>
- </div>
-</div>
-</div>
-</div>
-
+           
     </mat-step>
     <mat-step label="Users" state="user">
         <br>

@@ -7,7 +7,9 @@ import { RegisterPatientComponent } from './register-patient/register-patient.co
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MatStepperModule, MatIconModule, MatTableModule, MatPaginatorModule,
 MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatChipsModule,
-MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule, MatButtonModule} from '@angular/material';
+MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule, MatButtonModule, MatSliderModule,
+
+} from '@angular/material';
 import { PatientRecordsComponent } from './patient-records/patient-records.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { InsureCheckComponent } from './insure-check/insure-check.component';
@@ -53,6 +55,8 @@ import { AuthletterRequestComponent } from './authletter-request/authletter-requ
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { PatientPrescriptionComponent } from './patient-prescription/patient-prescription.component';
 import { HospitalComponent } from './hospital/hospital.component';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+import { CalendarComponent } from './calendar/calendar.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -90,7 +94,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     AuthletterRequestComponent,
     PharmacyComponent,
     PatientPrescriptionComponent,
-    HospitalComponent
+    HospitalComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -124,7 +129,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatNativeDateModule,
     CKEditorModule,
     MatExpansionModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSliderModule,
+    ScheduleModule,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import * as env from '../environments/environment';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { GestureConfig } from '@angular/material';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -92,7 +93,8 @@ export function tokenGetter() {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }
+  },
+  {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig}
   // ServiceService
 ],
   bootstrap: [ AppComponent ],

@@ -9,9 +9,9 @@ table{
 tr.mat-header-row {
 	height:38px;
 }
-
 td.mat-cell{
-	font-size:11px;
+  font-size:13px;
+  font-weight: bold;
 }
 tr.mat-row, tr.mat-footer-row {
   height: 32px;
@@ -19,10 +19,9 @@ tr.mat-row, tr.mat-footer-row {
 
 th.mat-header-cell {
   text-align: left;
-  color: #20a8d8;
-    text-transform: uppercase;
-    font-size: 10px;
-    font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 th.mat-header-cell, td.mat-cell, td.mat-footer-cell {

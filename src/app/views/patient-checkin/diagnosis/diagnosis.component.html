@@ -1,107 +1,73 @@
 <div *ngIf="!loading">
   <tabset>
     <tab heading="Patient Information">
-      <div class="row">
+        <div class="row">
+            <div class="col-sm-12">
+                <span style="font-size:14px;font-weight: bold" class="pull-right">PATIENT NO:<span  style="font-size:16px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
+                <span style="font-size:14px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:16px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
+            </div>
+          </div>
+      <div class="row" >
         <div class="col-sm-2">
-          <h6 class="text-center">
-            <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
-              style="height: 120px;"><br>
-            <span1 style="font-size:12px;border-radius:2px;font-weight:200px;" class="badge badge-info text-center">
-              {{patientInfo.first_name}}
-              {{patientInfo.other_names}} {{patientInfo.last_name}}</span1>
-          </h6>
+          <mat-card>
+              <h6 class="text-center">
+                  <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
+                    style="height: 115px;" *ngIf="patientInfo.gender =='Male' || patientInfo.gender =='male'">
+                    <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/female.png"style="height:105px;" *ngIf="patientInfo.gender =='Female' || patientInfo.gender =='female'">
+                    <br>
+                    
+                  <span1 style="font-size:12px;border-radius:2px;font-weight:200px;" class="badge badge-info text-center">
+                    {{patientInfo.first_name | uppercase}}
+                    {{patientInfo.other_names | uppercase}} {{patientInfo.last_name | uppercase}}</span1>
+                </h6>
+          </mat-card>
         </div>
         <div class="col-sm-10">
-            <span style="font-size:13px;font-weight: bold" class="pull-right">PATIENT NO:<span  style="font-size:16px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
-            <span style="font-size:13px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:16px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
-          <fieldset class="col-md-12">
-            <legend>PATIENT INFORMATION</legend>
             <div class="row">
-              <div class="col-sm-5">
-                <div class="row">
-                  <div class="col-sm-4 hx">
-                    <m class="hx">Name</m>
-                  </div>
-                  <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.first_name}} {{patientInfo.other_names}}
-                      {{patientInfo.last_name}}</span></div>
+                <div class="col-sm-12">
+                  <mat-card> 
+                    <mat-card-title>
+                     <span style="font-size: 20px;">
+                        <span class="text-primary" style="font-weight:600;">{{patientInfo.first_name | uppercase}} {{patientInfo.other_names | uppercase}}
+                            {{patientInfo.last_name | uppercase}}</span> | <span style="font-weight: 600">
+                              <span *ngIf="patientInfo?.age?.years > 0">{{patientInfo?.age?.years}}  Years</span>
+                              <span *ngIf="patientInfo?.age?.months > 0">{{patientInfo?.age?.months}} Months</span>
+                              <span *ngIf="patientInfo?.age?.days > 0">{{patientInfo?.age?.days}} Days</span>
+                            </span>| <span class="text-primary" style="font-weight: 600">{{patientInfo?.gender}}</span> 
+                     </span>
+                    </mat-card-title>
+                      <div class="row">
+                          <div class="col-sm-5">
+    
+                            <div class="row">
+                                <div class="col-sm-4 hx">
+                                CHECK IN
+                                </div>
+                                <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.check_in | date}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 hx">
+                                PRIORITY
+                                </div>
+                                <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.priority}}</span></div>
+                              </div>
+                            <div class="row"> 
+                              <div class="col-sm-4 hx">
+                                NATIONAL ID
+                              </div>
+                              <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.national_id}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success">COVERED</button>
+                                </div>
+                              </div>
+                          </div>
+                        
+                        </div>
+                  </mat-card>
                 </div>
-  
-                <div class="row">
-                  <div class="col-sm-4 hx">
-                    <m class="hx">Sex</m>
-                  </div>
-                  <div class="col-sm-8"><span class="text-primary">{{patientInfo.gender}}</span></div>
-                </div>
-  
-                <div class="row">
-                  <div class="col-sm-4 hx">
-                    <m class="hx">Patient No</m>
-                  </div>
-                  <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.patient_no}}</span></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 hx">
-                    <m class="hx">National ID</m>
-                  </div>
-                  <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.national_id}}</span></div>
-                </div>
-  
-              </div>
-              <div class="col-sm-4">
-                <div class="row">
-                  <div class="col-sm-5 hx">
-                    <m class="hx">Visit No</m>
-                  </div>
-                  <div class="col-sm-7"><span class="text-primary" style="font-weight:bold;">{{patientInfo.visit_no}}</span></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-5 hx">
-                    <m class="hx">Visit Type</m>
-                  </div>
-                  <div class="col-sm-7"><span class="text-primary" style="font-weight:bold;">{{patientInfo.visit_type}}</span></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-5 hx">
-                    <m class="hx">Check In</m>
-                  </div>
-                  <div class="col-sm-7"><span class="text-primary" style="font-weight:bold;">{{patientInfo.check_in | date}}</span></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-5 hx">
-                    <m class="hx">Priority</m>
-                  </div>
-                  <div class="col-sm-7"><span class="text-primary" style="font-weight:bold;">{{patientInfo.priority}}</span></div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="row">
-                  <div class="col-sm-3 hx">
-                    <m class="hx">D.O.B</m>
-                  </div>
-                  <div class="col-sm-9"><span class="text-primary" style="font-weight:bold;">{{patientInfo.dob}}</span></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-3 hx">
-                    <m class="hx">Age</m>
-                  </div>
-                  <div class="col-sm-9"><span class="text-primary" style="font-weight:bold;">{{patientInfo.age}}</span></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-3 hx">
-                    <m class="hx">NHIF</m>
-                  </div>
-                  <div class="col-sm-9"><span class="text-primary" style="font-weight:bold;">{{patientInfo.nhif_number}}</span></div>
-                </div>
-  
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-body">
-  
-              </div>
-            </div>
-  
-          </fieldset>
+               </div>
         </div>
       </div>
       <div class="row">
@@ -110,7 +76,7 @@
           <mat-tab-group>
             <mat-tab label="Patient History">
                 <div class="row container-fluid">
-                    <div class="col-sm-9">
+                    <div class="col-sm-12">
                         <br>
                               <mat-accordion>
                                   <mat-expansion-panel>
@@ -119,26 +85,31 @@
                                         DIAGNOSIS
                                       </mat-panel-title>
                                     </mat-expansion-panel-header>
-                                    <table >
-                                        <thead>
-                                        <tr>
-                                        <th>S/No</th>
-                                        <th>Name</th>
-                                        <th>Code</th>
-                                        <th>Date</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr *ngFor="let item of patientInfo.history.diagnoses;let i = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{item.description}}</td>
-                                        <td>{{item.code}}</td>
-                                        <td>{{item.visit__check_in | date}}</td>
-                                        
-                                        </tr>
-                                        
-                                        </tbody>
-                                        </table>
+                                        <div class="mat-elevation-z8">
+                                            <table mat-table [dataSource]="patientInfo.history.diagnoses">
+                                              <ng-container matColumnDef="sn">
+                                                <th mat-header-cell *matHeaderCellDef>S/No</th>
+                                                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="name">
+                                                <th mat-header-cell *matHeaderCellDef>Description</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="code">
+                                                <th mat-header-cell *matHeaderCellDef>Code</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                                              </ng-container>
+ 
+                                              <ng-container matColumnDef="date">
+                                                <th mat-header-cell *matHeaderCellDef>Diagnosis Date</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.visit__check_in | date}} </td>
+                                              </ng-container>
+                                          
+                                              <tr mat-header-row *matHeaderRowDef="historyDiagnosis"></tr>
+                                              <tr mat-row *matRowDef="let row; columns: historyDiagnosis"></tr>
+                                            </table>
+                                          
+                                          </div>
                                   </mat-expansion-panel>
                                   <mat-expansion-panel (opened)="panelOpenState = true"
                                                         (closed)="panelOpenState = false">
@@ -148,28 +119,36 @@
                                       </mat-panel-title>
                                     
                                     </mat-expansion-panel-header>
-                                    <table >
-                                        <thead>
-                                        <tr>
-                                        <th>S/No</th>
-                                        <th>Name</th>
-                                        <th>Bill Number</th>
-                                        <th> Invoice Number</th>
-                                        <th>Cost</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr *ngFor="let item of patientInfo.history.procedures;let i = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{item.service}}</td>
-                                        <td>{{item.bill_number}}</td>
-                                        <td>{{item.invoice__no}}</td>
-                                        <td>{{item.rate | number}}</td>
-                                        
-                                        </tr>
-                                        
-                                        </tbody>
-                                        </table>
+            
+                                        <div class="mat-elevation-z8">
+                                            <table mat-table [dataSource]="patientInfo.history.procedures">
+                                              <ng-container matColumnDef="sn">
+                                                <th mat-header-cell *matHeaderCellDef>S/No</th>
+                                                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="service">
+                                                <th mat-header-cell *matHeaderCellDef>Service</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="bill_number">
+                                                <th mat-header-cell *matHeaderCellDef>Bill Number</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
+                                              </ng-container>
+ 
+                                              <ng-container matColumnDef="invoice">
+                                                <th mat-header-cell *matHeaderCellDef>Invoice</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="cost">
+                                                  <th mat-header-cell *matHeaderCellDef>Cost</th>
+                                                  <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+                                                </ng-container>
+                                          
+                                              <tr mat-header-row *matHeaderRowDef="historyServices"></tr>
+                                              <tr mat-row *matRowDef="let row; columns: historyServices"></tr>
+                                            </table>
+                                          
+                                          </div>
                                   </mat-expansion-panel>
 
                                   <mat-expansion-panel (opened)="panelOpenState = true"
@@ -180,28 +159,36 @@
                                       </mat-panel-title>
                                     
                                     </mat-expansion-panel-header>
-                                    <table >
-                                        <thead>
-                                        <tr>
-                                        <th>S/No</th>
-                                        <th>Name</th>
-                                        <th>Bill Number</th>
-                                        <th> Invoice Number</th>
-                                        <th>Cost</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr *ngFor="let item of patientInfo.history.lab_tests;let i = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{item.service}}</td>
-                                        <td>{{item.bill_number}}</td>
-                                        <td>{{item.invoice__no}}</td>
-                                        <td>{{item.rate | number}}</td>
-                                        
-                                        </tr>
-                                        
-                                        </tbody>
-                                        </table>
+                            
+                                        <div class="mat-elevation-z8">
+                                            <table mat-table [dataSource]="patientInfo.history.lab_tests">
+                                              <ng-container matColumnDef="sn">
+                                                <th mat-header-cell *matHeaderCellDef>S/No</th>
+                                                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="service">
+                                                <th mat-header-cell *matHeaderCellDef>Service</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="bill_number">
+                                                <th mat-header-cell *matHeaderCellDef>Bill Number</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
+                                              </ng-container>
+ 
+                                              <ng-container matColumnDef="invoice">
+                                                <th mat-header-cell *matHeaderCellDef>Invoice</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="cost">
+                                                  <th mat-header-cell *matHeaderCellDef>Cost</th>
+                                                  <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+                                                </ng-container>
+                                          
+                                              <tr mat-header-row *matHeaderRowDef="historyServices"></tr>
+                                              <tr mat-row *matRowDef="let row; columns: historyServices"></tr>
+                                            </table>
+                                          
+                                          </div>
                                   </mat-expansion-panel>
 
                                   <mat-expansion-panel (opened)="panelOpenState = true"
@@ -212,7 +199,7 @@
                                       </mat-panel-title>
                                     
                                     </mat-expansion-panel-header>
-                                    <table >
+                                    <!-- <table >
                                         <thead>
                                         <tr>
                                         <th>S/No</th>
@@ -231,14 +218,50 @@
                                         <td>{{item.name}}</td>
                                         <td>{{item.generic_name}}</td>
                                         <td>{{item.form}}</td>
-                                        <td>{{item.form}}</td>
                                         <td>{{item.strength}}</td>
                                         <td>{{item.refils}}</td>
                                         <td>{{item.created | date}}</td>
                                         </tr>
                                         
                                         </tbody>
-                                        </table>
+                                        </table> -->
+                                        <div class="mat-elevation-z8">
+                                        <table mat-table [dataSource]="patientInfo.history.prescription">
+                                            <ng-container matColumnDef="sn">
+                                              <th mat-header-cell *matHeaderCellDef>S/No</th>
+                                              <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="name">
+                                              <th mat-header-cell *matHeaderCellDef>Name</th>
+                                              <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="generic_name">
+                                              <th mat-header-cell *matHeaderCellDef>Generic Name</th>
+                                              <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="form">
+                                              <th mat-header-cell *matHeaderCellDef>Form</th>
+                                              <td mat-cell *matCellDef="let element"> {{element.form}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="strength">
+                                                <th mat-header-cell *matHeaderCellDef>Strength</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.strength}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="refils">
+                                                  <th mat-header-cell *matHeaderCellDef>Refils</th>
+                                                  <td mat-cell *matCellDef="let element"> {{element.refils}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="date">
+                                                  <th mat-header-cell *matHeaderCellDef>Date</th>
+                                                  <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+                                              </ng-container>
+                                        
+                                        
+                                            <tr mat-header-row *matHeaderRowDef="historyDrugs"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: historyDrugs"></tr>
+                                          </table>
+                                          </div>
                                   </mat-expansion-panel>
                                   
                                 </mat-accordion>
@@ -248,11 +271,11 @@
             </mat-tab>
             <mat-tab label="Procedures">
               <div class="row container-fluid">
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                   
                   <br>
                   
-                  <div class="table-responsive">
+                  <div class="mat-elevation-z8">
                     <table mat-table [dataSource]="data">
                         <ng-container matColumnDef="Sn">
                             <th mat-header-cell *matHeaderCellDef>S/No</th>
@@ -299,6 +322,11 @@
                             *ngIf="element.status=='0'"> Not Paid</span>
                         </td>
                       </ng-container>
+                      <ng-container matColumnDef="delete">
+                          <th mat-header-cell *matHeaderCellDef> Delete </th>
+                          <td mat-cell *matCellDef="let element" (click)="deleteItem(element)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                        </ng-container>
+                  
                       <tr mat-header-row *matHeaderRowDef="procedureColumns"></tr>
                       <tr mat-row *matRowDef="let row; columns: procedureColumns;"></tr>
                     </table>
@@ -309,9 +337,9 @@
             </mat-tab>
             <mat-tab label="Diagnosis">
               <div class="row container-fluid">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                   <br>
-                  <div class=" table-responsive">
+                  <div class="mat-elevation-z8">
                     <table mat-table [dataSource]="diagnosisList">
                         <ng-container matColumnDef="Sn">
                             <th mat-header-cell *matHeaderCellDef>S/No</th>
@@ -340,50 +368,54 @@
             </mat-tab>
             <mat-tab label="Medications">
               <div class="row container-fluid">
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                   <br>
                   <div class="col-sm-12">
-                      <div class=" table-responsive">
-                        <table mat-table [dataSource]="prescriptions">
-                            <ng-container matColumnDef="generic_name">
-                                <th mat-header-cell *matHeaderCellDef>Generic Name</th>
-                                <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
-                              </ng-container>
-                          <ng-container matColumnDef="name">
-                            <th mat-header-cell *matHeaderCellDef>Brand Name</th>
-                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                          </ng-container>
-                          
-                          <ng-container matColumnDef="dosage">
-                            <th mat-header-cell *matHeaderCellDef>Dosage</th>
-                            <td mat-cell *matCellDef="let element"> {{element.dosage}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="frequency">
-                            <th mat-header-cell *matHeaderCellDef>Frequency</th>
-                            <td mat-cell *matCellDef="let element"> {{element.frequency}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="duration">
-                            <th mat-header-cell *matHeaderCellDef>Duration</th>
-                            <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
-                          </ng-container>
-          
-                          <ng-container matColumnDef="route">
-                            <th mat-header-cell *matHeaderCellDef> Route </th>
-                            <td mat-cell *matCellDef="let element"> {{element.route}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="notes">
-                              <th mat-header-cell *matHeaderCellDef>Notes </th>
-                              <td mat-cell *matCellDef="let element"> {{element.notes }} </td>
+                      <div class="mat-elevation-z8">
+                          <table mat-table [dataSource]="prescriptions">
+                              <ng-container matColumnDef="generic_name">
+                                  <th mat-header-cell *matHeaderCellDef>Generic Name</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
+                                </ng-container>
+                            <ng-container matColumnDef="name">
+                              <th mat-header-cell *matHeaderCellDef>Brand Name</th>
+                              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                             </ng-container>
-                            <ng-container matColumnDef="form">
-                                <th mat-header-cell *matHeaderCellDef>Form</th>
-                                <td mat-cell *matCellDef="let element"> {{element.form}}</td>
+                            
+                            <ng-container matColumnDef="dosage">
+                              <th mat-header-cell *matHeaderCellDef>Dosage</th>
+                              <td mat-cell *matCellDef="let element"> {{element.dosage}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="frequency">
+                              <th mat-header-cell *matHeaderCellDef>Frequency</th>
+                              <td mat-cell *matCellDef="let element"> {{element.frequency}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="duration">
+                              <th mat-header-cell *matHeaderCellDef>Duration</th>
+                              <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+                            </ng-container>
+            
+                            <ng-container matColumnDef="route">
+                              <th mat-header-cell *matHeaderCellDef> Route </th>
+                              <td mat-cell *matCellDef="let element"> {{element.route}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="notes">
+                                <th mat-header-cell *matHeaderCellDef>Notes </th>
+                                <td mat-cell *matCellDef="let element"> {{element.notes }} </td>
                               </ng-container>
-          
-                          <tr mat-header-row *matHeaderRowDef="drugColumns"></tr>
-                          <tr mat-row *matRowDef="let row; columns: drugColumns"></tr>
-                        </table>
-                      </div>
+                              <ng-container matColumnDef="form">
+                                  <th mat-header-cell *matHeaderCellDef>Form</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.form}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="delete">
+                                    <th mat-header-cell *matHeaderCellDef> Delete </th>
+                                    <td mat-cell *matCellDef="let element" (click)="deleteItem(element)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                                  </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="drugColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: drugColumns"></tr>
+                          </table>
+                        </div>
+                    
                     </div>
                   <br>
                 </div>
@@ -391,11 +423,11 @@
             </mat-tab>
             <mat-tab label="Labs" >
               <div class="row container-fluid">
-  
-                <div class="col-sm-8">
-                  <br />
-                  <div class=" table-responsive">
-                    <table mat-table [dataSource]="patientInfo.lab_test">
+                <br>
+                <div class="col-sm-12">
+                    <br>
+                  <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="patientInfo.lab_test" >
                       <ng-container matColumnDef="Sn">
                             <th mat-header-cell *matHeaderCellDef>S/No</th>
                             <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
@@ -444,6 +476,11 @@
                             Paid</span>
                         </td>
                       </ng-container>
+                      <ng-container matColumnDef="delete">
+                          <th mat-header-cell *matHeaderCellDef> Delete </th>
+                          <td mat-cell *matCellDef="let element" (click)="deleteItem(element)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                        </ng-container>
+                  
                       <tr mat-header-row *matHeaderRowDef="procedureColumns"></tr>
                       <tr mat-row *matRowDef="let row; columns: procedureColumns;"></tr>
                     </table>
@@ -463,175 +500,165 @@
   
     </tab>
     <tab heading="Triage Details">
-  
-      <fieldset class="col-md-12">
-  
-        <legend>Patient Vitals</legend>
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-1">
-              <label><b>Temperature <i class="text-primary">(°C)</i></b></label>
-              <input type="text" class="form-control" [(ngModel)]="patientInfo.triage[0].temperature" [disabled]="true">
-            </div>
-            <div class="col-sm-1">
-              <div class="col-form-label" style="margin-top:12px;">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio"
-                    [checked]="patientInfo.triage[0].temperature_unit == 'celsius' " [disabled]="true">
-                  <label class="form-check-label" for="radio1">
-                    <b>Celsius</b>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="ft" id="pa" value="Ft"
-                    [checked]="patientInfo.triage[0].temperature_unit == !'celsius' " [disabled]="true">
-                  <label class="form-check-label" for="radio2">
-                    <b>Fahrenheit</b>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1">
-              <label><b>Pressure <i class="text-primary">(mmHg)</i></b></label>
-              <input type="text" class="form-control" [(ngModel)]="patientInfo.triage[0].blood_pressure"
-                [disabled]="true"></div>
-            <div class="col-sm-1">
-              <div class="col-form-label" style="margin-top:16px;">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio"
-                    [checked]="patientInfo.triage[0].blood_pressure_unit == 'mmHg' " [disabled]="true">
-                  <label class="form-check-label" for="radio1">
-                    <b>mm/hg</b>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" [disabled]="true"
-                    [checked]="patientInfo.triage[0].blood_pressure_unit == !'mm/hg' ">
-                  <label class="form-check-label" for="radio2">
-                    <b>Pa</b>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1">
-              <label><b>Height <i class="text-primary">(Cm)</i></b></label>
-              <input type="text" class="form-control" [(ngModel)]="patientInfo.triage[0].height" [disabled]="true"></div>
-            <div class="col-sm-1">
-              <div class="col-form-label" style="margin-top:16px;">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="cm" id="mm/hg" value="Cm"
-                    [checked]="patientInfo.triage[0].height_unit == 'cm' " [disabled]="true">
-                  <label class="form-check-label" for="radio1">
-                    <b>Cm</b>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" [checked]="patientInfo.triage[0].height_unit == !'cm' "
-                    [disabled]="true">
-                  <label class="form-check-label" for="radio2">
-                    <b>Ft</b>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1">
-              <label><b>Weight <i class="text-primary">(Kgs)</i></b></label>
-              <input type="text" class="form-control" [(ngModel)]="patientInfo.triage[0].weight" [disabled]="true"></div>
-            <div class="col-sm-1">
-              <div class="col-form-label" style="margin-top:16px;">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" [checked]="patientInfo.triage[0].weight_unit == 'kgs' " [disabled]="true">
-                  <label class="form-check-label" for="radio1">
-                    <b>Kgs</b>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" [checked]="patientInfo.triage[0].weight_unit == !'kgs' " [disabled]="true">
-                  <label class="form-check-label" for="radio2">
-                    <b>Ft</b>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1">
-              <label><b>Respiratory</b></label>
-              <input type="text" class="form-control" [(ngModel)]="patientInfo.triage[0].respiratory" [disabled]="true">
-            </div>
-            <div class="col-sm-1">
-              <label><b>Pulse</b></label>
-              <input type="text" class="form-control" [(ngModel)]="patientInfo.triage[0].pulse" [disabled]="true">
-            </div>
-            <div class="col-sm-1">
-                <label><b>BMI</b></label>
-                <input type="text" class="form-control" [(ngModel)]="patientInfo.triage[0].bmi" [disabled]="true">
-              </div>
-           
-          </div>
+      <div class="row">
+        <div class="col-sm-2">
+            <mat-card>
+                <mat-card-content>
+                   <h3 align="center" class="text-primary">{{patientInfo.triage[0].temperature}} °C</h3>
+                   <h6 align="center" style="font-size:11px">Temperature</h6>
+                </mat-card-content>
+             </mat-card>
         </div>
+        <div class="col-sm-2">
+            <mat-card>
+                <mat-card-content>
+                   <h3 align="center" class="text-danger">{{patientInfo.triage[0].blood_pressure}}</h3>
+                   <h6 align="center" style="font-size:11px">Pressure</h6>
+                </mat-card-content>
+             </mat-card>
+        </div>
+        <div class="col-sm-2">
+            <mat-card>
+                <mat-card-content>
+                   <h3 align="center" class="text-success">{{patientInfo.triage[0].weight}} kgs</h3>
+                   <h6 align="center" style="font-size:11px">Weight</h6>
+                </mat-card-content>
+             </mat-card>
+        </div>
+        <div class="col-sm-2">
+            <mat-card>
+                <mat-card-content>
+                   <h3 align="center" class="text-warning"> {{patientInfo.triage[0].height}} cm</h3>
+                   <h6 align="center" style="font-size:11px">Height</h6>
+                </mat-card-content>
+             </mat-card>
+        </div>
+        <div class="col-sm-2">
+            <mat-card>
+                <mat-card-content>
+                    <h3 align="center" class="text-success" *ngIf="!patientInfo.triage[0].bmi > 24.9 || !patientInfo.triage[0].bmi < 18.5">{{patientInfo.triage[0].bmi}}</h3>
+                   <h3 align="center" class="text-danger" *ngIf="patientInfo.triage[0].bmi > 24.9 || patientInfo.triage[0].bmi < 18.5">{{patientInfo.triage[0].bmi}}</h3>
+                   <h6 align="center" style="font-size:11px">BMI</h6>
+                </mat-card-content>
+             </mat-card>
+        </div>
+        <div class="col-sm-2">
+            <mat-card>
+                <mat-card-content>
+                   <h3 align="center" class="text-primary">{{patientInfo.triage[0].pulse}}</h3>
+                   <h6 align="center" style="font-size:11px">Pulse</h6>
+                </mat-card-content>
+             </mat-card>
+        </div>
+        
+      </div>
+      <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <mat-card>
+          <!-- <div class="row">
+              <div class="col-sm-12">
+              <span style="font-weight:500;font-size:14px;">
+                       |
+                    Respiratory Rate <span class="text-primary">{{patientInfo.triage[0].respiratory}} bpm</span> | Pulse <span class="text-primary">{{patientInfo.triage[0].pulse}} pra</span>
+              </span>
+              </div>
+            </div> -->
+            <br>
             <div class="row">
-               <div class="col-sm-6">
-                  <div class="col-sm-12">
-                      <div class="row">
-                          <div class="col-sm-4 obr" *ngIf="patientInfo.nurse_report?.notes[0]?.observation_type">Observation Type: <x class="text-primary">{{patientInfo.nurse_report?.notes[0]?.observation_type}}</x> </div>
-                          <div class="col-sm-4 obr" *ngIf="patientInfo.nurse_report?.notes[0]?.symptoms_onset">Symptoms Onset:  <x class="text-primary">{{patientInfo.nurse_report?.notes[0]?.symptoms_onset | date}}</x> </div>
-                          <div class="col-sm-4 obr" *ngIf="patientInfo.nurse_report?.notes[0]?.appointment_date">Appointment Date: <x class="text-primary"> {{patientInfo.nurse_report?.notes[0]?.appointment_date | date}}</x></div>
+              <div class="col-sm-6">
+                  <mat-card>
+                      <div class="row" *ngIf="patientInfo.nurse_report.observations.length">
+                          <div class="col-sm-12">
+                              <h6><u>Observations</u></h6>
+                          </div>
+                        <div *ngFor="let item of patientInfo.nurse_report.observations" style="margin:10px;">
+                            <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500">{{item.name}}</span>
+                        </div>
                       </div>
-                      </div>
-    
-                      <div class="col-sm-12" *ngIf="patientInfo.nurse_report?.notes[0]?.notes">
-                          <mat-form-field appearance="outline">
-                              <mat-label>Nurse Observation</mat-label>
-                              <textarea name="notes" id=""  rows="3" value="{{patientInfo.nurse_report?.notes[0]?.notes}}"  matInput readonly></textarea>
-                            </mat-form-field>
-                      </div>
-               </div>
-               <div class="col-sm-6">
-                  <div class="row">
-                    <div class="col-sm-6" *ngFor="let item of patientInfo.nurse_report.observations">
-                      <mat-checkbox [checked]="true" [disabled]="true">{{item.name}}</mat-checkbox>
-                    </div>
-                  </div>
-                  <br>
-                </div>
+                      <div class="row" *ngIf="patientInfo.nurse_report.allergies.length">
+                          <div class="col-sm-12">
+                              <h6><u>Allergies</u></h6>
+                          </div>
+                            <div  *ngFor="let item of patientInfo.nurse_report.allergies" style="margin:10px;">
+                                <i class="fa fa-circle text-info" ></i> <span style="font-weight:500">{{item.name}}</span>
+                              </div>
+                        </div>
+                  </mat-card>
 
-            </div>
-               <div class="row">
-                  <div class="col-sm-6">
-                     <div class="col-sm-12">
-                        <fieldset>
-                            <legend>
-                              Allergies
-                            </legend>
-                            <div class="row">
-                                <div class="col-sm-4" *ngFor="let item of patientInfo.nurse_report.allergies">
-                                    <mat-checkbox [checked]="true" [disabled]="true">{{item.name}}</mat-checkbox>
+              </div>
+              <div class="col-sm-6">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <mat-card>
+                        <mat-card-title><u class="text-success">NURSE OBSERVATIONS</u></mat-card-title>
+                        <div class="row">
+                            <!-- <div class="col-sm-6">
+                                <span  class="obr" *ngIf="patientInfo.nurse_report?.notes[0]">OBSERVATION TYPE: <span class="text-primary" style="font-weight: 500;text-transform: capitalize;text-align: left">
+                                    {{patientInfo.nurse_report?.notes[0]?.observation_type}}
+                                </span></span>
+                                
+                            </div> -->
+                            <div class="col-sm-6">
+                                <div class="row" *ngIf="patientInfo.nurse_report?.notes[0]?.symptoms_onset">
+                                    <div class="col-sm-5">
+                                        SYMPTOMS ONSET
+                                    </div>
+                                    <div class="col-sm-7 text-primary" >{{patientInfo.nurse_report?.notes[0]?.symptoms_onset | date:'yyyy-MM-dd'}}</div>
                                   </div>
                             </div>
-                          </fieldset>
-                     </div>
-                </div>
-               </div>
-        <br>
-        <div class="row">
-          <div class="col-sm-4">
-            <fusioncharts [width]="300" [height]="270" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
-            </fusioncharts>
+                        </div>
+                         <div class="row">
+                           <div class="col-sm-6 obr ">
+                             <div class="row">
+                               <div class="col-sm-5">
+                                RISK OF FALL
+                               </div>
+                               <div class="col-sm-7 text-danger" >{{patientInfo.triage[0].risk_of_fall}}</div>
+                             </div>
+                           </div>
+                           <div class="col-sm-6 obr">
+                              <div class="row">
+                                  <div class="col-sm-5">
+                                   PAIN LEVEL
+                                  </div>
+                                  <div class="col-sm-7 text-danger">{{patientInfo.triage[0].risk_of_fall}}</div>
+                                </div>
+                           </div>
+                         </div>
+                          <div class="row" style="margin-top: 5px">
+                              <div class="col-sm-12" *ngIf="patientInfo.nurse_report?.notes[0]?.notes">
+                              <mat-form-field>
+                                <input type="text" matInput placeholder="NURSE NOTES" value="{{patientInfo.nurse_report?.notes[0]?.notes}}">
+                              </mat-form-field>
+                                
+                              </div>
+                          </div>
+                      </mat-card>
+                    </div>
+                  </div>
+              </div>
+            </div>
+             
+          <br>
+          <div class="row">
+            <div class="col-sm-4">
+              <fusioncharts [width]="300" [height]="270" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
+              </fusioncharts>
+            </div>
+    
+            <div class="col-sm-4">
+              <fusioncharts width="450" height="250" type="AngularGauge" [dataSource]="pressureSource">
+              </fusioncharts>
+            </div>
+            <div class="col-sm-4">
+              <fusioncharts width="300" height="270" type="Column2D" dataFormat="JSON" [dataSource]="tempSource">
+              </fusioncharts>
+            </div>
           </div>
-  
-          <div class="col-sm-4">
-            <fusioncharts width="450" height="250" type="AngularGauge" [dataSource]="pressureSource">
-            </fusioncharts>
-          </div>
-          <div class="col-sm-4">
-            <fusioncharts width="300" height="270" type="Column2D" dataFormat="JSON" [dataSource]="tempSource">
-            </fusioncharts>
-          </div>
-        </div>
-      </fieldset>
-  
-      <div class="clearfix"></div>
-  
-  
+      </mat-card>
+    </div>
+  </div>
     </tab>
   
     <tab heading="Treatment">
@@ -639,57 +666,54 @@
       <tabset>
         <tab>
   
-          <ng-template tabHeading><b style="font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif"><i
+          <ng-template tabHeading><b class="tab-headers"><i
                 class="icon-plus"></i> Diagnosis</b></ng-template>
           <div class="row">
             <div class="col-sm-3">
-              <input type="text" class="form-control" placeholder="Diagnosis" name="diagnosis"
-                [(ngModel)]="selectedOption.description" typeaheadOptionField="description" [typeahead]="diagnosesList"
-                (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12">
+              <mat-form-field>
+                  <input type="text"  placeholder="Diagnosis" name="diagnosis"
+                  [(ngModel)]="selectedOption.description" typeaheadOptionField="description" [typeahead]="diagnosesList"
+                  (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12" matInput>
+                  <button mat-button *ngIf="selectedOption.description" matSuffix mat-icon-button aria-label="Clear" (click)="selectedOption.description=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+              </mat-form-field>
             </div>
-            <div class="col-sm-2"><input type="text" class="form-control" name="code" [(ngModel)]="selectedOption.code"
-                placeholder="code">
-            </div>
-            <div class="col-sm-2"> <button class="btn btn-success btn-sm" (click)="addDiagnosis()"
-                [disabled]="!selectedOption.description"> <i class="icon-plus"></i></button>
-            </div>
-  
           </div>
           <br />
           <div class="row">
-            <div class="col-sm-6">
-              <div class="table-responsive">
-                <table mat-table [dataSource]="diagnosisList">
-                    <ng-container matColumnDef="Sn">
-                        <th mat-header-cell *matHeaderCellDef>S/No</th>
-                        <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+            <div class="col-sm-12">
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="diagnosisList">
+                        <ng-container matColumnDef="Sn">
+                            <th mat-header-cell *matHeaderCellDef>S/No</th>
+                            <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+                          </ng-container>
+                      <ng-container matColumnDef="Diagnosis">
+                        <th mat-header-cell *matHeaderCellDef>Diagnosis</th>
+                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
                       </ng-container>
-                  <ng-container matColumnDef="Diagnosis">
-                    <th mat-header-cell *matHeaderCellDef>Diagnosis</th>
-                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-                  </ng-container>
   
-                  <ng-container matColumnDef="Code">
-                    <th mat-header-cell *matHeaderCellDef>Code</th>
-                    <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-                  </ng-container>
+                      <ng-container matColumnDef="Code">
+                        <th mat-header-cell *matHeaderCellDef>Code</th>
+                        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="diagnosisColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: diagnosisColumns"></tr>
+                    </table>
   
-                  <tr mat-header-row *matHeaderRowDef="diagnosisColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: diagnosisColumns"></tr>
-                </table>
-               
-              </div>
+                  </div>
             </div>
           </div>
   
           <br />
         </tab>
         <tab>
-          <ng-template tabHeading><b style="font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif"><i
+          <ng-template tabHeading><b class="tab-headers" ><i
                 class="icon-plus"></i> Procedures</b></ng-template>
                
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="row">
                             <div class="col-sm-3">
                               <mat-form-field>
@@ -698,11 +722,14 @@
                                 placeholder="Procedure" typeaheadOptionField="name" [(ngModel)]="selectedOption.name"
                                 [typeahead]="services" [typeaheadOptionsLimit]="7"
                                 (typeaheadLoading)="searchProcedure(selectedOption.name)">
+                                <button mat-button *ngIf="selectedOption.name" matSuffix mat-icon-button aria-label="Clear" (click)="selectedOption.name=''">
+                                    <mat-icon>close</mat-icon>
+                                  </button>
                               </mat-form-field>
                             </div>
                             <div class="col-sm-2">
                                <mat-form-field>
-                                 <input type="text" matInput  [(ngModel)]="selectedOption.code" placeholder="Lonic Code" readonly>
+                                 <input type="text" matInput  [(ngModel)]="selectedOption.code" placeholder="Loinc Code" readonly>
                                </mat-form-field>
                              </div>
                             <div class="col-sm-2">
@@ -710,14 +737,20 @@
                                  <input type="text" matInput  [(ngModel)]="selectedOption.date" placeholder="Sugery Date" bsDatepicker>
                                </mat-form-field>
                              </div>
-                             <div class="col-sm-2">
+                             <div class="col-sm-3">
                                  <mat-form-field>
                                    <input type="text" matInput  [(ngModel)]="selectedOption.surgeon" placeholder="Surgeon Name">
+                                   <button mat-button *ngIf="selectedOption.surgeon" matSuffix mat-icon-button aria-label="Clear" (click)="selectedOption.surgeon=''">
+                                      <mat-icon>close</mat-icon>
+                                    </button>
                                  </mat-form-field>
                                </div>
                                <div class="col-sm-2">
                                    <mat-form-field>
                                      <input type="text" matInput  [(ngModel)]="selectedOption.assistant" placeholder="Assistant Surgeon Name">
+                                     <button mat-button *ngIf="selectedOption.assistant" matSuffix mat-icon-button aria-label="Clear" (click)="selectedOption.assistant=''">
+                                        <mat-icon>close</mat-icon>
+                                      </button>
                                    </mat-form-field>
                                  </div>
                       </div>
@@ -731,8 +764,8 @@
         
           <br />
           <div class="row">
-            <div class="col-md-9">
-              <div class="table-responsive">
+            <div class="col-md-12">
+              <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="data">
                     <ng-container matColumnDef="Sn">
                         <th mat-header-cell *matHeaderCellDef>S/No</th>
@@ -782,6 +815,10 @@
                         Paid</span>
                     </td>
                   </ng-container>
+                  <ng-container matColumnDef="delete">
+                      <th mat-header-cell *matHeaderCellDef> Delete </th>
+                      <td mat-cell *matCellDef="let element" (click)="deleteItem(element)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                    </ng-container>
                   <tr mat-header-row *matHeaderRowDef="procedureColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: procedureColumns;"></tr>
                 </table>
@@ -791,7 +828,7 @@
           <br>
         </tab>
         <tab>
-          <ng-template tabHeading><b style="font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif"><i
+          <ng-template tabHeading><b class="tab-headers"><i
                 class="icon-plus"></i> LabTest</b></ng-template>
           <div class="row">
             <div class="col-sm-3">
@@ -799,19 +836,16 @@
                   <input matInput [(ngModel)]="selectedTest.name" [typeahead]="test" (typeaheadOnSelect)="OnSelectTest($event)"
                   [typeaheadOptionsLimit]="7" typeaheadOptionField="name" placeholder="Lab Test" 
                   name="labtest" type="text" (typeaheadLoading)="searchTest(selectedTest.name)">
+                  <button mat-button *ngIf="selectedTest.name" matSuffix mat-icon-button aria-label="Clear" (click)="selectedTest.name=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
               </mat-form-field>
             </div>
-            <div class="col-sm-1"> 
-              <button mat-fab (click)="submitLabRequest()" [disabled]="!selectedTest.name"> <i class="fa fa-plus"></i></button>
-              <!-- <button class="btn btn-success btn-sm" (click)="submitLabRequest()"
-                [disabled]="!selectedTest.name"> <i class="icon-plus"></i></button> -->
-            </div>
           </div>
-          <br>
           <div class="row">
-                        <div class="col-sm-8">
-                          <div class="table-responsive">
-                            <table mat-table [dataSource]="patientInfo.lab_test">
+                        <div class="col-sm-12">
+                          <div  class="mat-elevation-z8">
+                            <table mat-table [dataSource]="patientInfo.lab_test" >
                                 <ng-container matColumnDef="Sn">
                                     <th mat-header-cell *matHeaderCellDef>S/No</th>
                                     <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
@@ -858,6 +892,11 @@
                                     Paid</span>
                                 </td>
                               </ng-container>
+                              <ng-container matColumnDef="delete">
+                                  <th mat-header-cell *matHeaderCellDef> Delete </th>
+                                  <td mat-cell *matCellDef="let element" (click)="deleteItem(element)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                                </ng-container>
+                          
                               <tr mat-header-row *matHeaderRowDef="procedureColumns"></tr>
                               <tr mat-row *matRowDef="let row; columns: procedureColumns;"></tr>
                             </table>
@@ -866,31 +905,25 @@
           </div>
   
           <br />
-          <!-- <div class="row" *ngFor="let item of labTest">
-  
-            <div class="col-sm-9">
-              <input type="text" class="form-control" name="test">
-            </div>
-            <div class="col-sm-3"> <button class="btn btn-danger btn-sm" (click)="deleteTest(item)"> <i
-                  class="icon-close"></i></button>
-            </div>
-            <br />
-          </div> -->
+      
         </tab>
   
         <tab>
-          <ng-template tabHeading><b style="font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif"><i
+          <ng-template tabHeading><b class="tab-headers"><i
                 class="icon-plus"></i> Prescription</b></ng-template>
                <div class="row">
-                 <div class="col-sm-8">
+                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-3">
                           <mat-form-field>
                             
                             <input type="text" matInput placeholder="Prescription" [(ngModel)]="selectedDrug.name" [typeahead]="drugs"
-                            [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="name"
+                            [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="name" (typeaheadLoading)="searchPrescription(selectedDrug.name)"
                             (typeaheadOnSelect)="onDrug($event)" placeholder="Prescription Name"
                             typeaheadGroupField="strength">
+                            <button mat-button *ngIf="selectedDrug.name" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.name=''">
+                                <mat-icon>close</mat-icon>
+                              </button>
                           </mat-form-field>
                         </div>
                         <div class="col-sm-3">
@@ -903,12 +936,12 @@
                               <input type="text" matInput [(ngModel)]="selectedDrug.form" placeholder="Drug Form" readonly>
                             </mat-form-field>
                           </div>
-                          <div class="col-sm-1">
+                          <div class="col-sm-2">
                               <mat-form-field>
                                 <input type="text" matInput [(ngModel)]="selectedDrug.strength" placeholder="Strength" readonly>
                               </mat-form-field>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <mat-form-field>
                                     <mat-label>Dosage</mat-label>
                                     <mat-select [(ngModel)]="selectedDrug.dosage">
@@ -924,14 +957,12 @@
                             <div class="col-sm-3">
                               <mat-form-field>
                                 <input type="text" matInput [(ngModel)]="selectedDrug.route" placeholder="Route">
+                                <button mat-button *ngIf="selectedDrug.route" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.route=''">
+                                    <mat-icon>close</mat-icon>
+                                  </button>
                               </mat-form-field>
                             </div>
                             
-                            <div class="col-sm-2">
-                                <mat-form-field >
-                                  <input type="number" matInput [(ngModel)]="selectedDrug.refils" placeholder="Refils">
-                                </mat-form-field>
-                              </div>
                               <div class="col-sm-2">
                                   <mat-form-field>
                                       <mat-label>Frequency</mat-label>
@@ -945,13 +976,27 @@
                               <div class="col-sm-2">
                                   <mat-form-field>
                                     <input type="number" matInput [(ngModel)]="selectedDrug.duration" placeholder="Duration(days)">
+                                    <button mat-button *ngIf="selectedDrug.duration" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.duration=''">
+                                        <mat-icon>close</mat-icon>
+                                      </button>
                                   </mat-form-field>
                                 </div>
-                              <div class="col-sm-2">
+                              <div class="col-sm-3">
                                   <mat-form-field>
                                     <input type="text" matInput [(ngModel)]="selectedDrug.medication_schedule" placeholder="Medication Schedule">
+                                    <button mat-button *ngIf="selectedDrug.medication_schedule" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.medication_schedule=''">
+                                        <mat-icon>close</mat-icon>
+                                      </button>
                                   </mat-form-field>
                                 </div>
+                                <div class="col-sm-2">
+                                    <mat-form-field >
+                                      <input type="number" matInput [(ngModel)]="selectedDrug.refils" placeholder="Refils">
+                                      <button mat-button *ngIf="selectedDrug.refils" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.refils=''">
+                                          <mat-icon>close</mat-icon>
+                                        </button>
+                                    </mat-form-field>
+                                  </div>
                               <br>
                               <div class="col-sm-12" >
                                 <mat-form-field appearance="outline">
@@ -969,10 +1014,10 @@
                </div>
              
               <br>  
-          <div class="row">
-            <div class="col-sm-8">
-              <div class="table-responsive">
-                <table mat-table [dataSource]="prescriptions">
+          <div class="row" *ngIf="prescriptions.length">
+            <div class="col-sm-12" >
+              <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="prescriptions" >
                     <ng-container matColumnDef="generic_name">
                         <th mat-header-cell *matHeaderCellDef>Generic Name</th>
                         <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
@@ -1007,239 +1052,28 @@
                         <th mat-header-cell *matHeaderCellDef>Form</th>
                         <td mat-cell *matCellDef="let element"> {{element.form}}</td>
                       </ng-container>
-  
+                      <ng-container matColumnDef="delete">
+                          <th mat-header-cell *matHeaderCellDef> Delete </th>
+                          <td mat-cell *matCellDef="let element" (click)="deleteItem(element)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                        </ng-container>
                   <tr mat-header-row *matHeaderRowDef="drugColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: drugColumns"></tr>
                 </table>
               </div>
             </div>
-            <!-- <div class="col-sm-2">
-              <button class="btn btn-info btn-sm"
-                styleSheetFile="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
-                printTitle="Healthix system invoice print" printSectionId="print-prescription" ngxPrint> <i class="cui-print"></i> Print
-                prescriptions </button>
-            </div> -->
-  
           </div>
-  
-  
-          <div class="row" id="print-prescription" hidden>
-            <h6 align="center"><img src="assets/img/avatars/logo.png" alt="" style="width:180px;height:70px;"></h6>
-            <h6 align="center" style="margin-top:-12px;font-size:18px;">PRESCRIPTION</h6>
-            <div class="row" style="margin-top: -13px;">
-              <p style="margin-top:-28px;"><span>
-                  RX DATE: <b style="color:dodgerblue">{{patientInfo.check_in | date}}
-                    
-                  </b></span><br />
-                  <span>PRESCRIBER: <span style="color:dodgerblue;font-weight: bold;font-size: 12px;">{{patientInfo.prescription[0]?.doctor__first_name | uppercase}}
-                  {{patientInfo.prescription[0]?.doctor__surname | uppercase}}
-                  {{patientInfo.prescription[0]?.doctor__last_name | uppercase}}</span> </span><br />
-                  <span>CODE : <b style="color:dodgerblue">{{patientInfo.visit_no}}</b></span><br />
-                  <br>
-                  <span>
-                    <b style="color:dodgerblue;font-size: 12px;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;">{{patientInfo.first_name}} {{patientInfo.other_names}} {{patientInfo.last_name}}</b>
-                  </span>
-                  <br>
-                  <span>D.O.B: <b  style="color:dodgerblue;font-weight: bold">{{patientInfo.dob}}</b></span>
-                  <br>
-                 <span>VISIT TYPE: <span style="color:dodgerblue;font-weight: bold">{{patientInfo.visit_type}}</span></span>
-                  <br>
-                  <span>PATIENT ID:<span style="color:dodgerblue;font-weight: bold">{{patientInfo.patient_no}}</span></span>
 
-
-                </p>
-
-            </div>
-           
-             <div *ngFor="let element of patientInfo.prescription" >
-               <div style="border: 1px solid black">
-               <p style="margin-left: 10px;">
-                 <b>Name: <span style="color:dodgerblue">{{element.name}} {{element.strength}}</span></b><br>
-                 <span>Generic Name: <span style="color:dodgerblue">{{element.generic_name}}</span></span><br>
-                <span>Refills: <span style="color:dodgerblue">{{element.refills}}</span></span><br>
-                <span>Form: <span style="color:dodgerblue">{{element.form}}</span></span><br>
-                <span>Quantity: <span style="color:dodgerblue">{{element.quantity}}</span></span><br>
-               </p>
-          </div>
-          <br>
-            </div>
-            
-            <div class="row">
-              <span >
-                <h6 style="font-size:11px;">
-                  Sign_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-                </h6>
-              </span>
-            </div>
-            <div>
-              <p style="font-size:13px;color:dodgerblue;font-weight: bold">
-                {{patientInfo.prescription[0]?.doctor__first_name | uppercase}} {{patientInfo.prescription[0]?.doctor__surname | uppercase}}
-                {{patientInfo.prescription[0]?.doctor__last_name | uppercase}} <br>
-                {{patientInfo.prescription[0]?.doctor__address | uppercase}},{{patientInfo.prescription[0]?.doctor__county | uppercase}}<br>
-                {{patientInfo.prescription[0]?.doctor__email | uppercase}} <br>
-                {{patientInfo.prescription[0]?.doctor__phone | uppercase}}
-                <span></span>
-              </p>
-            </div>
-          </div>
-  
-  
         </tab>
       </tabset>
     </tab>
-  <tab>
+  <!-- <tab>
     <ng-template tabHeading> Summary</ng-template>
-    <div class="row" id="print-section" hidden>
-      <h6 align="center"><img src="assets/img/avatars/logo.png" alt="" style="width:190px;height:90px;"></h6>
-      <h4 align="center" style="margin-top:-12px;font-size: 25px;">Healthix Hospital Patient Summary</h4>
-      <div class="row" style="margin-left:110px;margin-top: -13px;">
-        <h5 align="center" style="margin-left:-130px;margin-top:-28px;"><span
-            style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, serif;font-size:15px;">
-            PATIENT NAME: <b style="color:dodgerblue">
-              {{patientInfo.first_name}} {{patientInfo.other_names}} {{patientInfo.last_name}}
-            </b></span></h5>
-      </div>
-      <div class="row" style="margin-left:195px;margin-top: -20px;">
-        <span
-          style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', serif;font-size:13px;">VISIT
-          NO<b style="color:dodgerblue">
-            {{patientInfo.visit_no}}
-          </b></span>
-        <span style="margin-left:20px;font-size:13px;" class="text-primary">VISIT TYPE <b
-            style="color:dodgerblue">{{patientInfo.visit_type | uppercase}}</b></span>
-    
-      </div>
-      <div class="row" style="margin-left:143px">
-        <span
-          style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', serif;font-size:14px;">CHECK
-          IN: <b style="color:dodgerblue">
-            {{patientInfo.check_in | date}} {{patientInfo.check_in | date:'shortTime'}}
-          </b></span>
-        <span style="margin-left:40px;font-size:14px;" class="text-primary">PATIENT ID <b
-            style="color:dodgerblue">{{patientInfo.patient_no}}</b></span>
-    
-        <!-- <span style="margin-left:124px;font-size:14px;" class="text-primary">CHECK OUT <b
-                          style="color:dodgerblue">{{patientInfo.check_out | date}}</b></span>
-                     -->
-      </div>
-      <br>
-      <div class="row">
-        <fieldset class="col-sm-12">
-          <legend>Diagnosis</legend>
-    
-          <div class="col-sm-12 table-responsive" *ngIf="patientInfo.diagnosis" style="margin-top:-10px;">
-            <table class="table table-condensed table-sm" style="width:100%;">
-              <tr
-                style="color:dodgerblue;background-color:gainsboro;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif">
-                <td>S.No</td>
-                <td>Diagnosis Name</td>
-    
-              </tr>
-              <tr *ngFor="let item of patientInfo.diagnosis;let i = index"
-                style="font-size: 13px;line-height:22px;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;">
-                <td>{{i+1}}</td>
-                <td> {{item.description}}</td>
-    
-              </tr>
-    
-    
-            </table>
-          </div>
-        </fieldset>
-      </div>
-      <div class="row">
-        <fieldset class="col-sm-12">
-          <legend>Procedures</legend>
-         
-          <div class="col-sm-12 table-responsive" *ngIf="patientInfo.procedures" style="margin-top:-10px;">
-            <table class="table table-condensed table-sm" style="width:100%;">
-              <tr
-                style="color:dodgerblue;background-color:gainsboro;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif">
-                <td>S.No</td>
-                <td>Service</td>
-              </tr>
-              <tr *ngFor="let item of patientInfo.procedures;let i = index"
-                style="font-size: 13px;line-height:22px;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;">
-                <td *ngIf="item.category=='PROCEDURES'">{{i+1}}</td>
-                <td *ngIf="item.category=='PROCEDURES'"> {{item.service}}</td>
-    
-              </tr>
-    
-    
-            </table>
-          </div>
-        </fieldset>
-      </div>
-      <div class="row">
-        <fieldset class="col-sm-12">
-          <legend>Lab Tests</legend>
-    
-          <div class="col-sm-12 table-responsive" *ngIf="patientInfo.lab_test" style="margin-top:-10px;">
-            <table class="table table-condensed table-sm" style="width:100%;">
-              <tr
-                style="color:dodgerblue;background-color:gainsboro;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif">
-                <td>S.No</td>
-                <td>Lab Test</td>
-              </tr>
-              <tr *ngFor="let item of patientInfo.lab_test;let i = index"
-                style="font-size: 13px;line-height:22px;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;">
-                <td>{{i+1}}</td>
-                <td> {{item.service}}</td>
-              </tr>
-    
-    
-            </table>
-          </div>
-        </fieldset>
-      </div>
-      <div class="row">
-        <fieldset class="col-sm-12">
-          <legend>Prescriptions</legend>
-    
-          <div class="col-sm-12 table-responsive" *ngIf="patientInfo.prescription" style="margin-top:-10px;">
-            <table class="table table-condensed table-sm" style="width:100%;">
-              <tr
-                style="color:dodgerblue;background-color:gainsboro;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif">
-                <td>S.No</td>
-                <td>Name</td>
-                <td>Generic Name</td>
-                <td>Form</td>
-                <td>Strength</td>
-              </tr>
-              <tr *ngFor="let item of patientInfo.prescription;let i = index"
-                style="font-size: 13px;line-height:22px;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;">
-                <td>{{i+1}}</td>
-                <td> {{item.name}}</td>
-                <td>{{item.generic_name}}</td>
-                <td>{{item.form}}</td>
-                <td>{{item.strength}}</td>
-              </tr>
-    
-    
-            </table>
-          </div>
-        </fieldset>
-      </div>
-      <br />
-      <div class="row" style="font-size:13px;">
-        <span>Sign______________________________________</span> <br> <br>
-        <span>Doctor's Name:_____________________________</span> <br>
-        <span>Address: __________________________________</span> <br>
-        <span>Phone:_ _ _ _ _ _ _ _ _ _</span> <br>
-        <span>Email:____________________________________</span> <br>
-        <span>Date :<b style="font-size:12px;">{{patientInfo.check_in | date}}</b></span>
-    
-      </div>
-      <div class="row">
-          <div class="footer" style="position: fixed; bottom: 0; text-align: center">AWESOME FOOTER</div>
-      </div>
-    </div>
   
     <div class="row">
       <br>
       <div class="col-sm-8">
         <div class=" table-responsive">
-          <table mat-table [dataSource]="diagnosisList">
+          <table mat-table [dataSource]="diagnosisList" >
               <ng-container matColumnDef="Sn">
                   <th mat-header-cell *matHeaderCellDef>S/No</th>
                   <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
@@ -1423,7 +1257,7 @@
             </div>
           </div>
     </div>
-  </tab>
+  </tab> -->
  
   </tabset>
 </div>

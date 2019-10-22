@@ -22,10 +22,13 @@ export class DiagnosisComponent implements OnInit {
 @ViewChild('paginator2', {static: true}) paginator2: MatPaginator;
 @ViewChild('paginator3', {static: true}) paginator3: MatPaginator;
 data;
-procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity'];
+procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity','delete'];
 diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code'];
-drugColumns: string[] = ['name', 'generic_name','dosage','frequency', 'duration', 'route','notes','form'];
+drugColumns: string[] = ['name', 'generic_name','dosage','frequency', 'duration', 'route','notes','form','delete'];
 frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','1 day','2 days'];
+historyDiagnosis=['sn','name','code','date'];
+historyServices=['sn','service','bill_number','invoice','cost'];
+historyDrugs: string[] = ['sn','name', 'generic_name','form','strength','refils','date'];
 triage = {};
 id;
 loading;
@@ -86,7 +89,15 @@ console.clear();
 }
 onDiagnosis(item) {
 this.selectedOption = item.item;
-
+this.selectedOption.visit_no = this.patientInfo.visit_no;
+this.service.saveDiagnosis(this.selectedOption).subscribe((res) => {
+console.log(res);
+this.selectedOption = {};
+this.toastr.success('successfully added diagnosis');
+this.patient();
+}, (error) => {
+  this.toastr.error('Failed to add diagnosis');
+});
 }
 onAllergy(item) {
 this.allergy = item.item;
@@ -134,9 +145,6 @@ getTest() {
 OnSelectTest(item) {
   console.log(item.item);
   this.selectedTest = item.item;
-
-}
-submitLabRequest() {
   this.selectedTest.visit_no = this.patientInfo.visit_no;
   this.service.labRequest(this.selectedTest).subscribe((res) => {
     console.log(res);
@@ -148,8 +156,8 @@ submitLabRequest() {
     this.toastr.error('Lab request not submited');
   }
   );
-
 }
+
 getDiagnoses() {
 this.service.allDiagnoses().subscribe((res) => {
 this.diagnosesList = res.results;
@@ -193,19 +201,20 @@ this.pressureSource = {
 'showToolTip': '0'
 },
 // Gauge Data
+
 'colorRange': {
 'color': [{
   'minValue': '0',
-  'maxValue': '50',
-  'code': '#F2726F'
-}, {
-  'minValue': '50',
   'maxValue': '75',
-  'code': '#FFC533'
+  'code': '#62B58F'
 }, {
   'minValue': '75',
   'maxValue': '100',
-  'code': '#62B58F'
+  'code': '#FFC533'
+}, {
+  'minValue': '100',
+  'maxValue': '200',
+  'code': '#F2726F'
 }]
 },
 'dials': {
@@ -272,6 +281,11 @@ this.service.prescriptions().subscribe((res) => {
 this.drugs = res.results;
 });
 }
+searchPrescription(text){
+  this.service.searchPrescriptions(text).subscribe((res)=>{
+    this.drugs = res.results;
+  })
+}
 searchProcedure(text) {
 console.log(text);
   this.service.searchProcedure(text).subscribe((res) => {
@@ -282,17 +296,6 @@ alleryList() {
 this.service.getAllergy().subscribe((res) => {
 console.log('allergy', res);
 this.allergies = res.results;
-});
-}
-addDiagnosis() {
-this.selectedOption.visit_no = this.patientInfo.visit_no;
-this.service.saveDiagnosis(this.selectedOption).subscribe((res) => {
-console.log(res);
-this.selectedOption = {};
-this.toastr.success('successfully added diagnosis');
-this.patient();
-}, (error) => {
-  this.toastr.error('Failed to add diagnosis');
 });
 }
 
@@ -307,10 +310,10 @@ this.diagnoses.splice(index, 1);
     this.selectedOption.visit_no = this.patientInfo.visit_no;
   }
 
-  deleteProcedure(obj) {
+  deleteItem(obj) {
     console.log(obj);
     this.service.deleteBillItem(obj.id).subscribe((res) => {
-      this.toastr.info('Successfuly Deleted Service');
+      this.toastr.success('Successfuly Bill Item');
       this.patient();
     });
   }

@@ -64,7 +64,7 @@ export class InsureCheckComponent implements OnInit {
   }
   OnMember(item) {
     this.memberId = item.item.id;
-    this.myModal.show();
+    console.log(this.memberId)
   }
   payerSearch(text) {
     console.log(text);

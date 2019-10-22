@@ -22,7 +22,7 @@ export class TreatmentComponent implements OnInit {
   searchText;
   phone;
   visit_no;
-  displayedColumns:string[]=['name','patient_no','visit_no','national_id','priority','phone','check_in','visit_type','status']
+  displayedColumns:string[]=['sn','name','patient_no','visit_no','national_id','priority','phone','check_in','visit_type','status']
   constructor(public service: ServiceService , public navCtrl: NgxNavigationWithDataComponent) { }
 
   ngOnInit() {

@@ -109,6 +109,8 @@ THE SOFTWARE.
 
 @angular/material/select
 
+@angular/material/slider
+
 @angular/material/sort
 
 @angular/material/stepper
@@ -165,6 +167,73 @@ trademarks does not indicate endorsement of the trademark holder by Font
 Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
+
+@syncfusion/ej2-angular-base
+SEE LICENSE IN license
+
+@syncfusion/ej2-angular-schedule
+SEE LICENSE IN license
+
+@syncfusion/ej2-base
+SEE LICENSE IN license
+
+@syncfusion/ej2-buttons
+SEE LICENSE IN license
+
+@syncfusion/ej2-calendars
+SEE LICENSE IN license
+
+@syncfusion/ej2-compression
+UNLICENSED
+Essential JS 2 library is available under the Syncfusion Essential Studio program,  and can be licensed either under the Syncfusion Community License Program or the Syncfusion commercial license.
+
+To be qualified for the Syncfusion Community License Program you must have a gross revenue of less than one (1) million U.S. dollars ($1,000,000.00 USD) per year and have less than five (5) developers in your organization, and agree to be bound by Syncfusion’s terms and conditions. 
+
+Customers who do not qualify for the community license can contact sales@syncfusion.com for commercial licensing options.
+
+Under no circumstances can you use this product without (1) either a Community License or a commercial license and (2) without agreeing and abiding by Syncfusion’s license containing all terms and conditions. 
+
+The Syncfusion license that contains the terms and conditions can be found at 
+https://www.syncfusion.com/content/downloads/syncfusion_license.pdf
+
+
+@syncfusion/ej2-data
+SEE LICENSE IN license
+
+@syncfusion/ej2-dropdowns
+SEE LICENSE IN license
+
+@syncfusion/ej2-excel-export
+SEE LICENSE IN license
+
+@syncfusion/ej2-file-utils
+UNLICENSED
+Essential JS 2 library is available under the Syncfusion Essential Studio program,  and can be licensed either under the Syncfusion Community License Program or the Syncfusion commercial license.
+
+To be qualified for the Syncfusion Community License Program you must have a gross revenue of less than one (1) million U.S. dollars ($1,000,000.00 USD) per year and have less than five (5) developers in your organization, and agree to be bound by Syncfusion’s terms and conditions. 
+
+Customers who do not qualify for the community license can contact sales@syncfusion.com for commercial licensing options.
+
+Under no circumstances can you use this product without (1) either a Community License or a commercial license and (2) without agreeing and abiding by Syncfusion’s license containing all terms and conditions. 
+
+The Syncfusion license that contains the terms and conditions can be found at 
+https://www.syncfusion.com/content/downloads/syncfusion_license.pdf
+
+
+@syncfusion/ej2-inputs
+SEE LICENSE IN license
+
+@syncfusion/ej2-lists
+SEE LICENSE IN license
+
+@syncfusion/ej2-navigations
+SEE LICENSE IN license
+
+@syncfusion/ej2-popups
+SEE LICENSE IN license
+
+@syncfusion/ej2-schedule
+SEE LICENSE IN license
 
 angular-fusioncharts
 MIT
