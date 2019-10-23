@@ -70,9 +70,9 @@ export const navItems: NavData[] = [
         icon: 'icon-hourglass'
       },
        {
-        name: 'Make Payments',
-        url: '/dashboard/patients/patient-list',
-        icon: 'icon-wallet',
+        name: 'Appointment',
+        url: '/dashboard/patients/calendar',
+        icon: 'cui-calendar',
       },
     ]
   },
@@ -81,6 +81,7 @@ export const navItems: NavData[] = [
     url: '/dashboard/pharmacy',
     icon: 'fa fa-medkit',
   },
+  
   {
     name: 'Insurecheck',
     url: '/dashboard/patients/insure-check/',
@@ -113,11 +114,10 @@ export const navItems: NavData[] = [
     url: '/dashboard/lab',
     icon: 'icon-chemistry',
   },
-
   {
-    name: 'Stock',
-    url: '/dashboard/stock-level',
-    icon: 'icon-magnifier-add',
+    name: 'Payments',
+    url: '/dashboard/payments',
+    icon: 'icon-wallet',
   },
   {
     name: 'Setup',

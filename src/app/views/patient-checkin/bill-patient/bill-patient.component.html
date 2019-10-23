@@ -1,4 +1,4 @@
-<tabset [pills]="false">
+<tabset [pills]="false" [hidden]="loading">
   <tab title="Tab title">
     <span *tabHeading>
       <span style="font-family:lato">PATIENT BILLING</span>
@@ -96,16 +96,16 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
       <div class="col-sm-12">
   
           <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-left: 10px;" printTitle="INVOICE"
-            printSectionId="print-section" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
+            printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
           <button mat-raised-button class="btn btn-success btn-sm pull-right" style="margin-top:-15px;" (click)="billModal.show()"><i
               class="fa fa-plus"></i> ADD BILL</button>
           <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-right: 10px;"><i
               class="cui-dollar"></i> TOTAL <span
               style="color:white;font-size:13px;font-weight: bold">{{total | number}}</span></button>
-          <button mat-raised-button class="btn btn-warning btn-sm pull-right"
-            style="margin-top:-15px;margin-right: 10px;background-color:solid violet" (click)="confirm()"
+          <button mat-raised-button color="warn" class="btn-sm pull-right"
+            style="margin-top:-15px;margin-right: 10px" (click)="confirm()"
             [disabled]="pending_amount <= 0"><i class="fa fa-money"></i> PAY BILLS <span
-              style="color:red;font-size:13px;font-weight: bold">{{pending_amount | number}}</span></button>
+              style="color:white;font-size:13px;font-weight: bold">{{pending_amount | number}}</span></button>
     
     
         </div>
@@ -113,39 +113,44 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
         <br>
         <div class="col-sm-12 table-responsive mat-elevation-z8" *ngIf="patientInfo.bills">
           <table mat-table [dataSource]="dataSource" matSort>
+              <ng-container matColumnDef="sn">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
+                  <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                </ng-container>
+        
             <ng-container matColumnDef="service">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> SERVICE </th>
               <td mat-cell *matCellDef="let element"> {{element.service}} </td>
             </ng-container>
     
             <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORY</th>
               <td mat-cell *matCellDef="let element"> {{element.category}} </td>
             </ng-container>
     
             <ng-container matColumnDef="bill_number">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Bill Number </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> BILL NUMBER </th>
               <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
             </ng-container>
     
             <ng-container matColumnDef="invoice__no">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> INVOICE NUMBER </th>
               <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
             </ng-container>
     
             <ng-container matColumnDef="rate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>COST</th>
               <td mat-cell *matCellDef="let element"> {{element.rate}}</td>
             </ng-container>
     
             <ng-container matColumnDef="reverse">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Reverse</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>REVERSE</th>
               <td mat-cell *matCellDef="let element"> <button (click)="reverseBill(element)"><i class="cui-action-undo"
                     style="color:red;font-weight:900"></i> Reverse</button></td>
             </ng-container>
     
             <ng-container matColumnDef="status">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</th>
               <td mat-cell *matCellDef="let element"><span  *ngIf="element.status =='0'">Not Paid</span>
                 <span  *ngIf="element.status =='1'">Paid</span>
               </td>
@@ -241,6 +246,140 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
           </div>
         </div>
   
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card" id="print-section"  hidden> 
+    <div class="card-body">
+      <div class="row container-fluid">
+          <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-6">
+                    <address>
+                        <h2 style="font-family:lato light;font-weight: bolder">HEALTHIX HOSPITAL</h2>
+                        <span class="address" style="font-size: 18px;">
+                             <i class="icon-location-pin"></i> 637833-00200 Nairobi,<br>
+                            <i class="icon-call-in"></i> contact +254 7 789-1234,<br>
+                            <i class="icon-envelope-letter"></i> hospital@gmail.com
+                        </span>
+                        </address>
+                </div>
+                <div class="col-sm-6">
+                  <img src="../../../../assets/img/avatars/logo.png" style="float: right" alt="">
+                </div>
+              </div>
+          </div>
+          <div class="col-sm-12">
+            <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.bills?.length">{{patientInfo?.bills[0].invoice__no}}</span></h3>
+          
+          </div>
+          
+            <div class="col-sm-5" style="font-size: 16px;">
+              <div class="row">
+                <div class="col-sm-4">Charge Date</div>
+                <div class="col-sm-5">{{ patientInfo?.check_in | date}}</div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4">Net</div>
+                  <div class="col-sm-5"><b>{{total | number:'1.2-2'}}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">Currency</div>
+                    <div class="col-sm-5">KSH</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">Cashier</div>
+                    <div class="col-sm-5">Davi</div>
+                  </div>
+            </div>
+            <div class="col-sm-5" style="font-size: 16px;">
+                <div class="row">
+                    <div class="col-sm-4" >Billed to</div>
+                    <div class="col-sm-5"><strong>{{patientInfo?.first_name | uppercase}} {{patientInfo?.other_names | uppercase}} {{patientInfo?.last_name | uppercase}}</strong></div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-4">Visit number</div>
+                      <div class="col-sm-5">{{patientInfo?.visit_no}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Gender</div>
+                        <div class="col-sm-5">{{patientInfo?.gender}}</div>
+                    </div>
+                  <div class="row">
+                      <div class="col-sm-4">Phone</div>
+                      <div class="col-sm-5">{{patientInfo?.phone}}</div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-sm-4">Email</div>
+                        <div class="col-sm-5">davia@gmail.com</div>
+                    </div> -->
+              </div>
+              
+              <div class="col-sm-12">
+                  <br>
+                  <table class="table table-condensed" style="font-size: 16px;">  <tr> 
+                      <th>Item / Desc.</th>
+                      <th>Category.</th>
+                      <th>Bill Number.</th>
+                      <th>Qty.</th>
+                      <th>Cost</th>
+                      <th>Total</th>
+                      </tr> 
+                      <tr *ngFor="let item of patientInfo.bills" style="font-weight: bolder"> 
+                      <td>{{item.service}}</td>
+                      <td >{{item.category | lowercase}}</td> 
+                      <td>{{item.bill_number}}</td>
+                      <td>{{item.quantity}}</td>
+                      <td>{{item.rate | number:'1.2-2'}}</td>
+                      <td>{{item.rate * item.quantity | number:'1.2-2'}}</td> 
+                      </tr>
+  
+                      <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      </tr> 
+                       </table>
+  
+                    </div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4 total" style="font-size: 19px;">
+                      <div class="row">
+                        <div class="col-sm-5"> <b>SUB TOTAL </b></div>
+                        <div class="col-sm-7">{{total | number:'1.2-2' }}</div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-sm-5">Total Amount </div>
+                          <div class="col-sm-7"></div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-5">Tax </div>
+                            <div class="col-sm-7">{{0.00}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5"><strong class="text-success">AMOUNT DUE</strong></div>
+                            <div class="col-sm-7"><strong>{{total | number:'1.2-2'}}</strong></div>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="col-sm-12 footer">
+                      <div class="row">
+                        <div class="col-sm-6">
+                            powered by healthix uilabs
+                        </div>
+                        <div class="col-sm-6"><p class="pull-right"> <img src="../../../../assets/img/avatars/logo.png" style="height: 40px" alt=""> </p></div>
+                      </div>
+                    </div>
+                  
       </div>
     </div>
   </div>
@@ -513,3 +652,5 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
             </tabset>
   </tab>
 </tabset>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

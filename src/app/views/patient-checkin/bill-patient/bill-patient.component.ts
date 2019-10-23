@@ -22,7 +22,7 @@ export class BillPatientComponent implements OnInit {
   @ViewChild('confirmModal', {'static': true}) confirmModal: ModalDirective;
   @ViewChild(MatSort, {'static': true}) sort: MatSort;
   @ViewChild('paginator', {'static': true}) paginator: MatPaginator;
-  displayedColumns: string[] = ['service', 'category', 'bill_number', 'invoice__no', 'rate', 'reverse', 'status'];
+  displayedColumns: string[] = ['sn','service', 'category', 'bill_number', 'invoice__no', 'rate', 'reverse', 'status'];
   benefitColumns: string[] = ['benefit', 'category', 'balance'];
   exclusionColumns: string[] = ['benefit', 'category', 'updated', 'Time'];
   services;
@@ -47,6 +47,7 @@ export class BillPatientComponent implements OnInit {
   memberId;
   selectedOption: any = {};
   patientInfo: any = {};
+  loading = true;
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent,
   private toastr: ToastrService, public router: Router) {
     this.visit_no = this.navCtrl.get('data');
@@ -66,6 +67,7 @@ export class BillPatientComponent implements OnInit {
     this.getVisitInfo();
     this.mpesa.amount = 0;
     this.getBenefits();
+  
   }
   applyFilter(filterValue: string) {
     this.dataSource1.filter = filterValue.trim().toLowerCase();
@@ -252,7 +254,7 @@ export class BillPatientComponent implements OnInit {
       'id': this.visit_no
     };
     this.service.getVisit(data).subscribe((res) => {
-    console.log('patient details', res);
+    this.loading = false;
     this.patientInfo = res;
     if (this.patientInfo.insure_check.length) {
       this.memberInfo = this.patientInfo.insure_check[0].data;

@@ -48,7 +48,6 @@ export class NewPatientComponent  implements OnInit {
   scheme;
   payer;
   member;
-  addGuardian = false;
   addKin = false;
   insure = false;
   guardian: any = {};
@@ -67,59 +66,8 @@ export class NewPatientComponent  implements OnInit {
   isInsurance: boolean;
   constructor(public service: ServiceService, private toastr: ToastrService, public router: Router,
     public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder) {
-      this.patientRevisit = this.navCtrl.get('revisit');
-      if(this.patientRevisit != null) {
-        this.patient = this.patientRevisit;
-        const dob = new Date(this.patient['dob']);
-        this.patient['dob'] = dob;
-        this.calculateAge(dob);
-        if(this.patient.kin){
-          this.kin = this.patient.kin[0];
-        } else{
-          this.guardian = this.patient.guardian[0];
-        }
-        delete this.patient.kin;
-        delete this.patient.guardian;
-        console.log('bbb',this.patient);
-      };
-    // this.memberInfo = this.navCtrl.get('patient');
-    // if (this.memberInfo != null ) {
-
-    //   if (this.memberInfo.member_data) {
-    //     this.covered_benefits = new MatTableDataSource<[]>(JSON.parse(this.memberInfo.member_data.benefits));
-    //     this.covered_benefits.paginator = this.paginator;
-    //     this.covered_benefits.sort = this.sort;
-    //     this.isInsurance = true;
-    //     this.memberData = this.memberInfo.member_data;
-    //     this.member_number = this.memberData['member_number'];
-    //     const dob = new Date(this.memberData['dob']);
-    //     this.patient['dob'] = dob;
-    //     this.calculateAge(dob);
-    //     this.patient.gender = this.memberData.gender;
-    //     this.patient.visit_type = this.memberInfo.visit_type;
-    //     this.names = this.memberData.name.split(/\s+/);
-    //     this.patient.first_name = this.names[0];
-    //     this.patient.other_names = this.names[1];
-    //     this.patient.last_name = this.names[2];
-    //     console.log(this.patient.name);
-
-    //   } else {
-    //     this.isInsurance = true;
-    //     this.memberData = this.memberInfo;
-    //     this.patient.visit_type = this.memberData.visit_type;
-    //     this.member_number = this.memberData['member_number'];
-    //     const dob = new Date(this.memberData['dob']);
-    //     this.patient['dob'] = dob;
-    //     this.calculateAge(dob);
-    //     this.patient.gender = this.memberData.gender;
-    //     this.names = this.memberData.name.split(/\s+/);
-    //     this.patient.first_name = this.names[0];
-    //     this.patient.other_names = this.names[1];
-    //     this.patient.last_name = this.names[2];
-    //     console.log(this.patient.name);
-    //   }
-    // }
-    
+      this.patient = this.navCtrl.get('revisit');
+      
     }
 
   ngOnInit() {
@@ -142,6 +90,24 @@ export class NewPatientComponent  implements OnInit {
       county: [''],
       occupation: [''],
     });
+
+    if(this.patient != null) {
+      const dob = new Date(this.patient['dob']);
+      this.patient['dob'] = dob;
+      this.calculateAge(dob);
+      if(this.patient.kin){
+        this.kin = this.patient.kin[0];
+      } else{
+        this.guardian = this.patient.guardian[0];
+      }
+      delete this.patient.kin;
+      delete this.patient.guardian;
+      console.log('bbb',this.patient);
+      this.registerForm.setValue({first_name:this.patient.first_name,other_names:this.patient.other_names,last_name:this.patient.last_name,dob: new Date(this.patient['dob']),
+      national_id:this.patient.national_id,county: '',occupation: '',residence:'',email:this.patient.email || '',visit_type: '',phone:this.patient.phone || '',priority:'Normal',gender: this.patient.gender,
+    
+  });
+    };
    
   }
   setForm(){

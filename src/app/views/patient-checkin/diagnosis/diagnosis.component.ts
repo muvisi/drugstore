@@ -64,6 +64,8 @@ drugs;
 dosage;
 allergy: any = {};
 selectedDrug: any = { };
+labAmount = 0;
+proceduresAmount = 0;
 
 constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService,
 private router: Router, private toastr: ToastrService, private datePipe: DatePipe) {
@@ -79,7 +81,6 @@ ngOnInit() {
 this.loading = true;
 this.getServices();
 console.clear();
-this.patient();
 this.getDiagnoses();
 this.alleryList();
 this.getPrescription();
@@ -179,9 +180,18 @@ const data = {
 };
 
 this.service.getVisit(data).subscribe((res) => {
-
 this.patientInfo = res;
 this.loading = false;
+this.labAmount = 0;
+this.proceduresAmount = 0;
+this.patientInfo.lab_test.forEach(element => {
+  this.labAmount += element.rate;
+});
+this.patientInfo.procedures.forEach(element => {
+  this.proceduresAmount += element.rate
+});
+
+console.log('eeee',this.proceduresAmount);
 this.data = new MatTableDataSource<[]>(this.patientInfo.procedures);
 this.data.paginator = this.paginator;
 this.diagnosisList = new MatTableDataSource<[]>(this.patientInfo.diagnosis);
@@ -223,24 +233,10 @@ this.pressureSource = {
 }]
 }
 };
-//
-// this.dataSource = {
-//   chart: {
-//     caption: 'Temperature Readings',
-//     subCaption: '(celcius)',
-//     xAxisName: 'visits',
-//     yAxisName: 'Celcius',
-//     numberSuffix: '°C',
-//     theme: 'fusion'
-//   },
-//   data: [
-//     { label: '1', value: this.patientInfo.triage[0].temperature },
-//   ]
-// };
+
 
 this.dataSource = {
 chart: {
-// caption: 'Car Engine Temperature',
 subcaption: 'Temperature',
 lowerlimit: '0',
 upperlimit: '40',
@@ -312,6 +308,10 @@ this.diagnoses.splice(index, 1);
 
   deleteItem(obj) {
     console.log(obj);
+    if(obj.status == '1'){
+      this.toastr.info('You cannot Delete already paid Service Can only Reverse')
+      return;
+    }
     this.service.deleteBillItem(obj.id).subscribe((res) => {
       this.toastr.success('Successfuly Bill Item');
       this.patient();

@@ -32,7 +32,9 @@ export class TriageComponent implements OnInit {
   allergicDrugs = [];
   triageMedicine = [];
   displayedColumns: string[] = ['name','generic_name','strength', 'cost','quantity','form','delete'];
+  serviceColumns: string[] = ['name','code','cost','surgeon','assistant','date','delete'];
   dataSource;
+  dataSource1;
   value;
   painlevel;
   procedures =[];
@@ -175,6 +177,20 @@ onSelect(item){
 }
 onProcedure(item){
   this.selectedOption = item.item;
+}
+addProcedure(){
+  const index = this.procedures.findIndex(obj=> obj.name == this.selectedOption.name);
+  if(index < 0){
+    this.procedures.push(this.selectedOption);
+  }
+  console.log(this.selectedOption);
+  this.dataSource1 = new MatTableDataSource(this.procedures);
+  this.selectedOption = {};
+}
+deleteProcedure(item){
+  const index = this.procedures.findIndex(obj=>obj == item);
+  this.procedures.splice(index,1);
+  this.dataSource1 = new MatTableDataSource(this.procedures);
 }
 addTriageMedicine(){
   const index = this.triageMedicine.findIndex(obj=> obj.name == this.selectedDrug.name && obj.strength == this.selectedDrug.strength);

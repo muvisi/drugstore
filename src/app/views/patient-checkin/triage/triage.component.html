@@ -1,7 +1,17 @@
 <div class="row">
+  
   <div class="col-sm-12">
+     
       <mat-horizontal-stepper>
+          
           <mat-step label="Vitals" state="phone">
+              <div class="row">
+                  <div class="col-sm-12" *ngIf="(patient | keyvalue)?.length">
+                      <h5 class="pull-right"> <b>NAME </b>:<span class="text-primary"><b>{{patient?.name | uppercase}}</b></span> <span class="text-success">
+                       <b> | VISIT NO : {{patient?.visit_no}}</b>
+                      </span></h5>
+                    </div>
+              </div>
               <div class="row">
                   <div class="col-sm-4">
                    
@@ -432,51 +442,52 @@
                                    </mat-form-field>
                                  </div>
                                  <div class="col-sm-1">
-                                    <button mat-mini-fab  [disabled]="!selectedOption.name"> <i class="fa fa-plus"></i> </button>
+                                    <button mat-mini-fab  [disabled]="!selectedOption.name" (click)="addProcedure()"> <i class="fa fa-plus"></i> </button>
                                 </div>
                       </div>
                       
-                          <!-- <div class="row">
-                            <div class="col-sm-12" *ngIf="triageMedicine.length">
+                          <div class="row" *ngIf="procedures.length">
+                            <div class="col-sm-12">
   
-                              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                              <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
   
                                   <ng-container matColumnDef="name">
                                     <th mat-header-cell *matHeaderCellDef>Name</th>
                                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                                   </ng-container>
-                                  <ng-container matColumnDef="generic_name">
-                                      <th mat-header-cell *matHeaderCellDef>Generic Name</th>
-                                      <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
+                                  <ng-container matColumnDef="code">
+                                      <th mat-header-cell *matHeaderCellDef>Code</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
                                     </ng-container>
-                                  <ng-container matColumnDef="strength">
-                                    <th mat-header-cell *matHeaderCellDef>Strength</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.strength}} </td>
-                                  </ng-container>
+                                
                               
                                   <ng-container matColumnDef="cost">
                                     <th mat-header-cell *matHeaderCellDef>Cost</th>
                                     <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
                                   </ng-container>
                                 
-                                  <ng-container matColumnDef="quantity">
-                                    <th mat-header-cell *matHeaderCellDef>Quantity</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                                  <ng-container matColumnDef="surgeon">
+                                    <th mat-header-cell *matHeaderCellDef>Surgeon</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.surgeon}} </td>
                                   </ng-container>
-                                    <ng-container matColumnDef="form">
-                                        <th mat-header-cell *matHeaderCellDef>Form</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.form}} </td>
+                                    <ng-container matColumnDef="assistant">
+                                        <th mat-header-cell *matHeaderCellDef>Assistant Surgeon</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.assistant}} </td>
                                   </ng-container>  
+                                  <ng-container matColumnDef="date">
+                                      <th mat-header-cell *matHeaderCellDef>Surgery Date</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.date | date:'yyyy-MM-dd'}} </td>
+                                </ng-container>  
                                   <ng-container matColumnDef="delete">
                                       <th mat-header-cell *matHeaderCellDef>Delete</th>
-                                      <td mat-cell *matCellDef="let element" (click)="deleteMedicine(element)"> <mat-icon color="warn">delete_sweep</mat-icon></td>
+                                      <td mat-cell *matCellDef="let element" (click)="deleteProcedure(element)"> <mat-icon color="warn">delete_sweep</mat-icon></td>
                                 </ng-container> 
                                   
-                                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                  <tr mat-header-row *matHeaderRowDef="serviceColumns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns: serviceColumns;"></tr>
                                 </table>
                             </div>
-                          </div> -->
+                          </div>
                           
                        </mat-card>
                     </div>

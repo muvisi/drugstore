@@ -17,7 +17,7 @@ export class PaymentsComponent implements OnInit {
 @ViewChild(MatSort, {static: true}) sort: MatSort;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 dataSource;
-displayedColumns: string[] = ['name', 'visit_no', 'invoice_no','bill_number','service','rate','quantity','amount','created'];
+displayedColumns: string[] = ['sn','name', 'visit_no', 'invoice_no','bill_number','service','rate','quantity','amount','created'];
 statuses = [
   {value: '1', viewValue: 'Paid'},
   {value: '0', viewValue: 'Not paid'},
