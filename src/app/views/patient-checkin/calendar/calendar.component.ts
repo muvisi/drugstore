@@ -20,7 +20,7 @@ public selectedDate: Date = new Date();
 // public eventSettings: EventSettingsModel = { dataSource: this.dataManager, query: this.dataQuery };
 private dataManager: DataManager = new DataManager({
   url: 'http://134.209.199.123/appointments/appointment_list/', // 'controller/actions'
-  crudUrl: 'http://localhost:8000/appointments/appointment_list/',
+  crudUrl: 'http://134.209.199.123/appointments/appointment_list/',
   adaptor: new UrlAdaptor
 });
 public eventSettings: EventSettingsModel = { dataSource: this.dataManager,
