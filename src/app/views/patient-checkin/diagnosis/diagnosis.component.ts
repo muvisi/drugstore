@@ -66,6 +66,7 @@ allergy: any = {};
 selectedDrug: any = { };
 labAmount = 0;
 proceduresAmount = 0;
+prescriptionAmount =0;
 
 constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService,
 private router: Router, private toastr: ToastrService, private datePipe: DatePipe) {
@@ -184,14 +185,13 @@ this.patientInfo = res;
 this.loading = false;
 this.labAmount = 0;
 this.proceduresAmount = 0;
+this.prescriptionAmount = 0;
 this.patientInfo.lab_test.forEach(element => {
   this.labAmount += element.rate;
 });
 this.patientInfo.procedures.forEach(element => {
   this.proceduresAmount += element.rate
 });
-
-console.log('eeee',this.proceduresAmount);
 this.data = new MatTableDataSource<[]>(this.patientInfo.procedures);
 this.data.paginator = this.paginator;
 this.diagnosisList = new MatTableDataSource<[]>(this.patientInfo.diagnosis);

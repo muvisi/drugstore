@@ -249,8 +249,9 @@
               <div class="row container-fluid">
                   <div class="col-sm-12">
                       <br>
-                        <button mat-raised-button class="btn btn-info btn-sm pull-right" printTitle="INVOICE"
-                        printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 32px"></i></button>
+                        <button mat-raised-button class="btn btn-info btn-sm pull-right" 
+                        printSectionId="proc" [useExistingCss]="true" ngxPrint [disabled]="!patientInfo.procedures.length" printTitle="{{patientInfo.visit_no}}"><i class="cui-print" style="font-size: 32px"></i></button>
+                        
                     </div>
                 <div class="col-sm-12">
                   
@@ -315,7 +316,7 @@
                   <br>
                   </div>
               </div>
-              <div class="card" id="print-section"  hidden> 
+              <div class="card" id="proc"  hidden> 
                   <div class="card-body">
                     <div class="row container-fluid">
                         <div class="col-sm-12">
@@ -336,7 +337,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                          <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.lab_test?.length">{{patientInfo?.procedures[0].invoice__no}}</span></h3>
+                          <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.procedures?.length">{{patientInfo?.procedures[0]?.invoice__no}}</span></h3>
                         
                         </div>
                         
@@ -451,11 +452,11 @@
             </mat-tab>
             <mat-tab label="Diagnosis">
               <div class="row container-fluid">
-                  <div class="col-sm-12">
+                  <!-- <div class="col-sm-12">
                       <br>
                         <button mat-raised-button class="btn btn-info btn-sm pull-right" printTitle="INVOICE"
                         printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 32px"></i></button>
-                    </div>
+                    </div> -->
                 <div class="col-sm-12">
                   <br>
                   <div class="mat-elevation-z8">
@@ -487,6 +488,11 @@
             </mat-tab>
             <mat-tab label="Medications">
               <div class="row container-fluid">
+                  <div class="col-sm-12">
+                      <br>
+                        <button mat-raised-button class="btn btn-info btn-sm pull-right" 
+                        printSectionId="pres" [useExistingCss]="true" ngxPrint [disabled]="!patientInfo.prescription.length" printTitle="{{patientInfo.visit_no}}"><i class="cui-print" style="font-size: 32px"></i></button>
+                    </div>
                 <div class="col-sm-12">
                   <br>
                   <div class="col-sm-12">
@@ -539,7 +545,99 @@
                   <br>
                 </div>
               </div>
-           
+              
+              <div class="card" id="pres"  hidden> 
+                  <div class="card-body">
+                    <div class="row container-fluid">
+                        <div class="col-sm-12">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                  <address>
+                                      <h2 style="font-family:lato light;font-weight: bolder">HEALTHIX HOSPITAL</h2>
+                                      <span class="address" style="font-size: 18px;">
+                                           <i class="icon-location-pin"></i> 637833-00200 Nairobi,<br>
+                                          <i class="icon-call-in"></i> contact +254 7 789-1234,<br>
+                                          <i class="icon-envelope-letter"></i> hospital@gmail.com
+                                      </span>
+                                      </address>
+                              </div>
+                              <div class="col-sm-6">
+                                <img src="../../../../assets/img/avatars/logo.png" style="float: right" alt="">
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                          <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.lab_test?.length">{{patientInfo?.lab_test[0]?.invoice__no}}</span></h3>
+                        
+                        </div>
+                        
+                          <div class="col-sm-5" style="font-size: 16px;">
+                              <div class="row">
+                                  <div class="col-sm-4">Type</div>
+                                  <div class="col-sm-5">PRESCRIPTION</div>
+                              </div>
+                            <div class="row">
+                                <div class="col-sm-4" >Patient Name</div>
+                                <div class="col-sm-5"><strong>{{patientInfo?.first_name | uppercase}} {{patientInfo?.other_names | uppercase}} {{patientInfo?.last_name | uppercase}}</strong></div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-4">Visit number</div>
+                                  <div class="col-sm-5">{{patientInfo?.visit_no}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">Gender</div>
+                                    <div class="col-sm-5">{{patientInfo?.gender}}</div>
+                                </div>
+                              <div class="row">
+                                  <div class="col-sm-4">Phone</div>
+                                  <div class="col-sm-5">{{patientInfo?.phone}}</div>
+                                </div>
+                          </div>
+                          
+                            
+                            <div class="col-sm-12">
+                                <br>
+                                <table class="table table-condensed" style="font-size: 16px;">  <tr> 
+                                    <th>Item / Desc.</th>
+                                    <th>Strength</th>
+                                    <th>Form</th>
+                                    <th>Dosage.</th>
+                                    <th>Route</th>
+                                    <th>Notes</th>
+                                    </tr> 
+                                    <tr *ngFor="let item of patientInfo.prescription" style="font-weight: bolder"> 
+                                    <td>{{item.name}}</td>
+                                    <td >{{item.strength}}</td> 
+                                    <td>{{item.form}}</td>
+                                    <td>{{item.dosage}}</td>
+                                    <td>{{item.route}}</td>
+                                    <td>{{item.Notes}}</td> 
+                                    </tr>
+                
+                                    <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    </tr> 
+                                     </table>
+                
+                                  </div>
+                                  
+                                  <div class="col-sm-12 footer">
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                          powered by healthix uilabs
+                                      </div>
+                                      <div class="col-sm-6"><p class="pull-right"> <img src="../../../../assets/img/avatars/logo.png" style="height: 40px" alt=""> </p></div>
+                                    </div>
+                                  </div>
+                                
+                    </div>
+                  </div>
+                </div>
             </mat-tab>
             <mat-tab label="Labs" >
               <div class="row container-fluid">
@@ -547,8 +645,8 @@
                 
                 <div class="col-sm-12">
                   <br>
-                    <button mat-raised-button class="btn btn-info btn-sm pull-right" printTitle="INVOICE"
-                    printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 32px"></i></button>
+                    <button mat-raised-button class="btn btn-info btn-sm pull-right" printTitle="{{patientInfo.visit_no}}"
+                    printSectionId="print-section" [useExistingCss]="true" [disabled]="!patientInfo.lab_test.length" ngxPrint><i class="cui-print" style="font-size: 32px"></i></button>
                 </div>
                 <div class="col-sm-12">
                     <br>
@@ -637,7 +735,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                          <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.lab_test?.length">{{patientInfo?.lab_test[0].invoice__no}}</span></h3>
+                          <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.lab_test?.length">{{patientInfo?.lab_test[0]?.invoice__no}}</span></h3>
                         
                         </div>
                         
