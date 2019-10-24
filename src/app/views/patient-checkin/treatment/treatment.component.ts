@@ -42,52 +42,7 @@ treat(item) {
   this.navCtrl.navigate('/dashboard/patients/treatment', { id: item.visit_no});
 
 }
-  Search() {
-    if (this.searchText !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.national_id.match(this.searchText);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-  SearchName() {
-    if (this.name !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.name.toLowerCase().match(this.name.toLowerCase());
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchVisit() {
-    if (this.visitNumber !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.visit_no.match(this.visitNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchByPatient() {
-    if (this.patientNumber !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.patient_no.match(this.patientNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchPhone() {
-    if (this.phone !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.phone.match(this.phone);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
+applyFilter(filterValue: string) {
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 }

@@ -17,7 +17,7 @@ export class PaymentsComponent implements OnInit {
 @ViewChild(MatSort, {static: true}) sort: MatSort;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 dataSource;
-displayedColumns: string[] = ['sn','name', 'visit_no', 'invoice_no','bill_number','service','rate','quantity','amount','created'];
+displayedColumns: string[] = ['sn','name','patient_no','visit_no','no','amount','created'];
 statuses = [
   {value: '1', viewValue: 'Paid'},
   {value: '0', viewValue: 'Not paid'},
@@ -36,14 +36,8 @@ statuses = [
       this.tableData(res.results);
     })
   }
-  search(filterValue: string) {
-    if(filterValue != null){
-      this.service.searchBills(filterValue).subscribe((res)=>{
-        this.tableData(res.results);
-      });
-    } else{
-      this.ngOnInit();
-    }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   tableData(items){
     this.dataSource = new MatTableDataSource(items);

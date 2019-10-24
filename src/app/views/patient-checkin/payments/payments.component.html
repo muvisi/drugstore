@@ -6,23 +6,23 @@
             <div class="row">
                 <div class="col-sm-2">
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Filter by invoice" (keyup)="search($event.target.value)">
-                        <i class="icon-note" matSuffix></i>
-                      </mat-form-field>
-                </div>
-                <div class="col-sm-2">
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="search by bill number" (keyup)="search($event.target.value)">
-                        <i class="icon-user-following" matSuffix></i>
-                      </mat-form-field>
-                </div>
-                <div class="col-sm-2">
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="search service" (keyup)="search($event.target.value)">
+                        <input matInput placeholder="Filter by invoice" (keyup)="applyFilter($event.target.value)" >
                         <i class="icon-magnifier" matSuffix></i>
                       </mat-form-field>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="search by bill number" ((keyup)="applyFilter($event.target.value)" >
+                        <i class="icon-magnifier" matSuffix></i>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="search service" (keyup)="applyFilter($event.target.value)" >
+                        <i class="icon-magnifier" matSuffix></i>
+                      </mat-form-field>
+                </div>
+                <!-- <div class="col-sm-1">
                     <mat-form-field>
                         <mat-label>Status</mat-label>
                         <mat-select>
@@ -31,7 +31,7 @@
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
-                </div>
+                </div> -->
             </div>
           </div>
       </div>
@@ -48,36 +48,22 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>PATIENT NAME</th>
         <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
         </ng-container>
-
+        <ng-container matColumnDef="patient_no">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>PATIENT NUMBER</th>
+          <td mat-cell *matCellDef="let element"> {{element.patient_no}} </td>
+          </ng-container>
         <ng-container matColumnDef="visit_no">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>VISIT NUMBER</th>
         <td mat-cell *matCellDef="let element"> {{element.visit_no}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="invoice_no">
+        <ng-container matColumnDef="no">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> INVOICE</th>
-        <td mat-cell *matCellDef="let element"> {{element.invoice_no}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="bill_number">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>BILL NUMBER</th>
-        <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
-        </ng-container>
-        <ng-container matColumnDef="service">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>SERVICE</th>
-        <td mat-cell *matCellDef="let element"> {{element.service}} </td>
-        </ng-container>
-        <ng-container matColumnDef="rate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>COST</th>
-        <td mat-cell *matCellDef="let element"> {{element.rate | number:'1.2-2'}} </td>
-        </ng-container>
-        <ng-container matColumnDef="quantity">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>QUANTITY</th>
-          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.no}} </td>
         </ng-container>
         <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>TOTAL</th>
-            <td mat-cell *matCellDef="let element"> {{element.amount | number:'1.2-2'}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>AMOUNT</th>
+        <td mat-cell *matCellDef="let element"> {{element.amount | number:'1.2-2'}} </td>
         </ng-container>
         <ng-container matColumnDef="created">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>BILLING DATE</th>

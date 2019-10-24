@@ -150,7 +150,8 @@ const info = {
   status:this.status,
   visit_number: this.patient.visit_no,
   allergic_drugs: this.allergicDrugs,
-  triage_medicine: this.triageMedicine
+  triage_medicine: this.triageMedicine,
+  procedures: this.procedures
 };
 this.service.triageDetail(info).subscribe((res) => {
   this.toastr.success('Successfully saved Triage details');
@@ -217,14 +218,5 @@ getDosage() {
     this.dosage = res.results;
 
   });
-}
-savePrescription(){
-  this.selectedDrug.visit_no = this.patient.visit_no;
-  this.selectedDrug.category = 'PRESCRIPTION';
-  this.service.generateBill(this.selectedDrug).subscribe((res)=>{
-    console.log(res);
-    this.toastr.success('Successfully Added prescription')
-    this.ngOnInit();
-  })
 }
 }
