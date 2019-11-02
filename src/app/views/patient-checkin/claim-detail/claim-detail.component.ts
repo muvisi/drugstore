@@ -15,7 +15,7 @@ export class ClaimDetailComponent implements OnInit {
   @ViewChild(ModalDirective, { static: true}) staticModal: ModalDirective;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   displayedColumns: string[] = ['description', 'code', 'date'];
-  sectionsColumns: string[] = ['invoice', 'category', 'quantity', 'price', 'total'];
+  sectionsColumns: string[] = ['invoice_number','description','category','price','quantity','total'];
   dataSource;
   id;
   claim;
@@ -27,6 +27,7 @@ export class ClaimDetailComponent implements OnInit {
   selectedIcd: any = {};
   diagnosis: any = [];
   claimId;
+  loading = true;
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent, public toastr: ToastrService) {
   }
 
@@ -71,6 +72,7 @@ claimDetail() {
 
     }
     this.dataSource = new MatTableDataSource<any>(this.diagnoses);
+    this.loading = false;
   });
 }
 getDiagnosis() {
@@ -119,4 +121,7 @@ search(text) {
 //   });
 
 // }
+back(){
+  this.navCtrl.navigate('/dashboard/claims');
+}
 }

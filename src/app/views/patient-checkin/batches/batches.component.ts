@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../../service.service';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
-
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 @Component({
   selector: 'app-batches',
   templateUrl: './batches.component.html',
@@ -9,6 +10,9 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 })
 export class BatchesComponent implements OnInit {
   batches: any = [];
+  dataSource;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  displayedColumns: string[] = ['sn', 'status', 'no', 'unmatched','amountConflicting','uncoded','successful','length','amount','date'];
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) { }
 
   ngOnInit() {
@@ -39,6 +43,7 @@ export class BatchesComponent implements OnInit {
           }
         }
       }
+      this.dataSource = new MatTableDataSource(this.batches)
     });
   }
   batchDetails(item) {

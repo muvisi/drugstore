@@ -1,70 +1,59 @@
-<div class="card">
+<div class="card" *ngIf="!loading">
   <div class="card-body">
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header">
-            Claim headers
-            <h6 class="pull-right" style="font-size:12px">Copay <b class="text-success">{{claim?.copay | number}}/=</b></h6>
-            <h6 class="pull-right" style="font-size:12px;margin-right: 12px">Total Claim Amount <b class="text-success">{{claim.amount | number}}/=</b></h6>
+          <div class="card-header bg-primary">
+            Claim headers 
+            <h6 class="pull-right" style="font-size:19px;font-weight: bolder">Copay <b>{{claim?.copay | number:'1.2-2'}}/=</b></h6>
+            <h6 class="pull-right" style="font-size:19px;margin-right: 12px;font-weight: bolder">Total Claim Amount <b >{{claim.amount | number:'1.2-2'}}/=</b></h6>
           </div>
           <br />
-        <div class="row">
-          <div class="col-sm-7 details">
-            <img class="img-fluid img-thumbnail" src="assets/img/avatars/download.png" alt="patient" style="height:160px;float: left;">
-
-            <div class="row">
-              <div class="col-sm-4"><label for="">PRINCIPAL MEMBER</label></div>
-              <div class="col-sm-8"><b>{{claim.member |uppercase}}</b></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4"><label for="">INSURANCE: </label></div>
-              <div class="col-sm-8"><b>{{claim.insurance_company}}</b></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4"><label for="">SCHEME </label></div>
-              <div class="col-sm-8"><b>{{claim.scheme_name}}</b></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4"><label for="">SCHEME CODE</label></div>
-              <div class="col-sm-8"><b></b></div>
-            </div>
           
+        <div class="row">
+    
+          <div class="col-sm-7 details">
+            <img class="img-fluid img-circle" src="assets/img/avatars/download.png" alt="patient" style="height:180px;float: left;">
             <div class="row">
-              <div class="col-sm-4"><label for="">CR NUMBER </label></div>
-              <div class="col-sm-8"><b>{{claim.crno}}</b></div>
+                <div class="col-sm-12 text-success">
+                  <h2 style="font-weight: bolder;">{{claim.member |uppercase}}</h2>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-sm-3"><label for="">INSURANCE: </label></div>
+              <div class="col-sm-9"><b>{{claim.insurance_company}}</b></div>
             </div>
+            <div class="row">
+              <div class="col-sm-3"><label for="">SCHEME </label></div>
+              <div class="col-sm-9"><b>{{claim.scheme_name}}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label>VISIT NUMBER: </label></div>
+                <div class="col-sm-9"><b>{{claim.visit_number}}</b></div>
+              </div>
+            <div class="row">
+              <div class="col-sm-3"><label for="">PATIENT NUMBER </label></div>
+              <div class="col-sm-9"><b>{{claim.crno}}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><label for="">CHECK IN:</label></div>
+                <div class="col-sm-9"><b>{{claim.check_in | date}}</b></div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-3"><label for="">CHECK OUT:</label></div>
+                  <div class="col-sm-9"><b>{{claim.check_out | date}}</b></div>
+                </div>
           </div>
-        <div class="col-sm-3 details">
-          <div class="row">
-            <div class="col-sm-6"><label for="">PATIENT NUMBER:</label></div>
-            <div class="col-sm-6"><b>{{claim.crno}}</b></div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6"><label>VISIT NUMBER: </label></div>
-            <div class="col-sm-6"><b>{{claim.visit_number}}</b></div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6"><label for="">CHECK IN:</label></div>
-            <div class="col-sm-6"><b>{{claim.check_in | date}}</b></div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6"><label for="">CHECK OUT:</label></div>
-            <div class="col-sm-6"><b>{{claim.check_out | date}}</b></div>
-          </div>
-        
-          <div class="row">
-            <div class="col-sm-6"><label for="">EMPLOYER:</label></div>
-            <div class="col-sm-6"><b></b></div>
-          </div>
+      <div class="col-sm-4 details">
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-info btn-sm pull-right" (click)="back()"> <i class="cui-arrow-left"></i> </button>
+            </div>
         </div>
-      <div class="col-sm-1 details">
-        <label>INVOICES</label>
-        <table>
-          <tr *ngFor="let item of claim.invoices">
-            <td style="color:dodgerblue">{{item.invoice_number}}</td>
-          </tr>
-        </table>
+        <label><b class="text-primary">INVOICES</b></label>
+        <div class="row">
+          <div class="col-sm-6"  style="font-weight: bolder;font-size: 12px;" *ngFor="let item of claim.invoices"> <i class="fa fa-check text-success"></i> {{item.invoice_number}}</div>
+        </div>
       </div>
          </div>
          <br />
@@ -75,12 +64,12 @@
 <div class="row">
  <div class="col-sm-12">
   <div class="card">
-    <div class="card-header bg-primary">
+    <div class="card-header bg-light">
       <h5 class="text-left no-margin" style="font-size:14px;"><b>Diagnosis(ICD10)</b></h5>
     </div>
     <div class="card-body">
         <div class="row">
-          <div class="col-sm-8" *ngIf="diagnoses.length">
+          <div class="col-sm-12" *ngIf="diagnoses.length">
             <div class="mat-elevation-z8 table-responsive">
               <table mat-table [dataSource]="dataSource">
             
@@ -97,7 +86,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef>Date</th>
+                  <th mat-header-cell *matHeaderCellDef>Diagnoses Date</th>
                   <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
                 </ng-container>
 
@@ -122,12 +111,12 @@
   
   <div *ngFor ="let section of claimSections">
  <div class="card"  *ngIf="section !== 'diagnosis'">
-    <div class="card-header bg-primary">
+    <div class="card-header bg-light">
       <h5 class="text-left no-margin" style="font-size:10px;"><b>{{section | uppercase}}</b></h5>
     </div>
     <div class="card-body">
      <div class="row">
-       <div class="col-sm-9">
+       <!-- <div class="col-sm-9">
           <table class="table table-condensed table-sm mat-elevation-z8">
             <tbody>
               <tr>
@@ -149,6 +138,39 @@
           
             </tbody>
           </table>
+       </div> -->
+       <div class="col-sm-12">
+        <table mat-table [dataSource]="claim.claim_detail" class="mat-elevation-z8">
+          <ng-container matColumnDef="invoice_number">
+            <th mat-header-cell *matHeaderCellDef> Invoice No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.invoice_number}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description | uppercase}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Category</th>
+            <td mat-cell *matCellDef="let element"> {{element.category | uppercase}} </td>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Cost</th>
+            <td mat-cell *matCellDef="let element"> {{element.unit_price}} </td>
+          </ng-container>
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let element"> {{ element.unit_price * element.quantity |number:'1.2-2' }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="sectionsColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns:sectionsColumns;" [hidden]="row.category!=section"></tr>
+        </table>
        </div>
      </div>
     
@@ -182,3 +204,4 @@
     </div>
 
 </div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

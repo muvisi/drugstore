@@ -39,29 +39,31 @@ export class CreateClaimComponent implements OnInit {
   selectedDiagnosis: any = {};
   diagnosesList = [];
   diagnosis = [];
-  patient: any = {};
   proceduresCost = 0;
   labCost = 0;
   drugsCost = 0;
   totalAmount = 0;
   dataSource2;
   dataSource3;
+  id:any;
+
+  patients = [];
   constructor(private formBuilder: FormBuilder, public service: ServiceService, private datePipe: DatePipe, public toastr: ToastrService,
   public navCtrl: NgxNavigationWithDataComponent) {
    }
 
    ngOnInit() {
     this.claimForm = this.formBuilder.group({
-        name: ['', Validators.required],
-        insurance: ['', Validators.required],
-        scheme: ['', Validators.required],
+        patient_name: ['', Validators.required],
+        insurance_company: ['', Validators.required],
+        scheme_name: ['', Validators.required],
         visit_number: ['', Validators.required],
         check_out: ['', Validators.required],
-        // charge_date: ['', Validators.required],
+        nhif_number: [''],
         check_in: ['', Validators.required],
         patient_number: ['', Validators.required],
-        hospital: ['', Validators.required],
-        visit_type: ['', Validators.required],
+        provider: ['', Validators.required],
+        visit_type: ['OUTPATIENT', Validators.required],
         doctor: ['', Validators.required],
     });
 this.getTests();
@@ -69,16 +71,27 @@ this.getServices();
 this.getPrescription();
 this.Payers();
 this.getDiagnoses();
+this.getPatients();
 }
 
 // convenience getter for easy access to form fields
 get f() { return this.claimForm.controls; }
-
+getPatients(){
+  this.service.patientVisit().subscribe((res)=>{
+    this.patients = res.results;
+  })
+}
 Payers() {
   this.service.getPayers().subscribe((res) => {
     this.payers = res.results;
   }
   );
+}
+onVisit(item){
+  const data = item.item;
+  this.diagnosis =data.diagnosis;
+  this.claimForm.patchValue({patient_number: data.patient.patient_no,check_in: new Date(data.check_in),check_out:new Date(data.check_in),patient_name:data.name});
+
 }
 OnPayer(item) {
   console.log(item.item);
@@ -141,7 +154,7 @@ search(text) {
 }
 OnMember(item) {
   console.log(item.item);
-  this.patient.id = item.item.id;
+  this.id = item.item.id;
 
 }
 getServices() {
@@ -278,14 +291,14 @@ searchTest(text) {
     }
 
     submitClaim() {
-    this.patient.check_out = this.datePipe.transform(this.patient.check_out, 'yyyy-MM-dd');
-    this.patient.check_in = this.datePipe.transform(this.patient.check_in, 'yyyy-MM-dd');
+     let patient = this.claimForm.value
+     patient.id = this.id;
     const data = {
       'diagnosis': this.diagnosis,
       'prescriptions': this.prescription,
       'tests': this.labtest,
       'services': this.procedures,
-      'patient': this.patient
+      'patient':patient
     };
     console.log(data);
     this.service.createSingleClaim(data).subscribe((res) => {
@@ -295,7 +308,6 @@ searchTest(text) {
       this.ngOnInit();
       console.log(res);
       this.labtest = [];
-      this.patient = [];
       this.procedures = [];
       this.prescription = [];
       this.diagnosis = [];

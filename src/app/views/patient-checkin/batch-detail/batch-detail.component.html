@@ -1,65 +1,64 @@
+<mat-card>
+    <div class="row">
+        <div class="col-sm-8">
+             <span class="badge badge-info" style="font-size:10px;border-radius:2px"> <i class="fa fa-filter"></i> ALL</span>
+             <span  style="margin-left:40px;border-radius:2px;font-size:10px" matBadge="{{successfulCount}}" matBadgeOverlap="false">
+               <b>SUCCESSFUL</b></span>
+             <span  style="margin-left:40px;border-radius:2px;font-size:10px;" matBadge="{{uncodedCount}}" matBadgeOverlap="false" matBadgeColor="accent"> 
+               <b>UNCODED</b></span>
+             <span style="margin-left:40px;border-radius:2px;font-size:10px;"  matBadge="{{unmatchedCount}}" matBadgeOverlap="false" matBadgeColor="warn">  <b>MISSMATCHED</b></span>
+        </div>
+           <div class="col-sm-4">
+             <button class="btn btn-danger btn-sm pull-right" style="margin-left:5px;" [disabled]="batch.status != 'NEW'" (click)="deleteBatch()"><b>Delete</b></button>
+             <button class="btn btn-success btn-sm pull-right" [disabled]="showDispatchButton || batch.status !='NEW'" (click)="sendBatch()"><b>Dispatch</b></button>
+           </div>
+         </div>
+</mat-card>
 
-  <div class="card">
-    <br>
-    <div class="row container-fluid">
-   <div class="col-sm-8">
-        <span class="badge badge-info" style="font-size:10px;border-radius:2px"> <i class="fa fa-filter"></i> ALL</span>
-        <span class="badge badge-success" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i class="icon-check"></i>
-          SUCCESSFUL {{successfulCount}}</span>
-        <span class="badge badge-danger" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i class="icon-ban"></i>
-          NON -EXISTING</span>
-        <span class="badge badge-primary" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i class="icon-close"></i>
-          UNCODED {{uncodedCount}}</span>
-        <span class="badge badge-warning" style="margin-left:40px;border-radius:2px;font-size:10px;"> <i
-            class="icon-shield"></i> MISSMATCHED {{unmatchedCount}}</span>
-   </div>
-      <div class="col-sm-4">
-        <button class="btn btn-danger btn-sm pull-right" style="margin-left:5px;" [disabled]="batch.status != 'NEW'"><b>Delete</b></button>
-        <button class="btn btn-success btn-sm pull-right" [disabled]="showDispatchButton || batch.status !='NEW'" (click)="sendBatch()"><b>Dispatch</b></button>
-      </div>
+  <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="sn">
+          <th mat-header-cell *matHeaderCellDef> S/no. </th>
+          <td mat-cell *matCellDef="let element;let i =index"> {{1+i}} </td>
+          </ng-container>
+          <ng-container matColumnDef="bill_amount">
+          <th mat-header-cell *matHeaderCellDef>Bill Amount</th>
+          <td mat-cell *matCellDef="let element"> {{element.bill_amount | number:'1.2-2'}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="errors">
+          <th mat-header-cell *matHeaderCellDef>Errors</th>
+          <td mat-cell *matCellDef="let element"> 
+              <span *ngIf="element?.errors" class="badge badge-danger" style="border-radius:2px;font-size: 11px;">{{element.errors}}</span>
+              <span *ngIf="!element?.errors" class="badge badge-success"  style="border-radius:2px;font-size: 13px;">Successful</span>
+             </td>
+          </ng-container>
+          <ng-container matColumnDef="patient_name">
+          <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.patient_name | uppercase}} </td>
+          </ng-container>
+          <ng-container matColumnDef="processing_status">
+          <th mat-header-cell *matHeaderCellDef>Processing status</th>
+          <td mat-cell *matCellDef="let element"> {{element.processing_status}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="voucher_no">
+          <th mat-header-cell *matHeaderCellDef>Voucher No</th>
+          <td mat-cell *matCellDef="let element"> {{element.voucher_no}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="scheme_name">
+          <th mat-header-cell *matHeaderCellDef>Scheme Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.scheme_name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="credit_party_name">
+            <th mat-header-cell *matHeaderCellDef>Insurance</th>
+            <td mat-cell *matCellDef="let element"> {{element.credit_party_name}} </td>
+          </ng-container>    
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="claimDetails(row)"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
-    <br />
-    <div class="row container-fluid">
-      <div class="col-sm-12 table-responsive ">
-        <table class="table table-condensed table-hover table-sm"
-          style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-          <thead>
-            <tr style="font-size:10px;font-weight:bold;background-color: darkblue;color:white" >
-              <th>S.NO</th>
-              <th>BILL AMT</th>
-              <th>ERRORS</th>
-              <th >PATIENT</th>
-              <th >STATUS</th>
-              <th>VOUCHER NUMBER</th>
-              <th>SCHEME NAME</th>
-              <th>PAYER</th>
-              
-              <!-- <th><i class="icon-wallet"></i> Amount</th>
-                          <th><i class="cui-calendar"></i>Check in</th>
-                          <th><i class="icon-clock"></i> Time</th> -->
-      
-            </tr>
-          </thead>
-          <tbody id="displ">
-            <tr *ngFor="let claim of batchClaims;let i = index" style="font-weight:bold;font-size:10px;" (click)="claimDetails(claim)">
-              <td>{{i+1}}</td>
-              <td>{{claim.bill_amount | number}}</td>
-              <td> 
-                <span *ngIf="claim?.errors" class="badge badge-danger" style="border-radius:2px;font-size: 11px;">{{claim.errors}}</span>
-                <span *ngIf="!claim?.errors" class="badge badge-success"  style="border-radius:2px;font-size: 11px;">Successful</span>
-              </td>
-              <td> {{claim.patient_name | uppercase}}</td>
-              <td > {{claim.processing_status}}</td>
-              <td> {{claim.voucher_no}}</td>
-              <td> {{claim.scheme_name}}</td>
-              <td> {{claim.credit_party_name}}</td>
-             
-      
-      
-            </tr>
-      
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>

@@ -1,530 +1,549 @@
-<div class="card">
-    <div class="card-header">
-  <i class="icon-plus"></i> Create Claim
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-12">
-            <mat-horizontal-stepper labelPosition="end" #stepper>
-                <mat-step>
-                        <ng-template matStepLabel>Background Information</ng-template>
-                        <form [formGroup]="claimForm" (ngSubmit)="onSubmit()">
-                       <fieldset>
-                         <legend style="width:15%;font-size:17px;"> <span style="margin-left:13px;font: weight 200;"> <i class="icon-people"></i> Patient Details</span>
-                          </legend>
-                      
-                         <div class="row" >
-                            <div class="col-sm-2">
-                              <label>Insurance</label>
-                              <input type="text"  [(ngModel)]="patient.insurance_company" [typeahead]="payers" (typeaheadLoading)="payerSearch(patient.insurance_company)"
-                              (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
-                              formControlName="insurance" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.insurance.errors }" [ngModelOptions]="{standalone: true}" />
-                              <div *ngIf="submitted && f.insurance.errors" class="invalid-feedback">
-                                  <div *ngIf="f.insurance.errors.required">Insurance is required</div>
-                              </div>
-                            </div>
-                            
-                            <div class="col-sm-2">
-                                <label>Scheme</label>
-                                <input [(ngModel)]="patient.scheme_name" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(patient.scheme)"
-                                    (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="6" typeaheadOptionField="name"
-                                    class="form-control" type="text" formControlName="scheme"  [ngClass]="{ 'is-invalid': submitted && f.scheme.errors }" [ngModelOptions]="{standalone: true}"/>
-                                <div *ngIf="submitted && f.scheme.errors" class="invalid-feedback">
-                                    <div *ngIf="f.scheme.errors.required">Scheme is required</div>
-                                </div>
-                              </div>
-                              <div class="col-sm-2">
-                                  <label>Member Name</label>
-                                  <!-- (typeaheadLoading)="search(patient.name)"  -->
-                                  <input [(ngModel)]="patient.patient_name" [typeahead]="members" [typeaheadOptionsLimit]="7"
-                                  typeaheadOptionField="name" (typeaheadOnSelect)="OnMember($event)" class="form-control" type="text"  formControlName="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }" [ngModelOptions]="{standalone: true}" />
-                                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                                      <div *ngIf="f.name.errors.required">Member number is required</div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Hospital</label>
-                                    <input type="text" formControlName="hospital" [(ngModel)]="patient.provider" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.hospital.errors }" [ngModelOptions]="{standalone: true}" />
-                                    <div *ngIf="submitted && f.hospital.errors" class="invalid-feedback">
-                                        <div *ngIf="f.hospital.errors.required">Hospital is required</div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-2">
-                                      <label>Patient Number</label>
-                                      <input type="text" formControlName="patient_number"  [(ngModel)]="patient.patient_number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.patient_number.errors }"  [ngModelOptions]="{standalone: true}"/>
-                                      <div *ngIf="submitted && f.patient_number.errors" class="invalid-feedback">
-                                          <div *ngIf="f.patient_number.errors.required">Patient number is required</div>
-                                      </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label>Visit Number</label>
-                                        <input type="text" formControlName="visit_number" [(ngModel)]="patient.visit_number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.visit_number.errors }" [ngModelOptions]="{standalone: true}" />
-                                        <div *ngIf="submitted && f.visit_number.errors" class="invalid-feedback">
-                                            <div *ngIf="f.visit_number.errors.required">Last name is required</div>
-                                        </div>
-                                      </div>
-                                
-                          
-                        </div>
-                        <div class="row" >
-                            
-                                  <div class="col-sm-2">
-                                    <!-- <label>Visit type</label>
-                                    <input type="text" formControlName="visit_type" [(ngModel)]="patient.visit_type" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.visit_type.errors }" [ngModelOptions]="{standalone: true}" />
-                                    <div *ngIf="submitted && f.visit_type.errors" class="invalid-feedback">
-                                        <div *ngIf="f.visit_type.errors.required">visit type is required</div>
-                                    </div> -->
-                                    <label for="ccmonth">Visit Type</label>
-                  <select class="form-control" name="visit type" [(ngModel)]="patient.visit_type" formControlName="visit_type"  style="height:28px;" [ngClass]="{ 'is-invalid': submitted && f.visit_type.errors }" [ngModelOptions]="{standalone: true}">
-                    <option
-                      *ngFor="let visit  of  ['Main Visit', 'Follow -Up',  'Doctor Consultation', 'Follow up with doctors Consultation', 'Inpatient', 'Revisit','Optical','Maternity','Dental']"
-                      value="{{visit}}">{{visit}}</option>
-                  </select>
-                  <div *ngIf="submitted && f.visit_type.errors" class="invalid-feedback">
-                    <div *ngIf="f.visit_type.errors.required">visit type is required</div>
-                </div>
-                                  </div>
-                                
-                                  <div class="col-sm-2">
-                                    <label>Check in</label>
-                                    <input type="text" formControlName="check_in" class="form-control" bsDatepicker [(ngModel)]="patient.check_in"
-                                    [bsConfig]="{ isAnimated: true }" [ngClass]="{ 'is-invalid': submitted && f.check_in.errors }" [ngModelOptions]="{standalone: true}" />
-                                    <div *ngIf="submitted && f.check_in.errors" class="invalid-feedback">
-                                        <div *ngIf="f.check_in.errors.required">check is required</div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-2">
-                                    <label>Check out</label>
-                                    <input type="text" formControlName="check_out" class="form-control" bsDatepicker [(ngModel)]="patient.check_out"
-                                    [bsConfig]="{ isAnimated: true }" [ngClass]="{ 'is-invalid': submitted && f.check_out.errors }" [ngModelOptions]="{standalone: true}" />
-                                    <div *ngIf="submitted && f.check_out.errors" class="invalid-feedback">
-                                        <div *ngIf="f.check_out.errors.required"> check out is required</div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-2">
-                                      <label>Nhif Number</label>
-                                      <input type="text"  class="form-control" name="nhif_number" [(ngModel)]="patient.nhif_number"  [ngModelOptions]="{standalone: true}"/>
-                                     
-                                    </div>
-                                
-                                  <div class="col-sm-2">
-                                      <label>Doctor Name</label>
-                                      <input type="text" formControlName="doctor" [(ngModel)]="patient.doctor" name="doctor" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.doctor.errors }" [ngModelOptions]="{standalone: true}" />
-                                      <div *ngIf="submitted && f.doctor.errors" class="invalid-feedback">
-                                          <div *ngIf="f.doctor.errors.required">Doctor Name is required</div>
-                                      </div>
-                                    </div>
-                                
-                        </div>
-                       
+              <div class="card">
+              <div class="card-header">
+              <i class="icon-plus"></i> Create Claim
+              </div>
+              <div class="card-body">
+              <div class="row">
+              <div class="col-sm-12">
+              <mat-horizontal-stepper labelPosition="end" #stepper>
+              <mat-step>
+              <ng-template matStepLabel>Patient Information</ng-template>
+              <form [formGroup]="claimForm" (ngSubmit)="onSubmit()">
+              <mat-card>
+                  <div class="row" >
+                      <div class="col-sm-3">
+                          <mat-form-field>
+                          <input placeholder="Visit Number" type="text" [typeahead]="patients" (typeaheadOnSelect)="onVisit($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="visit_no"  formControlName="visit_number"[ngModelOptions]="{standalone: true}" matInput />
+                          <i class="icon-magnifier-add" matSuffix></i>
+                          <mat-error *ngIf="f.visit_number.errors">visit_number is required</mat-error>
+                          </mat-form-field>
+                          </div>
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input type="text"  placeholder="Search Payer"  matInput   [typeahead]="payers" (typeaheadLoading)="payerSearch(f.insurance_company.value)"
+                      (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" formControlName="insurance_company"  [ngModelOptions]="{standalone: true}" />
+                      <mat-error *ngIf="f.insurance_company.errors">Insurance is<strong> required</strong></mat-error>
+                      </mat-form-field>
+                      </div>
         
-                            
-                       </fieldset>
-                       <br>
-                       <fieldset style="min-height: 100px;">
-                           <legend style="width: 15%;font-size: 17px;"> <span style="margin-left:13px;font: weight 200;"> <i class="fa fa-heartbeat"></i> Diagnoses </span></legend>
-                           <div class="row">
-                              <div class="col-sm-3">
-                                <label>Diagnosis Name</label>
-                                <input type="text" class="form-control"  name="diagnosis"
-                                  [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]="diagnosesList"
-                                  (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="5" [ngModelOptions]="{standalone: true}" (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"   [dropup]="true">
-                              </div>
-                              <div class="col-sm-1">
-                                <label>Code</label>
-                                <input type="text" class="form-control" name="code" [(ngModel)]="selectedDiagnosis.code" [ngModelOptions]="{standalone: true}">
-                              </div>
-                              
-                    
-                            </div>
-                            <br>
-                            <div class="row">
-                              <div class="col-sm-3" *ngFor="let item of diagnosis"> <mat-checkbox [checked]="true" (click)="deleteDiagnosis(item)"></mat-checkbox> {{item.description}}({{item.code}})</div>
-
-                            </div>
-                       </fieldset>
-
-                       <button  style="margin-top: 10px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
-                    
-                        </form>
-                </mat-step>
-              
-                <mat-step >
-             
-                        <ng-template matStepLabel>Services</ng-template>
-                        
-                        <fieldset style="min-height:200px;">
-                                <legend style="width: 15%;font-size: 17px;"> <span style="margin-left:13px;font: weight 200;"> <i class="icon-plus"></i>  Services</span></legend>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <span class="badge badge-success pull-right" style="margin-left:9px;"> Sub Cost :{{proceduresCost}}  </span>
-                                      <span class="badge badge-info pull-right">{{procedures.length}}  </span>
-                                    </div>
-                                        <div class="col-sm-3">
-                                          <label>Name</label>
-                                          <input type="text" class="form-control" (typeaheadOnSelect)="onSelect($event)" name="test"
-                                            placeholder="procedure" typeaheadOptionField="name" [(ngModel)]="selectedOption.name"
-                                            [typeahead]="services" [typeaheadOptionsLimit]="3"
-                                            (typeaheadLoading)="searchProcedure(selectedOption.name)">
-                              
-                                        </div>
-                              
-                                        <!-- <div class="col-sm-2"> 
-                                          <label>Category</label>
-                                          <input type="text" name="category" class="form-control"
-                                            [(ngModel)]="selectedOption.category" placeholder="category" [disabled]="true"></div>
-                                        <div class="col-sm-2"> 
-                                            <label>Cost</label>
-                                          <input type="text" name="cost" class="form-control" [(ngModel)]="selectedOption.cost"
-                                             [disabled]="true"></div>
-                                        <div class="col-sm-1">
-                              
-                                          <button class="btn btn-success btn-sm" (click)="addService()" style="margin-top: 28px;"> <i
-                                              class="icon-plus"></i></button>
-                                        </div> -->
-                              
-                                      </div>
-                                      <br>
-                                      <div class="row" *ngIf="procedures.length">
-                                          <div class="col-sm-7">
-                                              <table mat-table [dataSource]="dataSource1" matSort class="mat-elevation-z8">
-                                                  <ng-container matColumnDef="Name">
-                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                                  </ng-container>
-      
-                                                  <ng-container matColumnDef="Code">
-                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
-                                                    <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-                                                  </ng-container>
-                                                
-                                                  <ng-container matColumnDef="Cost">
-                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
-                                                    <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
-                                                  </ng-container>
-                                                  <ng-container matColumnDef="Delete">
-                                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                                                      <td mat-cell *matCellDef="let element" (click)="deleteProcedure(element)"> <i class="fa fa-close" style="font-size:20px;color:red"></i> </td>
-                                                    </ng-container>
-                                               
-                                                
-                                                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                                </table> 
-                                          </div>
-                                        </div>  
-                                        
-                                       
-                        </fieldset>
-                        <div>
-                            <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
-                            <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
-
-                        </div>
-               
-                </mat-step>
-                <mat-step >
-                    
-                        <ng-template matStepLabel>pharmaceuticals</ng-template>
-                        <fieldset style="min-height: 100px;">
-                                <legend style="width: 15%;font-size: 17px;"> <span style="margin-left:13px;font: weight 200;"> <i class="icon-plus"></i> Drugs</span></legend>
-                            <div class="row">
-                                    <div class="col-sm-2">
-                                    <label><b> Drug name</b></label>
-                                      <input type="text" [(ngModel)]="selectedDrug.name" [typeahead]="drugs"
-                                        [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="name"
-                                        (typeaheadOnSelect)="onDrug($event)" class="form-control" 
-                                        typeaheadGroupField="strength" (typeaheadLoading)="searchPrescription(selectedDrug.name)">
-                    
-                                    </div>
-                                    <div class="col-sm-2">
-                                      <label><b>Form</b></label>
-                                      <input type="text" class="form-control"  [(ngModel)]="selectedDrug.form">
-                                    </div>
-                                    <div class="col-sm-1">
-                                      <label><b>Strength</b></label>
-                                      <input type="text" class="form-control"  [(ngModel)]="selectedDrug.strength">
-                                    </div>
-                                    <div class="col-sm-1">
-                                      <label><b>Quantity</b></label>
-                                      <input type="number" name="refils" class="form-control" [(ngModel)]="selectedDrug.quantity">
-                                    </div>
-                                    <!-- <div class="col-sm-1">
-                                      <label><b>Refills</b></label>
-                                      <input type="number" name="refils" class="form-control" [(ngModel)]="selectedDrug.refills">
-                                    </div> -->
-                          
-                                    <div class="col-sm-1"> <button class="btn btn-success btn-sm" [disabled]="!selectedDrug.name || selectedDrug.quantity < 1" (click)="addPrescription()"
-                                        style="margin-top:28px;"> <i class="icon-plus"></i></button>
-                                    </div>
-                                  </div>
-                                  <br>
-                                  
-                                  <div class="row" *ngIf="prescription.length">
-                                      <div class="col-sm-6">
-                                          <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8">
-                                              <ng-container matColumnDef="Name">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                              </ng-container>
-  
-                                              <ng-container matColumnDef="Strength">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Strength</th>
-                                                <td mat-cell *matCellDef="let element"> {{element.strength}} </td>
-                                              </ng-container>
-                                            
-                                              <ng-container matColumnDef="Form">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Form</th>
-                                                <td mat-cell *matCellDef="let element"> {{element.form}} </td>
-                                              </ng-container>
-                                              <ng-container matColumnDef="Quantity">
-                                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
-                                                  <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-                                                </ng-container>
-                                              <ng-container matColumnDef="Delete">
-                                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                                                  <td mat-cell *matCellDef="let element" (click)="deleteDrug(element)"> <i class="fa fa-close" style="font-size:20px;color:red"></i> </td>
-                                                </ng-container>
-                                           
-                                            
-                                              <tr mat-header-row *matHeaderRowDef="drugColumns"></tr>
-                                              <tr mat-row *matRowDef="let row; columns: drugColumns;"></tr>
-                                            </table> 
-                                         
-                                      </div>
-                                    </div>  
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <span class="badge badge-success pull-right" style="margin-left:9px;"> Sub Cost :{{drugsCost}}  </span>
-                                          <span class="badge badge-info pull-right">{{prescription.length}}  </span>
-                                        </div>
-                                      </div>  
-                        </fieldset>
-                        
-                        <div>
-                                <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
-                                <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
-    
-                        </div>
-                 
-                </mat-step>
-                <mat-step  >
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input   [typeahead]="schemes" (typeaheadLoading)="schemeSearch(f.scheme_name.value)" formControlName="scheme_name" placeholder="Scheme"
+                      (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="6" typeaheadOptionField="name"  matInput/>
+                      <mat-error *ngIf="f.scheme_name.errors">Scheme is required</mat-error>
+                      </mat-form-field>
+        
+                      </div>
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input [typeahead]="members" [typeaheadOptionsLimit]="7"
+                      typeaheadOptionField="name" (typeaheadOnSelect)="OnMember($event)"   formControlName="patient_name" placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
+                      <mat-error *ngIf="f.patient_name.errors">Member  is required</mat-error>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input type="text" formControlName="provider"  placeholder="Hospital" [ngModelOptions]="{standalone: true}"  matInput/>
+                      <mat-error *ngIf="f.provider.errors">Hospital is required</mat-error>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input type="text" formControlName="patient_number" placeholder="Patient Number"  [disabled]="true" matInput readonly/>
+                      <mat-error *ngIf="f.patient_number.errors">Patient number is required</mat-error>
+                      </mat-form-field>
+                      </div>
                    
-                        <ng-template matStepLabel>Lab Tests</ng-template>
+        
+                      <div class="col-sm-3">
+        
+                      <mat-form-field>
+                      <!-- <mat-label>Select Visit Type</mat-label> -->
+                      <input type="text" formControlName="patient_number" placeholder="Visit Type"  [disabled]="true" matInput readonly/>
 
-                        <fieldset style="min-height: 200px;">
-                                <legend style="width: 15%;font-size: 17px;"> <span style="margin-left:13px;font: weight 200;"> <i class="icon-plus"></i> Lab Test</span></legend>
-                                
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <span class="badge badge-success pull-right" style="margin-left:9px;"> Sub Cost :{{labCost}}  </span>
-                                      <span class="badge badge-info pull-right">{{labtest.length}}  </span>
-                                    </div>
-                                        <div class="col-sm-3">
-                                          <!-- <label>Name</label> -->
-                                          <input [(ngModel)]="selectedTest.name" [typeahead]="test" (typeaheadOnSelect)="OnSelectTest($event)"
-                                            [typeaheadOptionsLimit]="4" typeaheadOptionField="name"  class="form-control"
-                                            name="labtest" type="text" (typeaheadLoading)="searchTest(selectedTest.name)" placeholder="Type the Test">
-                                        </div>
-                                        <!-- <div class="col-sm-2">
-                                          <label>Code</label>
-                                          <input type="text" [(ngModel)]="selectedTest.code" [disabled]="true" class="form-control">
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <label>Cost</label>
-                                            <input type="text" [(ngModel)]="selectedTest.cost" [disabled]="true"  class="form-control">
-                                          </div> -->
-                                      </div>
-                                      <br>
-                                <div class="row">
-                                    <div class="col-sm-6" *ngIf="labtest.length">
-                                        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-                                            <ng-container matColumnDef="Name">
-                                              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                                              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                            </ng-container>
+                      <!-- <mat-select formControlName="visit_type">
+                      <mat-option value="OUTPATIENT" selected>OUTPATIENT</mat-option>
+                      </mat-select> -->
+                      <mat-error *ngIf="f.visit_type?.errors">Visit Type <strong>required</strong></mat-error>
+                      </mat-form-field>
+                      </div>
+        
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input type="text" formControlName="check_in" placeholder="Check In" bsDatepicker 
+                      [bsConfig]="{ isAnimated: true }" [ngModelOptions]="{standalone: true}" matInput readonly />
+                      <mat-error *ngIf="f.check_in.errors">
+                      check in date is required
+                      </mat-error>
+                      </mat-form-field>  
+                      </div>
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input type="text" placeholder="Check Out" formControlName="check_out" readonly  bsDatepicker 
+                      [bsConfig]="{ isAnimated: true }"  [ngModelOptions]="{standalone: true}"  matInput  readonly/>
+                      <mat-error *ngIf="f.check_out.errors">check out is required</mat-error>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                      <input type="text" placeholder="Nhif Number" formControlName="nhif_number"  [ngModelOptions]="{standalone: true}" matInput/>
+        
+                      </mat-form-field>
+        
+                      </div>
+        
+                      <div class="col-sm-3">
+                      <mat-form-field>
+        
+                      <input type="text" placeholder="Doctor" formControlName="doctor" [ngModelOptions]="{standalone: true}" matInput />
+                      <mat-error *ngIf="f.doctor.errors">Doctor Name is required</mat-error>
+                      </mat-form-field>
+                      </div>
+                      </div>
+              </mat-card>
 
-                                            <ng-container matColumnDef="Code">
-                                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
-                                              <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-                                            </ng-container>
-                                          
-                                            <ng-container matColumnDef="Cost">
-                                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
-                                              <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
-                                            </ng-container>
-                                            <ng-container matColumnDef="Delete">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                                                <td mat-cell *matCellDef="let element" (click)="deleteLab(element)"> <i class="fa fa-close" style="font-size:20px;color:red"></i> </td>
-                                              </ng-container>
-                                         
-                                          
-                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                          </table> 
-                                    </div>
-                                </div>
-                                 
-                        </fieldset>
-                        
-                        <div>
-                                <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
-                                <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
-    
-                        </div>
-            
-                </mat-step>
-              
-                <mat-step>
-                    <ng-template matStepLabel>Preview & Submit</ng-template>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <span><b>Claim amount</b><span class="badge badge-success" style="margin-left:6px;">{{totalAmount | number}}</span></span>
-                          <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" [disabled]="!claimForm.valid" (click)="submitClaim()"> <i class="icon-check"></i> Claim Submit</button>
+              <br>
+              <mat-card>
+                <mat-card-title>
+                <span style="font-size:15px;">Diagnosis</span>
+                </mat-card-title>
+                  <div class="row">
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                        <input type="text"  matInput  
+                      [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]="diagnosesList"  placeholder="Diagnoisis"
+                      (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="5" [ngModelOptions]="{standalone: true}"
+                       (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"   [dropup]="true">
+                       <i class="icon-magnifier" matSuffix></i>
+                      </mat-form-field>
                       </div>
-                    </div>
-                      <div class="row">
-                        <div class="col-sm-9">
-                          <fieldset>
-                            <legend style="width:30%;font-size: 14px;font-weight: bold"> <span style="margin-left:13px;font: weight 200;"> <i class="icon-people"></i> Patient Details</span></legend>
-                            <div class="row">
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold"> <br>
-                                PATIENT NAME: <span class="text-primary">{{patient.patient_name}}</span>
-                              </span>
-                              
-                            </div>
-                            
-                            <div class="col-sm-4">
-                              <span style="font-size:10px;font-weight:bold"><br>
-                                INSURANCE: <span class="text-primary">{{patient.insurance_company}}</span>
-                              </span>
-                              
-                            </div>
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold"><br>
-                                SCHEME: <span class="text-primary">{{patient.scheme_name}}</span>
-                              </span>
-                              
-                            </div>
-                          
-                            <div class="col-sm-2">
-                              <span style="font-size:10px;font-weight:bold"><br>
-                                PATIENT  NUMBER: <span class="text-primary">{{patient.patient_number}}</span>
-                              </span>
-                              
-                            </div>
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold">
-                              HOSPITAL: <span class="text-primary">{{patient.provider}}</span>
-                              </span>
-                              
-                            </div>
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold">
-                              VISIT TYPE: <span class="text-primary">{{patient.visit_type | uppercase}}</span>
-                              </span>
-                              
-                            </div>
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold">
-                              VISIT NUMBER: <span class="text-primary">{{patient.patient_number}}</span>
-                              </span>
-                              
-                            </div>
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold">
-                                NHIF  NUMBER: <span class="text-primary">{{patient.nhif_number}}</span>
-                              </span>
-                              
-                            </div>
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold">
-                                CHECKIN: <span class="text-primary">{{patient.check_in | date}}</span>
-                              </span>
-                              
-                            </div>
-                            <div class="col-sm-3">
-                              <span style="font-size:10px;font-weight:bold">
-                                CHECKOUT: <span class="text-primary">{{patient.check_out | date}}</span>
-                              </span>
-                              
-                            </div>
-                            </div>
-                          </fieldset>
-                        </div>
-                        <div class="col-sm-3">
-                          <fieldset>
-                            <legend style="width:50%;font-size: 14px;font-weight: bold"> <span style="margin-left:13px;font: weight 200;"> <i class="fa fa-heartbeat"></i> Diagnosis</span></legend>
-                            <div class="row">
-                              <div class="col-sm-12" *ngFor="let item of diagnosis"> <mat-checkbox [checked]="true"></mat-checkbox> {{item.description}}</div>
-
-                            </div>
-                          </fieldset>
-                        </div>
-                      </div>
-                      <br>
-                      <div class="row">
-                        <div class="col-sm-9">
-                          <fieldset>
-                            <legend style="width:50%;font-size: 14px;font-weight: bold"> <span style="margin-left:13px;font: weight 200;"> <i class="cui-list"></i> Procedures</span></legend>
-                            <div class="row">
-                              <div class="col-sm-12" *ngFor="let item of procedures"> <mat-checkbox [checked]="true"></mat-checkbox> {{item.name}}</div>
-
-                            </div>
-                            <div class="col-sm-12">
-                                <span class="badge badge-success pull-right" style="margin-left:9px;"> Sub Cost :{{proceduresCost}}  </span>
-                              <span class="badge badge-info pull-right">{{procedures.length}}  </span>
-                            </div>
-                          </fieldset>
-                        </div>
-                      </div>
-                      <br>
-                      <div class="row">
-                        <div class="col-sm-9">
-                          <fieldset>
-                            <legend style="width:50%;font-size: 14px;font-weight: bold"> <span style="margin-left:13px;font: weight 200;"> <i class="fa fa-medkit"></i> Pharmaceuticals</span></legend>
-                            <div class="row">
-                                <div class="col-sm-12" *ngFor="let item of  prescription"> <mat-checkbox [checked]="true"></mat-checkbox> {{item.name}} - {{item.strength}}</div>
-  
-                              </div>
-                              <div class="row">
-                                  <div class="col-sm-12">
-                                      <span class="badge badge-success pull-right" style="margin-left:9px;"> Sub Cost :{{drugsCost}}  </span>
-                                    <span class="badge badge-info pull-right">{{prescription.length}}  </span>
-                                  </div>
-                                </div>
-                          </fieldset>
-                        </div>
-                       
-                      </div>
-                      <br>
-                      <div class="row">
-                        <div class="col-sm-9">
-                          <fieldset>
-                            <legend style="width:50%;font-size: 14px;font-weight: bold"> <span style="margin-left:13px;font: weight 200;"> <i class="icon-chemistry"></i> Lab Test</span></legend>
-                            <div class="row">
-                                <div class="col-sm-12" *ngFor="let item of labtest"> <mat-checkbox [checked]="true"></mat-checkbox> {{item.name}}</div>
-  
-                              </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <span class="badge badge-success pull-right" style="margin-left:9px;"> Sub Cost :{{labCost}}  </span>
-                                  <span class="badge badge-info pull-right">{{labtest.length}}  </span>
-                                </div>
-                              </div>  
-                          </fieldset>
-                        </div>
-                      </div>
-                    <div>
                     
-                                <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right"  mat-button matStepperPrevious> <i class="cui-arrow-left"></i> Back </button>
-                                
+        
+        
+                      </div>
+                      <br>
+                      <div class="row">
+                      <div class="col-sm-6">
+                          <table class="table table-borderless">
+                              <tbody>
+                                <tr *ngFor="let item of diagnosis">
+                                  <td style="text-transform: capitalize;">{{item.description}}</td>
+                                  <td>{{item.code}}</td>
+                                  <td (click)="deleteDiagnosis(item)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                                </tr>
+                               
+                              </tbody>
+                          </table>
+                      </div>
+                      </div>
+              </mat-card>
+
+              <button  style="margin-top: 10px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
+
+              </form>
+              </mat-step>
+
+              <mat-step >
+
+              <ng-template matStepLabel>Procedures</ng-template>
+              <mat-card>
+                <mat-card-subtitle>
+                 <div class="row">
+                  <div class="col-sm-12" >
+                    <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{proceduresCost}}  </span>
+                    <span class="badge badge-info pull-right" style="font-size: 14px;">{{procedures.length}}  </span>
                     </div>
-                </mat-step>
-            </mat-horizontal-stepper>
-            
-        </div>
-      </div>
-    </div>
-  </div>
+                 </div>
+                </mat-card-subtitle>
+                
+              <div class="row" >
+                  <div class="col-sm-3">
+                      <mat-form-field>
+                        <input type="text"  (typeaheadOnSelect)="onSelect($event)" name="test"
+                        placeholder="Pocedure" typeaheadOptionField="name" [(ngModel)]="selectedOption.name"
+                        [typeahead]="services" [typeaheadOptionsLimit]="3"
+                        (typeaheadLoading)="searchProcedure(selectedOption.name)" matInput>
+                      </mat-form-field>
+                    </div>
+                <div class="col-sm-12" >
+                <table mat-table [dataSource]="dataSource1" matSort class="mat-elevation-z8">
+                <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="Code">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="Cost">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+                <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Delete">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                <td mat-cell *matCellDef="let element" (click)="deleteProcedure(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
+                </ng-container>
+  
+  
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table> 
+                </div>
+                </div>  
+              </mat-card>
+              <div>
+              <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
+              <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
+
+              </div>
+
+              </mat-step>
+              <mat-step >
+
+              <ng-template matStepLabel>pharmaceuticals</ng-template>
+              <mat-card>
+                <mat-card-subtitle><div class="row">
+                    <div class="col-sm-12">
+                    <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{drugsCost}}  </span>
+                    <span class="badge badge-info pull-right" style="font-size: 14px;">{{prescription.length}}  </span>
+                    </div>
+                    </div>  </mat-card-subtitle>
+                  <div class="row">
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                        <input type="text" [(ngModel)]="selectedDrug.name" [typeahead]="drugs"
+                        [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="name"
+                        (typeaheadOnSelect)="onDrug($event)" placeholder="Drug Name"
+                        typeaheadGroupField="strength" (typeaheadLoading)="searchPrescription(selectedDrug.name)" matInput>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-sm-3">
+                      <mat-form-field>
+                        <input type="text"  placeholder="Form" [(ngModel)]="selectedDrug.form" matInput readonly>
+                      </mat-form-field>
+                      </div>
+                      <div class="col-sm-3">
+                        <mat-form-field>
+                            <input type="text" matInput [(ngModel)]="selectedDrug.strength" placeholder="Strength" readonly>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2">
+                        <mat-form-field>
+                            <input type="number" placeholder="Quantity" matInput [(ngModel)]="selectedDrug.quantity">
+                        </mat-form-field>
+                      </div>
+                     
+                      <div class="col-sm-1"> <button mat-mini-fab [disabled]="!selectedDrug.name || selectedDrug.quantity < 1" (click)="addPrescription()"
+                      style="margin-top:7px;"> <i class="fa fa-plus"></i></button>
+                      </div>
+                      </div>
+                      <br>
+        
+                      <div class="row" >
+                      <div class="col-sm-12">
+                      <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8">
+                      <ng-container matColumnDef="Name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="Strength">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Strength</th>
+                      <td mat-cell *matCellDef="let element"> {{element.strength}} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="Form">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Form</th>
+                      <td mat-cell *matCellDef="let element"> {{element.form}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Quantity">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+                      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Delete">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                      <td mat-cell *matCellDef="let element" (click)="deleteDrug(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
+                      </ng-container>
+        
+        
+                      <tr mat-header-row *matHeaderRowDef="drugColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: drugColumns;"></tr>
+                      </table> 
+        
+                      </div>
+                      </div>  
+                      
+              </mat-card>
+
+              <div>
+              <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
+              <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
+
+              </div>
+
+              </mat-step>
+              <mat-step  >
+
+              <ng-template matStepLabel>Lab Tests</ng-template>
+
+              <mat-card>
+                <mat-card-title>
+                  <div class="row">
+                      <div class="col-sm-12">
+                          <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{labCost}}  </span>
+                          <span class="badge badge-info pull-right" style="font-size: 14px;">{{labtest.length}}  </span>
+                          </div>
+                  </div>
+                </mat-card-title>
+
+              <div class="row">
+              
+                  <div class="col-sm-3">
+                    <mat-form-field>
+                        <input [(ngModel)]="selectedTest.name" [typeahead]="test" (typeaheadOnSelect)="OnSelectTest($event)"
+                        [typeaheadOptionsLimit]="4" typeaheadOptionField="name"  
+                         type="text" (typeaheadLoading)="searchTest(selectedTest.name)" placeholder="Type the Test" matInput>
+                    </mat-form-field>
+                  </div>
+                 
+                  </div>
+                  <br>
+                  <div class="row">
+                  <div class="col-sm-12">
+                  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                  <ng-container matColumnDef="Name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="Code">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                  <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="Cost">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+                  <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                  <td mat-cell *matCellDef="let element" (click)="deleteLab(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
+                  </ng-container>
+    
+    
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table> 
+                  </div>
+                  </div>
+              </mat-card>
+     
+              <div>
+              <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
+              <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
+
+              </div>
+
+              </mat-step>
+
+              <mat-step>
+              <ng-template matStepLabel>Preview & Submit</ng-template>
+              <div class="row">
+              <div class="col-sm-12">
+              <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" [disabled]="!claimForm.valid" (click)="submitClaim()"> <i class="icon-check"></i> Claim Submit</button>
+              </div>
+              </div>
+              <br>
+              <mat-card>
+                <mat-card-subtitle>
+                    <i class="icon-people"></i> Patient Details
+                </mat-card-subtitle>
+                <div class="row">
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <h4><b class="text-success">{{f.patient_name.value}}</b> <span *ngIf="f.nhif_number.value">| <span>NHIF NO: {{f.nhif_number.value}} </span></span></h4>
+                        </div>
+                        <div class="col-sm-6">
+                          <h4><span style="font-size:14px;font-weight:bold"> INSURANCE :
+                              <span class="text-primary">{{f.insurance_company.value}}</span>
+                              </span> 
+                              <span style="font-size:14px;font-weight:bold"> SCHEME :
+                                  <span class="text-primary">{{f.scheme_name.value}}</span>
+                                  </span>
+                            </h4>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                       <div class="row">
+                         <div class="col-sm-3">HOSPITAL</div>
+                         <div class="col-sm-9">
+                            <span style="font-size:14px;font-weight:bold">
+                                 {{f.provider.value}}</span>
+                                 
+                                
+                            
+                         </div>
+                       </div>
+          
+                        </div>
+                    <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-3">
+                          PATIENT  NUMBER
+                      </div>
+                      <div class="col-sm-5">
+                          <span style="font-size:14px;font-weight:bold">
+                              <span class="text-primary">{{f.patient_number.value}}</span>
+                              </span>
+                      </div>
+                    </div>
+                    </div>
+                   
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-3">
+                           VISIT NUMBER
+                        </div>
+                        <div class="col-sm-5">
+                            {{f.patient_number.value}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-sm-3">
+                              VISIT TYPE
+                          </div>
+                          <div class="col-sm-5">
+                              <span style="font-size:14px;font-weight:bold">
+                                  <span class="text-primary">{{f.visit_type.value}}</span>
+                                  </span>
+                          </div>
+                        </div>
+                        </div>
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-3"> CHECKIN</div>
+                        <div class="col-sm-5">
+                            <span style="font-size:14px;font-weight:bold">
+                                <span class="text-primary">{{f.check_in.value | date}}</span>
+                                 </span>
+                        </div>
+                      </div>
+                      
+                        </div>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-3">CHECKOUT</div>
+                            <div class="col-sm-5">
+                                <span style="font-size:14px;font-weight:bold">
+                                    <span class="text-primary">{{f.check_out.value | date}}</span>
+                                    </span>
+                            </div>
+                          </div>
+                        
+          
+                        </div>
+                  
+                    
+                    </div>
+                    <mat-card-actions>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                
+                                <span class="badge badge-info pull-right" style="font-size: 14px;"> Claim Amount : {{totalAmount | number}}  </span>
+                                </div>
+                        </div>
+                     </mat-card-actions>
+              </mat-card>
+              <br>
+              <mat-card>
+                <mat-card-subtitle>
+                   <i class="fa fa-heartbeat"></i> Diagnoses
+                </mat-card-subtitle>
+                 <div class="row">
+                    <div class="col-sm-12">
+                     
+                        <div class="row">
+                        <div class="col-sm-12">
+                          <ol>
+                            <li *ngFor="let item of diagnosis" style="font-size: 14px;"><b>{{item.description}}</b></li>
+                          </ol>
+                        </div>
+          
+                        </div>
+                        
+                        </div>
+                 </div>
+              </mat-card>
+              <br>
+             
+                <mat-card>
+                  <mat-card-subtitle>
+                      <i class="cui-list"></i> Procedures
+                  </mat-card-subtitle>
+                  <div class="row">
+                      <div class="col-sm-12" *ngFor="let item of procedures"> <i class="fa fa-check text-success"></i> {{item.name}}</div>
+                  </div>
+                  <mat-card-actions>
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{proceduresCost}}  </span>
+                              <span class="badge badge-info pull-right" style="font-size: 14px;">{{procedures.length}}  </span>
+                              </div>
+                      </div>
+                   </mat-card-actions>
+                </mat-card>
+              
+              <br>
+          
+              <mat-card>
+                  <mat-card-subtitle>
+                      <i class="fa fa-medkit"></i> Pharmaceuticals
+                  </mat-card-subtitle>
+                  <div class="row">
+                      <div class="col-sm-12" *ngFor="let item of prescription" style="font-size: 16px;"> <i class="fa fa-check text-success"></i> {{item.name }} |<span class="text-primary">Strength :{{item.strength}} </span>| Quantity :{{item.quantity}}</div>
+                  </div>
+                  <mat-card-actions>
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{drugsCost}}  </span>
+                              <span class="badge badge-info pull-right" style="font-size: 14px;">{{prescription.length}} </span>
+                              </div>
+                      </div>
+                   </mat-card-actions>
+                </mat-card>
+              <br>
+              <mat-card>
+                  <mat-card-subtitle>
+                      <i class="icon-chemistry"></i> Lab Test
+                  </mat-card-subtitle>
+                  <div class="row">
+                      <div class="col-sm-12" *ngFor="let item of labtest"> <i class="fa fa-check text-success"></i> {{item.name}}</div>
+                  </div>
+                  <mat-card-actions>
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost : {{labCost}}</span>
+                              <span class="badge badge-info pull-right" style="font-size: 14px;">{{labtest.length}}   </span>
+                              </div>
+                      </div>
+                   </mat-card-actions>
+                </mat-card>
+              <div>
+
+              <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-info btn-sm pull-right"  mat-button matStepperPrevious> <i class="cui-arrow-left"></i> Back </button>
+
+              </div>
+              </mat-step>
+              </mat-horizontal-stepper>
+
+              </div>
+              </div>
+              </div>
+              </div>

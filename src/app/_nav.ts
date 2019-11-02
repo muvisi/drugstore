@@ -120,6 +120,11 @@ export const navItems: NavData[] = [
     icon: 'icon-wallet',
   },
   {
+    name: 'Reports',
+    url: '/dashboard/reports',
+    icon: 'icon-chart',
+  },
+  {
     name: 'Setup',
     url: '/dashboard/set-up',
     icon: 'icon-wrench'

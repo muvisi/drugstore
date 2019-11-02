@@ -20,16 +20,17 @@ export class BillPatientComponent implements OnInit {
   @ViewChild('billModal', {'static': true}) billModal: ModalDirective;
   @ViewChild('payBills', {'static': true}) payBills: ModalDirective;
   @ViewChild('confirmModal', {'static': true}) confirmModal: ModalDirective;
+  @ViewChild('insuranceModal', {'static': true}) insuranceModal: ModalDirective;
   @ViewChild(MatSort, {'static': true}) sort: MatSort;
   @ViewChild('paginator', {'static': true}) paginator: MatPaginator;
-  displayedColumns: string[] = ['sn','service', 'category', 'bill_number', 'invoice__no', 'rate', 'reverse', 'status'];
+  displayedColumns: string[] = ['sn','service', 'category', 'bill_number', 'invoice__no', 'rate','status'];
   benefitColumns: string[] = ['benefit', 'category', 'balance'];
   exclusionColumns: string[] = ['benefit', 'category', 'updated', 'Time'];
   services;
   dataSource;
   dataSource1;
   covered_benefits;
-  memberInfo;
+  memberInfo:any ={};
   name;
   status;
   user;
@@ -48,6 +49,13 @@ export class BillPatientComponent implements OnInit {
   selectedOption: any = {};
   patientInfo: any = {};
   loading = true;
+  payerId: any;
+  schemes=[];
+  payers =[];
+  schemeId: any;
+  members=[];
+  member;
+  scheme_name;
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent,
   private toastr: ToastrService, public router: Router) {
     this.visit_no = this.navCtrl.get('data');
@@ -55,7 +63,7 @@ export class BillPatientComponent implements OnInit {
     this.patient = this.navCtrl.get('patient');
     console.log(this.navCtrl.get('patient'));
     if (this.patient != null) {
-      this.visit_no = this.patient.visit_no;
+      this.visit_no = this.patientInfo.visit_no;
       this.memberId = this.patient.member_id;
       this.isInsurance = true;
 
@@ -107,6 +115,10 @@ export class BillPatientComponent implements OnInit {
       this.calculate();
     }
   }
+  onInsurance(){
+    this.isInsurance = !this.isInsurance;
+    this.calculate();
+  }
   calculate() {
     if (this.isCash && !this.isInsurance && !this.isMpesa) {
       this.cash = this.pending_amount;
@@ -115,12 +127,19 @@ export class BillPatientComponent implements OnInit {
     } else if (!this.isCash && !this.isInsurance && this.isMpesa) {
         this.mpesa.amount = this.pending_amount;
       this.bill_amount = this.mpesa.amount;
+      this.cash = 0;
       this.status = true;
     } else if (!this.isCash && this.isInsurance && !this.isMpesa) {
       this.amount = this.pending_amount;
       this.bill_amount = this.amount;
       this.status = true;
-    } else {
+    } else if(this.isCash && !this.isInsurance && this.isMpesa){
+       if(this.cash > 0 || this.mpesa.amount > 0){
+         this.cash = 0;
+         this.mpesa.amount =0;
+         this.status = false;
+       }
+    }else {
       this.status = false;
       this.bill_amount = this.amount + this.cash + this.mpesa.amount;
     }
@@ -135,7 +154,7 @@ export class BillPatientComponent implements OnInit {
       const data = {
         'copay': this.cash + this.mpesa.amount,
         'amount': this.amount,
-        'id': this.patient.visit_no,
+        'id': this.patientInfo.visit_no,
         'member': this.memberId,
         'mpesa': this.mpesa,
         'cash': this.cash
@@ -153,7 +172,7 @@ export class BillPatientComponent implements OnInit {
       const data = {
         'copay': this.cash + this.mpesa.amount,
         'amount': this.amount,
-        'id': this.patient.visit_no,
+        'id': this.patientInfo.visit_no,
         'member': this.memberId,
         'cash': this.cash
       };
@@ -167,7 +186,7 @@ export class BillPatientComponent implements OnInit {
       const data = {
         'copay': this.cash + this.mpesa.amount,
         'amount': this.amount,
-        'id': this.patient.visit_no,
+        'id': this.patientInfo.visit_no,
         'member': this.memberId,
         'mpesa': this.mpesa
       };
@@ -181,7 +200,7 @@ export class BillPatientComponent implements OnInit {
       const data = {
         'copay': this.cash + this.mpesa.amount,
         'amount': this.amount,
-        'id': this.patient.visit_no,
+        'id': this.patientInfo.visit_no,
         'member': this.memberId
       };
       console.log('insurance', data);
@@ -242,10 +261,52 @@ export class BillPatientComponent implements OnInit {
         this.confirmModal.hide();
         this.payBills.show();
       } else {
-        this.router.navigateByUrl('dashboard/patients/insure-check');
+        this.confirmModal.hide();
+        this.insuranceModal.show();
+        // this.router.navigateByUrl('dashboard/patients/insure-check');
       }
 
    }
+   payerSearch(text) {
+    console.log(text);
+    this.service.searchPayers(text).subscribe((res) => {
+      console.log(res);
+      this.payers = res.results;
+    }
+    );
+  }
+   OnPayer(item) {
+    console.log(item.item);
+    this.payerId = item.item.id;
+    this.service.getSchemes(this.payerId).subscribe((res) => {
+     this.schemes = res.results;
+     console.log('wwwwww',this.schemes);
+    });
+  }
+  OnScheme(item) {
+    this.schemeId = item.item.id;
+      this.service.members(this.schemeId).subscribe((res) => {
+        console.log('members', res);
+        this.members = res;
+      });
+  }
+  schemeSearch(text) {
+    console.log(text);
+    this.service.searchScheme(this.payerId, text).subscribe((res) => {
+      console.log('scheme search results', res);
+      this.schemes = res.results;
+    }
+    );
+  }
+  onMember(item){
+    this.service.insure_details({id:item.item.id,visit_no:this.visit_no}).subscribe((res)=>{
+      console.log(res);
+      this.name="";
+      this.scheme_name ="";
+      this.member ="";
+      this.memberInfo=res;
+    })
+  }
   getVisitInfo() {
     if (this.visit_no == null) {
       this.router.navigateByUrl('/dashboard/patients/services');
@@ -258,10 +319,14 @@ export class BillPatientComponent implements OnInit {
     this.patientInfo = res;
     if (this.patientInfo.insure_check.length) {
       this.memberInfo = this.patientInfo.insure_check[0].data;
-    }
-    if (this.memberInfo) {
+      this.memberId = this.memberInfo.member_number;
+      console.log('xdsdd',this.memberInfo);
+      this.isInsurance = true;
       this.covered_benefits = new MatTableDataSource<[]>(JSON.parse(this.memberInfo.benefits));
+
+
     }
+    
     let amount = 0;
     let pend = 0;
     this.patientInfo.bills.forEach(element => {

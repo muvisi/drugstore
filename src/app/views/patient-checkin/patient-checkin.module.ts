@@ -8,8 +8,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MatStepperModule, MatIconModule, MatTableModule, MatPaginatorModule,
 MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatChipsModule,
 MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule, MatButtonModule, MatSliderModule,
-
+MatBadgeModule
 } from '@angular/material';
+
 import { PatientRecordsComponent } from './patient-records/patient-records.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { InsureCheckComponent } from './insure-check/insure-check.component';
@@ -57,6 +58,7 @@ import { PatientPrescriptionComponent } from './patient-prescription/patient-pre
 import { HospitalComponent } from './hospital/hospital.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ReportsComponent } from './reports/reports.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -95,7 +97,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     PharmacyComponent,
     PatientPrescriptionComponent,
     HospitalComponent,
-    CalendarComponent
+    CalendarComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,
@@ -132,7 +135,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatButtonModule,
     MatSliderModule,
     ScheduleModule,
-    
+    MatBadgeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 

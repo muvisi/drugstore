@@ -23,17 +23,17 @@ export class DiagnosisComponent implements OnInit {
 @ViewChild('paginator3', {static: true}) paginator3: MatPaginator;
 data;
 procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity','delete'];
-diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code'];
+diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code','Primary','delete'];
 drugColumns: string[] = ['name', 'generic_name','dosage','frequency', 'duration', 'route','notes','form','delete'];
 frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','1 day','2 days'];
 historyDiagnosis=['sn','name','code','date'];
+observationsColumns = ['sn','observation','created','visit_no','doctor','delete']
 historyServices=['sn','service','bill_number','invoice','cost'];
 historyDrugs: string[] = ['sn','name', 'generic_name','form','strength','refils','date'];
 triage = {};
 id;
 loading;
 drugName;
-test;
 isFamilyIssues;
 isHealthIssues;
 isMedication;
@@ -63,7 +63,8 @@ user;
 drugs;
 dosage;
 allergy: any = {};
-selectedDrug: any = { };
+selectedDrug: any = {};
+observation:any ={};
 labAmount = 0;
 proceduresAmount = 0;
 prescriptionAmount =0;
@@ -71,7 +72,7 @@ prescriptionAmount =0;
 constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService,
 private router: Router, private toastr: ToastrService, private datePipe: DatePipe) {
 this.id = this.navCtrl.get('id');
-this.patient();
+
 this.user = JSON.parse(sessionStorage.getItem('user'));
 if (this.id === undefined) {
   this.router.navigate(['/dashboard/patients/diagnosis&treatment']);
@@ -87,7 +88,7 @@ this.alleryList();
 this.getPrescription();
 this.getDosage();
 this.getTest();
-console.clear();
+this.patient();
 }
 onDiagnosis(item) {
 this.selectedOption = item.item;
@@ -135,13 +136,13 @@ savePrescription() {
    }
 getTest() {
   this.service.getTests().subscribe((res) => {
-    this.test = res.results;
+    this.tests = res.results;
   });
 }
   searchTest(text) {
     console.log(text);
     this.service.searchTest(text).subscribe((res) => {
-      this.test = res.results;
+      this.tests = res.results;
     });
   }
 OnSelectTest(item) {
@@ -327,14 +328,36 @@ this.diagnoses.splice(index, 1);
       this.name = '';
     });
   }
-saveClaim() {
-const data = {
-'id': this.id,
-'diagnoses': this.diagnoses,
-};
-console.log(data);
-this.service.saveClaim(data).subscribe((res) => {
-this.router.navigate(['/dashboard/register']);
-});
-}
+  updateDiagnosis(item){
+    item.visit_no = this.patientInfo.visit_no;
+    console.log(item);
+    this.service.updateDiagnosis(item).subscribe((res)=>{
+      this.toastr.success('Diagnosis Updated');
+      this.patient();
+    })
+  }
+  delDiagnosis(item){
+    this.service.deleteDiagnosis(item.id).subscribe((res)=>{
+      console.log(res);
+      this.patient();
+      this.toastr.error('Deleted Diagnosis');
+    })
+  }
+  deleteNote(item){
+    this.service.deleteNote(item.id).subscribe((res)=>{
+      console.log(res);
+      this.patient();
+      this.toastr.error('Deleted obsevation');
+    })
+  }
+  addObservation(){
+    this.observation.visit_no = this.patientInfo.visit_no;
+    console.log(this.observation);
+    this.service.addObservation(this.observation).subscribe((res)=>{
+      this.toastr.success('Added Observation');
+      this.patient();
+      this.observation ={};
+    })
+  }
+
 }

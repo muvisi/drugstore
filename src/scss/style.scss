@@ -17,26 +17,25 @@
   z-index: 9999!important;
 }
 fieldset 
-	{
-		border: 1px solid #ddd !important;
-		margin: 0;
-		padding: 10px;       
-		position: relative;
-		border-radius:4px;
-		background-color:white;
-		padding-left:10px!important;
-	}	
-	
-		legend
-		{
-			font-size:10px;
-			margin-bottom: 0px; 
-			width: 35%; 
-			border: 1px solid #ddd;
-			border-radius: 4px; 
-			padding: 5px 5px 5px 10px; 
-			background-color:white;
-		}
+{
+  border: 1px solid dodgerblue !important;
+  margin: 0;
+  padding: 10px;       
+  position: relative;
+  border-radius:4px;
+  padding-left:10px!important;
+}	
+
+  legend
+  {
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom: 0px; 
+    width: 35%; 
+    border: 1px solid dodgerblue;
+    border-radius: 4px; 
+    padding: 5px 5px 5px 10px;
+  }
         .list-group {
             font-size: 12px;
         }
@@ -47,7 +46,7 @@ a:link, a:visited,a:hover, a:active {
 
 .sidebar {
   display: flex;
-  font-family:lato light;
+  font-family: lato;
   flex-direction: column;
   padding: $sidebar-padding;
   color: $sidebar-color;
@@ -145,6 +144,7 @@ a:link, a:visited,a:hover, a:active {
     padding: $sidebar-nav-link-padding-y $sidebar-nav-link-padding-x;
     color: $sidebar-nav-link-color;
     text-decoration: none;
+    font-size: 19px;
     background: $sidebar-nav-link-bg;
     @include borders($sidebar-nav-link-borders);
     @if $enable-sidebar-nav-rounded {

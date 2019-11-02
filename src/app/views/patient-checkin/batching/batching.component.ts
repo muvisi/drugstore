@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../../service.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 @Component({
   selector: 'app-batching',
   templateUrl: './batching.component.html',
@@ -9,6 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BatchingComponent implements OnInit {
   @ViewChild(ModalDirective, {'static': true}) staticModal: ModalDirective;
+  dataSource;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  displayedColumns: string[] = ['select', 'member', 'patient_number', 'visit_number','insurance_company','member_number','visit_type','amount'];
   claims;
   name;
   Search;
@@ -23,44 +28,21 @@ export class BatchingComponent implements OnInit {
     this.getClaims();
   }
 
-  SearchName() {
-    if (this.name !== '') {
-      this.claims = this.claims.filter(res => {
-        return res.member.toLowerCase().match(this.name.toLowerCase());
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchVisit() {
-    if (this.visitNumber !== '') {
-      this.claims = this.claims.filter(res => {
-        return res.visit_no.match(this.visitNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
 claimsCheck() {
 const len = this.batchClaims.length;
 if (len === 0) {
 this.staticModal.hide();
 }
 }
-  SearchByPatient() {
-    if (this.patientNumber !== '') {
-      this.claims = this.claims.filter(res => {
-        return res.patient.patient_no.match(this.patientNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
+applyFilter(filterValue: string) {
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 
   getClaims() {
     this.service.getClaims().subscribe((res) => {
       this.claims = res.results;
+      this.dataSource = new MatTableDataSource(this.claims);
+      this.dataSource.paginator = this.paginator;
     }
     );
   }

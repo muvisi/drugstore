@@ -1,44 +1,29 @@
-#list3  li  {
-    font-size: 9px;
-    list-style: none;
-}
-div{
-	font-family: lato light;
-}
-
-.list-group ul li{
-height: 2px;
-font-size: 9px;
-}
-.list-group-item{
-	height: 33px;
-}			
-
 
 label {
-    font-size:9px;
+    font-size:18px;
+    font-weight: bolder;
 }
 
- fieldset 
-	{
-		margin: 0;
-		padding: 10px;       
-		position: relative;
-		border-radius:4px;
+//  fieldset 
+// 	{
+// 		margin: 0;
+// 		padding: 10px;       
+// 		position: relative;
+// 		border-radius:4px;
 	
-		padding-left:10px!important;
-	}	
+// 		padding-left:10px!important;
+// 	}	
 	
-		legend
-		{
-			font-size:10px;
-			font-weight:bold;
-			margin-bottom: 0px; 
-			width: 15%; 
-			border: 1px solid #ddd;
-			border-radius: 4px; 
-			padding: 5px 5px 5px 10px;
-		}
+// 		legend
+// 		{
+// 			font-size:10px;
+// 			font-weight:bold;
+// 			margin-bottom: 0px; 
+// 			width: 15%; 
+// 			border: 1px solid #ddd;
+// 			border-radius: 4px; 
+// 			padding: 5px 5px 5px 10px;
+// 		}
 .details {
 	font-size: 18px;
 }
@@ -171,4 +156,16 @@ th {
   font-weight: bolder;
   font-size:17px;
   text-transform: uppercase;
+}
+mat-form-field{
+  width:100%;
+}
+::ng-deep .mat-card .principal{
+  border: solid dodgerblue;
+
+ }
+ .txt{
+  text-align: left;
+  font-size: 13px;
+  font-weight: bolder;
 }

@@ -3,7 +3,7 @@
       <div class="row">
           <div class="col-sm-2">
                 <mat-form-field>
-                        <input matInput type="text" placeholder="Filter by visit numbere" (keyup)="applyFilter($event.target.value)"  [(ngModel)]="searchText">
+                        <input matInput type="text" placeholder="Filter by Visit Number" (keyup)="applyFilter($event.target.value)"  [(ngModel)]="searchText">
                         <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
                           <mat-icon>close</mat-icon>
                         </button>

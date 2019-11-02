@@ -52,6 +52,26 @@ export class ServiceService {
       map(this.extractData));
 
   }
+  updateDiagnosis(data): Observable<any> {
+    return this.http.post(endpoint + 'treatment/update_diagnosis/',data).pipe(
+      map(this.extractData));
+
+  }
+  addObservation(data): Observable<any> {
+    return this.http.post(endpoint + 'treatment/create_observation/',data).pipe(
+      map(this.extractData));
+
+  }
+  deleteDiagnosis(id): Observable<any> {
+    return this.http.delete(endpoint + 'treatment/delete_diagnosis/'+id+'/').pipe(
+      map(this.extractData));
+
+  }
+  deleteNote(id): Observable<any> {
+    return this.http.delete(endpoint + 'treatment/delete_note/'+id+'/').pipe(
+      map(this.extractData));
+
+  }
   getServices(): Observable<any> {
     return this.http.get(endpoint + 'data/service/').pipe(
       map(this.extractData));
@@ -60,7 +80,6 @@ export class ServiceService {
   serviceSearch(data): Observable<any> {
     return this.http.get(endpoint + 'data/service/?search='+ data).pipe(
       map(this.extractData));
-
   }
   getXray(): Observable<any> {
     return this.http.get(endpoint + 'data/service/?search=X-RAY'+'&limit=100').pipe(
@@ -73,17 +92,17 @@ export class ServiceService {
 
   }
   getTests(): Observable<any> {
-    return this.http.get(endpoint + 'data/service/?category=LABORATORY').pipe(
+    return this.http.get(endpoint + 'services/services/?category=LABORATORY').pipe(
       map(this.extractData));
 
   }
   searchTest(data): Observable<any> {
-    return this.http.get(endpoint + 'data/service/?category=LABORATORY' + '&search=' + data).pipe(
+    return this.http.get(endpoint + 'services/services/?category=LABORATORY' + '&search=' + data).pipe(
       map(this.extractData));
 
   }
   getProcedures(): Observable<any> {
-    return this.http.get(endpoint + 'data/service/?category=PROCEDURES').pipe(
+    return this.http.get(endpoint + 'services/services/?category=PROCEDURES').pipe(
       map(this.extractData));
 
   }
@@ -98,12 +117,12 @@ export class ServiceService {
 
   }
 searchProcedure(data): Observable<any> {
-    return this.http.get(endpoint + 'data/service/?category=PROCEDURES' + '&search=' + data).pipe(
+    return this.http.get(endpoint + 'services/services/?category=PROCEDURES' + '&search=' + data).pipe(
       map(this.extractData));
 
   }
   searchService(data): Observable<any> {
-    return this.http.get(endpoint + 'data/service/?search=' + data).pipe(
+    return this.http.get(endpoint + 'data/service/?search='+data).pipe(
       map(this.extractData));
 
   }
@@ -131,6 +150,10 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/').pipe(
       map(this.extractData));
 
+  }
+  searchClaims(data): Observable<any>{
+    return this.http.get(endpoint + 'claims/claims/?search='+ data).pipe(
+      map(this.extractData));
   }
   triageList(): Observable<any> {
     return this.http.get(endpoint + 'patients/triage_list/').pipe(
@@ -170,6 +193,9 @@ searchProcedure(data): Observable<any> {
   }
   labReport(): Observable<any> {
     return this.http.get(endpoint + 'elab/samples_report/');
+  }
+  reports(): Observable<any>{
+    return this.http.get(endpoint + 'payments/reports/');
   }
   sendBatch(data) {
     return this.http.post(endpoint + 'claims/send_batch_to_insurance/', data ).pipe(
@@ -213,6 +239,10 @@ searchProcedure(data): Observable<any> {
   }
   createSingleClaim(data) {
     return this.http.post(endpoint + 'claims/create_single_claim/', data).pipe(
+      map(this.extractData));
+  }
+  deleteBatch(id) {
+    return this.http.delete(endpoint + 'claims/delete-batch/'+id+'/').pipe(
       map(this.extractData));
   }
   members(id) {
@@ -326,6 +356,7 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
+
   prescriptions(): Observable<any> {
     return this.http.get(endpoint + 'data/prescription/').pipe(
       map(this.extractData));
@@ -356,7 +387,7 @@ searchScheme(payer, searchTerm): Observable<any> {
   }
 
   saveDrugs(data): Observable<any> {
-    return this.http.post(endpoint + 'services/save_drugs/', data ).pipe(
+    return this.http.post(endpoint + 'pharmacy/drugs/', data ).pipe(
       map(this.extractData));
 
   }
@@ -372,6 +403,10 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
 
+  setHours(data): Observable<any> {
+    return this.http.post(endpoint + 'hospitals/working_hours/', data).pipe(
+      map(this.extractData));
+  }
   patientBills(data): Observable<any> {
     return this.http.post(endpoint + 'payments/get_bills/', data).pipe(
       map(this.extractData));
@@ -387,8 +422,24 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
-  getProviderDrugs(id): Observable<any> {
-    return this.http.get(endpoint + 'services/provider/' + id + '/', ).pipe(
+
+  createDepartment(data): Observable<any> {
+    return this.http.post(endpoint + 'hospitals/create_department/', data ).pipe(
+      map(this.extractData));
+
+  }
+  deleteDepartment(id): Observable<any> {
+    return this.http.delete(endpoint + 'hospitals/department/'+id+'/').pipe(
+      map(this.extractData));
+
+  }
+  editDepartment(id,data): Observable<any> {
+    return this.http.put(endpoint + 'hospitals/department/'+id+'/',data).pipe(
+      map(this.extractData));
+
+  }
+  getProviderDrugs(): Observable<any> {
+    return this.http.get(endpoint + 'pharmacy/drugs_list/').pipe(
       map(this.extractData));
 
   }
@@ -398,13 +449,13 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
-  getProviderServices(id): Observable<any> {
-    return this.http.get(endpoint + 'services/provider_services/' + id + '/', ).pipe(
+  getProviderServices(): Observable<any> {
+    return this.http.get(endpoint + 'services/services/').pipe(
       map(this.extractData));
 
   }
-  deletePrescription(id): Observable<any> {
-    return this.http.delete(endpoint + 'services/prescription/' + id + '/', ).pipe(
+  deleteDrug(id): Observable<any> {
+    return this.http.delete(endpoint + 'pharmacy/drug/' + id + '/', ).pipe(
       map(this.extractData));
 
   }

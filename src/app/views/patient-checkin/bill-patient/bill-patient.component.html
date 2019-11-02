@@ -1,12 +1,12 @@
 <tabset [pills]="false" [hidden]="loading">
   <tab title="Tab title">
     <span *tabHeading>
-      <span style="font-family:lato">PATIENT BILLING</span>
+      <span >PATIENT BILLING</span>
     </span>
   <div class="row">
     <div class="col-sm-12">
-        <span style="font-size:13px;font-weight: bold" class="pull-right">PATIENT NO:<span  style="font-size:16px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
-        <span style="font-size:13px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:16px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
+        <span style="font-size:16px;font-weight: bold" class="pull-right">PATIENT NO:<span  style="font-size:20px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
+        <span style="font-size:16px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:20px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
     </div>
     <div class="col-sm-2">
       <h6 class="text-center">
@@ -92,24 +92,31 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
     </div>
     <br>
   <mat-card>
-    <mat-card-title><u style="font-family:lato light;font-weight: 600" class="text-success">PATIENT BILLS</u></mat-card-title>
+    <br>
       <div class="col-sm-12">
-  
-          <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-left: 10px;" printTitle="INVOICE"
-            printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
-          <button mat-raised-button class="btn btn-success btn-sm pull-right" style="margin-top:-15px;" (click)="billModal.show()"><i
-              class="fa fa-plus"></i> ADD BILL</button>
-          <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-right: 10px;"><i
-              class="cui-dollar"></i> TOTAL <span
-              style="color:white;font-size:13px;font-weight: bold">{{total | number}}</span></button>
-          <button mat-raised-button color="warn" class="btn-sm pull-right"
-            style="margin-top:-15px;margin-right: 10px" (click)="confirm()"
-            [disabled]="pending_amount <= 0"><i class="fa fa-money"></i> PAY BILLS <span
-              style="color:white;font-size:13px;font-weight: bold">{{pending_amount | number}}</span></button>
-    
+          <div class="row">
+            <div class="col-sm-4">
+              <u style="font-family:lato light;font-weight: 600;font-size: 19px;;" class="text-success">PATIENT BILLS</u>
+            </div>
+            <div class="col-sm-8">
+              <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-left: 10px;" printTitle="INVOICE"
+              printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
+            <button mat-raised-button class="btn btn-success btn-sm pull-right" style="margin-top:-15px;" (click)="billModal.show()"><i
+                class="fa fa-plus"></i> ADD BILL</button>
+            <!-- <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-right: 10px;"><i
+                class="cui-dollar"></i> TOTAL <span
+                style="color:white;font-size:13px;font-weight: bold">{{total | number}}</span></button> -->
+            <!-- <button mat-raised-button color="warn" class="btn-sm pull-right"
+              style="margin-top:-15px;margin-right: 10px" (click)="confirm()"
+              [disabled]="pending_amount <= 0"><i class="fa fa-money"></i> PAY BILLS <span
+                style="color:white;font-size:13px;font-weight: bold">{{pending_amount | number}}</span></button>
+       -->
+            </div>
+          </div>
+         
     
         </div>
-        <br>
+      
         <br>
         <div class="col-sm-12 table-responsive mat-elevation-z8" *ngIf="patientInfo.bills">
           <table mat-table [dataSource]="dataSource" matSort>
@@ -232,7 +239,7 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
                   <input type="text" class="form-control" placeholder="Transaction No" [(ngModel)]="mpesa.trx">
                 </div>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" placeholder="insurance amount" [(ngModel)]="mpesa.amount"
+                  <input type="number" class="form-control" placeholder="mpesa amount" [(ngModel)]="mpesa.amount"
                     (ngModelChange)="calculate()" [disabled]="status">
                 </div>
               </div>
@@ -384,192 +391,142 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
     </div>
   </div>
   </tab>
-  <tab title="Insure Check" [disabled]="!patientInfo?.insure_check?.length">
+  <tab>
     <span *tabHeading>
-      Insurance Details
+      INSURANCE DETAILS
     </span>
             <tabset>
               <tab>
-                <ng-template tabHeading><span style="font-size:12px;">Patient Information</span> </ng-template>
-              
+                <ng-template tabHeading><span style="font-size:14px;">Patient Information</span> </ng-template>
                 <div class="row">
-                  <div class="col-sm-4"><img title="profile image" class="img-circle img-responsive center"
-                      src="assets/img/avatars/download.png" style="margin-left:90px;height: 140px;">
-                    <br /><br />
-                    <ul class="list-group">
-                      <li class="list-group-item" contenteditable="false">
-                        <h5 align="center" style="font-size:12px;" class="text-primary">
-                          {{memberInfo?.name || memberInfo?.member_data?.name}}</h5>
-                      </li>
-                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i
-                              class="fa fa-address-card-o"></i> National id</strong></span>
-                        <b style="font-size:10px;" class="text-primary">{{memberInfo?.national_id}}</b>
-                      </li>
-                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i class="icon-calendar"></i>
-                            D.O.B</strong></span>
-                        <b style="font-size:10px;" class="text-primary">{{memberInfo?.dob || memberInfo?.member_data?.dob |date}}</b>
-                      </li>
-                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-people"></i>
-                            Gender</strong></span>
-                        <span
-                          *ngIf="memberInfo?.gender  == 'F'||memberInfo?.gender =='FEMALE' || memberInfo?.gender =='Female' || memberInfo?.gender == 'female' "><b
-                            style="font-size:10px;" class="text-primary">FEMALE</b></span>
-                        <span
-                          *ngIf="memberInfo?.gender == 'M' || memberInfo?.gender == 'Male' || memberInfo?.gender =='MALE' || memberInfo?.gender=='male'"><b
-                            style="font-size:10px;" class="text-primary">MALE</b></span>
-                      </li>
-              
-                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i
-                              class="icon-screen-smartphone"></i> Phone</strong></span>
-                        <b style="font-size:10px;" class="text-primary">{{  memberInfo?.phone || memberInfo?.member_data?.phone}}</b>
-                      </li>
-                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""> <i class="icon-cursor"></i>
-                            PhysicalAddress</strong></span>
-                        <b style="font-size:10px;"
-                          class="text-primary">{{ memberInfo?.physical_address || memberInfo?.member_data?.physical_address }}</b>
-                      </li>
-                      <li class="list-group-item text-right"><span class="pull-left"><strong class=""><i
-                              class="icon-envelope-open"></i> Email</strong></span>
-                        <b style="font-size:10px;" class="text-primary">{{ memberInfo?.email || memberInfo?.member_data?.email }}</b>
-              
-                      </li>
-                    </ul>
-              
+                    <div class="col-sm-4">
+                      <mat-form-field>
+                          <input type="text" [(ngModel)]="name" placeholder="Search Payer"  matInput   [typeahead]="payers" (typeaheadLoading)="payerSearch(name)"
+                          (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"   [ngModelOptions]="{standalone: true}" />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input  [(ngModel)]="scheme_name" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(scheme_name)" placeholder="Scheme"
+                                      (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="6" typeaheadOptionField="name"  matInput/>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                            <input [typeahead]="members" [typeaheadOptionsLimit]="7" [(ngModel)]="member"
+                            typeaheadOptionField="member_number" (typeaheadOnSelect)="onMember($event)"   placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
+                          </mat-form-field>
+                    </div>
                   </div>
-                  <div class="col-sm-8 container-fluid">
-              
-                    <div class="panel panel-default target">
-                      <div class="panel-body">
+                  <div class="row" *ngIf="!(memberInfo | keyvalue)?.length">
+                      <div class="col-sm-12">
+                        <h1 align="center">
+                          <i class="icon-magnifier-add" style="font-size:100px"></i>
+                          <br>
+                          <span style="font-size:16px;font-family: lato light">
+                            Search a member to view cover details
+                          </span>
+                        </h1>
+                      </div>
+                    </div>
+                  
+                <div class="row" *ngIf="(memberInfo | keyvalue)?.length" >
+                    <div class="col-sm-2">
+                        <h3 align="center"><img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
+                          style="height: 150px;" *ngIf="memberInfo.gender =='Male' || memberInfo.gender =='male' || memberInfo.gender =='M'">
+                          <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/female.png"style="height:150px;" *ngIf="memberInfo.gender =='Female' || memberInfo.gender =='female'|| memberInfo.gender =='F'"></h3>
+                      </div>
+                  <div class="col-sm-5 cls">
+                    <h5> {{memberInfo.name}} | <span style="font-weight: 600" class="text-primary">
+                        <span *ngIf="memberInfo?.age?.years > 0">{{memberInfo?.age?.years}}  Years</span>
+                        <span *ngIf="memberInfo?.age?.months > 0">{{memberInfo?.age?.months}} Months</span>
+                        <span *ngIf="memberInfo?.age?.days > 0">{{memberInfo?.age?.days}} Days</span>
+                      </span>| <span class="text-primary" style="font-weight: 600">{{memberInfo?.gender}}</span>| <span *ngIf="memberInfo.national_id != ''">ID: <span>{{memberInfo?.national_id}}</span></span></h5>
+                    <div class="row" >
+                      <div class="col-sm-12">
                         <div class="row">
-                          <fieldset class="col-md-12">
-                            <legend>Member Information</legend>
-              
-                            <div class="panel panel-default">
-                              <div class="panel-body">
-                                <div class="row">
-                                  <div class="col-sm-3"><span style="font-size:10px;">MEMBER NUMBER</span></div>
-                                  <div class="col-sm-3"><span style="font-size:10px;">RELATIONSHIP</span></div>
-                                  <div class="col-sm-3"><span style="font-size:10px;">PRINCIPAL</span></div>
-                                  <div class="col-sm-3" style="font-size:10px;"> <span>AGE</span></div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-3"> <b style="font-size:10px;"
-                                      class="text-primary">{{memberInfo?.member_number || memberInfo?.member_data?.member_number}}</b>
-                                  </div>
-                                  <div class="col-sm-3"><b style="font-size:10px;"
-                                      class="text-primary">{{memberInfo?.relationship ||memberInfo?.member_data?.relationship | uppercase}}</b>
-                                  </div>
-                                  <div class="col-sm-3"><b style="font-size:10px;" class="text-primary"><i
-                                        class="icon-check text-success"></i></b></div>
-                                  <div class="col-sm-3"><b style="font-size:10px;"
-                                      class="text-primary">{{memberInfo?.age || memberInfo?.member_data?.age}}</b></div>
-                                </div>
-                              </div>
-                            </div>
-              
-                          </fieldset>
-              
-                          <div class="clearfix"></div>
-              
-                        </div>
-                        <br />
-              
-                        <div class="row">
-                          <fieldset class="col-md-12">
-                            <legend>Daily LImits</legend>
-              
-                            <div class="panel panel-default">
-                              <div class="panel-body">
-                                <div class="row">
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT
-                                  </div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i>
-                                    OUTPATIENT</div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i>
-                                    MATERNITY</div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i>
-                                    DENTAL</div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i>
-                                    OPTICAL</div>
-                                </div>
-                              </div>
-                            </div>
-              
-                          </fieldset>
-              
-                          <div class="clearfix"></div>
-              
-                        </div>
-                        <br />
-                        <div class="row">
-                          <fieldset class="col-md-12">
-                            <legend>Annual Limits</legend>
-              
-                            <div class="panel panel-default">
-                              <div class="panel-body">
-                                <div class="row">
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-bed"></i> INPATIENT
-                                  </div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-share icons"></i>
-                                    OUTPATIENT</div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="fa fa-heart"> </i>
-                                    MATERNITY</div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="cui-tags icons"></i>
-                                    DENTAL</div>
-                                  <div class="col-sm-2 text-primary" style="font-size:10px;"> <i class="icon-eyeglass"></i>
-                                    OPTICAL</div>
-                                </div>
-                              </div>
-                            </div>
-              
-                          </fieldset>
-              
-                          <div class="clearfix"></div>
-              
+                          <div class="col-sm-4">INSURANCE</div>
+                          <div class="col-sm-8 txt text-success">{{memberInfo?.payer}}</div>
                         </div>
                       </div>
-              
-                    </div>
-                    <br />
-              
-                    <div class="row">
-              
-                      <fieldset class="col-md-12">
-                        <legend>Insurance Details</legend>
-                        <style>
-                          .panel-body {
-                            font-size: 12px;
-                          }
-                        </style>
-                        <div class="panel panel-default">
-                          <div class="panel-body">
-                            <div class="row">
-                              <div class="col-sm-3"><b style="font-size:9px;">NAME</b></div>
-                              <div class="col-sm-3"><b style="font-size:9px;">SCHEME</b></div>
-                              <div class="col-sm-4"><b style="font-size:9px;">PLAN</b></div>
-                              <div class="col-sm-2"><b style="font-size:9px;">COPAY</b></div>
+                      <div class="col-sm-12">
+                          <div class="row">
+                              <div class="col-sm-4">SCHEME NAME</div>
+                              <div class="col-sm-8 txt">{{memberInfo?.scheme}}</div>
                             </div>
-                            <div class="row">
-                              <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">
-                                {{memberInfo?.payer?.name || memberInfo?.payer }}</div>
-                              <div class="col-sm-3 text-primary" style="font-size:9px;font-weight: bold;">
-                                {{memberInfo?.scheme || memberInfo?.member_data?.scheme}}</div>
-                              <div class="col-sm-4 text-primary" style="font-size:9px;font-weight: bold;">
-                                {{memberInfo?.plan || memberInfo?.member_data?.plan}}</div>
-                              <div class="col-sm-2 text-primary">0</div>
-                            </div>
-                          </div>
                         </div>
-              
-                      </fieldset>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">PLAN NAME</div>
+                                <div class="col-sm-8 txt">{{memberInfo?.plan}}</div>
+                              </div>
+                          </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">PLAN EFFECTIVE DATE</div>
+                                <div class="col-sm-8">{{memberInfo?.plan_effective_date}}</div>
+                              </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">PLAN EXPIRY DATE</div>
+                                <div class="col-sm-8 txt text-danger">{{memberInfo?.plan_expire_date}}</div>
+                              </div>
+                         </div>
+                         <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">MEMBER NUMBER</div>
+                                <div class="col-sm-8 txt">{{memberInfo?.member_number}}</div>
+                              </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">STATUS</div>
+                                <div class="col-sm-8 txt"><span  *ngIf="memberInfo?.status" class="btn btn-success btn-sm">ACTIVE</span>
+                                  <span  *ngIf="!memberInfo?.status" class="btn btn-danger btn-sm">INACTIVE</span>
+                                </div>
+                              </div>
+                          
+                        </div>
                     </div>
-              
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="col-sm-12">
+                        <mat-card class="principal">
+                          <mat-card-subtitle>PRINCIPAL DETAILS</mat-card-subtitle>
+                            <div class="row">
+                                <div class="col-sm-12 cls">
+                                    <h5> {{memberInfo.name}} | <span style="font-weight: 600" class="text-primary">
+                                        <span *ngIf="memberInfo?.age?.years > 0">{{memberInfo?.age?.years}}  Years</span>
+                                        <span *ngIf="memberInfo?.age?.months > 0">{{memberInfo?.age?.months}} Months</span>
+                                        <span *ngIf="memberInfo?.age?.days > 0">{{memberInfo?.age?.days}} Days</span>
+                                      </span>| <span class="text-primary" style="font-weight: 600">{{memberInfo?.gender}}</span>|</h5>
+                                </div>
+                            </div>
+                            <div class="row cls">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                      <div class="col-sm-4">INSURANCE</div>
+                                      <div class="col-sm-8 txt text-info">{{memberInfo?.payer}}</div>
+                                    </div>
+                                  </div>
+                                <div class="col-sm-4">MEMBER NUMBER</div>
+                                <div class="col-sm-8 txt">{{memberInfo?.member_number}}</div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-4">STATUS</div>
+                                  <div class="col-sm-8 txt"><span  *ngIf="memberInfo?.status" class="btn btn-success btn-sm">ACTIVE</span>
+                                    <span  *ngIf="!memberInfo?.status" class="btn btn-danger btn-sm">INACTIVE</span>
+                                  </div>
+                              </div>
+                             
+                        </mat-card>
+                    </div>
                   </div>
                 </div>
-              
               </tab>
               <tab>
-                <ng-template tabHeading> <span style="font-size:12px;">Benefits</span></ng-template>
+                <ng-template tabHeading> <span style="font-size:14px;">Benefits</span></ng-template>
                   <div class="row">
                     <div class="col-sm-4">
                       <mat-form-field>
@@ -604,7 +561,7 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
                 </div>
               </tab>
               <tab>
-                <ng-template tabHeading> <span style="font-size:12px;">Exclusion</span></ng-template>
+                <ng-template tabHeading> <span style="font-size:14px;">Exclusion</span></ng-template>
                 <div class="row" >
                   <div class="col-sm-10">
                     <div class="row">
@@ -651,6 +608,123 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
               </tab>
             </tabset>
   </tab>
+  <tab>
+      <span *tabHeading>
+        PAYMENTS
+      </span>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Choose Payment Mode
+                <span class=" text-danger pull-right" style="font-size:18px;font-weight:bolder;"> <i class="cui-dollar"></i>
+               Pending Amount: {{pending_amount | number:'1.2-2'}}</span>
+              </h3>
+        </div>
+          <div class="col-sm-12">
+              
+              <hr>
+              <div class="row">
+                <div class="col-sm-2">
+                  <mat-checkbox [checked]="isMpesa" (change)="onMpesa()"> <b>Mpesa</b></mat-checkbox>
+                </div>
+                <div class="col-sm-2">
+                  <mat-checkbox [checked]="isCash" (change)="onCash()"><b>Cash</b></mat-checkbox>
+                </div>
+                <div class="col-sm-2">
+                  <mat-checkbox [checked]="isInsurance" *ngIf="memberInfo?.memberInfo" (change)="onInsurance()"><b>Insurance</b></mat-checkbox>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-success btn-sm pull-right" style="margin-right:8px;" (click)="submitPayment()"
+                  [disabled]="bill_amount < pending_amount">Submit</button>
+                </div>
+      
+              </div>
+              <div class="row">
+                <div class="col-sm-12" *ngIf="isInsurance">
+                  <label style="font-size:14px;">Insurance Amount</label>
+                  <input type="number" [disabled]="status" class="form-control" placeholder="insurance amount"
+                    [(ngModel)]="amount" (ngModelChange)="calculate()">
+                </div>
+                <div class="col-sm-12" *ngIf="isCash">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label style="font-size:14px;">Cash </label>
+                      <input type="number" min="0" class="form-control" placeholder="Cash Amount" [(ngModel)]="cash"
+                        (ngModelChange)="calculate()" [disabled]="status">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12" *ngIf="isMpesa">
+                  <label style="font-size:14px;">Mpesa Deposit</label>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" placeholder="Transaction No" [(ngModel)]="mpesa.trx">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="number" class="form-control" placeholder="mpesa amount" [(ngModel)]="mpesa.amount"
+                        (ngModelChange)="calculate()" [disabled]="status">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <br>
+            </div>
+
+              <div class="col-sm-12" *ngIf="patientInfo.bills">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                    <ng-container matColumnDef="sn">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
+                        <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                      </ng-container>
+              
+                  <ng-container matColumnDef="service">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> SERVICE </th>
+                    <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORY</th>
+                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="bill_number">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> BILL NUMBER </th>
+                    <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="invoice__no">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> INVOICE NUMBER </th>
+                    <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="rate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>COST</th>
+                    <td mat-cell *matCellDef="let element"> {{element.rate}}</td>
+                  </ng-container>
+          
+                  <!-- <ng-container matColumnDef="reverse">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>REVERSE</th>
+                    <td mat-cell *matCellDef="let element"> <button (click)="reverseBill(element)"><i class="cui-action-undo"
+                          style="color:red;font-weight:900"></i> Reverse</button></td>
+                  </ng-container> -->
+          
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</th>
+                    <td mat-cell *matCellDef="let element"><span  *ngIf="element.status =='0'">Not Paid</span>
+                      <span  *ngIf="element.status =='1'">Paid</span>
+                    </td>
+                  </ng-container>
+          
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+          
+                <br>
+              </div>
+          
+      </div>
+      </tab>
 </tabset>
 
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

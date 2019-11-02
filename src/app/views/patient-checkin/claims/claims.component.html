@@ -1,84 +1,106 @@
-
-<div class="card">
-<div class="card-body">
+<div>
+<mat-card>
+  <mat-card-title> <span style="font-size:16px;"> <i class="fa fa-filter"></i> FILTERS</span> </mat-card-title>
   <div class="row">
-    <div class="col-sm-8">
-      <div class="form-group row">
-        <div class="col-3">
-          <input type="text" class="form-control" [(ngModel)]="name" placeholder="Patient name" (input)="SearchName()">
-        </div>
-        <div class="col-3">
-          <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Member number" (input)="Search()">
-        </div>
-        <div class="col-3">
-          <input type="text" class="form-control" placeholder="Visit number" (input)="SearchVisit()"
-            [(ngModel)]="visitNumber">
-        </div>
-        <div class="col-3">
-          <input type="text" class="form-control" placeholder="Patient number" (input)="SearchByPatient()"
-            [(ngModel)]="patientNumber">
-        </div>
-        <!-- <div class="col-3">
-                                  <input type="text" class="form-control" placeholder="PHONE " (input)= "SearchPhone()" [(ngModel)]="phone" >
-                              </div> -->
-  
-      </div>
-    </div>
-    <!-- <div class="col-sm-4"> <button class="btn btn-default pull-right" style="background-color:#5e64ff" (click)="childModal.show()"><b style="color:white"> <i class="icon-plus"></i> Add Patient</b></button> </div> -->
-  </div>
-<div class="row">
-  <div class="col-sm-12 table-responsive">
-<table class="table table-condensed table-hover table-sm">
-  <thead style="background-color:darkblue">
-    <tr style="font-size:10px;color:white">
-      <th>S.No</th>
-      <th> MEMBER NUMBER</th>
-      <th> PATIENT NO</th>
-      <th>VISIT NUMBER</th>
-      <th> INSURANCE COMPANY</th>
-      <th> MEMBER NUMBER</th>
-      <th> VISIT TYPE</th>
-      <th> AMOUNT</th>
-      <!-- <th><i class="icon-wallet"></i> Amount</th>
-      <th><i class="cui-calendar"></i>Check in</th>
-      <th><i class="icon-clock"></i> Time</th> -->
-
-    </tr>
-  </thead>
-  <tbody id="displ">
-    <tr *ngFor="let visit of claims;let i = index" style="font-size:9px" (click)="claimDetails(visit)">
-      <td>{{i+1}}.</td>
-      <td > {{visit.member|uppercase}}</td>
-      <td > {{visit.patient_number}}</td>
-      <td > {{visit.visit_number}}</td>
-      <td> {{visit.insurance_company}}</td>
-      <td >  {{visit.member_number}}</td>
-      <td> {{visit.visit_type}}</td>
-      <th >{{visit.amount|number}}</th>
-    </tr>
-   
-
-  </tbody>
-</table>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </div>
-</div>
-</div>
-</div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Visit Number" [typeahead]="claims"
+        typeaheadOptionField="visit_number"
+        (typeaheadOnSelect)="onSelect($event)"
+          (keyup)="search($event.target.value)">
+       
       
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Patient Number" 
+          (keyup)="search($event.target.value)"
+          [typeahead]="claims"
+        typeaheadOptionField="patient_number"
+        (typeaheadOnSelect)="onSelect($event)"
+          (keyup)="search($event.target.value)">
+      
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Member" 
+        [typeahead]="claims"
+        typeaheadOptionField="member"
+        (typeaheadOnSelect)="onSelect($event)"
+        (keyup)="search($event.target.value)">
+      </mat-form-field>
+    </div>
 
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Member Number"
+        [typeahead]="claims"
+        typeaheadOptionField="member_number"
+        (typeaheadOnSelect)="onSelect($event)"
+        (keyup)="search($event.target.value)">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Insurance Company">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2">
+      <mat-form-field>
+        <input matInput  placeholder="Date" [(ngModel)]="date">
+      </mat-form-field>
+    </div>
+  </div>
+</mat-card>
+<br>
+<div class="mat-elevation-z8 table-responsive">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="sn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="member">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PATIENT</th>
+      <td mat-cell *matCellDef="let element"> {{element.member | uppercase}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="patient_number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PATIENT NUMBER </th>
+      <td mat-cell *matCellDef="let element"> {{element.patient_number}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="visit_number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> VISIT NUMBER </th>
+      <td mat-cell *matCellDef="let element"> {{element.visit_number}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="insurance_company">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> INSURANCE COMPANY</th>
+      <td mat-cell *matCellDef="let element"> {{element.insurance_company}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="member_number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>MEMBER NUMBER</th>
+      <td mat-cell *matCellDef="let element"> {{element.member_number}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="visit_type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> VISIT TYPE </th>
+      <td mat-cell *matCellDef="let element"> {{element.visit_type | uppercase}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> AMOUNT </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount | number:'1.2-2' }} </td>
+    </ng-container>
 
-
-
-
-
-
-
-
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="claimDetails(row)"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[20,40]" showFirstLastButtons></mat-paginator>
+</div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

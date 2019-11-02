@@ -24,6 +24,7 @@ export class SetUpComponent implements OnInit {
   @ViewChild('drugUpdateModal', { static: false }) drugUpdateModal: ModalDirective;
   @ViewChild('profileModal', { static: false }) profileModal: ModalDirective;
   @ViewChild('branchModal', { static: false }) branchModal: ModalDirective;
+  @ViewChild('checkModal', { static: false }) checkModal: ModalDirective;
   selected = 'doctor';
   user;
   hospital: any ={};
@@ -41,13 +42,17 @@ export class SetUpComponent implements OnInit {
   services;
   name;
   text;
+  selectedDepartment: any ={};
+  department: any ={};
   selectedUser: any = {};
   selectedService:any = {};
   selectedServices = [];
-  displayedColumns: string[] = ['name', 'username', 'phone', 'email','role','department','speciality','profile','status','delete'];
-  hospitalColumns: string[] = ['name', 'provider_type','reg_no','contact_number','country'];
+  displayedColumns: string[] = ['name', 'username', 'phone', 'email','role'];
+  insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
+  hospitalColumns: string[] = ['name', 'provider_type','reg_no','contact_number','postal_address','postal_code'];
   columns: string[] = ['name', 'category', 'code', 'cost','delete'];
   drugColumns: string[] = ['name', 'generic_name', 'code', 'form','strength','quantity','cost','pack_cost','edit','delete'];
+  payers: any;
 
   constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent) {
   }
@@ -67,16 +72,35 @@ export class SetUpComponent implements OnInit {
     this.getServices();
     this.getService();
     this.hospitalDrugs();
+    this.getPayers();
+  }
+  deleteDepartment(){
+    
+    this.service.deleteDepartment(this.selectedDepartment.id).subscribe((res)=>{
+      this.toastr.success('Successfully Deleted Department');
+      this.checkModal.hide();
+      this.ngOnInit();
+    })
+  }
+  editDepartment(){
+    this.service.editDepartment(this.selectedDepartment.id,this.selectedDepartment).subscribe((res)=>{
+      this.toastr.success('Successfully edited Department');
+
+      this.checkModal.hide();
+    })
+  }
+  getPayers(){
+    this.service.getPayers().subscribe((res)=>{
+      this.payers = res.results;
+    })
   }
   hospitalDrugs(){
-    this.service.getProviderDrugs(this.user.hospital).subscribe((res) => {
+    this.service.getProviderDrugs().subscribe((res) => {
       this.drugsSelected = new MatTableDataSource(res.results);
 
     });
   }
-  setHospital(item) {
-    this.employee.hospital = item.item.id;
-  }
+ 
   hospitalDetails(item){
     this.navCtrl.navigate('/dashboard/set-up/hospital/',{data: item})
   }
@@ -107,7 +131,7 @@ updateDrug(){
 dropDrug(item) {
  const id = item.id;
 
- this.service.deletePrescription(id).subscribe((res) => {
+ this.service.deleteDrug(id).subscribe((res) => {
 this.toastr.success('Successfully deleted');
 this.hospitalDrugs();
  },
@@ -176,7 +200,7 @@ prescriptionList() {
   });
 }
 getService() {
-this.service.getProviderServices(this.user.hospital).subscribe((res) => {
+this.service.getProviderServices().subscribe((res) => {
   this.providerServices = new MatTableDataSource(res.results);
   this.providerServices.sort = this.sSort;
 });
@@ -205,12 +229,20 @@ this.service.saveDrugs(data).subscribe((res) => {
     });
   }
   serviceSearch(text){
+    // if(text != null){
+    //   this.service.serviceSearch(text).subscribe((res)=> {
+    //    this.service =res.results;
+    //   })
+    // }
+   
+    console.log(text);
+  }
+  searchServices(text){
     if(text != null){
-      this.service.serviceSearch(text).subscribe((res)=> {
-       this.service =res.results;
+      this.service.searchService(text).subscribe((res)=> {
+        this.services =res.results;
       })
     }
-   
   }
   searchPrescription(text){
     if(text != null){
@@ -250,14 +282,26 @@ this.service.saveDrugs(data).subscribe((res) => {
    
   }
  addBranch(){
-   console.log(this.branch);
+  
    this.service.createHospitalBranch(this.branch).subscribe((res)=>{
      console.log(res);
      this.toastr.success('Successfully created a Branch');
-     this.branchModal.hide();
+     this.branch = {};
+     this.ngOnInit();
    },(error) => {
         this.toastr.error('Branch creation Failed');
    });
  }
+ addDepartment(){
+  
+  this.service.createDepartment(this.department).subscribe((res)=>{
+    console.log(res);
+    this.toastr.success('Successfully created a Department');
+    this.department = {};
+    this.ngOnInit();
+  },(error) => {
+       this.toastr.error('Department creation Failed');
+  });
+}
   
 }

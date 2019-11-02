@@ -1,50 +1,62 @@
 <div class="card">
   <div class="card-header"><b style="font-size:10px;text-transform: uppercase" class="text-primary">Batch List</b></div>
   <div class="card-body">
-    <div class="col-sm-12 table-responsive ">
-      <table class="table table-condensed table-hover table-sm">
-        <thead>
-          <tr style="font-size:10px;font-weight:bold;background-color:darkblue">
-            <th style="color: white">S.NO</th>
-            <th style="color: white"> BATCH STATUS</th>
-            <th style="color: white">DISPATCH  USER</th>
-            <th style="color: white">BATCH  NUMBER</th>
-            <th class="text-danger" >NON EXISTING CLAIMS</th>
-            <th class="text-warning">MISSMATCHED AMOUNT</th>
-            <th class="text-danger">UNCODED  CLAIMS
-            </th>
-            <th class="text-success">SUCCESSFULLY UPLOADED</th>
-            <th style="color: white">CLAIMS IN BATCH</th>
-            <th style="color: white">BATCH AMOUNT</th>
-            <th style="color: white">BATCH  DATE</th>
-            <!-- <th><i class="icon-wallet"></i> Amount</th>
-                    <th><i class="cui-calendar"></i>Check in</th>
-                    <th><i class="icon-clock"></i> Time</th> -->
     
-          </tr>
-        </thead>
-        <tbody id="displ">
-
-          <tr *ngFor="let batch of batches;let i = index" style="font-weight:bold;font-size:10px;"  (click)="batchDetails(batch)">
-            <td>{{i+1}}</td>
-            <td><span class="badge badge-danger" *ngIf="batch.status == 'NEW'" style="border-radius:2px;font-size:10px;">Not Dispatched</span>
-              <span class="badge badge-success" *ngIf="batch.status == 'SENT'" style="border-radius:2px;font-size:10px;">Dispatched</span>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="sn">
+            <th mat-header-cell *matHeaderCellDef>S/n</th>
+            <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">
+                <span class="badge badge-danger" *ngIf="element.status == 'NEW'" style="border-radius:2px;font-size:13px;">Not Dispatched</span>
+                <span class="badge badge-success" *ngIf="element.status == 'SENT'" style="border-radius:2px;font-size:13px;">Dispatched</span>
             </td>
-            <td> {{batch.user.name | uppercase}}</td>
-            <td> {{batch.no}}</td>
-            <td class="text-danger"> {{batch.unmatched}}</td>
-            <td class="text-warning"> {{batch.amountConflicting}}</td>
-            <td class="text-danger"> {{batch.uncoded}}</td>
-            <td class="text-success"> {{batch.successful}}</td>
-            <td> {{batch.batchclaim.length}}</td>
-            <td> {{batch.amount}}</td>
-            <td>{{batch.date | date }}</td>
-          
-    
-          </tr>
-    
-        </tbody>
-      </table>
-    </div>
+          </ng-container>
+          <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef> User </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.name | uppercase}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef> Batch No </th>
+            <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+          </ng-container>
+          <ng-container matColumnDef="unmatched">
+              <th mat-header-cell *matHeaderCellDef> Non Existing Claims</th>
+              <td mat-cell *matCellDef="let element"> {{element.unmatched}} </td>
+            </ng-container>
+            <ng-container matColumnDef="amountConflicting">
+                <th mat-header-cell *matHeaderCellDef> MISSMATCHED AMOUNT </th>
+                <td mat-cell *matCellDef="let element"> {{element.amountConflicting}} </td>
+              </ng-container>
+              <ng-container matColumnDef="uncoded">
+                  <th mat-header-cell *matHeaderCellDef> Uncoded Claims </th>
+                  <td mat-cell *matCellDef="let element"> {{element.uncoded}} </td>
+                </ng-container>
+                <ng-container matColumnDef="successful">
+                    <th mat-header-cell *matHeaderCellDef>Successful Claims</th>
+                    <td mat-cell *matCellDef="let element"> {{element.successful}} </td>
+             </ng-container>
+             <ng-container matColumnDef="length">
+                <th mat-header-cell *matHeaderCellDef>Total Claims</th>
+                <td mat-cell *matCellDef="let element"> {{element.batchclaim.length}} </td>
+         </ng-container>
+         <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let element"> {{element.amount | number:'1.2-2'}} </td>
+     </ng-container>
+     <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date | date:'yyyy-MM-dd' }} </td>
+ </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="batchDetails(row)"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
   </div>
 </div>

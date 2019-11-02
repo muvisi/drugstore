@@ -35,6 +35,7 @@ import { AuthorizationLetterComponent } from '../patient-checkin/authorization-l
 import { AuthletterRequestComponent} from '../patient-checkin/authletter-request/authletter-request.component';
 import { PatientPrescriptionComponent } from '../patient-checkin/patient-prescription/patient-prescription.component';
 import { CalendarComponent } from '../patient-checkin/calendar/calendar.component';
+import { ReportsComponent } from '../patient-checkin/reports/reports.component';
 
 const routes: Routes = [
   {
@@ -293,20 +294,28 @@ const routes: Routes = [
     }
   }
   ,
-  {
-    path : 'pharmacy/patient-prescription',
-    component : PatientPrescriptionComponent,
-    data: {
-      title: 'News'
-    }
-    },
-    {
-      path : 'patients/calendar',
-      component : CalendarComponent,
-      data: {
-        title: 'Tags'
-      }
-      }
+{
+path : 'pharmacy/patient-prescription',
+component : PatientPrescriptionComponent,
+data: {
+title: 'News'
+}
+},
+{
+path : 'patients/calendar',
+component : CalendarComponent,
+data: {
+  title: 'Tags'
+}
+},
+{
+  path : 'reports',
+  component : ReportsComponent,
+  data: {
+    title: 'Tags'
+  }
+  }    
+      
 ];
 
 @NgModule({
