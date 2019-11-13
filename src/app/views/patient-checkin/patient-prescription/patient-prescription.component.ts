@@ -25,6 +25,7 @@ export class PatientPrescriptionComponent implements OnInit {
   amount=0;
   constructor(private service: ServiceService, private navCtrl: NgxNavigationWithDataComponent,public toastr: ToastrService) { 
     this.data = this.navCtrl.get('data');
+    console.log('gcfycc',this.data)
     
     if(this.data != null){
       this.id = this.data.visit;
@@ -43,7 +44,7 @@ export class PatientPrescriptionComponent implements OnInit {
     this.navCtrl.navigate('/dashboard/pharmacy')
   }
   patientPrescriptions(){
-    this.service.patientPrescription({visit_no: this.id}).subscribe((res)=>{
+    this.service.patientPrescription({visit_no: this.data.visit_no}).subscribe((res)=>{
       this.patient = res;
       this.dataSource = this.patient.prescriptions;
       let cost = 0;

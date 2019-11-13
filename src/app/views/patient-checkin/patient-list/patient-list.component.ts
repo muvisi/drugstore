@@ -24,7 +24,7 @@ export class PatientListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 patientsList() {
-   this.service.getTreatments().subscribe((res) => {
+   this.service.patientVisit().subscribe((res) => {
     this.dataSource = new MatTableDataSource <[]>(res.results);
     this.dataSource.paginator = this.paginator;
    }

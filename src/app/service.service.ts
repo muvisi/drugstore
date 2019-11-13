@@ -106,11 +106,6 @@ export class ServiceService {
       map(this.extractData));
 
   }
-  allPatientsPrescription(): Observable<any> {
-    return this.http.get(endpoint + 'treatment/patients_prescription/').pipe(
-      map(this.extractData));
-
-  }
   patientPrescription(data): Observable<any>{
     return this.http.post(endpoint + 'treatment/patient_prescription/', data).pipe(
       map(this.extractData));
@@ -266,6 +261,10 @@ getBills(): Observable<any>{
   return this.http.get(endpoint + 'payments/invoice/', ).pipe(
     map(this.extractData));
 }
+searchInvoice(data): Observable<any>{
+  return this.http.get(endpoint + 'payments/invoice/?search='+data).pipe(
+    map(this.extractData));
+}
 searchBills(data): Observable<any>{
   return this.http.get(endpoint + 'payments/bill/?search='+ data ).pipe(
     map(this.extractData));
@@ -275,11 +274,22 @@ searchBills(data): Observable<any>{
       map(this.extractData));
 
   }
+  updatePatient(data): Observable<any>{
+    return this.http.post(endpoint + 'patients/update_patient/',data).pipe(
+      map(this.extractData));
+  }
   getDoctors(): Observable<any> {
     return this.http.get(endpoint + 'users/doctors/').pipe(
       map(this.extractData));
 
     }
+    loadDrug(data): Observable<any> {
+      return this.http.post(endpoint + 'pharmacy/load_drug/',data).pipe(
+        map(this.extractData));
+  
+      }
+
+  
   getLabRequests() {
     return this.http.get(endpoint + 'elab/lab_requests/').pipe(
       map(this.extractData));
@@ -440,6 +450,11 @@ searchScheme(payer, searchTerm): Observable<any> {
   }
   getProviderDrugs(): Observable<any> {
     return this.http.get(endpoint + 'pharmacy/drugs_list/').pipe(
+      map(this.extractData));
+
+  }
+  searchDrugs(data): Observable<any> {
+    return this.http.get(endpoint + 'pharmacy/drugs_list/?search='+data).pipe(
       map(this.extractData));
 
   }

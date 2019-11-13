@@ -36,7 +36,7 @@ import { AuthletterRequestComponent} from '../patient-checkin/authletter-request
 import { PatientPrescriptionComponent } from '../patient-checkin/patient-prescription/patient-prescription.component';
 import { CalendarComponent } from '../patient-checkin/calendar/calendar.component';
 import { ReportsComponent } from '../patient-checkin/reports/reports.component';
-
+import { PatientEditComponent } from '../patient-checkin/patient-edit/patient-edit.component';
 const routes: Routes = [
   {
     path: '',
@@ -98,6 +98,14 @@ const routes: Routes = [
   {
     path: 'lab-orders',
     component: LabOrdersComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'labs'
+    }
+  },
+  {
+    path: 'patients/edit',
+    component:PatientEditComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'labs'
@@ -278,7 +286,7 @@ const routes: Routes = [
     }
   },
   {
-  path: 'patients/services',
+  path: 'patients/billing',
   component : PatientListComponent,
   canActivate: [AuthGuard],
   data: {

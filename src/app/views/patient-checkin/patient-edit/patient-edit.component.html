@@ -1,0 +1,103 @@
+<mat-card>
+<mat-card-title>Edit Patient Details</mat-card-title>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<div class="row">
+    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                          <mat-form-field>
+                              <input matInput placeholder="First Name" formControlName="first_name">
+                              
+                              <mat-error *ngIf="f.first_name.errors">First Name <strong>required</strong></mat-error>
+                            </mat-form-field>
+                      </div>
+                      <div class="col-sm-12">
+                          <mat-form-field>
+                              <input matInput placeholder="Middle Name" formControlName="other_names">
+                             
+                              <mat-error *ngIf="f.other_names.errors">Middle Name <strong>required</strong></mat-error>
+                            </mat-form-field>
+                      </div>
+                      <div class="col-sm-12">
+                          <mat-form-field>
+                              <input matInput placeholder="Last Name" formControlName="last_name">
+                              <mat-error *ngIf="f.last_name.errors">Last Name <strong>required</strong></mat-error>
+                            </mat-form-field>
+                      </div>
+                     
+                      <div class="col-sm-12">
+                        <mat-radio-group  formControlName="gender">
+                        <div class="row" style="margin-top:20px">
+                          <div class="col-sm-6">
+                            <mat-radio-button value="Female"  style="font-family: lato light"><b>Female</b></mat-radio-button>
+                          </div>
+                          <div class="col-sm-6">
+                            <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
+                          </div>
+                        </div>
+                      </mat-radio-group>
+                      </div>
+                      
+                      </div>
+                      <div class="col-sm-4">
+                          
+                          <div class="col-sm-12">
+                            <mat-form-field >
+                              <span class="prefix"  matPrefix>+254 &nbsp;</span>
+                              <input matInput placeholder="Phone" formControlName="phone">
+                              <mat-error *ngIf="f.phone.errors">Phone <strong>required</strong></mat-error>
+        
+                            </mat-form-field>
+                      </div>
+                      <div class="col-sm-12">
+                        <mat-form-field>
+                            <input matInput placeholder="D.o.b" [maxDate]="maxDate"  formControlName="dob"  bsDatepicker>
+                            <mat-icon matSuffix>date_range</mat-icon> 
+                            <mat-error *ngIf="f.dob.errors">Date of birth <strong>required</strong></mat-error>
+                          </mat-form-field>
+                    </div> 
+                      <div class="col-sm-12">
+                        <mat-form-field>
+                            <input matInput placeholder="National Id" formControlName="national_id">
+                            <mat-error *ngIf="f.national_id.errors">National Id <strong>required</strong></mat-error>
+                          </mat-form-field>
+                    </div> 
+                    <div class="col-sm-12">
+                            <mat-form-field>
+                                <input matInput placeholder="Nhif number" formControlName="nhif_number">
+                              </mat-form-field>
+                        </div> 
+                      
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="col-sm-12">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Email" formControlName="email">
+                                            <mat-error *ngIf="f.email.errors">Valid email <strong>required</strong></mat-error>
+                                          </mat-form-field>
+                                    </div>
+                        <div class="col-sm-12">
+                          <mat-form-field>
+                              <input matInput placeholder="Occupation" formControlName="occupation">
+                            </mat-form-field>
+                      </div> 
+                      <div class="col-sm-12">
+                        <mat-form-field>
+                            <input matInput placeholder="County" formControlName="county">
+                            <mat-error *ngIf="f.county.errors">County <strong>required</strong></mat-error>
+                          </mat-form-field>
+                    </div> 
+                    
+                    <div class="col-sm-12">
+                      <mat-form-field>
+                          <input matInput placeholder="Residence" formControlName="residence">
+                        </mat-form-field>
+                  </div>    
+                     </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <button class="btn btn-success btn-sm pull-right" type="submit"> <b><i class="icon-refresh"></i> Submit</b></button>
+  </div>
+</div>
+</form>
+</mat-card>

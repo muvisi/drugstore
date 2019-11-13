@@ -51,7 +51,7 @@ export const navItems: NavData[] = [
       },
       {
         name: 'Billing',
-        url: '/dashboard/patients/services',
+        url: '/dashboard/patients/billing',
         icon: 'fa fa-database'
       },
       {
@@ -67,8 +67,13 @@ export const navItems: NavData[] = [
       {
         name: 'Diagnosis & Treatment',
         url: '/dashboard/patients/diagnosis&treatment/',
-        icon: 'icon-hourglass'
+        icon: 'fa fa-heartbeat'
       },
+      // {
+      //   name: 'Edit Patient',
+      //   url: '/dashboard/patients/edit',
+      //   icon: 'cui-pencil',
+      // },
        {
         name: 'Appointment',
         url: '/dashboard/patients/calendar',
@@ -113,6 +118,11 @@ export const navItems: NavData[] = [
     name: 'Lab',
     url: '/dashboard/lab',
     icon: 'icon-chemistry',
+  },
+  {
+    name: 'Pharmacy Stock',
+    url: '/dashboard/stock-level',
+    icon: 'icon-social-dropbox',
   },
   {
     name: 'Payments',

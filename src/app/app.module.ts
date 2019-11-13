@@ -1,7 +1,7 @@
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import * as env from '../environments/environment';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -87,6 +87,7 @@ export function tokenGetter() {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
+  DatePipe,
   AuthGuard,
   NgxNavigationWithDataComponent,
   {

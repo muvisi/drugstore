@@ -1,35 +1,23 @@
-.mat-table__wrapper .mat-table {
-    min-width: auto !important;
-    width: 100% !important;
-}
-
-.mat-header-row {
-    width: 100%;
-}
-
-.mat-row {
-    width: 100%;
-}
 table{
 	width: 100%;
-	font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;   
+	font-family:lato light;
 }
 tr.mat-header-row {
-	height:33px;
-	background-color: darkblue;
-	
+	height:38px;
 }
-
 td.mat-cell{
-	font-size:11px;
+  font-size:13px;
+  font-weight: bold;
 }
 tr.mat-row, tr.mat-footer-row {
   height: 32px;
 }
 
 th.mat-header-cell {
-	text-align: left;
-	color:white;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
@@ -47,4 +35,8 @@ th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-c
 }
 ::ng-deep .mat-checkbox-checked.mat-primary .mat-checkbox-background .mat-checkbox-background , .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
   background: pink!important;
+}
+mat-form-field{
+	width: 100%;
+	font-size:17px;
 }

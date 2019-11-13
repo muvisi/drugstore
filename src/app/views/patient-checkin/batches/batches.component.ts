@@ -11,6 +11,7 @@ import {MatTableDataSource} from '@angular/material/table';
 export class BatchesComponent implements OnInit {
   batches: any = [];
   dataSource;
+  value;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   displayedColumns: string[] = ['sn', 'status', 'no', 'unmatched','amountConflicting','uncoded','successful','length','amount','date'];
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) { }
@@ -50,4 +51,8 @@ export class BatchesComponent implements OnInit {
     this.navCtrl.navigate('/dashboard/eclaims-dashboard/batch-details', { id: item.id });
   }
 
+  OnSelect(item){
+    this.navCtrl.navigate('/dashboard/eclaims-dashboard/batch-details', { id: item.item.id });
+
+  }
 }

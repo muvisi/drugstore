@@ -65,13 +65,17 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header>TIME</th>
               <td mat-cell *matCellDef="let element"> {{element.check_in | date : 'shortTime'}} </td>
       </ng-container>
-      <ng-container matColumnDef="referral">
+      <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef>EDIT </th>
+          <td mat-cell *matCellDef="let element" (click)="edit(element)">  <i class="icon-note" style="font-size:15px;font-weight: bolder"></i> </td>
+       </ng-container>
+       <ng-container matColumnDef="referral">
           <th mat-header-cell *matHeaderCellDef>REFERRAL</th>
-          <td mat-cell *matCellDef="let element">  <i class="icon-share" style="font-size:22px;font-weight: bolder"></i> </td>
+          <td mat-cell *matCellDef="let element">  <i class="icon-share" style="font-size:15px;font-weight: bolder"></i> </td>
        </ng-container>
        <ng-container matColumnDef="new_visit">
           <th mat-header-cell *matHeaderCellDef>NEW VISIT</th>
-          <td mat-cell *matCellDef="let element" (click)="revisit(element)">  <i class="fa fa-plus text-success " style="font-size:22px;font-weight: bolder"></i>  </td>
+          <td mat-cell *matCellDef="let element" (click)="revisit(element)">  <i class="fa fa-plus text-success " style="font-size:15px;font-weight: bolder"></i>  </td>
        </ng-container>
        <ng-container matColumnDef="appointment">
           <th mat-header-cell *matHeaderCellDef> + APPOINTMENT</th>

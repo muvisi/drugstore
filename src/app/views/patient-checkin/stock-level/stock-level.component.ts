@@ -14,7 +14,8 @@ export class StockLevelComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(ModalDirective, {static: true}) staticModal: ModalDirective;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  displayedColumns: string[] = ['name', 'generic_name', 'therapeutic_class', 'strength', 'form', 'status', 'quantity', 'cost', 'load'];
+  loading:any;
+  displayedColumns: string[] = ['sn','name', 'generic_name', 'therapeutic_class', 'strength', 'form', 'status', 'quantity', 'cost'];
   dataSource;
   drug: any = {};
   constructor(public service: ServiceService) { }
@@ -23,19 +24,38 @@ export class StockLevelComponent implements OnInit {
     this.drugs();
   }
   drugs() {
-    this.service.prescriptions().subscribe((res) => {
-      this.dataSource = new MatTableDataSource<any>(res.results);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+    this.service.getProviderDrugs().subscribe((res) => {
+      this.loader(res.results);
     });
   }
   applySearch(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+loader(items){
+      this.dataSource = new MatTableDataSource<any>(items);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+}
 loadMedicines(item) {
 console.log(item);
 this.drug = item;
 this.staticModal.show();
+}
+onSubmit(){
+  
+  this.loading = true;
+  this.service.loadDrug(this.drug).subscribe((res)=>{
+    console.log(res);
+    this.staticModal.hide();
+    this.loading= false;
+    this.drugs();
+  })
+  
+}
+search(data){
+  this.service.searchDrugs(data).subscribe((res)=>{
+    this.loader(res.results);
+  });
 }
 }
 

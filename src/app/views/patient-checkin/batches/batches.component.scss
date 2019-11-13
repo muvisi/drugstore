@@ -37,3 +37,6 @@ th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-c
 ::ng-deep .mat-checkbox-checked.mat-primary .mat-checkbox-background .mat-checkbox-background , .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
   background: pink!important;
 }
+mat-form-field{
+  width: 100%;
+}

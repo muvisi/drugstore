@@ -13,6 +13,11 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ClaimsComponent implements OnInit {
   displayedColumns: string[] = ['sn','member','patient_number','visit_number','insurance_company','member_number','visit_type','amount'];
   dataSource;
+  patient_number;
+  member;
+  visit_number;
+  member_number;
+  insurance_company;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   loading = true;

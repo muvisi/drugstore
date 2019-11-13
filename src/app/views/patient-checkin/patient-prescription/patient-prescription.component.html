@@ -2,67 +2,82 @@
     <div class="col-sm-12">
         <mat-card>
             <div class="row">
-                
-                <div class="col-sm-2">
-                        <mat-card>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <img src="../../../../assets/img/avatars/icon.png" style="width: 120px;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 sidename">
-                                    <h5 class="text-primary"> <strong>{{patient.name}}</strong> </h5>
-                                </div>
-                            </mat-card>
+                <div class="col-sm-12">
+                    <span style="font-size:17px;font-weight: bold" class="pull-right">PATIENT NO:<span  style="font-size:19px;font-weight: bold" class="text-primary" >{{patient.patient_no}}</span></span>
+                    <span style="font-size:17px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:19px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patient.visit_no}}</span></span>
                 </div>
-                <div class="col-sm-3" style="margin-top: 18px;">
-                    <div class="row">
-                        <div class="col-sm-3 headers">Name</div>
-                        <div class="col-sm-9">{{patient.name | uppercase}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 headers">Age</div>
-                        <div class="col-sm-9">{{patient.age}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 headers">D.O.B</div>
-                        <div class="col-sm-9">{{patient.dob}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 headers">Phone</div>
-                        <div class="col-sm-9">{{patient.phone}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 headers">Email</div>
-                        <div class="col-sm-9">{{patient.email}}</div>
-                    </div>
-                </div>
-                <div class="col-sm-4" style="margin-top: 18px;">
-                        <div class="row">
-                                <div class="col-sm-3 headers">Residence</div>
-                                <div class="col-sm-9">{{patient.residence | uppercase}}</div>
-                            </div>
-                            <div class="row">
-                                    <div class="col-sm-3 headers">Address</div>
-                                    <div class="col-sm-9">{{patient.physical_address}}</div>
-                            </div>
-                            <div class="row">
-                                    <div class="col-sm-3 headers">Postal Code</div>
-                                    <div class="col-sm-9">{{patient.postal_code}}</div>
-                            </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="row">
-                            <div class="col-sm-12">
-                                    <span style="float: right" >  <span style="text-transform: uppercase;font-weight:bold">Visit Number:</span> <b class="text-primary">{{patient.visit_no}}</b></span>
-                                </div>
-                    </div>
-                </div>
-               
+              </div>
+          <div class="row" >
+            <div class="col-sm-2">
+              <mat-card>
+                  <h6 class="text-center">
+                      <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
+                        style="height: 95px;" *ngIf="patient.gender =='Male' || patient.gender =='male'">
+                        <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/female.png" style="height:105px;" *ngIf="patient.gender =='Female' || patient.gender =='female'">
+                        <br>
+                        
+                      <span1 style="font-size:12px;border-radius:2px;font-weight:200px;" class="badge badge-info text-center">
+                        {{patient.name | uppercase}}</span1>
+                    </h6>
+              </mat-card>
             </div>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-12">
+                      <mat-card> 
+                        <mat-card-title>
+                         <span style="font-size: 20px;">
+                            <span class="text-primary" style="font-weight:600;">{{patient.name | uppercase}}</span> | <span style="font-weight: 600">
+                                  <span *ngIf="patient?.age?.years > 0">{{patient?.age?.years}} <span class="text-success">Years</span></span>
+                                  <span *ngIf="patient?.age?.months > 0">{{patient?.age?.months}} <span class="text-success"> Months</span></span>
+                                  <span *ngIf="patient?.age?.days > 0">{{patient?.age?.days}} <span class="text-success">Days</span></span>
+                                </span>| <span class="text-primary" style="font-weight: 600">{{patient?.gender}}</span> 
+                         </span>
+                        </mat-card-title>
+                          <div class="row">
+                              <div class="col-sm-5">
+                                <div class="row">
+                                  <div class="col-sm-4 hx">
+                                  VISIT TYPE
+                                  </div>
+                                  <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patient.visit_type}}</span></div>
+                              </div>
+                                <div class="row">
+                                    <div class="col-sm-4 hx">
+                                    CHECK IN
+                                    </div>
+                                    <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patient.check_in | date}}</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 hx">
+                                    PRIORITY
+                                    </div>
+                                    <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patient.priority | uppercase}}</span></div>
+                                  </div>
+                                <div class="row"> 
+                                  <div class="col-sm-4 hx">
+                                    NATIONAL ID
+                                  </div>
+                                  <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patient.national_id}}</span></div>
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success" *ngIf="patient?.insure_check.length">COVERED</button>
+                                        <button class="btn btn-danger" *ngIf="!patient?.insure_check.length"> NOT COVERED</button>
+                                    </div>
+                                  </div> -->
+                              </div>
+                            
+                            </div>
+                      </mat-card>
+                    </div>
+                   </div>
+            </div>
+          </div>
+        
             <hr>
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                         <span> <strong>PRESCRIPTIONS</strong></span>
                         <button class="pull-right btn btn-info btn-sm"  printTitle="{{patient.name | uppercase}} PRESCRIPTIONS"   [useExistingCss]="true" printSectionId="print-section" ngxPrint> <i class="cui-print"></i> print prescription</button>
                 </div>
@@ -70,7 +85,7 @@
             <br>
             <div class="row">
                 <br>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
                             <ng-container matColumnDef="service">
@@ -124,7 +139,7 @@
             <br>
             <div class="row">
                 <br>
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     <button class=" btn btn-success  btn-sm pull-right" (click)="staticModal.show()"> <i class="fa fa-plus"></i> Add Prescription</button>
                     <button class="btn btn-info btn-sm  pull-right" style="margin-right:10px;" (click)="back()"> <i class="cui-arrow-left"></i> Back</button>
 
@@ -145,7 +160,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         </div>
         <div class="col-sm-12">
             <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                             <mat-form-field>
                               <input type="text" matInput placeholder="Prescription" [(ngModel)]="selectedDrug.name" [typeahead]="drugs"
                               [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="name"
@@ -154,27 +169,27 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                               typeaheadGroupField="strength">
                             </mat-form-field>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                             <mat-form-field>
                               <input type="text" matInput [(ngModel)]="selectedDrug.generic_name" placeholder="Generic Name" readonly>
                             </mat-form-field>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                             <mat-form-field>
                               <input type="text" matInput [(ngModel)]="selectedDrug.strength" placeholder="Strength" readonly>
                             </mat-form-field>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                             <mat-form-field>
                               <input type="text" matInput [(ngModel)]="selectedDrug.form" placeholder="Drug Form" readonly>
                             </mat-form-field>
                      </div>
-                     <div class="col-sm-3">
+                     <div class="col-sm-6">
                             <mat-form-field>
                               <input type="text" matInput [(ngModel)]="selectedDrug.cost" placeholder="Cost">
                             </mat-form-field>
                      </div>
-                     <div class="col-sm-3">
+                     <div class="col-sm-6">
                             <mat-form-field>
                               <input type="text" matInput [(ngModel)]="selectedDrug.quantity" placeholder="Quantity">
                             </mat-form-field>

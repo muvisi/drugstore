@@ -274,12 +274,12 @@ getServices() {
 }
 
 getPrescription() {
-this.service.prescriptions().subscribe((res) => {
+this.service.getProviderDrugs().subscribe((res) => {
 this.drugs = res.results;
 });
 }
 searchPrescription(text){
-  this.service.searchPrescriptions(text).subscribe((res)=>{
+  this.service.searchDrugs(text).subscribe((res)=>{
     this.drugs = res.results;
   })
 }

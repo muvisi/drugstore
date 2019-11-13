@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-2">
       <mat-form-field>
-        <input matInput type="text" placeholder="Visit Number" [typeahead]="claims"
+        <input matInput type="text" [(ngModel)]="visit_number" placeholder="Visit Number" [typeahead]="claims"
         typeaheadOptionField="visit_number"
         (typeaheadOnSelect)="onSelect($event)"
           (keyup)="search($event.target.value)">
@@ -14,7 +14,7 @@
     </div>
     <div class="col-sm-2">
       <mat-form-field>
-        <input matInput type="text" placeholder="Patient Number" 
+        <input matInput type="text" [(ngModel)]="patient_number" placeholder="Patient Number" 
           (keyup)="search($event.target.value)"
           [typeahead]="claims"
         typeaheadOptionField="patient_number"
@@ -25,7 +25,7 @@
     </div>
     <div class="col-sm-2">
       <mat-form-field>
-        <input matInput type="text" placeholder="Member" 
+        <input matInput type="text" [(ngModel)]="member" placeholder="Member" 
         [typeahead]="claims"
         typeaheadOptionField="member"
         (typeaheadOnSelect)="onSelect($event)"
@@ -35,7 +35,7 @@
 
     <div class="col-sm-2">
       <mat-form-field>
-        <input matInput type="text" placeholder="Member Number"
+        <input matInput type="text" [(ngModel)]="member_number" placeholder="Member Number"
         [typeahead]="claims"
         typeaheadOptionField="member_number"
         (typeaheadOnSelect)="onSelect($event)"
@@ -44,7 +44,7 @@
     </div>
     <div class="col-sm-2">
       <mat-form-field>
-        <input matInput type="text" placeholder="Insurance Company">
+        <input matInput type="text" placeholder="Insurance Company"   [(ngModel)]="insurance_company">
       </mat-form-field>
     </div>
     <div class="col-sm-2">

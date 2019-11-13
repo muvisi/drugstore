@@ -11,7 +11,6 @@ MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, 
 MatBadgeModule
 } from '@angular/material';
 
-import { PatientRecordsComponent } from './patient-records/patient-records.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { InsureCheckComponent } from './insure-check/insure-check.component';
 import { TreatmentComponent } from './treatment/treatment.component';
@@ -59,12 +58,12 @@ import { HospitalComponent } from './hospital/hospital.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ReportsComponent } from './reports/reports.component';
+import { PatientEditComponent } from './patient-edit/patient-edit.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
   declarations: [
     RegisterPatientComponent,
-    PatientRecordsComponent,
     DiagnosisComponent,
     InsureCheckComponent,
     TreatmentComponent,
@@ -98,7 +97,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     PatientPrescriptionComponent,
     HospitalComponent,
     CalendarComponent,
-    ReportsComponent
+    ReportsComponent,
+    PatientEditComponent
   ],
   imports: [
     CommonModule,

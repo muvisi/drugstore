@@ -19,7 +19,7 @@ export class RegisterPatientComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   searchText;
   dataSource;
-  Columns: string[] = ['sn','name','patient_no','visit_no','national_id','priority','phone','status','date','time','referral','new_visit','appointment']
+  Columns: string[] = ['sn','name','patient_no','visit_no','national_id','priority','phone','status','date','time','edit','referral','new_visit','appointment']
   constructor(private datePipe: DatePipe, public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) {
 
   }
@@ -31,13 +31,16 @@ export class RegisterPatientComponent implements OnInit {
   search(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
- revisit(item)  {
+revisit(item)  {
  this.navCtrl.navigate('/dashboard/patients/new-patient/', { revisit: item.patient});
 }
 appointment(){
   this.navCtrl.navigate('/dashboard/patients/calendar/');
 }
+edit(item){
+  this.navCtrl.navigate('/dashboard/patients/edit/', { data: item.patient});
 
+}
 encounter() {
   this.service.patientVisit().subscribe((res) => {
     this.dataSource = new MatTableDataSource <[]>(res.results);

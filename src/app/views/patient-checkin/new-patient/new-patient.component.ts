@@ -19,14 +19,6 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
   }]
 })
 export class NewPatientComponent  implements OnInit {
-  @ViewChild('succesModal', {static: true}) succesModal: ModalDirective;
-  @ViewChild('visitModal', {static: true}) visitModal: ModalDirective;
-  @ViewChild('staticModal', {static: true}) staticModal: ModalDirective;
-  @ViewChild('cashModal', {static: true}) cashModal: ModalDirective;
-  @ViewChild('paymentModal', {static: true}) paymentModal: ModalDirective;
-  @ViewChild('paymentModal1', {static: true}) paymentModal1: ModalDirective;
-  @ViewChild('patientDetails', {static: true}) patientDetails: ModalDirective;
-  @ViewChild('revisitModal', {static: true}) revisitModal: ModalDirective;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('paginator', {static: true}) paginator: MatPaginator;
 
@@ -160,7 +152,6 @@ export class NewPatientComponent  implements OnInit {
     );
   }
   OnPayer(item) {
-    console.log('hg',item.item);
     this.payerId = item.item.id;
     this.service.getSchemes(this.payerId).subscribe((res) => {
     this.schemes = res.results;
