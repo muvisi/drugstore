@@ -60,6 +60,7 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
     const date = this.datePipe.transform(item,'yyyy-MM-dd')
     this.service.searchInvoice(date).subscribe((res)=>{
      this.tableData(res.results);
+     this.payments = res.results;
     })
    }else{
      this.getBills();

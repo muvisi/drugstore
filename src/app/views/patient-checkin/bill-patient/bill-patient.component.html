@@ -99,7 +99,7 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
               <u style="font-family:lato light;font-weight: 600;font-size: 19px;;" class="text-success">PATIENT BILLS</u>
             </div>
             <div class="col-sm-8">
-              <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-left: 10px;" printTitle="INVOICE"
+              <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-left: 10px;" printTitle="{{patientInfo.visit_no}}"
               printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
             <button mat-raised-button class="btn btn-success btn-sm pull-right" style="margin-top:-15px;" (click)="billModal.show()"><i
                 class="fa fa-plus"></i> ADD BILL</button>
@@ -147,7 +147,7 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
     
             <ng-container matColumnDef="rate">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>COST</th>
-              <td mat-cell *matCellDef="let element"> {{element.rate}}</td>
+              <td mat-cell *matCellDef="let element"> {{element.rate | number:'1.2-2'}}</td>
             </ng-container>
     
             <ng-container matColumnDef="reverse">
@@ -263,18 +263,21 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
       <div class="row container-fluid">
           <div class="col-sm-12">
               <div class="row">
-                <div class="col-sm-6">
+               
+                <div class="col-sm-8">
                     <address>
-                        <h2 style="font-family:lato light;font-weight: bolder">HEALTHIX HOSPITAL</h2>
+                        <h2 style="font-family:lato light;font-weight: bolder">Kaatun Urology Center and Male Executive Clinics</h2>
                         <span class="address" style="font-size: 18px;">
-                             <i class="icon-location-pin"></i> 637833-00200 Nairobi,<br>
-                            <i class="icon-call-in"></i> contact +254 7 789-1234,<br>
-                            <i class="icon-envelope-letter"></i> hospital@gmail.com
+                              <i> Parklands 3rd Avenue opposite Aga Khan Hospital</i> <br>
+                              <i > Park Medical Center,6th floor room 609</i> <br>
+                             <i> Postal address Box 15301-00100, Nairobi, Kenya</i><br>
+                            <!-- <i class="icon-call-in"></i> contact +254 7 789-1234,<br> -->
+                            <i> info@kaatun.com</i> 
                         </span>
                         </address>
                 </div>
-                <div class="col-sm-6">
-                  <img src="../../../../assets/img/avatars/logo.png" style="float: right" alt="">
+                <div class="col-sm-4">
+                    <img src="../../../../assets/img/avatars/inv_logo.jpg" style="float: right" alt="">
                 </div>
               </div>
           </div>
@@ -298,12 +301,12 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
                 </div>
                 <div class="row">
                     <div class="col-sm-4">Cashier</div>
-                    <div class="col-sm-5">Davi</div>
+                    <div class="col-sm-5">{{user.username}}</div>
                   </div>
             </div>
-            <div class="col-sm-5" style="font-size: 16px;">
+            <div class="col-sm-7" style="font-size: 16px;">
                 <div class="row">
-                    <div class="col-sm-4" >Billed to</div>
+                    <div class="col-sm-4" >Patient Name</div>
                     <div class="col-sm-5"><strong>{{patientInfo?.first_name | uppercase}} {{patientInfo?.other_names | uppercase}} {{patientInfo?.last_name | uppercase}}</strong></div>
                   </div>
                   <div class="row">
@@ -335,12 +338,12 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
                       <th>Total</th>
                       </tr> 
                       <tr *ngFor="let item of patientInfo.bills" style="font-weight: bolder"> 
-                      <td>{{item.service}}</td>
-                      <td >{{item.category | lowercase}}</td> 
-                      <td>{{item.bill_number}}</td>
-                      <td>{{item.quantity}}</td>
-                      <td>{{item.rate | number:'1.2-2'}}</td>
-                      <td>{{item.rate * item.quantity | number:'1.2-2'}}</td> 
+                      <td *ngIf="item.status == '1'">{{item.service}}</td>
+                      <td *ngIf="item.status == '1'">{{item.category | lowercase}}</td> 
+                      <td *ngIf="item.status == '1'">{{item.bill_number}}</td>
+                      <td *ngIf="item.status == '1'">{{item.quantity}}</td>
+                      <td *ngIf="item.status == '1'">{{item.rate | number:'1.2-2'}}</td>
+                      <td *ngIf="item.status == '1'">{{item.rate * item.quantity | number:'1.2-2'}}</td> 
                       </tr>
   
                       <tr>
@@ -383,7 +386,6 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
                         <div class="col-sm-6">
                             powered by healthix uilabs
                         </div>
-                        <div class="col-sm-6"><p class="pull-right"> <img src="../../../../assets/img/avatars/logo.png" style="height: 40px" alt=""> </p></div>
                       </div>
                     </div>
                   

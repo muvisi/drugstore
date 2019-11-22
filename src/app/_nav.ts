@@ -115,9 +115,9 @@ export const navItems: NavData[] = [
     // ]
   },
   {
-    name: 'Lab',
-    url: '/dashboard/lab',
-    icon: 'icon-chemistry',
+    name: 'Record',
+    url: '/dashboard/records',
+    icon: 'fa fa-list',
   },
   {
     name: 'Pharmacy Stock',

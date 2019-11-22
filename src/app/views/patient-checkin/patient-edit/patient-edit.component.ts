@@ -9,13 +9,17 @@ import { ServiceService } from '../../../service.service';
 })
 export class PatientEditComponent implements OnInit {
   registerForm: FormGroup;
-  patient:any ={};
+  patient:any = {};
   maxDate: Date;
+  guardian:any = {};
+  gurdianMin: Date;
   constructor(private formBuilder: FormBuilder,public navCtrl: NgxNavigationWithDataComponent,public service: ServiceService) { 
     this.patient = this.navCtrl.get('data');
   }
 
   ngOnInit() {
+    var d = new Date();
+    this.gurdianMin = new Date(d.getFullYear() - 18,d.getMonth()+1,d.getDate());
     this.maxDate = new Date();
     this.registerForm = this.formBuilder.group({
       first_name: ['', Validators.required],
@@ -35,14 +39,14 @@ export class PatientEditComponent implements OnInit {
   }
   get f() { return this.registerForm.controls; }
   setForm(item){
-    console.log(this.patient);
+    console.log('paATTTA',this.patient);
       if(item != null){
         this.registerForm.patchValue({first_name:item.first_name,other_names:item.other_names,last_name:item.last_name,national_id:item.national_id,email:item.email,phone:item.phone,county:item.county,
           gender:item.gender,dob:new Date(item.dob),residence:item.residence,occupation: item.occupation,nhif_number:item.nhif_number ? item.nhif_number : ''});
       }
   }
   onSubmit(){
-    console.log(this.registerForm.value);
+    
     const data ={
       id:this.patient.id,
       patient: this.registerForm.value

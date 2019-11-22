@@ -321,20 +321,23 @@
                     <div class="row container-fluid">
                         <div class="col-sm-12">
                             <div class="row">
-                              <div class="col-sm-6">
-                                  <address>
-                                      <h2 style="font-family:lato light;font-weight: bolder">HEALTHIX HOSPITAL</h2>
-                                      <span class="address" style="font-size: 18px;">
-                                           <i class="icon-location-pin"></i> 637833-00200 Nairobi,<br>
-                                          <i class="icon-call-in"></i> contact +254 7 789-1234,<br>
-                                          <i class="icon-envelope-letter"></i> hospital@gmail.com
-                                      </span>
-                                      </address>
+                     
+                                <div class="col-sm-8">
+                                    <address>
+                                        <h2 style="font-family:lato light;font-weight: bolder">Kaatun Urology Center and Male Executive Clinics</h2>
+                                        <span class="address" style="font-size: 18px;">
+                                              <i> Parklands 3rd Avenue opposite Aga Khan Hospital</i> <br>
+                                              <i > Park Medical Center,6th floor room 609</i> <br>
+                                             <i> Postal address Box 15301-00100, Nairobi, Kenya</i><br>
+                                            <!-- <i class="icon-call-in"></i> contact +254 7 789-1234,<br> -->
+                                            <i> info@kaatun.com</i> 
+                                        </span>
+                                        </address>
+                                </div>
+                                <div class="col-sm-4">
+                                    <img src="assets/img/avatars/inv_logo.jpg" style="float: right" alt="">
+                                </div>
                               </div>
-                              <div class="col-sm-6">
-                                <img src="../../../../assets/img/avatars/logo.png" style="float: right" alt="">
-                              </div>
-                            </div>
                         </div>
                         <div class="col-sm-12">
                           <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.procedures?.length">{{patientInfo?.procedures[0]?.invoice__no}}</span></h3>
@@ -344,7 +347,7 @@
                           <div class="col-sm-5" style="font-size: 16px;">
                               <div class="row">
                                   <div class="col-sm-4">Type</div>
-                                  <div class="col-sm-5">LAB TESTS</div>
+                                  <div class="col-sm-5">PROCEDURES</div>
                               </div>
                             <div class="row">
                               <div class="col-sm-4">Charge Date</div>
@@ -357,12 +360,12 @@
                              
                               <div class="row">
                                   <div class="col-sm-4">Cashier</div>
-                                  <div class="col-sm-5">Davi</div>
+                                  <div class="col-sm-5">{{user.username}}</div>
                                 </div>
                           </div>
-                          <div class="col-sm-5" style="font-size: 16px;">
+                          <div class="col-sm-7" style="font-size: 16px;">
                               <div class="row">
-                                  <div class="col-sm-4" >Billed to</div>
+                                  <div class="col-sm-4" >PATIENT</div>
                                   <div class="col-sm-5"><strong>{{patientInfo?.first_name | uppercase}} {{patientInfo?.other_names | uppercase}} {{patientInfo?.last_name | uppercase}}</strong></div>
                                 </div>
                                 <div class="row">
@@ -559,20 +562,23 @@
                     <div class="row container-fluid">
                         <div class="col-sm-12">
                             <div class="row">
-                              <div class="col-sm-6">
-                                  <address>
-                                      <h2 style="font-family:lato light;font-weight: bolder">HEALTHIX HOSPITAL</h2>
-                                      <span class="address" style="font-size: 18px;">
-                                           <i class="icon-location-pin"></i> 637833-00200 Nairobi,<br>
-                                          <i class="icon-call-in"></i> contact +254 7 789-1234,<br>
-                                          <i class="icon-envelope-letter"></i> hospital@gmail.com
-                                      </span>
-                                      </address>
+                     
+                                <div class="col-sm-8">
+                                    <address>
+                                        <h2 style="font-family:lato light;font-weight: bolder">Kaatun Urology Center and Male Executive Clinics</h2>
+                                        <span class="address" style="font-size: 18px;">
+                                              <i> Parklands 3rd Avenue opposite Aga Khan Hospital</i> <br>
+                                              <i > Park Medical Center,6th floor room 609</i> <br>
+                                             <i> Postal address Box 15301-00100, Nairobi, Kenya</i><br>
+                                            <!-- <i class="icon-call-in"></i> contact +254 7 789-1234,<br> -->
+                                            <i> info@kaatun.com</i> 
+                                        </span>
+                                        </address>
+                                </div>
+                                <div class="col-sm-4">
+                                    <img src="assets/img/avatars/inv_logo.jpg" style="float: right" alt="">
+                                </div>
                               </div>
-                              <div class="col-sm-6">
-                                <img src="../../../../assets/img/avatars/logo.png" style="float: right" alt="">
-                              </div>
-                            </div>
                         </div>
                         <div class="col-sm-12">
                           <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.lab_test?.length">{{patientInfo?.lab_test[0]?.invoice__no}}</span></h3>
@@ -639,7 +645,7 @@
                                       <div class="col-sm-6">
                                           powered by healthix uilabs
                                       </div>
-                                      <div class="col-sm-6"><p class="pull-right"> <img src="../../../../assets/img/avatars/logo.png" style="height: 40px" alt=""> </p></div>
+                                      <div class="col-sm-6"><p class="pull-right"> <img src="assets/img/avatars/logo.png" style="height: 40px" alt=""> </p></div>
                                     </div>
                                   </div>
                                 
@@ -727,20 +733,23 @@
                     <div class="row container-fluid">
                         <div class="col-sm-12">
                             <div class="row">
-                              <div class="col-sm-6">
-                                  <address>
-                                      <h2 style="font-family:lato light;font-weight: bolder">HEALTHIX HOSPITAL</h2>
-                                      <span class="address" style="font-size: 18px;">
-                                           <i class="icon-location-pin"></i> 637833-00200 Nairobi,<br>
-                                          <i class="icon-call-in"></i> contact +254 7 789-1234,<br>
-                                          <i class="icon-envelope-letter"></i> hospital@gmail.com
-                                      </span>
-                                      </address>
+                     
+                                <div class="col-sm-8">
+                                    <address>
+                                        <h2 style="font-family:lato light;font-weight: bolder">Kaatun Urology Center and Male Executive Clinics</h2>
+                                        <span class="address" style="font-size: 18px;">
+                                              <i> Parklands 3rd Avenue opposite Aga Khan Hospital</i> <br>
+                                              <i > Park Medical Center,6th floor room 609</i> <br>
+                                             <i> Postal address Box 15301-00100, Nairobi, Kenya</i><br>
+                                            <!-- <i class="icon-call-in"></i> contact +254 7 789-1234,<br> -->
+                                            <i> info@kaatun.com</i> 
+                                        </span>
+                                        </address>
+                                </div>
+                                <div class="col-sm-4">
+                                    <img src="assets/img/avatars/inv_logo.jpg" style="float: right" alt="">
+                                </div>
                               </div>
-                              <div class="col-sm-6">
-                                <img src="../../../../assets/img/avatars/logo.png" style="float: right" alt="">
-                              </div>
-                            </div>
                         </div>
                         <div class="col-sm-12">
                           <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.lab_test?.length">{{patientInfo?.lab_test[0]?.invoice__no}}</span></h3>
@@ -932,7 +941,7 @@
             </div> -->
             <br>
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6" *ngIf="patientInfo.nurse_report.observations.length">
                   <mat-card>
                       <div class="row" *ngIf="patientInfo.nurse_report.observations.length">
                           <div class="col-sm-12">
@@ -1353,12 +1362,12 @@
                         </div>
                         <div class="col-sm-3">
                           <mat-form-field>
-                            <input type="text" matInput [(ngModel)]="selectedDrug.generic_name" placeholder="Generic Name" readonly>
+                            <input type="text" matInput [(ngModel)]="selectedDrug.cost" placeholder="Cost" readonly>
                           </mat-form-field>
                         </div>
                         <div class="col-sm-2">
                             <mat-form-field>
-                              <input type="text" matInput [(ngModel)]="selectedDrug.form" placeholder="Drug Form" readonly>
+                              <input type="text" matInput [(ngModel)]="selectedDrug.form" placeholder="Drug Form">
                             </mat-form-field>
                           </div>
                           <div class="col-sm-2">

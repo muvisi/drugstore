@@ -89,6 +89,7 @@ this.getPrescription();
 this.getDosage();
 this.getTest();
 this.patient();
+this.user = JSON.parse(sessionStorage.getItem('user'));
 }
 onDiagnosis(item) {
 this.selectedOption = item.item;

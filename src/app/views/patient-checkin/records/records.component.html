@@ -1,0 +1,77 @@
+
+
+ <div class="card">
+    <div class="card-header">
+      <b> <i class="fa fa-icon"></i> Add Record</b>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+             <fieldset>
+                 <legend>Patient Details</legend>
+                 <div class="row">
+                     <div class="col-sm-3">
+                         <mat-form-field>
+                             <input type="text"  [(ngModel)]="patient.first_name" placeholder="First name" [(ngModel)]="patient.first_name" matInput>
+                         </mat-form-field>
+                     </div>
+                     <div class="col-sm-3">
+                         <mat-form-field>
+                             <input type="text" [(ngModel)]="patient.other_names" placeholder="Middle name" matInput>
+                         </mat-form-field>
+                     </div>
+                     <div class="col-sm-3">
+                         <mat-form-field>
+                             <input type="text" placeholder="Last name" [(ngModel)]="patient.last_name" matInput>
+                         </mat-form-field>
+                     </div>
+        
+                     <div class="col-sm-3">
+                         <mat-radio-group [(ngModel)]="patient.gender">
+                         <div class="row" style="margin-top:20px">
+                           <div class="col-sm-6">
+                             <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
+                           </div>
+                           <div class="col-sm-6">
+                             <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
+                           </div>
+                         </div>
+                       </mat-radio-group>
+                       </div>
+                       <!-- <div class="col-sm-3">
+                           <mat-form-field>
+                               <input type="text" matInput placeholder="D.O.B" bsDatepicker>
+                           </mat-form-field>
+                       </div> -->
+                       <div class="col-sm-3">
+                         <mat-form-field>
+                             <input type="text" matInput placeholder="Phone Number" [(ngModel)]="patient.phone">
+                         </mat-form-field>
+                     </div>
+                     <div class="col-sm-3">
+                         <mat-form-field>
+                             <input type="text" matInput placeholder="Next of Kin" [(ngModel)]="patient.kin">
+                         </mat-form-field>
+                     </div>
+                     <div class="col-sm-3">
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Guardian" [(ngModel)]="patient.guardian">
+                        </mat-form-field>
+                    </div>
+                     <div class="col-sm-3">
+                         <mat-form-field>
+                             <input type="text" matInput placeholder="Visit Date" bsDatepicker [(ngModel)]="patient.visit_date">
+                         </mat-form-field>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-12">
+                         <button class="pull-right btn btn-success" (click)=" submit()"> <i class="fa fa-plus"></i> Save</button>
+                     </div>
+                 </div>
+             </fieldset> 
+             
+            </div>
+         </div>
+    </div>
+  </div>

@@ -163,7 +163,7 @@ export class BillPatientComponent implements OnInit {
       this.service.saveClaim(data).subscribe((res) => {
         console.log(res);
         this.toastr.success('Successfully Submitted Payment');
-        this.router.navigateByUrl('dashboard/patients/services');
+        this.router.navigateByUrl('dashboard/patients/billing');
       });
     } else if (this.isCash && this.isInsurance) {
       const cash = {
@@ -180,7 +180,7 @@ export class BillPatientComponent implements OnInit {
       this.service.saveClaim(data).subscribe((res) => {
         console.log(res);
         this.toastr.success('Successfully Submitted Payment');
-        this.router.navigateByUrl('dashboard/patients/services');
+        this.router.navigateByUrl('dashboard/patients/billing');
       });
     } else if (this.isMpesa && this.isInsurance) {
       const data = {
@@ -194,7 +194,7 @@ export class BillPatientComponent implements OnInit {
       this.service.saveClaim(data).subscribe((res) => {
         console.log(res);
         this.toastr.success('Successfully Submitted Payment');
-        this.router.navigateByUrl('dashboard/patients/services');
+        this.router.navigateByUrl('dashboard/patients/billing');
       });
     } else if (this.isInsurance) {
       const data = {
@@ -207,7 +207,7 @@ export class BillPatientComponent implements OnInit {
       this.service.saveClaim(data).subscribe((res) => {
         console.log(res);
         this.toastr.success('Successfully Submitted Payment');
-        this.router.navigateByUrl('dashboard/patients/services');
+        this.router.navigateByUrl('dashboard/patients/billing');
       });
     } else if (this.isCash && !this.isMpesa) {
       const cash = {
@@ -219,7 +219,7 @@ export class BillPatientComponent implements OnInit {
       this.service.payBill(cash).subscribe((res) => {
         console.log(res);
         this.toastr.success('Successfully Submitted Payment');
-        this.router.navigateByUrl('dashboard/patients/services');
+        this.router.navigateByUrl('dashboard/patients/billing');
       });
     } else if (this.isMpesa && this.isCash) {
       this.mpesa.id = this.visit_no;
@@ -234,7 +234,7 @@ export class BillPatientComponent implements OnInit {
       this.service.payBill(data).subscribe((res) => {
         console.log(res);
         this.toastr.success('Successfully Submitted Payment');
-        this.router.navigateByUrl('dashboard/patients/services');
+        this.router.navigateByUrl('dashboard/patients/billing');
       });
     } else {
       this.mpesa.id = this.visit_no;
@@ -244,7 +244,7 @@ export class BillPatientComponent implements OnInit {
       this.service.payBill(data).subscribe((res) => {
         console.log(res);
         this.toastr.success('Successfully Submitted Payment');
-        this.router.navigateByUrl('dashboard/patients/services');
+        this.router.navigateByUrl('dashboard/patients/billing');
       });
     }
   }
@@ -309,7 +309,7 @@ export class BillPatientComponent implements OnInit {
   }
   getVisitInfo() {
     if (this.visit_no == null) {
-      this.router.navigateByUrl('/dashboard/patients/services');
+      this.router.navigateByUrl('/dashboard/patients/billing');
     }
     const data = {
       'id': this.visit_no
@@ -330,9 +330,10 @@ export class BillPatientComponent implements OnInit {
     let amount = 0;
     let pend = 0;
     this.patientInfo.bills.forEach(element => {
-        amount += element.rate;
         if (element.status === '0') {
           pend += element.rate;
+        }else{
+          amount += element.rate;
         }
     });
     this.total = amount;
@@ -343,7 +344,7 @@ export class BillPatientComponent implements OnInit {
     });
   }
   getServices() {
-    this.service.getServices().subscribe((res) => {
+    this.service.getProcedures().subscribe((res) => {
       console.log('service1111', res);
       this.services = res.results;
     });

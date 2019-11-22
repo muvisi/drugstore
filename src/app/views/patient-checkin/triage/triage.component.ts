@@ -63,6 +63,8 @@ export class TriageComponent implements OnInit {
       blood_pressure: [''],
       head_circumfrence: [''],
       random_sugar:[''],
+      spo:[''],
+      lmp:['']
   });
 this.alleryList();
 this.getObservations();

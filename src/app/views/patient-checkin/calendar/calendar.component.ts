@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, EventSettingsModel, PopupOpenEventArgs} from '@syncfusion/ej2-angular-schedule';
 import { DataManager, WebApiAdaptor, ODataV4Adaptor, Query, UrlAdaptor } from '@syncfusion/ej2-data';
-import { ServiceService } from '../../../service.service';
+import { ServiceService,endpoint } from '../../../service.service';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { createElement } from '@syncfusion/ej2-base';
 @Component({
@@ -19,8 +19,8 @@ public selectedDate: Date = new Date();
 // private dataQuery: Query = new Query();
 // public eventSettings: EventSettingsModel = { dataSource: this.dataManager, query: this.dataQuery };
 private dataManager: DataManager = new DataManager({
-  url: 'http://134.209.199.123/appointments/appointment_list/', // 'controller/actions'
-  crudUrl: 'http://134.209.199.123/appointments/appointment_list/',
+  url: endpoint+'appointments/appointment_list/', // 'controller/actions'
+  crudUrl: endpoint+'appointments/appointment_list/',
   adaptor: new UrlAdaptor
 });
 public eventSettings: EventSettingsModel = { dataSource: this.dataManager,
@@ -31,7 +31,9 @@ public eventSettings: EventSettingsModel = { dataSource: this.dataManager,
     description: { name: 'Description', title: 'Appointment Description' },
   }
 }
-  constructor( public service: ServiceService) { }
+  constructor( public service: ServiceService) {
+    console.log(endpoint)
+   }
 
   ngOnInit() {
 

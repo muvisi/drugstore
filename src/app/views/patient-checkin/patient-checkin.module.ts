@@ -59,6 +59,7 @@ import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
+import { RecordsComponent } from './records/records.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -98,7 +99,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     HospitalComponent,
     CalendarComponent,
     ReportsComponent,
-    PatientEditComponent
+    PatientEditComponent,
+    RecordsComponent
   ],
   imports: [
     CommonModule,

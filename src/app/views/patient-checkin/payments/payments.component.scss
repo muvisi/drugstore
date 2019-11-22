@@ -23,3 +23,53 @@ mat-form-field{
 mat-card-subtitle{
     margin-left: -12px;
 }
+
+@media print{
+	img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+	  }
+    #div{
+        background-color:  #20a8d8;
+    }
+    .total{
+    background-color: greenyellow;
+    }
+    .footer{
+        position: fixed;
+        bottom: 0;
+    }
+       
+    table{
+        width: 100%;
+        font-family : lato light;
+    }
+    tr{
+     font-weight: bold;
+    }
+    hr{
+        margin-top: -2px;
+    
+    }
+    .col-sm-5{
+        font-size: 15px;
+        font-weight:bold;
+        // text-transform: uppercase;
+        font-family: lato light;
+    }
+    .address{
+        font-weight: bold;
+        // font-family: lato light;
+        margin-top: -5px;
+    }
+    .header{
+        font-family: lato light;
+        font-family: 22px;
+        font-weight: bold;
+    }
+    .total {
+        font-family: lato light
+    }
+}

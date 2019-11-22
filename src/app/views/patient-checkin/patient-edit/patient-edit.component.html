@@ -95,6 +95,84 @@
                      </div>
 </div>
 <div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-12">
+             <fieldset>
+               <legend>Parent/Guardian</legend>
+               <div class="row">
+                  <div class="col-sm-3">
+                    <mat-form-field>
+                        <input type="text" matInput [(ngModel)]="guardian.first_name"
+                        placeholder="First Name" [ngModelOptions]="{standalone: true}">
+                       
+                    </mat-form-field>
+                   
+                  </div>
+                  <div class="col-sm-3">
+                      <mat-form-field>
+                          <input type="text" matInput  [(ngModel)]="guardian.other_names"
+                          placeholder="Middle Name" [ngModelOptions]="{standalone: true}">
+                          
+                      </mat-form-field>
+                   
+                  </div>
+                  <div class="col-sm-3">
+                      <mat-form-field>
+                          <input type="text" placeholder="Last Name" [(ngModel)]="guardian.last_name"
+                           [ngModelOptions]="{standalone: true}" matInput>
+                          
+                      </mat-form-field>
+                    
+                  </div>
+                  <div class="col-sm-3">
+                      <mat-form-field>
+                          <input type="text" placeholder="D.O.B" [maxDate]="gurdianMin"  [(ngModel)]="guardian.dob" bsDatepicker
+                        [ngModelOptions]="{standalone: true}" matInput>
+                          
+                          
+                      </mat-form-field>
+                    
+                  </div>
+                  <div class="col-sm-3">
+                  
+                      <mat-radio-group [(ngModel)]="guardian.gender" [ngModelOptions]="{standalone: true}" >
+                        <div class="row"  style="margin-top:20px" >
+                          <div class="col-sm-6">
+                            <mat-radio-button value="Female">Female</mat-radio-button>
+                          </div>
+                          <div class="col-sm-6">
+                            <mat-radio-button value="Male">Male</mat-radio-button>
+                          </div>
+                        </div>
+                      </mat-radio-group>
+                    
+                  
+                  </div>
+                  <div class="col-sm-3">
+                      <mat-form-field>
+                          <input type="text"  [(ngModel)]="guardian.national_id"
+                          placeholder="National Id" [ngModelOptions]="{standalone: true}" matInput>                                            
+                      </mat-form-field>
+                    
+                  </div>
+                
+                  <div class="col-sm-3">
+                      <mat-form-field >
+                          <span class="prefix"  matPrefix>+254 &nbsp;</span>
+                          <input type="text" matInput placeholder="Phone" matInput [(ngModel)]="guardian.phone" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    
+                  </div>
+                  
+                </div>
+             </fieldset>
+          </div>
+        </div>
+      </div>
+</div>
+<br>
+<div class="row">
   <div class="col-sm-12">
     <button class="btn btn-success btn-sm pull-right" type="submit"> <b><i class="icon-refresh"></i> Submit</b></button>
   </div>

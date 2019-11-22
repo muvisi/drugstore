@@ -72,7 +72,7 @@
                     <div class="col-sm-2">
                        <mat-form-field >
                            
-                           <input matInput placeholder="Blood pressure"  [value]="pressure" type="text" formControlName="blood_pressure"    readonly>
+                           <input matInput placeholder="Blood pressure(mm/Hg)"  [value]="pressure" type="text" formControlName="blood_pressure"    readonly>
              
                          </mat-form-field>
                     </div>
@@ -96,27 +96,40 @@
                                 <div class="col-sm-2">
                                     <mat-form-field >
                                         <input matInput placeholder="BMI" [value]="bmi"  formControlName="bmi"   readonly>
-                                        <i matSuffix class="fa fa-yelp"></i>
+                                        
                                       </mat-form-field>
                                  </div>   
                                 <div class="col-sm-2">
                                        <mat-form-field >
                                            
                                            <input matInput placeholder="Respiratory" type="number" formControlName="respiratory"  [ngClass]="{ 'is-invalid': submitted && f.respiratory.errors }">
-                                           <i matSuffix class="fa fa-yelp"></i>
+                                          
                                      
                                          </mat-form-field>
-                                    </div>    
+                                    </div>  
                                     <div class="col-sm-2">
                                         <mat-form-field >
-                                            <input matInput placeholder="Head circumfrence"   formControlName="head_circumfrence">
-                                            <i matSuffix class="fa fa-yelp"></i>
+                                            <input matInput placeholder="SpO"   formControlName="spo">
+                                            
                                           </mat-form-field>
                                      </div> 
                                      <div class="col-sm-2">
                                         <mat-form-field >
+                                            <input matInput placeholder="Lmp"   formControlName="lmp">
+                                            
+                                          </mat-form-field>
+                                     </div>   
+                                    <div class="col-sm-2">
+                                        <mat-form-field >
+                                            <input matInput placeholder="Head circumfrence"   formControlName="head_circumfrence">
+                                           
+                                          </mat-form-field>
+                                     </div> 
+                                     
+                                     <div class="col-sm-2">
+                                        <mat-form-field >
                                             <input matInput placeholder="Random Sugar Test"   formControlName="random_sugar">
-                                            <i matSuffix class="fa fa-yelp"></i>
+                                            
                                           </mat-form-field>
                                      </div>  
                                      <div class="col-sm-2">

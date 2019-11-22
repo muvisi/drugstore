@@ -1,554 +1,543 @@
-  
-  <mat-horizontal-stepper>
-    <mat-step label="PATIENT REGISTRATION" state="phone">
-        <form [formGroup]="registerForm">
+<mat-card>
+  <mat-card-title>Patient Registration</mat-card-title>
+  <form [formGroup]="registerForm">
                 
               
-            <div class="row">
-              <div class="col-sm-12">
-                <mat-card>
-                      
-                  <div class="row">
-                      <div class="col-sm-3">
-                        <div class="col-sm-12">
-                          <mat-form-field>
-                              <input matInput placeholder="First Name" formControlName="first_name">
-                              
-                              <mat-error *ngIf="f.first_name.errors">First Name <strong>required</strong></mat-error>
-                            </mat-form-field>
-                      </div>
-                      <div class="col-sm-12">
-                          <mat-form-field>
-                              <input matInput placeholder="Middle Name" formControlName="other_names">
-                             
-                              <mat-error *ngIf="f.other_names.errors">Middle Name <strong>required</strong></mat-error>
-                            </mat-form-field>
-                      </div>
-                      <div class="col-sm-12">
-                          <mat-form-field>
-                              <input matInput placeholder="LAST NAME" formControlName="last_name">
-                              <mat-error *ngIf="f.last_name.errors">Last Name <strong>required</strong></mat-error>
-                            </mat-form-field>
-                      </div>
-                     
-                      <div class="col-sm-12">
-                        <mat-radio-group  formControlName="gender">
-                        <div class="row" style="margin-top:20px">
-                          <div class="col-sm-6">
-                            <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
-                          </div>
-                          <div class="col-sm-6">
-                            <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
-                          </div>
-                        </div>
-                      </mat-radio-group>
-                      </div>
-                      
-                      </div>
-                      <div class="col-sm-3">
-                          <div class="col-sm-12">
-                              <mat-form-field>
-                                <mat-label>Select Visit Type</mat-label>
-                                
-                                <mat-select formControlName="visit_type">
-                                  <mat-option value="OUTPATIENT" selected>OUTPATIENT</mat-option>
-                                  
-                                </mat-select>
-                                <mat-error *ngIf="f.visit_type.errors">Visit Type <strong>required</strong></mat-error>
-                              </mat-form-field>
-                        </div>
-                        <div class="col-sm-12">
-                          <mat-form-field >
-                            <span class="prefix"  matPrefix>+254 &nbsp;</span>
-                            <input matInput placeholder="Phone" formControlName="phone">
-                            <mat-error *ngIf="f.phone.errors">Phone <strong>required</strong></mat-error>
-      
-                          </mat-form-field>
+    <div class="row">
+      <div class="col-sm-12">
+        <fieldset>
+          <legend>Patient Details</legend>
+          <div class="row">
+              <div class="col-sm-12" style="font-family: lato light">
+                  <mat-radio-group formControlName="priority" >
+                <div class="row" >
+                  <div class="col-sm-2" style="font-family: lato light">
+                    <mat-radio-button value="Normal" checked>Normal</mat-radio-button>
+                  </div>
+                  <div class="col-sm-2" style="font-family: lato light">
+                      <mat-radio-button value="Urgent" >Urgent</mat-radio-button>
                     </div>
-                    <div class="col-sm-12">
-                      <mat-form-field>
-                          <input matInput placeholder="D.o.b" [maxDate]="maxDate" (ngModelChange)="calculateAge(f.dob.value)" formControlName="dob"  bsDatepicker>
-                          <mat-icon matSuffix>date_range</mat-icon> 
-                          <mat-error *ngIf="f.dob.errors">Date of birth <strong>required</strong></mat-error>
-                        </mat-form-field>
-                  </div> 
-                    <div class="col-sm-12">
-                      <mat-form-field>
-                          <input matInput placeholder="National Id" formControlName="national_id">
-                          <mat-error *ngIf="f.national_id.errors">National Id <strong>required</strong></mat-error>
-                        </mat-form-field>
-                  </div> 
-                    
-                      </div>
-                     <div class="col-sm-3">
-                        <div class="col-sm-12">
-                            <mat-form-field>
-                                <input matInput placeholder="Email" formControlName="email">
-                                <mat-error *ngIf="f.email.errors">Valid email <strong>required</strong></mat-error>
-                              </mat-form-field>
-                        </div>
-                        <div class="col-sm-12">
-                          <mat-form-field>
-                              <input matInput placeholder="Occupation" formControlName="occupation">
-                            </mat-form-field>
-                      </div> 
-                      <div class="col-sm-12">
-                        <mat-form-field>
-                            <input matInput placeholder="County" formControlName="county">
-                            <mat-error *ngIf="f.county.errors">County <strong>required</strong></mat-error>
-                          </mat-form-field>
-                    </div> 
-                    
-                    <div class="col-sm-12">
-                      <mat-form-field>
-                          <input matInput placeholder="Residence" formControlName="residence">
-                        </mat-form-field>
-                  </div>    
-                     </div>
+                  <div class="col-sm-2" style="font-family: lato light">
+                    <mat-radio-button value="Vip">Vip</mat-radio-button>
+                  </div>
+            
+                </div>
+              </mat-radio-group>
+            </div>
+          </div>
+        <div class="row">
             <div class="col-sm-3">
-                <div class="row">
-                    <div class="col-sm-12" style="font-family: lato light">
-                        <mat-radio-group formControlName="priority" >
-                      <div class="row" >
-                        <!-- <div class="col-sm-12">
-                          <label style="font-family: lato light"><b>PRIORITY</b></label>
-                        </div> -->
-                        <div class="col-sm-12" style="font-family: lato light">
-                          <mat-radio-button value="Normal" checked>Normal</mat-radio-button>
-                        </div>
-                        <div class="col-sm-12" style="font-family: lato light">
-                            <mat-radio-button value="Urgent" >Urgent</mat-radio-button>
-                          </div>
-                        <div class="col-sm-12" style="font-family: lato light">
-                          <mat-radio-button value="Vip">Vip</mat-radio-button>
-                        </div>
-                  
-                      </div>
-                    </mat-radio-group>
-                  </div>
-                </div>
-              <div class="row">
+              <div class="col-sm-12">
+                <mat-form-field>
+                    <input matInput placeholder="First Name" formControlName="first_name">
+                    
+                    <mat-error *ngIf="f.first_name.errors">First Name <strong>required</strong></mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-12">
+                <mat-form-field>
+                    <input matInput placeholder="Middle Name" formControlName="other_names">
+                   
+                    <mat-error *ngIf="f.other_names.errors">Middle Name <strong>required</strong></mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-12">
+                <mat-form-field>
+                    <input matInput placeholder="LAST NAME" formControlName="last_name">
+                    <mat-error *ngIf="f.last_name.errors">Last Name <strong>required</strong></mat-error>
+                  </mat-form-field>
+            </div>
+                
+            </div>
+            <div class="col-sm-3">
                 <div class="col-sm-12">
-                    <mat-card class="payment">
-                      <mat-card-subtitle>PAYMENT MODE</mat-card-subtitle>
-                        <div class="row">
-                            <div class="col-sm-12">
-                              <mat-checkbox (click)="addPayment('Cash')">CASH</mat-checkbox>
-                            </div>
-                            <div class="col-sm-12">
-                              <mat-checkbox (click)="addPayment('Insurance')"  matStepperNext>INSURANCE</mat-checkbox>
-                            </div>
-                          </div>
-                    </mat-card>
-                </div>
-              </div>
-            </div>                            
-                          <div class="col-sm-6">
-                        <mat-checkbox *ngIf="isKin" (change)="addKin= !addKin"><u style="font-weight: 500">Add Next Of Kin</u></mat-checkbox>
-                    </div>
-                    <br>
-                    <div class="col-sm-12" *ngIf="isGuardian">
-                        <div class="row">
-                          <div class="col-sm-12">
-                             <mat-card>
-                               <mat-card-title>
-                                 <span style="font-size: 13px;text-transform: uppercase;font-family: lato light"><b>PATIENT/GUARDIAN DETAILS</b></span>
-                               </mat-card-title>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                      <mat-form-field>
-                                          <input type="text" matInput [(ngModel)]="guardian.first_name"
-                                          placeholder="First Name" [ngModelOptions]="{standalone: true}">
-                                         
-                                      </mat-form-field>
-                                     
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <mat-form-field>
-                                            <input type="text" matInput  [(ngModel)]="guardian.other_names"
-                                            placeholder="Middle Name" [ngModelOptions]="{standalone: true}">
-                                            
-                                        </mat-form-field>
-                                     
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <mat-form-field>
-                                            <input type="text" placeholder="Last Name" [(ngModel)]="guardian.last_name"
-                                             [ngModelOptions]="{standalone: true}" matInput>
-                                            
-                                        </mat-form-field>
-                                      
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <mat-form-field>
-                                            <input type="text" placeholder="D.O.B" [maxDate]="gurdianMin"  [(ngModel)]="guardian.dob" bsDatepicker
-                                          [ngModelOptions]="{standalone: true}" matInput>
-                                            
-                                            
-                                        </mat-form-field>
-                                      
-                                    </div>
-                                    <div class="col-sm-3">
-                                    
-                                        <mat-radio-group [(ngModel)]="guardian.gender" [ngModelOptions]="{standalone: true}" >
-                                          <div class="row"  style="margin-top:20px" >
-                                            <div class="col-sm-6">
-                                              <mat-radio-button value="Female">Female</mat-radio-button>
-                                            </div>
-                                            <div class="col-sm-6">
-                                              <mat-radio-button value="Male">Male</mat-radio-button>
-                                            </div>
-                                          </div>
-                                        </mat-radio-group>
-                                      
-                                    
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <mat-form-field>
-                                            <input type="text"  [(ngModel)]="guardian.national_id"
-                                            placeholder="National Id" [ngModelOptions]="{standalone: true}" matInput>                                            
-                                        </mat-form-field>
-                                      
-                                    </div>
-                                  
-                                    <div class="col-sm-3">
-                                        <mat-form-field >
-                                            <span class="prefix"  matPrefix>+254 &nbsp;</span>
-                                            <input type="text" matInput placeholder="Phone" matInput [(ngModel)]="guardian.phone" [ngModelOptions]="{standalone: true}">
-                                          </mat-form-field>
-                                      
-                                    </div>
-                                    
-                                  </div>
-                                  
-                             </mat-card>
-                          </div>
-                        </div>
+                    <mat-radio-group  formControlName="gender">
+                    <div class="row" style="margin-top:20px">
+                      <div class="col-sm-6">
+                        <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
                       </div>
-<!-- 
-                      next of kin -->
-                      <div class="col-sm-12" *ngIf="addKin">
-                          <div class="row">
-                            <div class="col-sm-12">
-                               <mat-card>
-                                 <mat-card-title>
-                                   <span style="font-size: 13px;text-transform: uppercase;font-family: lato light">NEXT OF KIN DETAILS</span>
-                                 </mat-card-title>
-                                  <div class="row">
-                                      <div class="col-sm-3">
-                                        <mat-form-field>
-                                            <input type="text" matInput [(ngModel)]="kin.first_name"
-                                            placeholder="First Name" [ngModelOptions]="{standalone: true}">
-                                            
-                                        </mat-form-field>
-                                       
-                                      </div>
-                                      <div class="col-sm-3">
-                                          <mat-form-field>
-                                              <input type="text" matInput  [(ngModel)]="kin.other_names"
-                                              placeholder="Middle Name" [ngModelOptions]="{standalone: true}">
-                                              
-                                          </mat-form-field>
-                                       
-                                      </div>
-                                      <div class="col-sm-3">
-                                          <mat-form-field>
-                                              <input type="text" placeholder="LAST NAME" [(ngModel)]="kin.last_name"
-                                              placeholder="Last Name" [ngModelOptions]="{standalone: true}" matInput>
-                                              
-                                          </mat-form-field>
-                                        
-                                      </div>
-                                      <div class="col-sm-3">
-                                          <mat-form-field>
-                                              <input type="text" placeholder="D.O.B" [maxDate]="gurdianMin" [(ngModel)]="kin.dob" bsDatepicker
-                                            [ngModelOptions]="{standalone: true}" matInput>                                              
-                                          </mat-form-field>
-                                        
-                                      </div>
-                                      <div class="col-sm-3">
-                                          <mat-form-field>
-                                              <input type="text"  [(ngModel)]="kin.national_id"
-                                              placeholder="National Id" [ngModelOptions]="{standalone: true}" matInput>
-                                          </mat-form-field>
-                                        
-                                      </div>
-                                      <div class="col-sm-3">
-                                      
-                                          <mat-radio-group [(ngModel)]="kin.gender" [ngModelOptions]="{standalone: true}" >
-                                            <div class="row"  style="margin-top:20px" >
-                                              <div class="col-sm-6">
-                                                <mat-radio-button value="Female">Female</mat-radio-button>
-                                              </div>
-                                              <div class="col-sm-6">
-                                                <mat-radio-button value="Male">Male</mat-radio-button>
-                                              </div>
-                                            </div>
-                                          </mat-radio-group>
-                                        
-                                      
-                                      </div>
-                                     
-                                      <div class="col-sm-3">
-                                          <mat-form-field >
-                                            <span class="prefix"  matPrefix>+254 &nbsp;</span>
-                                            <input type="text" matInput placeholder="PHONE" matInput [(ngModel)]="kin.phone" [ngModelOptions]="{standalone: true}">
-                                    
-                                          </mat-form-field>
-                                    </div>
-                                <div class="col-sm-3">
-                                    <mat-form-field>
-                                        <mat-label>SELECT RELATIONSHIP</mat-label>
-                                        <mat-select  [(ngModel)]="kin.relationship" [ngModelOptions]="{standalone: true}">
-                                            <mat-option 
-                                            *ngFor="let item  of  ['SPOUSE','SON','DAUGHTER','FATHER','MOTHER','SISTER','BROTHER','GUARDIAN']"
-                                             [value]="item">
-                                              {{item}}
-                                            </mat-option>
-                                          </mat-select>
-                                      </mat-form-field>
-                                </div>
-                                    </div>
-                                    
-                               </mat-card>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- end of next of Kin -->
+                      <div class="col-sm-6">
+                        <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
+                      </div>
+                    </div>
+                  </mat-radio-group>
                   </div>
-                </mat-card>
+    
+              
+              <div class="col-sm-12">
+                <mat-form-field >
+                  <span class="prefix"  matPrefix>+254 &nbsp;</span>
+                  <input matInput placeholder="Phone" formControlName="phone">
+                  <mat-error *ngIf="f.phone.errors">Phone <strong>required</strong></mat-error>
+
+                </mat-form-field>
+          </div>
+          <div class="col-sm-12">
+            <mat-form-field>
+                <input matInput placeholder="D.o.b" [maxDate]="maxDate" (ngModelChange)="calculateAge(f.dob.value)" formControlName="dob"  bsDatepicker>
+                <mat-icon matSuffix>date_range</mat-icon> 
+                <mat-error *ngIf="f.dob.errors">Date of birth <strong>required</strong></mat-error>
+              </mat-form-field>
+        </div> 
+         
+          
+            </div>
+           <div class="col-sm-3">
+              <div class="col-sm-12">
+                  <mat-form-field>
+                      <input matInput placeholder="Visit Type" formControlName="visit_type" readonly>
+                    </mat-form-field>
               </div> 
                 
-            </div>
-            <br>
-          
-            <div>
-                <button mat-raised-button  class="pull-right btn btn-info" (click)="onSubmit()"> <i class="fa fa-icon"></i> Save</button>
+              <div class="col-sm-12">
+                  <mat-form-field>
+                      <input matInput placeholder="National Id" formControlName="national_id">
+                      <mat-error *ngIf="f.national_id.errors">National Id <strong>required</strong></mat-error>
+                    </mat-form-field>
+              </div> 
+              <div class="col-sm-12">
+                  <mat-form-field>
+                      <input matInput placeholder="Email" formControlName="email">
+                      <mat-error *ngIf="f.email.errors">Valid email <strong>required</strong></mat-error>
+                    </mat-form-field>
               </div>
-          </form>
-    </mat-step>
-
-
-    
-    <mat-step label="INSURE CHECK" state="chat">
-      <br>
-      <div class="row">
-        <div class="col-sm-12">
-          <mat-card>
-            <div class="row">
-              <div class="col-sm-3">
+             
+           </div>
+           <div class="col-sm-3">
+              <div class="col-sm-12">
+                  <mat-form-field>
+                      <input matInput placeholder="County" formControlName="county">
+                      <mat-error *ngIf="f.county.errors">County <strong>required</strong></mat-error>
+                    </mat-form-field>
+              </div> 
+              
+              <div class="col-sm-12">
                 <mat-form-field>
-                    <span matPrefix> <mat-icon>search</mat-icon> &nbsp;</span>
-                    <input [(ngModel)]="payer" [typeahead]="payers" (typeaheadLoading)="payerSearch(payer)"
-                  (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
-                  placeholder="Search Insurance" type="text" matInput>
-                  <button mat-button *ngIf="payer" matSuffix mat-icon-button aria-label="Clear" (click)="payer=''">
-                      <mat-icon>close</mat-icon>
-                      </button>
-                </mat-form-field>
-                
-              </div>
-              <div class="col-sm-3">
-                  <mat-form-field>
-                      <span matPrefix> <mat-icon>search</mat-icon> &nbsp;</span>
-                      <input [(ngModel)]="scheme" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(scheme)"
-                      (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" placeholder="Search Scheme"
-                      type="text" matInput>
-                      <button mat-button *ngIf="scheme" matSuffix mat-icon-button aria-label="Clear" (click)="scheme=''">
-                          <mat-icon>close</mat-icon>
-                      </button>
+                    <input matInput placeholder="Residence" formControlName="residence">
                   </mat-form-field>
-                 
-              </div>
-              <div class="col-sm-3">
-                  <mat-form-field>
-                      <span matPrefix> <mat-icon>search</mat-icon> &nbsp;</span>
-                      <input [(ngModel)]="member" [typeahead]="members" (typeaheadLoading)="search(member)" [typeaheadOptionsLimit]="7"
-                      typeaheadOptionField="member_number" (typeaheadOnSelect)="OnMember($event)" placeholder="Search by Members"
-                       type="text" matInput>
-                       <button mat-button *ngIf="member" matSuffix mat-icon-button aria-label="Clear" (click)="member=''">
-                          <mat-icon>close</mat-icon>
-                          </button>
+            </div> 
+            <div class="col-sm-12">
+                <mat-form-field>
+                    <input matInput placeholder="Occupation" formControlName="occupation">
                   </mat-form-field>
-                  
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12"  >
-                <mat-card>
-                  <div class="row" *ngIf="!(memberData | keyvalue)?.length">
-                    <div class="col-sm-12">
-                      <h1 align="center">
-                        <i class="icon-magnifier-add" style="font-size:100px"></i>
-                        <br>
-                        <span style="font-size:16px;font-family: lato light">
-                          Search a member to view cover details
-                        </span>
-                      </h1>
-                    </div>
+            </div> 
+           </div>
+                <div class="col-sm-6">
+              <mat-checkbox *ngIf="isKin" (change)="addKin= !addKin"><u style="font-weight: 500">Add Next Of Kin</u></mat-checkbox>
+          </div>
+          <br>
+          <div class="col-sm-12">
+            <fieldset>
+              <legend>Payment Method</legend>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-2">  <mat-checkbox>Cash</mat-checkbox>  </div>
+                    <div class="col-sm-2"> <mat-checkbox>Insurance</mat-checkbox> </div>
                   </div>
-                
-                  <tabset  *ngIf="(memberData |keyvalue)?.length">
-                      <tab>
-                          <ng-template tabHeading><span style="color: #A6CF39;font-family: lato light;font-weight: bolder">Member Infomation</span></ng-template>
-                          <div class="row" >
-                              <div class="col-sm-2">
-                                  <h3 align="center"><img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
-                                    style="height: 150px;" *ngIf="memberData.gender =='Male' || memberData.gender =='male' || memberData.gender =='M'">
-                                    <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/female.png"style="height:150px;" *ngIf="memberData.gender =='Female' || memberData.gender =='female'|| memberData.gender =='F'"></h3>
-                                </div>
-                            <div class="col-sm-5 cls">
-                              <h5> {{memberData.name}} | <span style="font-weight: 600" class="text-primary">
-                                  <span *ngIf="memberData?.age?.years > 0">{{memberData?.age?.years}}  Years</span>
-                                  <span *ngIf="memberData?.age?.months > 0">{{memberData?.age?.months}} Months</span>
-                                  <span *ngIf="memberData?.age?.days > 0">{{memberData?.age?.days}} Days</span>
-                                </span>| <span class="text-primary" style="font-weight: 600">{{memberData?.gender}}</span>| <span *ngIf="memberData.national_id != ''">ID: <span>{{memberData?.national_id}}</span></span></h5>
-                              <div class="row" >
-                                <div class="col-sm-12">
-                                  <div class="row">
-                                    <div class="col-sm-4">INSURANCE</div>
-                                    <div class="col-sm-8 txt text-success">{{memberData?.payer}}</div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-4">SCHEME NAME</div>
-                                        <div class="col-sm-8 txt">{{memberData?.scheme}}</div>
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-12">
-                                      <div class="row">
-                                          <div class="col-sm-4">PLAN NAME</div>
-                                          <div class="col-sm-8 txt">{{memberData?.plan}}</div>
-                                        </div>
-                                    </div>
-                                  <div class="col-sm-12">
-                                      <div class="row">
-                                          <div class="col-sm-4">PLAN EFFECTIVE DATE</div>
-                                          <div class="col-sm-8">{{memberData?.plan_effective_date}}</div>
-                                        </div>
-                                  </div>
-                                  <div class="col-sm-12">
-                                      <div class="row">
-                                          <div class="col-sm-4">PLAN EXPIRY DATE</div>
-                                          <div class="col-sm-8 txt text-danger">{{memberData?.plan_expire_date}}</div>
-                                        </div>
-                                   </div>
-                                   <div class="col-sm-12">
-                                      <div class="row">
-                                          <div class="col-sm-4">MEMBER NUMBER</div>
-                                          <div class="col-sm-8 txt">{{memberData?.member_number}}</div>
-                                        </div>
-                                  </div>
-                                  <div class="col-sm-12">
-                                      <div class="row">
-                                          <div class="col-sm-4">STATUS</div>
-                                          <div class="col-sm-8 txt"><span  *ngIf="memberData?.status" class="btn btn-success btn-sm">ACTIVE</span>
-                                            <span  *ngIf="!memberData?.status" class="btn btn-danger btn-sm">INACTIVE</span>
-                                          </div>
-                                        </div>
-                                    
-                                  </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="col-sm-12">
-                                  <mat-card class="principal">
-                                    <mat-card-subtitle>PRINCIPAL DETAILS</mat-card-subtitle>
-                                      <div class="row">
-                                          <div class="col-sm-12 cls">
-                                              <h5> {{memberData.name}} | <span style="font-weight: 600" class="text-primary">
-                                                  <span *ngIf="memberData?.age?.years > 0">{{memberData?.age?.years}}  Years</span>
-                                                  <span *ngIf="memberData?.age?.months > 0">{{memberData?.age?.months}} Months</span>
-                                                  <span *ngIf="memberData?.age?.days > 0">{{memberData?.age?.days}} Days</span>
-                                                </span>| <span class="text-primary" style="font-weight: 600">{{memberData?.gender}}</span>|</h5>
-                                          </div>
-                                      </div>
-                                      <div class="row cls">
-                                          <div class="col-sm-12">
-                                              <div class="row">
-                                                <div class="col-sm-4">INSURANCE</div>
-                                                <div class="col-sm-8 txt text-info">{{memberData?.payer}}</div>
-                                              </div>
-                                            </div>
-                                          <div class="col-sm-4">MEMBER NUMBER</div>
-                                          <div class="col-sm-8 txt">{{memberData?.member_number}}</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">STATUS</div>
-                                            <div class="col-sm-8 txt"><span  *ngIf="memberData?.status" class="btn btn-success btn-sm">ACTIVE</span>
-                                              <span  *ngIf="!memberData?.status" class="btn btn-danger btn-sm">INACTIVE</span>
-                                            </div>
-                                        </div>
-                                       
-                                  </mat-card>
-                              </div>
-                            </div>
-                          </div>
-                      </tab>
-                      <tab>
-                          <ng-template tabHeading><span  style="color: #A6CF39;font-family: lato light;font-weight: bolder" >Daily Limits</span></ng-template>
-                          <div class="row">
-                            <div class="col-sm-12">
-                                <h6>No Limits</h6>
-                            </div>
-                          </div>
-                      </tab>
-                      <tab >
-                          <ng-template tabHeading><span  style="color: #A6CF39;font-family: lato light;font-weight: bolder" >Benefits</span></ng-template>
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <div class="mat-elevation-z8">
-                                    <table mat-table [dataSource]="dataSource">
-                                      <ng-container matColumnDef="benefit">
-                                        <th mat-header-cell *matHeaderCellDef> Benefit Name </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.benefit}} </td>
-                                      </ng-container>
-        
-                                      <ng-container matColumnDef="balance">
-                                        <th mat-header-cell *matHeaderCellDef>Balance</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
-                                      </ng-container>
-                                  
-                                      <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
-                                      <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
-                                    </table>
-                                  
-                                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-                                  </div>
-                                  
-                            </div>
+                </div>
+              </div>
+            </fieldset>
+            <br>
+          </div>
+          <br>
+          <br>
+          <div class="col-sm-12" *ngIf="isGuardian">
+              <div class="row">
+                <div class="col-sm-12">
+                   <fieldset>
+                     <legend>Parent/Guardian</legend>
+                     <div class="row">
+                        <div class="col-sm-3">
+                          <mat-form-field>
+                              <input type="text" matInput [(ngModel)]="guardian.first_name"
+                              placeholder="First Name" [ngModelOptions]="{standalone: true}">
+                             
+                          </mat-form-field>
+                         
                         </div>
-                      </tab>
-                      <tab>
-                          <ng-template tabHeading><span  style="color: #A6CF39;font-family: lato light;font-weight: bolder">Exclusions</span></ng-template>
-                          <div class="row">
-                            <div class="col-sm-12">
-                                <h6>No Exclusions</h6>
-                            </div>
-                            </div>
-                        </tab>
-                    </tabset>
-                 
-                </mat-card>
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input type="text" matInput  [(ngModel)]="guardian.other_names"
+                                placeholder="Middle Name" [ngModelOptions]="{standalone: true}">
+                                
+                            </mat-form-field>
+                         
+                        </div>
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input type="text" placeholder="Last Name" [(ngModel)]="guardian.last_name"
+                                 [ngModelOptions]="{standalone: true}" matInput>
+                                
+                            </mat-form-field>
+                          
+                        </div>
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input type="text" placeholder="D.O.B" [maxDate]="gurdianMin"  [(ngModel)]="guardian.dob" bsDatepicker
+                              [ngModelOptions]="{standalone: true}" matInput>
+                                
+                                
+                            </mat-form-field>
+                          
+                        </div>
+                        <div class="col-sm-3">
+                        
+                            <mat-radio-group [(ngModel)]="guardian.gender" [ngModelOptions]="{standalone: true}" >
+                              <div class="row"  style="margin-top:20px" >
+                                <div class="col-sm-6">
+                                  <mat-radio-button value="Female">Female</mat-radio-button>
+                                </div>
+                                <div class="col-sm-6">
+                                  <mat-radio-button value="Male">Male</mat-radio-button>
+                                </div>
+                              </div>
+                            </mat-radio-group>
+                          
+                        
+                        </div>
+                        <div class="col-sm-3">
+                            <mat-form-field>
+                                <input type="text"  [(ngModel)]="guardian.national_id"
+                                placeholder="National Id" [ngModelOptions]="{standalone: true}" matInput>                                            
+                            </mat-form-field>
+                          
+                        </div>
+                      
+                        <div class="col-sm-3">
+                            <mat-form-field >
+                                <span class="prefix"  matPrefix>+254 &nbsp;</span>
+                                <input type="text" matInput placeholder="Phone" matInput [(ngModel)]="guardian.phone" [ngModelOptions]="{standalone: true}">
+                              </mat-form-field>
+                          
+                        </div>
+                        
+                      </div>
+                   </fieldset>
+                </div>
               </div>
             </div>
 
-          </mat-card>
+            <div class="col-sm-12" *ngIf="addKin">
+                <fieldset>
+                  <legend>Next of Kin</legend>
+                  <div class="row">
+                      <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                              <mat-form-field>
+                                  <input type="text" matInput [(ngModel)]="kin.first_name"
+                                  placeholder="First Name" [ngModelOptions]="{standalone: true}">
+                                  
+                              </mat-form-field>
+                             
+                            </div>
+                            <div class="col-sm-3">
+                                <mat-form-field>
+                                    <input type="text" matInput  [(ngModel)]="kin.other_names"
+                                    placeholder="Middle Name" [ngModelOptions]="{standalone: true}">
+                                    
+                                </mat-form-field>
+                             
+                            </div>
+                            <div class="col-sm-3">
+                                <mat-form-field>
+                                    <input type="text" placeholder="LAST NAME" [(ngModel)]="kin.last_name"
+                                    placeholder="Last Name" [ngModelOptions]="{standalone: true}" matInput>
+                                    
+                                </mat-form-field>
+                              
+                            </div>
+                            <div class="col-sm-3">
+                                <mat-form-field>
+                                    <input type="text" placeholder="D.O.B" [maxDate]="gurdianMin" [(ngModel)]="kin.dob" bsDatepicker
+                                  [ngModelOptions]="{standalone: true}" matInput>                                              
+                                </mat-form-field>
+                              
+                            </div>
+                            <div class="col-sm-3">
+                                <mat-form-field>
+                                    <input type="text"  [(ngModel)]="kin.national_id"
+                                    placeholder="National Id" [ngModelOptions]="{standalone: true}" matInput>
+                                </mat-form-field>
+                              
+                            </div>
+                            <div class="col-sm-3">
+                            
+                                <mat-radio-group [(ngModel)]="kin.gender" [ngModelOptions]="{standalone: true}" >
+                                  <div class="row"  style="margin-top:20px" >
+                                    <div class="col-sm-6">
+                                      <mat-radio-button value="Female">Female</mat-radio-button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <mat-radio-button value="Male">Male</mat-radio-button>
+                                    </div>
+                                  </div>
+                                </mat-radio-group>
+                              
+                            
+                            </div>
+                           
+                            <div class="col-sm-3">
+                                <mat-form-field >
+                                  <span class="prefix"  matPrefix>+254 &nbsp;</span>
+                                  <input type="text" matInput placeholder="PHONE" matInput [(ngModel)]="kin.phone" [ngModelOptions]="{standalone: true}">
+                          
+                                </mat-form-field>
+                          </div>
+                      <div class="col-sm-3">
+                          <mat-form-field>
+                              <mat-label>SELECT RELATIONSHIP</mat-label>
+                              <mat-select  [(ngModel)]="kin.relationship" [ngModelOptions]="{standalone: true}">
+                                  <mat-option 
+                                  *ngFor="let item  of  ['SPOUSE','SON','DAUGHTER','FATHER','MOTHER','SISTER','BROTHER','GUARDIAN']"
+                                   [value]="item">
+                                    {{item}}
+                                  </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                      </div>
+                          </div>
+                      </div>
+                    </div>
+                </fieldset>
+
+    <div>
+    </div>
+              </div>
+              
         </div>
-      </div>
-      <br>
-      <div>
-        <button  (click)="setForm()" matStepperPrevious class="pull-right btn btn-success btn-sm" *ngIf="(memberData | keyvalue)?.length" [disabled]="!(memberData | keyvalue)?.length">Use Member Details for Registration</button>
-      </div>
-    </mat-step>
+        <button  class="pull-right btn btn-info" (click)="onSubmit()"> <i class="fa fa-plus"></i> Save</button>
+
+        </fieldset>
+       
+      </div> 
+        
+    </div>
    
-    <!-- Icon overrides. -->
-    <ng-template matStepperIcon="phone">
+  
+  </form>
+</mat-card>
+    <!-- <ng-template matStepperIcon="phone">
       <mat-icon>person_add</mat-icon>
     </ng-template>
     <ng-template matStepperIcon="chat">
       <mat-icon>house</mat-icon>
-    </ng-template>
-  </mat-horizontal-stepper>
+    </ng-template> -->
+ 
   
+
+
+
+
+
+  <!-- <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field>
+                <span matPrefix> <mat-icon>search</mat-icon> &nbsp;</span>
+                <input [(ngModel)]="payer" [typeahead]="payers" (typeaheadLoading)="payerSearch(payer)"
+              (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
+              placeholder="Search Insurance" type="text" matInput>
+              <button mat-button *ngIf="payer" matSuffix mat-icon-button aria-label="Clear" (click)="payer=''">
+                  <mat-icon>close</mat-icon>
+                  </button>
+            </mat-form-field>
+            
+          </div>
+          <div class="col-sm-3">
+              <mat-form-field>
+                  <span matPrefix> <mat-icon>search</mat-icon> &nbsp;</span>
+                  <input [(ngModel)]="scheme" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(scheme)"
+                  (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" placeholder="Search Scheme"
+                  type="text" matInput>
+                  <button mat-button *ngIf="scheme" matSuffix mat-icon-button aria-label="Clear" (click)="scheme=''">
+                      <mat-icon>close</mat-icon>
+                  </button>
+              </mat-form-field>
+             
+          </div>
+          <div class="col-sm-3">
+              <mat-form-field>
+                  <span matPrefix> <mat-icon>search</mat-icon> &nbsp;</span>
+                  <input [(ngModel)]="member" [typeahead]="members" (typeaheadLoading)="search(member)" [typeaheadOptionsLimit]="7"
+                  typeaheadOptionField="member_number" (typeaheadOnSelect)="OnMember($event)" placeholder="Search by Members"
+                   type="text" matInput>
+                   <button mat-button *ngIf="member" matSuffix mat-icon-button aria-label="Clear" (click)="member=''">
+                      <mat-icon>close</mat-icon>
+                      </button>
+              </mat-form-field>
+              
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12"  >
+            <mat-card>
+              <div class="row" *ngIf="!(memberData | keyvalue)?.length">
+                <div class="col-sm-12">
+                  <h1 align="center">
+                    <i class="icon-magnifier-add" style="font-size:100px"></i>
+                    <br>
+                    <span style="font-size:16px;font-family: lato light">
+                      Search a member to view cover details
+                    </span>
+                  </h1>
+                </div>
+              </div>
+            
+              <tabset  *ngIf="(memberData |keyvalue)?.length">
+                  <tab>
+                      <ng-template tabHeading><span style="color: #A6CF39;font-family: lato light;font-weight: bolder">Member Infomation</span></ng-template>
+                      <div class="row" >
+                          <div class="col-sm-2">
+                              <h3 align="center"><img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
+                                style="height: 150px;" *ngIf="memberData.gender =='Male' || memberData.gender =='male' || memberData.gender =='M'">
+                                <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/female.png"style="height:150px;" *ngIf="memberData.gender =='Female' || memberData.gender =='female'|| memberData.gender =='F'"></h3>
+                            </div>
+                        <div class="col-sm-5 cls">
+                          <h5> {{memberData.name}} | <span style="font-weight: 600" class="text-primary">
+                              <span *ngIf="memberData?.age?.years > 0">{{memberData?.age?.years}}  Years</span>
+                              <span *ngIf="memberData?.age?.months > 0">{{memberData?.age?.months}} Months</span>
+                              <span *ngIf="memberData?.age?.days > 0">{{memberData?.age?.days}} Days</span>
+                            </span>| <span class="text-primary" style="font-weight: 600">{{memberData?.gender}}</span>| <span *ngIf="memberData.national_id != ''">ID: <span>{{memberData?.national_id}}</span></span></h5>
+                          <div class="row" >
+                            <div class="col-sm-12">
+                              <div class="row">
+                                <div class="col-sm-4">INSURANCE</div>
+                                <div class="col-sm-8 txt text-success">{{memberData?.payer}}</div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4">SCHEME NAME</div>
+                                    <div class="col-sm-8 txt">{{memberData?.scheme}}</div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">PLAN NAME</div>
+                                      <div class="col-sm-8 txt">{{memberData?.plan}}</div>
+                                    </div>
+                                </div>
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">PLAN EFFECTIVE DATE</div>
+                                      <div class="col-sm-8">{{memberData?.plan_effective_date}}</div>
+                                    </div>
+                              </div>
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">PLAN EXPIRY DATE</div>
+                                      <div class="col-sm-8 txt text-danger">{{memberData?.plan_expire_date}}</div>
+                                    </div>
+                               </div>
+                               <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">MEMBER NUMBER</div>
+                                      <div class="col-sm-8 txt">{{memberData?.member_number}}</div>
+                                    </div>
+                              </div>
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="col-sm-4">STATUS</div>
+                                      <div class="col-sm-8 txt"><span  *ngIf="memberData?.status" class="btn btn-success btn-sm">ACTIVE</span>
+                                        <span  *ngIf="!memberData?.status" class="btn btn-danger btn-sm">INACTIVE</span>
+                                      </div>
+                                    </div>
+                                
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="col-sm-12">
+                              <mat-card class="principal">
+                                <mat-card-subtitle>PRINCIPAL DETAILS</mat-card-subtitle>
+                                  <div class="row">
+                                      <div class="col-sm-12 cls">
+                                          <h5> {{memberData.name}} | <span style="font-weight: 600" class="text-primary">
+                                              <span *ngIf="memberData?.age?.years > 0">{{memberData?.age?.years}}  Years</span>
+                                              <span *ngIf="memberData?.age?.months > 0">{{memberData?.age?.months}} Months</span>
+                                              <span *ngIf="memberData?.age?.days > 0">{{memberData?.age?.days}} Days</span>
+                                            </span>| <span class="text-primary" style="font-weight: 600">{{memberData?.gender}}</span>|</h5>
+                                      </div>
+                                  </div>
+                                  <div class="row cls">
+                                      <div class="col-sm-12">
+                                          <div class="row">
+                                            <div class="col-sm-4">INSURANCE</div>
+                                            <div class="col-sm-8 txt text-info">{{memberData?.payer}}</div>
+                                          </div>
+                                        </div>
+                                      <div class="col-sm-4">MEMBER NUMBER</div>
+                                      <div class="col-sm-8 txt">{{memberData?.member_number}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">STATUS</div>
+                                        <div class="col-sm-8 txt"><span  *ngIf="memberData?.status" class="btn btn-success btn-sm">ACTIVE</span>
+                                          <span  *ngIf="!memberData?.status" class="btn btn-danger btn-sm">INACTIVE</span>
+                                        </div>
+                                    </div>
+                                   
+                              </mat-card>
+                          </div>
+                        </div>
+                      </div>
+                  </tab>
+                  <tab>
+                      <ng-template tabHeading><span  style="color: #A6CF39;font-family: lato light;font-weight: bolder" >Daily Limits</span></ng-template>
+                      <div class="row">
+                        <div class="col-sm-12">
+                            <h6>No Limits</h6>
+                        </div>
+                      </div>
+                  </tab>
+                  <tab >
+                      <ng-template tabHeading><span  style="color: #A6CF39;font-family: lato light;font-weight: bolder" >Benefits</span></ng-template>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataSource">
+                                  <ng-container matColumnDef="benefit">
+                                    <th mat-header-cell *matHeaderCellDef> Benefit Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.benefit}} </td>
+                                  </ng-container>
+    
+                                  <ng-container matColumnDef="balance">
+                                    <th mat-header-cell *matHeaderCellDef>Balance</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+                                  </ng-container>
+                              
+                                  <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
+                                </table>
+                              
+                                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                              </div>
+                              
+                        </div>
+                    </div>
+                  </tab>
+                  <tab>
+                      <ng-template tabHeading><span  style="color: #A6CF39;font-family: lato light;font-weight: bolder">Exclusions</span></ng-template>
+                      <div class="row">
+                        <div class="col-sm-12">
+                            <h6>No Exclusions</h6>
+                        </div>
+                        </div>
+                    </tab>
+                </tabset>
+             
+            </mat-card>
+          </div>
+        </div>
+
+      </mat-card>
+    </div>
+  </div>
+  <br>
+  <div>
+    <button  (click)="setForm()" matStepperPrevious class="pull-right btn btn-success btn-sm" *ngIf="(memberData | keyvalue)?.length" [disabled]="!(memberData | keyvalue)?.length">Use Member Details for Registration</button>
+  </div> -->

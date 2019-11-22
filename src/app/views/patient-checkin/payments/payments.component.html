@@ -4,32 +4,17 @@
       <div class="row">
           <div class="col-sm-12">
             <div class="row">
+             
                 <div class="col-sm-3">
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Name" (keyup)="applyFilter($event.target.value)" >
-                        <i class="icon-magnifier" matSuffix></i>
-                      </mat-form-field>
-                </div>
-                <div class="col-sm-3">
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Bill number" ((keyup)="applyFilter($event.target.value)" >
-                        <i class="icon-magnifier" matSuffix></i>
-                      </mat-form-field>
-                </div>
-                <div class="col-sm-2">
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Invoice" (keyup)="applyFilter($event.target.value)" >
-                        <i class="icon-magnifier" matSuffix></i>
-                      </mat-form-field>
-                </div>
-                <div class="col-sm-2">
                     <mat-form-field class="example-full-width">
                         <input matInput placeholder="Date" [(ngModel)]="cash_date"  (ngModelChange)="searchCash(cash_date)"  [maxDate]="maxDate" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" bsDatepicker>
                         <i class="icon-magnifier" matSuffix></i>
                       </mat-form-field>
                 </div>
                 <div class="col-sm-2">
-                    <button (click)="exportAsXLSX()" class="btn btn-info"><i class="fa fa-file-excel-o"></i>  Export to Excel</button>
+                    <!-- <button (click)="exportAsXLSX()" class="btn btn-info"><i class="icon-cloud-download"></i>  Export to Excel</button> -->
+                    <button mat-raised-button class="btn btn-info btn-sm"  printTitle="payments"
+              printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
                 </div>
              
             </div>
@@ -72,6 +57,79 @@
               </table>
               <mat-paginator [pageSizeOptions]="[18 ,25]" showFirstLastButtons></mat-paginator>
         </div>
+
+        <div class="card" id="print-section"  hidden> 
+          <div class="card-body">
+            <div class="row container-fluid">
+                <div class="col-sm-12">
+                    <div class="row">
+                     
+                      <div class="col-sm-8">
+                          <address>
+                              <h2 style="font-family:lato light;font-weight: bolder">Kaatun Urology Center and Male Executive Clinics</h2>
+                              <span class="address" style="font-size: 18px;">
+                                    <i> Parklands 3rd Avenue opposite Aga Khan Hospital</i> <br>
+                                    <i > Park Medical Center,6th floor room 609</i> <br>
+                                   <i> Postal address Box 15301-00100, Nairobi, Kenya</i><br>
+                                  <!-- <i class="icon-call-in"></i> contact +254 7 789-1234,<br> -->
+                                  <i> info@kaatun.com</i> 
+                              </span>
+                              </address>
+                      </div>
+                      <div class="col-sm-4">
+                          <img src="../../../../assets/img/avatars/inv_logo.jpg" style="float: right" alt="">
+                      </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                  <h3 style="font-weight: bolder"> <span>PAYMENTS REPORT</span> </h3>
+                
+                </div>
+             
+        
+                    
+                    <div class="col-sm-12">
+                        <br>
+                        <table class="table table-condensed" style="font-size: 16px;">  <tr> 
+                            <th>S/No</th>
+                            <th>Patient Name.</th>
+                            <th>Visit Number</th>
+                            <th>Invoice.</th>
+                            <th>Amount</th>
+                    
+                            </tr> 
+                             <tr *ngFor="let item of payments;let i=index" style="font-weight: bolder"> 
+                              <td>{{i+1}}</td>
+                            <td >{{item.name}}</td>
+                            <td >{{item.visit_no}}</td> 
+                            <td >{{item.no}}</td>
+                            <td >{{item.amount | number:'1.2-2'}}</td>
+                            
+                            </tr> 
+        
+                            <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr> 
+                             </table>
+        
+                          </div>
+                          
+                          <div class="col-sm-12 footer">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                  powered by healthix uilabs
+                              </div>
+                            </div>
+                          </div>
+                        
+            </div>
+          </div>
+        </div>
   </tab>
   <tab heading="Insurance Claims">
       <div class="row">
@@ -102,7 +160,7 @@
                       </mat-form-field>
                 </div>
                 <div class="col-sm-2">
-                    <button (click)="exportAsXLSX()" class="btn btn-info"><i class="fa fa-file-excel-o"></i>  Export to Excel</button>
+                    <!-- <button (click)="exportAsXLSX()" class="btn btn-info"><i class="fa fa-file-excel-o"></i>  Export to Excel</button> -->
                 </div>
              
             </div>

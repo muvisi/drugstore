@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// const endpoint = 'http://localhost:8000/';
-const endpoint = 'http://134.209.199.123/';
+// export const endpoint = 'http://localhost:8000/';
+export const endpoint = 'http://134.209.199.123:7000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -108,6 +108,11 @@ export class ServiceService {
   }
   patientPrescription(data): Observable<any>{
     return this.http.post(endpoint + 'treatment/patient_prescription/', data).pipe(
+      map(this.extractData));
+
+  }
+  createRecord(data): Observable<any>{
+    return this.http.post(endpoint + 'patients/create_record/', data).pipe(
       map(this.extractData));
 
   }
@@ -286,10 +291,10 @@ searchBills(data): Observable<any>{
     loadDrug(data): Observable<any> {
       return this.http.post(endpoint + 'pharmacy/load_drug/',data).pipe(
         map(this.extractData));
-  
+
       }
 
-  
+
   getLabRequests() {
     return this.http.get(endpoint + 'elab/lab_requests/').pipe(
       map(this.extractData));
@@ -485,4 +490,3 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
 }
- 
