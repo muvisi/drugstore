@@ -27,7 +27,7 @@ public eventSettings: EventSettingsModel = { dataSource: this.dataManager,
   fields: {
     id: 'Id',
     subject: { name: 'Subject', title: 'Patient Name'},
-    location: { name: 'Location', title: 'Appointment Location'},
+    location: { name: 'Location', title: 'Phone Number'},
     description: { name: 'Description', title: 'Appointment Description' },
   }
 }

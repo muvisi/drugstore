@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint = 'http://localhost:8000/';
-export const endpoint = 'http://134.209.199.123/';
+export const endpoint = 'http://134.209.199.123:7000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -324,6 +324,11 @@ searchBills(data): Observable<any>{
 
   createUser(data): Observable<{}> {
     return this.http.post<{}>(endpoint + 'users/create-user/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  reset(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/reset/', data ).pipe(
       map(this.extractData
       ));
   }

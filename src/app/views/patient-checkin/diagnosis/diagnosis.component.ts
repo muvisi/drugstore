@@ -315,7 +315,7 @@ this.diagnoses.splice(index, 1);
       return;
     }
     this.service.deleteBillItem(obj.id).subscribe((res) => {
-      this.toastr.success('Successfuly Bill Item');
+      this.toastr.error('Successfully deleted');
       this.patient();
     });
   }
@@ -360,5 +360,16 @@ this.diagnoses.splice(index, 1);
       this.observation ={};
     })
   }
+  addUnavailable(){
+      this.selectedOption.visit_no = this.patientInfo.visit_no;
+      this.service.saveDiagnosis(this.selectedOption).subscribe((res) => {
+      console.log(res);
+      this.selectedOption = {};
+      this.toastr.success('successfully added diagnosis');
+      this.patient();
+      }, (error) => {
+        this.toastr.error('Failed to add diagnosis');
+      });
+        }
 
 }

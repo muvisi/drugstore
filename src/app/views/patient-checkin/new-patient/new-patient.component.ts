@@ -96,7 +96,7 @@ export class NewPatientComponent  implements OnInit {
       delete this.patient.guardian;
       console.log('bbb',this.patient);
       this.registerForm.setValue({first_name:this.patient.first_name,other_names:this.patient.other_names,last_name:this.patient.last_name,dob: new Date(this.patient['dob']),
-      national_id:this.patient.national_id,county: '',occupation: '',residence:'',email:this.patient.email || '',visit_type: '',phone:this.patient.phone || '',priority:'Normal',gender: this.patient.gender,
+      national_id:this.patient.national_id,county: '',occupation: '',residence:'',email:this.patient.email || '',visit_type: 'OUTPATIENT',phone:this.patient.phone || '',priority:'Normal',gender: this.patient.gender,
     
   });
     };

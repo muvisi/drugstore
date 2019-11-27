@@ -10,7 +10,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxLoadingModule } from 'ngx-loading';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { GestureConfig } from '@angular/material';
+import { GestureConfig, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { ModalModule } from 'ngx-bootstrap/modal';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -73,7 +74,10 @@ export function tokenGetter() {
     HideableHeaderModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    ModalModule.forRoot(),
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [
     AppComponent,
