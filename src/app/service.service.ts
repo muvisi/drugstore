@@ -25,9 +25,7 @@ export class ServiceService {
     };
   }
   public isAuthenticated(): boolean {
-    // const token = localStorage.getItem('Token');
-    // console.log('ssds', this.jwtHelper.isTokenExpired(token));
-    // return !this.jwtHelper.isTokenExpired(token);
+  
     return true;
   }
 
