@@ -69,11 +69,11 @@ export const navItems: NavData[] = [
         url: '/dashboard/patients/diagnosis&treatment/',
         icon: 'fa fa-heartbeat'
       },
-      // {
-      //   name: 'Edit Patient',
-      //   url: '/dashboard/patients/edit',
-      //   icon: 'cui-pencil',
-      // },
+      {
+        name: 'Record',
+        url: '/dashboard/records',
+        icon: 'fa fa-list',
+      },
        {
         name: 'Appointment',
         url: '/dashboard/patients/calendar',
@@ -113,11 +113,6 @@ export const navItems: NavData[] = [
     //     icon: 'cui-list'
     //   }
     // ]
-  },
-  {
-    name: 'Record',
-    url: '/dashboard/records',
-    icon: 'fa fa-list',
   },
   {
     name: 'Pharmacy Stock',

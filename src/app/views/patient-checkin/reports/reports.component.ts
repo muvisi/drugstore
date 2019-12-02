@@ -20,7 +20,6 @@ export class ReportsComponent implements OnInit {
    }
 
   ngOnInit() {
-    
   }
 getReport(){
   this.service.reports().subscribe((res)=>{
