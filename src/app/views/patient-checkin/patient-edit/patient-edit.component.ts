@@ -19,6 +19,9 @@ export class PatientEditComponent implements OnInit {
   procedures = [];
   constructor(private formBuilder: FormBuilder,public navCtrl: NgxNavigationWithDataComponent,public service: ServiceService,public toastr: ToastrService) { 
     this.patient = this.navCtrl.get('data');
+    if(this.patient== null){
+      this.navCtrl.navigate('/dashboard/patients/records');
+    }
   }
 
   ngOnInit() {
@@ -47,7 +50,7 @@ export class PatientEditComponent implements OnInit {
     
       if(item != null){
         this.registerForm.patchValue({first_name:item.first_name,other_names:item.other_names,last_name:item.last_name,national_id:item.national_id,email:item.email,phone:item.phone,county:item.county,
-          gender:item.gender,dob:new Date(item.dob),residence:item.residence,occupation: item.occupation,nhif_number:item.nhif_number ? item.nhif_number : ''});
+          gender:item.gender,dob:new Date(item.dob) ? item.dob!= null: null,residence:item.residence,occupation: item.occupation,nhif_number:item.nhif_number ? item.nhif_number : ''});
           
       }
   }
