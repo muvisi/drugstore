@@ -273,7 +273,7 @@ searchBills(data): Observable<any>{
     map(this.extractData));
 }
   patientVisit(): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient-visits/').pipe(
+    return this.http.get(endpoint + 'patients/patient-visits/?limit=1000').pipe(
       map(this.extractData));
 
   }
