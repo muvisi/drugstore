@@ -50,14 +50,24 @@ export const navItems: NavData[] = [
         icon: 'cui-laptop'
       },
       {
-        name: 'Billing',
-        url: '/dashboard/patients/billing',
-        icon: 'fa fa-database'
-      },
-      {
         name: 'Add Patient',
         url: '/dashboard/patients/new-patient/',
         icon: 'icon-user-follow'
+      },
+      {
+        name: 'Patients List',
+        url: '/dashboard/patients/records/',
+        icon: 'fa fa-users'
+      },
+      {
+        name: 'Billing',
+        url: '/dashboard/patients/billing',
+        icon: 'fa fa-database'
+      },          
+      {
+          name: 'Insurecheck',
+          url: '/dashboard/patients/insure-check/',
+          icon: 'icon-magnifier-add',
       },
       {
         name: 'Triage',
@@ -69,13 +79,13 @@ export const navItems: NavData[] = [
         url: '/dashboard/patients/diagnosis&treatment/',
         icon: 'fa fa-heartbeat'
       },
-      {
-        name: 'Record',
-        url: '/dashboard/records',
-        icon: 'fa fa-list',
-      },
+      // {
+      //   name: 'Record',
+      //   url: '/dashboard/records',
+      //   icon: 'fa fa-list',
+      // },
        {
-        name: 'Appointment',
+        name: 'Calendar',
         url: '/dashboard/patients/calendar',
         icon: 'cui-calendar',
       },
@@ -86,12 +96,6 @@ export const navItems: NavData[] = [
     url: '/dashboard/pharmacy',
     icon: 'fa fa-medkit',
   },
-  
-  {
-    name: 'Insurecheck',
-    url: '/dashboard/patients/insure-check/',
-    icon: 'icon-magnifier-add',
-},
   {
     name: 'eClaims',
     url: '/dashboard/eclaims-dashboard',

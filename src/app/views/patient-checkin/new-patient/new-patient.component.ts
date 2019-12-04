@@ -21,7 +21,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 export class NewPatientComponent  implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('paginator', {static: true}) paginator: MatPaginator;
-
+  selected ='+254';
   exclusionColumns: string[] = ['benefit', 'category', 'updated', 'Time'];
   benefitColumns: string[] = ['benefit','balance'];
   loading;
@@ -69,11 +69,11 @@ export class NewPatientComponent  implements OnInit {
     this.Payers();
     this.registerForm = this.formBuilder.group({
       first_name: ['', Validators.required],
-      other_names: ['', Validators.required],
+      other_names: [''],
       last_name: ['', Validators.required],
       gender: ['Female', Validators.required],
       email: ['',Validators.email],
-      phone: [''],
+      phone: ['',Validators.required],
       dob: ['', Validators.required],
       visit_type: ['OUTPATIENT', Validators.required],
       priority: ['Normal', Validators.required],
@@ -81,6 +81,7 @@ export class NewPatientComponent  implements OnInit {
       national_id: ['',Validators.required],
       county: [''],
       occupation: [''],
+      code:['',Validators.required]
     });
 
     if(this.patient != null) {
