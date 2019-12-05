@@ -349,6 +349,12 @@ export class BillPatientComponent implements OnInit {
       this.services = res.results;
     });
   }
+  searchProcedure(text) {
+    console.log(text);
+      this.service.searchProcedure(text).subscribe((res) => {
+      this.services = res.results;
+    });
+    }
   deleteProcedure(obj) {
     console.log(obj);
     this.service.deleteBillItem(obj.id).subscribe((res) => {

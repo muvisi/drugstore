@@ -38,7 +38,7 @@ export class PatientEditComponent implements OnInit {
       dob: ['', Validators.required],
       residence: [''],
       national_id: ['',Validators.required],
-      visit_date: ['',Validators.required],
+      visit_type: ['OUTPATIENT'],
       occupation: [''],
       nhif_number: [''],
     });
@@ -82,6 +82,7 @@ export class PatientEditComponent implements OnInit {
     this.service.updatePatient(data).subscribe((res)=>{
       console.log(res);
       this.navCtrl.navigate('dashboard/patients/records/');
+      this.toastr.success('Successfully updated patient');
     })
   }
 }

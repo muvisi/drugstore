@@ -73,7 +73,7 @@
 <div class="col-sm-6">
 <mat-form-field><input type="text"  (typeaheadOnSelect)="onSelect($event)" name="test"
 placeholder="****** Type procedure and select to add *******" typeaheadOptionField="name"
-[(ngModel)]="name" [typeahead]="services" [typeaheadOptionsLimit]="12" matInput></mat-form-field>
+[(ngModel)]="name" [typeahead]="services" [typeaheadOptionsLimit]="12" matInput (typeaheadLoading)="searchProcedure(name)"></mat-form-field>
 </div>
 <div class="col-sm-4">
   <mat-form-field>
