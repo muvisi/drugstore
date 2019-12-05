@@ -21,7 +21,10 @@ export class PatientListComponent implements OnInit {
   }
   
   search(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.service.searchPatient(filterValue).subscribe((res)=>{
+    this.dataSource = new MatTableDataSource <[]>(res.results);
+    this.dataSource.paginator = this.paginator;
+    });
   }
 patientsList() {
    this.service.patientVisit().subscribe((res) => {

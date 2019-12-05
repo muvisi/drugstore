@@ -6,13 +6,20 @@
     <div class="row">
         <div class="col-sm-2">
             <mat-form-field >
-                <span class="icon-magnifier" matPrefix> &nbsp;</span>
-                <input matInput type="text" placeholder="Search Patient" [(ngModel)]="searchText" (keyup)="search($event.target.value)">
-                <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
-                  <mat-icon>close</mat-icon>
-                </button>
+                <input matInput type="text" placeholder="Search Patient"  (keyup)="search($event.target.value)">
+                
               </mat-form-field>
         </div>
+        <div class="col-sm-2">
+          <mat-form-field >
+              <input matInput type="text" placeholder="Search Phone"  (keyup)="search($event.target.value)">
+            </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field >
+            <input matInput type="text" placeholder="Search using ID"  (keyup)="search($event.target.value)">
+          </mat-form-field>
+    </div>
         
     </div>
      </mat-card>

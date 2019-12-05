@@ -70,6 +70,11 @@ export class ServiceService {
       map(this.extractData));
 
   }
+  searchPatient(data): Observable<any> {
+    return this.http.get(endpoint + 'patients/patient-visits/?search='+data).pipe(
+      map(this.extractData));
+
+  }
   getServices(): Observable<any> {
     return this.http.get(endpoint + 'data/service/').pipe(
       map(this.extractData));
@@ -90,17 +95,17 @@ export class ServiceService {
 
   }
   getTests(): Observable<any> {
-    return this.http.get(endpoint + 'services/services/?category=LABORATORY').pipe(
+    return this.http.get(endpoint + 'data/service/?department=Laboratory').pipe(
       map(this.extractData));
 
   }
   searchTest(data): Observable<any> {
-    return this.http.get(endpoint + 'services/services/?category=LABORATORY' + '&search=' + data).pipe(
+    return this.http.get(endpoint + 'data/service/?department=Laboratory' + '&search=' + data).pipe(
       map(this.extractData));
 
   }
   getProcedures(): Observable<any> {
-    return this.http.get(endpoint + 'services/services/?category=PROCEDURES').pipe(
+    return this.http.get(endpoint + 'data/service/?department=Procedures').pipe(
       map(this.extractData));
 
   }
@@ -115,7 +120,7 @@ export class ServiceService {
 
   }
 searchProcedure(data): Observable<any> {
-    return this.http.get(endpoint + 'services/services/?category=PROCEDURES' + '&search=' + data).pipe(
+    return this.http.get(endpoint + 'data/service/?department=Procedures' + '&search=' + data).pipe(
       map(this.extractData));
 
   }
@@ -273,7 +278,7 @@ searchBills(data): Observable<any>{
     map(this.extractData));
 }
   patientVisit(): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient-visits/?limit=1000').pipe(
+    return this.http.get(endpoint + 'patients/patient-visits/').pipe(
       map(this.extractData));
 
   }
@@ -456,16 +461,28 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
+  // getProviderDrugs(): Observable<any> {
+  //   return this.http.get(endpoint + 'pharmacy/drugs_list/').pipe(
+  //     map(this.extractData));
+
+  // }
   getProviderDrugs(): Observable<any> {
-    return this.http.get(endpoint + 'pharmacy/drugs_list/').pipe(
+    return this.http.get(endpoint + 'data/prescription/').pipe(
       map(this.extractData));
 
   }
+   
   searchDrugs(data): Observable<any> {
-    return this.http.get(endpoint + 'pharmacy/drugs_list/?search='+data).pipe(
+    return this.http.get(endpoint + 'data/prescription/?search='+data).pipe(
       map(this.extractData));
 
   }
+
+  // searchDrugs(data): Observable<any> {
+  //   return this.http.get(endpoint + 'pharmacy/drugs_list/?search='+data).pipe(
+  //     map(this.extractData));
+
+  // }
 
   getDosage(): Observable<any> {
     return this.http.get(endpoint + 'data/dosage/').pipe(

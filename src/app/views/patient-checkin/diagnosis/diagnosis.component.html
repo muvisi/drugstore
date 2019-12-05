@@ -1164,7 +1164,7 @@
                             </div>
                             <div class="col-sm-2">
                                <mat-form-field>
-                                 <input type="text" matInput  [(ngModel)]="selectedOption.code" placeholder="Loinc Code" readonly>
+                                 <input type="text" matInput  [(ngModel)]="selectedOption.cost" placeholder="Cost" readonly>
                                </mat-form-field>
                              </div>
                             <!-- <div class="col-sm-2">
@@ -1228,7 +1228,7 @@
   
                   <ng-container matColumnDef="Cost">
                     <th mat-header-cell *matHeaderCellDef> Cost </th>
-                    <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.rate | number:'1.2-2'}} </td>
                   </ng-container>
   
                   <ng-container matColumnDef="Quantity">

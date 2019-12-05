@@ -2,15 +2,24 @@
   <mat-card>
     <mat-subtitle>Filters</mat-subtitle>
     <div class="row">
-        <div class="col-sm-3">
-            <mat-form-field>
-                   
-                    <input matInput placeholder="search patient" (keyup)="search($event.target.value)">
-                    <i class="icon-magnifier" matSuffix></i>
-                    
+      <div class="col-sm-2">
+          <mat-form-field >
+              <input matInput type="text" placeholder="Search Patient"  (keyup)="search($event.target.value)">
+              
             </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field >
+            <input matInput type="text" placeholder="Search Phone"  (keyup)="search($event.target.value)">
+          </mat-form-field>
     </div>
-    </div>
+    <div class="col-sm-2">
+      <mat-form-field >
+          <input matInput type="text" placeholder="Search using ID"  (keyup)="search($event.target.value)">
+        </mat-form-field>
+  </div>
+      
+  </div>
   </mat-card>
 </div>
 <br>

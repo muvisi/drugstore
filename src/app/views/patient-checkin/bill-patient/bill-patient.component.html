@@ -165,7 +165,7 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
     
     
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="row.rate <= 0"></tr>
           </table>
     
           <br>
@@ -719,7 +719,7 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
           
           
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="row.rate <= 0"></tr>
                 </table>
           
                 <br>

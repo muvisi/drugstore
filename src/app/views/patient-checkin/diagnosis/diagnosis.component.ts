@@ -150,7 +150,7 @@ OnSelectTest(item) {
   console.log(item.item);
   this.selectedTest = item.item;
   this.selectedTest.visit_no = this.patientInfo.visit_no;
-  this.service.labRequest(this.selectedTest).subscribe((res) => {
+  this.service.generateBill(this.selectedTest).subscribe((res) => {
     console.log(res);
     this.toastr.success('successfully added lab request');
     this.selectedTest = {};
@@ -320,13 +320,14 @@ this.diagnoses.splice(index, 1);
     });
   }
   saveService() {
-    this.selectedOption.date = this.datePipe.transform(this.selectedOption.date, 'yyyy-MM-dd');
+    // this.selectedOption.date = this.datePipe.transform(this.selectedOption.date, 'yyyy-MM-dd');
     console.log(this.selectedOption)
     this.service.generateBill(this.selectedOption).subscribe((res) => {
       console.log(res);
       this.patient();
       this.selectedOption = {};
       this.name = '';
+      this.toastr.success('Successfully Added a Service')
     });
   }
   updateDiagnosis(item){
