@@ -1048,7 +1048,7 @@
               <mat-form-field>
                   <input type="text"  placeholder="Diagnosis" name="diagnosis"
                   [(ngModel)]="selectedOption.description" typeaheadOptionField="description" [typeahead]="diagnosesList"
-                  (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12" (keyup.enter)="addUnavailable()" matInput>
+                  (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12" (keyup.enter)="addUnavailable()" (typeaheadLoading)="searchDiagnosis(selectedOption.description)" matInput>
                   <i class="icon-magnifier-add" matSuffix></i>
                   <button mat-button *ngIf="selectedOption.description" matSuffix mat-icon-button aria-label="Clear" (click)="selectedOption.description=''">
                       <mat-icon>close</mat-icon>

@@ -168,6 +168,11 @@ this.diagnosesList = res.results;
 });
 }
 
+searchDiagnosis(text){
+  this.service.searchDiagnosis(text).subscribe((res) => {
+    this.diagnosesList = res.results;
+    });
+}
 onDrug(item) {
 this.selectedDrug = item.item;
 console.log(this.selectedDrug);
