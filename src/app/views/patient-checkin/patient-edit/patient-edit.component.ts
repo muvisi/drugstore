@@ -38,11 +38,11 @@ export class PatientEditComponent implements OnInit {
       dob: ['', Validators.required],
       residence: [''],
       national_id: ['',Validators.required],
-      visit_type: ['OUTPATIENT'],
+      visit_type: ['',Validators.required],
       occupation: [''],
       nhif_number: [''],
     });
-    this.setForm(this.patient);
+    this.setForm(this.patient.patient);
     this.getServices();
   }
   get f() { return this.registerForm.controls; }
@@ -50,8 +50,16 @@ export class PatientEditComponent implements OnInit {
     
       if(item != null){
         this.registerForm.patchValue({first_name:item.first_name,other_names:item.other_names,last_name:item.last_name,national_id:item.national_id,email:item.email,phone:item.phone,county:item.county,
-          gender:item.gender,dob:new Date(item.dob) ? item.dob!= null: null,residence:item.residence,occupation: item.occupation,nhif_number:item.nhif_number ? item.nhif_number : ''});
+          gender:item.gender,dob:new Date(item.dob),residence:item.residence,occupation: item.occupation,nhif_number:item.nhif_number ? item.nhif_number : '',visit_type:this.patient.visit_type});
           
+      }
+      if(item.guardian.length){
+        this.guardian = item.guardian[0];
+        this.guardian.relationship = 'guardian'
+      }
+      if(item.kin.length){
+        this.guardian = item.kin[0];
+        this.guardian.relationship = 'kin';
       }
   }
   getServices() {

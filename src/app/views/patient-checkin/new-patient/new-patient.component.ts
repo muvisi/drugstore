@@ -75,13 +75,13 @@ export class NewPatientComponent  implements OnInit {
       email: ['',Validators.email],
       phone: ['',Validators.required],
       dob: ['', Validators.required],
-      visit_type: ['OUTPATIENT', Validators.required],
+      visit_type: ['NEW', Validators.required],
       priority: ['Normal', Validators.required],
       residence: [''],
       national_id: ['',Validators.required],
-      county: [''],
+      passport_no: [''],
       occupation: [''],
-      code:['',Validators.required]
+      code:['+254',Validators.required]
     });
 
     if(this.patient != null) {
@@ -211,7 +211,9 @@ export class NewPatientComponent  implements OnInit {
     if (this.age < 18) {
       this.isGuardian = true;
       this.isKin = false;
+      this.registerForm.patchValue({national_id:'MINOR'})
     } else if (this.age >= 18) {
+      this.registerForm.patchValue({national_id:''})
       this.isKin = true;
       this.isGuardian = false;
     } else {

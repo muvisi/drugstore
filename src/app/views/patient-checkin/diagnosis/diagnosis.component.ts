@@ -48,7 +48,7 @@ services;
 selectedTest: any = {};
 dataSource;
 diagnosisList;
-diagnosesList;
+diagnosesList = [];
 selectedOption: any = {};
 selected: string;
 allergies = [];

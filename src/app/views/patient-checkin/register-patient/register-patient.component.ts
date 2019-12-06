@@ -42,7 +42,7 @@ appointment(){
   this.navCtrl.navigate('/dashboard/patients/calendar/');
 }
 edit(item){
-  this.navCtrl.navigate('/dashboard/patients/edit/', { data: item.patient});
+  this.navCtrl.navigate('/dashboard/patients/edit/', { data: item});
 
 }
 encounter() {

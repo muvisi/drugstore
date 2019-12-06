@@ -344,17 +344,17 @@ export class BillPatientComponent implements OnInit {
     });
   }
   getServices() {
-    this.service.getProcedures().subscribe((res) => {
+    this.service.getProviderServices().subscribe((res) => {
       console.log('service1111', res);
       this.services = res.results;
     });
   }
-  searchProcedure(text) {
-    console.log(text);
-      this.service.searchProcedure(text).subscribe((res) => {
-      this.services = res.results;
-    });
-    }
+  // searchProcedure(text) {
+  //   console.log(text);
+  //     this.service.searchProcedure(text).subscribe((res) => {
+  //     this.services = res.results;
+  //   });
+  //   }
   deleteProcedure(obj) {
     console.log(obj);
     this.service.deleteBillItem(obj.id).subscribe((res) => {

@@ -1,14 +1,14 @@
 
 table{
 	width: 100%;
-	font-family:lato light;
+	font-family: "Open Sans", Tahoma, sans-serif;
 }
 tr.mat-header-row {
 	height:38px;
 }
 td.mat-cell{
   font-size:13px;
-  font-weight: bold;
+  // font-weight: bold;
 }
 tr.mat-row, tr.mat-footer-row {
   height: 32px;
@@ -18,7 +18,7 @@ th.mat-header-cell {
   text-align: left;
   text-transform: uppercase;
   font-size: 13px;
-  font-weight: bold;
+  
 }
 
 th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
