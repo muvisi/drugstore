@@ -1,7 +1,10 @@
-import { Component, OnDestroy, Inject } from '@angular/core';
+import { Component, OnDestroy, Inject, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ServiceService } from '../../service.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +15,10 @@ export class DefaultLayoutComponent implements OnDestroy {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  data: any ={};
   user = JSON.parse(sessionStorage.getItem('user'));
-  constructor(private router: Router, @Inject(DOCUMENT) _document?: any) {
+  @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  constructor(private router: Router,public service:ServiceService,public toastr: ToastrService,@Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
@@ -31,6 +36,19 @@ export class DefaultLayoutComponent implements OnDestroy {
     // location.href = '/login';
     console.clear();
     console.log('logged out');
+  }
+  submit(){
+    if(this.data.password1 != this.data.password2 ){
+      this.toastr.error("New Password Didn't Match");
+      return;
+    }
+    this.service.changePassword(this.data).subscribe((res)=>{
+      this.toastr.success("Successfully changed password");
+      this.staticModal.hide();
+      this.data ={};
+    },()=>{
+      this.toastr.error("Password Change Failed");
+    });
   }
 
   ngOnDestroy(): void {

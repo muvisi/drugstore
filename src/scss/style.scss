@@ -16,6 +16,9 @@
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 9999!important;
 }
+mat-form-field{
+width: 100%;
+}
 fieldset 
 {
   border: 1px solid dodgerblue !important;

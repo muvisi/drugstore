@@ -451,6 +451,11 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
+  changePassword(data): Observable<any> {
+    return this.http.post(endpoint + 'users/change_password/', data ).pipe(
+      map(this.extractData));
+
+  }
   deleteDepartment(id): Observable<any> {
     return this.http.delete(endpoint + 'hospitals/department/'+id+'/').pipe(
       map(this.extractData));

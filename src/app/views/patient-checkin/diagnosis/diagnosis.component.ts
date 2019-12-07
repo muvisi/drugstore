@@ -377,5 +377,12 @@ this.diagnoses.splice(index, 1);
         this.toastr.error('Failed to add diagnosis');
       });
         }
+  closeClaim(){
+      this.service.closeClaim({id:this.patientInfo.visit_no}).subscribe((res)=>{
+        this.toastr.success('Sucessfully closed a claim');
+      },()=>{
+        this.toastr.error('Failed to Close claim');
+      })
+  }      
 
 }
