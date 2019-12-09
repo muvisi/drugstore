@@ -345,7 +345,6 @@ export class BillPatientComponent implements OnInit {
   }
   getServices() {
     this.service.getProviderServices().subscribe((res) => {
-      console.log('service1111', res);
       this.services = res.results;
     });
   }

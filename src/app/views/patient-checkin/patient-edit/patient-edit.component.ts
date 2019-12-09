@@ -84,6 +84,7 @@ export class PatientEditComponent implements OnInit {
     
     const data ={
       id:this.patient.id,
+      visit_no:this.patient.visit_no,
       patient: this.registerForm.value,
       guardian:this.guardian
     };

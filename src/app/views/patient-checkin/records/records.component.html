@@ -14,7 +14,6 @@
                                 <div class="col-sm-12">
                                   <mat-form-field>
                                       <input matInput placeholder="First Name" [(ngModel)]="patient.first_name">
-                                      
                                     </mat-form-field>
                               </div>
                               <div class="col-sm-12">
@@ -33,21 +32,20 @@
                               <div class="col-sm-3">
                                   <div class="col-sm-12">
                                       <mat-radio-group  [(ngModel)]="patient.gender">
-                                      <div class="row" style="margin-top:20px">
-                                        <div class="col-sm-6">
+                                      
+                                        <div class="col-sm-12">
                                           <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                           <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
                                         </div>
-                                      </div>
+                                      
                                     </mat-radio-group>
                                     </div>
                       
                                 
                                 <div class="col-sm-12">
                                   <mat-form-field >
-                                    <span class="prefix"  matPrefix>+254 &nbsp;</span>
                                     <input matInput placeholder="Phone" [(ngModel)]="patient.phone">
                   
                                   </mat-form-field>
@@ -56,7 +54,7 @@
                             
                               <mat-form-field>
                                   <input matInput placeholder="D.o.b" [maxDate]="maxDate"  [(ngModel)]="patient.dob"  (ngModelChange)="calculateAge(patient.dob)"  bsDatepicker>
-                                  <mat-icon matSuffix>date_range</mat-icon> 
+                                
                                 </mat-form-field>
                           </div> 
                            
@@ -99,239 +97,75 @@
                                     </mat-form-field>
                               </div> 
                              </div>
-                                  <div class="col-sm-6">
-                                <mat-checkbox *ngIf="isKin" (change)="addKin= !addKin"><u style="font-weight: 500">Add Next Of Kin</u></mat-checkbox>
-                            </div>
-                            <div class="col-sm-12" *ngIf="isGuardian">
-                                <div class="row">
-                                  <div class="col-sm-12">
-                                     <fieldset>
-                                       <legend>Parent/Guardian</legend>
-                                       <div class="row">
-                                          <div class="col-sm-3">
-                                            <mat-form-field>
-                                                <input type="text" matInput [(ngModel)]="guardian.first_name"
-                                                placeholder="First Name" [ngModelOptions]="{standalone: true}">
-                                               
-                                            </mat-form-field>
-                                           
-                                          </div>
-                                          <div class="col-sm-3">
-                                              <mat-form-field>
-                                                  <input type="text" matInput  [(ngModel)]="guardian.other_names"
-                                                  placeholder="Middle Name" [ngModelOptions]="{standalone: true}">
-                                                  
-                                              </mat-form-field>
-                                           
-                                          </div>
-                                          <div class="col-sm-3">
-                                              <mat-form-field>
-                                                  <input type="text" placeholder="Last Name" [(ngModel)]="guardian.last_name"
-                                                   [ngModelOptions]="{standalone: true}" matInput>
-                                                  
-                                              </mat-form-field>
-                                            
-                                          </div>
-                                          <div class="col-sm-3">
-                                              <mat-form-field>
-                                                  <input type="text" placeholder="D.O.B" [maxDate]="gurdianMin"  [(ngModel)]="guardian.dob" bsDatepicker
-                                                [ngModelOptions]="{standalone: true}" matInput>
-                                                  
-                                                  
-                                              </mat-form-field>
-                                            
-                                          </div>
-                                          <div class="col-sm-3">
-                                          
-                                              <mat-radio-group [(ngModel)]="guardian.gender" [ngModelOptions]="{standalone: true}" >
-                                                <div class="row"  style="margin-top:20px" >
-                                                  <div class="col-sm-6">
-                                                    <mat-radio-button value="Female">Female</mat-radio-button>
-                                                  </div>
-                                                  <div class="col-sm-6">
-                                                    <mat-radio-button value="Male">Male</mat-radio-button>
-                                                  </div>
-                                                </div>
-                                              </mat-radio-group>
-                                            
-                                          
-                                          </div>
-                                          <div class="col-sm-3">
-                                              <mat-form-field>
-                                                  <input type="text"  [(ngModel)]="guardian.national_id"
-                                                  placeholder="National Id" [ngModelOptions]="{standalone: true}" matInput>                                            
-                                              </mat-form-field>
-                                            
-                                          </div>
-                                        
-                                          <div class="col-sm-3">
-                                              <mat-form-field >
-                                                  <span class="prefix"  matPrefix>+254 &nbsp;</span>
-                                                  <input type="text" matInput placeholder="Phone" matInput [(ngModel)]="guardian.phone" [ngModelOptions]="{standalone: true}">
-                                                </mat-form-field>
-                                            
-                                          </div>
-                                          
-                                        </div>
-                                     </fieldset>
-                                  </div>
-                                </div>
-                              </div>
-                  
-                              <div class="col-sm-12" *ngIf="addKin">
-                                  <fieldset>
-                                    <legend>Next of Kin</legend>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                          <div class="row">
-                                              <div class="col-sm-3">
-                                                <mat-form-field>
-                                                    <input type="text" matInput [(ngModel)]="kin.first_name"
-                                                    placeholder="First Name" [ngModelOptions]="{standalone: true}">
-                                                    
-                                                </mat-form-field>
-                                               
-                                              </div>
-                                              <div class="col-sm-3">
-                                                  <mat-form-field>
-                                                      <input type="text" matInput  [(ngModel)]="kin.other_names"
-                                                      placeholder="Middle Name" [ngModelOptions]="{standalone: true}">
-                                                      
-                                                  </mat-form-field>
-                                               
-                                              </div>
-                                              <div class="col-sm-3">
-                                                  <mat-form-field>
-                                                      <input type="text" placeholder="LAST NAME" [(ngModel)]="kin.last_name"
-                                                      placeholder="Last Name" [ngModelOptions]="{standalone: true}" matInput>
-                                                      
-                                                  </mat-form-field>
-                                                
-                                              </div>
-                                              <div class="col-sm-3">
-                                                  <mat-form-field>
-                                                      <input type="text" placeholder="D.O.B" [maxDate]="gurdianMin" [(ngModel)]="kin.dob" bsDatepicker
-                                                    [ngModelOptions]="{standalone: true}" matInput>                                              
-                                                  </mat-form-field>
-                                                
-                                              </div>
-                                              <div class="col-sm-3">
-                                                  <mat-form-field>
-                                                      <input type="text"  [(ngModel)]="kin.national_id"
-                                                      placeholder="National Id" [ngModelOptions]="{standalone: true}" matInput>
-                                                  </mat-form-field>
-                                                
-                                              </div>
-                                              <div class="col-sm-3">
-                                              
-                                                  <mat-radio-group [(ngModel)]="kin.gender" [ngModelOptions]="{standalone: true}" >
-                                                    <div class="row"  style="margin-top:20px" >
-                                                      <div class="col-sm-6">
-                                                        <mat-radio-button value="Female">Female</mat-radio-button>
-                                                      </div>
-                                                      <div class="col-sm-6">
-                                                        <mat-radio-button value="Male">Male</mat-radio-button>
-                                                      </div>
-                                                    </div>
-                                                  </mat-radio-group>
-                                                
-                                              
-                                              </div>
-                                             
-                                              <div class="col-sm-3">
-                                                  <mat-form-field >
-                                                    <span class="prefix"  matPrefix>+254 &nbsp;</span>
-                                                    <input type="text" matInput placeholder="PHONE" matInput [(ngModel)]="kin.phone" [ngModelOptions]="{standalone: true}">
-                                            
-                                                  </mat-form-field>
-                                            </div>
-                                        <div class="col-sm-3">
-                                            <mat-form-field>
-                                                <mat-label>SELECT RELATIONSHIP</mat-label>
-                                                <mat-select  [(ngModel)]="kin.relationship" [ngModelOptions]="{standalone: true}">
-                                                    <mat-option 
-                                                    *ngFor="let item  of  ['SPOUSE','SON','DAUGHTER','FATHER','MOTHER','SISTER','BROTHER','GUARDIAN']"
-                                                     [value]="item">
-                                                      {{item}}
-                                                    </mat-option>
-                                                  </mat-select>
-                                              </mat-form-field>
-                                        </div>
-                                            </div>
-                                        </div>
-                                      </div>
-                                  </fieldset>
-                  
-                      <div>
-                      </div>
-                                </div>
+                                 
+                            
                                 
                           </div>
-                          <br>
-                          <button  class="pull-right btn btn-info" (click)="submit()"> <i class="fa fa-plus"></i> Save</button>
+                
                   
                           </fieldset>
                          
-             <!-- <fieldset>
-                 <legend>Patient Details</legend>
-                 <div class="row">
-                     <div class="col-sm-3">
-                         <mat-form-field>
-                             <input type="text"  [(ngModel)]="patient.first_name" placeholder="First name" [(ngModel)]="patient.first_name" matInput>
-                         </mat-form-field>
-                     </div>
-                     <div class="col-sm-3">
-                         <mat-form-field>
-                             <input type="text" [(ngModel)]="patient.other_names" placeholder="Middle name" matInput>
-                         </mat-form-field>
-                     </div>
-                     <div class="col-sm-3">
-                         <mat-form-field>
-                             <input type="text" placeholder="Last name" [(ngModel)]="patient.last_name" matInput>
-                         </mat-form-field>
-                     </div>
-        
-                     <div class="col-sm-3">
-                         <mat-radio-group [(ngModel)]="patient.gender">
-                         <div class="row" style="margin-top:20px">
-                           <div class="col-sm-6">
-                             <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
-                           </div>
-                           <div class="col-sm-6">
-                             <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
-                           </div>
-                         </div>
-                       </mat-radio-group>
-                       </div>
-                       <div class="col-sm-3">
-                         <mat-form-field>
-                             <input type="text" matInput placeholder="Phone Number" [(ngModel)]="patient.phone">
-                         </mat-form-field>
-                     </div>
-                     <div class="col-sm-3">
-                         <mat-form-field>
-                             <input type="text" matInput placeholder="Next of Kin" [(ngModel)]="patient.kin">
-                         </mat-form-field>
-                     </div>
-                     <div class="col-sm-3">
-                        <mat-form-field>
-                            <input type="text" matInput placeholder="Guardian" [(ngModel)]="patient.guardian">
-                        </mat-form-field>
-                    </div>
-                     <div class="col-sm-3">
-                         <mat-form-field>
-                             <input type="text" matInput placeholder="Visit Date" bsDatepicker [(ngModel)]="patient.visit_date">
-                         </mat-form-field>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-sm-12">
-                         <button class="pull-right btn btn-success" (click)=" submit()"> <i class="fa fa-plus"></i> Save</button>
-                     </div>
-                 </div>
-             </fieldset> 
-              -->
+            
             </div>
+            <div class="col-sm-12">
+              <br>
+              <fieldset>
+                <legend>Diagnosis</legend>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                            <input type="text"  placeholder="Diagnosis" name="diagnosis"
+                            [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]=""
+                            (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12" (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)" matInput>
+                            <i class="icon-magnifier-add" matSuffix></i>
+                           
+                        </mat-form-field>
+                      </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <fieldset>
+                  <legend>Procedures</legend>
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <mat-form-field>
+                          <input type="text" matInput (typeaheadOnSelect)="onSelect($event)" name="test"
+                          placeholder="Procedure" typeaheadOptionField="name" [(ngModel)]="selectedOption.name"
+                          [typeahead]="services" [typeaheadOptionsLimit]="7">
+                          <button mat-button *ngIf="selectedOption.name" matSuffix mat-icon-button aria-label="Clear" (click)="selectedOption.name=''">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                      </div>
+                </div>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Procedure</th>
+                                        <th>Code</th>
+                                        <th>Cost</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let item of procedures">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.code}}</td>
+                                        <td>{{item.cost}}</td>
+                                      </tr>
+                                     
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                  
+                </fieldset>
+              </div>
          </div>
     </div>
   </div>

@@ -38,6 +38,7 @@ import { CalendarComponent } from '../patient-checkin/calendar/calendar.componen
 import { ReportsComponent } from '../patient-checkin/reports/reports.component';
 import { PatientEditComponent } from '../patient-checkin/patient-edit/patient-edit.component';
 import { RecordsComponent } from '../patient-checkin/records/records.component';
+import { RecordListComponent } from '../patient-checkin/record-list/record-list.component';
 const routes: Routes = [
   {
     path: '',
@@ -59,6 +60,14 @@ const routes: Routes = [
   {
     path: 'records',
     component: RecordsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'parients-dashboard'
+    }
+  },
+  {
+    path: 'records-list',
+    component: RecordListComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'parients-dashboard'

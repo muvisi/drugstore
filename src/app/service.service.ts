@@ -39,6 +39,11 @@ export class ServiceService {
       map(this.extractData));
 
   }
+  recordList(): Observable<any> {
+    return this.http.get(endpoint + 'patients/record_list/').pipe(
+      map(this.extractData));
+
+  }
 
   getMembers(): Observable<any> {
     return this.http.get(endpoint + 'patients/patient_treatments/').pipe(

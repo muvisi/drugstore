@@ -79,11 +79,11 @@ export const navItems: NavData[] = [
         url: '/dashboard/patients/diagnosis&treatment/',
         icon: 'fa fa-heartbeat'
       },
-      // {
-      //   name: 'Record',
-      //   url: '/dashboard/records',
-      //   icon: 'fa fa-list',
-      // },
+      {
+        name: 'Record',
+        url: '/dashboard/records-list',
+        icon: 'fa fa-list',
+      },
        {
         name: 'Calendar',
         url: '/dashboard/patients/calendar',

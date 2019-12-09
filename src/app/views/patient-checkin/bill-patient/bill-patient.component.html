@@ -73,7 +73,7 @@
 <div class="col-sm-6">
     <!-- (typeaheadLoading)="searchProcedure(name)" -->
 <mat-form-field><input type="text"  (typeaheadOnSelect)="onSelect($event)" name="test"
-placeholder="****** Type procedure and select to add *******" typeaheadOptionField="name"
+placeholder="search service" typeaheadOptionField="name"
 [(ngModel)]="name" [typeahead]="services" [typeaheadOptionsLimit]="12" matInput></mat-form-field>
 </div>
 <div class="col-sm-4">
@@ -104,14 +104,7 @@ placeholder="****** Type procedure and select to add *******" typeaheadOptionFie
               printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
             <button mat-raised-button class="btn btn-success btn-sm pull-right" style="margin-top:-15px;" (click)="billModal.show()"><i
                 class="fa fa-plus"></i> ADD BILL</button>
-            <!-- <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-right: 10px;"><i
-                class="cui-dollar"></i> TOTAL <span
-                style="color:white;font-size:13px;font-weight: bold">{{total | number}}</span></button> -->
-            <!-- <button mat-raised-button color="warn" class="btn-sm pull-right"
-              style="margin-top:-15px;margin-right: 10px" (click)="confirm()"
-              [disabled]="pending_amount <= 0"><i class="fa fa-money"></i> PAY BILLS <span
-                style="color:white;font-size:13px;font-weight: bold">{{pending_amount | number}}</span></button>
-       -->
+          
             </div>
           </div>
          
