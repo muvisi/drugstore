@@ -25,7 +25,7 @@ data;
 procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity','delete'];
 diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code','Primary','delete'];
 drugColumns: string[] = ['name', 'generic_name','dosage','frequency', 'duration', 'route','notes','form','delete'];
-frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','1 day','2 days'];
+frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','TID','OD','TDS','PRN','QID'];
 historyDiagnosis=['sn','name','code','date'];
 observationsColumns = ['sn','observation','created','visit_no','doctor','delete']
 historyServices=['sn','service','bill_number','invoice','cost'];

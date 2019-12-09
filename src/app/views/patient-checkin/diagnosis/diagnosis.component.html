@@ -1362,11 +1362,11 @@
                               </button>
                           </mat-form-field>
                         </div>
-                        <div class="col-sm-3">
+                        <!-- <div class="col-sm-3">
                           <mat-form-field>
                             <input type="text" matInput [(ngModel)]="selectedDrug.cost" placeholder="Cost" readonly>
                           </mat-form-field>
-                        </div>
+                        </div> -->
                         <div class="col-sm-2">
                             <mat-form-field>
                               <input type="text" matInput [(ngModel)]="selectedDrug.form" placeholder="Drug Form">
@@ -1387,18 +1387,19 @@
                                     </mat-select>
                                   </mat-form-field>
                             </div>
+                             
+                            <div class="col-sm-2">
+                                <mat-form-field>
+                                  <input type="text" matInput [(ngModel)]="selectedDrug.route" placeholder="Route">
+                                  <button mat-button *ngIf="selectedDrug.route" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.route=''">
+                                      <mat-icon>close</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                              </div>
+                              
                         </div>
                         <div class="row">
                            
-                            <div class="col-sm-2">
-                              <mat-form-field>
-                                <input type="text" matInput [(ngModel)]="selectedDrug.route" placeholder="Route">
-                                <button mat-button *ngIf="selectedDrug.route" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.route=''">
-                                    <mat-icon>close</mat-icon>
-                                  </button>
-                              </mat-form-field>
-                            </div>
-                            
                               <div class="col-sm-2">
                                   <mat-form-field>
                                       <mat-label>Frequency</mat-label>
@@ -1417,22 +1418,7 @@
                                       </button>
                                   </mat-form-field>
                                 </div>
-                              <div class="col-sm-2">
-                                  <mat-form-field>
-                                    <input type="text" matInput [(ngModel)]="selectedDrug.medication_schedule" placeholder="Medication Schedule">
-                                    <button mat-button *ngIf="selectedDrug.medication_schedule" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.medication_schedule=''">
-                                        <mat-icon>close</mat-icon>
-                                      </button>
-                                  </mat-form-field>
-                                </div>
-                                <div class="col-sm-2">
-                                  <mat-form-field>
-                                    <input type="number" matInput [(ngModel)]="selectedDrug.load" placeholder="Quantity">
-                                    <button mat-button *ngIf="selectedDrug.load" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.load=''">
-                                        <mat-icon>close</mat-icon>
-                                      </button>
-                                  </mat-form-field>
-                                </div>
+                  
                                 <div class="col-sm-2">
                                     <mat-form-field >
                                       <input type="number" matInput [(ngModel)]="selectedDrug.refils" placeholder="Refils">
