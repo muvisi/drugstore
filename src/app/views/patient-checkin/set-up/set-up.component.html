@@ -586,7 +586,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <div class="row">
             <div class="col-sm-3">
               <mat-form-field>
-              <input type="text" matInput placeholder="Search">
+              <input type="text" matInput placeholder="Search" (keyup)="search($event.target.value)">
               </mat-form-field>
             </div>
             <div class="col-sm-2">
@@ -700,7 +700,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <div class="row">
             <div class="col-sm-3">
               <mat-form-field>
-              <input type="text" matInput placeholder="Search">
+              <input type="text" matInput placeholder="Search" (keyup)="searchDrug($event.target.value)">
               </mat-form-field>
             </div>
             <div class="col-sm-2">

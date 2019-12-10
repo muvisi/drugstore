@@ -32,7 +32,7 @@ export class TriageComponent implements OnInit {
   allergicDrugs = [];
   triageMedicine = [];
   displayedColumns: string[] = ['name','generic_name','strength', 'cost','quantity','form','delete'];
-  serviceColumns: string[] = ['name','code','cost','surgeon','assistant','date','delete'];
+  serviceColumns: string[] = ['name','code','cost','delete'];
   dataSource;
   dataSource1;
   value;

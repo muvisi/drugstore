@@ -144,7 +144,7 @@ dropService(item) {
     const id = item.id;
 
     this.service.deleteService(id).subscribe((res) => {
-      this.toastr.success('Successfully Service with Code'+' '+ item.code);
+      this.toastr.success('Successfully deleted Service with Code'+' '+ item.code);
       this.getService();
     },
       (error) => {
@@ -303,5 +303,12 @@ this.service.saveDrugs(data).subscribe((res) => {
        this.toastr.error('Department creation Failed');
   });
 }
-  
+
+searchDrug(filterValue: string) {
+  this.drugsSelected.filter = filterValue.trim().toLowerCase();
+}
+
+search(filterValue: string) {
+  this.providerServices.filter = filterValue.trim().toLowerCase();
+}
 }
