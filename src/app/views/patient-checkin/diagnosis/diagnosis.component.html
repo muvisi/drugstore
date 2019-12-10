@@ -1378,47 +1378,27 @@
                               </mat-form-field>
                             </div>
                             <div class="col-sm-2">
-                                <mat-form-field>
-                                    <mat-label>Dosage</mat-label>
-                                    <mat-select [(ngModel)]="selectedDrug.dosage">
-                                      <mat-option *ngFor="let item of dosage" [value]="item.meaning">
-                                        {{item.meaning}}
-                                      </mat-option>
-                                    </mat-select>
-                                  </mat-form-field>
-                            </div>
-                             
-                            <div class="col-sm-2">
-                                <mat-form-field>
-                                  <input type="text" matInput [(ngModel)]="selectedDrug.route" placeholder="Route">
-                                  <button mat-button *ngIf="selectedDrug.route" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.route=''">
-                                      <mat-icon>close</mat-icon>
-                                    </button>
+                              <mat-form-field>
+                                  <mat-label>Frequency</mat-label>
+                                  <mat-select [(ngModel)]="selectedDrug.frequency">
+                                    <mat-option *ngFor="let item of frequencies" [value]="item" >
+                                      {{item}}
+                                    </mat-option>
+                                  </mat-select>
                                 </mat-form-field>
-                              </div>
-                              
+                          </div>
+                          <div class="col-sm-2">
+                            <mat-form-field>
+                              <input type="number" matInput [(ngModel)]="selectedDrug.duration" placeholder="Duration(days)">
+                              <button mat-button *ngIf="selectedDrug.duration" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.duration=''">
+                                  <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                          </div>
+            
                         </div>
                         <div class="row">
                            
-                              <div class="col-sm-2">
-                                  <mat-form-field>
-                                      <mat-label>Frequency</mat-label>
-                                      <mat-select [(ngModel)]="selectedDrug.frequency">
-                                        <mat-option *ngFor="let item of frequencies" [value]="item" >
-                                          {{item}}
-                                        </mat-option>
-                                      </mat-select>
-                                    </mat-form-field>
-                              </div>
-                              <div class="col-sm-2">
-                                  <mat-form-field>
-                                    <input type="number" matInput [(ngModel)]="selectedDrug.duration" placeholder="Duration(days)">
-                                    <button mat-button *ngIf="selectedDrug.duration" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.duration=''">
-                                        <mat-icon>close</mat-icon>
-                                      </button>
-                                  </mat-form-field>
-                                </div>
-                  
                                 <div class="col-sm-2">
                                     <mat-form-field >
                                       <input type="number" matInput [(ngModel)]="selectedDrug.refils" placeholder="Refils">
@@ -1453,14 +1433,10 @@
                         <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
                       </ng-container>
                   <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef>Brand Name</th>
+                    <th mat-header-cell *matHeaderCellDef>Molecuke Name</th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                   </ng-container>
-                  
-                  <ng-container matColumnDef="dosage">
-                    <th mat-header-cell *matHeaderCellDef>Dosage</th>
-                    <td mat-cell *matCellDef="let element"> {{element.dosage}} </td>
-                  </ng-container>
+                 
                   <ng-container matColumnDef="frequency">
                     <th mat-header-cell *matHeaderCellDef>Frequency</th>
                     <td mat-cell *matCellDef="let element"> {{element.frequency}} </td>
@@ -1468,11 +1444,6 @@
                   <ng-container matColumnDef="duration">
                     <th mat-header-cell *matHeaderCellDef>Duration</th>
                     <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
-                  </ng-container>
-  
-                  <ng-container matColumnDef="route">
-                    <th mat-header-cell *matHeaderCellDef> Route </th>
-                    <td mat-cell *matCellDef="let element"> {{element.route}} </td>
                   </ng-container>
                   <ng-container matColumnDef="notes">
                       <th mat-header-cell *matHeaderCellDef>Notes </th>

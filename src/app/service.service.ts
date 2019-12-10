@@ -287,6 +287,12 @@ searchBills(data): Observable<any>{
       map(this.extractData));
 
   }
+
+  patientRecords(): Observable<any> {
+    return this.http.get(endpoint + 'patients/patient-records/').pipe(
+      map(this.extractData));
+
+  }
   updatePatient(data): Observable<any>{
     return this.http.post(endpoint + 'patients/update_patient/',data).pipe(
       map(this.extractData));

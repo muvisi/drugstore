@@ -24,7 +24,7 @@ export class DiagnosisComponent implements OnInit {
 data;
 procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity','delete'];
 diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code','Primary','delete'];
-drugColumns: string[] = ['name', 'generic_name','dosage','frequency', 'duration', 'route','notes','form','delete'];
+drugColumns: string[] = ['name', 'generic_name','frequency', 'duration','notes','form','delete'];
 frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','TID','OD','TDS','PRN','QID'];
 historyDiagnosis=['sn','name','code','date'];
 observationsColumns = ['sn','observation','created','visit_no','doctor','delete']
@@ -380,6 +380,7 @@ this.diagnoses.splice(index, 1);
   closeClaim(){
       this.service.closeClaim({id:this.patientInfo.visit_no}).subscribe((res)=>{
         this.toastr.success('Sucessfully closed a claim');
+        this.navCtrl.navigate('dashboard/patients/diagnosis&treatment');
       },()=>{
         this.toastr.error('Failed to Close claim');
       })
