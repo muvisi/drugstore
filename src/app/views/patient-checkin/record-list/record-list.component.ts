@@ -26,5 +26,8 @@ getRecords(){
 rowClick(item){
   this.navCtrl.navigate('dashboard/records/',{data:item})
 }
+applyFilter(filterValue: string) {
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 
 }

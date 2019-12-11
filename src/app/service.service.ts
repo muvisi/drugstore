@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint = 'http://localhost:8000/';
-export const endpoint = 'http://134.209.199.123:7000/';
+export const endpoint = 'http://134.209.199.123:4000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +40,7 @@ export class ServiceService {
 
   }
   recordList(): Observable<any> {
-    return this.http.get(endpoint + 'patients/record_list/').pipe(
+    return this.http.get(endpoint + 'patients/record_list/?limit=500').pipe(
       map(this.extractData));
 
   }
@@ -477,11 +477,11 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
-  // getProviderDrugs(): Observable<any> {
-  //   return this.http.get(endpoint + 'pharmacy/drugs_list/').pipe(
-  //     map(this.extractData));
+  getDrugs(): Observable<any> {
+    return this.http.get(endpoint + 'pharmacy/drugs_list/').pipe(
+      map(this.extractData));
 
-  // }
+  }
   getProviderDrugs(): Observable<any> {
     return this.http.get(endpoint + 'data/prescription/').pipe(
       map(this.extractData));

@@ -20,12 +20,25 @@ export class RecordsComponent implements OnInit {
   diagnosesList = [];
   selectedOption: any ={};
   selectedDiagnosis: any ={};
+  selectedDrug: any ={};
   services = [];
   procedures = [];
   diagnosis =[];
+  drugsList = [];
+  data: any = {};
   displayedColumns: string[] = ['sn', 'name', 'code', 'cost'];
   constructor(public service: ServiceService,public toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent) { 
-    // this.patient = this.navCtrl.get('data');
+    this.data = this.navCtrl.get('data');
+    console.log(this.data);
+    if(this.data !=null){
+      this.patient.first_name = this.data.first_name;
+      this.patient.other_names = this.data.other_names;
+      this.patient.last_name = this.data.last_name;
+      this.patient.phone = this.data.phone;
+      this.patient.id = this.data.id;
+    }else{
+      this.navCtrl.navigate('dashboard/records-list')
+    }
   }
 
   ngOnInit() {
@@ -35,19 +48,20 @@ export class RecordsComponent implements OnInit {
     this.getDiagnoses();
   }
  submit(){
+   if(this.patient.visit_date == null){
+     this.toastr.error('Visit date is required')
+     return
+   }
    const data = {
      patient:this.patient,
-     guardian:this.guardian,
-     kin:this.kin
+     procedures:this.procedures,
+     diagnosis:this.diagnosis
    }
    
    this.service.createRecord(data).subscribe((res)=>{
-     console.log('www',res);
      this.patient ={};
-     this.isGuardian = false;
-     this.guardian ={};
-     this.kin ={};
      this.toastr.success('Successfully created a record');
+     this.navCtrl.navigate('dashboard/records-list')
    })
  }
 
@@ -61,6 +75,11 @@ getDiagnoses() {
     this.service.searchDiagnosis(text).subscribe((res) => {
       this.diagnosesList = res.results;
       });
+  }
+  getDrugList(){
+    this.service.getDrugs().subscribe((res)=>{
+      this.drugsList = res.results;
+    })
   }
   onDiagnosis(item) {
     this.diagnosis.push(item.item);
