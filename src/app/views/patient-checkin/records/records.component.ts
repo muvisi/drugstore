@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../../service.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
@@ -25,6 +26,7 @@ export class RecordsComponent implements OnInit {
   procedures = [];
   diagnosis =[];
   drugsList = [];
+  drugs = [];
   data: any = {};
   displayedColumns: string[] = ['sn', 'name', 'code', 'cost'];
   constructor(public service: ServiceService,public toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent) { 
@@ -46,6 +48,7 @@ export class RecordsComponent implements OnInit {
     this.gurdianMin = new Date(d.getFullYear() - 18,d.getMonth()+1,d.getDate());
     this.getServices();
     this.getDiagnoses();
+    this.getDrugList();
   }
  submit(){
    if(this.patient.visit_date == null){
@@ -55,7 +58,8 @@ export class RecordsComponent implements OnInit {
    const data = {
      patient:this.patient,
      procedures:this.procedures,
-     diagnosis:this.diagnosis
+     diagnosis:this.diagnosis,
+     drugs:this.drugs
    }
    
    this.service.createRecord(data).subscribe((res)=>{
@@ -64,7 +68,24 @@ export class RecordsComponent implements OnInit {
      this.navCtrl.navigate('dashboard/records-list')
    })
  }
-
+ deleteDrug(obj) {
+  const index: number = this.drugs.indexOf(obj);
+  if (index !== -1) {
+    this.drugs.splice(index, 1);
+  }
+}
+deleteDiagnosis(obj) {
+  const index: number = this.diagnosis.indexOf(obj);
+  if (index !== -1) {
+    this.diagnosis.splice(index, 1);
+  }
+}
+deleteProcedure(obj) {
+  const index: number = this.procedures.indexOf(obj);
+  if (index !== -1) {
+    this.procedures.splice(index, 1);
+  }
+}
 getDiagnoses() {
   this.service.allDiagnoses().subscribe((res) => {
   this.diagnosesList = res.results;
@@ -84,6 +105,10 @@ getDiagnoses() {
   onDiagnosis(item) {
     this.diagnosis.push(item.item);
     this.selectedDiagnosis = {};
+  }
+  onDrug(item) {
+    this.drugs.push(item.item);
+    this.selectedDrug = {};
   }
     getServices() {
       this.service.getProviderServices().subscribe((res) => {

@@ -136,7 +136,7 @@
                         <tr *ngFor="let item of diagnosis">
                           <td>{{item.description}}</td>
                           <td>{{item.code}}</td>
-                          <td><i class="icon-trash"></i></td>
+                          <td (click)="deleteDiagnosis(item)"><i class="icon-trash"></i></td>
                         </tr>                                  
                       </tbody>
                     </table>
@@ -153,12 +153,35 @@
                     <div class="col-sm-3">
                         <mat-form-field>
                             <input type="text"  placeholder=" Search Drug" 
-                            [(ngModel)]="selectedDrug" typeaheadOptionField="name" [typeahead]="drugsList" [typeaheadOptionsLimit]="12"  matInput>
+                            [(ngModel)]="selectedDrug.name" typeaheadOptionField="name" [typeahead]="drugsList"  (typeaheadOnSelect)="onDrug($event)" [typeaheadOptionsLimit]="12"  matInput>
                             <i class="icon-magnifier-add" matSuffix></i>
                            
                         </mat-form-field>
                       </div>
                 </div>
+                <div class="row">
+
+                  <div class="col-sm-7">
+                    <table class="table table-condensed mat-elevation-z8">
+                      <thead>
+                        <tr>
+                          <th>Drug Name</th>
+                          <th>Cost</th>
+                          <th>Strength</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr  *ngFor="let item of drugs">
+                          <td>{{item.name}}</td>
+                          <td>{{item.cost}}</td>
+                          <td>{{item.strength}}</td>
+                          <td (click)="deleteDrug(item)"><i class="icon-trash"></i></td>
+                        </tr>                                  
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
               </fieldset>
             </div>
             <div class="col-sm-12">
@@ -187,6 +210,7 @@
                                     <th>Procedures</th>
                                     <th>Code</th>
                                     <th>Cost</th>
+                                    <th>Delete</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -194,6 +218,7 @@
                                     <td>{{item.name}}</td>
                                     <td>{{item.code}}</td>
                                     <td>{{item.cost}}</td>
+                                    <td (click)="deleteProcedure(item)"><i class="icon-trash"></i></td>
                                   </tr>                                  
                                 </tbody>
                               </table>
