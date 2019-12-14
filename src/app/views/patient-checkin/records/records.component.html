@@ -5,6 +5,7 @@
       <b> <i class="fa fa-icon"></i> Add Record</b>
     </div>
     <div class="card-body">
+        <form [formGroup]="registerForm">
         <div class="row">
             <div class="col-sm-12">
                     <fieldset>
@@ -13,25 +14,30 @@
                               <div class="col-sm-3">
                                 <div class="col-sm-12">
                                   <mat-form-field>
-                                      <input matInput placeholder="First Name" [(ngModel)]="patient.first_name">
+                                      <input matInput placeholder="First Name" formControlName="first_name">
+                                      <mat-error *ngIf="f.first_name.errors">First Name <strong>required</strong></mat-error>
+
                                     </mat-form-field>
                               </div>
                               <div class="col-sm-12">
                                   <mat-form-field>
-                                      <input matInput placeholder="Middle Name" [(ngModel)]="patient.other_names">
-                                     
+                                      <input matInput placeholder="Middle Name" formControlName="other_names">
+                                      <mat-error *ngIf="f.other_names.errors">Middle Name <strong>required</strong></mat-error>
+
                                     </mat-form-field>
                               </div>
                               <div class="col-sm-12">
                                   <mat-form-field>
-                                      <input matInput placeholder="Last Name" [(ngModel)]="patient.last_name">
+                                      <input matInput placeholder="Last Name" formControlName="last_name">
+                                      <mat-error *ngIf="f.last_name.errors">Surname <strong>required</strong></mat-error>
+
                                     </mat-form-field>
                               </div>
                                   
                               </div>
                               <div class="col-sm-3">
                                   <div class="col-sm-12">
-                                      <mat-radio-group  [(ngModel)]="patient.gender">
+                                      <mat-radio-group  formControlName="gender">
                                       
                                         <div class="col-sm-12">
                                           <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
@@ -46,15 +52,17 @@
                                 
                                 <div class="col-sm-12">
                                   <mat-form-field >
-                                    <input matInput placeholder="Phone" [(ngModel)]="patient.phone">
-                  
+                                    <input matInput placeholder="Phone"  formControlName="phone">
+                                    <mat-error *ngIf="f.phone.errors">Phone <strong>required</strong></mat-error>
+
                                   </mat-form-field>
                             </div>
                             <div class="col-sm-12">
                             
                               <mat-form-field>
-                                  <input matInput placeholder="D.o.b" [maxDate]="maxDate"  [(ngModel)]="patient.dob"   bsDatepicker>
-                                
+                                  <input matInput placeholder="Date of Birth" [maxDate]="maxDate"   formControlName="dob" bsDatepicker>
+                                  <mat-error *ngIf="f.dob.errors">Date of birth <strong>required</strong></mat-error>
+
                                 </mat-form-field>
                           </div> 
                            
@@ -63,18 +71,19 @@
                              <div class="col-sm-3">
                                 <div class="col-sm-12">
                                     <mat-form-field>
-                                        <input matInput placeholder="Visit Date" [maxDate]="maxDate" [(ngModel)]="patient.visit_date" bsDatepicker>
+                                        <input matInput placeholder="Visit Date" [maxDate]="maxDate"  formControlName="visit_date" bsDatepicker>
+                                        <mat-error *ngIf="f.visit_date.errors">Visit Date <strong>required</strong></mat-error>
                                       </mat-form-field>
                                 </div> 
                                   
                                 <div class="col-sm-12">
                                     <mat-form-field>
-                                        <input matInput placeholder="National Id" [(ngModel)]="patient.national_id">
+                                        <input matInput placeholder="National Id" formControlName="national_id">
                                       </mat-form-field>
                                 </div> 
                                 <div class="col-sm-12">
                                     <mat-form-field>
-                                        <input matInput placeholder="Email" [(ngModel)]="patient.email">
+                                        <input matInput placeholder="Email" formControlName="email">
                                       </mat-form-field>
                                 </div>
                                
@@ -82,18 +91,18 @@
                              <div class="col-sm-3">
                                 <div class="col-sm-12">
                                     <mat-form-field>
-                                        <input matInput placeholder="County" [(ngModel)]="patient.county">
+                                        <input matInput placeholder="County" formControlName="county">
                                       </mat-form-field>
                                 </div> 
                                 
                                 <div class="col-sm-12">
                                   <mat-form-field>
-                                      <input matInput placeholder="Residence" [(ngModel)]="patient.residence">
+                                      <input matInput placeholder="Residence" formControlName="residence">
                                     </mat-form-field>
                               </div> 
                               <div class="col-sm-12">
                                   <mat-form-field>
-                                      <input matInput placeholder="Occupation" [(ngModel)]="patient.occupation">
+                                      <input matInput placeholder="Occupation" formControlName="occupation">
                                     </mat-form-field>
                               </div> 
                              </div>
@@ -116,7 +125,7 @@
                         <mat-form-field>
                             <input type="text"  placeholder="Diagnosis" name="diagnosis"
                             [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]="diagnosesList"
-                            (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12" (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)" matInput>
+                            (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12" (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"  [ngModelOptions]="{standalone: true}" matInput>
                             <i class="icon-magnifier-add" matSuffix></i>
                            
                         </mat-form-field>
@@ -153,7 +162,7 @@
                     <div class="col-sm-3">
                         <mat-form-field>
                             <input type="text"  placeholder=" Search Drug" 
-                            [(ngModel)]="selectedDrug.name" typeaheadOptionField="name" [typeahead]="drugsList"  (typeaheadOnSelect)="onDrug($event)" [typeaheadOptionsLimit]="12"  matInput>
+                            [(ngModel)]="selectedDrug.name" typeaheadOptionField="name" [typeahead]="drugsList"   (typeaheadLoading)="searchPrescription(selectedDrug.name)"  (typeaheadOnSelect)="onDrug($event)"  typeaheadGroupField="strength" [dropup]="true" [typeaheadOptionsLimit]="12"  [ngModelOptions]="{standalone: true}" matInput>
                             <i class="icon-magnifier-add" matSuffix></i>
                            
                         </mat-form-field>
@@ -194,7 +203,7 @@
                         <mat-form-field>
                           <input type="text" matInput (typeaheadOnSelect)="onSelect($event)" name="test"
                           placeholder="Procedure" typeaheadOptionField="name" [(ngModel)]="selectedOption.name"
-                          [typeahead]="services" [typeaheadOptionsLimit]="7">
+                          [typeahead]="services" (typeaheadLoading)="searchProcedure(selectedOption.name)" [typeaheadOptionsLimit]="7" [ngModelOptions]="{standalone: true}">
                           <button mat-button *ngIf="selectedOption.name" matSuffix mat-icon-button aria-label="Clear" (click)="selectedOption.name=''">
                               <mat-icon>close</mat-icon>
                             </button>
@@ -232,6 +241,27 @@
                 <button mat-raised-button class="btn btn-success pull-right" (click)="submit()">Submit</button>
               </div>
          </div>
-         
+        </form> 
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+             tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                      <h6>Do want to add another visit?</h6>
+                  </div>
+                  <div class="col-sm-12">
+                    <button class="btn btn-success pull-right" (click)="addVisit()">YES</button>
+                    <button class="btn btn-danger pull-right" (click)="closeVisit()" style="margin-right: 8px;">NO</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
   </div>

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../../service.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { ThrowStmt } from '@angular/compiler';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalDirective } from 'ngx-bootstrap/modal'
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
@@ -28,33 +30,52 @@ export class RecordsComponent implements OnInit {
   drugsList = [];
   drugs = [];
   data: any = {};
+  registerForm: FormGroup;
   displayedColumns: string[] = ['sn', 'name', 'code', 'cost'];
-  constructor(public service: ServiceService,public toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent) { 
+  @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  constructor(public service: ServiceService,public toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder) { 
     this.data = this.navCtrl.get('data');
     console.log(this.data);
-    if(this.data !=null){
-      this.patient.first_name = this.data.first_name;
-      this.patient.other_names = this.data.other_names;
-      this.patient.last_name = this.data.last_name;
-      this.patient.phone = this.data.phone;
-      this.patient.id = this.data.id;
-    }else{
+    if(this.data ==null){
       this.navCtrl.navigate('dashboard/records-list')
     }
   }
 
   ngOnInit() {
     var d = new Date();
+    
     this.gurdianMin = new Date(d.getFullYear() - 18,d.getMonth()+1,d.getDate());
+    this.registerForm = this.formBuilder.group({
+      first_name: ['', Validators.required],
+      other_names: [''],
+      last_name: ['', Validators.required],
+      gender: ['Female', Validators.required],
+      email: ['',Validators.email],
+      phone: ['',Validators.required],
+      dob: ['', Validators.required],
+      visit_date: ['', Validators.required],
+      residence: [''],
+      national_id: ['',Validators.required],
+      occupation: [''],
+      county: ['']
+    });
+    if(this.data !=null){
+      this.registerForm.patchValue({first_name:this.data.first_name,other_names:this.data.other_names,last_name:this.data.last_name,phone:this.data.phone})
+    }
     this.getServices();
     this.getDiagnoses();
     this.getDrugList();
+
+
   }
+get f() { return this.registerForm.controls; }
  submit(){
-   if(this.patient.visit_date == null){
-     this.toastr.error('Visit date is required')
-     return
-   }
+  if (this.registerForm.invalid) {
+    this.toastr.error('Fill in All the Fields Marked with *');
+      return;
+  }
+  this.patient =  this.registerForm.value;
+  this.patient.id = this.data.id;
    const data = {
      patient:this.patient,
      procedures:this.procedures,
@@ -63,10 +84,28 @@ export class RecordsComponent implements OnInit {
    }
    
    this.service.createRecord(data).subscribe((res)=>{
-     this.patient ={};
+  
      this.toastr.success('Successfully created a record');
-     this.navCtrl.navigate('dashboard/records-list')
+     this.staticModal.show();
+    //  this.navCtrl.navigate('dashboard/records-list')
    })
+ }
+ addVisit(){
+  this.drugs =[];
+  this.diagnosis=[];
+  this.procedures =[];
+  this.registerForm.patchValue({visit_date:''});
+  this.staticModal.hide();
+ }
+ closeVisit(){
+  this.staticModal.hide();
+   this.drugs =[];
+   this.diagnosis=[];
+   this.procedures =[];
+   this.patient ={}
+
+  this.navCtrl.navigate('dashboard/records-list')
+
  }
  deleteDrug(obj) {
   const index: number = this.drugs.indexOf(obj);
@@ -98,27 +137,59 @@ getDiagnoses() {
       });
   }
   getDrugList(){
-    this.service.getDrugs().subscribe((res)=>{
+    this.service.getProviderDrugs().subscribe((res)=>{
+      this.drugsList = res.results;
+    })
+  }
+  searchPrescription(text){
+    this.service.searchDrugs(text).subscribe((res)=>{
       this.drugsList = res.results;
     })
   }
   onDiagnosis(item) {
-    this.diagnosis.push(item.item);
-    this.selectedDiagnosis = {};
+    const index: number = this.diagnosis.findIndex(obj=>obj.code = item.item.id);
+      if (index !== -1) {
+        this.toastr.info('Diagnosis has   already been added')
+        this.selectedDiagnosis = {};
+      }else{
+        this.diagnosis.push(item.item);
+        this.selectedDiagnosis = {};
+        console.log(this.diagnosis);
+      }
   }
   onDrug(item) {
-    this.drugs.push(item.item);
-    this.selectedDrug = {};
+    const index: number = this.drugs.findIndex(obj=>obj.code = item.item.id);
+    console.log(index)
+      if (index !== -1) {
+        this.toastr.info('Drug has   already been added')
+        this.selectedDrug = {};
+      }else{
+        this.drugs.push(item.item);
+        this.selectedDrug = {};
+        console.log(this.drugs);
+      }
   }
     getServices() {
-      this.service.getProviderServices().subscribe((res) => {
+      this.service.getProcedures().subscribe((res) => {
         this.services = res.results;
       });
     }
+    searchProcedure(text) {
+      console.log(text);
+        this.service.searchProcedure(text).subscribe((res) => {
+        this.services = res.results;
+      });
+      }
     onSelect(item){
-      this.procedures.push(item.item);
-      this.selectedOption = {};
-      console.log(this.procedures);
+      const index: number = this.procedures.indexOf(item.item);
+      if (index !== -1) {
+        this.toastr.info('Procedure is already added')
+        this.selectedOption = {};
+      }else{
+        this.procedures.push(item.item);
+        this.selectedOption = {};
+        console.log(this.procedures);
+      }
     }    
 
    
