@@ -147,7 +147,7 @@ getDiagnoses() {
     })
   }
   onDiagnosis(item) {
-    const index: number = this.diagnosis.findIndex(obj=>obj.code = item.item.id);
+    const index: number = this.diagnosis.findIndex(obj=>obj.code === item.item.code);
       if (index !== -1) {
         this.toastr.info('Diagnosis has   already been added')
         this.selectedDiagnosis = {};
@@ -158,7 +158,7 @@ getDiagnoses() {
       }
   }
   onDrug(item) {
-    const index: number = this.drugs.findIndex(obj=>obj.code = item.item.id);
+    const index: number = this.drugs.findIndex(obj=>obj.code == item.item.code);
     console.log(index)
       if (index !== -1) {
         this.toastr.info('Drug has   already been added')
@@ -181,7 +181,7 @@ getDiagnoses() {
       });
       }
     onSelect(item){
-      const index: number = this.procedures.indexOf(item.item);
+      const index: number = this.procedures.findIndex(obj=>obj.code == item.item.code);
       if (index !== -1) {
         this.toastr.info('Procedure is already added')
         this.selectedOption = {};
