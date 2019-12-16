@@ -127,8 +127,10 @@
                                     </td>
                             </ng-container>
                             <ng-container matColumnDef="edit">
-                                    <th mat-header-cell *matHeaderCellDef> Edit </th>
-                                    <td mat-cell *matCellDef="let element"> <i class="icon-note"></i> </td>
+                                    <th mat-header-cell *matHeaderCellDef>Tick To Pay</th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                      <mat-checkbox [disabled]="element.status =='1'"  (change)="makePayments(element)"></mat-checkbox>
+                                       </td>
                                   </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -138,15 +140,99 @@
             </div>
             <br>
             <div class="row">
+              <div class="col-sm-12">
+                <mat-card>
+                  <mat-card-subtitle> Other Services</mat-card-subtitle>
+                  <div class="row">
+                    <div class="col-sm-12 table-responsive mat-elevation-z8" *ngIf="patient.bills">
+                      <table mat-table [dataSource]="patient.bills" matSort>
+                          
+                        <ng-container matColumnDef="service">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+                          <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="category">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+                          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="bill_number">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Bill Number </th>
+                          <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="invoice__no">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
+                          <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="rate">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+                          <td mat-cell *matCellDef="let element"> {{element.rate | number:'1.2-2'}}</td>
+                        </ng-container>
+                
+                        
+                
+                        <ng-container matColumnDef="status">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Status</th>
+                          <td mat-cell *matCellDef="let element"><span class="badge badge-danger" style="font-size: 13px;"  *ngIf="element.status =='0'">Not Paid</span>
+                            <span  class="badge badge-success" style="font-size: 13px;" *ngIf="element.status =='1'">Paid</span>
+                          </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="edit">
+                            <th mat-header-cell *matHeaderCellDef>Tick To Pay</th>
+                            <td mat-cell *matCellDef="let element"> 
+                              <mat-checkbox [disabled]="element.status =='1'" (change)="makePayments(element)"></mat-checkbox>
+                               </td>
+                          </ng-container>
+                
+                
+                        <tr mat-header-row *matHeaderRowDef="serviceColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns:serviceColumns;" [hidden]="row.category =='PRESCRIPTION'"></tr>
+                      </table>
+                
+                      <br>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+            <br>
+            <div class="row">
                 <br>
                 <div class="col-sm-12">
                     <button class=" btn btn-success  btn-sm pull-right" (click)="staticModal.show()"> <i class="fa fa-plus"></i> Add Prescription</button>
+                    <button class="btn btn-info btn-sm  pull-right" style="margin-right:10px;" (click)="pay()"> <i class="cui-dollar"></i> Pay</button>
                     <button class="btn btn-info btn-sm  pull-right" style="margin-right:10px;" (click)="back()"> <i class="cui-arrow-left"></i> Back</button>
 
                 </div>
             </div>
         </mat-card>
 
+        <div class="modal fade" bsModal #paymentModal="bs-modal" [config]="{backdrop: 'static'}"
+        tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+     <div class="modal-dialog modal-sm">
+       <div class="modal-content">
+         <div class="modal-body">
+           <div class="row">
+             <div class="col-sm-12">
+               <h5>Confirm Payments</h5>
+             </div>
+             <div class="col-sm-12">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Cash Payments" [(ngModel)]="paymentAmount" readonly> 
+                  </mat-form-field>
+             </div>
+             <div class="col-sm-12">
+               <button (click)="submit()">Submit</button>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
 
 <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
 tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
@@ -194,12 +280,12 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                               <input type="text" matInput [(ngModel)]="selectedDrug.quantity" placeholder="Quantity">
                             </mat-form-field>
                      </div>
-                     <div class="col-sm-3">
+                     <!-- <div class="col-sm-3">
                             <mat-form-field>
                                     <input type="text" matInput [(ngModel)]="selectedDrug.dosage" placeholder="Dosage" [typeahead]="dosage"
                                     [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="meaning">
                                   </mat-form-field>
-                        </div>
+                        </div> -->
             </div>
         </div>
         <div class="col-sm-12">

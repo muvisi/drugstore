@@ -55,6 +55,11 @@ export class ServiceService {
       map(this.extractData));
 
   }
+  pay(data): Observable<any> {
+    return this.http.post(endpoint + 'payments/pay/', data ).pipe(
+      map(this.extractData));
+
+  }
   updateDiagnosis(data): Observable<any> {
     return this.http.post(endpoint + 'treatment/update_diagnosis/',data).pipe(
       map(this.extractData));

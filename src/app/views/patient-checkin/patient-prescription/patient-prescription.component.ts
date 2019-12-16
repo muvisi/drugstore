@@ -14,7 +14,9 @@ import {MatTableDataSource} from '@angular/material/table';
 export class PatientPrescriptionComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  @ViewChild('paymentModal', { static: false }) paymentModal: ModalDirective;
   displayedColumns: string[] = ['service', 'generic_name','dosage','strength','form','cost','quantity','status','edit'];
+  serviceColumns: string[] = ['service', 'category', 'bill_number', 'invoice__no', 'rate','status','edit'];
   dataSource;
   id;
   data;
@@ -23,6 +25,8 @@ export class PatientPrescriptionComponent implements OnInit {
   selectedDrug: any = {};
   dosage: any;
   amount=0;
+  paymentAmount =0;
+  payments = [];
   constructor(private service: ServiceService, private navCtrl: NgxNavigationWithDataComponent,public toastr: ToastrService) { 
     this.data = this.navCtrl.get('data');
     console.log('gcfycc',this.data)
@@ -42,6 +46,17 @@ export class PatientPrescriptionComponent implements OnInit {
   }
   back(){
     this.navCtrl.navigate('/dashboard/pharmacy')
+  }
+  pay(){
+    this.paymentModal.show();
+    let cost = 0;
+    this.paymentAmount =0;
+    console.log(this.payments);
+    this.payments.forEach(element => {
+      cost += element.rate * element.quantity;
+    });
+    this.paymentAmount = cost
+    console.log(this.paymentAmount);
   }
   patientPrescriptions(){
     this.service.patientPrescription({visit_no: this.data.visit_no}).subscribe((res)=>{
@@ -82,6 +97,23 @@ export class PatientPrescriptionComponent implements OnInit {
       this.toastr.success('Successfully Added prescription')
       this.ngOnInit();
       this.staticModal.hide();
+    })
+  }
+  makePayments(item){
+    const index: number = this.payments.findIndex(obj=>obj.bill_number == item.bill_number);
+    if (index !== -1) {
+      this.payments.splice(index,1)
+    }else{
+      this.payments.push(item);
+    }
+  }
+  submit(){
+    this.service.pay(this.payments).subscribe((res)=>{
+      this.toastr.success("Successfully Submitted Payments");
+      this.paymentModal.hide();
+      this.payments =[];
+      this.paymentAmount =0;
+      this.patientPrescriptions();
     })
   }
 }
