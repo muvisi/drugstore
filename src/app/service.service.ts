@@ -499,11 +499,11 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
 
-  // searchDrugs(data): Observable<any> {
-  //   return this.http.get(endpoint + 'pharmacy/drugs_list/?search='+data).pipe(
-  //     map(this.extractData));
+  searchHospitalDrugs(data): Observable<any> {
+    return this.http.get(endpoint + 'pharmacy/drugs_list/?search='+data).pipe(
+      map(this.extractData));
 
-  // }
+  }
 
   getDosage(): Observable<any> {
     return this.http.get(endpoint + 'data/dosage/').pipe(

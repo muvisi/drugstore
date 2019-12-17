@@ -24,7 +24,7 @@ export class StockLevelComponent implements OnInit {
     this.drugs();
   }
   drugs() {
-    this.service.getProviderDrugs().subscribe((res) => {
+    this.service.getDrugs().subscribe((res) => {
       this.loader(res.results);
     });
   }
@@ -53,7 +53,7 @@ onSubmit(){
   
 }
 search(data){
-  this.service.searchDrugs(data).subscribe((res)=>{
+  this.service.searchHospitalDrugs(data).subscribe((res)=>{
     this.loader(res.results);
   });
 }

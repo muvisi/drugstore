@@ -94,7 +94,8 @@ export class PatientPrescriptionComponent implements OnInit {
     this.selectedDrug.category = 'PRESCRIPTION';
     this.service.generateBill(this.selectedDrug).subscribe((res)=>{
       console.log(res);
-      this.toastr.success('Successfully Added prescription')
+      this.toastr.success('Successfully Added prescription');
+      this.selectedDrug = {};
       this.ngOnInit();
       this.staticModal.hide();
     })

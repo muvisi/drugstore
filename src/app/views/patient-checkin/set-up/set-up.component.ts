@@ -95,7 +95,7 @@ export class SetUpComponent implements OnInit {
     })
   }
   hospitalDrugs(){
-    this.service.getProviderDrugs().subscribe((res) => {
+    this.service.getDrugs().subscribe((res) => {
       this.drugsSelected = new MatTableDataSource(res.results);
 
     });
