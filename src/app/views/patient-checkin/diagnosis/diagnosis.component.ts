@@ -26,8 +26,7 @@ procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invo
 diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code','Primary','delete'];
 drugColumns: string[] = ['name', 'generic_name','frequency', 'duration','notes','form','delete'];
 frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','TID','OD','TDS','PRN','QID'];
-historyDiagnosis=['sn','name','code','date'];
-observationsColumns = ['sn','observation','created','visit_no','doctor','delete']
+observationsColumns = ['sn','observation','created','visit_no','category','delete']
 historyServices=['sn','service','bill_number','invoice','cost'];
 historyDrugs: string[] = ['sn','name', 'generic_name','form','strength','refils','date'];
 triage = {};
@@ -68,7 +67,10 @@ observation:any ={};
 labAmount = 0;
 proceduresAmount = 0;
 prescriptionAmount =0;
-
+observationList =[];
+categories =['Surgical','Pharmacy','Review']
+patient_history:any = {};
+medicalObservation = [];
 constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService,
 private router: Router, private toastr: ToastrService, private datePipe: DatePipe) {
 this.id = this.navCtrl.get('id');
@@ -89,6 +91,7 @@ this.getPrescription();
 this.getDosage();
 this.getTest();
 this.patient();
+this.getObservation();
 this.user = JSON.parse(sessionStorage.getItem('user'));
 }
 onDiagnosis(item) {
@@ -120,7 +123,11 @@ addAllergy() {
 
     });
   }
-
+getObservation(){
+  this.service.observationList().subscribe((res)=>{
+    this.observationList = res.results;
+  })
+}
 savePrescription() {
   console.log(this.selectedDrug)
   const data = {
@@ -161,7 +168,33 @@ OnSelectTest(item) {
   }
   );
 }
-
+exist(item){
+  return this.medicalObservation.includes(item);
+}
+saveMedical(){
+  // this.medicalObservation =[];
+  // console.log(this.medicalObservation)
+ const data ={
+   visit_no:this.patientInfo.visit_no,
+   medical: this.medicalObservation
+ }
+ this.service.addMedicalObservation(data).subscribe((res)=>{
+   this.toastr.success('Successfully added Observations');
+   this.medicalObservation =[];
+   this.patient();
+ })
+}
+addMedicalObservation(item){
+  if ( this.medicalObservation.indexOf(item) < 0) {
+    this.medicalObservation.push(item);
+    
+  } else {
+   const index = this.medicalObservation.indexOf(item);
+   this.medicalObservation.splice(index, 1);
+  }
+  
+  console.log(this.medicalObservation);
+}
 getDiagnoses() {
 this.service.allDiagnoses().subscribe((res) => {
 this.diagnosesList = res.results;
@@ -324,6 +357,12 @@ this.diagnoses.splice(index, 1);
       this.patient();
     });
   }
+  deletePres(item){
+    const data ={
+      visit_no:this.patientInfo.visit_no,
+      code:item.code
+    }
+  }
   saveService() {
     // this.selectedOption.date = this.datePipe.transform(this.selectedOption.date, 'yyyy-MM-dd');
     console.log(this.selectedOption)
@@ -354,7 +393,7 @@ this.diagnoses.splice(index, 1);
     this.service.deleteNote(item.id).subscribe((res)=>{
       console.log(res);
       this.patient();
-      this.toastr.error('Deleted obsevation');
+      this.toastr.success('Successfully Deleted Note');
     })
   }
   addObservation(){

@@ -120,28 +120,41 @@ export class BillPatientComponent implements OnInit {
     this.calculate();
   }
   calculate() {
+    if(!this.isMpesa){
+      this.mpesa.amount =0;
+    }
+    if(!this.isCash){
+      this.cash =0;
+    }
     if (this.isCash && !this.isInsurance && !this.isMpesa) {
+      this.bill_amount =0;
       this.cash = this.pending_amount;
       this.bill_amount = this.cash;
       this.status = true;
-    } else if (!this.isCash && !this.isInsurance && this.isMpesa) {
-        this.mpesa.amount = this.pending_amount;
+    } 
+    else if (!this.isCash && !this.isInsurance && this.isMpesa) {
+      this.bill_amount =0;
+      this.mpesa.amount = this.pending_amount;
       this.bill_amount = this.mpesa.amount;
       this.cash = 0;
       this.status = true;
-    } else if (!this.isCash && this.isInsurance && !this.isMpesa) {
+    } 
+    else if (!this.isCash && this.isInsurance && !this.isMpesa) {
+      this.bill_amount =0;
       this.amount = this.pending_amount;
       this.bill_amount = this.amount;
       this.status = true;
-    } else if(this.isCash && !this.isInsurance && this.isMpesa){
-       if(this.cash > 0 || this.mpesa.amount > 0){
-         this.cash = 0;
-         this.mpesa.amount =0;
-         this.status = false;
-       }
-    }else {
+    } 
+    else if(this.isCash && !this.isInsurance && this.isMpesa){
+      this.bill_amount =0;
+      this.bill_amount = this.cash + this.mpesa.amount
       this.status = false;
-      this.bill_amount = this.amount + this.cash + this.mpesa.amount;
+       
+    }
+    else {
+      this.bill_amount =0;
+      this.status = true;
+      this.bill_amount = 0;
     }
 
   }

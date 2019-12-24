@@ -121,6 +121,7 @@ if ( this.selectedAllergy.indexOf(item) < 0) {
 
 console.log(this.selectedAllergy);
 }
+
 addObservation(item){
   const index =this.observations_points.indexOf(item);
   if(index< 0){

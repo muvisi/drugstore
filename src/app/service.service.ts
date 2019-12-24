@@ -70,6 +70,11 @@ export class ServiceService {
       map(this.extractData));
 
   }
+  addMedicalObservation(data): Observable<any> {
+    return this.http.post(endpoint + 'treatment/medical_observation/',data).pipe(
+      map(this.extractData));
+
+  }
   deleteDiagnosis(id): Observable<any> {
     return this.http.delete(endpoint + 'treatment/delete_diagnosis/'+id+'/').pipe(
       map(this.extractData));
