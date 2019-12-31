@@ -127,8 +127,11 @@ export class NewPatientComponent  implements OnInit {
     }
     var data = {}
     data['patient'] = this.registerForm.value;
-    Object.keys(this.memberData).length != 0 !=null? data['insure_check'] =  this.memberData.trx_id : //pass
-    Object.keys(this.guardian).length != 0? data['guardian'] = this.guardian : Object.keys(this.kin).length != 0?  data['kin'] = this.kin : console.log('no kin')
+    data['guardian'] = this.guardian;
+    data['kin'] = this.kin
+
+    // Object.keys(this.memberData).length != 0 !=null? data['insure_check'] =  this.memberData.trx_id : //pass
+    // Object.keys(this.guardian).length != 0? data['guardian'] = this.guardian : Object.keys(this.kin).length != 0?  data['kin'] = this.kin : console.log('no kin')
     this.service.registerPatient(data).subscribe((res) => {
       this.toastr.success('successfully created the patient');
       console.log(res);

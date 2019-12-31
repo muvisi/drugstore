@@ -60,6 +60,7 @@ type = 'thermometer';
 dataFormat = 'json';
 user;
 drugs;
+text;
 dosage;
 allergy: any = {};
 selectedDrug: any = {};
@@ -71,6 +72,7 @@ observationList =[];
 categories =['Surgical','Pharmacy','Review']
 patient_history:any = {};
 medicalObservation = [];
+visits =[];
 constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService,
 private router: Router, private toastr: ToastrService, private datePipe: DatePipe) {
 this.id = this.navCtrl.get('id');
@@ -93,6 +95,16 @@ this.getTest();
 this.patient();
 this.getObservation();
 this.user = JSON.parse(sessionStorage.getItem('user'));
+this.getPatients();
+}
+switchPatient(item){
+this.id = item.item.visit_no;
+this.ngOnInit();
+}
+getPatients() {
+  this.service.getTreatments().subscribe((res) => {
+    this.visits = res.results;
+  });
 }
 onDiagnosis(item) {
 this.selectedOption = item.item;
@@ -206,6 +218,15 @@ searchDiagnosis(text){
     this.diagnosesList = res.results;
     });
 }
+saveHistory(){
+  this.patient_history.visit_no = this.patientInfo.visit_no
+  console.log(this.patient_history);
+  this.service.saveHistory(this.patient_history).subscribe((res)=>{
+    console.log(res);
+    this.toastr.success("Successfully saved patient history")
+  })
+  this.patient();
+}
 onDrug(item) {
 this.selectedDrug = item.item;
 console.log(this.selectedDrug);
@@ -226,6 +247,11 @@ this.loading = false;
 this.labAmount = 0;
 this.proceduresAmount = 0;
 this.prescriptionAmount = 0;
+if(this.patientInfo.background.length){
+  this.patient_history = this.patientInfo.background[0];
+}else{
+  this.patient_history = {};
+}
 this.patientInfo.lab_test.forEach(element => {
   this.labAmount += element.rate;
 });

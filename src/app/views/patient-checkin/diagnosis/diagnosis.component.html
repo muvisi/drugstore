@@ -3,9 +3,14 @@
     <tab heading="Patient Information">
         <div class="row">
           <div class="col-sm-2">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Search Patient and Switch" (typeaheadOnSelect)="switchPatient($event)"  [typeahead]="visits" typeaheadOptionField="visit_no" [(ngModel)]="text">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-2">
               <button mat-raised-button class="btn btn-success" (click)="closeClaim()">Close Visit</button>
           </div>
-            <div class="col-sm-10">
+            <div class="col-sm-7">
                 <span style="font-size:17px;font-weight: bold" class="pull-right">FILE NO:<span  style="font-size:19px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
                 <span style="font-size:17px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:19px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
             </div>
@@ -253,7 +258,7 @@
                       </div>
                       </tab>
                       <tab>
-                          <ng-template tabHeading>Doctors Observations(Physical Observations)</ng-template>
+                          <ng-template tabHeading>Doctors Observations</ng-template>
                           <div class="row">
                               <div class="col-sm-12" *ngFor="let item of patientInfo.physical_observations">
                                  <div class="row">
@@ -273,7 +278,7 @@
                               
                       </tab>
                       <tab>
-                          <ng-template tabHeading>Clinic History</ng-template>
+                          <ng-template tabHeading>Clinical History</ng-template>
                           <mat-accordion>
                               <mat-expansion-panel>
                                 <mat-expansion-panel-header>
@@ -448,7 +453,7 @@
                             </div>
                             <div class="col-sm-8">
                               <br>
-                              <button class="btn btn-success btn-sm pull-right">save</button>
+                              <button class="btn btn-success pull-right" (click)="saveHistory()">save</button>
                             </div>
                       </div>
                     </tab>
@@ -464,7 +469,7 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <button (click)="saveMedical()" class="btn btn-success pull-right">Empty Array</button>
+                    <button (click)="saveMedical()" class="btn btn-success pull-right">Save</button>
                   </div>
                 </div>
                </div>
@@ -475,11 +480,12 @@
                       <br>
                       <div class="row">
                           <div class="col-sm-7">
-                             
-                              <textarea placeholder="Type Notes Here" class="form-control" style="width: 100%;" [(ngModel)]="observation.observations"></textarea>
-                            </div>
+                             <mat-form-field>
+                              <textarea placeholder="Type Notes Here" matInput style="width: 100%;" [(ngModel)]="observation.observations"></textarea>
+                             </mat-form-field>
+                              </div>
                             <div class="col-sm-3">
-                                <mat-form-field>
+                                <mat-form-field style="margin-top: 14px;">
                                     <mat-label>Type Of Note</mat-label>
                                     <mat-select [(ngModel)]="observation.category">
                                       <mat-option *ngFor="let item of categories" [value]="item">
@@ -489,49 +495,20 @@
                                   </mat-form-field>
                             </div>
                             <div class="col-sm-2">
-                              <button mat-mini-fab (click)="addObservation()"> <i class="fa fa-plus"></i> </button>
+                              <button mat-mini-fab (click)="addObservation()" style="margin-top: 12px;"> <i class="fa fa-plus"></i> </button>
                             </div>
                       </div>
+                      <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
+                        <div class="col-sm-8">
+                            <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span> - <span style="font-weight:500">{{item.category}}</span>
+                        </div>
+                           <div class="col-sm-2">
+                              <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
+                           </div>
+                      </div>
+                      
                     </div>
            
-                    
-                              <div class="col-sm-12">
-                                <br>
-                                <table mat-table [dataSource]="patientInfo?.doctor_notes" class="mat-elevation-z8">
-                                  <ng-container matColumnDef="sn">
-                                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                                    <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                                  </ng-container>
-                                
-                                  <ng-container matColumnDef="observation">
-                                    <th mat-header-cell *matHeaderCellDef>Observation</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.observations}} </td>
-                                  </ng-container>
-                        
-                                  <ng-container matColumnDef="created">
-                                    <th mat-header-cell *matHeaderCellDef>Created</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.created | date:'yyyy-MM-dd'}} </td>
-                                  </ng-container>
-                                  <ng-container matColumnDef="visit_no">
-                                    <th mat-header-cell *matHeaderCellDef>Visit Number</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.visit__visit_no}} </td>
-                                  </ng-container>
-                                  <ng-container matColumnDef="category">
-                                    <th mat-header-cell *matHeaderCellDef>Category</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.category | uppercase}} </td>
-                                  </ng-container>
-                  
-                                  <ng-container matColumnDef="delete">
-                                    <th mat-header-cell *matHeaderCellDef>Delete</th>
-                                    <td mat-cell *matCellDef="let element" (click)="deleteNote(element)"> <mat-icon color="warn">delete_sweep</mat-icon></td>
-                                  </ng-container>
-                                
-                                  <tr mat-header-row *matHeaderRowDef="observationsColumns"></tr>
-                                  <tr mat-row *matRowDef="let row; columns: observationsColumns;"></tr>
-                                </table>
-                                <br>
-                              </div>
-                              <br>
                   </div>
                 </mat-tab>
             <mat-tab label="Procedures">
@@ -1012,7 +989,7 @@
                           <mat-form-field>
                               <input type="text"  placeholder="Search by Code" name="diagnosis"
                               [(ngModel)]="selectedOption.code" typeaheadOptionField="code" [typeahead]="diagnosesList"
-                              (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12" (keyup.enter)="addUnavailable()" (typeaheadLoading)="searchDiagnosis(selectedOption.code)" matInput>
+                              (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="12"  (typeaheadLoading)="searchDiagnosis(selectedOption.code)" matInput>
                               
                           </mat-form-field>
                       </div>

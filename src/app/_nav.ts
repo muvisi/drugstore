@@ -75,7 +75,7 @@ export const navItems: NavData[] = [
         icon: 'icon-info'
       },
       {
-        name: 'Diagnosis & Treatment',
+        name: 'Treatment',
         url: '/dashboard/patients/diagnosis&treatment/',
         icon: 'fa fa-heartbeat'
       },
