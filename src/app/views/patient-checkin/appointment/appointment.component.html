@@ -20,9 +20,13 @@
                                 </div>
                                 <div class="col-sm-3">
                                         <mat-form-field>
-                                                <input type="time" matInput placeholder="Appointment Time" formControlName="time" >
-                                                <mat-error *ngIf="f.time">Appointment Time <strong>required</strong></mat-error>
-                                        </mat-form-field>
+                                            <mat-label>Appointment Time</mat-label>
+                                            <mat-select  formControlName="time">
+                                                <mat-option *ngFor="let item of timing" [value]="item">
+                                                    {{item}}
+                                                  </mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
                                 </div>
                             </div>
                         </div>
