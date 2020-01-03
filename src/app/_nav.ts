@@ -86,7 +86,7 @@ export const navItems: NavData[] = [
       },
        {
         name: 'Calendar',
-        url: '/dashboard/patients/calendar',
+        url: '/dashboard/patients/appointments',
         icon: 'cui-calendar',
       },
     ]

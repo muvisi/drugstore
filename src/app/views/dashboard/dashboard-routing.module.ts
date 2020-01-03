@@ -39,6 +39,8 @@ import { ReportsComponent } from '../patient-checkin/reports/reports.component';
 import { PatientEditComponent } from '../patient-checkin/patient-edit/patient-edit.component';
 import { RecordsComponent } from '../patient-checkin/records/records.component';
 import { RecordListComponent } from '../patient-checkin/record-list/record-list.component';
+import { AppointmentComponent } from '../patient-checkin/appointment/appointment.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -63,6 +65,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'parients-dashboard'
+    }
+  },
+  {
+    path: 'patients/appointments',
+    component: AppointmentComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'patients-appointments'
     }
   },
   {

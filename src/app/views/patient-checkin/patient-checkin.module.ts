@@ -61,6 +61,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { RecordsComponent } from './records/records.component';
 import { RecordListComponent } from './record-list/record-list.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -102,7 +103,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     ReportsComponent,
     PatientEditComponent,
     RecordsComponent,
-    RecordListComponent
+    RecordListComponent,
+    AppointmentComponent
   ],
   imports: [
     CommonModule,
