@@ -101,6 +101,9 @@ switchPatient(item){
 this.id = item.item.visit_no;
 this.ngOnInit();
 }
+editTriage(){
+  this.navCtrl.navigate('/dashboard/patients/add-triage/', {data:{visit_no: this.patientInfo.visit_no,name: this.patientInfo.first_name + ' '+this.patientInfo.other_names+' '+this.patientInfo.last_name,treatment:true} });
+}
 getPatients() {
   this.service.getTreatments().subscribe((res) => {
     this.visits = res.results;

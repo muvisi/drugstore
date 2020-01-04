@@ -154,7 +154,7 @@
                 
                     <div class="row">
                         <div class="col-sm-2" *ngFor="let item of observationList" >
-                          <mat-checkbox (click)="addObservation(item.name)">{{item.name}}</mat-checkbox>
+                          <mat-checkbox (change)="addObservation(item.name)" [checked]="existObs(item.name)">{{item.name}}</mat-checkbox>
                         </div>
                       </div>
                       <div class="row" style="margin-top: 10px;">
@@ -252,7 +252,7 @@
 
                     <div class="row">
                         <div class="col-sm-2" *ngFor="let allergy of foodAllergies">
-                                <mat-checkbox (click)="addAllergy(allergy.name)">{{allergy.name | uppercase}}</mat-checkbox>
+                                <mat-checkbox (change)="addAllergy(allergy.name)" [checked]="existAllergy(allergy.name)">{{allergy.name | uppercase}}</mat-checkbox>
                             </div>
                   </div>
                      </div>
@@ -260,7 +260,7 @@
                         <h6> <u>METAL ALLERGIES</u></h6>
                       <div class="row">
                             <div class="col-sm-2" *ngFor="let allergy of metalAllergies">
-                                    <mat-checkbox (click)="addAllergy(allergy.name)">{{allergy.name | uppercase}}</mat-checkbox>
+                                    <mat-checkbox (change)="addAllergy(allergy.name)" [checked]="existAllergy(allergy.name)">{{allergy.name | uppercase}}</mat-checkbox>
                                 </div>
                       </div>
                      </div>
@@ -271,7 +271,7 @@
                     <h6><u>INSECT BITES ALLERGIES</u></h6>
                     <div class="row">
                         <div class="col-sm-2" *ngFor="let allergy of insectAllergies">
-                                <mat-checkbox (click)="addAllergy(allergy.name)" >{{allergy.name | uppercase}}</mat-checkbox>
+                                <mat-checkbox (change)="addAllergy(allergy.name)" [checked]="existAllergy(allergy.name)">{{allergy.name | uppercase}}</mat-checkbox>
                             </div>
                   </div>
                   </div>

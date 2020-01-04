@@ -4,7 +4,7 @@
         <div class="row">
           <div class="col-sm-2">
             <mat-form-field>
-              <input type="text" matInput placeholder="Search Patient and Switch" (typeaheadOnSelect)="switchPatient($event)"  [typeahead]="visits" typeaheadOptionField="visit_no" [(ngModel)]="text">
+              <input type="text" matInput placeholder="Search Using visit NO" (typeaheadOnSelect)="switchPatient($event)"  [typeahead]="visits" typeaheadOptionField="visit_no" [(ngModel)]="text">
             </mat-form-field>
           </div>
           <div class="col-sm-2">
@@ -78,11 +78,20 @@
         <div class="col-sm-12">
   
           <mat-tab-group>
-              <mat-tab label="Triage Details">
+              <mat-tab>
+                  <ng-template mat-tab-label>
+                      <span style="color:#A6CF39;">Triage Details</span>
+                     </ng-template>
                   <div class="row container-fluid">
                     <br>
                     <div class="col-sm-12">
-                      <br>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <br>
+                          <button class="btn btn-info btn-sm pull-right" (click)="editTriage()"> <i class="icon-pencil"></i> Edit</button>
+                        </div>
+                      </div>
+                    <br>
                         <div class="row">
                             <div class="col-sm-2">
                                 <mat-card>
@@ -170,93 +179,99 @@
                     </div>
                   </div>
               </mat-tab>
-              
+              <mat-tab>
+                  <ng-template mat-tab-label>
+                      <span style="color:#A6CF39;">Nurse Observations</span>
+                     </ng-template>
+                     <div class="container-fluid">
+                        <br>
+                        <div class="row">
+                          <div class="col-sm-6" *ngIf="patientInfo.nurse_report.observations.length">
+                              <mat-card>
+                                  <div class="row" *ngIf="patientInfo.nurse_report.observations.length">
+                                      <div class="col-sm-12">
+                                          <h6><u>Observations</u></h6>
+                                      </div>
+                                    <div class="col-sm-12" *ngFor="let item of patientInfo.nurse_report.observations">
+                                        <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500">{{item.name}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" *ngIf="patientInfo.nurse_report.allergies.length">
+                                      <div class="col-sm-12">
+                                          <h6><u>Allergies</u></h6>
+                                      </div>
+                                        <div  *ngFor="let item of patientInfo.nurse_report.allergies" style="margin:10px;">
+                                            <i class="fa fa-circle text-info" ></i> <span style="font-weight:500">{{item.name}}</span>
+                                          </div>
+                                    </div>
+                              </mat-card>
+            
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <mat-card>
+                                    <mat-card-title><u class="text-success">NURSE OBSERVATIONS</u></mat-card-title>
+                                    <div class="row">
+                                        <!-- <div class="col-sm-6">
+                                            <span  class="obr" *ngIf="patientInfo.nurse_report?.notes[0]">OBSERVATION TYPE: <span class="text-primary" style="font-weight: 500;text-transform: capitalize;text-align: left">
+                                                {{patientInfo.nurse_report?.notes[0]?.observation_type}}
+                                            </span></span>
+                                            
+                                        </div> -->
+                                        <div class="col-sm-6">
+                                            <div class="row" *ngIf="patientInfo.nurse_report?.notes[0]?.symptoms_onset">
+                                                <div class="col-sm-5">
+                                                    SYMPTOMS ONSET
+                                                </div>
+                                                <div class="col-sm-7 text-primary" >{{patientInfo.nurse_report?.notes[0]?.symptoms_onset | date:'yyyy-MM-dd'}}</div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                       <div class="col-sm-6 obr ">
+                                         <div class="row">
+                                           <div class="col-sm-5">
+                                            RISK OF FALL
+                                           </div>
+                                           <div class="col-sm-7 text-danger" >{{patientInfo.triage[0].risk_of_fall}}</div>
+                                         </div>
+                                       </div>
+                                       <div class="col-sm-6 obr">
+                                          <div class="row">
+                                              <div class="col-sm-5">
+                                               PAIN LEVEL
+                                              </div>
+                                              <div class="col-sm-7 text-danger">{{patientInfo.triage[0].pain_level}}</div>
+                                            </div>
+                                       </div>
+                                     </div>
+                                      <div class="row" style="margin-top: 5px">
+                                          <div class="col-sm-12" *ngIf="patientInfo.nurse_report?.notes[0]?.notes">
+                                          <mat-form-field>
+                                            <input type="text" matInput placeholder="NURSE NOTES" value="{{patientInfo.nurse_report?.notes[0]?.notes}}">
+                                          </mat-form-field>
+                                            
+                                          </div>
+                                      </div>
+                                  </mat-card>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                        <br>
+                         
+                    </div>
+              </mat-tab>
                
-            <mat-tab label="Patient History">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span style="color:#A6CF39;">Patient History</span>
+                   </ng-template>
               <br>
                 <tabset>
                     
-                    <tab>
-                        <ng-template tabHeading>Nurse Observations</ng-template>
-                      <div class="container-fluid">
-                          <br>
-                          <div class="row">
-                            <div class="col-sm-6" *ngIf="patientInfo.nurse_report.observations.length">
-                                <mat-card>
-                                    <div class="row" *ngIf="patientInfo.nurse_report.observations.length">
-                                        <div class="col-sm-12">
-                                            <h6><u>Observations</u></h6>
-                                        </div>
-                                      <div class="col-sm-12" *ngFor="let item of patientInfo.nurse_report.observations">
-                                          <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500">{{item.name}}</span>
-                                      </div>
-                                    </div>
-                                    <div class="row" *ngIf="patientInfo.nurse_report.allergies.length">
-                                        <div class="col-sm-12">
-                                            <h6><u>Allergies</u></h6>
-                                        </div>
-                                          <div  *ngFor="let item of patientInfo.nurse_report.allergies" style="margin:10px;">
-                                              <i class="fa fa-circle text-info" ></i> <span style="font-weight:500">{{item.name}}</span>
-                                            </div>
-                                      </div>
-                                </mat-card>
-              
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row">
-                                  <div class="col-sm-12">
-                                    <mat-card>
-                                      <mat-card-title><u class="text-success">NURSE OBSERVATIONS</u></mat-card-title>
-                                      <div class="row">
-                                          <!-- <div class="col-sm-6">
-                                              <span  class="obr" *ngIf="patientInfo.nurse_report?.notes[0]">OBSERVATION TYPE: <span class="text-primary" style="font-weight: 500;text-transform: capitalize;text-align: left">
-                                                  {{patientInfo.nurse_report?.notes[0]?.observation_type}}
-                                              </span></span>
-                                              
-                                          </div> -->
-                                          <div class="col-sm-6">
-                                              <div class="row" *ngIf="patientInfo.nurse_report?.notes[0]?.symptoms_onset">
-                                                  <div class="col-sm-5">
-                                                      SYMPTOMS ONSET
-                                                  </div>
-                                                  <div class="col-sm-7 text-primary" >{{patientInfo.nurse_report?.notes[0]?.symptoms_onset | date:'yyyy-MM-dd'}}</div>
-                                                </div>
-                                          </div>
-                                      </div>
-                                       <div class="row">
-                                         <div class="col-sm-6 obr ">
-                                           <div class="row">
-                                             <div class="col-sm-5">
-                                              RISK OF FALL
-                                             </div>
-                                             <div class="col-sm-7 text-danger" >{{patientInfo.triage[0].risk_of_fall}}</div>
-                                           </div>
-                                         </div>
-                                         <div class="col-sm-6 obr">
-                                            <div class="row">
-                                                <div class="col-sm-5">
-                                                 PAIN LEVEL
-                                                </div>
-                                                <div class="col-sm-7 text-danger">{{patientInfo.triage[0].pain_level}}</div>
-                                              </div>
-                                         </div>
-                                       </div>
-                                        <div class="row" style="margin-top: 5px">
-                                            <div class="col-sm-12" *ngIf="patientInfo.nurse_report?.notes[0]?.notes">
-                                            <mat-form-field>
-                                              <input type="text" matInput placeholder="NURSE NOTES" value="{{patientInfo.nurse_report?.notes[0]?.notes}}">
-                                            </mat-form-field>
-                                              
-                                            </div>
-                                        </div>
-                                    </mat-card>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                           
-                      </div>
-                      </tab>
+            
                       <tab>
                           <ng-template tabHeading>Doctors Observations</ng-template>
                           <div class="row">
@@ -459,7 +474,10 @@
                     </tab>
                   </tabset>
             </mat-tab>
-            <mat-tab label="Physical observations">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span style="color:#A6CF39;">Physical observations</span>
+                   </ng-template>
                <div class="container-fluid">
                  <br>
                 <div class="row" >
@@ -474,7 +492,10 @@
                 </div>
                </div>
               </mat-tab>
-              <mat-tab label="Notes">
+              <mat-tab>
+                  <ng-template mat-tab-label>
+                     <span style="color:#A6CF39;"> Notes</span>
+                    </ng-template>
                   <div class="row container-fluid">
                     <div class="col-sm-12">
                       <br>
@@ -495,23 +516,73 @@
                                   </mat-form-field>
                             </div>
                             <div class="col-sm-2">
-                              <button mat-mini-fab (click)="addObservation()" style="margin-top: 12px;"> <i class="fa fa-plus"></i> </button>
+                              <button mat-mini-fab (click)="addObservation()" [disabled]="!observation.category || !observation.observations" style="margin-top: 12px;"> <i class="fa fa-plus"></i> </button>
                             </div>
                       </div>
-                      <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
-                        <div class="col-sm-8">
-                            <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span> - <span style="font-weight:500">{{item.category}}</span>
-                        </div>
-                           <div class="col-sm-2">
-                              <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
-                           </div>
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <br>
+                                <mat-accordion>
+                                    <mat-expansion-panel>
+                                      <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                        Pharmacy
+                                        </mat-panel-title>
+                                      </mat-expansion-panel-header>
+                                      <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
+                                          <div class="col-sm-8" *ngIf="item.category =='Pharmacy'">
+                                              <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                          </div>
+                                             <div class="col-sm-2" *ngIf="item.category =='Pharmacy'">
+                                                <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
+                                             </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header>
+                                          <mat-panel-title>
+                                              Surgical
+                                          </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
+                                            <div class="col-sm-8" *ngIf="item.category =='Surgical'">
+                                                <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                            </div>
+                                               <div class="col-sm-2" *ngIf="item.category =='Surgical'">
+                                                  <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
+                                               </div>
+                                          </div>
+                                      </mat-expansion-panel>
+                                      <mat-expansion-panel>
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                            Review
+                                            </mat-panel-title>
+                                          </mat-expansion-panel-header>
+                                          <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
+                                              <div class="col-sm-8" *ngIf="item.category =='Review'">
+                                                  <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                              </div>
+                                                 <div class="col-sm-2" *ngIf="item.category =='Review'">
+                                                    <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
+                                                 </div>
+                                            </div>
+                                        </mat-expansion-panel>
+                                   
+                                  </mat-accordion>
+                                  <br>
+                            </div>
                       </div>
                       
+                      
                     </div>
-           
+                  
                   </div>
                 </mat-tab>
-            <mat-tab label="Procedures">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span style="color:#A6CF39;">Procedures</span>
+                   </ng-template>
               <div class="row container-fluid">
                   
                     <div class="col-sm-12">
@@ -746,7 +817,10 @@
                   </div>
                 </div>
             </mat-tab>
-            <mat-tab label="Labs" >
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span style="color:#A6CF39;">Labs</span>
+                   </ng-template>
                 <div class="row container-fluid">
             
                   <div class="col-sm-12">
@@ -971,7 +1045,10 @@
                     </div>
                   </div>
               </mat-tab>
-            <mat-tab label="Diagnosis">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span style="color:#A6CF39;">Diagnosis</span>
+                   </ng-template>
               <div class="row container-fluid">
             
                 <div class="col-sm-12">
@@ -1032,16 +1109,14 @@
               </div>
               </div>
             </mat-tab>
-            <mat-tab label="Medications">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span style="color:#A6CF39;">Medications</span>
+                   </ng-template>
                 <div class="row container-fluid">
-                    <div class="col-sm-12">
-                        <br>
-                          <button mat-raised-button class="btn btn-info btn-sm pull-right" 
-                          printSectionId="pres" [useExistingCss]="true" ngxPrint [disabled]="!patientInfo.prescription.length" printTitle="{{patientInfo.visit_no}}"><i class="cui-print" style="font-size: 32px"></i></button>
-                      </div>
                       <div class="col-sm-12">
                           <div class="row">
-                              <div class="col-sm-3">
+                              <div class="col-sm-2">
                                 <mat-form-field>
                                   
                                   <input type="text" matInput placeholder="Prescription" [(ngModel)]="selectedDrug.name" [typeahead]="drugs"
@@ -1086,18 +1161,19 @@
                                       </button>
                                   </mat-form-field>
                                 </div>
+                                <div class="col-sm-2">
+                                    <mat-form-field >
+                                      <input type="number" matInput [(ngModel)]="selectedDrug.refils" placeholder="Refils">
+                                      <button mat-button *ngIf="selectedDrug.refils" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.refils=''">
+                                          <mat-icon>close</mat-icon>
+                                        </button>
+                                    </mat-form-field>
+                                  </div>
                   
                               </div>
                               <div class="row">
                                  
-                                      <div class="col-sm-2">
-                                          <mat-form-field >
-                                            <input type="number" matInput [(ngModel)]="selectedDrug.refils" placeholder="Refils">
-                                            <button mat-button *ngIf="selectedDrug.refils" matSuffix mat-icon-button aria-label="Clear" (click)="selectedDrug.refils=''">
-                                                <mat-icon>close</mat-icon>
-                                              </button>
-                                          </mat-form-field>
-                                        </div>
+                                     
                                     <br>
                                     <div class="col-sm-12" >
                                       <mat-form-field appearance="outline">
@@ -1108,7 +1184,8 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-success btn-sm pull-right" [disabled]="!selectedDrug.refils || !selectedDrug.duration || !selectedDrug.strength || !selectedDrug.frequency" (click)="savePrescription()"> <i class="icon-check"></i> Submit</button>
+                                        <button class="btn btn-info btn-sm pull-right"  printSectionId="pres" [useExistingCss]="true" ngxPrint [disabled]="!patientInfo.prescription.length" printTitle="{{patientInfo.visit_no}}"><i class="cui-print"></i> print</button>
+                                        <button class="btn btn-success btn-sm pull-right" [disabled]="!selectedDrug.refils || !selectedDrug.duration || !selectedDrug.strength || !selectedDrug.frequency" (click)="savePrescription()" style="margin-right: 8px;"> <i class="icon-check"></i> Submit</button>
                                     </div>
                                   </div>
                        </div>

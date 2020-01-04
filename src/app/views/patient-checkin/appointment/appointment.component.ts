@@ -14,11 +14,14 @@ export class AppointmentComponent implements OnInit {
   visits = [];
   appointmentForm: FormGroup;
   limit = new Date();
+  toadysList;
   displayedColumns: string[] = ['patient_no', 'name','phone','appointment_date','time'];
+  listColumns: string[] = ['S/No', 'name','phone','time'];
   timing =['8:00AM','8:20AM','8:40AM','9:00AM','8:00AM','8:20AM','8:40AM','9:00AM','9:20AM','9:40AM','10:00AM','10:20AM','10:40AM','11:00AM','11:20AM','11:40AM','12:00PM',
   '12:20AM','12:40AM','2:00PM','2:20PM','2:40PM','3:00PM','3:20PM','3:40PM','4:00PM','4:20PM','4:40PM','5:00PM','5:20PM','5:40PM']
   dataSource;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild('paginator', {static: true}) paginator: MatPaginator;
+  @ViewChild('paginator1', {static: true}) paginator1: MatPaginator;
   constructor(public service: ServiceService,private formBuilder: FormBuilder,public toastr: ToastrService ) { }
 
   ngOnInit() {
@@ -32,8 +35,14 @@ export class AppointmentComponent implements OnInit {
     });
     this.patientsList();
     this.appointments();
+    this.getList();
   }
-
+getList(){
+  this.service.todayAppointmentList().subscribe((res)=>{
+    this.toadysList = new MatTableDataSource(res.results);
+    this.toadysList.paginator = this.paginator1;
+  })
+}
   patientsList() {
     this.service.patientListing().subscribe((res) => {
      this.visits = res.results;
@@ -55,6 +64,7 @@ export class AppointmentComponent implements OnInit {
   this.toastr.success("Successfully addeded appointment");
   this.appointmentForm.reset();
   this.appointments();
+  this.getList();
   })
 
 }

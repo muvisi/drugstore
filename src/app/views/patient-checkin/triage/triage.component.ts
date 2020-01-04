@@ -66,9 +66,35 @@ export class TriageComponent implements OnInit {
       spo:[''],
       lmp:['']
   });
+
 this.alleryList();
 this.getObservations();
 this.getDosage();
+this.getTriageDetails();
+}
+getTriageDetails(){
+this.service.getTriage({visit_no:this.patient.visit_no}).subscribe((res)=>{
+  if(res.triage.length){
+    this.triageForm.patchValue(res.triage[0])
+  }
+  if(res.observations.length){
+    res.observations.forEach(element => {
+      this.observations_points.push(element.name)
+    });
+  }
+  if(res.allergies.length){
+    res.allergies.forEach(element => {
+      this.allergies.push(element.name)
+    });
+  }
+  
+})
+}
+existObs(item){
+  return this.observations_points.includes(item);
+}
+existAllergy(item){
+  return this.allergies.includes(item);
 }
 alleryList() {
   this.service.getAllergy().subscribe((res) => {
@@ -158,7 +184,12 @@ const info = {
 };
 this.service.triageDetail(info).subscribe((res) => {
   this.toastr.success('Successfully saved Triage details');
-  this.navCtrl.navigate('/dashboard/patients/triage/');
+ 
+  if(this.patient.treatment){
+    this.navCtrl.navigate('/dashboard/patients/treatment', { id:this.patient.visit_no});
+  }else{
+    this.navCtrl.navigate('/dashboard/patients/triage/');
+  }
 });
   // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.triageForm.value));
 }

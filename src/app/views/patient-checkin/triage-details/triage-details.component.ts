@@ -43,7 +43,7 @@ export class TriageDetailsComponent implements OnInit {
   }
   addTriage(item) {
     console.log(item);
-    this.navCtrl.navigate('/dashboard/patients/add-triage/', {data: item });
+    this.navCtrl.navigate('/dashboard/patients/add-triage/', {data:{visit_no:item.visit_no,name:item.name,treatment:false}});
   }
   search(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
