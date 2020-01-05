@@ -312,6 +312,11 @@ searchBills(data): Observable<any>{
       map(this.extractData));
 
   }
+  SearchPatientRecords(data): Observable<any> {
+    return this.http.get(endpoint + 'patients/patient-records/?search='+data).pipe(
+      map(this.extractData));
+
+  }
   appointmentList(): Observable<any> {
     return this.http.get(endpoint + 'patients/appointment_list/').pipe(
       map(this.extractData));

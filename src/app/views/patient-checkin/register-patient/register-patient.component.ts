@@ -29,11 +29,15 @@ export class RegisterPatientComponent implements OnInit {
   this.encounter();
   }
   search(filterValue: string) {
-    this.service.searchPatient(filterValue).subscribe((res)=>{
-    this.dataSource = new MatTableDataSource <[]>(res.results);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    });
+    if(filterValue !=''){
+      this.service.SearchPatientRecords(filterValue).subscribe((res)=>{
+        this.dataSource = new MatTableDataSource <[]>(res.results);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        });
+    }else {
+      this.encounter()
+    }
   }
 revisit(item)  {
  this.navCtrl.navigate('/dashboard/patients/new-patient/', { revisit: item.patient});

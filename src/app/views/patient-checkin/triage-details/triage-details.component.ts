@@ -72,44 +72,5 @@ export class TriageDetailsComponent implements OnInit {
       this.ngOnInit();
     }
   }
-  SearchName() {
-    if (this.name !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.name.toLowerCase().match(this.name.toLowerCase());
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchVisit() {
-    if (this.visitNumber !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.visit_no.match(this.visitNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchByPatient() {
-    if (this.patientNumber !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.patient_no.match(this.patientNumber);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
-  SearchPhone() {
-    if (this.phone !== '') {
-      this.visits = this.visits.filter(res => {
-        return res.patient.phone.match(this.phone);
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
-
+ 
 }
