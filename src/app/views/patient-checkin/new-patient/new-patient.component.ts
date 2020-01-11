@@ -76,7 +76,7 @@ export class NewPatientComponent  implements OnInit {
       phone: ['',Validators.required],
       dob: ['', Validators.required],
       visit_type: ['NEW', Validators.required],
-      priority: ['Normal', Validators.required],
+      priority: ['3', Validators.required],
       residence: [''],
       national_id: ['',Validators.required],
       passport_no: [''],

@@ -384,7 +384,7 @@ export class BillPatientComponent implements OnInit {
       this.getVisitInfo();
       this.selectedOption = {};
       this.name = '';
-      this.billModal.hide();
+      // this.billModal.hide();
     });
   }
   reverseBill(item) {

@@ -31,7 +31,7 @@ export class TriageComponent implements OnInit {
   dosage =[];
   allergicDrugs = [];
   triageMedicine = [];
-  displayedColumns: string[] = ['name','generic_name','strength', 'cost','quantity','form','delete'];
+  displayedColumns: string[] = ['name','generic_name','strength', 'cost','quantity','form','edit','delete'];
   serviceColumns: string[] = ['name','code','cost','delete'];
   dataSource;
   dataSource1;
@@ -229,6 +229,11 @@ deleteProcedure(item){
 }
 addTriageMedicine(){
   const index = this.triageMedicine.findIndex(obj=> obj.name == this.selectedDrug.name && obj.strength == this.selectedDrug.strength);
+  if(index > 0){
+    this.triageMedicine.splice(index,1);
+    this.selectedDrug.dosage = '';
+    this.triageMedicine.push(this.selectedDrug);
+  }
   if(index < 0){
   this.selectedDrug.dosage = '';
     this.triageMedicine.push(this.selectedDrug);
@@ -237,6 +242,7 @@ addTriageMedicine(){
   this.dataSource = new MatTableDataSource(this.triageMedicine);
   this.selectedDrug = {};
 }
+
 deleteMedicine(item){
   const index = this.triageMedicine.findIndex(obj=>obj == item);
   this.triageMedicine.splice(index,1);

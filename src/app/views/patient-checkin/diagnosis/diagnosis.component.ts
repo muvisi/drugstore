@@ -24,7 +24,7 @@ export class DiagnosisComponent implements OnInit {
 data;
 procedureColumns: string[] = ['Sn','Procedure', 'Category', 'Bill Number', 'Invoice', 'Cost', 'Status', 'Quantity','delete'];
 diagnosisColumns: string[] = ['Sn','Diagnosis', 'Code','Primary','delete'];
-drugColumns: string[] = ['name', 'generic_name','frequency', 'duration','notes','form','delete'];
+drugColumns: string[] = ['name', 'generic_name','frequency', 'duration','notes','form','edit','delete'];
 frequencies = ['2 hrs','4hrs','6hrs','8hrs','12hrs','24hrs','TID','OD','TDS','PRN','QID'];
 observationsColumns = ['sn','observation','created','visit_no','category','delete']
 historyServices=['sn','service','bill_number','invoice','cost'];
@@ -76,7 +76,7 @@ visits =[];
 constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService,
 private router: Router, private toastr: ToastrService, private datePipe: DatePipe) {
 this.id = this.navCtrl.get('id');
-
+this.observation.category ='Review';
 this.user = JSON.parse(sessionStorage.getItem('user'));
 if (this.id === undefined) {
   this.router.navigate(['/dashboard/patients/diagnosis&treatment']);
@@ -426,13 +426,21 @@ this.diagnoses.splice(index, 1);
     })
   }
   addObservation(){
-    this.observation.visit_no = this.patientInfo.visit_no;
+    if(this.observation.id == null){
+      this.observation.visit_no = this.patientInfo.visit_no;
     console.log(this.observation);
     this.service.addObservation(this.observation).subscribe((res)=>{
       this.toastr.success('Added Observation');
       this.patient();
-      this.observation ={};
+      
     })
+    }else{
+      this.service.updateNote(this.observation.id,this.observation).subscribe((res)=>{
+        this.toastr.success('Successfully Updated Note');
+        this.observation ={};
+        this.patient()
+      })
+    }
   }
   addUnavailable(){
       this.selectedOption.visit_no = this.patientInfo.visit_no;

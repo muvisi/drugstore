@@ -62,46 +62,7 @@
                    </mat-card>
                    <br>
           </div>
-          <div class="col-sm-6">
-            
           
-            <div class="row">
-              <div class="col-sm-12">
-                  <h6>INSURANCE COMPANIES</h6>
-                  <table mat-table [dataSource]="payers" class="mat-elevation-z8">
-                    
-                      <ng-container matColumnDef="sn">
-                        <th mat-header-cell *matHeaderCellDef> No</th>
-                        <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                      </ng-container>
-                    
-                   
-                      <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                      </ng-container>
-                    
-                   
-                      <ng-container matColumnDef="linked">
-                        <th mat-header-cell *matHeaderCellDef> Active</th>
-                        <td mat-cell *matCellDef="let element"> <mat-checkbox [checked]="element.linked"></mat-checkbox></td>
-                      </ng-container>
-                      <ng-container matColumnDef="phone">
-                          <th mat-header-cell *matHeaderCellDef>Phone</th>
-                          <td mat-cell *matCellDef="let element"> {{element.phone_numbers}} </td>
-                        </ng-container>
-                      <ng-container matColumnDef="email">
-                        <th mat-header-cell *matHeaderCellDef> Email </th>
-                        <td mat-cell *matCellDef="let element"> {{element.emails}} </td>
-                      </ng-container>
-                     
-                    
-                      <tr mat-header-row *matHeaderRowDef="insuranceColumns"></tr>
-                      <tr mat-row *matRowDef="let row; columns: insuranceColumns;"></tr>
-                    </table>
-              </div>
-            </div>
-          </div>
      </div>
 
 <div class="modal fade" bsModal #checkModal="bs-modal" [config]="{backdrop: 'static'}"
@@ -261,6 +222,46 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
       </div>
            
     </mat-step>
+    <mat-step label="Insurance" state="insurance">
+      <div class="col-sm-8"> 
+        <div class="row">
+          <div class="col-sm-12">
+              <h6>INSURANCE COMPANIES</h6>
+              <table mat-table [dataSource]="payers" class="mat-elevation-z8">
+                
+                  <ng-container matColumnDef="sn">
+                    <th mat-header-cell *matHeaderCellDef> No</th>
+                    <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                  </ng-container>
+                
+               
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+                
+               
+                  <ng-container matColumnDef="linked">
+                    <th mat-header-cell *matHeaderCellDef> Active</th>
+                    <td mat-cell *matCellDef="let element"> <mat-checkbox [checked]="element.linked"></mat-checkbox></td>
+                  </ng-container>
+                  <ng-container matColumnDef="phone">
+                      <th mat-header-cell *matHeaderCellDef>Phone</th>
+                      <td mat-cell *matCellDef="let element"> {{element.phone_numbers}} </td>
+                    </ng-container>
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.emails}} </td>
+                  </ng-container>
+                 
+                
+                  <tr mat-header-row *matHeaderRowDef="insuranceColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: insuranceColumns;"></tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </mat-step>
     <mat-step label="Users" state="user">
         <br>
        
@@ -362,9 +363,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                                      <div class="col-sm-12">
                                      </div>
                                      <div class="col-sm-12">
-                                        <button class=" btn btn-success btn-sm pull-right" (click)="addUser()"><i class="fa fa-plus"></i> Add User</button>
-                                        
-                  
+                                        <button *ngIf="edit" class=" btn btn-success btn-sm pull-right" (click)="addUser()"><i class="fa fa-plus"></i> Add User</button>
+                                        <button *ngIf="!edit" class="btn btn-primary btn-sm pull-right" (click)="updateUser()" style="margin-right: 8px;">Update</button>
                                       </div>
                           </div>
                     </mat-card>
@@ -440,28 +440,23 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                               Department : {{selectedUser.department}}
                             </div>
                             <div class="col-sm-12">
-                               <div class="row">
-                                <div class="col-sm-7">
-                                    Email : {{selectedUser.email}}
-                                </div>
-                                <div class="col-sm-4">Phone : {{selectedUser.phone}}</div>
-                               </div>
+                              Email : {{selectedUser.email}}
                               </div>
+                              <div class="col-sm-12">Phone : {{selectedUser.phone}}</div>
+
                               <div class="col-sm-12">
                                 Status <br>
                                <button class="btn btn-success btn-sm" *ngIf="selectedUser.is_active">ACTIVE</button>
                                 <button class="btn btn-danger btn-sm" *ngIf="!selectedUser.is_active">INACTIVE</button>
-
                               </div>
+                              <div class="col-sm-12">
+                                <button mat-raised-button style="margin-top:10px;" (click)="deactivate(selectedUser)"> <i class="icon-lock"></i>  Lock/Unlock</button>
+                              </div>
+                              <div class="col-sm-12">
+                                  <button mat-raised-button color="primary" style="margin-top:10px;" (click)="employee=selectedUser;edit=false;profileModal.hide()"> <mat-icon>create</mat-icon> Edit User</button>
+                                </div>
                           </div>
-                          <mat-card-actions>
-                             <div class="row">
-                               <div class="col-sm-12">
-                                  <button mat-raised-button  (click)="deactivate(selectedUser)"> <i class="icon-lock"></i></button>
-                              <button mat-button>SHARE</button>
-                               </div>
-                             </div>
-                           </mat-card-actions>
+                         
                        </mat-card>
                      </div>
                    </div>
@@ -471,116 +466,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
            </div>
          </div>
        </div>        
-          
-    <div class="modal fade" bsModal #userModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-12">
-               <h6> <i class="icon-user-follow circle"></i> <span >Add/Edit Employee</span> </h6>
-          </div>
-          <div class="col-sm-4">
-            <mat-form-field>
-                <input type="text" id="text-input" name="first_name"  placeholder="First name"
-                [(ngModel)]="employee.first_name" matInput>
-            </mat-form-field>
-          </div>
-          <div class="col-sm-4">
-              <mat-form-field>
-                  <input type="text" id="text-input" name="first_name"  placeholder="Middle name"
-                  [(ngModel)]="employee.surname" matInput>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-4">
-                <mat-form-field>
-                    <input type="text" id="text-input" name="first_name"  placeholder="Last name"
-                    [(ngModel)]="employee.last_name" matInput>
-                </mat-form-field>
-              </div>
-              
-              <div class="col-sm-4">
-                  <mat-form-field>
-                      <input [(ngModel)]="employee.hospital" placeholder="Provider/Hospital(Branch)" [typeahead]="provider_list"
-                   [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
-                 type="text" matInput>
-                  </mat-form-field>
-                </div>
-           
-           <div class="col-sm-4">
-              <mat-form-field>
-                  <mat-label>Select an Role</mat-label>
-                  <mat-select [(ngModel)]="employee.role">
-                    <mat-option value="doctor">Doctor</mat-option>
-                    <mat-option value="nurse">Nurse</mat-option>
-                    <mat-option value="cashier">Cashier</mat-option>
-                  </mat-select>
-                </mat-form-field>
-           </div>
-           <div class="col-sm-4">
-              <mat-form-field>
-                  <input type="text" placeholder="Phone"
-                  [(ngModel)]="employee.phone" matInput>
-              </mat-form-field>
-            </div>
-           <div class="col-sm-4">
-              <mat-form-field>
-                  <input type="text" id="text-input" name="username" placeholder="username"
-                  [(ngModel)]="employee.username" matInput>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-4">
-                <mat-form-field>
-                    <input type="text" id="text-input"  placeholder="employee number"
-                    [(ngModel)]="employee.employee_no" matInput>
-                </mat-form-field>
-              </div>
-              <div class="col-sm-4">
-                  <mat-form-field>
-                      <input type="text" id="text-input" name="department" placeholder="Department"
-                      [(ngModel)]="employee.department" matInput>
-                  </mat-form-field>
-                </div>
-                <div class="col-sm-4">
-                    <mat-form-field>
-                        <input type="text" id="text-input" name="username" placeholder="Speciality"
-                        [(ngModel)]="employee.speciality" matInput>
-                    </mat-form-field>
-                  </div>
-                <div class="col-sm-4">
-                    <mat-form-field>
-                        <input type="email" id="text-input"   placeholder="email"
-                        [(ngModel)]="employee.email" matInput>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-sm-4">
-                      <mat-form-field>
-                          <mat-label>Title</mat-label>
-                          <mat-select [(ngModel)]="employee.title">
-                            <mat-option value="Dr">Dr</mat-option>
-                            <mat-option value="Mr">Mr</mat-option>
-                            <mat-option value="Mrs">Mrs</mat-option>
-                            <mat-option value="Miss">Miss</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                   </div>  
-                   <div class="col-sm-4">
-                   </div>
-                   <div class="col-sm-12">
-                      <button mat-raised-button color="warn" class="pull-right" (click)="userModal.hide()">Close</button>
-                      <button mat-raised-button color="primary" class="pull-right" (click)="addUser()" style="margin-right: 8px;">Add User</button>
-                      
-
-                    </div>
-        </div>
-
-       
-      </div>
-    </div>
-  </div>
-</div>
       </mat-step>
+
       <mat-step label="Services" state="services">
         <br>
         <div class="row">
@@ -612,6 +499,10 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
                   <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
                   </ng-container>
+                  <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+                    <td mat-cell *matCellDef="let element" (click)="selectedService=element;editServiceModal.show()"> <mat-icon color="primary">create</mat-icon> </td>
+                    </ng-container>
                   <ng-container matColumnDef="delete">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
                   <td mat-cell *matCellDef="let element" (click)="dropService(element)"><mat-icon color="warn">delete_sweep</mat-icon> </td>
@@ -621,7 +512,46 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                   <tr mat-row *matRowDef="let row; columns:columns;"></tr>
                 </table>
            </div> 
-
+  <div class="modal fade" bsModal #editServiceModal="bs-modal" [config]="{backdrop: 'static'}"
+           tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 id="dialog-static-name" class="modal-title pull-left">Update Service</h5>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="editServiceModal.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <mat-form-field>
+                   <input type="text" [(ngModel)]="selectedService.name"  matInput placeholder="Service Name">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-12">
+                <mat-form-field>
+                   <input type="text" id="text-input" name="category" matInput placeholder="Category" [(ngModel)]="selectedService.category" readonly>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-12">
+                 <mat-form-field>
+                    <input type="text"  name="code" matInput placeholder="Code" [(ngModel)]="selectedService.code" readonly>
+                 </mat-form-field>
+               </div>
+               <div class="col-sm-12">
+                   <mat-form-field>
+                      <input type="text"  name="cost" matInput placeholder="Cost" [(ngModel)]="selectedService.cost">
+                   </mat-form-field>
+                </div>
+                <div class="col-sm-12">
+                  <button class="btn btn-success btn-sm pull-right" (click)="editService()">Update</button>
+                </div>
+            </div>  
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="modal fade" bsModal #serviceModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
   <div class="modal-dialog modal-lg">
@@ -936,4 +866,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
       <ng-template matStepperIcon="branch">
           <mat-icon>account_tree</mat-icon>
       </ng-template>
+      <ng-template matStepperIcon="insurance">
+        <mat-icon>business</mat-icon>
+    </ng-template>
   </mat-horizontal-stepper>

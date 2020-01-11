@@ -89,6 +89,11 @@ export class ServiceService {
       map(this.extractData));
 
   }
+  updateNote(id,data): Observable<any> {
+    return this.http.put(endpoint + 'treatment/delete_note/'+id+'/',data).pipe(
+      map(this.extractData));
+
+  }
   searchPatient(data): Observable<any> {
     return this.http.get(endpoint + 'patients/patient-visits/?search='+data).pipe(
       map(this.extractData));
@@ -379,6 +384,11 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+  updateUser(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/update_user/', data ).pipe(
+      map(this.extractData
+      ));
+  }
   reset(data): Observable<{}> {
     return this.http.post<{}>(endpoint + 'users/reset/', data ).pipe(
       map(this.extractData
@@ -565,6 +575,11 @@ searchScheme(payer, searchTerm): Observable<any> {
   }
   deleteService(id): Observable<any> {
     return this.http.delete(endpoint + 'services/service/' + id + '/', ).pipe(
+      map(this.extractData));
+
+  }
+  updateService(id,data): Observable<any> {
+    return this.http.put(endpoint + 'services/service/' + id + '/',data).pipe(
       map(this.extractData));
 
   }

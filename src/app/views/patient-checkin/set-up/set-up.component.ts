@@ -18,7 +18,7 @@ export class SetUpComponent implements OnInit {
   dataSource;
   @ViewChild('uSort', {static: true}) uSort: MatSort;
   @ViewChild('sSort', {static: true}) sSort: MatSort;
-  @ViewChild('userModal', { static: false }) userModal: ModalDirective;
+  @ViewChild('editServiceModal', { static: false }) editServiceModal: ModalDirective;
   @ViewChild('serviceModal', { static: false }) serviceModal: ModalDirective;
   @ViewChild('drugModal', { static: false }) drugModal: ModalDirective;
   @ViewChild('drugUpdateModal', { static: false }) drugUpdateModal: ModalDirective;
@@ -27,6 +27,7 @@ export class SetUpComponent implements OnInit {
   @ViewChild('checkModal', { static: false }) checkModal: ModalDirective;
   selected = 'doctor';
   user;
+  edit = true;
   hospital: any ={};
   branch: any ={};
   employee: any ={};
@@ -50,7 +51,7 @@ export class SetUpComponent implements OnInit {
   displayedColumns: string[] = ['name', 'username', 'phone', 'email','role'];
   insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
   hospitalColumns: string[] = ['name', 'provider_type','reg_no','contact_number','postal_address','postal_code'];
-  columns: string[] = ['name', 'category', 'code', 'cost','delete'];
+  columns: string[] = ['name', 'category', 'code', 'cost','edit','delete'];
   drugColumns: string[] = ['name', 'generic_name', 'code', 'form','strength','quantity','cost','pack_cost','edit','delete'];
   payers: any;
 
@@ -181,10 +182,25 @@ addUser() {
     this.ngOnInit();
     this.toastr.success('Successfully Added Employee');
     this.employee = {};
-    this.userModal.hide();
+    // this.userModal.hide();
   },
   (error)=>{
     this.toastr.error('Adding Employee Failed');
+  }
+  );
+}
+
+updateUser() {
+  console.log(this.employee);
+  this.service.updateUser(this.employee).subscribe((res) => {
+    this.ngOnInit();
+    this.toastr.success('Successfully Updated User');
+    this.employee = {};
+    this.edit = true;
+    // this.userModal.hide();
+  },
+  (error)=>{
+    this.toastr.error('Update Fails');
   }
   );
 }
@@ -210,7 +226,13 @@ addPrescriptions() {
   this.selectedPrescription = {};
 
 }
-
+editService(){
+console.log(this.selectedService);
+this.service.updateService(this.selectedService.id,this.selectedService).subscribe((res)=>{
+  this.toastr.success('Successfully Updated Service');
+  this.editServiceModal.hide();
+})
+}
 saveDrugs() {
 const data = {
 'id': this.user.hospital,

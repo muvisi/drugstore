@@ -57,7 +57,11 @@
                                 <div class="col-sm-4 hx">
                                 PRIORITY
                                 </div>
-                                <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.priority}}</span></div>
+                                <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">
+                                    <span *ngIf="patientInfo.priority=='3'">Normal</span>
+                                    <span *ngIf="patientInfo.priority=='1'">Urgent</span>
+                                    <span *ngIf="patientInfo.priority=='2'">Vip</span>
+                                </span></div>
                               </div>
                             <div class="row"> 
                               <div class="col-sm-4 hx">
@@ -80,7 +84,7 @@
           <mat-tab-group>
               <mat-tab>
                   <ng-template mat-tab-label>
-                      <span style="color:#A6CF39;">Triage Details</span>
+                      <span style="color:#4dbd74;">Triage Details</span>
                      </ng-template>
                   <div class="row container-fluid">
                     <br>
@@ -181,7 +185,7 @@
               </mat-tab>
               <mat-tab>
                   <ng-template mat-tab-label>
-                      <span style="color:#A6CF39;">Nurse Observations</span>
+                      <span style="color:#4dbd74;">Nurse Observations</span>
                      </ng-template>
                      <div class="container-fluid">
                         <br>
@@ -266,7 +270,7 @@
                
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <span style="color:#A6CF39;">Patient History</span>
+                    <span style="color:#4dbd74;">Patient History</span>
                    </ng-template>
               <br>
                 <tabset>
@@ -476,7 +480,7 @@
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <span style="color:#A6CF39;">Physical observations</span>
+                    <span style="color:#4dbd74;">Physical observations</span>
                    </ng-template>
                <div class="container-fluid">
                  <br>
@@ -494,7 +498,7 @@
               </mat-tab>
               <mat-tab>
                   <ng-template mat-tab-label>
-                     <span style="color:#A6CF39;"> Notes</span>
+                     <span style="color:#4dbd74;"> Notes</span>
                     </ng-template>
                   <div class="row container-fluid">
                     <div class="col-sm-12">
@@ -531,7 +535,10 @@
                                       </mat-expansion-panel-header>
                                       <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
                                           <div class="col-sm-8" *ngIf="item.category =='Pharmacy'">
-                                              <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                              <i class="fa fa-circle" style="color: dodgerblue;" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                          </div>
+                                          <div class="col-sm-1"  *ngIf="item.category =='Pharmacy'">
+                                            <mat-icon color="primary" (click)="observation=item">create</mat-icon>
                                           </div>
                                              <div class="col-sm-2" *ngIf="item.category =='Pharmacy'">
                                                 <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
@@ -548,6 +555,10 @@
                                             <div class="col-sm-8" *ngIf="item.category =='Surgical'">
                                                 <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
                                             </div>
+                                            <div class="col-sm-1"  *ngIf="item.category =='Surgical'">
+                                                <mat-icon color="primary" (click)="observation=item">create</mat-icon>
+
+                                            </div>
                                                <div class="col-sm-2" *ngIf="item.category =='Surgical'">
                                                   <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
                                                </div>
@@ -562,6 +573,9 @@
                                           <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
                                               <div class="col-sm-8" *ngIf="item.category =='Review'">
                                                   <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                              </div>
+                                              <div class="col-sm-1"  *ngIf="item.category =='Surgical'">
+                                                  <mat-icon color="primary" (click)="observation=item">create</mat-icon>
                                               </div>
                                                  <div class="col-sm-2" *ngIf="item.category =='Review'">
                                                     <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
@@ -578,10 +592,23 @@
                     </div>
                   
                   </div>
+
+<div class="modal fade" bsModal #noteModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-sm">
+<div class="modal-content">
+ <div class="modal-body">
+   <div class="row">
+     <div class="col-sm-12"></div>
+   </div>
+ </div>
+</div>
+</div>
+</div>
                 </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <span style="color:#A6CF39;">Procedures</span>
+                    <span style="color:#4dbd74;">Procedures</span>
                    </ng-template>
               <div class="row container-fluid">
                   
@@ -819,7 +846,7 @@
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <span style="color:#A6CF39;">Labs</span>
+                    <span style="color:#4dbd74;">Labs</span>
                    </ng-template>
                 <div class="row container-fluid">
             
@@ -1047,7 +1074,7 @@
               </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <span style="color:#A6CF39;">Diagnosis</span>
+                    <span style="color:#4dbd74;">Diagnosis</span>
                    </ng-template>
               <div class="row container-fluid">
             
@@ -1111,7 +1138,7 @@
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <span style="color:#A6CF39;">Medications</span>
+                    <span style="color:#4dbd74;">Medications</span>
                    </ng-template>
                 <div class="row container-fluid">
                       <div class="col-sm-12">
@@ -1189,6 +1216,7 @@
                                     </div>
                                   </div>
                        </div>
+                
                   <div class="col-sm-12">
                     <br>
                         <div class="mat-elevation-z8">
@@ -1227,6 +1255,10 @@
                                     <th mat-header-cell *matHeaderCellDef>Form</th>
                                     <td mat-cell *matCellDef="let element"> {{element.form}}</td>
                                   </ng-container>
+                                  <ng-container matColumnDef="edit">
+                                      <th mat-header-cell *matHeaderCellDef>Edit</th>
+                                      <td mat-cell *matCellDef="let element"><mat-icon color="primary">create</mat-icon></td>
+                                    </ng-container>
                                   <ng-container matColumnDef="delete">
                                       <th mat-header-cell *matHeaderCellDef> Delete </th>
                                       <td mat-cell *matCellDef="let element" (click)="deleteItem(element)"><mat-icon color="warn">delete_sweep</mat-icon></td>
@@ -1240,7 +1272,7 @@
                     <br>
                   
                 </div>
-                
+               
                 <div class="card" id="pres"  hidden> 
                     <div class="card-body">
                       <div class="row container-fluid">

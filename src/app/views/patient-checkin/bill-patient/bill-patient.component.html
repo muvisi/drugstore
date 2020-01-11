@@ -44,7 +44,11 @@
                             <div class="col-sm-4 hx">
                             PRIORITY
                             </div>
-                            <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.priority}}</span></div>
+                            <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">
+                                <span *ngIf="patientInfo.priority=='3'">Normal</span>
+                                <span *ngIf="patientInfo.priority=='1'">Urgent</span>
+                                <span *ngIf="patientInfo.priority=='2'">Vip</span>
+                            </span></div>
                           </div>
                         <div class="row"> 
                           <div class="col-sm-4 hx">
