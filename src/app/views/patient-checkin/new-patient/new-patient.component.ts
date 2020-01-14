@@ -56,10 +56,12 @@ export class NewPatientComponent  implements OnInit {
   maxDate: Date;
   gurdianMin: Date;
   isInsurance: boolean;
+  data:any = {};
   constructor(public service: ServiceService, private toastr: ToastrService, public router: Router,
     public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder) {
       this.patient = this.navCtrl.get('revisit');
-      
+      this.data =this.navCtrl.get('patient')
+      console.log('wwwwwwwww',this.data);
     }
 
   ngOnInit() {
@@ -96,13 +98,31 @@ export class NewPatientComponent  implements OnInit {
       delete this.patient.kin;
       delete this.patient.guardian;
       console.log('bbb',this.patient);
-      this.registerForm.setValue({first_name:this.patient.first_name,other_names:this.patient.other_names,last_name:this.patient.last_name,dob: new Date(this.patient['dob']),
+      this.registerForm.patchValue({first_name:this.patient.first_name,other_names:this.patient.other_names,last_name:this.patient.last_name,dob: new Date(this.patient['dob']),
       national_id:this.patient.national_id,county: '',occupation: '',residence:'',email:this.patient.email || '',visit_type: 'OUTPATIENT',phone:this.patient.phone || '',priority:'Normal',gender: this.patient.gender,
     
   });
     };
-   
+    if(this.data != null) {
+     this.setPatient();
+    }
   }
+  setPatient(){
+    let first_name,last_name,other_names,gender;
+    this.names = this.data.name.split(/\s+/);
+    this.names[0]? first_name = this.names[0]:first_name = '';
+    this.names[1]? other_names = this.names[1]:other_names = '';
+    this.names[2]? last_name = this.names[2]:last_name = '';
+    if(this.data.gender == 'Male' || this.data.gender == 'M' || this.data.gender == 'Male' || this.data.gender == 'male' || this.data.gender == 'MALE'){
+      gender = 'Male'
+    } else{
+      gender="Female"
+    }
+      this.registerForm.patchValue({first_name:first_name,other_names:other_names,last_name:last_name,dob: new Date(this.data['dob']),
+      national_id:this.data.national_id,county: '',occupation: '',residence:'',email:'',visit_type: '',phone: '',priority:'3',gender: gender
+      });
+    }
+
   setForm(){
   let first_name,last_name,other_names,gender;
   this.names = this.memberData.name.split(/\s+/);

@@ -38,7 +38,7 @@ export class MemberInformationComponent implements OnInit {
   }
   treatment() {
     console.log(this.memberInfo);
-    this.navCtrl.navigate('/dashboard/patients/new-patient', { patient: this.memberInfo });
+    this.navCtrl.navigate('/dashboard/patients/new-patient', { patient: this.memberInfo.member_data });
   }
   getBenefits() {
     this.service.benefitsListing().subscribe((res) => {
