@@ -432,7 +432,7 @@ this.diagnoses.splice(index, 1);
     this.service.addObservation(this.observation).subscribe((res)=>{
       this.toastr.success('Added Observation');
       this.patient();
-      
+      this.observation ={};      
     })
     }else{
       this.service.updateNote(this.observation.id,this.observation).subscribe((res)=>{

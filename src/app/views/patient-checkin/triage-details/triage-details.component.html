@@ -48,7 +48,11 @@
         </ng-container>
         <ng-container matColumnDef="priority">
                 <th mat-header-cell *matHeaderCellDef>PRIORITY</th>
-                <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+                <td mat-cell *matCellDef="let element">
+                  <span *ngIf="element.priority=='3'">Normal</span>
+                  <span *ngIf="element.priority=='1'">Urgent</span>
+                  <span *ngIf="element.priority=='2'">Vip</span>
+                </td>
               </ng-container>
               <ng-container matColumnDef="phone">
                     <th mat-header-cell *matHeaderCellDef>PHONE</th>
