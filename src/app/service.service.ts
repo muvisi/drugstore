@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint = 'http://localhost:8000/';
-export const endpoint = 'https://kaatun.healthixsolutions.com:7000/';
+export const endpoint = 'https://kaatun.healthixsolutions.com:4000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -313,12 +313,12 @@ searchBills(data): Observable<any>{
   }
 
   patientRecords(): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient-records/').pipe(
+    return this.http.get(endpoint + 'patients/patient/').pipe(
       map(this.extractData));
 
   }
   SearchPatientRecords(data): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient-records/?search='+data).pipe(
+    return this.http.get(endpoint + 'patients/patient/?search='+data).pipe(
       map(this.extractData));
 
   }

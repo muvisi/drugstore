@@ -12,7 +12,8 @@
 @import '../../node_modules/@syncfusion/ej2-calendars/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-base/styles/material.css';
-
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 9999!important;
 }

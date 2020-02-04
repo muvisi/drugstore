@@ -526,64 +526,45 @@
                       <div class="row">
                           <div class="col-sm-12">
                               <br>
-                                <mat-accordion>
-                                    <mat-expansion-panel>
-                                      <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                        Pharmacy
-                                        </mat-panel-title>
-                                      </mat-expansion-panel-header>
-                                      <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
-                                          <div class="col-sm-8" *ngIf="item.category =='Pharmacy'">
-                                              <i class="fa fa-circle" style="color: dodgerblue;" ></i> <span style="font-weight:500"> {{item.observations}}</span>
-                                          </div>
-                                          <div class="col-sm-1"  *ngIf="item.category =='Pharmacy'">
-                                            <mat-icon color="primary" (click)="observation=item">create</mat-icon>
-                                          </div>
-                                             <div class="col-sm-2" *ngIf="item.category =='Pharmacy'">
-                                                <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
-                                             </div>
-                                        </div>
-                                    </mat-expansion-panel>
-                                    <mat-expansion-panel>
-                                        <mat-expansion-panel-header>
-                                          <mat-panel-title>
-                                              Surgical
-                                          </mat-panel-title>
-                                        </mat-expansion-panel-header>
-                                        <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
-                                            <div class="col-sm-8" *ngIf="item.category =='Surgical'">
-                                                <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
-                                            </div>
-                                            <div class="col-sm-1"  *ngIf="item.category =='Surgical'">
-                                                <mat-icon color="primary" (click)="observation=item">create</mat-icon>
+                              <h5><u>Pharmacy</u></h5>
+                              <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
 
-                                            </div>
-                                               <div class="col-sm-2" *ngIf="item.category =='Surgical'">
-                                                  <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
-                                               </div>
-                                          </div>
-                                      </mat-expansion-panel>
-                                      <mat-expansion-panel>
-                                          <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                            Review
-                                            </mat-panel-title>
-                                          </mat-expansion-panel-header>
-                                          <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
-                                              <div class="col-sm-8" *ngIf="item.category =='Review'">
-                                                  <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
-                                              </div>
-                                              <div class="col-sm-1"  *ngIf="item.category =='Surgical'">
-                                                  <mat-icon color="primary" (click)="observation=item">create</mat-icon>
-                                              </div>
-                                                 <div class="col-sm-2" *ngIf="item.category =='Review'">
-                                                    <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
-                                                 </div>
-                                            </div>
-                                        </mat-expansion-panel>
-                                   
-                                  </mat-accordion>
+                                  <div class="col-sm-8" *ngIf="item.category =='Pharmacy'">
+                                      <i class="fa fa-circle" style="color: dodgerblue;" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                  </div>
+                                  <div class="col-sm-1"  *ngIf="item.category =='Pharmacy'">
+                                    <mat-icon color="primary" (click)="observation=item">create</mat-icon>
+                                  </div>
+                                     <div class="col-sm-2" *ngIf="item.category =='Pharmacy'">
+                                        <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
+                                     </div>
+                                </div>
+                                <h5><u>Surgical</u></h5>
+                                <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
+                                    <div class="col-sm-8" *ngIf="item.category =='Surgical'">
+                                        <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                    </div>
+                                    <div class="col-sm-1"  *ngIf="item.category =='Surgical'">
+                                        <mat-icon color="primary" (click)="observation=item">create</mat-icon>
+
+                                    </div>
+                                       <div class="col-sm-2" *ngIf="item.category =='Surgical'">
+                                          <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
+                                       </div>
+                                  </div>
+                                  <h5><u>Review</u></h5>
+                                  <div class="row" *ngFor="let item of patientInfo?.doctor_notes">
+                                      <div class="col-sm-8" *ngIf="item.category =='Review'">
+                                          <i class="fa fa-circle text-danger" ></i> <span style="font-weight:500"> {{item.observations}}</span>
+                                      </div>
+                                      <div class="col-sm-1"  *ngIf="item.category =='Review'">
+                                          <mat-icon color="primary" (click)="observation=item">create</mat-icon>
+                                      </div>
+                                         <div class="col-sm-2" *ngIf="item.category =='Review'">
+                                            <mat-icon color="warn" (click)="deleteNote(item)">delete_sweep</mat-icon>
+                                         </div>
+                                    </div>
+                             
                                   <br>
                             </div>
                       </div>

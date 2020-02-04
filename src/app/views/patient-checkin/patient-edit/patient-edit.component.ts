@@ -42,7 +42,7 @@ export class PatientEditComponent implements OnInit {
       occupation: [''],
       nhif_number: [''],
     });
-    this.setForm(this.patient.patient);
+    this.setForm(this.patient);
     this.getServices();
   }
   get f() { return this.registerForm.controls; }

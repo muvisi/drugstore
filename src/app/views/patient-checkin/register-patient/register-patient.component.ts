@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-register-patient',
@@ -17,9 +18,11 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 export class RegisterPatientComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   searchText;
   dataSource;
-  Columns: string[] = ['sn','name','patient_no','visit_no','national_id','priority','phone','status','date','time','edit']
+  patient:any = {};
+  Columns: string[] = ['sn','name','patient_no','dob','national_id','phone','gender','edit','new_visit']
   constructor(private datePipe: DatePipe, public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) {
 
   }
@@ -40,7 +43,9 @@ export class RegisterPatientComponent implements OnInit {
     }
   }
 revisit(item)  {
- this.navCtrl.navigate('/dashboard/patients/new-patient/', { revisit: item.patient});
+  this.patient = item;
+  this.staticModal.show();
+//  this.navCtrl.navigate('/dashboard/patients/new-patient/', { revisit: item});
 }
 appointment(){
   this.navCtrl.navigate('/dashboard/patients/calendar/');
@@ -56,5 +61,10 @@ encounter() {
     this.dataSource.sort = this.sort;
   });
   }
-
+sendVisit(){
+  console.log(this.patient);
+  this.service.revisit(this.patient).subscribe((res)=>{
+    this.navCtrl.navigate('/dashboard/patients/bill-patient', { data:res.visit_no });
+  })
+}
 }

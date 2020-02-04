@@ -10,7 +10,7 @@ MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatChipsMo
 MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule, MatButtonModule, MatSliderModule,
 MatBadgeModule
 } from '@angular/material';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { InsureCheckComponent } from './insure-check/insure-check.component';
 import { TreatmentComponent } from './treatment/treatment.component';
@@ -141,7 +141,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatButtonModule,
     MatSliderModule,
     ScheduleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    FullCalendarModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 

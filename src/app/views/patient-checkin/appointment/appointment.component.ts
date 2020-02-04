@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angul
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table'
 import { ToastrService } from 'ngx-toastr';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
   selector: 'app-appointment',
@@ -15,6 +16,7 @@ export class AppointmentComponent implements OnInit {
   appointmentForm: FormGroup;
   limit = new Date();
   toadysList;
+  calendarPlugins = [dayGridPlugin]; 
   displayedColumns: string[] = ['patient_no', 'name','phone','appointment_date','time'];
   listColumns: string[] = ['S/No', 'name','phone','time'];
   timing =['8:00AM','8:20AM','8:40AM','9:00AM','8:00AM','8:20AM','8:40AM','9:00AM','9:20AM','9:40AM','10:00AM','10:20AM','10:40AM','11:00AM','11:20AM','11:40AM','12:00PM',
@@ -79,4 +81,8 @@ appointments(){
     this.dataSource.paginator = this.paginator;
   })
 }
+handleDateClick(arg) { // handler method
+  alert(arg.dateStr);
+}
+
 }
