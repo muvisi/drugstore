@@ -15,7 +15,7 @@ export class PatientPrescriptionComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('paymentModal', { static: false }) paymentModal: ModalDirective;
-  displayedColumns: string[] = ['service', 'generic_name','dosage','strength','form','cost','quantity','status','edit'];
+  displayedColumns: string[] = ['service', 'generic_name','dosage','strength','form','cost','quantity','status','label','edit'];
   serviceColumns: string[] = ['service', 'category', 'bill_number', 'invoice__no', 'rate','status','edit'];
   dataSource;
   id;
@@ -26,6 +26,7 @@ export class PatientPrescriptionComponent implements OnInit {
   dosage: any;
   amount=0;
   paymentAmount =0;
+  label:any ={};
   payments = [];
   constructor(private service: ServiceService, private navCtrl: NgxNavigationWithDataComponent,public toastr: ToastrService) { 
     this.data = this.navCtrl.get('data');
@@ -43,6 +44,10 @@ export class PatientPrescriptionComponent implements OnInit {
   this.patientPrescriptions();
   this.getPrescription();
   this.getDosage();
+  }
+  setLabel(item){
+     this.label = item;
+     console.log('dddd',this.label)
   }
   back(){
     this.navCtrl.navigate('/dashboard/pharmacy')
