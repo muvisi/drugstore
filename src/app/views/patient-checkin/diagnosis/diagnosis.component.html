@@ -1,18 +1,26 @@
 <div *ngIf="!loading">
-  <tabset>
-    <tab heading="Patient Information">
+  <div class="col-sm-12">
+    <div class="card">
+      <h5 class="card-header">
+       <div class="row">
+        <div class="col-sm-5"><b>PATIENT INFORMATION</b></div>
+        <div class="col-sm-7" style="float: right;">
+          <span style="font-size:17px;font-weight: bold" class="pull-right">FILE NO:<span  style="font-size:19px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
+          <span style="font-size:17px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:19px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
+      </div>
+       </div>
+      </h5>
+      <div class="card-body">
         <div class="row">
-          <div class="col-sm-2">
+          <div class="col-sm-3">
             <mat-form-field>
               <input type="text" matInput placeholder="Search Using visit NO" (typeaheadOnSelect)="switchPatient($event)"  [typeahead]="visits" typeaheadOptionField="visit_no" [(ngModel)]="text">
             </mat-form-field>
           </div>
           <div class="col-sm-2">
-              <button mat-raised-button class="btn btn-success" (click)="closeClaim()">Close Visit</button>
           </div>
             <div class="col-sm-7">
-                <span style="font-size:17px;font-weight: bold" class="pull-right">FILE NO:<span  style="font-size:19px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
-                <span style="font-size:17px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:19px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
+              <button mat-raised-button class="btn btn-success pull-right" (click)="closeClaim()">Close Visit</button>
             </div>
           </div>
       <div class="row" style="margin-top:8px;" >
@@ -41,12 +49,17 @@
                               <span *ngIf="patientInfo?.age?.years > 0">{{patientInfo?.age?.years}}  Years</span>
                               <span *ngIf="patientInfo?.age?.months > 0">{{patientInfo?.age?.months}} Months</span>
                               <span *ngIf="patientInfo?.age?.days > 0">{{patientInfo?.age?.days}} Days</span>
-                            </span>| <span class="text-primary" style="font-weight: 600">{{patientInfo?.gender}}</span> 
+                            </span>
                      </span>
                     </mat-card-title>
                       <div class="row">
                           <div class="col-sm-6">
-    
+                            <div class="row">
+                              <div class="col-sm-4 hx">
+                              GENDER
+                              </div>
+                              <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.gender | uppercase}}</span></div>
+                          </div>
                             <div class="row">
                                 <div class="col-sm-4 hx">
                                 CHECK IN
@@ -58,9 +71,9 @@
                                 PRIORITY
                                 </div>
                                 <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">
-                                    <span *ngIf="patientInfo.priority=='3'">Normal</span>
-                                    <span *ngIf="patientInfo.priority=='1'">Urgent</span>
-                                    <span *ngIf="patientInfo.priority=='2'">Vip</span>
+                                    <span *ngIf="patientInfo.priority=='3'">NORMAL</span>
+                                    <span *ngIf="patientInfo.priority=='1'">URGENT</span>
+                                    <span *ngIf="patientInfo.priority=='2'">VIP</span>
                                 </span></div>
                               </div>
                             <div class="row"> 
@@ -1353,10 +1366,16 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
           </mat-tab-group>
         </div>
       </div>
+      </div>
+    </div>
+  </div>
+  <!-- <tabset>
+    <tab heading="Patient Information">
+       
     </tab>
     
   
-  </tabset>
+  </tabset> -->
 </div>
 
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

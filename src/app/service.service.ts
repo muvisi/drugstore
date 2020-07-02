@@ -443,7 +443,11 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
+  deleteHospital(id): Observable<any> {
+    return this.http.delete(endpoint + 'hospitals/' + id + '/', ).pipe(
+      map(this.extractData));
 
+  }
   prescriptions(): Observable<any> {
     return this.http.get(endpoint + 'data/prescription/').pipe(
       map(this.extractData));

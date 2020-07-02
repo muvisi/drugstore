@@ -50,7 +50,7 @@ export class SetUpComponent implements OnInit {
   selectedServices = [];
   displayedColumns: string[] = ['name', 'username', 'phone', 'email','role'];
   insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
-  hospitalColumns: string[] = ['name', 'provider_type','reg_no','contact_number','postal_address','postal_code'];
+  hospitalColumns: string[] = ['sn','name', 'provider_type','reg_no','contact_number','view','delete'];
   columns: string[] = ['name', 'category', 'code', 'cost','edit','delete'];
   drugColumns: string[] = ['name', 'generic_name', 'code', 'form','strength','quantity','cost','pack_cost','edit','delete'];
   payers: any;
@@ -64,24 +64,43 @@ export class SetUpComponent implements OnInit {
     this.service.getHospital(this.user.hospital).subscribe((res) => {
     this.hospital = res;
     });
-    this.service.providerDetails(this.user.hospital).subscribe((res) => {
-      this.provider_list = res;
-      this.hospitalList = new MatTableDataSource(res);
-    });
+    
     this.employeesList();
     this.prescriptionList();
     this.getServices();
     this.getService();
     this.hospitalDrugs();
     this.getPayers();
+    this.getHospitals();
+  }
+  getHospitals(){
+    this.service.providerDetails(this.user.hospital).subscribe((res) => {
+      this.provider_list = res;
+      this.hospitalList = new MatTableDataSource(res);
+    });
+  }
+  searchHospital(filterValue){
+    this.hospitalList.filter = filterValue.trim().toLowerCase();
+  }
+  searchUser(filterValue){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  deleteHospital(item){
+    if (window.confirm("Do you really want to Delete Hospital"+" "+item.name+" "+"?")) { 
+      this.service.deleteHospital(item.id).subscribe(()=>{
+        this.toastr.success('Successfully Deleted Hospital');
+        this.getHospitals();
+      })
+    }
   }
   deleteDepartment(){
-    
+    if (window.confirm("Do you really want to Delete?")) { 
     this.service.deleteDepartment(this.selectedDepartment.id).subscribe((res)=>{
       this.toastr.success('Successfully Deleted Department');
       this.checkModal.hide();
       this.ngOnInit();
     })
+  }
   }
   editDepartment(){
     this.service.editDepartment(this.selectedDepartment.id,this.selectedDepartment).subscribe((res)=>{
