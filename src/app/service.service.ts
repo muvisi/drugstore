@@ -205,7 +205,7 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
   }
   generateBill(id) {
-    return this.http.post(endpoint + 'payments/generate-bill/', id , ).pipe(
+    return this.http.post(endpoint + 'payments/generate-bill/',id).pipe(
       map(this.extractData));
   }
   labRequest(data) {

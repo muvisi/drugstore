@@ -38,175 +38,189 @@
               </div>
           <div class="row">
             <div class="col-sm-12">
-                <form [formGroup]="triageForm" novalidate>
-                    
                     <div class="row">
-                    <div class="col-sm-2">
-                       <mat-form-field>
-                           <input matInput placeholder="Temperature value" type="number" formControlName="temperature" [ngClass]="{ 'is-invalid': submitted && f.temperature.errors }" >
-                           <i matSuffix class="fa fa-thermometer-half"></i>
-                           
-                           
-                         </mat-form-field>
-                    </div>
-                    <div class="col-sm-2">
-                       <mat-form-field>
-                           <input matInput placeholder="Pulse rate" type="number" formControlName="pulse"  [ngClass]="{ 'is-invalid': submitted && f.pulse.errors }">
-                           <i matSuffix class="fa fa-heartbeat"></i>
-                         </mat-form-field>
-                    </div>
-                    <div class="col-sm-3">
-                       <mat-form-field >
-                           <input matInput placeholder="Blood Pressure (systolic)" type="number" (ngModelChange)="test()"  formControlName="systolic"  [ngClass]="{ 'is-invalid': submitted && f.systolic.errors }">
-                           <i matSuffix class="fa fa-yelp"></i>
-                         </mat-form-field>
-                    </div>
-                    <div class="col-sm-3">
-                       <mat-form-field >
+                      <div class="col-sm-4">
+                        <form [formGroup]="triageForm" novalidate>
 
-                           <input matInput placeholder="Blood Pressure (diastolic)" type="number" (ngModelChange)="test()" formControlName="diastolic"  [ngClass]="{ 'is-invalid': submitted && f.diastolic.errors }">
-                           <i matSuffix class="fa fa-yelp"></i>
-                      
-                         </mat-form-field>
-                    </div>
-                    <div class="col-sm-2">
-                       <mat-form-field >
-                           
-                           <input matInput placeholder="Blood pressure(mm/Hg)"  [value]="pressure" type="text" formControlName="blood_pressure"    readonly>
-             
-                         </mat-form-field>
-                    </div>
-                </div>
-                <div class="row">
-                       <div class="col-sm-2">
-                               <mat-form-field>
-                                  
-                                   <input matInput placeholder="Height(cm)" type="number" (ngModelChange)="calculateBmi()" formControlName="height"  [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
-                                   <i matSuffix class="fa fa-yelp"></i>
-                                 </mat-form-field>
-                            </div>  
-            
-                            <div class="col-sm-2">
-                                   <mat-form-field >
-                  
-                                       <input matInput placeholder="Weight(kgs)" type="number" (ngModelChange)="calculateBmi()" formControlName="weight"  [ngClass]="{ 'is-invalid': submitted && f.weight.errors }">
-                                       <i matSuffix class="fa fa-yelp"></i>
-                                     </mat-form-field>
-                                </div>     
-                                <div class="col-sm-2">
+                        <div class="row">
+                          <div class="col-sm-6">
+                             <mat-form-field>
+                                 <input matInput placeholder="Temperature value" type="number" formControlName="temperature" [ngClass]="{ 'is-invalid': submitted && f.temperature.errors }" >
+                                 <i matSuffix class="fa fa-thermometer-half"></i>
+                                 
+                                 
+                               </mat-form-field>
+                          </div>
+                          <div class="col-sm-6">
+                             <mat-form-field>
+                                 <input matInput placeholder="Pulse rate" type="number" formControlName="pulse"  [ngClass]="{ 'is-invalid': submitted && f.pulse.errors }">
+                                 <i matSuffix class="fa fa-heartbeat"></i>
+                               </mat-form-field>
+                          </div>
+                          <div class="col-sm-4">
+                             <mat-form-field >
+                                 <input matInput placeholder="B/P(systolic)" type="number" (ngModelChange)="test()"  formControlName="systolic"  [ngClass]="{ 'is-invalid': submitted && f.systolic.errors }">
+                                 <i matSuffix class="fa fa-yelp"></i>
+                               </mat-form-field>
+                          </div>
+                          <div class="col-sm-4">
+                             <mat-form-field >
+      
+                                 <input matInput placeholder="B/P (diastolic)" type="number" (ngModelChange)="test()" formControlName="diastolic"  [ngClass]="{ 'is-invalid': submitted && f.diastolic.errors }">
+                                 <i matSuffix class="fa fa-yelp"></i>
+                            
+                               </mat-form-field>
+                          </div>
+                          <div class="col-sm-4">
+                             <mat-form-field >
+                                 
+                                 <input matInput placeholder="Pressure(mm/Hg)"  [value]="pressure" type="text" formControlName="blood_pressure"    readonly>
+                   
+                               </mat-form-field>
+                          </div>
+                          <div class="col-sm-4">
+                            <mat-form-field>
+                               
+                                <input matInput placeholder="Height(cm)" type="number" (ngModelChange)="calculateBmi()" formControlName="height"  [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
+                                <i matSuffix class="fa fa-yelp"></i>
+                              </mat-form-field>
+                         </div>  
+         
+                         <div class="col-sm-4">
+                                <mat-form-field >
+               
+                                    <input matInput placeholder="Weight(kgs)" type="number" (ngModelChange)="calculateBmi()" formControlName="weight"  [ngClass]="{ 'is-invalid': submitted && f.weight.errors }">
+                                    <i matSuffix class="fa fa-yelp"></i>
+                                  </mat-form-field>
+                             </div>     
+                             <div class="col-sm-4">
+                                 <mat-form-field >
+                                     <input matInput placeholder="BMI" [value]="bmi"  formControlName="bmi"   readonly>
+                                     
+                                   </mat-form-field>
+                              </div>   
+                             <div class="col-sm-6">
                                     <mat-form-field >
-                                        <input matInput placeholder="BMI" [value]="bmi"  formControlName="bmi"   readonly>
                                         
+                                        <input matInput placeholder="Respiratory" type="number" formControlName="respiratory"  [ngClass]="{ 'is-invalid': submitted && f.respiratory.errors }">
+                                       
+                                  
                                       </mat-form-field>
-                                 </div>   
-                                <div class="col-sm-2">
-                                       <mat-form-field >
-                                           
-                                           <input matInput placeholder="Respiratory" type="number" formControlName="respiratory"  [ngClass]="{ 'is-invalid': submitted && f.respiratory.errors }">
-                                          
-                                     
-                                         </mat-form-field>
-                                    </div>  
-                                    <div class="col-sm-2">
-                                        <mat-form-field >
-                                            <input matInput placeholder="SpO"   formControlName="spo">
-                                            
-                                          </mat-form-field>
-                                     </div> 
-                                     <div class="col-sm-2">
-                                        <mat-form-field >
-                                            <input matInput placeholder="Lmp"   formControlName="lmp">
-                                            
-                                          </mat-form-field>
-                                     </div>   
-                                    <div class="col-sm-2">
-                                        <mat-form-field >
-                                            <input matInput placeholder="Head circumfrence"   formControlName="head_circumfrence">
-                                           
-                                          </mat-form-field>
-                                     </div> 
-                                     
-                                     <div class="col-sm-2">
-                                        <mat-form-field >
-                                            <input matInput placeholder="Random Sugar Test"   formControlName="random_sugar">
-                                            
-                                          </mat-form-field>
-                                     </div>  
-                                     <div class="col-sm-2">
-                                        <mat-form-field>
-                                            <input matInput [(ngModel)]="observations.symptoms_onset"  [ngModelOptions]="{standalone: true}" placeholder="Onset of Symptoms" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" >
-                                          </mat-form-field>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Next Appointment" bsDatepicker [ngModelOptions]="{standalone: true}" [(ngModel)]="observations.appointment_date" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
-                                          </mat-form-field>
-                                    </div>                     
-                                   
-                </div>
-                      </form>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-             
-                <span><u><b>Observations</b></u></span>
-                
-                    <div class="row">
-                        <div class="col-sm-2" *ngFor="let item of observationList" >
-                          <mat-checkbox (change)="addObservation(item.name)" [checked]="existObs(item.name)">{{item.name}}</mat-checkbox>
-                        </div>
+                                 </div>  
+                                 <div class="col-sm-6">
+                                     <mat-form-field >
+                                         <input matInput placeholder="SpO"   formControlName="spo">
+                                         
+                                       </mat-form-field>
+                                  </div> 
+                                  <div class="col-sm-6">
+                                     <mat-form-field >
+                                         <input matInput placeholder="Lmp"   formControlName="lmp">
+                                         
+                                       </mat-form-field>
+                                  </div>   
+                                 <div class="col-sm-6">
+                                     <mat-form-field >
+                                         <input matInput placeholder="Head circumfrence"   formControlName="head_circumfrence">
+                                        
+                                       </mat-form-field>
+                                  </div> 
+                                  
+                                  <div class="col-sm-12">
+                                     <mat-form-field >
+                                         <input matInput placeholder="Random Sugar Test"   formControlName="random_sugar">
+                                         
+                                       </mat-form-field>
+                                  </div>  
+                                  
                       </div>
-                      <div class="row" style="margin-top: 10px;">
-                        <div class="col-sm-6">
-                          <mat-card>
-                            <mat-card-subtitle>PAIN LEVEL</mat-card-subtitle>
-                            <div class="row" style="margin-top: 20px">
-                                <div class="col-sm-4">
-                                    <mat-label>Risk of fall <span  *ngIf="value" class="text-danger">({{value}})</span></mat-label>
-                                    
-                                    <mat-slider
-                                    thumbLabel
-                                    [(ngModel)]="value"
-                                    [displayWith]="formatLabel"
-                                    tickInterval="1"
-                                    min="1"
-                                    max="10"></mat-slider>
+                    </form>
+                      </div>
+                      <div class="col-sm-8">
+                        <div class="row">
+                          <div class="col-sm-12">
+                           
+                              <span><u><b>Observations</b></u></span>
+                              
+                                 
+                                    <div class="row" style="margin-top: 10px;">
+                                      <div class="col-sm-6">
+                                        <div class="row">
+                                          <div class="col-sm-6" *ngFor="let item of observationList" >
+                                            <mat-checkbox (change)="addObservation(item.name)" [checked]="existObs(item.name)">{{item.name}}</mat-checkbox>
+                                          </div>
+                                        </div>
                                       </div>
-                                      <div class="col-sm-4">
-                                          <mat-label>Pain Levels <span  *ngIf="painlevel" class="text-danger">({{painlevel}})</span></mat-label>
-                                          
-                                          <mat-slider
-                                          thumbLabel
-                                          [(ngModel)]="painlevel"
-                                          [displayWith]="formatLabel"
-                                          tickInterval="1"
-                                          min="1"
-                                          max="10"></mat-slider>
+                                      <div class="col-sm-6">
+                                        <mat-card>
+                                          <mat-card-subtitle>PAIN LEVEL</mat-card-subtitle>
+                                          <div class="row" style="margin-top: 20px">
+                                              <div class="col-sm-4">
+                                                  <mat-label>Risk of fall <span  *ngIf="value" class="text-danger">({{value}})</span></mat-label>
+                                                  
+                                                  <mat-slider
+                                                  thumbLabel
+                                                  [(ngModel)]="value"
+                                                  [displayWith]="formatLabel"
+                                                  tickInterval="1"
+                                                  min="1"
+                                                  max="10"></mat-slider>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <mat-label>Pain Levels <span  *ngIf="painlevel" class="text-danger">({{painlevel}})</span></mat-label>
+                                                        
+                                                        <mat-slider
+                                                        thumbLabel
+                                                        [(ngModel)]="painlevel"
+                                                        [displayWith]="formatLabel"
+                                                        tickInterval="1"
+                                                        min="1"
+                                                        max="10"></mat-slider>
+                                                    </div>
+                                                    
+                                          </div>
+                                        </mat-card>
                                       </div>
                                       
-                            </div>
-                          </mat-card>
-                        </div>
-                        <div class="col-sm-6">
-                          <mat-card>
-                            <mat-card-subtitle>Nurse Notes</mat-card-subtitle>
+                                      <div class="col-sm-12" style="margin-top: 10px;">
+                                        <mat-card>
+                                          <mat-card-subtitle>Nurse Notes</mat-card-subtitle>
+                                                <div class="row">
+                                                  <div class="col-sm-4">
+                                                    <mat-form-field>
+                                                        <input matInput [(ngModel)]="observations.symptoms_onset"  [ngModelOptions]="{standalone: true}" placeholder="Onset of Symptoms" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" >
+                                                      </mat-form-field>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <mat-form-field>
+                                                        <input matInput placeholder="Next Appointment" bsDatepicker [ngModelOptions]="{standalone: true}" [(ngModel)]="observations.appointment_date" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+                                                      </mat-form-field>
+                                                </div>  
+                                                <div class="col-sm-12">
+                                                  <mat-form-field>
+                                                      <textarea matInput placeholder="Write Observation notes" [(ngModel)]="observations.notes"></textarea>
+                                                      <i class="icon-note" matSuffix></i>
+                                                    </mat-form-field>
+                                              </div>
+                                                </div>
+                                               
+                                         
+                                        </mat-card>
+                                      </div>
+                                    </div>
+                               
                             
-                                  <div class="col-sm-12">
-                                      <mat-form-field>
-                                          <textarea matInput placeholder="Write Observation notes" [(ngModel)]="observations.notes"></textarea>
-                                          <i class="icon-note" matSuffix></i>
-                                        </mat-form-field>
-                                  </div>
-                           
-                          </mat-card>
+              
+                          </div>
                         </div>
                       </div>
-                 
-              
 
+                    </div>
+              
+                     
             </div>
           </div>
+         
          <br>
             <div>
               <button mat-raised-button matStepperNext class="pull-right" >Next</button>

@@ -52,8 +52,10 @@ export class SetUpComponent implements OnInit {
   insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
   hospitalColumns: string[] = ['sn','name', 'provider_type','reg_no','contact_number','view','delete'];
   columns: string[] = ['name', 'category', 'code', 'cost','edit','delete'];
+  departmentColumns: string[] = ['sn', 'name', 'edit', 'delete'];
   drugColumns: string[] = ['name', 'generic_name', 'code', 'form','strength','quantity','cost','pack_cost','edit','delete'];
   payers: any;
+  departmentSource;
 
   constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent) {
   }

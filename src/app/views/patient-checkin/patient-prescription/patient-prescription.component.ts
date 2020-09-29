@@ -77,11 +77,17 @@ export class PatientPrescriptionComponent implements OnInit {
   }
   getPrescription() {
     this.service.prescriptions().subscribe((res) => {
+    res.results.forEach(element => {
+        delete element['quantity']
+    });
     this.drugs = res.results;
     });
     }
   searchDrug(data){
     this.service.searchPrescriptions(data).subscribe((res)=>{
+      res.results.forEach(element => {
+        delete element['quantity']
+      });
       this.drugs = res.results;
     })
   }  

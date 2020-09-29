@@ -50,3 +50,30 @@ table {
 	width: 100%;
 	font-family: "Open Sans", Tahoma, sans-serif;
 }
+
+
+table{
+	width: 100%;
+	font-family:Open Sans,sans-serif;
+  }
+  th,td{
+  font-size: 10px;
+  height: 2px;
+  }
+  
+  tr,td {
+  height:2px;
+  }
+  
+  tr.mat-footer-row,
+  tr.mat-row{
+  border: 1px solid #e7e7e7;
+  height: 28px !important;
+  }
+  
+  tr.mat-header-row {
+  border: 1px solid #e7e7e7;
+  height: 38px !important;
+  font-weight: bolder;
+  }
+  

@@ -69,25 +69,36 @@
                             </div> -->
                             <div class="row">
                               <div class="col-sm-12">
-                                <table class="table mat-elevation-z8">
-                                  <thead>
-                                    <tr>
-                                      <th scope="col">S/N</th>
-                                      <th scope="col">Name</th>
-                                      <th scope="col">Edit</th>
-                                      <th scope="col">Delete</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr *ngFor="let item of hospital?.departments;let i=index">
-                                      <th scope="row">{{i+1}}</th>
-                                      <td>{{item.name | uppercase}}</td>
-                                      <td (click)="this.checkModal.show();selectedDepartment = item"><mat-icon color="primary">create</mat-icon></td>
-                                      <td><mat-icon color="warn"(click)="deleteDepartment()">delete_sweep</mat-icon></td>
-                                    </tr>
-                                   
-                                  </tbody>
+                                <table mat-table [dataSource]="hospital?.departments" class="mat-elevation-z8">
+
+                                  <ng-container matColumnDef="sn">
+                                    <th mat-header-cell *matHeaderCellDef> S/No. </th>
+                                    <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                  </ng-container>
+                                
+                                  <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> NAME </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                  </ng-container>
+                                
+                                  <ng-container matColumnDef="edit">
+                                    <th mat-header-cell *matHeaderCellDef>EDIT</th>
+                                    <td mat-cell *matCellDef="let element"  (click)="this.checkModal.show();selectedDepartment = element">
+                                      <mat-icon color="primary">create</mat-icon>
+                                       </td>
+                                  </ng-container>
+                                
+                                  <ng-container matColumnDef="delete">
+                                    <th mat-header-cell *matHeaderCellDef>DELETE</th>
+                                    <td mat-cell *matCellDef="let element">
+                                      <mat-icon color="warn" (click)="deleteDepartment()">delete_sweep</mat-icon>
+                                    </td>
+                                  </ng-container>
+                                
+                                  <tr mat-header-row *matHeaderRowDef="departmentColumns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns: departmentColumns;"></tr>
                                 </table>
+                                
                               </div>
                             </div>
                            </mat-card>
@@ -134,7 +145,7 @@
                                     [(ngModel)]="branch.name" matInput>
                                 </mat-form-field>
                               </div>
-                             <div class="col-sm-12">
+                             <!-- <div class="col-sm-12">
                                  <mat-form-field>
                                      <mat-label>Hospital</mat-label>
                                      <mat-select [(ngModel)]="branch.hospital">
@@ -143,7 +154,7 @@
                                        </mat-option>
                                      </mat-select>
                                    </mat-form-field>
-                               </div>
+                               </div> -->
                                <div class="col-sm-12">
                                    <div class="row">
                                      <div class="col-sm-6">
@@ -340,7 +351,7 @@
                                            type="text" matInput>
                                             </mat-form-field> -->
                                             <mat-form-field>
-                                                <mat-label>Hospital</mat-label>
+                                                <mat-label>BRANCH</mat-label>
                                                 <mat-select [(ngModel)]="employee.hospital">
                                                   <mat-option *ngFor="let item of provider_list" [value]="item.id">
                                                     {{item.name}}
@@ -378,10 +389,18 @@
                                           </mat-form-field>
                                         </div>
                                         <div class="col-sm-12">
-                                            <mat-form-field>
+                                          <mat-form-field>
+                                            <mat-label>DEPARTMENT</mat-label>
+                                            <mat-select  [(ngModel)]="employee.department">
+                                              <mat-option *ngFor="let item of hospital?.departments" [value]="item.id">
+                                                {{item.name}}
+                                              </mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                            <!-- <mat-form-field>
                                                 <input type="text" id="text-input" name="department" placeholder="DEPARTMENT"
                                                 [(ngModel)]="employee.department" matInput>
-                                            </mat-form-field>
+                                            </mat-form-field> -->
                                           </div>
                                           <div class="col-sm-12">
                                               <mat-form-field>
