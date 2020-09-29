@@ -57,13 +57,13 @@
                                  <i matSuffix class="fa fa-heartbeat"></i>
                                </mat-form-field>
                           </div>
-                          <div class="col-sm-4">
+                          <div class="col-sm-6">
                              <mat-form-field >
                                  <input matInput placeholder="B/P(systolic)" type="number" (ngModelChange)="test()"  formControlName="systolic"  [ngClass]="{ 'is-invalid': submitted && f.systolic.errors }">
                                  <i matSuffix class="fa fa-yelp"></i>
                                </mat-form-field>
                           </div>
-                          <div class="col-sm-4">
+                          <div class="col-sm-6">
                              <mat-form-field >
       
                                  <input matInput placeholder="B/P (diastolic)" type="number" (ngModelChange)="test()" formControlName="diastolic"  [ngClass]="{ 'is-invalid': submitted && f.diastolic.errors }">
@@ -71,14 +71,14 @@
                             
                                </mat-form-field>
                           </div>
-                          <div class="col-sm-4">
+                          <div class="col-sm-6">
                              <mat-form-field >
                                  
                                  <input matInput placeholder="Pressure(mm/Hg)"  [value]="pressure" type="text" formControlName="blood_pressure"    readonly>
                    
                                </mat-form-field>
                           </div>
-                          <div class="col-sm-4">
+                          <div class="col-sm-6">
                             <mat-form-field>
                                
                                 <input matInput placeholder="Height(cm)" type="number" (ngModelChange)="calculateBmi()" formControlName="height"  [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
@@ -86,14 +86,14 @@
                               </mat-form-field>
                          </div>  
          
-                         <div class="col-sm-4">
+                         <div class="col-sm-6">
                                 <mat-form-field >
                
                                     <input matInput placeholder="Weight(kgs)" type="number" (ngModelChange)="calculateBmi()" formControlName="weight"  [ngClass]="{ 'is-invalid': submitted && f.weight.errors }">
                                     <i matSuffix class="fa fa-yelp"></i>
                                   </mat-form-field>
                              </div>     
-                             <div class="col-sm-4">
+                             <div class="col-sm-6">
                                  <mat-form-field >
                                      <input matInput placeholder="BMI" [value]="bmi"  formControlName="bmi"   readonly>
                                      
