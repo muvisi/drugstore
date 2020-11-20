@@ -326,12 +326,15 @@
                                         <th mat-header-cell *matHeaderCellDef>Reason</th>
                                         <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
                                       </ng-container>
-                                  
+                                      <ng-container matColumnDef="transaction">
+                                        <th mat-header-cell *matHeaderCellDef>Mpesa Ref No</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.transaction}} </td>
+                                      </ng-container>
                                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                     </table>
                                   
-                                    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                    <mat-paginator #paginator [pageSizeOptions]="[20,50]" showFirstLastButtons></mat-paginator>
                                   </div>
                     </div>
                 </div>
