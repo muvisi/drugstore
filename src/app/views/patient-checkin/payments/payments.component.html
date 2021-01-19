@@ -1,6 +1,6 @@
 
 <tabset>
-  <tab heading="Cash Payments">
+  <tab heading="CASH PAYMENTS">
       <div class="row">
           <div class="col-sm-12">
             <div class="row">
@@ -131,7 +131,81 @@
           </div>
         </div>
   </tab>
-  <tab heading="Insurance Claims">
+
+
+  <tab heading="MPESA PAYMENTS">
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+              <div class="col-sm-3">
+                  <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Mobile Number" (keyup)="applyFilter($event.target.value)" >
+                      <i class="icon-magnifier" matSuffix></i>
+                    </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                  <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Transaction No" ((keyup)="applyFilter($event.target.value)" >
+                    </mat-form-field>
+              </div>
+             
+           
+          </div>
+        </div>
+    </div>
+    <div class="mat-elevation-z8 table-responsive">
+        <table mat-table [dataSource]="mpesaSource" matSort>
+          <ng-container matColumnDef="sn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+            <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>NAME</th>
+            <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="msisdn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> PHONE </th>
+            <td mat-cell *matCellDef="let element"> {{element.msisdn}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>AMOUNT</th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="channel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>CHANNEL</th>
+            <td mat-cell *matCellDef="let element"> {{element.channel}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="trxref">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>TRANSACTION</th>
+            <td mat-cell *matCellDef="let element"> {{element.trxref}} </td>
+          </ng-container>
+          <ng-container matColumnDef="accountref">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ACCOUNT REF </th>
+              <td mat-cell *matCellDef="let element"> {{element.accountref }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>DATE </th>
+          <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+      </ng-container>
+          
+          
+          <tr mat-header-row *matHeaderRowDef="mpesaColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: mpesaColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[20,40]" showFirstLastButtons></mat-paginator>
+      </div>
+</tab>
+  <tab heading="INSURANCE PAYMENTS">
       <div class="row">
           <div class="col-sm-12">
             <div class="row">

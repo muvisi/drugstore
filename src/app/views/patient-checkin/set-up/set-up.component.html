@@ -62,11 +62,6 @@
                               <div class="col-sm-4"> <button mat-mini-fab (click)="addDepartment()" [disabled]="!department.name">  <i class="fa fa-plus"></i> </button> </div>
                
                             </div>
-                            <!-- <div class="row">
-                              <div class="col-sm-4" *ngFor="let item of hospital?.departments">
-                                <mat-radio-button style="font-family: lato" (click)="this.checkModal.show();selectedDepartment = item"> {{item.name | uppercase}}</mat-radio-button>
-                              </div>
-                            </div> -->
                             <div class="row">
                               <div class="col-sm-12">
                                 <table mat-table [dataSource]="hospital?.departments" class="mat-elevation-z8">
@@ -145,16 +140,7 @@
                                     [(ngModel)]="branch.name" matInput>
                                 </mat-form-field>
                               </div>
-                             <!-- <div class="col-sm-12">
-                                 <mat-form-field>
-                                     <mat-label>Hospital</mat-label>
-                                     <mat-select [(ngModel)]="branch.hospital">
-                                       <mat-option *ngFor="let item of provider_list" [value]="item.id">
-                                         {{item.name}}
-                                       </mat-option>
-                                     </mat-select>
-                                   </mat-form-field>
-                               </div> -->
+                            
                                <div class="col-sm-12">
                                    <div class="row">
                                      <div class="col-sm-6">
@@ -307,17 +293,6 @@
                 <br>
                
                     <div class="col-sm-12">
-  <!--                     
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-sm-4 pull-right">
-                                    <mat-form-field>
-                                    <input type="text" matInput placeholder="Search">
-                                    <i class="icon-magnifier" matSuffix></i>
-                                    </mat-form-field>
-                                  </div>
-                            </div>
-                        </div> -->
                       
                        <div class="row">
                          <div class="col-sm-4">
@@ -331,12 +306,6 @@
                                           [(ngModel)]="employee.first_name" matInput>
                                       </mat-form-field>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <mat-form-field>
-                                            <input type="text" id="text-input" name="first_name"  placeholder="MIDDLE NAME"
-                                            [(ngModel)]="employee.surname" matInput>
-                                        </mat-form-field>
-                                      </div>
                                       <div class="col-sm-12">
                                           <mat-form-field>
                                               <input type="text" id="text-input"  placeholder="LAST NAME"
@@ -345,11 +314,7 @@
                                         </div>
                           
                                         <div class="col-sm-12">
-                                            <!-- <mat-form-field>
-                                                <input [(ngModel)]="name" placeholder="Provider/Hospital(Branch)" [typeahead]="provider_list"
-                                            (typeaheadOnSelect)="setHospital($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
-                                           type="text" matInput>
-                                            </mat-form-field> -->
+                                
                                             <mat-form-field>
                                                 <mat-label>BRANCH</mat-label>
                                                 <mat-select [(ngModel)]="employee.hospital">
@@ -382,12 +347,6 @@
                                             [(ngModel)]="employee.username" matInput>
                                         </mat-form-field>
                                       </div>
-                                      <div class="col-sm-12">
-                                          <mat-form-field>
-                                              <input type="text" id="text-input"  placeholder="EMPLOYEE NUMBER"
-                                              [(ngModel)]="employee.employee_no" matInput>
-                                          </mat-form-field>
-                                        </div>
                                         <div class="col-sm-12">
                                           <mat-form-field>
                                             <mat-label>DEPARTMENT</mat-label>
@@ -397,10 +356,7 @@
                                               </mat-option>
                                             </mat-select>
                                           </mat-form-field>
-                                            <!-- <mat-form-field>
-                                                <input type="text" id="text-input" name="department" placeholder="DEPARTMENT"
-                                                [(ngModel)]="employee.department" matInput>
-                                            </mat-form-field> -->
+                                          
                                           </div>
                                           <div class="col-sm-12">
                                               <mat-form-field>
@@ -431,24 +387,24 @@
           <div class="col-sm-12">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #uSort="matSort"  matSort>
               <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
                   <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
                   </ng-container>
                   <ng-container matColumnDef="username">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>username</th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>USERNAME</th>
                   <td mat-cell *matCellDef="let element"> {{element.username | uppercase}} </td>
                   </ng-container>
     
                   <ng-container matColumnDef="phone">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
                   <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
                   </ng-container>
                   <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL </th>
                   <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                   </ng-container>
                   <ng-container matColumnDef="role">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>ROLE</th>
                   <td mat-cell *matCellDef="let element"> {{element.role}} </td>
                   </ng-container>
               
@@ -483,7 +439,7 @@
                                   <div class="col-sm-12">
                                    </div>
                                     <div class="col-sm-12">
-                                        <img src="../../../../assets/img/avatars/icon.png" width="140px" alt="">
+                                        <img src="../../../../assets/img/avatars/account.png" width="140px" alt="">
                                     </div>
                                     <div class="col-sm-12 text-primary">
                                       <span style="font-weight: 700;font-size: 12px;">{{selectedUser.name| uppercase}}</span>
@@ -540,38 +496,39 @@
                       <button mat-mini-fab (click)="serviceModal.show()"> <i class="fa fa-plus"></i></button>
                     </div>
                   </div>
-                  <div class="col-sm-12 mat-elevation-z8">
-                      <table mat-table [dataSource]="providerServices" #sSort="matSort"  matSort>
-                          <ng-container matColumnDef="name">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
-                          <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="category">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-                          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-                          </ng-container>
-        
-                          <ng-container matColumnDef="code">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
-                          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="cost">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
-                          <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="edit">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
-                            <td mat-cell *matCellDef="let element" (click)="selectedService=element;editServiceModal.show()"> <mat-icon color="primary">create</mat-icon> </td>
-                            </ng-container>
-                          <ng-container matColumnDef="delete">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                          <td mat-cell *matCellDef="let element" (click)="dropService(element)"><mat-icon color="warn">delete_sweep</mat-icon> </td>
-                          </ng-container>
-                        
-                          <tr mat-header-row *matHeaderRowDef="columns"></tr>
-                          <tr mat-row *matRowDef="let row; columns:columns;"></tr>
-                        </table>
-                   </div> 
+                  <div class="col-sm-12">
+                    <table mat-table [dataSource]="providerServices" class="mat-elevation-z8" #sSort="matSort"  matSort>
+                      <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="category">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+                      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="code">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="cost">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+                        <td mat-cell *matCellDef="let element" (click)="selectedService=element;editServiceModal.show()"> <mat-icon color="primary">create</mat-icon> </td>
+                        </ng-container>
+                      <ng-container matColumnDef="delete">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                      <td mat-cell *matCellDef="let element" (click)="dropService(element)"><mat-icon color="warn">delete_sweep</mat-icon> </td>
+                      </ng-container>
+                    
+                      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                      <tr mat-row *matRowDef="let row; columns:columns;"></tr>
+                    </table>
+                  </div>
+                
           <div class="modal fade" bsModal #editServiceModal="bs-modal" [config]="{backdrop: 'static'}"
                    tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                 <div class="modal-dialog modal-md">
@@ -697,8 +654,8 @@
                       <button mat-mini-fab (click)="drugModal.show()"> <i class="fa fa-plus"></i></button>
                     </div>
                   </div>
-                  <div class="col-sm-12 mat-elevation-z8">
-                      <table mat-table [dataSource]="drugsSelected" #dSort="matSort"  matSort>
+                  <div class="col-sm-12">
+                      <table mat-table [dataSource]="drugsSelected" #dSort="matSort" class="mat-elevation-z8"  matSort>
                           <ng-container matColumnDef="name">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
                           <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>

@@ -76,7 +76,7 @@ export class PatientPrescriptionComponent implements OnInit {
 
   }
   getPrescription() {
-    this.service.prescriptions().subscribe((res) => {
+    this.service.getDrugs().subscribe((res) => {
     res.results.forEach(element => {
         delete element['quantity']
     });
@@ -84,7 +84,7 @@ export class PatientPrescriptionComponent implements OnInit {
     });
     }
   searchDrug(data){
-    this.service.searchPrescriptions(data).subscribe((res)=>{
+    this.service.searchHospitalDrugs(data).subscribe((res)=>{
       res.results.forEach(element => {
         delete element['quantity']
       });

@@ -22,9 +22,11 @@ export class PaymentsComponent implements OnInit {
 dataSource;
 payments = [];
 dataSource1;
+mpesaSource;
 maxDate: Date;
 date;
 cash_date;
+mpesaColumns: string[] = ['sn','name','msisdn','amount','channel','trxref','accountref','status','date'];
 displayedColumns: string[] = ['sn','name','patient_no','visit_no','no','amount','created'];
 claimsColumns: string[] = ['sn','member','patient_number','visit_number','insurance_company','member_number','visit_type','amount','created'];
   constructor(public service: ServiceService, private router: Router,
@@ -35,6 +37,7 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
   ngOnInit() {
     this.getBills();
     this.getClaims();
+    this.getMpesa();
     this.maxDate = new Date();
   }
   getClaims() {
@@ -77,6 +80,13 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
       this.payments = res.results;
     })
   }
+
+  getMpesa(){
+    this.service.mpesa().subscribe((res)=>{
+      this.mpesaSource = res.results;
+    })
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

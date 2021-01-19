@@ -39,7 +39,7 @@ getReport(){
       chart: {
         caption: "Patients Visit Graph",
         xaxisname: "Number of Visits",
-        rotatelabels: "1",
+        rotatelabels: "0.5",
         paletteColors: '#33CEFF,#D733FF,#900C3F ',
         theme: "fusion"
       },

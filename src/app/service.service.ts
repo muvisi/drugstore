@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint = 'http://localhost:8000/';
-export const endpoint = 'http://134.209.199.123:9000/';
+export const endpoint = 'https://kaatun.healthixsolutions.com:4000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -64,6 +64,14 @@ export class ServiceService {
       map(this.extractData));
 
   }
+mpesa(): Observable<any> {
+    return this.http.get(endpoint + 'payments/mpesa_list/').pipe(
+      map(this.extractData));
+}
+mpesaList(): Observable<any> {
+  return this.http.get(endpoint + 'payments/mpesa_list/?status=0').pipe(
+    map(this.extractData));
+}
   updateDiagnosis(data): Observable<any> {
     return this.http.post(endpoint + 'treatment/update_diagnosis/',data).pipe(
       map(this.extractData));

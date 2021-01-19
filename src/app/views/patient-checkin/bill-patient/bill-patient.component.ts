@@ -56,6 +56,7 @@ export class BillPatientComponent implements OnInit {
   members=[];
   member;
   scheme_name;
+  mpesaPayments=[];
   constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent,
   private toastr: ToastrService, public router: Router) {
     this.visit_no = this.navCtrl.get('data');
@@ -75,7 +76,12 @@ export class BillPatientComponent implements OnInit {
     this.getVisitInfo();
     this.mpesa.amount = 0;
     this.getBenefits();
-  
+    this.getMpesa();
+  }
+  getMpesa(){
+    this.service.mpesaList().subscribe((res)=>{
+      this.mpesaPayments = res.results;
+    })
   }
   applyFilter(filterValue: string) {
     this.dataSource1.filter = filterValue.trim().toLowerCase();
@@ -378,6 +384,16 @@ export class BillPatientComponent implements OnInit {
     this.selectedOption = event.item;
     this.selectedOption.visit_no = this.visit_no;
   }
+  // onSelectMpesa(event){
+  //   // this.mpesa.amount = event.item.amount;
+  //   this.mpesa.trx= event.item.trxref;
+  //   if (!this.isCash && !this.isInsurance && this.isMpesa) {
+  //     this.mpesa.amount = event.item.amount;
+  //     this.bill_amount = this.pending_amount;
+  //     this.cash = 0;
+  //     this.status = true;
+  //   } 
+  // }
   saveService() {
     this.service.generateBill(this.selectedOption).subscribe((res) => {
       console.log(res);

@@ -221,7 +221,7 @@ updateUser() {
     // this.userModal.hide();
   },
   (error)=>{
-    this.toastr.error('Update Fails');
+    this.toastr.error('Update fails');
   }
   );
 }
