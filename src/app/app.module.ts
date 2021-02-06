@@ -55,6 +55,7 @@ export function tokenGetter() {
   return sessionStorage.getItem('Token');
 }
 
+
 @NgModule({
   imports: [
     BrowserModule,
