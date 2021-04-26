@@ -1,70 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, EventSettingsModel, PopupOpenEventArgs} from '@syncfusion/ej2-angular-schedule';
+// import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, EventSettingsModel, PopupOpenEventArgs,TimelineViewsService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { EventSettingsModel, WeekService, TimelineViewsService, MonthService,PopupOpenEventArgs,TimelineMonthService, View, WorkHoursModel, GroupModel } from '@syncfusion/ej2-angular-schedule';
 import { DataManager, WebApiAdaptor, ODataV4Adaptor, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 import { ServiceService,endpoint } from '../../../service.service';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { createElement } from '@syncfusion/ej2-base';
+import { DateTimePicker } from '@syncfusion/ej2-calendars';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  providers: [DayService, WeekService, WorkWeekService, MonthService, AgendaService],
+  providers: [WeekService, TimelineViewsService, MonthService, TimelineMonthService]
 })
 export class CalendarComponent implements OnInit {
-public selectedDate: Date = new Date();
-// private dataManager: DataManager = new DataManager({
-//    url: 'http://localhost:8000/appointments/appointment_list/',
-//    adaptor: new ODataV4Adaptor
-// });
-// private dataQuery: Query = new Query();
-// public eventSettings: EventSettingsModel = { dataSource: this.dataManager, query: this.dataQuery };
-private dataManager: DataManager = new DataManager({
-  url: endpoint+'appointments/appointment_list/', // 'controller/actions'
+selectedDate: Date = new Date();
+setView: View ='MonthAgenda';
+scheduleHours: WorkHoursModel  = { highlight: true, start: '08:00', end: '05:00' };
+workWeekDays: number[] = [1,2,3,4,5];
+setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
+dataManager: DataManager = new DataManager({
+  url: endpoint+'appointments/appointments/',
   crudUrl: endpoint+'appointments/appointment_list/',
   adaptor: new UrlAdaptor
 });
-public eventSettings: EventSettingsModel = { dataSource: this.dataManager,
-  fields: {
-    id: 'Id',
-    subject: { name: 'Subject', title: 'Patient Name'},
-    location: { name: 'Location', title: 'Phone Number'},
-    description: { name: 'Description', title: 'Appointment Description' },
-  }
+eventSettings: EventSettingsModel = { dataSource: this.dataManager
 }
+group: GroupModel = { resources: ['Owners'] };
+ownerDataSource: Object[] = [];
   constructor( public service: ServiceService) {
-    console.log(endpoint)
    }
 
   ngOnInit() {
-
+    this.getCounsellors()
   }
-  onPopupOpen(args: PopupOpenEventArgs): void {
-    if (args.type === 'Editor') {
-        // Create required custom elements in initial time
-        if (!args.element.querySelector('.custom-field-row')) {
-            let row: HTMLElement = createElement('div', { className: 'custom-field-row' });
-            let formElement: HTMLElement = args.element.querySelector('.e-schedule-form');
-            formElement.firstChild.insertBefore(row, args.element.querySelector('.e-title-location-row'));
-            let container: HTMLElement = createElement('div', { className: 'custom-field-container' });
-            let inputEle: HTMLInputElement = createElement('input', {
-                className: 'e-field', attrs: { name: 'EventType' }
-            }) as HTMLInputElement;
-            container.appendChild(inputEle);
-            row.appendChild(container);
-            let dropDownList: DropDownList = new DropDownList({
-                dataSource: [
-                    { text: 'Public Event', value: 'public-event' },
-                    { text: 'Maintenance', value: 'maintenance' },
-                    { text: 'Commercial Event', value: 'commercial-event' },
-                    { text: 'Family Event', value: 'family-event' }
-                ],
-                fields: { text: 'text', value: 'value' },
-                value: (<{ [key: string]: Object }>(args.data)).EventType as string,
-                floatLabelType: 'Always', placeholder: 'Event Type'
-            });
-            dropDownList.appendTo(inputEle);
-            inputEle.setAttribute('name', 'EventType');
-        }
-    }
+  getCounsellors(){
+    this.service.getcounsellors().subscribe((res)=>{
+      this.ownerDataSource = res.results;
+    })
+  }
+
+onPopupOpen(args: PopupOpenEventArgs): void {
+  if (args.type === 'Editor') {
+      let statusElement: HTMLInputElement = args.element.querySelector('#EventType') as HTMLInputElement;
+      if (!statusElement.classList.contains('e-dropdownlist')) {
+          let dropDownListObject: DropDownList = new DropDownList({
+              placeholder: 'Choose status', value: statusElement.value,
+              dataSource: ['New', 'Requested', 'Confirmed']
+          });
+          dropDownListObject.appendTo(statusElement);
+          statusElement.setAttribute('name', 'EventType');
+      }
+      let startElement: HTMLInputElement = args.element.querySelector('#StartTime') as HTMLInputElement;
+      if (!startElement.classList.contains('e-datetimepicker')) {
+          new DateTimePicker({ value: new Date(startElement.value) || new Date() }, startElement);
+      }
+      let endElement: HTMLInputElement = args.element.querySelector('#EndTime') as HTMLInputElement;
+      if (!endElement.classList.contains('e-datetimepicker')) {
+          new DateTimePicker({ value: new Date(endElement.value) || new Date() }, endElement);
+      }
+  }
 }
 }

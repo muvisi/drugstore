@@ -16,15 +16,7 @@ mat-form-field{
 	height: 39px;
   }
 
-td{
-	font-weight:400px;
-	font-size: 12px;
-}
-th{
-	font-weight: bold;
-	font-size: 12px;
 
-}
 ::ng-deep { .cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; } }
 mat-card-title{
 	font-family: lato light;
@@ -37,28 +29,19 @@ mat-card{
 }
 
 div{
-	font-family: lato light;
-}
-label{
-	font-weight: bold;
-}
-input[type="text"]{
-	color:dodgerblue;
-	font-weight: bolder;
-}
-table {
-	width: 100%;
-	font-family: "Open Sans", Tahoma, sans-serif;
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 
 table{
 	width: 100%;
-	font-family:Open Sans,sans-serif;
+	color: black;
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   th,td{
   font-size: 10px;
   height: 2px;
+  text-transform: uppercase;
   }
   
   tr,td {
@@ -68,12 +51,13 @@ table{
   tr.mat-footer-row,
   tr.mat-row{
   border: 1px solid #e7e7e7;
-  height: 28px !important;
+  height: 40px !important;
   }
   
   tr.mat-header-row {
   border: 1px solid #e7e7e7;
-  height: 38px !important;
+  height: 42px !important;
+  text-transform: uppercase;
   font-weight: bolder;
   }
   

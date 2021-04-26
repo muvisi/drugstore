@@ -5,7 +5,8 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { ServiceService } from '../../service.service';
 const role = localStorage.getItem('role');
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
   data: any = [];

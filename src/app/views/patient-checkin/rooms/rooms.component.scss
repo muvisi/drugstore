@@ -1,0 +1,32 @@
+mat-form-field{
+    width: 100%;
+}
+mat-card-subtitle{
+    margin-left: -12px;
+}
+
+table{
+    width: 100%;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+td.mat-cell{
+    font-size:13px;
+}
+tr.mat-row, tr.mat-footer-row {
+    height: 37px;
+  }
+ tr.mat-header-row {
+    height:39px;
+}
+
+input[type="text"],input[type="select"]{
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  
+  ::ng-deep mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix  { padding: 0.6em 0px }
+  ::ng-deep mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix > span.mat-form-field-label-wrapper { top: -1.3em; }
+  
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+      transform: translateY(-1.1em) scale(.75);
+      width: 133.33333%;
+  }

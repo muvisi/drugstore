@@ -40,6 +40,11 @@ import { PatientEditComponent } from '../patient-checkin/patient-edit/patient-ed
 import { RecordsComponent } from '../patient-checkin/records/records.component';
 import { RecordListComponent } from '../patient-checkin/record-list/record-list.component';
 import { AppointmentComponent } from '../patient-checkin/appointment/appointment.component';
+import { RoomsComponent } from '../patient-checkin/rooms/rooms.component';
+import { CreateRoomComponent } from '../patient-checkin/create-room/create-room.component';
+import { ReappointmentComponent } from '../patient-checkin/reappointment/reappointment.component';
+import { AppointmentListComponent } from '../patient-checkin/appointment-list/appointment-list.component';
+import { AppointmentDetailsComponent } from '../patient-checkin/appointment-details/appointment-details.component';
 
 const routes: Routes = [
   {
@@ -59,24 +64,36 @@ const routes: Routes = [
       title: 'parients-dashboard'
     }
   },
+  // {
+  //   path: 'records',
+  //   component: RecordsComponent,
+  //   canActivate: [AuthGuard],
+  //   data: {
+  //     title: 'parients-dashboard'
+  //   }
+  // },
+  {
+    path: 'appointments',
+    component: AppointmentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'appointment-list',
+    component: AppointmentListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'appointment-details/:id',
+    component: AppointmentDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reappointments/:id',
+    component: ReappointmentComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'records',
-    component: RecordsComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'parients-dashboard'
-    }
-  },
-  {
-    path: 'patients/appointments',
-    component: AppointmentComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'patients-appointments'
-    }
-  },
-  {
-    path: 'records-list',
     component: RecordListComponent,
     canActivate: [AuthGuard],
     data: {
@@ -124,6 +141,22 @@ const routes: Routes = [
     }
   },
   {
+    path: 'rooms/list',
+    component: RoomsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'tests component'
+    }
+  },
+  {
+    path: 'rooms/create',
+    component: CreateRoomComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'tests component'
+    }
+  },
+  {
     path: 'lab-orders',
     component: LabOrdersComponent,
     canActivate: [AuthGuard],
@@ -149,14 +182,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'eclaims-dashboard'
-    }
-  },
-  {
-    path: 'patients/records',
-    component: RegisterPatientComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'register'
     }
   },
   {
@@ -274,8 +299,8 @@ const routes: Routes = [
     }
   },
   {
-    path: 'patients/new-patient',
-    component: NewPatientComponent,
+    path: 'new-client',
+    component: AppointmentComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'new-patient'
@@ -314,7 +339,7 @@ const routes: Routes = [
     }
   },
   {
-  path: 'patients/billing',
+  path: 'billing',
   component : PatientListComponent,
   canActivate: [AuthGuard],
   data: {
@@ -338,7 +363,7 @@ title: 'News'
 }
 },
 {
-path : 'patients/calendar',
+path : 'calendar',
 component : CalendarComponent,
 data: {
   title: 'Tags'

@@ -12,6 +12,8 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { GestureConfig, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -78,7 +80,8 @@ export function tokenGetter() {
     NgxLoadingModule.forRoot({}),
     ModalModule.forRoot(),
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgxMaterialTimepickerModule
   ],
   declarations: [
     AppComponent,
@@ -100,8 +103,13 @@ export function tokenGetter() {
     useClass: TokenInterceptor,
     multi: true
   },
-  {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig}
-  // ServiceService
+  {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig},
+  DayService, 
+  WeekService, 
+  WorkWeekService, 
+  MonthService,
+  AgendaService,
+  MonthAgendaService
 ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],

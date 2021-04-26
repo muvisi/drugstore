@@ -1,29 +1,31 @@
 table{
     width: 100%;
-    font-family: lato light;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 td.mat-cell{
     font-size:13px;
-    font-weight: 600;
 }
 tr.mat-row, tr.mat-footer-row {
-    height: 32px;
+    height: 37px;
   }
  tr.mat-header-row {
-    height:38px;
-   
+    height:39px;
 }
-th{
-    color: #20a8d8;
-    font-weight: bold;	
+div{
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 mat-form-field{
     width: 100%;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 mat-card-subtitle{
     margin-left: -12px;
 }
-
+::ng-deep .mat-tab-label {
+    padding: 0px !important; // adjust this to whatever padding you need
+    justify-content: left !important;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
 @media print{
 	img {
 		display: block;

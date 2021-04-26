@@ -7,7 +7,7 @@
       }
   </style>
                 <div class="row">
-                                <div class="col-sm-4" *ngIf="(data | keyvalue)?.length">
+                                <div class="col-sm-5" *ngIf="(data | keyvalue)?.length">
                                         <fusioncharts
                                         [height]="height"
                                         type="bar2d"
@@ -17,7 +17,7 @@
                                       >
                                       </fusioncharts>
                                 </div>
-                                <div class="col-sm-4" *ngIf="(visits| keyvalue)?.length">
+                                <div class="col-sm-7" *ngIf="(visits| keyvalue)?.length">
                                         <fusioncharts
                                         [height]="height"
                                         type="column2d"
@@ -27,7 +27,7 @@
                                       >
                                       </fusioncharts>
                                 </div>
-                                <div class="col-sm-4" *ngIf="(gender| keyvalue)?.length">
+                                <!-- <div class="col-sm-4" *ngIf="(gender| keyvalue)?.length">
                                         <fusioncharts
                                         [height]="height"
                                         width="100%"
@@ -37,7 +37,7 @@
                                       >
                                       </fusioncharts>
                                 </div>
-                                
+                                 -->
                             </div>
                             <div class="row">
                                 <div class="col-sm-12"  *ngIf="(profit| keyvalue)?.length">

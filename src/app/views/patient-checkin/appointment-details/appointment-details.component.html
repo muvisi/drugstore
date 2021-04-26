@@ -1,0 +1,302 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <h6 class="card-header">Appointment Details</h6>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-12 col-md-1 col-lg-1">
+                          <img src="../../../../assets/img/avatars/female.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Female' || customer.gender == 'female'">
+                          <img src="../../../../assets/img/avatars/download.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Male' || customer.gender == 'male'">
+                        </div>
+                        <div class="col-sm-12 col-md-11 col-lg-11 ">
+                          <div class="row">
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} || <span class="text-success">{{customer.age}}</span></div>
+                                <div class="col-sm-12" > {{customer.phone}} </div>
+                                <div class="col-sm-12" > {{customer.email}} </div>
+                            </div>
+
+                        </div>
+                            <div class="col-sm-7" style="text-align:right">
+                              <h6>Amount Paid <span class="text-success" style="font-weight: 600;">{{data.amount | number:'1.2-2'}}</span></h6>
+                            </div>
+                          </div>
+              
+                        </div>
+                      </div>
+                     
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-tab-group>
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                                Appointments Details
+                              </ng-template>
+                              <!-- <div class="row container-fluid" style="margin-top: 10px;">
+                                  <div class="col-sm-12">
+                                   
+                                  </div>
+                              </div> -->
+                              <br>
+                              <fieldset>
+                                <legend>Appointment Details</legend>
+                                <div class="col-sm-12">
+                                  <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Appointment Date</mat-label>
+                                                <input matInput placeholder="Date of Birth" [minDate]="minDate" formControlName="date" [matDatepicker]="picker1">
+                                                <mat-error *ngIf="f.date.errors && submitted">Appointment Date <strong>required</strong></mat-error>
+                                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker1></mat-datepicker>
+                                              </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Appointment Time</mat-label>
+                                              <input matInput placeholder="Time"  [ngxTimepicker]="default" formControlName="time">
+                                              <ngx-material-timepicker #default></ngx-material-timepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <!-- <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Transaction No</mat-label>
+                                              <input matInput placeholder="Transaction"   formControlName="transaction">
+                                              <mat-error *ngIf="f.transaction.errors && submitted">Transaction no<strong>required</strong></mat-error>
+                                            </mat-form-field>
+                                        </div> -->
+                                        <div class="col-sm-12">
+                                              
+                                          <mat-form-field  appearance="outline">
+                                              <mat-label>Appointment Reason</mat-label>
+                                              <textarea matInput cols="30" rows="5"  placeholder="Reason for Appointment" formControlName="reason"></textarea>
+                                          <mat-error *ngIf="f.reason && submitted">Reason for Appointment <strong>required</strong></mat-error>
+                                            </mat-form-field>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </fieldset>
+                              <br>
+                                <fieldset>
+                                  <legend>Counselor  & Location Details</legend>
+                                  <div class="col-sm-12">
+                                    <form [formGroup]="counselorForm" (ngSubmit)="onSave()">
+                                      <div class="row">
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Select Location</mat-label>
+                                            <mat-select formControlName="room">
+                                              <mat-option *ngFor="let room of rooms" [value]="room.id">{{room.name}}</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                          
+                                        </div>
+                                          <div class="col-sm-3">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Select Counselor</mat-label>
+                                              <mat-select formControlName="id" (selectionChange)="onSelect(g.id.value)">
+                                                <mat-option *ngFor="let counselor	 of counsolers" [value]="counselor.id">{{counselor.username}}</mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                            
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>First Name</mat-label>
+                                                <input matInput placeholder="First Name"   formControlName="first_name" readonly>
+                                                <mat-error *ngIf="g.first_name.errors && submitted">First Name<strong>required</strong></mat-error>
+                                              </mat-form-field>
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Last Name</mat-label>
+                                                <input matInput placeholder="Last Name"   formControlName="last_name" readonly>
+                                                <mat-error *ngIf="g.last_name.errors && submitted">Last Name<strong>required</strong></mat-error>
+                                              </mat-form-field>
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Phone No</mat-label>
+                                                <input matInput placeholder="Phone Number" readonly formControlName="phone">
+                                                <mat-error *ngIf="g.phone.errors && submitted">Phone no<strong>required</strong></mat-error>
+                                              </mat-form-field>
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Email</mat-label>
+                                                <input matInput placeholder="Email"   formControlName="email" readonly>
+                                                <mat-error *ngIf="g.email.errors && submitted">Email is<strong>required</strong></mat-error>
+                                              </mat-form-field>
+                                          </div>
+                                         <div class="col-sm-6">
+                                           <button class="btn btn-success btn pull-right" type="submit" *ngIf="counselorForm.dirty" [disabled]="data.amount < 2000">Save</button>
+                                         </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </fieldset>
+                            
+  
+                            </mat-tab>
+                          
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                               Ncba Payments
+                              </ng-template>
+                              <br>
+                              <div class="col-sm-12">
+                                <div class="mat-elevation-z8 table-responsive">
+                                  <table mat-table [dataSource]="dataSource" matSort>
+                                      <ng-container matColumnDef="sn">
+                                          <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                                          <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                                  </ng-container>
+                                        <ng-container matColumnDef="date">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                                <td mat-cell *matCellDef="let element"> {{element.date | date:'medium'}} </td>
+                                        </ng-container>
+                                    <ng-container matColumnDef="trans_id">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.trans_id}} </td>
+                                    </ng-container>
+                              
+                                    <ng-container matColumnDef="name">
+                                      <th mat-header-cell *matHeaderCellDef  mat-sort-header>Name</th>
+                                      <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="msisdn">
+                                      <th mat-header-cell *matHeaderCellDef  mat-sort-header>Phone Number</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.msisdn}} </td>
+                                    </ng-container>
+                                  
+                                    <ng-container matColumnDef="trans_type">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction Type</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.trans_type}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="amount">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                                      <td mat-cell *matCellDef="let element">
+                                         {{element.amount | number:'1.2-2'}}
+                                      </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="status">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                                      <td mat-cell *matCellDef="let element"> 
+                                        <span class="text-success" *ngIf="element.status=='0'">Open</span>
+                                        <span class="text-danger" *ngIf="element.status=='1'">Used</span>
+                                         </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="use">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Use</th>
+                                      <td mat-cell *matCellDef="let element"> 
+                                        <button class="btn btn-success btn-sm"  (click)="utilize(element)" [disabled]="element.status=='1'">Utilize</button>
+                                         </td>
+                                    </ng-container>
+                                    
+                                    <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
+                                  </table>
+                              
+                                  <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+                                </div>
+                              </div>
+                              <br>
+                            </mat-tab>
+
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                               Cash Payments
+                              </ng-template>
+                              <br>
+                              <div class="col-sm-12 " style="text-align:right">
+                                <button class="btn btn-success btn-sm pull-right" (click)="staticModal.show()">Add Payment</button>
+                              </div>
+                              <br>
+                              <br>
+                              <div class="col-sm-12">
+                                <div class="mat-elevation-z8 table-responsive">
+                                  <table mat-table [dataSource]="mpesaSource" matSort>
+                                    <ng-container matColumnDef="sn">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                      <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="date">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                                  </ng-container>
+                                    <ng-container matColumnDef="name">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cashier</th>
+                                      <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.cashier}} </td>
+                                    </ng-container>
+                                
+                                    <ng-container matColumnDef="amount">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                                    </ng-container>
+                              
+                                    <ng-container matColumnDef="trx">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reciept No</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                                    </ng-container>
+
+                                    
+                                
+                                    <tr mat-header-row *matHeaderRowDef="cashColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns:cashColumns;"></tr>
+                                  </table>
+                                  <mat-paginator [pageSizeOptions]="[20,40]" showFirstLastButtons></mat-paginator>
+                                </div>
+                              </div>
+                              <br>
+                            </mat-tab>
+                          
+                          </mat-tab-group>
+                    </div>
+                    
+                  </div>
+                  
+            </div>
+          </div>
+    </div>
+</div>
+
+ 
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="dialog-static-name" class="modal-title pull-left">Cash Payment</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="cashForm" (ngSubmit)="onCash()">
+        <div class="row">
+            <div class="col-sm-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Amount</mat-label>
+                  <input matInput placeholder="Amount" formControlName="amount">
+                  <mat-error>
+                    <span *ngIf="h.amount.errors?.required" class="text-danger"> Amount is <strong>required</strong></span>
+                    <span *ngIf="h.amount.errors?.min" class="text-danger"> <strong>Minimum amount is 50/=</strong> </span>
+
+                  </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12">
+              <button class="btn btn-success btn-sm pull-right" [disabled]="cashForm.invalid">Submit</button>
+            </div>
+          
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,8 +7,7 @@ import { ServiceService } from '../../../service.service';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
-  width = 500;
-  height = 300;
+  height = 450;
   dataFormat = "json";
   gender: any;
   data:any;
@@ -26,7 +25,7 @@ getReport(){
     this.loading = false;
     this.data = {
       chart: {
-        caption: "Payments Transactions",
+        subcaption: "Ncba Payments Transactions",
         yaxisname: "Number of Transactions",
         xaxisname: "Days of week",
         aligncaptionwithcanvas: "0",
@@ -37,7 +36,7 @@ getReport(){
     };
     this.visits= {
       chart: {
-        caption: "Patients Visit Graph",
+        subcaption: "Appointments",
         xaxisname: "Number of Visits",
         rotatelabels: "0.5",
         paletteColors: '#33CEFF,#D733FF,#900C3F ',
@@ -61,7 +60,7 @@ getReport(){
     
     this.profit= {
       chart: {
-        caption: "Cash & Insurance Payments",
+        subcaption: "Cash & Insurance Payments",
         numvisibleplot: "7",
         showanchors: "0",
         theme: "fusion"

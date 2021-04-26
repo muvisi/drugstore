@@ -55,7 +55,7 @@
                             <mat-card-title>DEPARTMENT</mat-card-title>
                             <div class="row">
                               <div class="col-sm-8">
-                               <mat-form-field>
+                               <mat-form-field appearance="outline">
                                  <input type="text" matInput placeholder="DEPARTMENT" [(ngModel)]="department.name">
                                </mat-form-field>
                               </div>
@@ -111,7 +111,7 @@
               <h5>Edit/Delete Department</h5>
             </div>
             <div class="col-sm-12">
-           <mat-form-field>
+           <mat-form-field appearance="outline">
              <input type="text" matInput placeholder="Department" [(ngModel)]="selectedDepartment.name">
            </mat-form-field>
           
@@ -130,79 +130,17 @@
             </mat-step>
             <mat-step label="Branches" state="branch">
               <div class="row">
-                <div class="col-sm-4">
-                    <mat-card>
-                      <mat-card-title>Add Branch</mat-card-title>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <mat-form-field>
-                                    <input type="text" id="text-input"   placeholder="Branch Name"
-                                    [(ngModel)]="branch.name" matInput>
-                                </mat-form-field>
-                              </div>
-                            
-                               <div class="col-sm-12">
-                                   <div class="row">
-                                     <div class="col-sm-6">
-                                        <mat-form-field>
-                                            <input type="text" id="text-input" name="first_name"  placeholder="Registration No"
-                                            [(ngModel)]="branch.reg_no" matInput>
-                                        </mat-form-field>
-                                     </div>
-                                     <div class="col-sm-6">
-                                        <mat-form-field>
-                                            <input type="text" id="text-input"  placeholder="Contact Number"
-                                            [(ngModel)]="branch.contact_number" matInput>
-                                        </mat-form-field>
-                                     </div>
-                                   </div>
-                              </div>
-                              
-                             
-                             <div class="col-sm-12">
-                              <mat-form-field>
-                                <input type="text" id="text-input"  placeholder="County"
-                                [(ngModel)]="branch.county" matInput>
-                              </mat-form-field>
-                             </div>  
-                              <div class="col-sm-12">
-                                 <mat-form-field>
-                                     <input type="text" id="text-input"   placeholder="Location"
-                                     [(ngModel)]="branch.location" matInput>
-                                 </mat-form-field>
-                               </div>
-                               
-                             <div class="col-sm-12">
-                                <mat-form-field>
-                                    <input type="text" id="text-input"  placeholder="Postal Address"
-                                    [(ngModel)]="branch.postal_address" matInput>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-sm-12">
-                                <mat-form-field>
-                                    <input type="text" id="text-input"   placeholder="Postal Code"
-                                    [(ngModel)]="branch.postal_code" matInput>
-                        </mat-form-field>
-                            </div>
-                             <div class="col-sm-12">
-                                 <mat-form-field>
-                                     <input type="text" id="text-input"  placeholder="Email"
-                                     [(ngModel)]="branch.email" matInput>
-                             </mat-form-field>
-                            </div>  
-                            <div class="col-sm-12">
-                              <button class="btn btn-success btn-sm pull-right" (click)="addBranch()"> <i class="fa fa-plus"></i> Save</button>
-                            </div>
-                          </div>
-                    </mat-card>
-                </div>
-                <div class="col-sm-8">
+              
+                <div class="col-sm-12">
                   
                   <div class="row">
-                    <div class="col-sm-5"><mat-form-field>
+                    <div class="col-sm-3"><mat-form-field appearance="outline">
                       <input type="text" matInput placeholder="Search"  (keyup)="searchHospital($event.target.value)">
                       <i class="icon-magnifier" matSuffix></i>
                     </mat-form-field>
+                </div>
+                <div class="col-sm-9" style="text-align: right;">
+                  <button class="btn btn-success btn-sm" (click)="branchModal.show()"> <i class="fa fa-plus" aria-hidden="true"></i>   Add Branch</button>
                 </div>
                     <div class="col-sm-12">
                         <table mat-table [dataSource]="hospitalList" #uSort="matSort" class="mat-elevation-z8" matSort>
@@ -231,10 +169,7 @@
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>View</th>
                               <td mat-cell *matCellDef="let element" (click)="hospitalDetails(element)"> <mat-icon>apartment</mat-icon> </td>
                               </ng-container>
-                            <!-- <ng-container matColumnDef="create">
-                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
-                               <td mat-cell *matCellDef="let element"> <mat-icon color="primary">create</mat-icon>  </td>
-                               </ng-container> -->
+                            
                                <ng-container matColumnDef="delete">
                                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
                                   <td mat-cell *matCellDef="let element" (click)="deleteHospital(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
@@ -247,6 +182,90 @@
                   </div>
                 </div>
               </div>
+
+
+      <div class="modal fade" bsModal #branchModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left" style="font-weight: 800;">Add Branch</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="branchModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+        <div class="col-sm-7">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input type="text" id="text-input"   placeholder="Branch Name"
+              [(ngModel)]="branch.name" matInput>
+          </mat-form-field>
+        </div>
+      
+         <div class="col-sm-5">
+          <mat-form-field appearance="outline">
+            <mat-label>Reg No</mat-label>
+            <input type="text" id="text-input" name="first_name"  placeholder="Registration No"
+            [(ngModel)]="branch.reg_no" matInput>
+        </mat-form-field>
+             
+        </div>
+        
+        <div class="col-sm-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Contact No</mat-label>
+              <input type="text" id="text-input"  placeholder="Contact Number"
+              [(ngModel)]="branch.contact_number" matInput>
+          </mat-form-field>
+       </div>
+       <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>County</mat-label>
+          <input type="text" id="text-input"  placeholder="County"
+          [(ngModel)]="branch.county" matInput>
+        </mat-form-field>
+       </div> 
+       <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+         <mat-label>Email</mat-label>
+            <input type="text" id="text-input"  placeholder="Email"
+            [(ngModel)]="branch.email" matInput>
+    </mat-form-field>
+   </div>  
+        <div class="col-sm-6">
+           <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+               <input type="text" id="text-input"   placeholder="Location"
+               [(ngModel)]="branch.location" matInput>
+           </mat-form-field>
+         </div>
+         
+       <div class="col-sm-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Postal Address</mat-label>
+              <input type="text" id="text-input"  placeholder="Postal Address"
+              [(ngModel)]="branch.postal_address" matInput>
+          </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+       
+          <mat-form-field appearance="outline">
+            <mat-label>Postal Code</mat-label>
+              <input type="text" id="text-input"   placeholder="Postal Code"
+              [(ngModel)]="branch.postal_code" matInput>
+  </mat-form-field>
+      </div>
+      
+      <div class="col-sm-12">
+        <button mat-raised-button class="btn btn-success btn-sm pull-right" (click)="addBranch()"> <i class="fa fa-plus"></i> Save</button>
+      </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
                    
             </mat-step>
             <mat-step label="Insurance" state="insurance">
@@ -290,8 +309,7 @@
               </div>
             </mat-step>
             <mat-step label="Users" state="user">
-                <br>
-               
+              
                     <div class="col-sm-12">
                       
                        <div class="row">
@@ -301,13 +319,13 @@
                                 <div class="row">
                                 
                                     <div class="col-sm-12">
-                                      <mat-form-field>
+                                      <mat-form-field appearance="outline">
                                           <input type="text" id="text-input" name="first_name"  placeholder="FIRST NAME"
                                           [(ngModel)]="employee.first_name" matInput>
                                       </mat-form-field>
                                     </div>
                                       <div class="col-sm-12">
-                                          <mat-form-field>
+                                          <mat-form-field appearance="outline">
                                               <input type="text" id="text-input"  placeholder="LAST NAME"
                                               [(ngModel)]="employee.last_name" matInput>
                                           </mat-form-field>
@@ -315,7 +333,7 @@
                           
                                         <div class="col-sm-12">
                                 
-                                            <mat-form-field>
+                                            <mat-form-field appearance="outline">
                                                 <mat-label>BRANCH</mat-label>
                                                 <mat-select [(ngModel)]="employee.hospital">
                                                   <mat-option *ngFor="let item of provider_list" [value]="item.id">
@@ -326,7 +344,7 @@
                                           </div>
                                      
                                      <div class="col-sm-12">
-                                        <mat-form-field>
+                                        <mat-form-field appearance="outline">
                                             <mat-label>ROLE</mat-label>
                                             <mat-select [(ngModel)]="employee.role">
                                               <mat-option value="doctor">Doctor</mat-option>
@@ -336,19 +354,19 @@
                                           </mat-form-field>
                                      </div>
                                      <div class="col-sm-12">
-                                        <mat-form-field>
+                                        <mat-form-field appearance="outline">
                                             <input type="text" placeholder="PHONE"
                                             [(ngModel)]="employee.phone" matInput>
                                         </mat-form-field>
                                       </div>
                                      <div class="col-sm-12">
-                                        <mat-form-field>
+                                        <mat-form-field appearance="outline">
                                             <input type="text" id="text-input" name="username" placeholder="USERNAME"
                                             [(ngModel)]="employee.username" matInput>
                                         </mat-form-field>
                                       </div>
                                         <div class="col-sm-12">
-                                          <mat-form-field>
+                                          <mat-form-field appearance="outline">
                                             <mat-label>DEPARTMENT</mat-label>
                                             <mat-select  [(ngModel)]="employee.department">
                                               <mat-option *ngFor="let item of hospital?.departments" [value]="item.id">
@@ -359,7 +377,7 @@
                                           
                                           </div>
                                           <div class="col-sm-12">
-                                              <mat-form-field>
+                                              <mat-form-field appearance="outline">
                                                   <input type="email" id="text-input"   placeholder="EMAIL"
                                                   [(ngModel)]="employee.email" matInput>
                                               </mat-form-field>
@@ -378,7 +396,7 @@
                          <div class="col-sm-8 table-responsive">
                           <div class="row">
                             <div class="col-sm-5">
-                              <mat-form-field>
+                              <mat-form-field appearance="outline">
                               <input type="text" (keyup)="searchUser($event.target.value)" matInput placeholder="Search">
                               <i class="icon-magnifier" matSuffix></i>
                               </mat-form-field>
@@ -386,6 +404,10 @@
                               
           <div class="col-sm-12">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #uSort="matSort"  matSort>
+              <ng-container matColumnDef="sn">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                </ng-container>
               <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
                   <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
@@ -488,7 +510,7 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-3">
-                      <mat-form-field>
+                      <mat-form-field appearance="outline">
                       <input type="text" matInput placeholder="Search" (keyup)="search($event.target.value)">
                       </mat-form-field>
                     </div>
@@ -496,8 +518,12 @@
                       <button mat-mini-fab (click)="serviceModal.show()"> <i class="fa fa-plus"></i></button>
                     </div>
                   </div>
-                  <div class="col-sm-12">
-                    <table mat-table [dataSource]="providerServices" class="mat-elevation-z8" #sSort="matSort"  matSort>
+                  <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="providerServices" #sSort="matSort"  matSort>
+                      <ng-container matColumnDef="sn">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
+                        <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                        </ng-container>
                       <ng-container matColumnDef="name">
                       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
                       <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
@@ -542,22 +568,22 @@
                     <div class="modal-body">
                     <div class="row">
                       <div class="col-sm-12">
-                        <mat-form-field>
+                        <mat-form-field appearance="outline">
                            <input type="text" [(ngModel)]="selectedService.name"  matInput placeholder="Service Name">
                         </mat-form-field>
                       </div>
                       <div class="col-sm-12">
-                        <mat-form-field>
+                        <mat-form-field appearance="outline">
                            <input type="text" id="text-input" name="category" matInput placeholder="Category" [(ngModel)]="selectedService.category" readonly>
                         </mat-form-field>
                       </div>
                       <div class="col-sm-12">
-                         <mat-form-field>
+                         <mat-form-field appearance="outline">
                             <input type="text"  name="code" matInput placeholder="Code" [(ngModel)]="selectedService.code" readonly>
                          </mat-form-field>
                        </div>
                        <div class="col-sm-12">
-                           <mat-form-field>
+                           <mat-form-field appearance="outline">
                               <input type="text"  name="cost" matInput placeholder="Cost" [(ngModel)]="selectedService.cost">
                            </mat-form-field>
                         </div>
@@ -583,22 +609,22 @@
                 </div>
                <div class="row">
                  <div class="col-sm-6">
-                   <mat-form-field>
+                   <mat-form-field appearance="outline">
                       <input type="text" [(ngModel)]="selectedService.name" matInput [typeahead]="services"  [typeaheadOptionsInScrollableView]="5"  typeaheadOptionField="name" (typeaheadOnSelect)="onSelect($event)"   (typeaheadLoading)="searchServices(selectedService.name)" matInput placeholder="service name">
                    </mat-form-field>
                  </div>
                  <div class="col-sm-6">
-                   <mat-form-field>
+                   <mat-form-field appearance="outline">
                       <input type="text" id="text-input" name="category" matInput placeholder="Category" [(ngModel)]="selectedService.category" readonly>
                    </mat-form-field>
                  </div>
                  <div class="col-sm-6">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                        <input type="text"  name="code" matInput placeholder="Code" [(ngModel)]="selectedService.code" readonly>
                     </mat-form-field>
                   </div>
                   <div class="col-sm-6">
-                      <mat-form-field>
+                      <mat-form-field appearance="outline">
                          <input type="text"  name="cost" matInput placeholder="Cost" [(ngModel)]="selectedService.cost">
                       </mat-form-field>
                     </div>
@@ -642,227 +668,234 @@
           </div>
         </div>
               </mat-step>
-                <mat-step label="Drugs" state="drug">
-                    <br>
+                <mat-step label="Rooms" state="drug">
+                
                 <div class="row">
                     <div class="col-sm-3">
-                      <mat-form-field>
-                      <input type="text" matInput placeholder="Search" (keyup)="searchDrug($event.target.value)">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Search</mat-label>
+                      <input type="text" matInput placeholder="Search" (keyup)="searchRooms($event.target.value)">
                       </mat-form-field>
                     </div>
-                    <div class="col-sm-2">
-                      <button mat-mini-fab (click)="drugModal.show()"> <i class="fa fa-plus"></i></button>
+                    <div class="col-sm-9" style="text-align: right;" >
+                      <button  (click)="roomModal.show()" class="btn btn-success"> <i class="fa fa-plus"></i> Room</button>
                     </div>
                   </div>
-                  <div class="col-sm-12">
-                      <table mat-table [dataSource]="drugsSelected" #dSort="matSort" class="mat-elevation-z8"  matSort>
+                  <div class="mat-elevation-z8 table-responsive">
+                      <table mat-table [dataSource]="rooms" #dSort="matSort"   matSort>
+                        <ng-container matColumnDef="sn">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>S/No </th>
+                          <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
+                          </ng-container>
                           <ng-container matColumnDef="name">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name. </th>
                           <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
                           </ng-container>
-                          <ng-container matColumnDef="generic_name">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Generic Name</th>
-                          <td mat-cell *matCellDef="let element"> {{element.generic_name}} </td>
+                         
+                          <ng-container matColumnDef="type">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                          <td mat-cell *matCellDef="let element"> {{element.type_name}} </td>
                           </ng-container>
-        
-                          <ng-container matColumnDef="code">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
-                          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                          <ng-container matColumnDef="floor">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Floor</th>
+                          <td mat-cell *matCellDef="let element"> {{element.floor_name}} </td>
                           </ng-container>
-                          <ng-container matColumnDef="form">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Form</th>
-                          <td mat-cell *matCellDef="let element"> {{element.form}} </td>
+                        
+                          <ng-container matColumnDef="status">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
                           </ng-container>
-                          <ng-container matColumnDef="strength">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Strength</th>
-                              <td mat-cell *matCellDef="let element"> {{element.strength}} </td>
-                              </ng-container>
-                          
-                          <ng-container matColumnDef="quantity">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
-                              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="cost">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost@</th>
-                              <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
-                          </ng-container>
-                          <ng-container matColumnDef="pack_cost">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost Per Pack</th>
-                              <td mat-cell *matCellDef="let element"> {{element.cost_per_pack}} </td>
-                           </ng-container>
                            <ng-container matColumnDef="edit">
                               <th mat-header-cell *matHeaderCellDef>Edit</th>
-                              <td mat-cell *matCellDef="let element" (click)="selectedPrescription=element;drugUpdateModal.show()"><mat-icon>create</mat-icon></td>
+                              <td mat-cell *matCellDef="let element" (click)="editUpdate(element)" ><mat-icon>create</mat-icon></td>
                               </ng-container>
                           <ng-container matColumnDef="delete">
                           <th mat-header-cell *matHeaderCellDef>Delete</th>
-                          <td mat-cell *matCellDef="let element" (click)="dropDrug(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
+                          <td mat-cell *matCellDef="let element" (click)="deleteRoom(element.id)" > <mat-icon color="warn">delete_sweep</mat-icon> </td>
                           </ng-container>
                         
-                          <tr mat-header-row *matHeaderRowDef="drugColumns"></tr>
-                          <tr mat-row *matRowDef="let row; columns:drugColumns;"></tr>
+                          <tr mat-header-row *matHeaderRowDef="roomColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns:roomColumns;"></tr>
                         </table>
                    </div> 
         
-          <div class="modal fade" bsModal #drugModal="bs-modal" [config]="{backdrop: 'static'}"
+          <div class="modal fade" bsModal #roomModal="bs-modal" [config]="{backdrop: 'static'}"
              tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
+              <div class="modal-header">
+                <h4 id="dialog-static-name" class="modal-title pull-left">Add Room</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="roomModal.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
               <div class="modal-body">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h4>Add Drugs
-                      <i class="fa fa-close pull-right" style="font-size:22px;color:red" (click)="drugModal.hide()"></i>
-                    </h4>
-                  </div>
+               
+             <form [formGroup]="roomForm" (ngSubmit)="addRoom()">
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field appearance="outline">
+                   <mat-label>Room Name</mat-label>
+                     <input type="text"  matInput placeholder="Room Name" formControlName="name">
+                  </mat-form-field>
                 </div>
-               <div class="row">
+                <div class="col-sm-6">
+                 <mat-form-field appearance="outline">
+                   <mat-label>Room type</mat-label>
+                   <mat-select formControlName="type" disableRipple>
+                     <mat-option (click)="typeModal.show()">New Type</mat-option>
+                     <mat-option *ngFor="let item of types" [value]="item.id">{{item.name | uppercase}}</mat-option>
+                   </mat-select>
+                 </mat-form-field>
+                 </div>
+               
                  <div class="col-sm-6">
-                   <mat-form-field>
-                      <input type="text" [(ngModel)]="selectedPrescription.name" [typeahead]="prescription" (typeaheadLoading)="searchPrescription(selectedPrescription.name)"  (typeaheadOnSelect)="onSelectPrescription($event)" [typeaheadOptionsInScrollableView]="5"  typeaheadOptionField="name"  typeaheadGroupField="strength" matInput placeholder="Drug name">
+                   <mat-form-field appearance="outline">
+                     <mat-label>Floor</mat-label>
+                     <mat-select  formControlName="floor" disableRipple>
+                       <mat-option (click)="floorModal.show()">New Floor</mat-option>
+                       <mat-option *ngFor="let item of floors" [value]="item.id">{{item.name }}</mat-option>
+                     </mat-select>
                    </mat-form-field>
-                 </div>
-                 <div class="col-sm-6">
-                    <mat-form-field>
-                       <input type="text"  name="code" matInput placeholder="Code" [(ngModel)]="selectedPrescription.code" readonly>
-                    </mat-form-field>
-                  </div>
-                
-                  <div class="col-sm-6">
-                        <mat-form-field>
-                           <input type="text"  matInput placeholder="Form" [(ngModel)]="selectedPrescription.form" readonly>
-                        </mat-form-field>
-                  </div>
-                  <div class="col-sm-6">
-                        <mat-form-field>
-                           <input type="text" matInput  placeholder="Strength" [(ngModel)]="selectedPrescription.strength" readonly>
-                         </mat-form-field>
-                    </div>
-                 <div class="col-sm-6">
-                   <mat-form-field>
-                      <input type="number" matInput  placeholder="Cost @" [(ngModel)]="selectedPrescription.cost">
-                    </mat-form-field>
-                 </div>
-                 
-        
-                  <div class="col-sm-6">
-                      <mat-form-field>
-                         <input type="number"  name="code" matInput placeholder="Cost per Pack" [(ngModel)]="selectedPrescription.cost_per_pack">
-                      </mat-form-field>
-                  </div>
-                  <div class="col-sm-6">
-                      <mat-form-field>
-                         <input type="number"   matInput placeholder="Quantity" [(ngModel)]="selectedPrescription.quantity">
-                      </mat-form-field>
-                  </div>
+                   </div>
+                 <div class="col-sm-12" >
+                   <mat-form-field   appearance="outline">
+                     <mat-label>Description</mat-label>
+                     <textarea formControlName="description" matInput placeholder="Description" rows="3"></textarea>
+                   </mat-form-field>
+                   </div>
+     
+                   <div class="col-sm-12">
                   
-                    <br>
-                    <div class="col-sm-12" *ngIf="drugs.length">
-                        <table class="table mat-elevation-z8">
-                            <thead>
-                              <tr >
-                                  <th style="font-size:13px;">S/N</th>
-                                <th style="font-size:13px;">Name</th>
-                                <th style="font-size:13px;">Generic Name</th>
-                                <th style="font-size:13px;">Strength</th>
-                                <th style="font-size:13px;">Quantity</th>
-                                <th style="font-size:13px;">Cost @</th>
-                                <th style="font-size:13px;">Cost Per Pack</th>
-                                <th style="font-size:13px;">Delete</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let item of drugs;let i = index" style="font-size:12px;">
-                                <td>{{i+1}}</td>
-                                <td>{{item.name}}</td>
-                                <td>{{item.generic_name}}</td>
-                                <td>{{item.strength}}</td>
-                                <td>{{item.quantity}}</td>
-                                <td>{{item.cost}}</td>
-                                <td>{{item.cost_per_pack}}</td>
-                                <td (click)="deleteService(item)"><i class="fa fa-minus text-center" style="color: red"></i></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                   
-                     </div>
-                    
-                    <div class="col-sm-12">
-                      <br>
-                        <button mat-raised-button class="btn btn-success btn-sm pull-right" (click)="saveDrugs()">Submit</button>
-                      <button mat-raised-button class="btn-sm pull-right" style="margin-right:8px;"  color="primary" (click)="addPrescriptions()"> <i class="fa fa-plus"></i> Add Drug</button>
-                    </div>
-               </div>
+                       <button mat-raised-button [disabled]="roomForm.invalid"  type="submit" class="btn btn-success btn-sm pull-right">Submit</button>
+                   </div>
+              </div>
+             </form>
               
               </div>
             </div>
           </div>
         </div>
-        
-        <div class="modal fade" bsModal #drugUpdateModal="bs-modal" [config]="{backdrop: 'static'}"
+
+        <div class="modal fade" bsModal #roomEditModal="bs-modal" [config]="{backdrop: 'static'}"
         tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+     <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h4 id="dialog-static-name" class="modal-title pull-left">Edit Room Details</h4>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="roomEditModal.hide()">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
          <div class="modal-body">
-           <div class="row">
-             <div class="col-sm-12">
-               <h4>Update Drug
-                 <i class="fa fa-close pull-right" style="font-size:22px;color:red" (click)="drugUpdateModal.hide()"></i>
-               </h4>
-             </div>
+          
+        <form [formGroup]="editRoom" (ngSubmit)="updateRoom()">
+         <div class="row">
+           <div class="col-sm-6">
+             <mat-form-field appearance="outline">
+              <mat-label>Room Name</mat-label>
+                <input type="text"  matInput placeholder="Room Name" formControlName="name">
+             </mat-form-field>
            </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <mat-form-field>
-                 <input type="text" [(ngModel)]="selectedPrescription.name" matInput>
+           <div class="col-sm-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Room type</mat-label>
+              <mat-select formControlName="type" disableRipple>
+                <mat-option (click)="typeModal.show()">New Type</mat-option>
+                <mat-option *ngFor="let item of types" [value]="item.id">{{item.name | uppercase}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            </div>
+          
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Floor</mat-label>
+                <mat-select  formControlName="floor" disableRipple>
+                  <mat-option (click)="floorModal.show()">New Floor</mat-option>
+                  <mat-option *ngFor="let item of floors" [value]="item.id">{{item.name }}</mat-option>
+                </mat-select>
               </mat-form-field>
-            </div>
-            <div class="col-sm-3">
-               <mat-form-field>
-                  <input type="text"  name="code" matInput placeholder="Code" [(ngModel)]="selectedPrescription.code" readonly>
-               </mat-form-field>
-             </div>
-           
-             <div class="col-sm-3">
-                   <mat-form-field>
-                      <input type="text"  matInput placeholder="Form" [(ngModel)]="selectedPrescription.form" readonly>
-                   </mat-form-field>
-             </div>
-             <div class="col-sm-2">
-                   <mat-form-field>
-                      <input type="text" matInput  placeholder="Strength" [(ngModel)]="selectedPrescription.strength" readonly>
-                    </mat-form-field>
-               </div>
-            <div class="col-sm-3">
-              <mat-form-field>
-                 <input type="number" matInput  placeholder="Cost @" [(ngModel)]="selectedPrescription.cost">
-               </mat-form-field>
-            </div>
-            
-        
-             <div class="col-sm-3">
-                 <mat-form-field>
-                    <input type="number"  name="code" matInput placeholder="Cost per Pack" [(ngModel)]="selectedPrescription.cost_per_pack">
-                 </mat-form-field>
-             </div>
-             <div class="col-sm-3">
-                 <mat-form-field>
-                    <input type="number"   matInput placeholder="Quantity" [(ngModel)]="selectedPrescription.quantity">
-                 </mat-form-field>
-             </div>
+              </div>
+            <div class="col-sm-12" >
+              <mat-form-field   appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea formControlName="description" matInput placeholder="Description" rows="3"></textarea>
+              </mat-form-field>
+              </div>
+
+              <div class="col-sm-12">
              
-               <br>
-               
-               <div class="col-sm-12">
-                 <br>
-                   <button mat-raised-button class="btn btn-success btn-sm pull-right" (click)="updateDrug()">Update</button>
-               </div>
-          </div>
+                  <button mat-raised-button [disabled]="!editRoom.dirty"  type="submit" class="btn btn-success btn-sm pull-right">Submit</button>
+              </div>
+         </div>
+        </form>
          
          </div>
+       </div>
+     </div>
+   </div>
+
+
+  <div class="modal fade" bsModal #typeModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Add Room Type</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="typeModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="typeForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+         <div class="col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Room type</mat-label>
+              <input type="text" formControlName="name" matInput placeholder="Room type">
+          </mat-form-field>
+         </div>
+         <div class="col-sm-12">
+           <button type="submit" [disabled]="typeForm.invalid" class="btn btn-success pull-right">Submit</button>
+         </div>
         </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #floorModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Add Floor</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="floorModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="floorForm" (ngSubmit)="onFloor()">
+
+        <div class="row">
+         <div class="col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Floor Name</mat-label>
+              <input type="text" formControlName="name" matInput placeholder="Floor">
+          </mat-form-field>
+         </div>
+         <div class="col-sm-12">
+           <button type="submit" [disabled]="floorForm.invalid" class="btn btn-success pull-right">Submit</button>
+         </div>
         </div>
-        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+      
         </mat-step>
             <!-- Icon overrides. -->
             <ng-template matStepperIcon="phone">
@@ -878,7 +911,9 @@
                   <mat-icon>perm_data_setting</mat-icon>
               </ng-template>
               <ng-template matStepperIcon="drug">
-                  <mat-icon>local_hospital</mat-icon>
+                  <mat-icon>
+                    maps_home_work
+                </mat-icon>
               </ng-template>
               <ng-template matStepperIcon="branch">
                   <mat-icon>account_tree</mat-icon>

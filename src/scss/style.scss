@@ -3,6 +3,7 @@
 @import "~@coreui/coreui/scss/coreui";
 @import "custom";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '../../node_modules/@syncfusion/ej2-base/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-lists/styles/material.scss';
 @import '../../node_modules/@syncfusion/ej2-popups/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-navigations/styles/material.css';
@@ -10,10 +11,11 @@
 @import '../../node_modules/@syncfusion/ej2-buttons/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-inputs/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
-@import '../../node_modules/@syncfusion/ej2-base/styles/material.css';
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
+
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 9999!important;
 }
@@ -22,12 +24,13 @@ width: 100%;
 }
 fieldset 
 {
-  border: 1px solid dodgerblue !important;
+  border: 1px solid black !important;
   margin: 0;
   padding: 10px;       
   position: relative;
   border-radius:4px;
   padding-left:10px!important;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }	
 
   legend
@@ -37,7 +40,8 @@ fieldset
     font-weight:400;
     margin-bottom: 0px; 
     width: 35%; 
-    border: 1px solid dodgerblue;
+    border: 1px solid black;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     border-radius: 4px; 
     padding: 5px 5px 5px 10px;
   }

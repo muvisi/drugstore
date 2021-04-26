@@ -62,6 +62,16 @@ import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { RecordsComponent } from './records/records.component';
 import { RecordListComponent } from './record-list/record-list.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { RoomsComponent } from './rooms/rooms.component';
+import { CreateRoomComponent } from './create-room/create-room.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { ReappointmentComponent } from './reappointment/reappointment.component';
+import { AppointmentListComponent } from './appointment-list/appointment-list.component';
+import { AppointmentDetailsComponent } from './appointment-details/appointment-details.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -104,7 +114,12 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     PatientEditComponent,
     RecordsComponent,
     RecordListComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    RoomsComponent,
+    CreateRoomComponent,
+    ReappointmentComponent,
+    AppointmentListComponent,
+    AppointmentDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -141,10 +156,21 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatButtonModule,
     MatSliderModule,
     ScheduleModule,
+    DateTimePickerModule,
     MatBadgeModule,
-    FullCalendarModule 
+    DropDownListModule,
+    FullCalendarModule,
+    NgxMaterialTimepickerModule,
+    TimePickerModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  providers: [DayService, 
+    WeekService, 
+    WorkWeekService, 
+    MonthService,
+    AgendaService,
+    MonthAgendaService]
+
 
 })
 export class PatientCheckinModule { }

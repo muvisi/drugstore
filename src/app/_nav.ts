@@ -40,61 +40,80 @@ export const navItems: NavData[] = [
     name: 'Main'
   },
   {
-    name: 'Patient Actions',
+    name: 'Client Actions',
     url: '/dashboard/patients',
     icon: 'icon-people',
     children: [
+      // {
+      //   name: 'Patient Dashboard',
+      //   url: '/dashboard/patients',
+      //   icon: 'cui-laptop'
+      // },
       {
-        name: 'Patient Dashboard',
-        url: '/dashboard/patients',
-        icon: 'cui-laptop'
-      },
-      {
-        name: 'Add Patient',
-        url: '/dashboard/patients/new-patient/',
+        name: 'Add Client',
+        url: '/dashboard/new-client/',
         icon: 'icon-user-follow'
       },
       {
-        name: 'Patients List',
-        url: '/dashboard/patients/records/',
-        icon: 'fa fa-users'
+        name: 'Clients',
+        url: '/dashboard/records/',
+        icon: 'icon-people',
       },
       {
         name: 'Billing',
-        url: '/dashboard/patients/billing',
+        url: '/dashboard/billing',
         icon: 'fa fa-database'
-      },          
-      {
-          name: 'Insurecheck',
-          url: '/dashboard/patients/insure-check/',
-          icon: 'icon-magnifier-add',
-      },
-      {
-        name: 'Triage',
-        url: '/dashboard/patients/triage/',
-        icon: 'icon-info'
-      },
-      {
-        name: 'Treatment',
-        url: '/dashboard/patients/diagnosis&treatment/',
-        icon: 'fa fa-heartbeat'
-      },
-      {
-        name: 'Record',
-        url: '/dashboard/records-list',
-        icon: 'fa fa-list',
-      },
-       {
-        name: 'Calendar',
-        url: '/dashboard/patients/appointments',
-        icon: 'cui-calendar',
-      },
+      }        
+      // {
+      //     name: 'Insurecheck',
+      //     url: '/dashboard/patients/insure-check/',
+      //     icon: 'icon-magnifier-add',
+      // },
+      // {
+      //   name: 'Triage',
+      //   url: '/dashboard/patients/triage/',
+      //   icon: 'icon-info'
+      // },
+      // {
+      //   name: 'Treatment',
+      //   url: '/dashboard/patients/diagnosis&treatment/',
+      //   icon: 'fa fa-heartbeat'
+      // }
     ]
   },
   {
-    name: 'Pharmacy',
-    url: '/dashboard/pharmacy',
-    icon: 'fa fa-medkit',
+    name: 'Appointments',
+    icon: 'fa fa-calendar-o',
+    children: [
+      {
+        name: 'create',
+        url: '/dashboard/appointments',
+        icon: 'fa fa-calendar-plus-o'
+      },
+      {
+        name: 'calendar',
+        url: '/dashboard/calendar',
+        icon: 'fa fa-calendar-check-o'
+      },
+      {
+        name: 'Appointments',
+        url: '/dashboard/appointment-list',
+        icon: 'fa fa-list-ol'
+      }
+      
+    ]
+  },
+  {
+    name: 'Rooms',
+    icon: 'fa fa-home',
+    children: [
+      {
+        name: 'list',
+        url: '/dashboard/rooms/list',
+        icon: 'fa fa-list-ol'
+      },
+      
+    ]
   },
   {
     name: 'eClaims',
@@ -118,11 +137,11 @@ export const navItems: NavData[] = [
       }
     ]
   },
-  {
-    name: 'Pharmacy Stock',
-    url: '/dashboard/stock-level',
-    icon: 'icon-social-dropbox',
-  },
+  // {
+  //   name: 'Pharmacy Stock',
+  //   url: '/dashboard/stock-level',
+  //   icon: 'icon-social-dropbox',
+  // },
   {
     name: 'Payments',
     url: '/dashboard/payments',

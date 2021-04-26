@@ -1,343 +1,241 @@
 
-    <tabset>
-            <tab heading="APPOINTMENT BOOKING">
-              <div class="row">
-                  <!-- <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar> -->
-                <div class="col-sm-12">
-  <!-- <full-calendar
-  defaultView="dayGridMonth"
-  deepChangeDetection="true"
-  [plugins]="calendarPlugins"
-  [weekends]="false"
-  (dateClick)="handleDateClick($event)"
-  [events]="[
-    { title: 'Davis Is blessed', date: '2020-02-04' },
-    { title: 'event 2', date: '2019-04-02' }
-  ]"
-></full-calendar> -->
-                </div>
-              </div>
-                    <div class="row">
-                    <div class="col-sm-12">
-                    <mat-card>
-                    <mat-card-title style="font-size: 16px;color:#A6CF39;">
-                    <i class="fa fa-hospital-o"></i> 
-                    <span style="margin-left:5px">HOSPITAL APPOINTMENT BOOKING</span>
-                    </mat-card-title>
-                    <div class="row">
-                    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
-                      <div class="col-sm-12">
-                        <div class="row">
-            
-            <div class="col-sm-6">
-              <fieldset>
-                <legend>Priority</legend>
-                <div class="row">
-                  <div class="col-sm-12" style="font-family: lato light">
-                    <mat-radio-group formControlName="priority" >
-                  <div class="row" >
-                    <div class="col-sm-4" style="font-family: lato light">
-                      <mat-radio-button value="3" checked>Normal</mat-radio-button>
-                    </div>
-                    <div class="col-sm-4" style="font-family: lato light">
-                        <mat-radio-button value="1" >Urgent</mat-radio-button>
-                      </div>
-                    <div class="col-sm-4" style="font-family: lato light">
-                      <mat-radio-button value="2">Vip</mat-radio-button>
-                    </div>
-              
-                  </div>
-                </mat-radio-group>
-              </div>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col-sm-6">
-              <fieldset>
-                <legend>Gender</legend>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <mat-radio-group  formControlName="gender">
-                      <div class="row" >
-                         <div class="col-sm-4">
-                             <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
-                           </div>
-                           <div class="col-sm-4">
-                               <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
-                             </div>
-                      </div>
-                     </mat-radio-group>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-            <br>
-            <br>
-            <div class="col-sm-12" style="margin-top: 10px;"> 
-              <fieldset>
-                <legend>Other Details</legend>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <div class="col-sm-12">
-                      <mat-form-field>
-                          <input matInput placeholder="Surname" formControlName="last_name">
-                          <mat-error *ngIf="f.last_name.errors && submitted">Surname <strong>required</strong></mat-error>
-                        </mat-form-field>
-                  </div>
-                      
-                    <div class="col-sm-12">
-                      <mat-form-field>
-                          <input matInput placeholder="First Name" formControlName="first_name">
-                          
-                          <mat-error *ngIf="f.first_name.errors && submitted">First Name <strong>required</strong></mat-error>
-                        </mat-form-field>
-                  </div>
-                  <div class="col-sm-12">
-                      <mat-form-field>
-                          <input matInput placeholder="Middle Name" formControlName="other_names">
-                         
-                          <mat-error *ngIf="f.other_names.errors && submitted">Middle Name <strong>required</strong></mat-error>
-                        </mat-form-field>
-                  </div>
-                
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="col-sm-12">
-                          <mat-form-field>
-                              <mat-label>Visit Type</mat-label>
-                              <mat-select  formControlName="visit_type">
-                                <mat-option value="NEW">NEW</mat-option>
-                                <mat-option value="RESULTS-FOLLOWUP">RESULTS-FOLLOWUP</mat-option>
-                              </mat-select>
-                              <mat-error *ngIf="f.visit_type.errors && submitted">Visit <strong>required</strong></mat-error>
+   
 
-                            </mat-form-field>
-                    </div> 
-                  <div class="col-sm-12">
-                    <div class="row">
-                      <div class="col-sm-6">
-                          <mat-form-field>
-                              <mat-label>Code</mat-label>
-                              <mat-select  formControlName="code">
-                                <mat-option value="+254">+254(Kenya)</mat-option>
-                                <mat-option value="+255">+255(Tanzania)</mat-option>
-                                <mat-option value="+252">+252(Somalia)</mat-option>
-                                <mat-option value="+256">+256(Uganda)</mat-option>
-                                <mat-option value="+249">+249(sudan)</mat-option>
-    
-                              </mat-select>
-                            </mat-form-field>
-                      </div>
-                      <div class="col-sm-6">
-                          <mat-form-field >
-                              <input matInput placeholder="Phone" formControlName="phone">
-                              <mat-error *ngIf="f.phone.errors && submitted">Phone <strong>required</strong></mat-error>
-            
-                            </mat-form-field>
-                      </div>
-                      
-                    </div>
-                  
-              </div>
+    <div class="card">
+      <div class="card-header">
+        CREATE APPOINTMENT
+      </div>
+      <div class="card-body">
+        
+              <div class="row">
               <div class="col-sm-12">
-                <mat-form-field>
-                    <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="dob"  bsDatepicker>
-                    <mat-icon matSuffix>date_range</mat-icon> 
-                    <mat-error *ngIf="f.dob.errors && submitted">Date of birth <strong>required</strong></mat-error>
-                  </mat-form-field>
-            </div> 
-             
               
-                </div>
-                <div class="col-sm-3">
-                  <!-- <mat-radio-group  formControlName="gender">
-                    <div class="row" style="margin-top: 25px;">
-                       <div class="col-sm-6">
-                           <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
-                         </div>
-                         <div class="col-sm-6">
-                             <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
-                           </div>
-                    </div>
-                   </mat-radio-group> -->
-                   
-                     
-                   <div class="col-sm-12">
-                       <mat-form-field>
-                           <input matInput placeholder="National ID" formControlName="national_id">
-                           <mat-error *ngIf="f.national_id.errors && submitted">National ID <strong>required</strong></mat-error>
-                         </mat-form-field>
-                   </div> 
-                   <div class="col-sm-12">
-                       <mat-form-field>
-                           <input matInput placeholder="Passport No" formControlName="passport_no">
-                           <mat-error *ngIf="f.passport_no.errors && submitted">Passport <strong>required</strong></mat-error>
-                         </mat-form-field>
-                   </div>
-                   <div class="col-sm-12">
-                     <mat-form-field>
-                         <input matInput placeholder="Email" formControlName="email">
-                         <mat-error *ngIf="f.email.errors && submitted">Valid email <strong>required</strong></mat-error>
-                       </mat-form-field>
-                 </div>
-                  
-                </div>
-                <div class="col-sm-3">
-               
-                  <div class="col-sm-12">
-                    <mat-form-field>
-                        <input matInput placeholder="Residence" formControlName="residence">
-                      </mat-form-field>
-                </div> 
-                <div class="col-sm-12">
-                    <mat-form-field>
-                        <input matInput placeholder="Occupation" formControlName="occupation">
-                      </mat-form-field>
-                </div> 
-               </div>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col-sm-12" style="margin-top: 20px;">
-              <fieldset>
-                <legend>APPOINTMENT DETAILS</legend>
+              <div class="row">
+              <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
                 <div class="col-sm-12">
                   <div class="row">
-                      <div class="col-sm-3">
-                          <mat-form-field>
-                              <input type="text" matInput placeholder="Appointment Date" [daysDisabled]="[6,0]" [minDate]="limit" formControlName="appointment_date" bsDatepicker>
-                              <mat-error *ngIf="f.appointment_date.errors && submitted">Appointment Date <strong>required</strong></mat-error>
-                          </mat-form-field>
-                      </div>
-                      <div class="col-sm-3">
-                              <mat-form-field>
-                                  <mat-label>Appointment Time</mat-label>
-                                  <mat-select  formControlName="time">
-                                      <mat-option *ngFor="let item of timing" [value]="item">
-                                          {{item}}
-                                        </mat-option>
-                                  </mat-select>
-                                </mat-form-field>
-                      </div>
-                      <div class="col-sm-12">
-                            
-                        <mat-form-field  appearance="outline">
-                            <mat-label>Appointment Reason</mat-label>
-                            <textarea matInput cols="30" rows="5"  placeholder="Reason for Appointment" formControlName="reason"></textarea>
-                        <mat-error *ngIf="f.reason && submitted">Reason for Appointment <strong>required</strong></mat-error>
-                          </mat-form-field>
-                    </div>
-                  </div>
+      
+      <div class="col-sm-6">
+        <fieldset>
+          <legend>Priority</legend>
+          <div class="row">
+            <div class="col-sm-12" style="font-family: lato light">
+              <mat-radio-group formControlName="priority" >
+            <div class="row" >
+              <div class="col-sm-4" style="font-family: lato light">
+                <mat-radio-button value="3" checked>Normal</mat-radio-button>
               </div>
-              </fieldset>
+            
+              <div class="col-sm-4" style="font-family: lato light">
+                <mat-radio-button value="2">Vip</mat-radio-button>
+              </div>
+        
+            </div>
+          </mat-radio-group>
+        </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-6">
+        <fieldset>
+          <legend>Gender</legend>
+          <div class="row">
+            <div class="col-sm-12">
+              <mat-radio-group  formControlName="gender">
+                <div class="row" >
+                   <div class="col-sm-4">
+                       <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
+                     </div>
+                     <div class="col-sm-4">
+                         <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
+                       </div>
+                </div>
+               </mat-radio-group>
             </div>
           </div>
-                      </div>
-                      
+        </fieldset>
+      </div>
+      <br>
+      <br>
+      <div class="col-sm-12" style="margin-top: 10px;"> 
+        <fieldset>
+          <legend>Background Information</legend>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Surname</mat-label>
+                    <input matInput placeholder="Surname" formControlName="last_name">
+                    <mat-error *ngIf="f.last_name.errors && submitted">Surname <strong>required</strong></mat-error>
+                  </mat-form-field>
+            </div>
+                
+              <div class="col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First Name" formControlName="first_name">
                     
-                       
-                        <div class="col-sm-12">
-                                <br>
-                            <button class="btn btn-success pull-right"> Book Appointment</button>
-                        </div>
-                    </form>
-                    </div>
-                    </mat-card>
-                    </div>
-                    <!-- <div class="col-sm-5">
-                    <mat-card>
-                        <mat-card-title style="font-size: 14px;color:dodgerblue;">
-                                <i class="fa fa-hospital-o"></i> 
-                                <span style="margin-left: 5px;"> TODAYS APPOINTMENT LIST</span>
-                        </mat-card-title>  
-                        <div class="row">
-                                <div class="col-sm-12">
-                                        <div class="mat-elevation-z8 table-responsive">
-                                                <table mat-table [dataSource]="toadysList">
-                                              
-                                                  <ng-container matColumnDef="S/No">
-                                                    <th mat-header-cell *matHeaderCellDef></th>
-                                                    <td mat-cell *matCellDef="let element;let i=index"> {{i+1}}</td>
-                                                  </ng-container>
-                                              
-                                                  <ng-container matColumnDef="name">
-                                                    <th mat-header-cell *matHeaderCellDef>Patient  Name </th>
-                                                    <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
-                                                  </ng-container>
-                                                  <ng-container matColumnDef="phone">
-                                                        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-                                                        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-                                                      </ng-container>
-                                                  <ng-container matColumnDef="time">
-                                                    <th mat-header-cell *matHeaderCellDef>Time</th>
-                                                    <td mat-cell *matCellDef="let element"> {{element.time}} </td>
-                                                  </ng-container>
-                                              
-                                                  <tr mat-header-row *matHeaderRowDef="listColumns"></tr>
-                                                  <tr mat-row *matRowDef="let row; columns: listColumns;"></tr>
-                                                </table>
-                                              
-                                                <mat-paginator #paginator1 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-                                              </div>
-                                </div>
-                            </div>
-                    
-                    </mat-card>
-                    <br>
-                    
-                    </div> -->
-                    </div>
-            </tab>
-            <tab heading="APPOINTMENT LIST">
-                    <div class="row">
-                            <div class="col-sm-3">
-                                    <mat-form-field>
-                                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search Appointment">
-                                          </mat-form-field>                                      
-                            </div>
-                        </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                            <div class="mat-elevation-z8">
-                                    <table mat-table [dataSource]="dataSource">
-                                  
-                                      <ng-container matColumnDef="patient_no">
-                                        <th mat-header-cell *matHeaderCellDef>File No. </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.patient_no}} </td>
-                                      </ng-container>
-                                  
-                                      <ng-container matColumnDef="name">
-                                        <th mat-header-cell *matHeaderCellDef>Patient  Name </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                      </ng-container>
-                                      <ng-container matColumnDef="phone">
-                                            <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-                                            <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-                                          </ng-container>
-                                      <ng-container matColumnDef="appointment_date">
-                                        <th mat-header-cell *matHeaderCellDef>Appointent Date</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.appointment_date}} </td>
-                                      </ng-container>
-                                      <ng-container matColumnDef="time">
-                                        <th mat-header-cell *matHeaderCellDef>Time</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.time}} </td>
-                                      </ng-container>
-                                      <ng-container matColumnDef="reason">
-                                        <th mat-header-cell *matHeaderCellDef>Reason</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
-                                      </ng-container>
-                                      <ng-container matColumnDef="transaction">
-                                        <th mat-header-cell *matHeaderCellDef>Mpesa Ref No</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.transaction}} </td>
-                                      </ng-container>
-                                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                    </table>
-                                  
-                                    <mat-paginator #paginator [pageSizeOptions]="[20,50]" showFirstLastButtons></mat-paginator>
-                                  </div>
-                    </div>
+                    <mat-error *ngIf="f.first_name.errors && submitted">First Name <strong>required</strong></mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Middle</mat-label>
+                    <input matInput placeholder="Middle Name" formControlName="other_names">
+                   
+                    <mat-error *ngIf="f.other_names.errors && submitted">Middle Name <strong>required</strong></mat-error>
+                  </mat-form-field>
+            </div>
+          
+            </div>
+            <div class="col-sm-3">
+              <div class="col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Visit Type</mat-label>
+                        <mat-select  formControlName="visit_type">
+                          <mat-option value="NEW">NEW</mat-option>
+                          <mat-option value="REVISIT">REVISIT</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="f.visit_type.errors && submitted">Visit <strong>required</strong></mat-error>
+
+                      </mat-form-field>
+              </div> 
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Code</mat-label>
+                        <mat-select  formControlName="code">
+                          <mat-option value="+254">+254(Kenya)</mat-option>
+                          <mat-option value="+255">+255(Tanzania)</mat-option>
+                          <mat-option value="+252">+252(Somalia)</mat-option>
+                          <mat-option value="+256">+256(Uganda)</mat-option>
+                          <mat-option value="+249">+249(sudan)</mat-option>
+
+                        </mat-select>
+                      </mat-form-field>
                 </div>
-            </tab>
+                <div class="col-sm-6">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Phone</mat-label>
+                        <input matInput placeholder="Phone" formControlName="phone">
+                        <mat-error *ngIf="f.phone.errors && submitted">Phone <strong>required</strong></mat-error>
+      
+                      </mat-form-field>
+                </div>
+                
+              </div>
             
-    </tabset>
+        </div>
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>D.O.B</mat-label>
+              <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="dob" [matDatepicker]="picker">
+              <mat-error *ngIf="f.dob.errors && submitted">Date of birth <strong>required</strong></mat-error>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+      </div> 
+       
+        
+          </div>
+          <div class="col-sm-3">
+       
+             <div class="col-sm-12">
+                 <mat-form-field appearance="outline">
+                  <mat-label>National ID</mat-label>
+                     <input matInput placeholder="National ID" formControlName="national_id">
+                     <mat-error *ngIf="f.national_id.errors && submitted">National ID <strong>required</strong></mat-error>
+                   </mat-form-field>
+             </div> 
+             <div class="col-sm-12">
+                 <mat-form-field appearance="outline">
+                  <mat-label>Passport</mat-label>
+                     <input matInput placeholder="Passport No" formControlName="passport_no">
+                     <mat-error *ngIf="f.passport_no.errors && submitted">Passport <strong>required</strong></mat-error>
+                   </mat-form-field>
+             </div>
+             <div class="col-sm-12">
+               <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                   <input matInput placeholder="Email" formControlName="email">
+                   <mat-error *ngIf="f.email.errors && submitted">Valid email <strong>required</strong></mat-error>
+                 </mat-form-field>
+           </div>
+            
+          </div>
+          <div class="col-sm-3">
+         
+            <div class="col-sm-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Residence</mat-label>
+                  <input matInput placeholder="Residence" formControlName="residence">
+                </mat-form-field>
+          </div> 
+          <div class="col-sm-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Occupation</mat-label>
+                  <input matInput placeholder="Occupation" formControlName="occupation">
+                </mat-form-field>
+          </div> 
+         </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-12" style="margin-top: 20px;">
+        <fieldset>
+          <legend>Appointment Details</legend>
+          <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3">
+                  
+                    <mat-form-field appearance="outline">
+                      <mat-label>Appointment Date</mat-label>
+                        <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="date" [matDatepicker]="picker1">
+                        <mat-error *ngIf="f.date.errors && submitted">Appointment Date <strong>required</strong></mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Appointment Time</mat-label>
+                      <input matInput placeholder="Time"  [ngxTimepicker]="default" formControlName="time">
+                      <ngx-material-timepicker #default></ngx-material-timepicker>
+                    </mat-form-field>
+                </div>
+                <!-- <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Transaction No</mat-label>
+                      <input matInput placeholder="Transaction"   formControlName="transaction">
+                      <mat-error *ngIf="f.transaction.errors && submitted">Transaction no<strong>required</strong></mat-error>
+                    </mat-form-field>
+                </div> -->
+                <div class="col-sm-12">
+                      
+                  <mat-form-field  appearance="outline">
+                      <mat-label>Appointment Reason</mat-label>
+                      <textarea matInput cols="30" rows="5"  placeholder="Reason for Appointment" formControlName="reason"></textarea>
+                  <mat-error *ngIf="f.reason && submitted">Reason for Appointment <strong>required</strong></mat-error>
+                    </mat-form-field>
+              </div>
+            </div>
+        </div>
+        </fieldset>
+      </div>
+    </div>
+                </div>
+                
+              
+                 
+                  <div class="col-sm-12">
+                          <br>
+                      <button class="btn btn-success pull-right"> Book Appointment</button>
+                  </div>
+              </form>
+              </div>
+              </div>
+            
+              </div>
+      </div>
+    </div>

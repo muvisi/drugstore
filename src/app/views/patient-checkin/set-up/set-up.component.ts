@@ -6,6 +6,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ModalDirective } from 'ngx-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-set-up',
   templateUrl: './set-up.component.html',
@@ -20,11 +22,14 @@ export class SetUpComponent implements OnInit {
   @ViewChild('sSort', {static: true}) sSort: MatSort;
   @ViewChild('editServiceModal', { static: false }) editServiceModal: ModalDirective;
   @ViewChild('serviceModal', { static: false }) serviceModal: ModalDirective;
-  @ViewChild('drugModal', { static: false }) drugModal: ModalDirective;
-  @ViewChild('drugUpdateModal', { static: false }) drugUpdateModal: ModalDirective;
+  @ViewChild('floorModal', { static: false }) floorModal: ModalDirective;
+  @ViewChild('roomModal', { static: false }) roomModal: ModalDirective;
+  @ViewChild('typeModal', { static: false }) typeModal: ModalDirective;
   @ViewChild('profileModal', { static: false }) profileModal: ModalDirective;
   @ViewChild('branchModal', { static: false }) branchModal: ModalDirective;
   @ViewChild('checkModal', { static: false }) checkModal: ModalDirective;
+  @ViewChild('roomEditModal', { static: false }) roomEditModal: ModalDirective;
+
   selected = 'doctor';
   user;
   edit = true;
@@ -33,11 +38,10 @@ export class SetUpComponent implements OnInit {
   employee: any ={};
   employees:any;
   prescription =[];
-  drugs = [];
+  rooms;
   hospitalId;
   selectedPrescription: any ={};
   provider_list;
-  drugsSelected;
   hospitalList;
   providerServices:any;
   services;
@@ -48,21 +52,46 @@ export class SetUpComponent implements OnInit {
   selectedUser: any = {};
   selectedService:any = {};
   selectedServices = [];
-  displayedColumns: string[] = ['name', 'username', 'phone', 'email','role'];
+  displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role'];
   insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
   hospitalColumns: string[] = ['sn','name', 'provider_type','reg_no','contact_number','view','delete'];
-  columns: string[] = ['name', 'category', 'code', 'cost','edit','delete'];
+  columns: string[] = ['sn','name', 'category', 'code', 'cost','edit','delete'];
   departmentColumns: string[] = ['sn', 'name', 'edit', 'delete'];
-  drugColumns: string[] = ['name', 'generic_name', 'code', 'form','strength','quantity','cost','pack_cost','edit','delete'];
+  roomColumns: string[] = ['sn','name', 'type', 'floor','status','edit','delete'];
   payers: any;
   departmentSource;
+  typeForm: FormGroup;
+  types =[];
+  floorForm: FormGroup;
+  floors=[];
+  roomForm: FormGroup;
+  editRoom: FormGroup;
 
-  constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent) {
+  constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.roomForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      type: ['', Validators.required],
+      floor: ['', Validators.required],
+      description:['',Validators.required]
+  });
+
+  this.editRoom = this.formBuilder.group({
+    name: ['', Validators.required],
+    type: ['', Validators.required],
+    floor: ['', Validators.required],
+    description:['',Validators.required],
+    id:['',Validators.required]
+});
+    this.typeForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]]
+  });
+  this.floorForm = this.formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(1)]]
+});
     this.user = JSON.parse(sessionStorage.getItem('user'));
-    console.log('user details', this.user);
     this.service.getHospital(this.user.hospital).subscribe((res) => {
     this.hospital = res;
     });
@@ -71,10 +100,15 @@ export class SetUpComponent implements OnInit {
     this.prescriptionList();
     this.getServices();
     this.getService();
-    this.hospitalDrugs();
     this.getPayers();
     this.getHospitals();
+    this.getFloor();
+    this.getRoomTypes();
+    this.getRoom();
   }
+  get f() { return this.typeForm.controls; }
+  get g() { return this.floorForm.controls; }
+
   getHospitals(){
     this.service.providerDetails(this.user.hospital).subscribe((res) => {
       this.provider_list = res;
@@ -116,12 +150,12 @@ export class SetUpComponent implements OnInit {
       this.payers = res.results;
     })
   }
-  hospitalDrugs(){
-    this.service.getDrugs().subscribe((res) => {
-      this.drugsSelected = new MatTableDataSource(res.results);
-
-    });
+  getFloor(){
+    this.service.getFloors().subscribe((res)=>{
+      this.floors = res.results;
+    })
   }
+
  
   hospitalDetails(item){
     this.navCtrl.navigate('/dashboard/set-up/hospital/',{data: item})
@@ -139,29 +173,7 @@ const index: number = this.selectedServices.indexOf(obj);
     this.selectedServices.splice(index, 1);
   }
 }
-deleteDrug(obj) {
-  const index: number = this.drugs.indexOf(obj);
-  if (index !== -1) {
-    this.drugs.splice(index, 1);
-  }
-}
-updateDrug(){
-  this.addPrescriptions();
-  this.saveDrugs();
-  this.drugUpdateModal.hide();
-  }
-dropDrug(item) {
- const id = item.id;
 
- this.service.deleteDrug(id).subscribe((res) => {
-this.toastr.success('Successfully deleted');
-this.hospitalDrugs();
- },
- (error) => {
-   this.toastr.error('Delete Failed');
- }
- );
-}
 dropService(item) {
     const id = item.id;
 
@@ -242,11 +254,7 @@ this.service.getProviderServices().subscribe((res) => {
   this.providerServices.sort = this.sSort;
 });
 }
-addPrescriptions() {
-  this.drugs.push(this.selectedPrescription);
-  this.selectedPrescription = {};
 
-}
 editService(){
 console.log(this.selectedService);
 this.service.updateService(this.selectedService.id,this.selectedService).subscribe((res)=>{
@@ -254,23 +262,82 @@ this.service.updateService(this.selectedService.id,this.selectedService).subscri
   this.editServiceModal.hide();
 })
 }
-saveDrugs() {
-const data = {
-'id': this.user.hospital,
-'drugs': this.drugs
-};
-this.service.saveDrugs(data).subscribe((res) => {
-  this.toastr.success('Successfully Submitted Drugs');
-  this.drugModal.hide();
-  this.hospitalDrugs();
-  this.drugs = [];
-});
+addRoom(){
+  this.service.addRoom(this.roomForm.value).subscribe((res)=>{
+    this.toastr.success('Successfully Added');
+    this.roomForm.reset();
+    this.roomModal.hide();
+  },(err)=>{
+    this.toastr.error(err.error.name[0]);
+  })
 }
+editUpdate(item){
+  this.editRoom.patchValue({id:item.id,description:item.description,type:item.type,floor:item.floor,name:item.name})
+  this.roomEditModal.show();
+}
+updateRoom(){
+  console.log(this.editRoom.value)
+  this.service.updateRoom(this.editRoom.value).subscribe((res)=>{
+    this.toastr.success('Successfully Updated');
+    this.roomEditModal.hide();
+    this.editRoom.reset();
+    this.getRoom();
+  },(err)=>{
+    this.toastr.error(err.error.name[0]);
+  })
+}
+
+deleteRoom(id){
+  if (window.confirm("Do you really want to delete?")) {
+    this.service.deleteRoom(id).subscribe((res)=>{
+      this.toastr.success('Successfully Deleted');
+    },(err)=>{
+      this.toastr.error(err.error.name[0]);
+    })
+  }
+  
+}
+
   getServices() {
     this.service.getServices().subscribe((res) => {
       this.services = res.results;
     });
   }
+  getRoomTypes() {
+    this.service.roomTypes().subscribe((res) => {
+      this.types = res.results;
+    });
+  }
+ 
+  getRoom() {
+    this.service.getRooms().subscribe((res) => {
+      this.rooms = new MatTableDataSource(res.results);
+    });
+  }
+
+  onSubmit(){
+    this.service.addRoomType(this.typeForm.value).subscribe((res)=>{
+      this.toastr.success('Successfully Added');
+      this.typeForm.reset();
+      this.getRoomTypes();
+    },(err)=>{
+      this.toastr.error(err.error.name[0]);
+
+    })
+  }
+
+   
+  onFloor(){
+    this.service.addFloor(this.floorForm.value).subscribe((res)=>{
+      this.toastr.success('Successfully Added');
+      this.floorForm.reset();
+      this.getFloor();
+    },(err)=>{
+      this.toastr.error(err.error.name[0]);
+    })
+  }
+
+  
   serviceSearch(text){
     // if(text != null){
     //   this.service.serviceSearch(text).subscribe((res)=> {
@@ -311,7 +378,6 @@ this.service.saveDrugs(data).subscribe((res) => {
         this.employeesList();
       })
     } else{
-      console.log('calllddd');
       const data={
         "is_active":true,
         "email":item.email
@@ -330,6 +396,7 @@ this.service.saveDrugs(data).subscribe((res) => {
      console.log(res);
      this.toastr.success('Successfully created a Branch');
      this.branch = {};
+     this.branchModal.hide();
      this.ngOnInit();
    },(error) => {
         this.toastr.error('Branch creation Failed');
@@ -347,11 +414,10 @@ this.service.saveDrugs(data).subscribe((res) => {
   });
 }
 
-searchDrug(filterValue: string) {
-  this.drugsSelected.filter = filterValue.trim().toLowerCase();
-}
-
 search(filterValue: string) {
   this.providerServices.filter = filterValue.trim().toLowerCase();
+}
+searchRooms(filterValue: string){
+  
 }
 }

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint = 'http://localhost:8000/';
-export const endpoint = 'https://kaatun.healthixsolutions.com:4000/';
+export const endpoint = 'https://kapc.healthixsolutions.com:7000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,7 +41,30 @@ export class ServiceService {
   getEvents(): Observable<any> {
     return this.http.get(endpoint + 'appointments/appointment_list/').pipe(
       map(this.extractData));
-
+  }
+  getAppointments(): Observable<any> {
+    return this.http.get(endpoint + 'appointments/all/').pipe(
+      map(this.extractData));
+  }
+  getBilling(): Observable<any> {
+    return this.http.get(endpoint + 'appointments/payments/').pipe(
+      map(this.extractData));
+  }
+  searchBilling(id): Observable<any> {
+    return this.http.get(endpoint + 'appointments/payments/?search='+id).pipe(
+      map(this.extractData));
+  }
+  searchAppointments(id): Observable<any> {
+    return this.http.get(endpoint + 'appointments/all/?search='+id).pipe(
+      map(this.extractData));
+  }
+  updateAppointments(data): Observable<any> {
+    return this.http.post(endpoint + 'appointments/update/',data).pipe(
+      map(this.extractData));
+  }
+  getAppointment(id): Observable<any> {
+    return this.http.get(endpoint + 'appointments/'+id+'/').pipe(
+      map(this.extractData));
   }
   recordList(): Observable<any> {
     return this.http.get(endpoint + 'patients/record_list/?limit=500').pipe(
@@ -57,13 +80,38 @@ export class ServiceService {
   reverseBill(data): Observable<any> {
     return this.http.post(endpoint + 'payments/reverse_bills/', data ).pipe(
       map(this.extractData));
-
   }
   pay(data): Observable<any> {
     return this.http.post(endpoint + 'payments/pay/', data ).pipe(
       map(this.extractData));
 
   }
+  clientPayments(data): Observable<any> {
+    return this.http.post(endpoint + 'payments/client_payments/', data ).pipe(
+      map(this.extractData));
+  }
+  cashPayments(data): Observable<any> {
+    return this.http.post(endpoint + 'payments/cash_payments/', data ).pipe(
+      map(this.extractData));
+  }
+  ncbaPayments(data): Observable<any> {
+    return this.http.post(endpoint + 'payments/ncba_payments/', data ).pipe(
+      map(this.extractData));
+  }
+  ncbaAllPayments(): Observable<any> {
+    return this.http.get(endpoint + 'payments/ncba/').pipe(
+      map(this.extractData));
+  }
+  cashList(data): Observable<any> {
+    return this.http.get(endpoint + 'payments/cash_list/?patient='+data).pipe(
+      map(this.extractData));
+  }
+
+  allCashPayments(): Observable<any> {
+    return this.http.get(endpoint + 'payments/cash_list/').pipe(
+      map(this.extractData));
+  }
+  
 mpesa(): Observable<any> {
     return this.http.get(endpoint + 'payments/mpesa_list/').pipe(
       map(this.extractData));
@@ -208,6 +256,43 @@ searchProcedure(data): Observable<any> {
     return this.http.post(endpoint + 'patients/close_claim/', id).pipe(
       map(this.extractData));
   }
+  addRoomType(data) {
+    return this.http.post(endpoint + 'booking/room_type/',data).pipe(
+      map(this.extractData));
+  }
+  addFloor(data) {
+    return this.http.post(endpoint + 'booking/floor/',data).pipe(
+      map(this.extractData));
+  }
+  getFloors() {
+    return this.http.get(endpoint + 'booking/floor/').pipe(
+      map(this.extractData));
+  }
+  roomTypes() {
+    return this.http.get(endpoint + 'booking/room_type/').pipe(
+      map(this.extractData));
+  }
+  addRoom(data){
+    return this.http.post(endpoint + 'booking/room/',data).pipe(
+      map(this.extractData));
+  }
+  deleteRoom(id){
+    return this.http.delete(endpoint + 'booking/room/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  updateRoom(data){
+    console.log(data);
+    return this.http.put(endpoint + 'booking/room/'+data.id+'/',data).pipe(
+    map(this.extractData));
+  }
+  getRooms(){
+    return this.http.get(endpoint + 'booking/room/').pipe(
+      map(this.extractData));
+  }
+  searchRooms(data){
+    return this.http.get(endpoint + 'booking/room/?search='+data).pipe(
+      map(this.extractData));
+  }
   createAuthletter(data) {
     return this.http.post(endpoint + 'authletters/create_auth/',data ).pipe(
       map(this.extractData));
@@ -323,8 +408,12 @@ searchBills(data): Observable<any>{
   patientRecords(): Observable<any> {
     return this.http.get(endpoint + 'patients/patient/').pipe(
       map(this.extractData));
-
   }
+  getPatient(id): Observable<any> {
+    return this.http.get(endpoint + 'patients/patient/'+id+'/').pipe(
+      map(this.extractData));
+  }
+
   SearchPatientRecords(data): Observable<any> {
     return this.http.get(endpoint + 'patients/patient/?search='+data).pipe(
       map(this.extractData));
@@ -342,6 +431,10 @@ searchBills(data): Observable<any>{
   }
   createAppointment(data): Observable<any>{
     return this.http.post(endpoint + 'patients/appointment/',data).pipe(
+      map(this.extractData));
+  }
+  createReappointment(data): Observable<any>{
+    return this.http.post(endpoint + 'patients/reappointment/',data).pipe(
       map(this.extractData));
   }
   updatePatient(data): Observable<any>{
@@ -404,6 +497,17 @@ searchBills(data): Observable<any>{
   }
   deactivateUser(data,id): Observable<{}> {
     return this.http.put(endpoint + 'users/user/'+id+'/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  getcounsellors(){
+    return this.http.get(endpoint + 'users/counsellors/').pipe(
+      map(this.extractData
+      ));
+  }
+
+  getAppointmentUsers(){
+    return this.http.get(endpoint + 'users/user/?role=counselor').pipe(
       map(this.extractData
       ));
   }

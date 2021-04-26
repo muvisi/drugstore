@@ -19,15 +19,17 @@ export class PaymentsComponent implements OnInit {
 @ViewChild('passwordModal', {static: true}) passwordModal: ModalDirective;
 @ViewChild(MatSort, {static: true}) sort: MatSort;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-dataSource;
+cashSource;
 payments = [];
 dataSource1;
+dataSource;
 mpesaSource;
 maxDate: Date;
 date;
 cash_date;
 mpesaColumns: string[] = ['sn','name','msisdn','amount','channel','trxref','accountref','status','date'];
-displayedColumns: string[] = ['sn','name','patient_no','visit_no','no','amount','created'];
+displayedColumns: string[] = ['sn','date','amount','trx','client','name'];
+Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
 claimsColumns: string[] = ['sn','member','patient_number','visit_number','insurance_company','member_number','visit_type','amount','created'];
   constructor(public service: ServiceService, private router: Router,
     public navCtrl: NgxNavigationWithDataComponent, private toastr: ToastrService,private excelService: ExcelService,private datePipe: DatePipe) {
@@ -39,6 +41,12 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
     this.getClaims();
     this.getMpesa();
     this.maxDate = new Date();
+    this.getNcba();
+  }
+  getNcba(){
+    this.service.ncbaAllPayments().subscribe((res)=>{
+      this.dataSource = new MatTableDataSource(res.results);
+    })
   }
   getClaims() {
     this.service.getClaims().subscribe((res) => {
@@ -75,7 +83,7 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
     // this.dataSource.paginator = this.paginator;
   }
   getBills(){
-    this.service.getBills().subscribe((res)=>{
+    this.service.allCashPayments().subscribe((res)=>{
       this.tableData(res.results);
       this.payments = res.results;
     })
@@ -88,15 +96,15 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.cashSource.filter = filterValue.trim().toLowerCase();
   }
   exportAsXLSX(): void {
     const data = this.payments;
     this.excelService.exportAsExcelFile(data, 'Cash Payemnts');
   }
   tableData(items){
-    this.dataSource = new MatTableDataSource(items);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.cashSource = new MatTableDataSource(items);
+    this.cashSource.sort = this.sort;
+    this.cashSource.paginator = this.paginator;
   }
 }
