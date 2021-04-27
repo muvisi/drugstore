@@ -52,10 +52,10 @@ export class SetUpComponent implements OnInit {
   selectedUser: any = {};
   selectedService:any = {};
   selectedServices = [];
-  displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role'];
+  displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role','view','edit'];
   insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
   hospitalColumns: string[] = ['sn','name', 'provider_type','reg_no','contact_number','view','delete'];
-  columns: string[] = ['sn','name', 'category', 'code', 'cost','edit','delete'];
+  columns: string[] = ['sn','name','code', 'cost','edit','delete'];
   departmentColumns: string[] = ['sn', 'name', 'edit', 'delete'];
   roomColumns: string[] = ['sn','name', 'type', 'floor','status','edit','delete'];
   payers: any;
@@ -129,9 +129,9 @@ export class SetUpComponent implements OnInit {
       })
     }
   }
-  deleteDepartment(){
+  deleteDepartment(element){
     if (window.confirm("Do you really want to Delete?")) { 
-    this.service.deleteDepartment(this.selectedDepartment.id).subscribe((res)=>{
+    this.service.deleteDepartment(element.id).subscribe((res)=>{
       this.toastr.success('Successfully Deleted Department');
       this.checkModal.hide();
       this.ngOnInit();

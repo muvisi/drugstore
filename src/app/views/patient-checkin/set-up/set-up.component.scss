@@ -27,7 +27,10 @@ mat-card-title{
 mat-card{
 	width: 100%;
 }
-
+input[type="text"],input[type="select"]{
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-transform: capitalize;
+}
 div{
 	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
@@ -41,7 +44,6 @@ table{
   th,td{
   font-size: 10px;
   height: 2px;
-  text-transform: uppercase;
   }
   
   tr,td {

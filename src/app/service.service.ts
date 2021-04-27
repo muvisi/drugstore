@@ -102,16 +102,36 @@ export class ServiceService {
     return this.http.get(endpoint + 'payments/ncba/').pipe(
       map(this.extractData));
   }
+
+  searchncbaPaymentsByPhone(id): Observable<any> {
+    return this.http.get(endpoint + 'payments/ncba/?search='+id).pipe(
+      map(this.extractData));
+  }
+
+  searchncbaPaymentsByDate(id): Observable<any> {
+    return this.http.post(endpoint + 'payments/ncba_range_payments/',{date:id}).pipe(
+      map(this.extractData));
+  }
+
   cashList(data): Observable<any> {
     return this.http.get(endpoint + 'payments/cash_list/?patient='+data).pipe(
       map(this.extractData));
   }
 
-  allCashPayments(): Observable<any> {
+allCashPayments(): Observable<any> {
     return this.http.get(endpoint + 'payments/cash_list/').pipe(
       map(this.extractData));
-  }
-  
+}
+cashPaymentsBydate(date): Observable<any> {
+  return this.http.post(endpoint + 'payments/cash_range_payments/',{date:date}).pipe(
+    map(this.extractData));
+} 
+
+cashPaymentsByPhone(text): Observable<any> {
+  return this.http.get(endpoint + 'payments/cash_list/?search='+text).pipe(
+    map(this.extractData));
+} 
+
 mpesa(): Observable<any> {
     return this.http.get(endpoint + 'payments/mpesa_list/').pipe(
       map(this.extractData));

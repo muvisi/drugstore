@@ -28,7 +28,7 @@ maxDate: Date;
 date;
 cash_date;
 mpesaColumns: string[] = ['sn','name','msisdn','amount','channel','trxref','accountref','status','date'];
-displayedColumns: string[] = ['sn','date','amount','trx','client','name'];
+displayedColumns: string[] = ['sn','date','amount','trx','client','mobile','name'];
 Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
 claimsColumns: string[] = ['sn','member','patient_number','visit_number','insurance_company','member_number','visit_type','amount','created'];
   constructor(public service: ServiceService, private router: Router,
@@ -48,11 +48,22 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
       this.dataSource = new MatTableDataSource(res.results);
     })
   }
+  onDate(date){
+    date = this.datePipe.transform(date,'yyyy-MM-dd')
+    if(date !=undefined){
+      this.service.searchncbaPaymentsByDate(date).subscribe((res)=>{
+        this.dataSource = new MatTableDataSource(res);
+      })
+    }
+  }
+  searchNbaPhone(text){
+    this.service.searchncbaPaymentsByPhone(text).subscribe((res)=>{
+      this.dataSource = new MatTableDataSource(res.results);
+    })
+  }
   getClaims() {
     this.service.getClaims().subscribe((res) => {
-  
       this.claimsData(res.results);
-     
     }
     );
   }
@@ -66,13 +77,24 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
        this.getClaims();
      }
   }
+
+  searchCashPhone(text){
+   if(text!=undefined){
+     this.service.cashPaymentsByPhone(text).subscribe((res)=>{
+      this.tableData(res.results);
+      this.payments = res.results;
+     })
+   } 
+  }
   searchCash(item){
    if(item != null){
     const date = this.datePipe.transform(item,'yyyy-MM-dd')
-    this.service.searchInvoice(date).subscribe((res)=>{
-     this.tableData(res.results);
-     this.payments = res.results;
-    })
+    if(date !=undefined){
+      this.service.cashPaymentsBydate(date).subscribe((res)=>{
+        this.tableData(res);
+        this.payments = res;
+       })
+    }
    }else{
      this.getBills();
    }
