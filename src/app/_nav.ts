@@ -96,7 +96,7 @@ export const navItems: NavData[] = [
         icon: 'fa fa-calendar-check-o'
       },
       {
-        name: 'Appointments',
+        name: 'Meetings',
         url: '/dashboard/appointment-list',
         icon: 'fa fa-list-ol'
       }

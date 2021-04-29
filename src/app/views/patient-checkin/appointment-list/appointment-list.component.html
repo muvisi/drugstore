@@ -57,7 +57,11 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
                         <td mat-cell *matCellDef="let element">
                             <button class="btn btn-primary btn-sm" *ngIf="element.status == 'created'" style="text-transform: capitalize;" >{{element.status}}</button>
-                            <button class="btn btn-success btn-sm" *ngIf="element.status != 'created'" style="text-transform: capitalize;" >{{element.status}}</button>
+                            <button class="btn btn-success btn-sm" *ngIf="element.status == 'complete'" style="text-transform: capitalize;" >{{element.status}}</button>
+                            <button class="btn btn-warning btn-sm" *ngIf="element.status == 'ongoing'" style="text-transform: capitalize;" >{{element.status}}</button>
+                            <button class="btn btn-info btn-sm" *ngIf="element.status == 'paid'" style="text-transform: capitalize;" >{{element.status}}</button>
+
+
                         </td>
                       </ng-container>
                       <ng-container matColumnDef="create">

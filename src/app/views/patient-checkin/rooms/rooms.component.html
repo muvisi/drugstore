@@ -1,18 +1,20 @@
 <div class="card">
-    <div class="card-header bg-primary">
-      ROOMS LIST
+    <div class="card-header">
+      <h6>
+        Rooms List
+      </h6>
     </div>
     <div class="card-body">
      <div class="row">
-         <div class="col-sm-2">
-            <mat-form-field appearance="outline">
+         <div class="col-sm-3">
+            <mat-form-field >
                 <mat-label>Room No</mat-label>
                 <input type="text" matInput placeholder="Room No." (keyup)="searchRoom($event.target.value)">
               </mat-form-field>
               
          </div>
-         <div class="col-sm-2">
-            <mat-form-field appearance="outline">
+         <!-- <div class="col-sm-3">
+            <mat-form-field>
                 <mat-label>Status Filter</mat-label>
                 <mat-select>
                   <mat-option value="10px">Booked</mat-option>
@@ -20,7 +22,7 @@
                   <mat-option value="14px">Open</mat-option>
                 </mat-select>
               </mat-form-field>
-         </div>
+         </div> -->
          <div class="col-sm-12">
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="rooms" #dSort="matSort"   matSort>
@@ -29,31 +31,157 @@
                       <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
                       </ng-container>
                       <ng-container matColumnDef="name">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME. </th>
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
                       <td mat-cell *matCellDef="let element"> {{element.name | uppercase}} </td>
                       </ng-container>
                      
                       <ng-container matColumnDef="type">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>TYPE</th>
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
                       <td mat-cell *matCellDef="let element"> {{element.type_name}} </td>
                       </ng-container>
                       <ng-container matColumnDef="floor">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>FLOOR</th>
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Floor</th>
                       <td mat-cell *matCellDef="let element"> {{element.floor_name}} </td>
                       </ng-container>
-                    
+                      <ng-container matColumnDef="cost">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+                        <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+                        </ng-container>
                       <ng-container matColumnDef="status">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</th>
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
                           <td mat-cell *matCellDef="let element"> {{element.status}} </td>
                       </ng-container>
+                      <ng-container matColumnDef="bookings">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Reservations</th>
+                        <td mat-cell *matCellDef="let element">
+                          <button class="btn btn-success btn-sm" (click)="reservations(element)">Reservations</button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="book">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Book</th>
+                        <td mat-cell *matCellDef="let element">
+                          <button class="btn btn-primary btn-sm" (click)="open(element)">Book</button>
+                        </td>
+                    </ng-container>
+                  
                        
                       <tr mat-header-row *matHeaderRowDef="roomColumns"></tr>
                       <tr mat-row *matRowDef="let row; columns:roomColumns;"></tr>
                     </table>
               
-                <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                <mat-paginator #pagination [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
               </div>
          </div>
      </div>
     </div>
   </div>
+
+
+  <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Room Booking</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="bookingForm" (ngSubmit)="onBook()">
+          <div class="row">
+              <div class="col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Choose Date</mat-label>
+                    <input matInput placeholder="Date" [minDate]="date" formControlName="date" [matDatepicker]="picker1">
+                    <mat-error *ngIf="f.date.errors">Date <strong>required</strong></mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+              </div>
+              <div class="col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Select Time</mat-label>
+                    <mat-select formControlName="time">
+                      <mat-option *ngFor="let item of time" [value]="item">
+                        {{item}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="f.time.errors">Date <strong>required</strong></mat-error>
+                  </mat-form-field>
+              </div>
+              <div class="col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Select Counselor</mat-label>
+                  <mat-select formControlName="staff">
+                    <mat-option *ngFor="let counselor	 of counsolers" [value]="counselor.id">{{counselor.username}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-12">
+                <button class="btn btn-success btn-sm pull-right" [disabled]="bookingForm.invalid">Submit</button>
+              </div>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #reservationModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Reservations List</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="reservationModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" #dSort="matSort"   matSort>
+                    <ng-container matColumnDef="sn">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>S/No </th>
+                      <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="date">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                      </ng-container>
+                     
+                      <ng-container matColumnDef="start">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Start</th>
+                      <td mat-cell *matCellDef="let element"> {{element.start}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="end">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>End</th>
+                      <td mat-cell *matCellDef="let element"> {{element.end}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                        <td mat-cell *matCellDef="let element">
+                          <span *ngIf="element.appointment">Appointment</span>
+                          <span *ngIf="!element.appointment">Room Booking</span>
+                        </td>
+                      </ng-container>
+                      <ng-container matColumnDef="staff">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Staff</th>
+                        <td mat-cell *matCellDef="let element"> {{element.staff}} </td>
+                      </ng-container>
+                     
+                      <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                      <tr mat-row *matRowDef="let row; columns:Columns;"></tr>
+                    </table>
+              
+                <mat-paginator  #pagination1 [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+              </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

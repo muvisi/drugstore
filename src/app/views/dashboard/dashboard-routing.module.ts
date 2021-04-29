@@ -45,6 +45,7 @@ import { CreateRoomComponent } from '../patient-checkin/create-room/create-room.
 import { ReappointmentComponent } from '../patient-checkin/reappointment/reappointment.component';
 import { AppointmentListComponent } from '../patient-checkin/appointment-list/appointment-list.component';
 import { AppointmentDetailsComponent } from '../patient-checkin/appointment-details/appointment-details.component';
+import { UserAccountComponent } from '../patient-checkin/user-account/user-account.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,11 @@ const routes: Routes = [
   {
     path: 'reappointments/:id',
     component: ReappointmentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-account/:id',
+    component:UserAccountComponent,
     canActivate: [AuthGuard]
   },
   {

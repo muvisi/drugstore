@@ -14,6 +14,7 @@ export class ReappointmentComponent implements OnInit {
   maxDate = new Date();
   appointmentForm: FormGroup;
   submitted: boolean;
+  time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
   constructor(private route: ActivatedRoute,public router:Router,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
 
   ngOnInit() {

@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-appointment-details',
@@ -27,13 +28,18 @@ export class AppointmentDetailsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
   cashColumns: string[] = ['sn','date','name','amount','trx'];
+  time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
   cashForm: FormGroup;
+  noteForm: FormGroup;
   constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
   ngOnInit() {
     this.appointmentForm = this.formBuilder.group({
       time: ['', Validators.required],
       reason: ['', Validators.required],
       date:['',Validators.required]
+    });
+    this.noteForm = this.formBuilder.group({
+      notes: ['',[Validators.required,Validators.minLength(5)]],
     });
     this.counselorForm = this.formBuilder.group({
       first_name: ['', Validators.required],
@@ -62,6 +68,9 @@ export class AppointmentDetailsComponent implements OnInit {
       this.customer = this.data.client;
       this.getCash(this.customer.id);
       this.getPayments(this.customer.phone);
+      if(this.data.notes){
+        this.noteForm.patchValue({notes:this.data.notes})
+      }
       if(this.data.counselor.id){
         this.onSelect(this.data.counselor.id);
       }
@@ -69,7 +78,8 @@ export class AppointmentDetailsComponent implements OnInit {
         let room = this.rooms.find(obj=>obj.name == this.data.Location);
         this.counselorForm.patchValue({room:room.id});
       }
-      this.appointmentForm.patchValue({date:new Date(this.data.StartTime),reason:this.data.Description,time:new Date(this.data.StartTime).toLocaleTimeString().replace(/:\d{2}\s/,' ')})
+    
+      this.appointmentForm.patchValue({date:new Date(this.data.StartTime),reason:this.data.Description,time:moment(this.data.StartTime).format('H:mm')})
     })
   }
   getRoom() {
@@ -96,9 +106,13 @@ export class AppointmentDetailsComponent implements OnInit {
     }
     let data = this.counselorForm.value
     data.appointment = this.route.snapshot.params.id
+    data.time =this.appointmentForm.get('time').value
+    data.date =this.appointmentForm.get('date').value
     this.service.updateAppointments(data).subscribe((res)=>{
       this.toastr.success("Successfully updated appointment");
       this.submitted = true;
+    },(err)=>{
+      this.toastr.info(err.error.error,"Failed");
     })
   }
   getPayments(id){
@@ -127,5 +141,25 @@ export class AppointmentDetailsComponent implements OnInit {
         this.ngOnInit();
       })
     }
+  }
+  onNote(){
+    if(this.noteForm.valid){
+    let data =this.noteForm.value;
+    data.id = this.route.snapshot.params.id
+    this.service.addNote(data).subscribe(()=>{
+    })
+    }
+  }
+  addStatus(text){
+    let data:any ={}
+    data.id = this.route.snapshot.params.id
+    data.status = text
+    this.service.addStatus(data).subscribe((res)=>{
+      if (text =='ongoing'){
+        this.toastr.success("Started a session","Success");
+      }else{
+        this.toastr.success("Ended a session","Success");
+      }
+    })
   }
 }

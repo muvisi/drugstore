@@ -72,6 +72,7 @@ import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { ReappointmentComponent } from './reappointment/reappointment.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentDetailsComponent } from './appointment-details/appointment-details.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -119,7 +120,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     CreateRoomComponent,
     ReappointmentComponent,
     AppointmentListComponent,
-    AppointmentDetailsComponent
+    AppointmentDetailsComponent,
+    UserAccountComponent
   ],
   imports: [
     CommonModule,

@@ -191,7 +191,7 @@
                   
                     <mat-form-field appearance="outline">
                       <mat-label>Appointment Date</mat-label>
-                        <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="date" [matDatepicker]="picker1">
+                        <input matInput placeholder="Appointment Date" [maxDate]="maxDate" formControlName="date" [matDatepicker]="picker1">
                         <mat-error *ngIf="f.date.errors && submitted">Appointment Date <strong>required</strong></mat-error>
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
@@ -199,10 +199,13 @@
                 </div>
                 <div class="col-sm-3">
                   <mat-form-field appearance="outline">
-                    <mat-label>Appointment Time</mat-label>
-                      <input matInput placeholder="Time"  [ngxTimepicker]="default" formControlName="time">
-                      <ngx-material-timepicker #default></ngx-material-timepicker>
-                    </mat-form-field>
+                    <mat-label>Select Time</mat-label>
+                    <mat-select formControlName="time">
+                      <mat-option *ngFor="let item of time" [value]="item">
+                        {{item}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
                 <!-- <div class="col-sm-3">
                   <mat-form-field appearance="outline">

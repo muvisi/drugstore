@@ -62,6 +62,14 @@ export class ServiceService {
     return this.http.post(endpoint + 'appointments/update/',data).pipe(
       map(this.extractData));
   }
+  addNote(data): Observable<any> {
+    return this.http.post(endpoint + 'appointments/add_note/',data).pipe(
+      map(this.extractData));
+  }
+  addStatus(data): Observable<any> {
+    return this.http.post(endpoint + 'appointments/add_status/',data).pipe(
+      map(this.extractData));
+  }
   getAppointment(id): Observable<any> {
     return this.http.get(endpoint + 'appointments/'+id+'/').pipe(
       map(this.extractData));
@@ -309,6 +317,19 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'booking/room/').pipe(
       map(this.extractData));
   }
+  reservation(data){
+    return this.http.post(endpoint + 'booking/reservation/',data).pipe(
+      map(this.extractData));
+  }
+
+  reservationList(data){
+    return this.http.get(endpoint + 'booking/reservation/?room='+data).pipe(
+      map(this.extractData));
+  }
+  reservationByStaff(data){
+    return this.http.get(endpoint+'booking/reservation/?staff='+data).pipe(
+      map(this.extractData));
+  }
   searchRooms(data){
     return this.http.get(endpoint + 'booking/room/?search='+data).pipe(
       map(this.extractData));
@@ -517,6 +538,11 @@ searchBills(data): Observable<any>{
   }
   deactivateUser(data,id): Observable<{}> {
     return this.http.put(endpoint + 'users/user/'+id+'/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  getUser(id): Observable<{}> {
+    return this.http.get(endpoint + 'users/user/'+id+'/').pipe(
       map(this.extractData
       ));
   }

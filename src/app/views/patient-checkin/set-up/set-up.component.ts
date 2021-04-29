@@ -7,6 +7,7 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ModalDirective } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-set-up',
@@ -29,7 +30,7 @@ export class SetUpComponent implements OnInit {
   @ViewChild('branchModal', { static: false }) branchModal: ModalDirective;
   @ViewChild('checkModal', { static: false }) checkModal: ModalDirective;
   @ViewChild('roomEditModal', { static: false }) roomEditModal: ModalDirective;
-
+  @ViewChild('userModal', { static: false }) userModal: ModalDirective;
   selected = 'doctor';
   user;
   edit = true;
@@ -57,7 +58,7 @@ export class SetUpComponent implements OnInit {
   hospitalColumns: string[] = ['sn','name', 'provider_type','reg_no','contact_number','view','delete'];
   columns: string[] = ['sn','name','code', 'cost','edit','delete'];
   departmentColumns: string[] = ['sn', 'name', 'edit', 'delete'];
-  roomColumns: string[] = ['sn','name', 'type', 'floor','status','edit','delete'];
+  roomColumns: string[] = ['sn','name', 'type', 'floor','cost','status','edit','delete'];
   payers: any;
   departmentSource;
   typeForm: FormGroup;
@@ -67,7 +68,7 @@ export class SetUpComponent implements OnInit {
   roomForm: FormGroup;
   editRoom: FormGroup;
 
-  constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder) {
+  constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder,public router:Router) {
   }
 
   ngOnInit() {
@@ -75,6 +76,7 @@ export class SetUpComponent implements OnInit {
       name: ['', Validators.required],
       type: ['', Validators.required],
       floor: ['', Validators.required],
+      cost: ['', Validators.required],
       description:['',Validators.required]
   });
 
@@ -215,7 +217,7 @@ addUser() {
     this.ngOnInit();
     this.toastr.success('Successfully Added Employee');
     this.employee = {};
-    // this.userModal.hide();
+    this.userModal.hide();
   },
   (error)=>{
     this.toastr.error('Adding Employee Failed');
@@ -228,12 +230,12 @@ updateUser() {
   this.service.updateUser(this.employee).subscribe((res) => {
     this.ngOnInit();
     this.toastr.success('Successfully Updated User');
+    this.userModal.hide();
     this.employee = {};
     this.edit = true;
-    // this.userModal.hide();
   },
   (error)=>{
-    this.toastr.error('Update fails');
+    this.toastr.error('Update request failed');
   }
   );
 }
@@ -267,6 +269,7 @@ addRoom(){
     this.toastr.success('Successfully Added');
     this.roomForm.reset();
     this.roomModal.hide();
+    this.getRoom();
   },(err)=>{
     this.toastr.error(err.error.name[0]);
   })
@@ -291,6 +294,7 @@ deleteRoom(id){
   if (window.confirm("Do you really want to delete?")) {
     this.service.deleteRoom(id).subscribe((res)=>{
       this.toastr.success('Successfully Deleted');
+      this.getRoom();
     },(err)=>{
       this.toastr.error(err.error.name[0]);
     })
@@ -337,6 +341,9 @@ deleteRoom(id){
     })
   }
 
+  view(item){
+    this.router.navigate(['/dashboard/user-account',item.id])
+  }
   
   serviceSearch(text){
     // if(text != null){
