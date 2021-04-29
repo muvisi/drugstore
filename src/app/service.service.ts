@@ -107,7 +107,7 @@ export class ServiceService {
       map(this.extractData));
   }
   ncbaAllPayments(): Observable<any> {
-    return this.http.get(endpoint + 'payments/ncba/').pipe(
+    return this.http.get(endpoint + 'payments/ncba/?limit=100').pipe(
       map(this.extractData));
   }
 

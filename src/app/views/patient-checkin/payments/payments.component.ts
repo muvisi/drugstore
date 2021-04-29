@@ -18,7 +18,8 @@ import { DatePipe } from '@angular/common';
 export class PaymentsComponent implements OnInit {
 @ViewChild('passwordModal', {static: true}) passwordModal: ModalDirective;
 @ViewChild(MatSort, {static: true}) sort: MatSort;
-@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+@ViewChild('paginator', {static: true}) paginator: MatPaginator;
+@ViewChild('paginator1', {static: true}) paginator1: MatPaginator;
 cashSource;
 payments = [];
 dataSource1;
