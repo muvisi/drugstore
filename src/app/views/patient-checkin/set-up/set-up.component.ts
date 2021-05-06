@@ -31,6 +31,7 @@ export class SetUpComponent implements OnInit {
   @ViewChild('checkModal', { static: false }) checkModal: ModalDirective;
   @ViewChild('roomEditModal', { static: false }) roomEditModal: ModalDirective;
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
+  @ViewChild('providerModal', { static: false }) providerModal: ModalDirective;
   selected = 'doctor';
   user;
   edit = true;
@@ -53,7 +54,7 @@ export class SetUpComponent implements OnInit {
   selectedUser: any = {};
   selectedService:any = {};
   selectedServices = [];
-  displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role','view','edit'];
+  displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role','view','edit','deactivate','activate'];
   insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
   hospitalColumns: string[] = ['sn','name', 'provider_type','reg_no','contact_number','view','delete'];
   columns: string[] = ['sn','name','code', 'cost','edit','delete'];
@@ -67,6 +68,7 @@ export class SetUpComponent implements OnInit {
   floors=[];
   roomForm: FormGroup;
   editRoom: FormGroup;
+  providerForm: FormGroup;
 
   constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder,public router:Router) {
   }
@@ -79,6 +81,17 @@ export class SetUpComponent implements OnInit {
       cost: ['', Validators.required],
       description:['',Validators.required]
   });
+  this.providerForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    email: ['', Validators.required],
+    reg_no: ['', Validators.required],
+    location: ['', Validators.required],
+    building:['',Validators.required],
+    contact_number:['',Validators.required],
+    id: ['', Validators.required],
+});
+
+
 
   this.editRoom = this.formBuilder.group({
     name: ['', Validators.required],
@@ -426,5 +439,16 @@ search(filterValue: string) {
 }
 searchRooms(filterValue: string){
   
+}
+editProvider(){
+this.providerForm.patchValue({id:this.hospital.id,name:this.hospital.name,email:this.hospital.email,contact_number:this.hospital.contact_number,building:this.hospital.building,location:this.hospital.location,reg_no:this.hospital.reg_no})
+this.providerModal.show();
+}
+onProvider(){
+  this.service.updateHospital(this.providerForm.value).subscribe((res)=>{
+    this.toastr.success('Successfully created a updated provider details');
+    this.providerModal.hide();
+    this.getHospitals();
+  })
 }
 }

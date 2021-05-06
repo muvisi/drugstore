@@ -12,15 +12,19 @@ const EXCEL_EXTENSION = '.xlsx';
 export class ExcelService {
 constructor(private datePipe: DatePipe) { }
 public exportAsExcelFile(json: any[], excelFileName: string): void {
-console.log('ssss',json);
+  const title = 'Cash Paymrnts Report';
+  
   json.forEach(element => {
     delete element['id']
-    // element['Charge Date'] = this.datePipe.transform(element['created'],'yyyy-MM-dd'),
-    // delete element['created'],
-    // element['Patient Name'] = element['name'],
-    // delete element['name']
+    element['Charge Date'] = this.datePipe.transform(element['created'],'yyyy-MM-dd'),
+    delete element['created'],
+    element['Receipt No'] = element['no']
+    delete element['no']
+    element['Client'] = element.patient.first_name + ' '+element.patient.last_name,
+    delete element['patient']
   });
-  console.log(json)
+
+  
   const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
 
   const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };

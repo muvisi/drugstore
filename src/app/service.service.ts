@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint = 'http://localhost:8000/';
+// export const endpoint='http://localhost:8000/';
 export const endpoint = 'https://kapc.healthixsolutions.com:7000/';
 @Injectable({
   providedIn: 'root'
@@ -46,6 +46,14 @@ export class ServiceService {
     return this.http.get(endpoint + 'appointments/all/').pipe(
       map(this.extractData));
   }
+  getAppointmentsRevenues(): Observable<any> {
+    return this.http.get(endpoint + 'appointments/all/?status=complete').pipe(
+      map(this.extractData));
+  }
+  getAppointmentsRevenuesByCounselor(id): Observable<any> {
+    return this.http.get(endpoint + 'appointments/all/?counselor='+id+'&status=complete').pipe(
+      map(this.extractData));
+  }
   getBilling(): Observable<any> {
     return this.http.get(endpoint + 'appointments/payments/').pipe(
       map(this.extractData));
@@ -60,6 +68,14 @@ export class ServiceService {
   }
   updateAppointments(data): Observable<any> {
     return this.http.post(endpoint + 'appointments/update/',data).pipe(
+      map(this.extractData));
+  }
+  appointmentServie(data): Observable<any> {
+    return this.http.post(endpoint + 'appointments/service/',data).pipe(
+      map(this.extractData));
+  }
+  deleteServices(id): Observable<any> {
+    return this.http.delete(endpoint + 'appointments/services/'+id+'/').pipe(
       map(this.extractData));
   }
   addNote(data): Observable<any> {
@@ -326,6 +342,14 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'booking/reservation/?room='+data).pipe(
       map(this.extractData));
   }
+  roomRevenues(){
+    return this.http.get(endpoint + 'booking/room_revenue/').pipe(
+      map(this.extractData));
+  }
+  roomDateRevenues(data){
+    return this.http.post(endpoint + 'booking/room_date_revenue/',data).pipe(
+      map(this.extractData));
+  }
   reservationByStaff(data){
     return this.http.get(endpoint+'booking/reservation/?staff='+data).pipe(
       map(this.extractData));
@@ -373,6 +397,10 @@ searchProcedure(data): Observable<any> {
   revisit(data) {
     return this.http.post(endpoint + 'patients/patient_revisit/', data ).pipe(
       map(this.extractData));
+  }
+  updateClient(data) {
+      return this.http.put(endpoint + 'patients/patient/'+data.id+'/', data ).pipe(
+        map(this.extractData));
   }
   saveClaim(data) {
     return this.http.post(endpoint + 'claims/save_claim/', data ).pipe(
@@ -558,6 +586,12 @@ searchBills(data): Observable<any>{
       ));
   }
 
+  rescheduleAppointment(data){
+    return this.http.post(endpoint + 'appointments/reschedule/',data).pipe(
+      map(this.extractData
+      ));
+  }
+
   addAllergy(data): Observable<any> {
     return this.http.post<{}>(endpoint + 'treatment/add_allergy/', data ).pipe(
       map(this.extractData
@@ -599,7 +633,10 @@ searchScheme(payer, searchTerm): Observable<any> {
   getHospital(id): Observable<any> {
     return this.http.get(endpoint + 'hospitals/' + id + '/', ).pipe(
       map(this.extractData));
-
+  }
+  updateHospital(data): Observable<any> {
+    return this.http.put(endpoint + 'hospitals/' + data.id + '/',data ).pipe(
+      map(this.extractData));
   }
   deleteHospital(id): Observable<any> {
     return this.http.delete(endpoint + 'hospitals/' + id + '/', ).pipe(

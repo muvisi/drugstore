@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <h6 class="card-header">Appointment Details</h6>
+            <h6 class="card-header">Appointment Details
+
+              <span class="pull-right"> Total Bill  <span style="font-weight: 700;font-size:16px;" class="text-danger">{{data.amount | number}}</span></span>
+            </h6>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
@@ -21,7 +24,8 @@
 
                         </div>
                             <div class="col-sm-7" style="text-align:right">
-                              <h6>Amount Paid <span class="text-success" style="font-weight: 600;">{{data.amount | number:'1.2-2'}}</span></h6>
+                              <mat-icon style="font-size:30px;" color="primary">receipt_long</mat-icon> 
+                              <h6>Amount Paid <span class="text-success" style="font-weight:600;">{{data.amount_paid | number:'1.2-2'}}</span></h6>
                             </div>
                           </div>
               
@@ -31,7 +35,60 @@
                     </div>
                     <div class="col-sm-12">
                         <mat-tab-group>
-                          
+                          <mat-tab>
+                            <ng-template mat-tab-label>
+                              Services
+                            </ng-template>
+                            <br>
+                          <div class="row container-fluid">
+                            <div class="col-sm-3">
+                              <mat-form-field appearance="outline">
+                                <mat-label>Search Service</mat-label>
+                                  <input matInput placeholder="Service" [(ngModel)]="text"
+                                  [typeahead]="services"
+                                  typeaheadOptionField="name"
+                                  (typeaheadOnSelect)="onService($event)">
+                                </mat-form-field>
+                          </div>
+                          <br>
+                          <div class="col-sm-12">
+                            <div class="mat-elevation-z8 table-responsive">
+                              <table mat-table [dataSource]="serviceSource" matSort>
+                                <ng-container matColumnDef="sn">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                  <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                </ng-container>
+                                
+                                <ng-container matColumnDef="name">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                                  <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="code">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                              </ng-container>
+
+                                <ng-container matColumnDef="amount">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="delete">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                                  <td mat-cell *matCellDef="let element" (click)="deleteService(element)"><mat-icon color="warn" >delete_sweep</mat-icon></td>
+                                </ng-container>
+                                
+                                <tr mat-header-row *matHeaderRowDef="serviceColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns:serviceColumns;"></tr>
+                              </table>
+                              <mat-paginator #paginator [pageSizeOptions]="[25,50]" showFirstLastButtons></mat-paginator>
+                            </div>
+                          </div>
+                      
+                          </div>
+                          <br>
+
+                          </mat-tab>
                             <mat-tab>
                               <ng-template mat-tab-label>
                                Ncba Payments
@@ -177,13 +234,6 @@
                                             </mat-select>
                                           </mat-form-field>
                                         </div>
-                                        <!-- <div class="col-sm-3">
-                                          <mat-form-field appearance="outline">
-                                            <mat-label>Transaction No</mat-label>
-                                              <input matInput placeholder="Transaction"   formControlName="transaction">
-                                              <mat-error *ngIf="f.transaction.errors && submitted">Transaction no<strong>required</strong></mat-error>
-                                            </mat-form-field>
-                                        </div> -->
                                         <div class="col-sm-12">
                                               
                                           <mat-form-field  appearance="outline">
@@ -191,6 +241,9 @@
                                               <textarea matInput cols="30" rows="5"  placeholder="Reason for Appointment" formControlName="reason"></textarea>
                                           <mat-error *ngIf="f.reason && submitted">Reason for Appointment <strong>required</strong></mat-error>
                                             </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-12">
+                                         <button class="btn btn-success btn-sm pull-right" *ngIf="appointmentForm.dirty">update</button>
                                       </div>
                                     </div>
                                   </form>
@@ -249,7 +302,7 @@
                                               </mat-form-field>
                                           </div>
                                          <div class="col-sm-6">
-                                           <button class="btn btn-success btn pull-right" type="submit" *ngIf="counselorForm.dirty" [disabled]="data.amount < 2000">Save</button>
+                                           <button class="btn btn-success btn pull-right" type="submit" *ngIf="counselorForm.dirty" [disabled]="data.amount_paid < data.amount">Save</button>
                                          </div>
                                       </div>
                                     </form>
@@ -327,6 +380,47 @@
             </div>
           
         </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #serviceModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Add Service</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="serviceModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  [formGroup]="serviceForm" (ngSubmit)="addService()">
+       <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Service</mat-label>
+              <input matInput placeholder="Service" formControlName="name" readonly >
+            </mat-form-field>
+        </div>
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Code</mat-label>
+              <input matInput placeholder="Code" formControlName="code" readonly>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Cost</mat-label>
+              <input matInput placeholder="Cost" formControlName="cost" readonly>
+            </mat-form-field>
+        </div>
+        <diiv class="col-sm-12">
+          <button class="btn btn-success pull-right" type="submit">Submit</button>
+        </diiv>
+       </div>
       </form>
       </div>
     </div>

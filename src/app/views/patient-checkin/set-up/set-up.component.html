@@ -70,10 +70,14 @@
                           </div>
                         </div>
                         
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <button class="btn btn-success" (click)="editProvider()">Edit provider Details</button>
+                          </div>
+                        </div>
                            <br>
                   </div>
                   <div class="col-sm-6">
-                    <h6>INSURANCE COMPANIES</h6>
 
                         <mat-card>
                             <mat-card-title>DEPARTMENT</mat-card-title>
@@ -151,6 +155,66 @@
         </div>
         </div>
         </div>
+
+  <div class="modal fade" bsModal #providerModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Edit Provider Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="providerModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <form [formGroup]="providerForm" (ngSubmit)="onProvider()">
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input type="text" id="text-input" formControlName="name"   placeholder="Provider Name" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Reg No</mat-label>
+          <input type="text" id="text-input" formControlName="reg_no"   placeholder="Registration No" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="text" id="text-input" formControlName="email"   placeholder="Email" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Location</mat-label>
+          <input type="text" id="text-input" formControlName="location"   placeholder="Location" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Number</mat-label>
+          <input type="text" id="text-input" formControlName="contact_number"   placeholder="Contact Number" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Building</mat-label>
+          <input type="text" id="text-input" formControlName="building"   placeholder="Building" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12">
+        <button class="btn btn-success pull-right" type="submit" *ngIf="providerForm.dirty" [disabled]="providerForm.invalid">Update</button>
+      </div>
+    </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
             </mat-step>
             <mat-step label="Branches" state="chat">
               <div class="row">
@@ -374,7 +438,20 @@
                         <ng-container matColumnDef="edit">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header>EDIT</th>
                           <td mat-cell *matCellDef="let element">
-                            <button class="btn btn-success btn-sm" (click)="employee=element;userModal.show();edit=false">Edit</button>
+                            <button class="btn btn-info btn-sm" (click)="employee=element;userModal.show();edit=false">Edit</button>
+                             </td>
+                        </ng-container>
+                        <ng-container matColumnDef="deactivate">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>DEACTIVATE</th>
+                          <td mat-cell *matCellDef="let element">
+                            <button class="btn btn-danger btn-sm" [disabled]="!element.is_active" (click)="deactivate(element)">Deactivate</button>
+                             </td>
+                        </ng-container>
+                  
+                        <ng-container matColumnDef="activate">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>ACTIVATE</th>
+                          <td mat-cell *matCellDef="let element">
+                            <button class="btn btn-success btn-sm" (click)="deactivate(element)" [disabled]="element.is_active">Activate</button>
                              </td>
                         </ng-container>
                   
@@ -658,11 +735,7 @@
                   <input type="text" [(ngModel)]="selectedService.name"  matInput >
                </mat-form-field>
              </div>
-             <div class="col-sm-6">
-               <!-- <mat-form-field appearance="outline">
-                  <input type="text" id="text-input" name="category" matInput placeholder="Category" [(ngModel)]="selectedService.category" >
-               </mat-form-field> -->
-             </div>
+            
              <div class="col-sm-6">
                 <mat-form-field appearance="outline">
                   <mat-label>Code</mat-label>
@@ -675,8 +748,12 @@
                      <input type="text"  name="cost" matInput placeholder="Cost" [(ngModel)]="selectedService.cost">
                   </mat-form-field>
                 </div>
-                <br>
-                <br>
+                <div class="col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                     <textarea name="desc" id=""  rows="3" matInput [(ngModel)]="selectedService.description"></textarea>
+                  </mat-form-field>
+                </div>
                 <div class="col-sm-12">
                     <table class="table mat-elevation-z8" *ngIf="selectedServices.length">
                         <thead>
@@ -947,7 +1024,11 @@
   </div>
 </div>
 </div>
+
 </div>
+
+
+
             </mat-step>
            
           
