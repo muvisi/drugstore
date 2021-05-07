@@ -100,10 +100,10 @@ export class AppointmentDetailsComponent implements OnInit {
       if(this.data.notes){
         this.noteForm.patchValue({notes:this.data.notes})
       }
-      if(this.data.counselor.id){
+      if(this.data.counselor != undefined){
         this.onSelect(this.data.counselor.id);
       }
-      if(this.data.supervisor.id){
+      if(this.data.supervisor != undefined){
         this.onCounsoler(this.data.supervisor.id);
       }
       
