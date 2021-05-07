@@ -22,6 +22,7 @@ export class ReappointmentComponent implements OnInit {
     this.appointmentForm = this.formBuilder.group({
       phone: ['',Validators.required],
       time: ['', Validators.required],
+      type: ['', Validators.required],
       reason: ['', Validators.required],
       first_name: ['', Validators.required],
       other_names: [''],

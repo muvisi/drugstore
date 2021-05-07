@@ -30,7 +30,7 @@ date;
 cash_date;
 mpesaColumns: string[] = ['sn','name','msisdn','amount','channel','trxref','accountref','status','date'];
 displayedColumns: string[] = ['sn','date','amount','trx','client','mobile','name'];
-Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
+Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status']
 claimsColumns: string[] = ['sn','member','patient_number','visit_number','insurance_company','member_number','visit_type','amount','created'];
   constructor(public service: ServiceService, private router: Router,
     public navCtrl: NgxNavigationWithDataComponent, private toastr: ToastrService,private excelService: ExcelService,private datePipe: DatePipe) {

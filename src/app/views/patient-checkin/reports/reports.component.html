@@ -180,12 +180,7 @@
                   <span class="text-success" *ngIf="element.status=='1'">Used</span>
                    </td>
               </ng-container>
-              <ng-container matColumnDef="use">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Use</th>
-                <td mat-cell *matCellDef="let element"> 
-                  <button class="btn btn-primary btn-sm"  (click)="utilize(element)" [disabled]="element.status=='1'">Utilize</button>
-                   </td>
-              </ng-container>
+            
               
               <tr mat-header-row *matHeaderRowDef="Columns"></tr>
               <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
@@ -317,6 +312,10 @@
               <ng-container matColumnDef="Counselor">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Counselor</th>
                 <td mat-cell *matCellDef="let element" [ngClass]="{'one': element.counselor.username,'two':!element.counselor.username}"> {{element.counselor.username || 'Not Assigned' | uppercase}} </td>
+              </ng-container>
+              <ng-container matColumnDef="supervisor">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Supervisor</th>
+                <td mat-cell *matCellDef="let element" > {{element.supervisor?.username || 'None' | uppercase}} </td>
               </ng-container>
               
               <ng-container matColumnDef="amount">

@@ -188,6 +188,20 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Appointment Type</mat-label>
+                      <mat-select formControlName="type">
+                        <mat-option  value="standard">
+                          Standard
+                        </mat-option>
+                        <mat-option  value="Supervision">
+                          Supervision
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="f.type && submitted">Appointment Type <strong>required</strong></mat-error>
+                    </mat-form-field>
+                  </div>
                   
                   <div class="col-sm-12">
                         

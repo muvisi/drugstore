@@ -18,12 +18,13 @@ export class AppointmentComponent implements OnInit {
   displayedColumns: string[] = ['patient_no', 'name','phone','appointment_date','time','reason','transaction'];
   listColumns: string[] = ['S/No', 'name','phone','time'];
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
-  maxDate;
+  maxDate = new Date();
   constructor(public service: ServiceService,private formBuilder: FormBuilder,public toastr: ToastrService,public router:Router ) { }
   ngOnInit() {
     this.maxDate = new Date();
     this.appointmentForm = this.formBuilder.group({
       phone: ['',Validators.required],
+      type: ['', Validators.required],
       time: ['', Validators.required],
       reason: ['', Validators.required],
       first_name: ['', Validators.required],

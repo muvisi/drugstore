@@ -74,6 +74,15 @@ export class ServiceService {
     return this.http.post(endpoint + 'appointments/service/',data).pipe(
       map(this.extractData));
   }
+  appointmentSupervison(data): Observable<any> {
+    return this.http.post(endpoint + 'appointments/supervision/',data).pipe(
+      map(this.extractData));
+  }
+  getSupervisons(id): Observable<any> {
+    return this.http.post(endpoint + 'appointments/get_supervisions/',{id:id}).pipe(
+      map(this.extractData));
+  }
+
   deleteServices(id): Observable<any> {
     return this.http.delete(endpoint + 'appointments/services/'+id+'/').pipe(
       map(this.extractData));

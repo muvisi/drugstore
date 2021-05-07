@@ -37,19 +37,19 @@
                 </ng-container>
                   <ng-container matColumnDef="name">
                               <th mat-header-cell *matHeaderCellDef>Client Name</th>
-                              <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.appointment.client.first_name}} {{element.appointment.client.last_name}} {{element.appointment.client.othwer_names}}  </td>
+                              <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.appointment.client?.first_name}} {{element.appointment.client?.last_name}} {{element.appointment?.client.othwer_names}}  </td>
                   </ng-container>
                   <ng-container matColumnDef="national_id">
                     <th mat-header-cell *matHeaderCellDef>National ID</th>
-                    <td mat-cell *matCellDef="let element"> {{element.appointment.client.national_id}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.appointment.client?.national_id}} </td>
                   </ng-container>
                     <ng-container matColumnDef="phone">
                       <th mat-header-cell *matHeaderCellDef>Phone Number</th>
-                      <td mat-cell *matCellDef="let element"> {{element.appointment.client.phone || N/A}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.appointment.client?.phone || N/A}} </td>
                     </ng-container>   
                   <ng-container matColumnDef="counselor">
                     <th mat-header-cell *matHeaderCellDef>Counselor</th>
-                    <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;"> {{element.appointment.counselor.first_name}} {{element.appointment.counselor.last_name}}  </td>
+                    <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;"> {{element.appointment.counselor?.first_name}} {{element.appointment.counselor?.last_name}}  </td>
                   </ng-container>   
                  
           

@@ -38,11 +38,13 @@ export class AppointmentDetailsComponent implements OnInit {
   seleted:any={};
   serviceForm: FormGroup;
   text: string;
+  supervisionForm: FormGroup;
   constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
   ngOnInit() {
     this.appointmentForm = this.formBuilder.group({
       time: ['', Validators.required],
       reason: ['', Validators.required],
+      type: ['', Validators.required],
       date:['',Validators.required]
     });
 
@@ -65,6 +67,14 @@ export class AppointmentDetailsComponent implements OnInit {
       room:['',Validators.required]
     });
 
+    this.supervisionForm = this.formBuilder.group({
+      first_name: ['', Validators.required],
+      last_name: [''],
+      phone:[''],
+      email:['',Validators.required],
+      id:['',Validators.required],
+    });
+
     this.cashForm = this.formBuilder.group({
       amount: [0, [Validators.required,Validators.min(10)]],
     });
@@ -76,6 +86,7 @@ export class AppointmentDetailsComponent implements OnInit {
   get f() { return this.appointmentForm.controls; }
   get g() { return this.counselorForm.controls; }
   get h() { return this.cashForm.controls; }
+  get i() { return this.supervisionForm.controls; }
 
 
   getAppointment(id){
@@ -92,12 +103,17 @@ export class AppointmentDetailsComponent implements OnInit {
       if(this.data.counselor.id){
         this.onSelect(this.data.counselor.id);
       }
+      if(this.data.supervisor.id){
+        this.onCounsoler(this.data.supervisor.id);
+      }
+      
+
       if(this.data.Location){
         let room = this.rooms.find(obj=>obj.name == this.data.Location);
         this.counselorForm.patchValue({room:room.id});
       }
     
-      this.appointmentForm.patchValue({date:new Date(this.data.StartTime),reason:this.data.Description,time:moment(this.data.StartTime).format('H:mm')})
+      this.appointmentForm.patchValue({date:new Date(this.data.StartTime),reason:this.data.Description,time:moment(this.data.StartTime).format('H:mm'),type:this.data.type})
     })
   }
   getRoom() {
@@ -120,6 +136,10 @@ export class AppointmentDetailsComponent implements OnInit {
   onSelect(id){
     let data = this.counsolers.find(obj=>obj.id==id);
     this.counselorForm.patchValue({first_name:data.first_name ? data.first_name: '',last_name:data.last_name,phone:data.phone,email:data.email,id:id})
+  }
+  onCounsoler(id){
+    let data = this.counsolers.find(obj=>obj.id==id);
+    this.supervisionForm.patchValue({first_name:data.first_name ? data.first_name: '',last_name:data.last_name,phone:data.phone,email:data.email,id:id})
   }
   onSave(){
     this.submitted = true;
@@ -160,7 +180,7 @@ export class AppointmentDetailsComponent implements OnInit {
       this.service.ncbaPayments({id:item.id,amount:item.amount,appointment:this.route.snapshot.params.id}).subscribe((res)=>{
         this.toastr.success("Successfully Utilized");
         this.staticModal.hide();
-        this.getPayments(this.customer.phone);
+        this.ngOnInit();
       })
     }
   }
@@ -173,6 +193,12 @@ export class AppointmentDetailsComponent implements OnInit {
     }
   }
   addStatus(text){
+  //  console.log(moment().format('H:mm'))
+  //  if(moment(this.data.StartTime).format('H:mm') == '13:00' ){
+  //    console.log("Sawa")
+  //  }else{
+  //   console.log("no")
+  //  }
     let data:any ={}
     data.id = this.route.snapshot.params.id
     data.status = text
@@ -217,5 +243,18 @@ export class AppointmentDetailsComponent implements OnInit {
         this.toastr.error("Failed to delete","Error");
       })
     }
+  }
+  onAdd(){
+    this.submitted = true;
+    if(this.supervisionForm.invalid){
+      return
+    }
+    let data = this.supervisionForm.value
+    data.appointment = this.route.snapshot.params.id
+    this.service.appointmentSupervison(data).subscribe((res)=>{
+      this.toastr.success("Added Supervision","Success");
+    },(err)=>{
+      this.toastr.error(err.error.error,"Error");
+    })
   }
 }

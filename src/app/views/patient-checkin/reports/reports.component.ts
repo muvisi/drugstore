@@ -27,9 +27,9 @@ export class ReportsComponent implements OnInit {
   payments = [];
   id;
   displayedColumns: string[] = ['sn','date','amount','trx','client','mobile','name'];
-  Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
+  Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status']
   roomsColumns: string[] = ['sn','date','room','start', 'end','amount','type','staff'];
-  revenueColumns: string[] = ['sn','StartTime','EndTime','Client','national_id','phone','Counselor','amount']
+  revenueColumns: string[] = ['sn','StartTime','EndTime','Client','national_id','phone','Counselor','supervisor','amount']
   @ViewChild('pagination', {static: true}) paginator: MatPaginator;
   @ViewChild('paginator1', {static: true}) paginator1: MatPaginator;
   counsolers=[];
