@@ -100,10 +100,10 @@ export class AppointmentDetailsComponent implements OnInit {
       if(this.data.notes){
         this.noteForm.patchValue({notes:this.data.notes})
       }
-      if(this.data.counselor != undefined){
+      if(this.data.counselor!= undefined && this.data.counselor.id != undefined){
         this.onSelect(this.data.counselor.id);
       }
-      if(this.data.supervisor != undefined){
+      if(this.data.supervisor!= undefined && this.data.supervisor.id!= undefined){
         this.onCounsoler(this.data.supervisor.id);
       }
       
@@ -134,12 +134,12 @@ export class AppointmentDetailsComponent implements OnInit {
   })
   }
   onSelect(id){
-    let data = this.counsolers.find(obj=>obj.id==id);
-    this.counselorForm.patchValue({first_name:data.first_name ? data.first_name: '',last_name:data.last_name,phone:data.phone,email:data.email,id:id})
+    let data = this.counsolers.find(obj=>obj.id == id);
+    this.counselorForm.patchValue({first_name:data.first_name ? data.first_name: '',last_name : data.last_name,phone:data.phone,email:data.email,id:id})
   }
   onCounsoler(id){
     let data = this.counsolers.find(obj=>obj.id==id);
-    this.supervisionForm.patchValue({first_name:data.first_name ? data.first_name: '',last_name:data.last_name,phone:data.phone,email:data.email,id:id})
+    this.supervisionForm.patchValue({first_name: data.first_name ? data.first_name: '', last_name:data.last_name,phone:data.phone,email:data.email,id:id})
   }
   onSave(){
     this.submitted = true;
