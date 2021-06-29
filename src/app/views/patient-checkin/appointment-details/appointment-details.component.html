@@ -9,11 +9,11 @@
                 <div class="row">
                     <div class="col-sm-12">
                       <div class="row">
-                        <div class="col-sm-12 col-md-1 col-lg-1">
+                        <div class="col-sm-12 col-md-1 col-lg-1 col-3">
                           <img src="../../../../assets/img/avatars/female.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Female' || customer.gender == 'female'">
                           <img src="../../../../assets/img/avatars/download.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Male' || customer.gender == 'male'">
                         </div>
-                        <div class="col-sm-12 col-md-11 col-lg-11 ">
+                        <div class="col-sm-12 col-md-11 col-lg-11 col-9">
                           <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
@@ -35,6 +35,54 @@
                     </div>
                     <div class="col-sm-12">
                         <mat-tab-group>
+                          <mat-tab>
+                            <ng-template mat-tab-label>
+                              Appointments Fee
+                            </ng-template>
+                            <br>
+                          <div class="row container-fluid">
+                            <div class="col-sm-12">
+                              <div class="mat-elevation-z8 table-responsive">
+                                <table mat-table [dataSource]="feesSource" matSort>
+                                  <ng-container matColumnDef="sn">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                    <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                                </ng-container>
+                                  <ng-container matColumnDef="type">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Type</th>
+                                    <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.mode}} </td>
+                                  </ng-container>
+                              
+                                  <ng-container matColumnDef="amount">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="transaction">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction</th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                      <span *ngIf="element.amount < 0">Refund</span>
+                                      <span *ngIf="element.amount > 0">Fee Payment</span>
+
+                                       </td>
+                                  </ng-container>
+                            
+                                  <ng-container matColumnDef="refund">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Refund</th>
+                                    <td mat-cell *matCellDef="let element"> <button class="btn btn-success btn-sm" [disabled]="element.status ==1" (click)="refund(element);element.status=1">Refund</button> </td>
+                                  </ng-container>        
+                                  <tr mat-header-row *matHeaderRowDef="feesColumns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns:feesColumns;"></tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[20,40]" showFirstLastButtons></mat-paginator>
+                              </div>
+                            </div> 
+                          </div>
+                          <br>
+                          </mat-tab>
                           <mat-tab>
                             <ng-template mat-tab-label>
                               Services
@@ -198,6 +246,180 @@
                                 </div>
                               </div>
                               <br>
+                            </mat-tab>
+
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                                Insurance Payments
+                              </ng-template> 
+                              <br>
+                            <div class="row container-fluid">
+                              <div class="col-sm-3">
+                                <mat-form-field appearance="outline">
+                                  <mat-label>Search Insurance</mat-label>
+                                    <input matInput placeholder="Insurance" [(ngModel)]="member.insurance"
+                                    [typeahead]="insurances"
+                                    typeaheadOptionField="name"
+                                    (typeaheadOnSelect)="onInsurance($event)">
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-sm-3">
+                                <mat-form-field appearance="outline">
+                                  <mat-label>Member No</mat-label>
+                                    <input matInput placeholder="Member No" [(ngModel)]="member.member_no">
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-sm-2">
+                                <button class="btn btn-success" (click)="insureCheck()" style="margin-top: 6px;">Search</button>
+                              </div>
+                              <div class="col-sm-12">
+                                <div class="card">
+                                  <div class="card-header">
+                                    Member Details
+                                  </div>
+                                  <div class="card-body">
+                                 <div class="row">
+                                  <div class="col-sm-3">
+                                    <mat-form-field appearance="outline">
+                                      <mat-label>Member Name</mat-label>
+                                        <input matInput placeholder="Name" [(ngModel)]="member_data.name" readonly>
+                                      </mat-form-field>
+                                   </div>
+                                   <div class="col-sm-3">
+                                    <mat-form-field appearance="outline">
+                                      <mat-label>Insurance Company</mat-label>
+                                        <input matInput placeholder="Payer" [(ngModel)]="member_data.payer" readonly>
+                                      </mat-form-field>
+                                   </div>
+                                 
+                                 <div class="col-sm-3">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Member No</mat-label>
+                                      <input matInput placeholder="Member No" [(ngModel)]="member_data.member_number" readonly>
+                                    </mat-form-field>
+                                 </div>
+                                 <div class="col-sm-3">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>National ID</mat-label>
+                                      <input matInput placeholder="Member No" [(ngModel)]="member_data.national_id" readonly>
+                                    </mat-form-field>
+                                 </div>
+                                 <div class="col-sm-3">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Scheme</mat-label>
+                                      <input matInput placeholder="Scheme" [(ngModel)]="member_data.scheme" readonly>
+                                    </mat-form-field>
+                                 </div>
+                                 <div class="col-sm-3">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Plan</mat-label>
+                                      <input matInput placeholder="Plan" [(ngModel)]="member_data.plan" readonly>
+                                    </mat-form-field>
+                                 </div>
+                                 <div class="col-sm-2">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Effective Date</mat-label>
+                                      <input matInput placeholder="Scheme" [(ngModel)]="member_data.effective_date" readonly>
+                                    </mat-form-field>
+                                 </div>
+                                 <div class="col-sm-2">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Plan Expiry Date</mat-label>
+                                      <input matInput placeholder="Scheme" [(ngModel)]="member_data.plan_expire_date" readonly>
+                                    </mat-form-field>
+                                 </div>
+                                 <div class="col-sm-2">
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Status</mat-label>
+                                      <input matInput placeholder="Status" [(ngModel)]="member_data.status" readonly>
+                                    </mat-form-field>
+                                 </div>
+                                
+                                 </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-12">
+                                <div class="card">
+                                  <div class="card-header">
+                                    Benefits
+                                  </div>
+                                  <div class="card-body">
+                                   <div class="row">
+                                     <div class="col-sm-12">
+                                      <table class="table table-striped">
+                                        <thead>
+                                          <tr>
+                                            <th>S/N</th>
+                                            <th>Benefit</th>
+                                            <th>Balance</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let item of member_data.benefits;let i=index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item.benefit__benefit}}</td>
+                                            <td>{{item.balance}}</td>
+                                        
+                                          </tr>
+                                          
+                                        </tbody>
+                                      </table>
+                                     </div>
+                                   </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-12">
+                                <div class="card">
+                                  <div class="card-header">
+                                    Services
+                                  </div>
+                                  <div class="card-body">
+                                   <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="mat-elevation-z8 table-responsive">
+                                        <table mat-table [dataSource]="serviceSource" matSort>
+                                          <ng-container matColumnDef="sn">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                            <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                          </ng-container>
+                                          
+                                          <ng-container matColumnDef="name">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                                            <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                                          </ng-container>
+          
+                                          <ng-container matColumnDef="code">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                                        </ng-container>
+          
+                                          <ng-container matColumnDef="amount">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                                          </ng-container>
+                                          <ng-container matColumnDef="delete">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Select</th>
+                                            <td mat-cell *matCellDef="let element" > <mat-checkbox (change)="claimService(element)"></mat-checkbox> </td>
+                                          </ng-container>
+                                          
+                                          <tr mat-header-row *matHeaderRowDef="billsColumns"></tr>
+                                          <tr mat-row *matRowDef="let row; columns:billsColumns;"></tr>
+                                        </table>
+                                        <mat-paginator #paginator [pageSizeOptions]="[25,50]" showFirstLastButtons></mat-paginator>
+                                      </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-12">
+                                <button class="btn btn-success btn-sm pull-right" (click)="claimSubmit()" >Submit</button>
+                              </div>
+                            </div>
+                            <br>
                             </mat-tab>
 
                             <mat-tab>
@@ -395,10 +617,7 @@
                                   </mat-form-field>
   
                                 </div>
-                                <!-- <div class="col-sm-12">
-                                  <button class="btn btn-sm btn-success pull-right" *ngIf="noteForm.dirty" [disabled]="noteForm.invalid">Save</button>
-                                </div> -->
-                                
+
                               </div>
                             </form>
                             </div>

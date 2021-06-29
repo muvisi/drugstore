@@ -73,6 +73,9 @@ import { ReappointmentComponent } from './reappointment/reappointment.component'
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentDetailsComponent } from './appointment-details/appointment-details.component';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { ClaimsCheckComponent } from './claims-check/claims-check.component';
+import { InpatientComponent } from './inpatient/inpatient.component';
+import { OutpatientComponent } from './outpatient/outpatient.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -121,7 +124,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     ReappointmentComponent,
     AppointmentListComponent,
     AppointmentDetailsComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    ClaimsCheckComponent,
+    InpatientComponent,
+    OutpatientComponent
   ],
   imports: [
     CommonModule,

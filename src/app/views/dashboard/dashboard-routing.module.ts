@@ -46,6 +46,9 @@ import { ReappointmentComponent } from '../patient-checkin/reappointment/reappoi
 import { AppointmentListComponent } from '../patient-checkin/appointment-list/appointment-list.component';
 import { AppointmentDetailsComponent } from '../patient-checkin/appointment-details/appointment-details.component';
 import { UserAccountComponent } from '../patient-checkin/user-account/user-account.component';
+import { ClaimsCheckComponent } from '../patient-checkin/claims-check/claims-check.component';
+import { InpatientComponent } from '../patient-checkin/inpatient/inpatient.component';
+import { OutpatientComponent } from '../patient-checkin/outpatient/outpatient.component';
 
 const routes: Routes = [
   {
@@ -239,8 +242,32 @@ const routes: Routes = [
     }
   },
   {
+    path: 'eclaims-dashboard/checking',
+    component: ClaimsCheckComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'claims'
+    }
+  },
+  {
     path: 'eclaims-dashboard/batching',
     component: BatchingComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'claims'
+    }
+  },
+  {
+    path: 'eclaims-dashboard/inpatient',
+    component: InpatientComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'claims'
+    }
+  },
+  {
+    path: 'eclaims-dashboard/outpatient',
+    component: OutpatientComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'claims'
@@ -255,7 +282,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'eclaims-dashboard/batch-details',
+    path: 'eclaims-dashboard/batch-details/:id',
     component: BatchDetailComponent,
     canActivate: [AuthGuard],
     data: {
@@ -297,7 +324,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'claims/claim-detail',
+    path: 'claims/claim-detail/:id',
     component: ClaimDetailComponent,
     canActivate: [AuthGuard],
     data: {

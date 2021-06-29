@@ -1,22 +1,21 @@
-<div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-3">
-                <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                  </mat-form-field>
-            </div>
-            <div class="col-sm-9">
-                          <button class="btn btn-info btn-sm" (click)="staticModal.show()" [disabled]="!batchClaims.length" style="margin-top: 10px;" > <i class="icon-plus"></i> Create  Batch</button>
 
-            </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <h6 class="card-header">Batching Claims</h6>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+              <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+          </div>
+          <div class="col-sm-9">
+                        <button class="btn btn-info" (click)="staticModal.show()" [disabled]="!batchClaims.length" style="margin-top: 10px;" > <i class="icon-plus"></i> Create  Batch</button>
+
           </div>
         </div>
-      </div>
-      
-      <div class="row">
+        <div class="row">
           <div class="col-sm-12">
               <div class="mat-elevation-z8 table-responsive">
                   <table mat-table [dataSource]="dataSource">
@@ -66,14 +65,24 @@
                 </div>
           </div>
       </div>
+      </div>
     </div>
   </div>
+</div>
+
+
   <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
     aria-labelledby="dialog-static-name">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog" style="max-width: 1350px!important;">
       <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="dialog-static-name" class="modal-title pull-left">Claim Batching</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="modal-body">
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-sm-6">
               <h6 id="dialog-static-name" class="modal-title pull-left" style="font-size:11px;font-weight:bold">SELECTED CLAIMS</h6>
             </div>
@@ -82,13 +91,12 @@
                 <span class="text-success" style="font-size:11px;font-weight:bold;float: right"> <i class="cui-dollar"></i> {{total | number}} </span>
               </h6>
             </div>
-          </div>
+          </div> -->
          <div class="row" style="margin-top:5px;">
           <div class="col-sm-12 table-responsive ">
-            <table class="table table-condensed table-hover table-sm"
-              style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            <table class="table table-condensed table-hover">
               <thead>
-                <tr style="font-size:10px;font-weight:bold;" class="text-primary">
+                <tr >
                   <th>S.NO</th>
                   <th> MEMBER NUMBER</th>
                   <th>VISIT NUMBER</th>
@@ -96,21 +104,18 @@
                   <th> MEMBER NUMBER</th>
                   <th> AMOUNT</th>
                   <th>DELETE</th>
-                  <!-- <th><i class="icon-wallet"></i> Amount</th>
-                  <th><i class="cui-calendar"></i>Check in</th>
-                  <th><i class="icon-clock"></i> Time</th> -->
-            
+               
                 </tr>
               </thead>
               <tbody id="displ">
-                <tr *ngFor="let visit of batchClaims;let i = index" style="font-weight:bold;font-size:9px;">
+                <tr *ngFor="let visit of batchClaims;let i = index" >
                   <td> {{i+1}} </td>
                   <td> {{visit.member|uppercase}}</td>
                   <td> {{visit.visit_number}}</td>
                   <td> {{visit.insurance_company}}</td>
                   <td> {{visit.member_number}}</td>
-                  <th>{{visit.amount|number}}</th>
-                  <td (click)="addClaims(visit,$event);claimsCheck()"><i class="icon-trash" style="font-weight:bolder;font-size:12px;color:red"></i></td>
+                  <th>{{visit.amount|number:'1.2-2'}}</th>
+                  <td (click)="addClaims(visit,$event);claimsCheck()"><i class="icon-trash" style="font-weight:bolder;font-size:16px;color:red"></i></td>
             
                 </tr>
             
@@ -118,8 +123,14 @@
             </table>
           </div>
          </div>
-          <button class="btn btn-danger btn-sm" (click)="staticModal.hide()">Cancel</button>
-          <button class="btn btn-success btn-sm" (click)="saveBatch()" style="margin-left:12px;">Submit</button>
+          <button class="btn btn-danger btn-sm pull-right" (click)="staticModal.hide()">Cancel</button>
+          <button class="btn btn-success btn-sm pull-right" (click)="saveBatch()" style="margin-left:12px;margin-right:5px;">Submit</button>
         </div>
       </div>
     </div>
+
+
+
+
+
+    

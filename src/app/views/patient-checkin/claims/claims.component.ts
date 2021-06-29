@@ -4,6 +4,7 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-claims',
@@ -23,7 +24,7 @@ export class ClaimsComponent implements OnInit {
   loading = true;
   claims =[];
   date: Date;
-  constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) { }
+  constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent,public router:Router,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getClaims();
@@ -47,11 +48,10 @@ export class ClaimsComponent implements OnInit {
     this.dataSource = new MatTableDataSource(items);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-  }  
+  }
 
   claimDetails(item) {
-    console.log(item);
-    this.navCtrl.navigate('/dashboard/claims/claim-detail', { id: item.id });
+    this.router.navigate(['/dashboard/claims/claim-detail',item.id])
   }
   onSelect(item){
     this.navCtrl.navigate('/dashboard/claims/claim-detail', { id: item.item.id });

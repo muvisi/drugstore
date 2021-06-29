@@ -9,8 +9,8 @@
              <span style="margin-left:40px;border-radius:2px;font-size:10px;"  matBadge="{{unmatchedCount}}" matBadgeOverlap="false" matBadgeColor="warn">  <b>MISSMATCHED</b></span>
         </div>
            <div class="col-sm-4">
-             <button class="btn btn-danger btn-sm pull-right" style="margin-left:5px;" [disabled]="batch.status != 'NEW'" (click)="deleteBatch()"><b>Delete</b></button>
-             <button class="btn btn-success btn-sm pull-right" [disabled]="showDispatchButton || batch.status !='NEW'" (click)="sendBatch()"><b>Dispatch</b></button>
+             <button class="btn btn-danger pull-right" style="margin-left:5px;" [disabled]="batch.status != 'NEW'" (click)="deleteBatch()"><b>Delete</b></button>
+             <button class="btn btn-success pull-right" [disabled]="showDispatchButton || batch.status !='NEW'" (click)="sendBatch()"><b>Dispatch</b></button>
            </div>
          </div>
 </mat-card>

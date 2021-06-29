@@ -1,43 +1,48 @@
-
+div{
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  ::ng-deep .mat-tab-label {
+  padding: 0px !important; // adjust this to whatever padding you need
+  justify-content: left !important;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  input[type="text"],input[type="select"]{
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  
+  ::ng-deep mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix  { padding: 0.6em 0px }
+  ::ng-deep mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix > span.mat-form-field-label-wrapper { top: -1.3em; }
+  
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(.75);
+  width: 133.33333%;
+  }
 table{
-  font-family: "Open Sans", Tahoma, sans-serif;
-  width: 100%;   
+    width: 100%;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-
-// tr.mat-header-row {
-// 	height:38px;
-// }
 td.mat-cell{
-  font-size:13px;
-  font-weight: bold;
+    font-size:13px;
 }
 tr.mat-row, tr.mat-footer-row {
-  height: 32px;
+    height: 37px;
+  }
+ tr.mat-header-row {
+    height:39px;
 }
-
-th.mat-header-cell {
-  text-align: left;
-  text-transform: uppercase;
-  font-size: 13px;
-  font-weight: bold;
+.one{
+    color:green;
+    text-transform: capitalize;
+    font-weight: 600;
 }
-
-th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
-  padding: 0;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
+.two{
+    color:red;
+    text-transform: capitalize;
+    font-weight: 600;
 }
-
-th.mat-header-cell:first-child, td.mat-cell:first-child, td.mat-footer-cell:first-child {
-  padding-left: 24px;
+div{
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-
-th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-child {
-  padding-right: 24px;
-}
-::ng-deep .mat-checkbox-checked.mat-primary .mat-checkbox-background .mat-checkbox-background , .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
-  background: pink!important;
-}
-mat-form-field{
-    width: 100%;
-}
+  form{
+      width: 100%;
+  }

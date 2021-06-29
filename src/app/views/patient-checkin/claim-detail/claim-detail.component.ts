@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-claim-detail',
@@ -14,8 +15,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ClaimDetailComponent implements OnInit {
   @ViewChild(ModalDirective, { static: true}) staticModal: ModalDirective;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  displayedColumns: string[] = ['description', 'code', 'date'];
-  sectionsColumns: string[] = ['invoice_number','description','category','price','quantity','total'];
+  displayedColumns: string[] = ['sn','description', 'code', 'date'];
+  sectionsColumns: string[] = ['sn','invoice_number','description','category','price','quantity','total'];
   dataSource;
   id;
   claim;
@@ -28,12 +29,11 @@ export class ClaimDetailComponent implements OnInit {
   diagnosis: any = [];
   claimId;
   loading = true;
-  constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent, public toastr: ToastrService) {
+  constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent, public toastr: ToastrService,private route: ActivatedRoute) {
   }
-
   ngOnInit() {
-    this.claim = {};
-    this.id = this.navCtrl.get('id');
+    this.claim = {}
+    this.id = this.route.snapshot.params.id;
     this.claimDetail();
     this.getDiagnosis();
     }

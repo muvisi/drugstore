@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../../service.service';
 import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -20,6 +20,7 @@ export class AppointmentDetailsComponent implements OnInit {
   counselorForm: FormGroup;
   counsolers: any=[];
   rooms: any=[];
+  claim:any={};
   dataSource;
   mpesaSource;
   serviceSource;
@@ -30,16 +31,23 @@ export class AppointmentDetailsComponent implements OnInit {
   @ViewChild('paginator', { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
   cashColumns: string[] = ['sn','date','name','amount','trx'];
+  feesColumns: string[] = ['sn','date','type','amount','transaction','refund'];
   serviceColumns: string[] = ['sn','name','code','amount','delete'];
-  time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
+  billsColumns: string[] = ['sn','name','code','amount','delete'];
+  time =['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
   cashForm: FormGroup;
   noteForm: FormGroup;
   services: any=[];
   seleted:any={};
+  member:any={};
+  member_data:any={}
   serviceForm: FormGroup;
   text: string;
   supervisionForm: FormGroup;
-  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
+  insurances =[];
+  feesSource;
+  claim_services =[];
+  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService,public router:Router) { }
   ngOnInit() {
     this.appointmentForm = this.formBuilder.group({
       time: ['', Validators.required],
@@ -66,7 +74,6 @@ export class AppointmentDetailsComponent implements OnInit {
       id:['',Validators.required],
       room:['',Validators.required]
     });
-
     this.supervisionForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: [''],
@@ -82,6 +89,8 @@ export class AppointmentDetailsComponent implements OnInit {
     this.getAppointment(this.route.snapshot.params.id);
     this.getCounselors();
     this.getServices();
+    this.getpayers();
+    this.getFee();
   }
   get f() { return this.appointmentForm.controls; }
   get g() { return this.counselorForm.controls; }
@@ -106,13 +115,11 @@ export class AppointmentDetailsComponent implements OnInit {
       if(this.data.supervisor!= undefined && this.data.supervisor.id!= undefined){
         this.onCounsoler(this.data.supervisor.id);
       }
-      
-
       if(this.data.Location){
         let room = this.rooms.find(obj=>obj.name == this.data.Location);
         this.counselorForm.patchValue({room:room.id});
       }
-    
+      console.log(moment(this.data.StartTime).format('H:mm'))
       this.appointmentForm.patchValue({date:new Date(this.data.StartTime),reason:this.data.Description,time:moment(this.data.StartTime).format('H:mm'),type:this.data.type})
     })
   }
@@ -121,17 +128,56 @@ export class AppointmentDetailsComponent implements OnInit {
       this.rooms = res.results;
     });
   }
+  refund(data){
+    this.service.appointmentRefund(data).subscribe((res)=>{
+      this.ngOnInit();
+    })
+  }
   getCounselors(){
     this.service.getAppointmentUsers().subscribe((res)=>{
       this.counsolers = res.results;
     })
   }
   onSubmit(){
-  let data = this.appointmentForm.value
-  data.id = this.route.snapshot.params.id
-  this.service.rescheduleAppointment(data).subscribe((res)=>{
-    this.ngOnInit();
-  })
+    let data = this.appointmentForm.value
+    data.id = this.route.snapshot.params.id
+    this.service.rescheduleAppointment(data).subscribe((res)=>{
+      this.ngOnInit();
+    })
+  }
+  getFee(){
+    this.service.appointmentFee(this.route.snapshot.params.id).subscribe((res)=>{
+      this.feesSource = new MatTableDataSource(res.results)
+    })
+  }
+  onInsurance(item){
+   this.member.id = item.item.id;
+  }
+  claimService(item){
+    let data = this.claim_services.find(obj => obj.id == item.id);
+    if(data == undefined){
+      this.claim_services.push(item);
+     }else{
+      let index = this.claim_services.findIndex(obj => obj.id == item.id);
+      this.claim_services.splice(index,1);
+     }
+  }
+  claimSubmit(){
+    let claim:any ={};
+    claim.services = this.claim_services;
+    claim.appointment = this.route.snapshot.params.id;
+    claim.member = this.member_data;
+    this.service.createSingleClaim(claim).subscribe((res)=>{
+      this.toastr.success("Successfully created claim",'Success');
+      this.router.navigate(['/dashboard/eclaims-dashboard/claims'])
+
+    })
+  }
+  insureCheck(){
+    this.service.insureCheck(this.member).subscribe((res)=>{
+      this.member_data = res.member_data;
+      this.member_data.benefits = JSON.parse(this.member_data.benefits)
+    })
   }
   onSelect(id){
     let data = this.counsolers.find(obj=>obj.id == id);
@@ -151,8 +197,9 @@ export class AppointmentDetailsComponent implements OnInit {
     data.time =this.appointmentForm.get('time').value
     data.date =this.appointmentForm.get('date').value
     this.service.updateAppointments(data).subscribe((res)=>{
-      this.toastr.success("Successfully updated appointment");
+      this.toastr.success("Successfully updated appointment",'Success');
       this.submitted = true;
+      this.ngOnInit();
     },(err)=>{
       this.toastr.info(err.error.error,"Failed");
     })
@@ -162,7 +209,11 @@ export class AppointmentDetailsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res);
     })
   }
-
+  getpayers(){
+    this.service.getPayers().subscribe((res)=>{
+      this.insurances = res.results;
+    })
+  }
   getCash(id){
     this.service.cashList(id).subscribe((res)=>{
       this.mpesaSource = res.results;

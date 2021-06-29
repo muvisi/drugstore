@@ -59,6 +59,7 @@ export class ReappointmentComponent implements OnInit {
    data.date = this.appointmentForm.get('date').value
    data.time = this.appointmentForm.get('time').value
    data.reason = this.appointmentForm.get('reason').value
+   data.type = this.appointmentForm.get('type').value
    this.service.createReappointment(data).subscribe((res)=>{
    this.toastr.success("Successfully addeded appointment");
     this.submitted = false;

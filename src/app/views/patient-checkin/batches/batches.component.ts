@@ -3,6 +3,7 @@ import { ServiceService } from '../../../service.service';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-batches',
   templateUrl: './batches.component.html',
@@ -14,7 +15,7 @@ export class BatchesComponent implements OnInit {
   value;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   displayedColumns: string[] = ['sn', 'status', 'no', 'unmatched','amountConflicting','uncoded','successful','length','amount','date'];
-  constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent) { }
+  constructor(public service: ServiceService, public navCtrl: NgxNavigationWithDataComponent,public router:Router) { }
 
   ngOnInit() {
     this.batchList();
@@ -48,7 +49,7 @@ export class BatchesComponent implements OnInit {
     });
   }
   batchDetails(item) {
-    this.navCtrl.navigate('/dashboard/eclaims-dashboard/batch-details', { id: item.id });
+    this.router.navigate(['/dashboard/eclaims-dashboard/batch-details',item.id]);
   }
 
   OnSelect(item){

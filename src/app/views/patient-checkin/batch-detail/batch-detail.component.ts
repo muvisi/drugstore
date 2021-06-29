@@ -3,6 +3,8 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { ServiceService } from '../../../service.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table'
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-batch-detail',
   templateUrl: './batch-detail.component.html',
@@ -24,16 +26,14 @@ export class BatchDetailComponent implements OnInit {
   successfulBatchedClaims = [];
   showDispatchButton = false;
   displayedColumns: string[] = ['sn', 'bill_amount', 'errors','patient_name','processing_status','voucher_no','scheme_name','credit_party_name'];
-  constructor(public navCtrl: NgxNavigationWithDataComponent, public service: ServiceService) {
-    this.batchId = this.navCtrl.get('id');
+  constructor(public service: ServiceService,public toastr:ToastrService,public router:Router,private route: ActivatedRoute) {
    }
 
   ngOnInit() {
     this.batchDetails();
   }
 batchDetails() {
-this.service.batchDetails(this.batchId).subscribe((res) => {
-  console.log(res)
+this.service.batchDetails(this.route.snapshot.params.id).subscribe((res) => {
 this.batchClaims = res.batchclaim;
 this.batchId = res.id;
 this.batch = res;
@@ -67,19 +67,21 @@ this.batch = res;
 });
 }
 claimDetails(item) {
-  console.log(item);
-  this.navCtrl.navigate('/dashboard/claims/claim-detail', { id: item.claim.id });
+this.router.navigate(['/dashboard/claims/claim-detail',item.claim.id])
 }
 sendBatch() {
 console.log(this.batchId);
 this.service.sendBatch({'batch_id': this.batchId }).subscribe((res) => {
-  console.log(res);
+  this.toastr.success('Successfully created Batch');
+  this.router.navigateByUrl('/dashboard/eclaims-dashboard/batch-list')
+  
+},(err)=>{
+  this.toastr.success('Failed to send a batch');
 });
 }
 deleteBatch(){
   this.service.deleteBatch(this.batchId).subscribe((res)=>{
-    console.log(res);
-    this.navCtrl.navigate('dashboard/eclaims-dashboard/batch-list/')
+    this.router.navigateByUrl('dashboard/eclaims-dashboard/batch-list')
   })
 }
 }

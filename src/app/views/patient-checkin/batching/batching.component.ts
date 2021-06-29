@@ -4,6 +4,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-batching',
   templateUrl: './batching.component.html',
@@ -22,7 +23,7 @@ export class BatchingComponent implements OnInit {
   searchText;
   batchClaims: any = [];
   total;
-  constructor(public service: ServiceService, private toastr: ToastrService) { }
+  constructor(public service: ServiceService, private toastr: ToastrService,public router:Router) { }
 
   ngOnInit() {
     this.getClaims();
@@ -73,13 +74,16 @@ applyFilter(filterValue: string) {
     }
   }
   saveBatch() {
-    console.log('Read', this.batchClaims);
     this.service.createBatch(this.batchClaims).subscribe((res) => {
       console.log(res);
       this.toastr.success('Successfully created Batch');
       this.staticModal.hide();
-      this.batchClaims = [];
+      this.router.navigateByUrl('/dashboard/eclaims-dashboard/batch-list');
 
+
+    },(err)=>{
+      console.log(err);
+      this.toastr.error('Error');
     });
   }
   // this.navCtrl.navigate('/dashboard/eclaims-dashboard/batch-details', { id: item.id });

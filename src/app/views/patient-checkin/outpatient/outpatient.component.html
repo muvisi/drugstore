@@ -1,0 +1,272 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <h5 class="card-header">Outpatient Claims</h5>
+            <div class="card-body">
+              <mat-tab-group>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    Pending Claims
+                  </ng-template>
+                  <br>
+                  <div class="row container-fluid">
+                    <div class="col-sm-3">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Visit Number</mat-label>
+                        <input matInput placeholder="Visit Number" (keyup)="searchingPending($event.target.value)" >
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-9">
+                    </div>
+                    <br>
+                    <div class="col-sm-12" style="margin-top: 10px;">
+                        <div class="mat-elevation-z8 table-responsive">
+                          <table mat-table [dataSource]="dataSource" matSort>
+                              <ng-container matColumnDef="sn">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                                  <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                          </ng-container>
+                                <ng-container matColumnDef="member_no">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Member No</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.member_number}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="patient_number">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Number</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.patient_number}} </td>
+                                 </ng-container>
+    
+                            <ng-container matColumnDef="visit_number">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Number</th>
+                              <td mat-cell *matCellDef="let element"> {{element.visit_number}} </td>
+                            </ng-container>
+                      
+                            <ng-container matColumnDef="insurance">
+                              <th mat-header-cell *matHeaderCellDef  mat-sort-header>Insurance</th>
+                              <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.insurance_company}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="visit_type">
+                              <th mat-header-cell *matHeaderCellDef  mat-sort-header>Visit Type</th>
+                              <td mat-cell *matCellDef="let element"> {{element.visit_type}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="amount">
+                                <th mat-header-cell *matHeaderCellDef  mat-sort-header>Amount</th>
+                                <td mat-cell *matCellDef="let element"> {{element.amount | number}} </td>
+                              </ng-container>
+                            <ng-container matColumnDef="cashier">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cashier</th>
+                              <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+                            </ng-container>
+                          
+                            <ng-container matColumnDef="missing">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Missing</th>
+                              <td mat-cell *matCellDef="let element"> 
+                                <button class="btn btn-success btn-sm" (click)="erroredClaims(element)" >Edit</button>
+                                 </td>
+                            </ng-container>
+    
+                          
+                            
+                            <tr mat-header-row *matHeaderRowDef="pendingColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns:pendingColumns;" ></tr>
+                          </table>
+                      
+                          <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                </mat-tab>
+              
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    Returned Claims
+                  </ng-template>
+                  <br>
+                  <div class="row container-fluid">
+                    <div class="col-sm-3">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Visit Number</mat-label>
+                        <input matInput placeholder="Visit Number" (keyup)="searchStatus($event.target.value)">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-9">
+                  
+                    </div>
+                    <br>
+                    <div class="col-sm-12" style="margin-top: 10px;">
+                        <div class="mat-elevation-z8 table-responsive">
+                          <table mat-table [dataSource]="returned" matSort>
+                              <ng-container matColumnDef="sn">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                                  <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                          </ng-container>
+                                <ng-container matColumnDef="member_no">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Member No</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.member_number}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="patient_number">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Number</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.patient_number}} </td>
+                                 </ng-container>
+    
+                            <ng-container matColumnDef="visit_number">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Number</th>
+                              <td mat-cell *matCellDef="let element"> {{element.visit_number}} </td>
+                            </ng-container>
+                      
+                            <ng-container matColumnDef="insurance">
+                              <th mat-header-cell *matHeaderCellDef  mat-sort-header>Insurance</th>
+                              <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.insurance_company}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="visit_type">
+                              <th mat-header-cell *matHeaderCellDef  mat-sort-header>Visit Type</th>
+                              <td mat-cell *matCellDef="let element"> {{element.visit_type}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="amount">
+                                <th mat-header-cell *matHeaderCellDef  mat-sort-header>Amount</th>
+                                <td mat-cell *matCellDef="let element"> {{element.amount | number}} </td>
+                              </ng-container>
+                            <ng-container matColumnDef="cashier">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cashier</th>
+                              <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+                            </ng-container>
+                           
+    
+                            <ng-container matColumnDef="view">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                <td mat-cell *matCellDef="let element"> 
+                                  <button class="btn btn-success btn-sm" (click)="getClaimErrors(element.id)">view errors</button>
+                                   </td>
+                              </ng-container>
+                            
+                            <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                            <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
+                          </table>
+                      
+                          <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                </mat-tab>
+              
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    Completed
+                  </ng-template>
+                  <br>
+                  <div class="row container-fluid">
+                    <div class="col-sm-12">
+                  
+                    </div>
+                    <br>
+                    <div class="col-sm-12" style="margin-top: 10px;">
+                        <div class="mat-elevation-z8 table-responsive">
+                          <table mat-table [dataSource]="completed" matSort>
+                              <ng-container matColumnDef="sn">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                                  <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                          </ng-container>
+                                <ng-container matColumnDef="member_no">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Member No</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.member_number}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="patient_number">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Number</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.patient_number}} </td>
+                                 </ng-container>
+    
+                            <ng-container matColumnDef="visit_number">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Visit Number</th>
+                              <td mat-cell *matCellDef="let element"> {{element.visit_number}} </td>
+                            </ng-container>
+                      
+                            <ng-container matColumnDef="insurance">
+                              <th mat-header-cell *matHeaderCellDef  mat-sort-header>Insurance</th>
+                              <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.insurance_company}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="visit_type">
+                              <th mat-header-cell *matHeaderCellDef  mat-sort-header>Visit Type</th>
+                              <td mat-cell *matCellDef="let element"> {{element.visit_type}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="amount">
+                                <th mat-header-cell *matHeaderCellDef  mat-sort-header>Amount</th>
+                                <td mat-cell *matCellDef="let element"> {{element.amount | number}} </td>
+                              </ng-container>
+                            <ng-container matColumnDef="cashier">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cashier</th>
+                              <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+                            </ng-container>
+                           
+                            <tr mat-header-row *matHeaderRowDef="completedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns:completedColumns;" ></tr>
+                          </table>
+                      
+                          <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                </mat-tab>
+              </mat-tab-group>
+              
+            </div>
+          </div>
+    </div>
+</div>
+
+
+<div class="modal fade" bsModal #reasonModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Missing Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="reasonModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-12 container" *ngFor="let reason of reasons"><mat-checkbox [checked]="checkReason(reason)" (change)="addReason(reason,$event)">{{reason.name}}</mat-checkbox></div>
+                </div>
+            
+            <div class="row">
+              <div class="col-sm-12">
+                <button class="btn btn-danger btn-sm pull-right" style="margin-left:8px;"
+                  (click)="reasonModal.hide()">Cancel</button>
+                  <button class="btn btn-success btn-sm pull-right" (click)="saveReasons()"> Save</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Claim Errors</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12" *ngFor="let item of errors">
+            <mat-checkbox [disabled]="true" checked="true">{{item.name}}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

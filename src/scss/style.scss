@@ -16,8 +16,12 @@
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
 
+
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 9999!important;
+}
+body{
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 mat-form-field{
 width: 100%;
@@ -153,7 +157,8 @@ a:link, a:visited,a:hover, a:active {
     padding: $sidebar-nav-link-padding-y $sidebar-nav-link-padding-x;
     color: $sidebar-nav-link-color;
     text-decoration: none;
-    font-size: 19px;
+    font-size: 17px;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     background: $sidebar-nav-link-bg;
     @include borders($sidebar-nav-link-borders);
     @if $enable-sidebar-nav-rounded {

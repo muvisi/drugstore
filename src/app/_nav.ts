@@ -116,6 +116,21 @@ export const navItems: NavData[] = [
     ]
   },
   {
+    name: 'Claims Checking',
+    url: '/dashboard/eclaims-dashboard/checking',
+    icon: 'fa fa-list-alt',
+  },
+  {
+    name: 'Inpatient',
+    url: '/dashboard/eclaims-dashboard/inpatient',
+    icon: 'fa fa-bed',
+  },
+  {
+    name: 'Outpatient',
+    url: '/dashboard/eclaims-dashboard/outpatient',
+    icon: 'fa fa-share',
+  },
+  {
     name: 'eClaims',
     url: '/dashboard/eclaims-dashboard',
     icon: 'icon-layers',
@@ -137,11 +152,6 @@ export const navItems: NavData[] = [
       }
     ]
   },
-  // {
-  //   name: 'Pharmacy Stock',
-  //   url: '/dashboard/stock-level',
-  //   icon: 'icon-social-dropbox',
-  // },
   {
     name: 'Payments',
     url: '/dashboard/payments',

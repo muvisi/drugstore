@@ -29,7 +29,7 @@ export class ServiceService {
     return true;
   }
 
-  getTreatments(): Observable<any> {
+  getTreatments() {
     return this.http.get(endpoint + 'patients/patient_treatments/').pipe(
       map(this.extractData));
 
@@ -283,9 +283,54 @@ searchProcedure(data): Observable<any> {
 
   }
   getClaims(): Observable<any> {
-    return this.http.get(endpoint + 'claims/claims/').pipe(
+    return this.http.get(endpoint + 'claims/claims/?complete=1&&processing_status=NEW').pipe(
       map(this.extractData));
+  }
+  getClaimChecking(): Observable<any> {
+    return this.http.get(endpoint + 'claims/claims/?complete=0&&processing_status=NEW').pipe(
+      map(this.extractData));
+  }
+  getCashierClaimChecking(visit): Observable<any> {
+    return this.http.get(endpoint + 'claims/cashier/?complete=0&&processing_status=NEW&visit_type='+visit).pipe(
+      map(this.extractData));
+  }
+  cashierClaimCheckingSearch(text,visit): Observable<any> {
+    return this.http.get(endpoint + 'claims/cashier/?complete=0&&processing_status=NEW&search='+text+'&visit_type='+visit).pipe(
+      map(this.extractData));
+  }
+  searchClaimChecking(text): Observable<any> {
+    return this.http.get(endpoint + 'claims/claims/?complete=0&&processing_status=NEW&search='+text).pipe(
+      map(this.extractData));
+  }
+  getClaimStatus(status): Observable<any> {
+    return this.http.get(endpoint + 'claims/claims/?processing_status='+status).pipe(
+      map(this.extractData));
+  }
+  getCahierClaimStatus(status,visit): Observable<any> {
+    return this.http.get(endpoint + 'claims/cashier/?processing_status='+status+'&visit_type='+visit).pipe(
+      map(this.extractData));
+  }
+  searchClaimStatus(status,text): Observable<any> {
+    return this.http.get(endpoint + 'claims/claims/?processing_status='+status+'&search='+text).pipe(
+      map(this.extractData));
+  }
+  getCompleted(): Observable<any> {
+    return this.http.get(endpoint + 'claims/claims/?complete=1').pipe(
+      map(this.extractData));
+  }
 
+  getCashierCompleted(type): Observable<any> {
+    return this.http.get(endpoint + 'claims/cashier/?complete=1&visit_type='+type).pipe(
+      map(this.extractData));
+  }
+  getClaimErrors(id): Observable<any> {
+    return this.http.get(endpoint + 'claims/claim_errors/?claim='+id).pipe(
+      map(this.extractData));
+  }
+
+  claimsChecking(data) {
+    return this.http.post(endpoint + 'claims/claim_errors_cheking/', data).pipe(
+      map(this.extractData));
   }
   searchClaims(data): Observable<any>{
     return this.http.get(endpoint + 'claims/claims/?search='+ data).pipe(
@@ -435,7 +480,7 @@ searchProcedure(data): Observable<any> {
     return this.http.post(endpoint + 'claims/claim_update/', data).pipe(
       map(this.extractData));
   }
-  createSingleClaim(data) {
+    createSingleClaim(data) {
     return this.http.post(endpoint + 'claims/create_single_claim/', data).pipe(
       map(this.extractData));
   }
@@ -600,6 +645,17 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+  appointmentFee(data){
+    return this.http.get(endpoint + 'appointments/fee/?appointment='+data).pipe(
+      map(this.extractData
+      ));
+  }
+  appointmentRefund(data){
+    return this.http.post(endpoint + 'appointments/refund/',data).pipe(
+      map(this.extractData
+      ));
+  }
+
 
   addAllergy(data): Observable<any> {
     return this.http.post<{}>(endpoint + 'treatment/add_allergy/', data ).pipe(

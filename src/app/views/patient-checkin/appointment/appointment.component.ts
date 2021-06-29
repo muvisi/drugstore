@@ -15,6 +15,7 @@ export class AppointmentComponent implements OnInit {
   limit = new Date();
   toadysList;
   submitted=false;
+  transactions=[];
   displayedColumns: string[] = ['patient_no', 'name','phone','appointment_date','time','reason','transaction'];
   listColumns: string[] = ['S/No', 'name','phone','time'];
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
@@ -25,10 +26,13 @@ export class AppointmentComponent implements OnInit {
     this.appointmentForm = this.formBuilder.group({
       phone: ['',Validators.required],
       type: ['', Validators.required],
+      payment_type:['',Validators.required],
+      amount:['',Validators.required],
       time: ['', Validators.required],
       reason: ['', Validators.required],
       first_name: ['', Validators.required],
       other_names: [''],
+      doc_type: ['', Validators.required],
       last_name: ['', Validators.required],
       gender: ['Female', Validators.required],
       email: ['',Validators.email],
@@ -38,6 +42,7 @@ export class AppointmentComponent implements OnInit {
       national_id: ['',Validators.required],
       passport_no: [''],
       occupation: [''],
+      no:[],
       code:['+254',Validators.required],
       visit_type:['',Validators.required],
       date:['',Validators.required]
@@ -74,6 +79,12 @@ onSelect(item){
   console.log(data)
   this.appointmentForm.patchValue({name:data.name,phone:data.phone});
 }
-
-
+searchTransaction(text){
+  this.service.searchncbaPaymentsByPhone(text).subscribe((res)=>{
+    this.transactions = res.results;
+  })
+}
+typeaheadOnSelect(item){
+  this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.trans_id})
+}
 }
