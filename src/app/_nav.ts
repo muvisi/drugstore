@@ -121,11 +121,6 @@ export const navItems: NavData[] = [
     icon: 'fa fa-list-alt',
   },
   {
-    name: 'Inpatient',
-    url: '/dashboard/eclaims-dashboard/inpatient',
-    icon: 'fa fa-bed',
-  },
-  {
     name: 'Outpatient',
     url: '/dashboard/eclaims-dashboard/outpatient',
     icon: 'fa fa-share',
@@ -153,7 +148,7 @@ export const navItems: NavData[] = [
     ]
   },
   {
-    name: 'Payments',
+    name: 'Finance',
     url: '/dashboard/payments',
     icon: 'icon-wallet',
   },

@@ -39,7 +39,6 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit() {
     this.getCash();
-    this.getNcba();
     this.getRoomsRevenue();
     this.getRecords();
     this.getCounselors();
@@ -55,39 +54,14 @@ export class ReportsComponent implements OnInit {
       this.counsolers = res.results;
     })
   }
-  onDate(date){
-    date = this.datePipe.transform(date,'yyyy-MM-dd')
-    if(date !=undefined){
-      this.service.searchncbaPaymentsByDate(date).subscribe((res)=>{
-        this.dataSource = new MatTableDataSource(res);
-      })
-    }
-  }
+  
   getRecords(){
     this.service.getAppointmentsRevenues().subscribe((res)=>{
       this.revenueSource = new MatTableDataSource(res.results);
       this.revenueSource.paginator = this.paginator;
     })
   }
-  onRoomRevenue(date){
-    date = this.datePipe.transform(date,'yyyy-MM-dd')
-    if(date !=undefined){
-    this.service.roomDateRevenues({date:date}).subscribe((res)=>{
-      this.dataSource1 = new MatTableDataSource(res);
-    })
-  }
-  }
-  searchNbaPhone(text){
-    this.service.searchncbaPaymentsByPhone(text).subscribe((res)=>{
-      this.dataSource = new MatTableDataSource(res.results);
-      this.dataSource.paginator = this.paginator1;
-    })
-  }
-  getNcba(){
-    this.service.ncbaAllPayments().subscribe((res)=>{
-      this.dataSource = new MatTableDataSource(res.results);
-    })
-  }
+
   getRoomsRevenue(){
     this.service.roomRevenues().subscribe((res)=>{
       this.dataSource1 = new MatTableDataSource(res);

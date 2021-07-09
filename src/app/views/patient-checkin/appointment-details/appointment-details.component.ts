@@ -34,6 +34,7 @@ export class AppointmentDetailsComponent implements OnInit {
   feesColumns: string[] = ['sn','date','type','amount','transaction','refund'];
   serviceColumns: string[] = ['sn','name','code','amount','delete'];
   billsColumns: string[] = ['sn','name','code','amount','delete'];
+  allColumns: string[] = ['sn','created','mode','amount','delete'];
   time =['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
   cashForm: FormGroup;
   noteForm: FormGroup;

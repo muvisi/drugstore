@@ -284,7 +284,7 @@ addRoom(){
     this.roomModal.hide();
     this.getRoom();
   },(err)=>{
-    this.toastr.error(err.error.name[0]);
+    this.toastr.error(err.error.error);
   })
 }
 editUpdate(item){
