@@ -26,8 +26,9 @@ dataSource1;
 dataSource;
 mpesaSource;
 maxDate: Date;
-date;
+date=new Date();
 cash_date;
+types =['DEBIT','CREDIT'];
 mpesaColumns: string[] = ['sn','name','msisdn','amount','channel','trxref','accountref','status','date'];
 displayedColumns: string[] = ['sn','date','amount','trx','client','mobile','name'];
 Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status']
@@ -62,6 +63,7 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
       this.dataSource = new MatTableDataSource(res.results);
     })
   }
+
   getClaims() {
     this.service.getClaims().subscribe((res) => {
       this.claimsData(res.results);
@@ -129,5 +131,14 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
     this.cashSource = new MatTableDataSource(items);
     this.cashSource.sort = this.sort;
     this.cashSource.paginator = this.paginator;
+  }
+  status(text){
+    this.service.searchncbaPaymentsByStatus(text).subscribe((res)=>{
+      this.dataSource = new MatTableDataSource(res.results);
+    })
+  }
+  
+  download(){
+  this.excelService.exportNcba(this.dataSource.filteredData,'Ncba Payments');
   }
 }

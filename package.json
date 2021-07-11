@@ -9,8 +9,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "ng-high-memory": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
-    "build": "ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
+    "build": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
