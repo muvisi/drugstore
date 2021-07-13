@@ -76,6 +76,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { ClaimsCheckComponent } from './claims-check/claims-check.component';
 import { InpatientComponent } from './inpatient/inpatient.component';
 import { OutpatientComponent } from './outpatient/outpatient.component';
+import { EmployeesComponent } from './employees/employees.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -127,7 +128,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     UserAccountComponent,
     ClaimsCheckComponent,
     InpatientComponent,
-    OutpatientComponent
+    OutpatientComponent,
+    EmployeesComponent
   ],
   imports: [
     CommonModule,

@@ -158,6 +158,11 @@ export const navItems: NavData[] = [
     icon: 'icon-chart',
   },
   {
+    name: 'Staff',
+    url: '/dashboard/staff',
+    icon: 'icon-user-following',
+  },
+  {
     name: 'Setup',
     url: '/dashboard/set-up',
     icon: 'icon-wrench'

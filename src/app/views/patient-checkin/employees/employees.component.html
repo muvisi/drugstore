@@ -1,0 +1,251 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+             <h4> Staff</h4>
+            </div>
+            <div class="card-body">
+                
+             <div class="row">
+                <div class="col-sm-3">
+                  <mat-form-field>
+                  <input type="text" (keyup)="searchUser($event.target.value)" matInput placeholder="Search">
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-9">
+                  <button class="btn btn-success pull-right"  (click)="userModal.show()"> <i class="fa fa-plus" aria-hidden="true"></i>  Add User</button>
+                </div>
+           
+                       
+               </div>
+  
+               <div class="mat-elevation-z8 table-responsive">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #uSort="matSort"  matSort>
+                    <ng-container matColumnDef="sn">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                      <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                      </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
+                        <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="username">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>USERNAME</th>
+                        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                        </ng-container>
+          
+                        <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
+                        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL </th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ROLE</th>
+                        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="view">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>VIEW</th>
+                          <td mat-cell *matCellDef="let element">
+                            <button class="btn btn-primary btn-sm" (click)="view(element)">View</button>
+                          </td>
+                          </ng-container>
+                          <ng-container matColumnDef="edit">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>EDIT</th>
+                            <td mat-cell *matCellDef="let element">
+                              <button class="btn btn-info btn-sm" (click)="employee=element;userModal.show();edit=false">Edit</button>
+                               </td>
+                          </ng-container>
+                          <ng-container matColumnDef="deactivate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DEACTIVATE</th>
+                            <td mat-cell *matCellDef="let element">
+                              <button class="btn btn-danger btn-sm" [disabled]="!element.is_active" (click)="deactivate(element)">Deactivate</button>
+                               </td>
+                          </ng-container>
+                    
+                          <ng-container matColumnDef="activate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ACTIVATE</th>
+                            <td mat-cell *matCellDef="let element">
+                              <button class="btn btn-success btn-sm" (click)="deactivate(element)" [disabled]="element.is_active">Activate</button>
+                               </td>
+                          </ng-container>
+                    
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+             </div>
+               
+            <div class="modal fade" bsModal #userModal="bs-modal" [config]="{backdrop: 'static'}"
+               tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+               <div class="modal-header">
+                <span *ngIf="!edit">Add User</span>
+                <span *ngIf="edit">Update User</span>
+                 <button type="button" class="close" (click)="userModal.hide()" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+                <div class="modal-body">
+                  <div class="row">
+                          
+                    <div class="col-sm-6">
+                      <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                          <input type="text" id="text-input" name="first_name"  placeholder="FIRST NAME"
+                          [(ngModel)]="employee.first_name" matInput>
+                      </mat-form-field>
+                    </div>
+                      <div class="col-sm-6">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                              <input type="text" id="text-input"  placeholder="LAST NAME"
+                              [(ngModel)]="employee.last_name" matInput>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                          <mat-form-field appearance="outline">
+                              <mat-label>Gender</mat-label>
+                              <mat-select [(ngModel)]="employee.gender">
+                                <mat-option value="Female">Female</mat-option>
+                                <mat-option value="Male">Male</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                       </div>
+                        <div class="col-sm-6">
+                
+                            <mat-form-field appearance="outline">
+                                <mat-label>Branch</mat-label>
+                                <mat-select [(ngModel)]="employee.hospital">
+                                  <mat-option *ngFor="let item of provider_list" [value]="item.id">
+                                    {{item.name}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                          </div>
+                     
+                     <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Role</mat-label>
+                            <mat-select [(ngModel)]="employee.role">
+                              <mat-option value="counselor">Counselor</mat-option>
+                              <mat-option value="admin">Admin</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                     </div>
+                     <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Phone</mat-label>
+                            <input type="text" placeholder="PHONE"
+                            [(ngModel)]="employee.phone" matInput>
+                        </mat-form-field>
+                      </div>
+                     <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Username</mat-label>
+                            <input type="text" id="text-input" name="username" placeholder="USERNAME"
+                            [(ngModel)]="employee.username" matInput style="text-transform: none;">
+                        </mat-form-field>
+                      </div>
+                        <div class="col-sm-6">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Department</mat-label>
+                            <mat-select  [(ngModel)]="employee.department">
+                              <mat-option *ngFor="let item of hospital?.departments" [value]="item.id">
+                                {{item.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          
+                          </div>
+                          <div class="col-sm-6">
+                              <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                  <input type="email" id="text-input"   placeholder="EMAIL"
+                                  [(ngModel)]="employee.email" matInput>
+                              </mat-form-field>
+                            </div>
+                          
+                             <div class="col-sm-12">
+                             </div>
+                             <div class="col-sm-12">
+                                <button *ngIf="edit" class=" btn btn-success btn-sm pull-right" (click)="addUser()"><i class="fa fa-plus"></i> Add User</button>
+                                <button *ngIf="!edit" class="btn btn-primary btn-sm pull-right" (click)="updateUser()" style="margin-right: 8px;">Update</button>
+                              </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+  
+               <div class="modal fade" bsModal #profileModal="bs-modal" [config]="{backdrop: 'static'}"
+               tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+               <div class="modal-header">
+                 
+                 <button type="button" class="close" (click)="profileModal.hide()" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+                <div class="modal-body">
+                 
+                  <div class="row">
+                    
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-4">
+                             <div class="col-sm-12">
+                              </div>
+                               <div class="col-sm-12">
+                                   <img src="../../../../assets/img/avatars/account.png" width="140px" alt="">
+                               </div>
+                               <div class="col-sm-12 text-primary">
+                                 <span style="font-weight: 700;font-size: 12px;">{{selectedUser.name| uppercase}}</span>
+                               </div>
+                               <div class="col-sm-12">
+                                   <span class="muted" style="text-transform: capitalize;font-family: lato light"><b style="margin-left: 40px;">{{selectedUser.role}}</b></span>
+                               </div>
+                        </div>
+                        <div class="col-sm-8">
+                          <mat-card>
+                             <h4 style="font-family: lato"><u>User Details</u></h4>
+                             <div class="row" style="font-weight: bolder;font-family:lato light">
+                               <div class="col-sm-12">
+                                 Department : {{selectedUser.department}}
+                               </div>
+                               <div class="col-sm-12">
+                                 Email : {{selectedUser.email}}
+                                 </div>
+                                 <div class="col-sm-12">Phone : {{selectedUser.phone}}</div>
+   
+                                 <div class="col-sm-12">
+                                   Status 
+                                  <button class="btn btn-success btn-sm" *ngIf="selectedUser.is_active">ACTIVE</button>
+                                   <button class="btn btn-danger btn-sm" *ngIf="!selectedUser.is_active">INACTIVE</button>
+                                 </div>
+                                 <div class="col-sm-12">
+                                   <button mat-raised-button style="margin-top:10px;" (click)="deactivate(selectedUser)"> <i class="icon-lock"></i>  Lock/Unlock</button>
+                                 </div>
+                                 <div class="col-sm-12">
+                                     <button mat-raised-button color="primary" style="margin-top:10px;" (click)="employee=selectedUser;edit=false;profileModal.hide()"> <mat-icon>create</mat-icon> Edit User</button>
+                                   </div>
+                             </div>
+                            
+                          </mat-card>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+    </div>
+</div>

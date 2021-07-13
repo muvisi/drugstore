@@ -44,7 +44,7 @@ export class AppointmentComponent implements OnInit {
       occupation: [''],
       no:[],
       code:['+254',Validators.required],
-      visit_type:['',Validators.required],
+      visit_type:['NEW',Validators.required],
       date:['',Validators.required]
     });
     this.patientsList();

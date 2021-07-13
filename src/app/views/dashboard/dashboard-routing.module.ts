@@ -49,6 +49,7 @@ import { UserAccountComponent } from '../patient-checkin/user-account/user-accou
 import { ClaimsCheckComponent } from '../patient-checkin/claims-check/claims-check.component';
 import { InpatientComponent } from '../patient-checkin/inpatient/inpatient.component';
 import { OutpatientComponent } from '../patient-checkin/outpatient/outpatient.component';
+import { EmployeesComponent } from '../patient-checkin/employees/employees.component';
 
 const routes: Routes = [
   {
@@ -292,6 +293,15 @@ const routes: Routes = [
   {
     path: 'invoice',
     component: PaymentListComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'patient list'
+    }
+
+  },
+  {
+    path: 'staff',
+    component: EmployeesComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'patient list'
