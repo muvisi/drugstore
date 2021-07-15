@@ -50,6 +50,8 @@ import { ClaimsCheckComponent } from '../patient-checkin/claims-check/claims-che
 import { InpatientComponent } from '../patient-checkin/inpatient/inpatient.component';
 import { OutpatientComponent } from '../patient-checkin/outpatient/outpatient.component';
 import { EmployeesComponent } from '../patient-checkin/employees/employees.component';
+import { ClientsComponent } from '../patient-checkin/clients/clients.component';
+import { BookingComponent } from '../patient-checkin/booking/booking.component';
 
 const routes: Routes = [
   {
@@ -69,14 +71,6 @@ const routes: Routes = [
       title: 'parients-dashboard'
     }
   },
-  // {
-  //   path: 'records',
-  //   component: RecordsComponent,
-  //   canActivate: [AuthGuard],
-  //   data: {
-  //     title: 'parients-dashboard'
-  //   }
-  // },
   {
     path: 'appointments',
     component: AppointmentComponent,
@@ -100,6 +94,11 @@ const routes: Routes = [
   {
     path: 'user-account/:id',
     component:UserAccountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'booking',
+    component:BookingComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -183,8 +182,8 @@ const routes: Routes = [
     }
   },
   {
-    path: 'sample-orders',
-    component: LabOrdersItemsComponent,
+    path: 'clients',
+    component: ClientsComponent,
   },
   {
     path: 'eclaims-dashboard',

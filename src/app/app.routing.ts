@@ -58,12 +58,6 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
         data: { preload: true }
-      },
-      {
-        path: 'dispatch',
-        loadChildren: () => import('./views/patient-checkin/patient-checkin.module').then(m => m.PatientCheckinModule),
-        data: { preload: false }
-
       }
     ]
   },

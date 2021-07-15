@@ -13,6 +13,7 @@ import { DateTimePicker } from '@syncfusion/ej2-calendars';
   providers: [WeekService, TimelineViewsService, MonthService, TimelineMonthService]
 })
 export class CalendarComponent implements OnInit {
+token: string = sessionStorage.getItem('Token');
 selectedDate: Date = new Date();
 setView: View ='MonthAgenda';
 scheduleHours: WorkHoursModel  = { highlight: true, start: '08:00', end: '05:00' };
@@ -21,7 +22,8 @@ setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','M
 dataManager: DataManager = new DataManager({
   url: endpoint+'appointments/appointments/',
   crudUrl: endpoint+'appointments/appointment_list/',
-  adaptor: new UrlAdaptor
+  adaptor: new UrlAdaptor,
+  headers: [{ 'Authorization': 'Bearer ' + this.token}]
 });
 eventSettings: EventSettingsModel = { dataSource: this.dataManager
 }

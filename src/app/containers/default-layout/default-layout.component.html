@@ -2,8 +2,7 @@
   [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/avatars/logo.png', width: 100, height: 38, alt: 'Healthix Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/avatars/avt.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
-  [sidebarToggler]="'lg'"
-  [asideMenuToggler]="'lg'">
+  [sidebarToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
       <a class="nav-link" routerLink="dashboard">Dashboard</a>
@@ -18,12 +17,13 @@
 
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-        <!-- <img src="assets/img/avatars/usr.png" class="img-avatar" alt="admin@healthix.com"/> -->
-               <b class="text-primary">{{user.username}}</b>
+               <!-- <b class="text-primary">{{user.username}}</b> -->
+               <i class="fa fa-cogs" aria-hidden="true"></i> configure
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item"(click)="logout()"><i class="fa fa-lock"></i> Logout</a>
-        <a class="dropdown-item"(click)="staticModal.show()"><i class="fa fa-lock"></i>Change password </a>
+        <a class="dropdown-item" routerLink="/dashboard/set-up" ><i class="icon-wrench"></i>Set up</a>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
+        <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-lock"></i>Change password </a>
       </div>
     </li>
   </ul>

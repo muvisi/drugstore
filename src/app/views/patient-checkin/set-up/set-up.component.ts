@@ -31,7 +31,9 @@ export class SetUpComponent implements OnInit {
   @ViewChild('checkModal', { static: false }) checkModal: ModalDirective;
   @ViewChild('roomEditModal', { static: false }) roomEditModal: ModalDirective;
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
+  @ViewChild('deleteModal', { static: false }) deleteModal: ModalDirective;
   @ViewChild('providerModal', { static: false }) providerModal: ModalDirective;
+  @ViewChild('deleteHospitalModal', { static: false }) deleteHospitalModal: ModalDirective;
   selected = 'doctor';
   user;
   edit = true;
@@ -69,7 +71,8 @@ export class SetUpComponent implements OnInit {
   roomForm: FormGroup;
   editRoom: FormGroup;
   providerForm: FormGroup;
-
+  loading=false;
+  id;
   constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder,public router:Router) {
   }
 
@@ -133,16 +136,13 @@ export class SetUpComponent implements OnInit {
   searchHospital(filterValue){
     this.hospitalList.filter = filterValue.trim().toLowerCase();
   }
-  searchUser(filterValue){
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  deleteHospital(item){
-    if (window.confirm("Do you really want to Delete Hospital"+" "+item.name+" "+"?")) { 
-      this.service.deleteHospital(item.id).subscribe(()=>{
-        this.toastr.success('Successfully Deleted Hospital');
-        this.getHospitals();
-      })
-    }
+ 
+  deleteHospital(){
+    this.service.deleteHospital(this.id).subscribe(()=>{
+      this.toastr.success('Successfully Deleted');
+      this.getHospitals();
+
+    })
   }
   deleteDepartment(element){
     if (window.confirm("Do you really want to Delete?")) { 
@@ -156,7 +156,6 @@ export class SetUpComponent implements OnInit {
   editDepartment(){
     this.service.editDepartment(this.selectedDepartment.id,this.selectedDepartment).subscribe((res)=>{
       this.toastr.success('Successfully edited Department');
-
       this.checkModal.hide();
     })
   }
@@ -180,7 +179,6 @@ addService() {
   console.log(this.selectedService);
   this.selectedServices.push(this.selectedService);
   this.selectedService = {};
-  console.log(this.selectedServices)
 }
 deleteService(obj) {
 const index: number = this.selectedServices.indexOf(obj);
@@ -210,7 +208,6 @@ const data = {
   'services': this.selectedServices
 };
 this.service.saveServices(data).subscribe((res) => {
-console.log('services response', res);
 this.toastr.success('Successfuly saved Services');
 this.selectedServices = [];
 this.serviceModal.hide();
@@ -224,19 +221,6 @@ this.toastr.error('Failed to save services');
   onSelectPrescription(item) {
     this.selectedPrescription = item.item;
   }
-addUser() {
-  console.log(this.employee);
-  this.service.createUser(this.employee).subscribe((res) => {
-    this.ngOnInit();
-    this.toastr.success('Successfully Added Employee');
-    this.employee = {};
-    this.userModal.hide();
-  },
-  (error)=>{
-    this.toastr.error('Adding Employee Failed');
-  }
-  );
-}
 
 updateUser() {
   console.log(this.employee);
@@ -278,13 +262,16 @@ this.service.updateService(this.selectedService.id,this.selectedService).subscri
 })
 }
 addRoom(){
+  this.loading = true;
   this.service.addRoom(this.roomForm.value).subscribe((res)=>{
     this.toastr.success('Successfully Added');
     this.roomForm.reset();
     this.roomModal.hide();
     this.getRoom();
+    this.loading = false;
   },(err)=>{
     this.toastr.error(err.error.error);
+    this.loading = false;
   })
 }
 editUpdate(item){
@@ -303,16 +290,18 @@ updateRoom(){
   })
 }
 
-deleteRoom(id){
-  if (window.confirm("Do you really want to delete?")) {
-    this.service.deleteRoom(id).subscribe((res)=>{
-      this.toastr.success('Successfully Deleted');
-      this.getRoom();
-    },(err)=>{
-      this.toastr.error(err.error.name[0]);
-    })
-  }
-  
+setId(id){
+this.id = id;
+}
+deleteRoom(){
+  this.service.deleteRoom(this.id).subscribe((res)=>{
+    this.deleteModal.hide();
+    this.toastr.success('Successfully Deleted');
+    this.getRoom();
+
+  },(err)=>{
+    this.toastr.error(err.error.name[0]);
+  })
 }
 
   getServices() {
@@ -358,15 +347,7 @@ deleteRoom(id){
     this.router.navigate(['/dashboard/user-account',item.id])
   }
   
-  serviceSearch(text){
-    // if(text != null){
-    //   this.service.serviceSearch(text).subscribe((res)=> {
-    //    this.service =res.results;
-    //   })
-    // }
-   
-    console.log(text);
-  }
+ 
   searchServices(text){
     if(text != null){
       this.service.searchService(text).subscribe((res)=> {
@@ -381,35 +362,7 @@ deleteRoom(id){
       })
     }
   }
-  deleteUser(item){
-    console.log(item);
-  }
-  deactivate(item){
-    
-    if(item.is_active){
-      const data={
-        "is_active":false,
-        "email":item.email
-      }
-      this.service.deactivateUser(data,item.id).subscribe((res)=>{
-        console.log(res);
-        this.toastr.error('Successfully deactivated user' + ' '+ item.name);
-        this.selectedUser = res;
-        this.employeesList();
-      })
-    } else{
-      const data={
-        "is_active":true,
-        "email":item.email
-      }
-      this.service.deactivateUser(data,item.id).subscribe((res)=>{
-        this.selectedUser = res;
-      this.toastr.info('Successfully activated user' + ' '+ item.name);
-        this.employeesList();
-      })
-    }
-   
-  }
+ 
  addBranch(){
   
    this.service.createHospitalBranch(this.branch).subscribe((res)=>{

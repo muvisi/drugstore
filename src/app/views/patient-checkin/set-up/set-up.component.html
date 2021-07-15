@@ -255,7 +255,7 @@
                         
                            <ng-container matColumnDef="delete">
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                              <td mat-cell *matCellDef="let element" (click)="deleteHospital(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
+                              <td mat-cell *matCellDef="let element" (click)="setId(element.id);deleteHospitalModal.show()"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
                           </ng-container>   
                         <tr mat-header-row *matHeaderRowDef="hospitalColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: hospitalColumns;" ></tr>
@@ -555,7 +555,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-sm-9" style="text-align: right;" >
-                  <button class="btn btn-success btn-sm pull-right"  (click)="roomModal.show()"> <i class="fa fa-plus" aria-hidden="true"></i> Room</button>
+                  <button class="btn btn-success pull-right"  (click)="roomModal.show()">Add Room</button>
                 </div>
               </div>
               <div class="mat-elevation-z8 table-responsive">
@@ -591,7 +591,7 @@
                           </ng-container>
                       <ng-container matColumnDef="delete">
                       <th mat-header-cell *matHeaderCellDef>Delete</th>
-                      <td mat-cell *matCellDef="let element" (click)="deleteRoom(element.id)" > <mat-icon color="warn">delete_sweep</mat-icon> </td>
+                      <td mat-cell *matCellDef="let element" (click)="deleteModal.show();setId(element.id)" > <mat-icon color="warn">delete_sweep</mat-icon> </td>
                       </ng-container>
                     
                       <tr mat-header-row *matHeaderRowDef="roomColumns"></tr>
@@ -786,9 +786,7 @@
 
 
             </mat-step>
-           
           
-            <!-- Icon overrides. -->
             <ng-template matStepperIcon="phone">
               <mat-icon>roofing</mat-icon>
             </ng-template>
@@ -817,3 +815,49 @@
     
   </div>
 </div>
+
+<div class="modal fade" bsModal #deleteModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 id="dialog-static-name" class="modal-title pull-left">Delete Room</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+         <div class="col-sm-12">
+           <button class="pull-right btn-success btn-sm" (click)="deleteRoom()">confirm</button>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" bsModal #deleteHospitalModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 id="dialog-static-name" class="modal-title pull-left">Delete Branch</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="deleteHospitalModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+         <div class="col-sm-12">
+           <button class="pull-right btn-success btn-sm" (click)="deleteHospital()">confirm</button>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
