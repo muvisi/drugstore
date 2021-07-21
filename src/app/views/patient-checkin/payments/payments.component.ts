@@ -29,6 +29,8 @@ maxDate: Date;
 date=new Date();
 cash_date;
 types =['DEBIT','CREDIT'];
+cash_total =0;
+ncba_total =0;
 mpesaColumns: string[] = ['sn','name','msisdn','amount','channel','trxref','accountref','status','date'];
 displayedColumns: string[] = ['sn','date','amount','trx','client','mobile','name'];
 Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status']
@@ -47,19 +49,33 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
   }
   getNcba(){
     this.service.ncbaAllPayments().subscribe((res)=>{
+      this.ncba_total =0;
+      res.results.forEach(element => {
+        this.ncba_total+=parseFloat(element.amount)
+      });
       this.dataSource = new MatTableDataSource(res.results);
+     
     })
   }
   onDate(date){
     date = this.datePipe.transform(date,'yyyy-MM-dd')
     if(date !=undefined){
+      
       this.service.searchncbaPaymentsByDate(date).subscribe((res)=>{
+        this.ncba_total =0;
+    res.forEach(element => {
+      this.ncba_total+=parseFloat(element.amount)
+    });
         this.dataSource = new MatTableDataSource(res);
       })
     }
   }
   searchNbaPhone(text){
     this.service.searchncbaPaymentsByPhone(text).subscribe((res)=>{
+    this.ncba_total =0;
+    res.forEach(element => {
+    this.ncba_total+=parseFloat(element.amount)
+    });
       this.dataSource = new MatTableDataSource(res.results);
     })
   }
@@ -128,12 +144,20 @@ claimsColumns: string[] = ['sn','member','patient_number','visit_number','insura
     this.excelService.exportAsExcelFile(data, 'Cash Payemnts');
   }
   tableData(items){
+    this.cash_total =0;
+    items.forEach(element => {
+      this.cash_total+=parseFloat(element.amount)
+    });
     this.cashSource = new MatTableDataSource(items);
     this.cashSource.sort = this.sort;
     this.cashSource.paginator = this.paginator;
   }
   status(text){
     this.service.searchncbaPaymentsByStatus(text).subscribe((res)=>{
+    this.ncba_total =0;
+    res.forEach(element => {
+      this.ncba_total+=parseFloat(element.amount)
+    });
       this.dataSource = new MatTableDataSource(res.results);
     })
   }

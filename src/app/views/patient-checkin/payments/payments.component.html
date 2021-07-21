@@ -28,6 +28,9 @@
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
           </div>
+          <div class="col-sm-6" style="text-align: right;">
+            <span>Cash Totals <span class="text-success">{{cash_total | number:'1.2-2'}}</span></span>
+          </div>
           <div class="col-sm-12">
             <div class="mat-elevation-z8 table-responsive">
               <table mat-table [dataSource]="cashSource" matSort>
@@ -104,10 +107,14 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-2">
             <button (click)="download()" class="btn btn-success"> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
               Excel</button>
           </div>
+          <div class="col-sm-2" style="text-align: right;">
+            <span>Ncba Totals <span class="text-success">{{ncba_total | number:'1.2-2'}}</span></span>
+          </div>
+         
             </div>
           <div class="col-sm-12">
             <div class="mat-elevation-z8 table-responsive">

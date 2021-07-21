@@ -1,730 +1,572 @@
-<tabset [pills]="false" [hidden]="loading">
-  <tab title="Tab title">
-    <span *tabHeading>
-      <span >PATIENT BILLING</span>
-    </span>
-  <div class="row">
-    <div class="col-sm-12">
-        <span style="font-size:16px;font-weight: bold" class="pull-right">FILE NO:<span  style="font-size:20px;font-weight: bold" class="text-primary" >{{patientInfo.patient_no}}</span></span>
-        <span style="font-size:16px;font-weight: bold" class="pull-right">VISIT  NO:<span  style="font-size:20px;font-weight: bold;margin-right:10px;" class="text-primary" >{{patientInfo.visit_no}}</span></span>
-    </div>
-    <div class="col-sm-2">
-      <h6 class="text-center">
-        <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
-          style="height: 120px;"><br>
-        <span1 style="font-size:12px;border-radius:2px;font-weight:200px;" class="badge badge-info text-center">
-          {{patientInfo.first_name}}
-          {{patientInfo.other_names}} {{patientInfo.last_name}}</span1>
-      </h6>
-    </div>
-    <div class="col-sm-10">
-        <div class="row">
-            <div class="col-sm-12">
-              <mat-card> 
-                <mat-card-title>
-                 <u>
-                    <span class="text-primary" style="font-weight:600;">{{patientInfo.first_name | uppercase}} {{patientInfo.other_names | uppercase}}
-                        {{patientInfo.last_name | uppercase}}</span> | <span style="font-weight: 600">
-                          <span *ngIf="patientInfo?.age?.years > 0">{{patientInfo?.age?.years}}  Years</span>
-                          <span *ngIf="patientInfo?.age?.months > 0">{{patientInfo?.age?.months}} Months</span>
-                          <span *ngIf="patientInfo?.age?.days > 0">{{patientInfo?.age?.days}} Days</span>
-                        </span>| <span class="text-primary" style="font-weight: 600">{{patientInfo?.gender}}</span> 
-                </u>
-                </mat-card-title>
-                  <div class="row">
-                      <div class="col-sm-5">
+<div class="row">
+  <div class="col-sm-12">
+      <div class="card">
+          <h6 class="card-header">Client Billing 
 
-                        <div class="row">
-                            <div class="col-sm-4 hx">
-                            CHECK IN
-                            </div>
-                            <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.check_in | date}}</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 hx">
-                            PRIORITY
-                            </div>
-                            <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">
-                                <span *ngIf="patientInfo.priority=='3'">Normal</span>
-                                <span *ngIf="patientInfo.priority=='1'">Urgent</span>
-                                <span *ngIf="patientInfo.priority=='2'">Vip</span>
-                            </span></div>
-                          </div>
-                        <div class="row"> 
-                          <div class="col-sm-4 hx">
-                            NATIONAL ID
-                          </div>
-                          <div class="col-sm-8"><span class="text-primary" style="font-weight:bold;">{{patientInfo.national_id}}</span></div>
-                        </div>
-                      </div>
-                     
-                    
-                    </div>
-              </mat-card>
-            </div>
-           </div>
-    </div>
-  </div>
-  <div>
-      <div class="modal fade" bsModal #billModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
-      aria-labelledby="dialog-static-name">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h3>Add Bills <i class="fa fa-close pull-right" (click)="billModal.hide()" style="font-size:24px;"></i></h3>
-    
-            <div class="row">
-<div class="col-sm-6">
-    <!-- (typeaheadLoading)="searchProcedure(name)" -->
-<mat-form-field><input type="text"  (typeaheadOnSelect)="onSelect($event)" name="test"
-placeholder="search service" typeaheadOptionField="name"
-[(ngModel)]="name" [typeahead]="services" [typeaheadOptionsLimit]="12" matInput></mat-form-field>
-</div>
-<div class="col-sm-4">
-  <mat-form-field>
-      <input type="text" placeholder="Cost" [(ngModel)]="selectedOption.cost" matInput>
-  </mat-form-field>
-</div>
-<div class="col-sm-2">
-  <button mat-mini-fab color="primary" (click)="saveService()"> <i class="fa fa-plus"></i></button>
-</div>
-            </div>
-            <div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-  <mat-card>
-    <br>
-      <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-4">
-              <u style="font-family:lato light;font-weight: 600;font-size: 19px;;" class="text-success">PATIENT BILLS</u>
-            </div>
-            <div class="col-sm-8">
-              <button mat-raised-button class="btn btn-info btn-sm pull-right" style="margin-top:-15px;margin-left: 10px;" printTitle="{{patientInfo.visit_no}}"
-              printSectionId="print-section" [useExistingCss]="true" ngxPrint><i class="cui-print" style="font-size: 34px"></i></button>
-            <button mat-raised-button class="btn btn-success btn-sm pull-right" style="margin-top:-15px;" (click)="billModal.show()"><i
-                class="fa fa-plus"></i> ADD BILL</button>
-          
-            </div>
-          </div>
-         
-    
-        </div>
-      
-        <br>
-        <div class="col-sm-12 table-responsive mat-elevation-z8" *ngIf="patientInfo.bills">
-          <table mat-table [dataSource]="dataSource" matSort>
-              <ng-container matColumnDef="sn">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
-                  <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                </ng-container>
-        
-            <ng-container matColumnDef="service">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> SERVICE </th>
-              <td mat-cell *matCellDef="let element"> {{element.service}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORY</th>
-              <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="bill_number">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> BILL NUMBER </th>
-              <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="invoice__no">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> INVOICE NUMBER </th>
-              <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="rate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>COST</th>
-              <td mat-cell *matCellDef="let element"> {{element.rate | number:'1.2-2'}}</td>
-            </ng-container>
-    
-            <ng-container matColumnDef="reverse">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>REVERSE</th>
-              <td mat-cell *matCellDef="let element"> <button (click)="reverseBill(element)"><i class="cui-action-undo"
-                    style="color:red;font-weight:900"></i> Reverse</button></td>
-            </ng-container>
-    
-            <ng-container matColumnDef="status">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</th>
-              <td mat-cell *matCellDef="let element"><span  *ngIf="element.status =='0'">Not Paid</span>
-                <span  *ngIf="element.status =='1'">Paid</span>
-              </td>
-            </ng-container>
-    
-    
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="row.rate <= 0"></tr>
-          </table>
-    
-          <br>
-        </div>
-  </mat-card>
-
-  </div>
- 
-  
-  <div class="modal fade" bsModal #confirmModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
-    aria-labelledby="dialog-static-name">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-12">
-              <h6>Are you Insured?</h6>
-            </div>
-            <div class="col-sm-12">
-              <mat-radio-button (click)="openPay('Yes')">Yes</mat-radio-button>
-            </div>
-            <div class="col-sm-12">
-              <mat-radio-button (click)="openPay('No')">No</mat-radio-button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" bsModal #payBills="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
-    aria-labelledby="dialog-static-name">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h6>Choose Payment Mode
-            <span class=" text-primary pull-right" style="font-size:14px;font-weight:bold;"> <i class="cui-dollar"></i>
-              {{pending_amount | number}}</span>
+            <span class="pull-right"> Total Bill  <span style="font-weight: 700;font-size:16px;" class="text-danger">{{data.amount | number}}</span></span>
           </h6>
-          <hr>
-          <div class="row">
-            <div class="col-sm-4">
-              <mat-checkbox [checked]="isMpesa" (change)="onMpesa()">Mpesa</mat-checkbox>
-            </div>
-            <div class="col-sm-4">
-              <mat-checkbox [checked]="isCash" (change)="onCash()">Cash</mat-checkbox>
-            </div>
-            <div class="col-sm-4" *ngIf="isInsurance">
-              <mat-checkbox [checked]="isInsurance">Insurance</mat-checkbox>
-            </div>
-  
-          </div>
-          <div class="row">
-            <div class="col-sm-12" *ngIf="isInsurance">
-              <label>Insurance Amount</label>
-              <input type="number" [disabled]="status" class="form-control" placeholder="insurance amount"
-                [(ngModel)]="amount" (ngModelChange)="calculate()">
-            </div>
-            <div class="col-sm-12" *ngIf="isCash">
+          <div class="card-body">
               <div class="row">
-                <div class="col-sm-6">
-                  <label>Cash </label>
-                  <input type="number" min="0" class="form-control" placeholder="Cash Amount" [(ngModel)]="cash"
-                    (ngModelChange)="calculate()" [disabled]="status">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12" *ngIf="isMpesa">
-              <label>Mpesa Deposit</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" placeholder="Transaction No" [(ngModel)]="mpesa.trx">
-                </div>
-                <div class="col-sm-6">
-                  <input type="number" class="form-control" placeholder="mpesa amount" [(ngModel)]="mpesa.amount"
-                    (ngModelChange)="calculate()" [disabled]="status">
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div>
-            <button class="btn btn-danger btn-sm pull-right" (click)="payBills.hide()">Cancel</button>
-            <button class="btn btn-success btn-sm pull-right" style="margin-right:8px;" (click)="submitPayment()"
-              [disabled]="bill_amount < pending_amount">Submit</button>
-          </div>
-        </div>
-  
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card" id="print-section"  hidden> 
-    <div class="card-body">
-      <div class="row container-fluid">
-          <div class="col-sm-12">
-              <div class="row">
-               
-                <div class="col-sm-8">
-                    <address>
-                        <h2 style="font-family:lato light;font-weight: bolder">Kaatun Urology Center and Male Executive Clinics</h2>
-                        <span class="address" style="font-size: 18px;">
-                              <i> Parklands 3rd Avenue opposite Aga Khan Hospital</i> <br>
-                              <i > Park Medical Center,6th floor room 609</i> <br>
-                             <i> Postal address Box 15301-00100, Nairobi, Kenya</i><br>
-                            <!-- <i class="icon-call-in"></i> contact +254 7 789-1234,<br> -->
-                            <i> info@kaatun.com</i> 
-                        </span>
-                        </address>
-                </div>
-                <div class="col-sm-4">
-                    <img src="../../../../assets/img/avatars/inv_logo.jpg" style="float: right" alt="">
-                </div>
-              </div>
-          </div>
-          <div class="col-sm-12">
-            <h3 style="font-weight: bolder">INVOICE N0 : <span class="text-primary" *ngIf="patientInfo?.bills?.length">{{patientInfo?.bills[0].invoice__no}}</span></h3>
-          
-          </div>
-          
-            <div class="col-sm-5" style="font-size: 16px;">
-              <div class="row">
-                <div class="col-sm-4">Charge Date</div>
-                <div class="col-sm-5">{{ patientInfo?.check_in | date}}</div>
-              </div>
-              <div class="row">
-                  <div class="col-sm-4">Net</div>
-                  <div class="col-sm-5"><b>{{total | number:'1.2-2'}}</b></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">Currency</div>
-                    <div class="col-sm-5">KSH</div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">Cashier</div>
-                    <div class="col-sm-5">{{user.username}}</div>
-                  </div>
-            </div>
-            <div class="col-sm-7" style="font-size: 16px;">
-                <div class="row">
-                    <div class="col-sm-4" >Patient Name</div>
-                    <div class="col-sm-5"><strong>{{patientInfo?.first_name | uppercase}} {{patientInfo?.other_names | uppercase}} {{patientInfo?.last_name | uppercase}}</strong></div>
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-4">Visit number</div>
-                      <div class="col-sm-5">{{patientInfo?.visit_no}}</div>
-                    </div>
+                  <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-4">Gender</div>
-                        <div class="col-sm-5">{{patientInfo?.gender}}</div>
-                    </div>
-                  <div class="row">
-                      <div class="col-sm-4">Phone</div>
-                      <div class="col-sm-5">{{patientInfo?.phone}}</div>
-                    </div>
-                    <!-- <div class="row">
-                        <div class="col-sm-4">Email</div>
-                        <div class="col-sm-5">davia@gmail.com</div>
-                    </div> -->
-              </div>
-              
-              <div class="col-sm-12">
-                  <br>
-                  <table class="table table-condensed" style="font-size: 16px;">  <tr> 
-                      <th>Item / Desc.</th>
-                      <th>Category.</th>
-                      <th>Bill Number.</th>
-                      <th>Qty.</th>
-                      <th>Cost</th>
-                      <th>Total</th>
-                      </tr> 
-                      <tr *ngFor="let item of patientInfo.bills" style="font-weight: bolder"> 
-                      <td *ngIf="item.status == '1'">{{item.service}}</td>
-                      <td *ngIf="item.status == '1'">{{item.category | lowercase}}</td> 
-                      <td *ngIf="item.status == '1'">{{item.bill_number}}</td>
-                      <td *ngIf="item.status == '1'">{{item.quantity}}</td>
-                      <td *ngIf="item.status == '1'">{{item.rate | number:'1.2-2'}}</td>
-                      <td *ngIf="item.status == '1'">{{item.rate * item.quantity | number:'1.2-2'}}</td> 
-                      </tr>
-  
-                      <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      </tr> 
-                       </table>
-  
-                    </div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4 total" style="font-size: 19px;">
-                      <div class="row">
-                        <div class="col-sm-5"> <b>SUB TOTAL </b></div>
-                        <div class="col-sm-7">{{total | number:'1.2-2' }}</div>
+                      <div class="col-sm-12 col-md-1 col-lg-1 col-3">
+                        <img src="../../../../assets/img/avatars/female.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Female' || customer.gender == 'female'">
+                        <img src="../../../../assets/img/avatars/download.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Male' || customer.gender == 'male'">
                       </div>
-                      <hr>
-                      <div class="row">
-                          <div class="col-sm-5">Total Amount </div>
-                          <div class="col-sm-7"></div>
-                        </div>
-                        
+                      <div class="col-sm-12 col-md-11 col-lg-11 col-9">
                         <div class="row">
-                            <div class="col-sm-5">Tax </div>
-                            <div class="col-sm-7">{{0.00}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-5"><strong class="text-success">AMOUNT DUE</strong></div>
-                            <div class="col-sm-7"><strong>{{total | number:'1.2-2'}}</strong></div>
-                          </div>
-                        
-                      
-                    </div>
-                    <div class="col-sm-12 footer">
-                      <div class="row">
-                        <div class="col-sm-6">
-                            powered by healthix uilabs
-                        </div>
-                      </div>
-                    </div>
-                  
-      </div>
-    </div>
-  </div>
-  </tab>
-  <tab>
-    <span *tabHeading>
-      INSURANCE DETAILS
-    </span>
-            <tabset>
-              <tab>
-                <ng-template tabHeading><span style="font-size:14px;">Patient Information</span> </ng-template>
-                <div class="row">
-                    <div class="col-sm-4">
-                      <mat-form-field>
-                          <input type="text" [(ngModel)]="name" placeholder="Search Payer"  matInput   [typeahead]="payers" (typeaheadLoading)="payerSearch(name)"
-                          (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"   [ngModelOptions]="{standalone: true}" />
-                      </mat-form-field>
-                    </div>
-                    <div class="col-sm-4">
-                        <mat-form-field>
-                            <input  [(ngModel)]="scheme_name" [typeahead]="schemes" (typeaheadLoading)="schemeSearch(scheme_name)" placeholder="Scheme"
-                                      (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="6" typeaheadOptionField="name"  matInput/>
-                          </mat-form-field>
-                    </div>
-                    <div class="col-sm-4">
-                        <mat-form-field>
-                            <input [typeahead]="members" [typeaheadOptionsLimit]="7" [(ngModel)]="member"
-                            typeaheadOptionField="member_number" (typeaheadOnSelect)="onMember($event)"   placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
-                          </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="row" *ngIf="!(memberInfo | keyvalue)?.length">
-                      <div class="col-sm-12">
-                        <h1 align="center">
-                          <i class="icon-magnifier-add" style="font-size:100px"></i>
-                          <br>
-                          <span style="font-size:16px;font-family: lato light">
-                            Search a member to view cover details
-                          </span>
-                        </h1>
-                      </div>
-                    </div>
-                  
-                <div class="row" *ngIf="(memberInfo | keyvalue)?.length" >
-                    <div class="col-sm-2">
-                        <h3 align="center"><img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/download.png"
-                          style="height: 150px;" *ngIf="memberInfo.gender =='Male' || memberInfo.gender =='male' || memberInfo.gender =='M'">
-                          <img title="profile image" class="img-circle img-responsive center" src="assets/img/avatars/female.png"style="height:150px;" *ngIf="memberInfo.gender =='Female' || memberInfo.gender =='female'|| memberInfo.gender =='F'"></h3>
-                      </div>
-                  <div class="col-sm-5 cls">
-                    <h5> {{memberInfo.name}} | <span style="font-weight: 600" class="text-primary">
-                        <span *ngIf="memberInfo?.age?.years > 0">{{memberInfo?.age?.years}}  Years</span>
-                        <span *ngIf="memberInfo?.age?.months > 0">{{memberInfo?.age?.months}} Months</span>
-                        <span *ngIf="memberInfo?.age?.days > 0">{{memberInfo?.age?.days}} Days</span>
-                      </span>| <span class="text-primary" style="font-weight: 600">{{memberInfo?.gender}}</span>| <span *ngIf="memberInfo.national_id != ''">ID: <span>{{memberInfo?.national_id}}</span></span></h5>
-                    <div class="row" >
-                      <div class="col-sm-12">
-                        <div class="row">
-                          <div class="col-sm-4">INSURANCE</div>
-                          <div class="col-sm-8 txt text-success">{{memberInfo?.payer}}</div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12">
+                      <div class="col-sm-5">
                           <div class="row">
-                              <div class="col-sm-4">SCHEME NAME</div>
-                              <div class="col-sm-8 txt">{{memberInfo?.scheme}}</div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4">PLAN NAME</div>
-                                <div class="col-sm-8 txt">{{memberInfo?.plan}}</div>
-                              </div>
+                              <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} || <span class="text-success">{{customer.age}}</span></div>
+                              <div class="col-sm-12" > {{customer.phone}} </div>
+                              <div class="col-sm-12" > {{customer.email}} </div>
                           </div>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4">PLAN EFFECTIVE DATE</div>
-                                <div class="col-sm-8">{{memberInfo?.plan_effective_date}}</div>
-                              </div>
+
+                      </div>
+                          <div class="col-sm-7" style="text-align:right">
+                            <mat-icon style="font-size:30px;" color="primary">receipt_long</mat-icon> 
+                            <h6>Amount Paid <span class="text-success" style="font-weight:600;">{{data.amount_paid | number:'1.2-2'}}</span></h6>
+                          </div>
                         </div>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4">PLAN EXPIRY DATE</div>
-                                <div class="col-sm-8 txt text-danger">{{memberInfo?.plan_expire_date}}</div>
-                              </div>
-                         </div>
-                         <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4">MEMBER NUMBER</div>
-                                <div class="col-sm-8 txt">{{memberInfo?.member_number}}</div>
-                              </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4">STATUS</div>
-                                <div class="col-sm-8 txt"><span  *ngIf="memberInfo?.status" class="btn btn-success btn-sm">ACTIVE</span>
-                                  <span  *ngIf="!memberInfo?.status" class="btn btn-danger btn-sm">INACTIVE</span>
-                                </div>
-                              </div>
-                          
-                        </div>
+            
+                      </div>
                     </div>
+                   
                   </div>
-                  <div class="col-sm-5">
-                    <div class="col-sm-12">
-                        <mat-card class="principal">
-                          <mat-card-subtitle>PRINCIPAL DETAILS</mat-card-subtitle>
-                            <div class="row">
-                                <div class="col-sm-12 cls">
-                                    <h5> {{memberInfo.name}} | <span style="font-weight: 600" class="text-primary">
-                                        <span *ngIf="memberInfo?.age?.years > 0">{{memberInfo?.age?.years}}  Years</span>
-                                        <span *ngIf="memberInfo?.age?.months > 0">{{memberInfo?.age?.months}} Months</span>
-                                        <span *ngIf="memberInfo?.age?.days > 0">{{memberInfo?.age?.days}} Days</span>
-                                      </span>| <span class="text-primary" style="font-weight: 600">{{memberInfo?.gender}}</span>|</h5>
-                                </div>
+                  <div class="col-sm-12">
+                      <mat-tab-group>
+                        <mat-tab>
+                          <ng-template mat-tab-label>
+                            Appointments Fee
+                          </ng-template>
+                          <br>
+                        <div class="row container-fluid">
+                          <div class="col-sm-12">
+                            <div class="mat-elevation-z8 table-responsive">
+                              <table mat-table [dataSource]="feesSource" matSort>
+                                <ng-container matColumnDef="sn">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                  <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="date">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Date </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                              </ng-container>
+                                <ng-container matColumnDef="type">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Type</th>
+                                  <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.mode}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="amount">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="transaction">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction</th>
+                                  <td mat-cell *matCellDef="let element"> 
+                                    <span *ngIf="element.amount < 0">Refund</span>
+                                    <span *ngIf="element.amount > 0">Fee Payment</span>
+
+                                     </td>
+                                </ng-container>
+                          
+                                <ng-container matColumnDef="refund">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Refund</th>
+                                  <td mat-cell *matCellDef="let element"> <button class="btn btn-success btn-sm" [disabled]="element.status ==1" (click)="refund(element);element.status=1">Refund</button> </td>
+                                </ng-container>        
+                                <tr mat-header-row *matHeaderRowDef="feesColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns:feesColumns;"></tr>
+                              </table>
+                              <mat-paginator [pageSizeOptions]="[20,40]" showFirstLastButtons></mat-paginator>
                             </div>
-                            <div class="row cls">
+                          </div> 
+                        </div>
+                        <br>
+                        </mat-tab>
+                        <mat-tab>
+                          <ng-template mat-tab-label>
+                            Services
+                          </ng-template>
+                          <br>
+                        <div class="row container-fluid">
+                          <div class="col-sm-3">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Search Service</mat-label>
+                                <input matInput placeholder="Service" [(ngModel)]="text"
+                                [typeahead]="services"
+                                typeaheadOptionField="name"
+                                (typeaheadOnSelect)="onService($event)">
+                              </mat-form-field>
+                        </div>
+                        <br>
+                        <div class="col-sm-12">
+                          <div class="mat-elevation-z8 table-responsive">
+                            <table mat-table [dataSource]="serviceSource" matSort>
+                              <ng-container matColumnDef="sn">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                              </ng-container>
+                              
+                              <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                                <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="code">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                                <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                            </ng-container>
+
+                              <ng-container matColumnDef="amount">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="delete">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                                <td mat-cell *matCellDef="let element" (click)="deleteService(element)"><mat-icon color="warn" >delete_sweep</mat-icon></td>
+                              </ng-container>
+                              
+                              <tr mat-header-row *matHeaderRowDef="serviceColumns"></tr>
+                              <tr mat-row *matRowDef="let row; columns:serviceColumns;"></tr>
+                            </table>
+                            <mat-paginator #paginator [pageSizeOptions]="[25,50]" showFirstLastButtons></mat-paginator>
+                          </div>
+                        </div>
+                    
+                        </div>
+                        <br>
+
+                        </mat-tab>
+                        <mat-tab>
+                          <ng-template mat-tab-label>
+                            All Payments
+                          </ng-template>
+                          <br>
+                        <div class="row container-fluid">
+                          <!-- <div class="col-sm-3">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Search Service</mat-label>
+                                <input matInput placeholder="Service" [(ngModel)]="text"
+                                [typeahead]="services"
+                                typeaheadOptionField="name"
+                                (typeaheadOnSelect)="onService($event)">
+                              </mat-form-field>
+                        </div> -->
+                        <br>
+                        <div class="col-sm-12">
+                          <div class="mat-elevation-z8 table-responsive">
+                            <table mat-table [dataSource]="serviceSource" matSort>
+                              <ng-container matColumnDef="sn">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                              </ng-container>
+                              
+                              <ng-container matColumnDef="created">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="mode">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mode</th>
+                                <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                            </ng-container>
+
+                              <ng-container matColumnDef="amount">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="delete">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                                <td mat-cell *matCellDef="let element" (click)="deleteService(element)"><mat-icon color="warn" >delete_sweep</mat-icon></td>
+                              </ng-container>
+                              
+                              <tr mat-header-row *matHeaderRowDef="allColumns"></tr>
+                              <tr mat-row *matRowDef="let row; columns:allColumns;"></tr>
+                            </table>
+                            <mat-paginator #paginator [pageSizeOptions]="[25,50]" showFirstLastButtons></mat-paginator>
+                          </div>
+                        </div>
+                    
+                        </div>
+                        <br>
+
+                        </mat-tab>
+                          <mat-tab>
+                            <ng-template mat-tab-label>
+                             Ncba Payments
+                            </ng-template>
+                            <br>
+                            <div class="col-sm-12">
+                              <div class="mat-elevation-z8 table-responsive">
+                                <table mat-table [dataSource]="dataSource" matSort>
+                                    <ng-container matColumnDef="sn">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                                        <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                                </ng-container>
+                                      <ng-container matColumnDef="date">
+                                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                              <td mat-cell *matCellDef="let element"> {{element.date | date:'medium'}} </td>
+                                      </ng-container>
+                                  <ng-container matColumnDef="trans_id">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.trans_id}} </td>
+                                  </ng-container>
+                            
+                                  <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef  mat-sort-header>Name</th>
+                                    <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="msisdn">
+                                    <th mat-header-cell *matHeaderCellDef  mat-sort-header>Phone Number</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.msisdn}} </td>
+                                  </ng-container>
+                                
+                                  <ng-container matColumnDef="trans_type">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction Type</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.trans_type}} </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="amount">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                                    <td mat-cell *matCellDef="let element">
+                                       {{element.amount | number:'1.2-2'}}
+                                    </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="status">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                      <span class="text-success" *ngIf="element.status=='0'">Open</span>
+                                      <span class="text-danger" *ngIf="element.status=='1'">Used</span>
+                                       </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="use">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Use</th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                      <button class="btn btn-success btn-sm"  (click)="utilize(element)" [disabled]="element.status=='1'">Utilize</button>
+                                       </td>
+                                  </ng-container>
+                                  
+                                  <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
+                                </table>
+                            
+                                <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+                              </div>
+                            </div>
+                            <br>
+                          </mat-tab>
+
+
+
+                          <mat-tab>
+                            <ng-template mat-tab-label>
+                             Cash Payments
+                            </ng-template>
+                            <br>
+                            <div class="col-sm-12 " style="text-align:right">
+                              <button class="btn btn-success btn-sm pull-right" (click)="staticModal.show()">Add Payment</button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-sm-12">
+                              <div class="mat-elevation-z8 table-responsive">
+                                <table mat-table [dataSource]="mpesaSource" matSort>
+                                  <ng-container matColumnDef="sn">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                                    <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.created | date}} </td>
+                                </ng-container>
+                                  <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cashier</th>
+                                    <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.cashier}} </td>
+                                  </ng-container>
+                              
+                                  <ng-container matColumnDef="amount">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                                  </ng-container>
+                            
+                                  <ng-container matColumnDef="trx">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Reciept No</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                                  </ng-container>
+
+                                  
+                              
+                                  <tr mat-header-row *matHeaderRowDef="cashColumns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns:cashColumns;"></tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[20,40]" showFirstLastButtons></mat-paginator>
+                              </div>
+                            </div>
+                            <br>
+                          </mat-tab>
+
+
+
+                          <mat-tab>
+                            <ng-template mat-tab-label>
+                              Appointments Details
+                            </ng-template>
+                            <!-- <div class="row container-fluid" style="margin-top: 10px;">
                                 <div class="col-sm-12">
-                                    <div class="row">
-                                      <div class="col-sm-4">INSURANCE</div>
-                                      <div class="col-sm-8 txt text-info">{{memberInfo?.payer}}</div>
+                                 
+                                </div>
+                            </div> -->
+                            <br>
+                            <fieldset>
+                              <legend>Appointment Details</legend>
+                              <div class="col-sm-12">
+                                <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Appointment Date</mat-label>
+                                              <input matInput placeholder="Appointment Date" [minDate]="minDate" formControlName="date" [matDatepicker]="picker1">
+                                              <mat-error *ngIf="f.date.errors && submitted">Appointment Date <strong>required</strong></mat-error>
+                                              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                              <mat-datepicker #picker1></mat-datepicker>
+                                            </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Select Time</mat-label>
+                                          <mat-select formControlName="time">
+                                            <mat-option *ngFor="let item of time" [value]="item">
+                                              {{item}}
+                                            </mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Appointment Type</mat-label>
+                                          <mat-select formControlName="type">
+                                            <mat-option  value="standard">
+                                              Standard
+                                            </mat-option>
+                                            <mat-option  value="Supervision">
+                                              Supervision
+                                            </mat-option>
+                                          </mat-select>
+                                          <mat-error *ngIf="f.type && submitted">Appointment Type <strong>required</strong></mat-error>
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-12">
+                                            
+                                        <mat-form-field  appearance="outline">
+                                            <mat-label>Appointment Reason</mat-label>
+                                            <textarea matInput cols="30" rows="5"  placeholder="Reason for Appointment" formControlName="reason"></textarea>
+                                        <mat-error *ngIf="f.reason && submitted">Reason for Appointment <strong>required</strong></mat-error>
+                                          </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       <button class="btn btn-success btn-sm pull-right" *ngIf="appointmentForm.dirty">update</button>
                                     </div>
                                   </div>
-                                <div class="col-sm-4">MEMBER NUMBER</div>
-                                <div class="col-sm-8 txt">{{memberInfo?.member_number}}</div>
+                                </form>
                               </div>
-                              <div class="row">
-                                  <div class="col-sm-4">STATUS</div>
-                                  <div class="col-sm-8 txt"><span  *ngIf="memberInfo?.status" class="btn btn-success btn-sm">ACTIVE</span>
-                                    <span  *ngIf="!memberInfo?.status" class="btn btn-danger btn-sm">INACTIVE</span>
-                                  </div>
-                              </div>
-                             
-                        </mat-card>
-                    </div>
+                            </fieldset>
+                            <br>
+                              <fieldset>
+                                <legend>Counselor  & Location Details</legend>
+                                <div class="col-sm-12">
+                                  <form [formGroup]="counselorForm" (ngSubmit)="onSave()">
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Select Location</mat-label>
+                                          <mat-select formControlName="room">
+                                            <mat-option *ngFor="let room of rooms" [value]="room.id">{{room.name}}</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                        
+                                      </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Select Counselor</mat-label>
+                                            <mat-select formControlName="id" (selectionChange)="onSelect(g.id.value)">
+                                              <mat-option *ngFor="let counselor	 of counsolers" [value]="counselor.id">{{counselor.username}}</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                          
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>First Name</mat-label>
+                                              <input matInput placeholder="First Name"   formControlName="first_name" readonly>
+                                              <mat-error *ngIf="g.first_name.errors && submitted">First Name<strong>required</strong></mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Last Name</mat-label>
+                                              <input matInput placeholder="Last Name"   formControlName="last_name" readonly>
+                                              <mat-error *ngIf="g.last_name.errors && submitted">Last Name<strong>required</strong></mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Phone No</mat-label>
+                                              <input matInput placeholder="Phone Number" readonly formControlName="phone">
+                                              <mat-error *ngIf="g.phone.errors && submitted">Phone no<strong>required</strong></mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Email</mat-label>
+                                              <input matInput placeholder="Email"   formControlName="email" readonly>
+                                              <mat-error *ngIf="g.email.errors && submitted">Email is<strong>required</strong></mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                       <div class="col-sm-6">
+                                         <button class="btn btn-success btn pull-right" type="submit" *ngIf="counselorForm.dirty" [disabled]="data.amount_paid < data.amount && data.amount >0 ">Save</button>
+                                       </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </fieldset>
+                          <br>
+
+                          <fieldset>
+                            <legend>Supervision Counselor </legend>
+                            <div class="col-sm-12">
+                              <form [formGroup]="supervisionForm" (ngSubmit)="onAdd()">
+                                <div class="row">
+                                 
+                                    <div class="col-sm-3">
+                                      <mat-form-field appearance="outline">
+                                        <mat-label>Select Counselor</mat-label>
+                                        <mat-select formControlName="id" (selectionChange)="onCounsoler(i.id.value)">
+                                          <mat-option *ngFor="let counselor	 of counsolers" [value]="counselor.id">{{counselor.username}}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                      
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <mat-form-field appearance="outline">
+                                        <mat-label>First Name</mat-label>
+                                          <input matInput placeholder="First Name"   formControlName="first_name" readonly>
+                                          <mat-error *ngIf="i.first_name.errors && submitted">First Name<strong>required</strong></mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <mat-form-field appearance="outline">
+                                        <mat-label>Last Name</mat-label>
+                                          <input matInput placeholder="Last Name"   formControlName="last_name" readonly>
+                                          <mat-error *ngIf="i.last_name.errors && submitted">Last Name<strong>required</strong></mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <mat-form-field appearance="outline">
+                                        <mat-label>Phone No</mat-label>
+                                          <input matInput placeholder="Phone Number" readonly formControlName="phone">
+                                          <mat-error *ngIf="i.phone.errors && submitted">Phone no<strong>required</strong></mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <mat-form-field appearance="outline">
+                                        <mat-label>Email</mat-label>
+                                          <input matInput placeholder="Email"   formControlName="email" readonly>
+                                          <mat-error *ngIf="i.email.errors && submitted">Email is<strong>required</strong></mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                   <div class="col-sm-9">
+                                     <button class="btn btn-success btn pull-right" type="submit" *ngIf="supervisionForm.dirty" [disabled]="data.amount_paid < data.amount && data.amount >0">Save</button>
+                                   </div>
+                                </div>
+                              </form>
+                            </div>
+                          </fieldset>
+
+                          </mat-tab>
+                         
+                        
+                        </mat-tab-group>
                   </div>
+                  
                 </div>
-              </tab>
-              <tab>
-                <ng-template tabHeading> <span style="font-size:14px;">Benefits</span></ng-template>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <mat-form-field>
-                        <input matInput (keyup)="applySearch($event.target.value)" placeholder="search exclusion">
-                      </mat-form-field>
-                    </div>
-                  </div>
-                <div class="row">
-                  <div class="col-sm-10">
-                    <div class="mat-elevation-z8">
-                      <table mat-table [dataSource]="covered_benefits">
-                        <ng-container matColumnDef="benefit">
-                          <th mat-header-cell *matHeaderCellDef>Benefit</th>
-                          <td mat-cell *matCellDef="let element"> {{element.benefit__benefit}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="category">
-                          <th mat-header-cell *matHeaderCellDef>Category</th>
-                          <td mat-cell *matCellDef="let element"> {{element.benefit__category}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="balance">
-                          <th mat-header-cell *matHeaderCellDef>Balance</th>
-                          <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
-                        </ng-container>
-              
-                        <tr mat-header-row *matHeaderRowDef="benefitColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: benefitColumns;"></tr>
-                      </table>
-                      <!-- <mat-paginator #paginator3 [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator> -->
-                    </div>
-              
-                  </div>
-                </div>
-              </tab>
-              <tab>
-                <ng-template tabHeading> <span style="font-size:14px;">Exclusion</span></ng-template>
-                <div class="row" >
-                  <div class="col-sm-10">
-                    <div class="row">
-                      <div class="col-sm-4">
-                        <mat-form-field>
-                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search exclusion">
-                        </mat-form-field>
-                      </div>
-                    </div>
-                    <div class="mat-elevation-z8">
-                      <table mat-table [dataSource]="dataSource1" matSort>
-              
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="benefit">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Exclusion</th>
-                          <td mat-cell *matCellDef="let element"> {{element.benefit}} </td>
-                        </ng-container>
-              
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="category">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Category </th>
-                          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-                        </ng-container>
-              
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="updated">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated</th>
-                          <td mat-cell *matCellDef="let element"> {{element.updated | date : 'yyyy-MM-dd'}} </td>
-                        </ng-container>
-              
-                        <ng-container matColumnDef="Time">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-                          <td mat-cell *matCellDef="let element"> {{element.updated | date : 'shortTime'}} </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="exclusionColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns:exclusionColumns;"></tr>
-                      </table>
-              
-                      <mat-paginator #paginator [pageSizeOptions]="[12,22]" showFirstLastButtons></mat-paginator>
-                    </div>
-              
-                  </div>
-                </div>
-              </tab>
-            </tabset>
-  </tab>
-  <tab>
-      <span *tabHeading>
-        PAYMENTS
-      </span>
-      <div class="row">
-        <div class="col-sm-12">
-          <h3>Choose Payment Mode
-                <span class=" text-danger pull-right" style="font-size:18px;font-weight:bolder;"> <i class="cui-dollar"></i>
-               Pending Amount: {{pending_amount | number:'1.2-2'}}</span>
-              </h3>
+                
+          </div>
         </div>
+  </div>
+</div>
+
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+   tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 id="dialog-static-name" class="modal-title pull-left">Cash Payment</h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="cashForm" (ngSubmit)="onCash()">
+      <div class="row">
           <div class="col-sm-12">
-              
-              <hr>
-              <div class="row">
-                <div class="col-sm-2">
-                  <mat-checkbox [checked]="isMpesa" (change)="onMpesa()"> <b>Mpesa</b></mat-checkbox>
-                </div>
-                <div class="col-sm-2">
-                  <mat-checkbox [checked]="isCash" (change)="onCash()"><b>Cash</b></mat-checkbox>
-                </div>
-                <div class="col-sm-2">
-                  <mat-checkbox [checked]="isInsurance" *ngIf="memberInfo?.memberInfo" (change)="onInsurance()"><b>Insurance</b></mat-checkbox>
-                </div>
-                <div class="col-sm-6">
-                  <button class="btn btn-success btn-sm pull-right" style="margin-right:8px;" (click)="submitPayment()"
-                  [disabled]="bill_amount < pending_amount  ">Submit</button>
-                </div>
-      
-              </div>
-              <div class="row">
-                <div class="col-sm-12" *ngIf="isInsurance">
-                  <label style="font-size:14px;">Insurance Amount</label>
-                  <input type="number" [disabled]="status" class="form-control" placeholder="insurance amount"
-                    [(ngModel)]="amount" (ngModelChange)="calculate()">
-                </div>
-                <div class="col-sm-12" *ngIf="isCash">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <label style="font-size:14px;">Cash </label>
-                      <input type="number" min="0" class="form-control" placeholder="Cash Amount" [(ngModel)]="cash"
-                        (ngModelChange)="calculate()" [disabled]="status">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12" *ngIf="isMpesa">
-                  <label style="font-size:14px;">Mpesa Deposit</label>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" placeholder="Transaction No" [(ngModel)]="mpesa.trx">
-                    </div>
-                    <div class="col-sm-6">
-                      <input type="number" class="form-control" placeholder="mpesa amount" [(ngModel)]="mpesa.amount"
-                        (ngModelChange)="calculate()" [disabled]="status">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <br>
-            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Amount</mat-label>
+                <input matInput placeholder="Amount" formControlName="amount">
+                <mat-error>
+                  <span *ngIf="h.amount.errors?.required" class="text-danger"> Amount is <strong>required</strong></span>
+                  <span *ngIf="h.amount.errors?.min" class="text-danger"> <strong>Minimum amount is 50/=</strong> </span>
 
-              <div class="col-sm-12" *ngIf="patientInfo.bills">
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-                    <ng-container matColumnDef="sn">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
-                        <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                      </ng-container>
-              
-                  <ng-container matColumnDef="service">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> SERVICE </th>
-                    <td mat-cell *matCellDef="let element"> {{element.service}} </td>
-                  </ng-container>
-          
-                  <ng-container matColumnDef="category">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORY</th>
-                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-                  </ng-container>
-          
-                  <ng-container matColumnDef="bill_number">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> BILL NUMBER </th>
-                    <td mat-cell *matCellDef="let element"> {{element.bill_number}} </td>
-                  </ng-container>
-          
-                  <ng-container matColumnDef="invoice__no">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> INVOICE NUMBER </th>
-                    <td mat-cell *matCellDef="let element"> {{element.invoice__no}} </td>
-                  </ng-container>
-          
-                  <ng-container matColumnDef="rate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>COST</th>
-                    <td mat-cell *matCellDef="let element"> {{element.rate}}</td>
-                  </ng-container>
-          
-                  <!-- <ng-container matColumnDef="reverse">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>REVERSE</th>
-                    <td mat-cell *matCellDef="let element"> <button (click)="reverseBill(element)"><i class="cui-action-undo"
-                          style="color:red;font-weight:900"></i> Reverse</button></td>
-                  </ng-container> -->
-          
-                  <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</th>
-                    <td mat-cell *matCellDef="let element"><span  *ngIf="element.status =='0'">Not Paid</span>
-                      <span  *ngIf="element.status =='1'">Paid</span>
-                    </td>
-                  </ng-container>
-          
-          
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="row.rate <= 0"></tr>
-                </table>
-          
-                <br>
-              </div>
-          
+                </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-sm-12">
+            <button class="btn btn-success btn-sm pull-right" [disabled]="cashForm.invalid">Submit</button>
+          </div>
+        
       </div>
-      </tab>
-</tabset>
+    </form>
+    </div>
+  </div>
+</div>
+</div>
 
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
+<div class="modal fade" bsModal #serviceModal="bs-modal" [config]="{backdrop: 'static'}"
+   tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="dialog-static-name" class="modal-title pull-left">Add Service</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="serviceModal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form  [formGroup]="serviceForm" (ngSubmit)="addService()">
+     <div class="row">
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Service</mat-label>
+            <input matInput placeholder="Service" formControlName="name" readonly >
+          </mat-form-field>
+      </div>
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Code</mat-label>
+            <input matInput placeholder="Code" formControlName="code" readonly>
+          </mat-form-field>
+      </div>
+      <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Cost</mat-label>
+            <input matInput placeholder="Cost" formControlName="cost" readonly>
+          </mat-form-field>
+      </div>
+      <diiv class="col-sm-12">
+        <button class="btn btn-success pull-right" type="submit">Submit</button>
+      </diiv>
+     </div>
+    </form>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,164 +1,42 @@
-
-label {
-    font-size:18px;
-    font-weight: bolder;
-}
-
-//  fieldset 
-// 	{
-// 		margin: 0;
-// 		padding: 10px;       
-// 		position: relative;
-// 		border-radius:4px;
-	
-// 		padding-left:10px!important;
-// 	}	
-	
-// 		legend
-// 		{
-// 			font-size:10px;
-// 			font-weight:bold;
-// 			margin-bottom: 0px; 
-// 			width: 15%; 
-// 			border: 1px solid #ddd;
-// 			border-radius: 4px; 
-// 			padding: 5px 5px 5px 10px;
-// 		}
-.details {
-	font-size: 18px;
-}
-@media print{
-	img {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 100%;
-	  }
-    #div{
-        background-color:  #20a8d8;
-    }
-    .total{
-    background-color: greenyellow;
-    }
-    .footer{
-        position: fixed;
-        bottom: 0;
-    }
-       
-    table{
-        width: 100%;
-        font-family : lato light;
-    }
-    tr{
-     font-weight: bold;
-    }
-    hr{
-        margin-top: -2px;
-    
-    }
-    .col-sm-5{
-        font-size: 15px;
-        font-weight:bold;
-        // text-transform: uppercase;
-        font-family: lato light;
-    }
-    .address{
-        font-weight: bold;
-        // font-family: lato light;
-        margin-top: -5px;
-    }
-    .header{
-        font-family: lato light;
-        font-family: 22px;
-        font-weight: bold;
-    }
-    .total {
-        font-family: lato light
-    }
-}
-hr{
-border-top: 1px dashed #20a8d8;;
-}
-label {
-	font-size: 8px;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-family:lato light;
-
-}
-
-
-span{
-	font-family:lato light;
-}
-table {
-    width: 100%;
-}
-table{
-	width: 100%;
-	font-family:lato light;
-}
-tr.mat-header-row {
-	height:38px;
-}
-td.mat-cell{
-  font-size:13px;
-  font-weight: bold;
-}
-tr.mat-row, tr.mat-footer-row {
-  height: 32px;
-}
-
-th.mat-header-cell {
-  text-align: left;
-  text-transform: uppercase;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
-  padding: 0;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
-
-th.mat-header-cell:first-child, td.mat-cell:first-child, td.mat-footer-cell:first-child {
-  padding-left: 24px;
-}
-
-th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-child {
-  padding-right: 24px;
-}
-mat-form-field{
-	width: 100%;
-}
-
-td.mat-cell{
-  font-size:13px;
-}
-tr.mat-row, tr.mat-footer-row {
-  height: 30px;
-  font-weight: bold;
-}
-tr.mat-header-row {
-  height:32px;
+div{
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  ::ng-deep .mat-tab-label {
+  padding: 0px !important; // adjust this to whatever padding you need
+  justify-content: left !important;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  input[type="text"],input[type="select"]{
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
   
-}
-th {
-  color: #20a8d8;
-  font-weight: bolder;
-  font-size:17px;
-  text-transform: uppercase;
-}
-mat-form-field{
-  width:100%;
-}
-::ng-deep .mat-card .principal{
-  border: solid dodgerblue;
-
- }
- .txt{
-  text-align: left;
-  font-size: 13px;
-  font-weight: bolder;
-}
+  ::ng-deep mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix  { padding: 0.6em 0px }
+  ::ng-deep mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix > span.mat-form-field-label-wrapper { top: -1.3em; }
+  
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(.75);
+  width: 133.33333%;
+  }
+  
+  table{
+      width: 100%;
+      font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  td.mat-cell{
+      font-size:13px;
+  }
+  th{
+      text-transform: capitalize;
+  }
+  tr.mat-row, tr.mat-footer-row {
+      height: 37px;
+    }
+   tr.mat-header-row {
+      height:39px;
+  }
+  div{
+      font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  form{
+      width: 100%;
+  }

@@ -41,19 +41,13 @@ import { BatchesComponent } from './batches/batches.component';
 import { BatchDetailComponent } from './batch-detail/batch-detail.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { StockLevelComponent } from './stock-level/stock-level.component';
-import { LabComponent } from './lab/lab.component';
-import { LabResultsComponent } from './lab-results/lab-results.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { TriageComponent } from './triage/triage.component';
 import { CreateClaimComponent } from './create-claim/create-claim.component';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { LabOrdersComponent } from './lab-orders/lab-orders.component';
-import { LabOrdersItemsComponent } from './lab-orders-items/lab-orders-items.component';
-import { LabTestsComponent } from './lab-tests/lab-tests.component';
 import { AuthorizationLetterComponent } from './authorization-letter/authorization-letter.component';
 import { AuthletterRequestComponent } from './authletter-request/authletter-request.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
-import { PatientPrescriptionComponent } from './patient-prescription/patient-prescription.component';
 import { HospitalComponent } from './hospital/hospital.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -74,11 +68,13 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
 import { AppointmentDetailsComponent } from './appointment-details/appointment-details.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { ClaimsCheckComponent } from './claims-check/claims-check.component';
-import { InpatientComponent } from './inpatient/inpatient.component';
 import { OutpatientComponent } from './outpatient/outpatient.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { ClientsComponent } from './clients/clients.component';
 import { BookingComponent } from './booking/booking.component';
+import { BillingComponent } from './billing/billing.component';
+import { ReportComponent } from './report/report.component';
+import { RoomRevenueComponent } from './room-revenue/room-revenue.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 @NgModule({
@@ -104,17 +100,11 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BatchDetailComponent,
     InventoryComponent,
     StockLevelComponent,
-    LabComponent,
-    LabResultsComponent,
     CreateClaimComponent,
     TriageComponent,
-    LabOrdersComponent,
-    LabOrdersItemsComponent,
-    LabTestsComponent,
     AuthorizationLetterComponent,
     AuthletterRequestComponent,
     PharmacyComponent,
-    PatientPrescriptionComponent,
     HospitalComponent,
     CalendarComponent,
     ReportsComponent,
@@ -129,11 +119,13 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     AppointmentDetailsComponent,
     UserAccountComponent,
     ClaimsCheckComponent,
-    InpatientComponent,
     OutpatientComponent,
     EmployeesComponent,
     ClientsComponent,
-    BookingComponent
+    BookingComponent,
+    BillingComponent,
+    ReportComponent,
+    RoomRevenueComponent
   ],
   imports: [
     CommonModule,

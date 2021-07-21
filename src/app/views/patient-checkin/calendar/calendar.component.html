@@ -1,9 +1,9 @@
 <ejs-schedule  (popupOpen)='onPopupOpen($event)' width='100%' height='800px' rowAutoHeight="true"    [workHours]="scheduleHours"  [selectedDate]='selectedDate' [views]="setViews"  [group]='group' [currentView]="setView" [eventSettings]="eventSettings">
     <e-views>
-        <e-view option='Day' startHour='08:00' endHour='17:00' [interval]='3'></e-view>
+        <e-view option='Day' startHour='08:00' endHour='17:00' [interval]='1'></e-view>
         <!-- <e-view  startHour='08:00' endHour='17:00' option='Week' ></e-view> -->
         <e-view option='WorkWeek'  startHour='08:00' endHour='17:00' [workDays]="workWeekDays"></e-view>
-        <e-view option='Month'></e-view>
+        <!-- <e-view option='Month'></e-view> -->
         <e-view option='Agenda'></e-view>
         <e-view option='MonthAgenda' ></e-view>
       </e-views>

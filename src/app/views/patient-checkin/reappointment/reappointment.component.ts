@@ -11,31 +11,23 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReappointmentComponent implements OnInit {
   patient:any={};
+  customer:any={}
   maxDate = new Date();
+  loading = false;
   appointmentForm: FormGroup;
   submitted: boolean;
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
+  transactions=[];
   constructor(private route: ActivatedRoute,public router:Router,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
-
   ngOnInit() {
     this.getPatient(this.route.snapshot.params.id);
     this.appointmentForm = this.formBuilder.group({
-      phone: ['',Validators.required],
       time: ['', Validators.required],
       type: ['', Validators.required],
+      payment_type:['',Validators.required],
+      amount:['',Validators.required],
       reason: ['', Validators.required],
-      first_name: ['', Validators.required],
-      other_names: [''],
-      last_name: ['', Validators.required],
-      gender: ['Female', Validators.required],
-      email: ['',Validators.email],
-      dob: ['', Validators.required],
-      priority: ['3', Validators.required],
-      residence: [''],
-      national_id: ['',Validators.required],
-      passport_no: [''],
-      occupation: [''],
-      visit_type:['REVISIT',Validators.required],
+      no:[''],
       date:['',Validators.required]
     });
   }
@@ -43,14 +35,12 @@ export class ReappointmentComponent implements OnInit {
 
   getPatient(id){
     this.service.getPatient(id).subscribe((res)=>{
-      this.patient = res;
-      this.appointmentForm.patchValue({last_name:this.patient.last_name,first_name:this.patient.first_name,other_names:this.patient.other_names,gender:this.patient.gender,
-      national_id:this.patient.national_id,phone:this.patient.phone,email:this.patient.email,dob:new Date(this.patient.dob),residence:this.patient.residence
+      this.customer = res;
       })
-    })
   }
   onSubmit() {
-    this.submitted = true;
+  this.loading = true;
+  this.submitted = true;
    if (this.appointmentForm.invalid) {
        return;
    }
@@ -59,14 +49,32 @@ export class ReappointmentComponent implements OnInit {
    data.date = this.appointmentForm.get('date').value
    data.time = this.appointmentForm.get('time').value
    data.reason = this.appointmentForm.get('reason').value
+   data.payment_type = this.appointmentForm.get('payment_type').value
+   data.amount = this.appointmentForm.get('amount').value
+   data.no = this.appointmentForm.get('no').value
    data.type = this.appointmentForm.get('type').value
    this.service.createReappointment(data).subscribe((res)=>{
    this.toastr.success("Successfully addeded appointment");
     this.submitted = false;
+    this.loading = false;
     this.router.navigate(['/dashboard/appointment-list/'])
    },(err)=>{
+    this.loading = false;
     this.toastr.info(err.error.error,'Information');
    })
  
  }
+ onSelect(item){
+  const data = item.item;
+  console.log(data)
+  this.appointmentForm.patchValue({name:data.name,phone:data.phone});
+}
+searchTransaction(text){
+  this.service.searchncbaPaymentsByPhone(text).subscribe((res)=>{
+    this.transactions = res.results;
+  })
+}
+typeaheadOnSelect(item){
+  this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.trans_id})
+}
 }

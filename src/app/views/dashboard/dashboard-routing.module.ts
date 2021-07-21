@@ -22,18 +22,12 @@ import { BatchesComponent } from '../patient-checkin/batches/batches.component';
 import { BatchDetailComponent } from '../patient-checkin/batch-detail/batch-detail.component';
 import { StockLevelComponent } from '../patient-checkin/stock-level/stock-level.component';
 import { HospitalComponent } from '../patient-checkin/hospital/hospital.component';
-import { LabComponent } from '../patient-checkin/lab/lab.component';
 import { PharmacyComponent } from '../patient-checkin/pharmacy/pharmacy.component';
-import { LabResultsComponent} from '../patient-checkin/lab-results/lab-results.component';
 import { CreateClaimComponent } from '../patient-checkin/create-claim/create-claim.component';
 import { MemberInformationComponent } from '../patient-checkin/member-information/member-information.component';
 import { AuthGuard } from '../../auth.guard';
-import { LabOrdersComponent } from '../patient-checkin/lab-orders/lab-orders.component';
-import { LabOrdersItemsComponent } from '../patient-checkin/lab-orders-items/lab-orders-items.component';
-import { LabTestsComponent } from '../patient-checkin/lab-tests/lab-tests.component';
 import { AuthorizationLetterComponent } from '../patient-checkin/authorization-letter/authorization-letter.component';
 import { AuthletterRequestComponent} from '../patient-checkin/authletter-request/authletter-request.component';
-import { PatientPrescriptionComponent } from '../patient-checkin/patient-prescription/patient-prescription.component';
 import { CalendarComponent } from '../patient-checkin/calendar/calendar.component';
 import { ReportsComponent } from '../patient-checkin/reports/reports.component';
 import { PatientEditComponent } from '../patient-checkin/patient-edit/patient-edit.component';
@@ -47,11 +41,13 @@ import { AppointmentListComponent } from '../patient-checkin/appointment-list/ap
 import { AppointmentDetailsComponent } from '../patient-checkin/appointment-details/appointment-details.component';
 import { UserAccountComponent } from '../patient-checkin/user-account/user-account.component';
 import { ClaimsCheckComponent } from '../patient-checkin/claims-check/claims-check.component';
-import { InpatientComponent } from '../patient-checkin/inpatient/inpatient.component';
 import { OutpatientComponent } from '../patient-checkin/outpatient/outpatient.component';
 import { EmployeesComponent } from '../patient-checkin/employees/employees.component';
 import { ClientsComponent } from '../patient-checkin/clients/clients.component';
 import { BookingComponent } from '../patient-checkin/booking/booking.component';
+import { BillingComponent } from '../patient-checkin/billing/billing.component';
+import { ReportComponent } from '../patient-checkin/report/report.component';
+import { RoomRevenueComponent } from '../patient-checkin/room-revenue/room-revenue.component';
 
 const routes: Routes = [
   {
@@ -82,6 +78,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'billing',
+    component: BillingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'appointment-details/:id',
     component: AppointmentDetailsComponent,
     canActivate: [AuthGuard]
@@ -99,6 +100,11 @@ const routes: Routes = [
   {
     path: 'booking',
     component:BookingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'room-revenues',
+    component:RoomRevenueComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -134,22 +140,6 @@ const routes: Routes = [
     }
   },
   {
-    path: 'lab',
-    component: LabComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'labs'
-    }
-  },
-  {
-    path: 'lab-tests',
-    component: LabTestsComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'tests component'
-    }
-  },
-  {
     path: 'rooms/list',
     component: RoomsComponent,
     canActivate: [AuthGuard],
@@ -163,14 +153,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'tests component'
-    }
-  },
-  {
-    path: 'lab-orders',
-    component: LabOrdersComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'labs'
     }
   },
   {
@@ -252,14 +234,6 @@ const routes: Routes = [
   {
     path: 'eclaims-dashboard/batching',
     component: BatchingComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'claims'
-    }
-  },
-  {
-    path: 'eclaims-dashboard/inpatient',
-    component: InpatientComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'claims'
@@ -389,21 +363,12 @@ const routes: Routes = [
   }
   },
 {
-    path: 'patients/bill-patient',
+  path: 'bill-client/:id',
   canActivate: [AuthGuard],
-    component: BillPatientComponent,
-    data: {
-      title: 'bill-patient'
-    }
+  component: BillPatientComponent
   }
   ,
-{
-path : 'pharmacy/patient-prescription',
-component : PatientPrescriptionComponent,
-data: {
-title: 'News'
-}
-},
+
 {
 path : 'calendar',
 component : CalendarComponent,
@@ -417,8 +382,14 @@ data: {
   data: {
     title: 'Tags'
   }
-  }    
-      
+  },
+  {
+    path : 'report',
+    component : ReportComponent,
+    data: {
+      title: 'Tags'
+    }
+    }   
 ];
 
 @NgModule({

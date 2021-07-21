@@ -17,7 +17,7 @@ import { DatePipe } from '@angular/common';
 export class RecordListComponent implements OnInit {
   dataSource;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  Columns: string[] = ['sn','first_name','other_names','last_name','national_id','gender','phone','email','residence','create','edit']
+  Columns: string[] = ['sn','name','national_id','gender','phone','email','create','edit']
   clientForm: FormGroup;
   submitted=false;
   maxDate=new Date();

@@ -54,37 +54,11 @@ export const navItems: NavData[] = [
     icon: 'fa fa-home',
     url: '/dashboard/rooms/list'
   },
-  {
-    name: 'Claims Checking',
-    url: '/dashboard/eclaims-dashboard/checking',
-    icon: 'fa fa-list-alt',
-  },
-  {
-    name: 'Outpatient',
-    url: '/dashboard/eclaims-dashboard/outpatient',
-    icon: 'fa fa-share',
-  },
+
   {
     name: 'eClaims',
     url: '/dashboard/eclaims-dashboard',
     icon: 'icon-layers',
-    children: [
-      {
-        name: 'claims',
-        url: '/dashboard/eclaims-dashboard/claims',
-        icon: 'cui-justify-right'
-      },
-      {
-        name: 'Batch-claims',
-        url: '/dashboard/eclaims-dashboard/batching',
-        icon: 'fa fa-gift'
-      },
-      {
-        name: 'Batch-list',
-        url: '/dashboard/eclaims-dashboard/batch-list',
-        icon: 'cui-list'
-      }
-    ]
   },
   {
     name: 'Finance',
@@ -92,8 +66,8 @@ export const navItems: NavData[] = [
     icon: 'icon-wallet',
   },
   {
-    name: 'Reports',
-    url: '/dashboard/reports',
+    name: 'Report',
+    url: '/dashboard/report',
     icon: 'icon-chart',
   },
   {

@@ -3,7 +3,7 @@ import { ServiceService } from '../../../service.service';
 import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -16,11 +16,15 @@ export class AppointmentComponent implements OnInit {
   toadysList;
   submitted=false;
   transactions=[];
+  loading = false;
   displayedColumns: string[] = ['patient_no', 'name','phone','appointment_date','time','reason','transaction'];
   listColumns: string[] = ['S/No', 'name','phone','time'];
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
   maxDate = new Date();
-  constructor(public service: ServiceService,private formBuilder: FormBuilder,public toastr: ToastrService,public router:Router ) { }
+  dobDate= new Date(moment().subtract(2,'years').format())
+  constructor(public service: ServiceService,private formBuilder: FormBuilder,public toastr: ToastrService,public router:Router ) { 
+    console.log(this.dobDate);
+  }
   ngOnInit() {
     this.maxDate = new Date();
     this.appointmentForm = this.formBuilder.group({
@@ -61,8 +65,10 @@ export class AppointmentComponent implements OnInit {
  
  onSubmit() {
    this.submitted = true;
+   this.loading = true;
   if (this.appointmentForm.invalid) {
     this.toastr.error('Fill in All the Fields Marked with *');
+      this.loading=false;
       return;
   }
 
@@ -71,6 +77,7 @@ export class AppointmentComponent implements OnInit {
   this.appointmentForm.reset();
   this.router.navigate(['/dashboard/appointment-details/',res.id])
    this.submitted = false;
+   this.loading=false;
   })
 
 }
