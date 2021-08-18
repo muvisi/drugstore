@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col-sm-12">
       <div class="card">
-          <h6 class="card-header">Client Billing 
+          <h6 class="card-header bg-success"> <b>CLIENT BILLING</b>
 
-            <span class="pull-right"> Total Bill  <span style="font-weight: 700;font-size:16px;" class="text-danger">{{data.amount | number}}</span></span>
+            <span class="pull-right"> Total Bill  <span style="font-weight: 800;font-size:16px;" class="text-white">{{data.amount | number:'1.2-2'}}</span></span>
           </h6>
           <div class="card-body">
               <div class="row">
                   <div class="col-sm-12">
                     <div class="row">
-                      <div class="col-sm-12 col-md-1 col-lg-1 col-3">
+                      <div class="col-sm-12 col-md-3 col-lg-1 col-3">
                         <img src="../../../../assets/img/avatars/female.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Female' || customer.gender == 'female'">
                         <img src="../../../../assets/img/avatars/download.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Male' || customer.gender == 'male'">
                       </div>
-                      <div class="col-sm-12 col-md-11 col-lg-11 col-9">
+                      <div class="col-sm-12 col-md-9 col-lg-11 col-9">
                         <div class="row">
                       <div class="col-sm-5">
                           <div class="row">
@@ -430,7 +430,7 @@
                               </fieldset>
                           <br>
 
-                          <fieldset>
+                          <fieldset *ngIf="f.type.value !='standard'">
                             <legend>Supervision Counselor </legend>
                             <div class="col-sm-12">
                               <form [formGroup]="supervisionForm" (ngSubmit)="onAdd()">

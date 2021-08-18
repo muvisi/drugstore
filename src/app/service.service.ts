@@ -151,7 +151,7 @@ export class ServiceService {
   }
 
   cashList(data): Observable<any> {
-    return this.http.get(endpoint + 'payments/cash_list/?patient='+data).pipe(
+    return this.http.get(endpoint + 'payments/cash_list/?appointment='+data).pipe(
       map(this.extractData));
   }
 

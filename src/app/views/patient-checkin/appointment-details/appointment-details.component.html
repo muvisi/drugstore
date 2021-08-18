@@ -606,7 +606,7 @@
                                 </fieldset>
                             <br>
 
-                            <fieldset>
+                            <fieldset  *ngIf="f.type.value !='standard'">
                               <legend>Supervision Counselor </legend>
                               <div class="col-sm-12">
                                 <form [formGroup]="supervisionForm" (ngSubmit)="onAdd()">

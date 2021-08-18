@@ -78,6 +78,10 @@ export class AppointmentComponent implements OnInit {
   this.router.navigate(['/dashboard/appointment-details/',res.id])
    this.submitted = false;
    this.loading=false;
+  },(err)=>{
+    this.toastr.error(err.error.error);
+  this.submitted = false;
+   this.loading=false;
   })
 
 }

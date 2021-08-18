@@ -106,7 +106,7 @@ export class BillPatientComponent implements OnInit {
       this.customer = this.data.client;
       this.serviceSource = new MatTableDataSource(this.data.services);
       this.serviceSource.paginator = this.paginator;
-      this.getCash(res.client.id);
+      this.getCash(this.route.snapshot.params.id);
       this.getPayments(this.customer.phone);
       if(this.data.notes){
         this.noteForm.patchValue({notes:this.data.notes})
