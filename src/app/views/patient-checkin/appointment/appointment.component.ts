@@ -52,6 +52,7 @@ export class AppointmentComponent implements OnInit {
       date:['',Validators.required]
     });
     this.patientsList();
+    
   }
 
   patientsList() {
@@ -66,6 +67,21 @@ export class AppointmentComponent implements OnInit {
  onSubmit() {
    this.submitted = true;
    this.loading = true;
+   if(moment().format('YYYY-MM-DD') >= moment(this.appointmentForm.get('date').value).format('YYYY-MM-DD')){
+    if(moment().format('HH:mm') >= moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm')){
+      this.toastr.info("please select time future date or time");
+    this.loading = false; 
+    this.submitted = false;
+    return
+    }
+
+  }
+  if(moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') >=moment('17:00','HH:mm').format('HH:mm') || moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') < moment('08:00','HH:mm').format('HH:mm') ){
+    this.toastr.info("please select time between 8am - 4pm");
+    this.loading = false; 
+    this.submitted = false;
+    return
+  }
   if (this.appointmentForm.invalid) {
     this.toastr.error('Fill in All the Fields Marked with *');
       this.loading=false;
@@ -91,11 +107,12 @@ onSelect(item){
   this.appointmentForm.patchValue({name:data.name,phone:data.phone});
 }
 searchTransaction(text){
-  this.service.searchncbaPaymentsByPhone(text).subscribe((res)=>{
+  this.service.mpesaAppointmentPayment(text).subscribe((res)=>{
     this.transactions = res.results;
   })
 }
 typeaheadOnSelect(item){
-  this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.trans_id})
+  this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.description})
 }
+
 }

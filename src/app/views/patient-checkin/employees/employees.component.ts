@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class EmployeesComponent implements OnInit {
   selectedUser:any={};
   dataSource;
+  departments =[];
   displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role','view','edit','deactivate','activate'];
   employee: any={};
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
@@ -24,27 +25,32 @@ export class EmployeesComponent implements OnInit {
   edit: boolean;
   provider_list: any=[];
   user: any;
-
+  loading = false;
   constructor(public  service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {
     this.employeesList();
     this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.getHospitals();
   }
   addUser() {
-    console.log(this.employee);
+    this.loading = true;
     this.service.createUser(this.employee).subscribe((res) => {
       this.ngOnInit();
       this.toastr.success('Successfully Added Employee');
       this.employee = {};
       this.userModal.hide();
+      this.loading = false;
     },
     (error)=>{
-      this.toastr.error('Adding Employee Failed');
+      this.toastr.error(error.error.error);
+      this.loading = false;
     }
     );
   }
-  
+  setDepartments(item){
+    this.departments=item.departments;
+  }
   updateUser() {
     console.log(this.employee);
     this.service.updateUser(this.employee).subscribe((res) => {
@@ -68,7 +74,6 @@ export class EmployeesComponent implements OnInit {
   });
   }
   deactivate(item){
-    
     if(item.is_active){
       const data={
         "is_active":false,

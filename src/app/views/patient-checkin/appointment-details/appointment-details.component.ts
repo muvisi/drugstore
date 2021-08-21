@@ -98,7 +98,9 @@ export class AppointmentDetailsComponent implements OnInit {
   get h() { return this.cashForm.controls; }
   get i() { return this.supervisionForm.controls; }
 
-
+  navigate(){
+    this.router.navigate(['/dashboard/bill-client/',this.route.snapshot.params.id])
+   }
   getAppointment(id){
     this.service.getAppointment(id).subscribe((res)=>{
       this.data = res;

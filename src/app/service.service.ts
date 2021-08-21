@@ -131,6 +131,14 @@ export class ServiceService {
     return this.http.post(endpoint + 'payments/ncba_payments/', data ).pipe(
       map(this.extractData));
   }
+  mpesaPayments(data): Observable<any> {
+    return this.http.post(endpoint + 'payments/mpesa_payments/', data).pipe(
+      map(this.extractData));
+  }
+  mpesaStk(data): Observable<any> {
+    return this.http.post(endpoint + 'payments/request/',data).pipe(
+      map(this.extractData));
+  }
   ncbaAllPayments(): Observable<any> {
     return this.http.get(endpoint + 'payments/ncba/?limit=100').pipe(
       map(this.extractData));
@@ -175,6 +183,14 @@ mpesa(): Observable<any> {
 }
 mpesaList(): Observable<any> {
   return this.http.get(endpoint + 'payments/mpesa_list/?status=0').pipe(
+    map(this.extractData));
+}
+mpesaMobileSearch(data): Observable<any> {
+  return this.http.get(endpoint + 'payments/mpesa_list/?phone_number='+data).pipe(
+    map(this.extractData));
+}
+mpesaAppointmentPayment(data): Observable<any> {
+  return this.http.get(endpoint + 'payments/mpesa_list/?search='+data+'&status=0').pipe(
     map(this.extractData));
 }
   updateDiagnosis(data): Observable<any> {
@@ -673,6 +689,18 @@ searchBills(data): Observable<any>{
   }
 getPayers(): Observable<any> {
     return this.http.get(endpoint + 'services/payers/', ).pipe(
+    map(this.extractData));
+
+  }
+
+  createBranchPayers(data): Observable<any> {
+    return this.http.post(endpoint + 'services/branch_payers/',data).pipe(
+    map(this.extractData));
+
+  }
+
+  getBranchPayers(): Observable<any> {
+    return this.http.get(endpoint + 'services/branch_payers/').pipe(
     map(this.extractData));
 
   }

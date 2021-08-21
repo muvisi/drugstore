@@ -31,7 +31,7 @@ cash_date;
 types =['DEBIT','CREDIT'];
 cash_total =0;
 ncba_total =0;
-mpesaColumns: string[] = ['sn','name','msisdn','amount','channel','trxref','accountref','status','date'];
+mpesaColumns: string[] = ['sn','date','trans_id','name','msisdn','amount','status','use']
 displayedColumns: string[] = ['sn','date','amount','trx','client','mobile','name'];
 Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status']
 claimsColumns: string[] = ['sn','member','patient_number','visit_number','insurance_company','member_number','visit_type','amount','created'];

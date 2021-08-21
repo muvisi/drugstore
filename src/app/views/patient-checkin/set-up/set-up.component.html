@@ -351,8 +351,11 @@
             </mat-step>
             <mat-step label="Insurances" state="insurance">
               <div class="row">
-                <div class="col-sm-12">
-                    <table mat-table [dataSource]="payers" class="mat-elevation-z8">
+                <div class="col-sm-12" style="text-align: right;" >
+                  <button class="btn btn-success pull-right btn-sm"  (click)="insuranceModal.show()">Add Insurance</button>
+                </div>
+                <div class="col-sm-12" style="margin-top: 12px;">
+                    <table mat-table [dataSource]="branchPayers" class="mat-elevation-z8">
                       
                         <ng-container matColumnDef="sn">
                           <th mat-header-cell *matHeaderCellDef> No</th>
@@ -362,24 +365,28 @@
                      
                         <ng-container matColumnDef="name">
                           <th mat-header-cell *matHeaderCellDef> Name </th>
-                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          <td mat-cell *matCellDef="let element"> {{element.payer.name}} </td>
                         </ng-container>
                       
                      
                         <ng-container matColumnDef="linked">
-                          <th mat-header-cell *matHeaderCellDef> Active</th>
-                          <td mat-cell *matCellDef="let element"> <mat-checkbox [checked]="element.linked"></mat-checkbox></td>
+                          <th mat-header-cell *matHeaderCellDef>Active</th>
+                          <td mat-cell *matCellDef="let element"> <mat-checkbox [checked]="element.payer.linked"></mat-checkbox></td>
                         </ng-container>
                         <ng-container matColumnDef="phone">
                             <th mat-header-cell *matHeaderCellDef>Phone</th>
-                            <td mat-cell *matCellDef="let element"> {{element.phone_numbers}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.payer.phone_numbers}} </td>
                           </ng-container>
                         <ng-container matColumnDef="email">
                           <th mat-header-cell *matHeaderCellDef> Email </th>
-                          <td mat-cell *matCellDef="let element"> {{element.emails}} </td>
+                          <td mat-cell *matCellDef="let element"> {{element.payer.emails}} </td>
                         </ng-container>
-                       
-                      
+                  
+                        <ng-container matColumnDef="user">
+                          <th mat-header-cell *matHeaderCellDef>Created By</th>
+                          <td mat-cell *matCellDef="let element"> {{element.user.email | uppercase}} </td>
+                        </ng-container>
+                    
                         <tr mat-header-row *matHeaderRowDef="insuranceColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: insuranceColumns;"></tr>
                       </table>
@@ -555,7 +562,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-sm-9" style="text-align: right;" >
-                  <button class="btn btn-success pull-right"  (click)="roomModal.show()">Add Room</button>
+                  <button class="btn btn-success btn-sm pull-right"  (click)="roomModal.show()">Add Room</button>
                 </div>
               </div>
               <div class="mat-elevation-z8 table-responsive">
@@ -853,6 +860,47 @@
        <div class="row">
          <div class="col-sm-12">
            <button class="pull-right btn-success btn-sm" (click)="deleteHospital()">confirm</button>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #insuranceModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 id="dialog-static-name" class="modal-title pull-left">Add Insurance</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="insuranceModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="row">
+         <div class="col-sm-12">
+          <form [formGroup]="insuranceForm" (ngSubmit)="onInsurance()">
+            <div class="row">
+             <div class="col-sm-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                  <input type="text" formControlName="name" matInput placeholder="Insurance Name" [typeahead]="payers"
+                  typeaheadOptionField="name"
+                  (typeaheadOnSelect)="onSelectInsurance($event)">
+              </mat-form-field>
+             </div>
+             <div class="col-sm-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Type</mat-label>
+                  <input type="text" formControlName="type" matInput placeholder="Insurance Type" readonly>
+              </mat-form-field>
+             </div>
+             <div class="col-sm-12">
+               <button type="submit" [disabled]="insuranceForm.invalid" class="btn btn-success pull-right">Submit</button>
+             </div>
+            </div>
+            </form>
          </div>
        </div>
       </div>

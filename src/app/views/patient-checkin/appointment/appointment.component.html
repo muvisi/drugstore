@@ -210,13 +210,19 @@
                       </mat-form-field>
                 </div>
                 <div class="col-sm-2">
-                  <mat-form-field appearance="outline">
+                  <!-- <mat-form-field appearance="outline">
                     <mat-label>Appointment Time</mat-label>
                     <mat-select formControlName="time">
                       <mat-option *ngFor="let item of time" [value]="item">
                         {{item}}
                       </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="f.time && submitted">Appointment Time <strong>required</strong></mat-error>
+
+                  </mat-form-field> -->
+                  <mat-form-field appearance="outline">
+                    <mat-label>Appointment Time</mat-label>
+                    <input matInput placeholder="Time" formControlName="time"  data-clocklet="class-name: my-clocklet-styleformat:HH:mm;">
                     <mat-error *ngIf="f.time && submitted">Appointment Time <strong>required</strong></mat-error>
 
                   </mat-form-field>
@@ -253,7 +259,7 @@
                 
                   <mat-form-field appearance="outline" >
                     <mat-label>Transaction No</mat-label>
-                      <input matInput placeholder="Transaction No" [typeahead]="transactions"  typeaheadOptionField="msisdn" (typeaheadOnSelect)="typeaheadOnSelect($event)"  [disabled]="f.payment_type.value == 'Cash'" (ngModelChange)="searchTransaction(f.no.value)" formControlName="no">
+                      <input matInput placeholder="Transaction No" [typeahead]="transactions"  typeaheadOptionField="phone_number" (typeaheadOnSelect)="typeaheadOnSelect($event)"  [disabled]="f.payment_type.value == 'Cash'" (ngModelChange)="searchTransaction(f.no.value)" formControlName="no">
                       <mat-error *ngIf="f.no.errors && submitted">Transaction no<strong>required</strong></mat-error>
                     </mat-form-field>
                 </div>

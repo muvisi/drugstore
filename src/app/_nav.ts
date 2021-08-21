@@ -61,11 +61,6 @@ export const navItems: NavData[] = [
     icon: 'icon-layers',
   },
   {
-    name: 'Finance',
-    url: '/dashboard/payments',
-    icon: 'icon-wallet',
-  },
-  {
     name: 'Report',
     url: '/dashboard/report',
     icon: 'icon-chart',

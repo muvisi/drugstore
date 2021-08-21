@@ -1,6 +1,6 @@
               <div class="card">
               <div class="card-header">
-              <i class="icon-plus"></i> Create Claim
+              <h5><b>Create Claim</b></h5>
               </div>
               <div class="card-body">
               <div class="row">
@@ -9,140 +9,155 @@
               <mat-step>
               <ng-template matStepLabel>Patient Information</ng-template>
               <form [formGroup]="claimForm" (ngSubmit)="onSubmit()">
-              <mat-card>
+                <fieldset>
+                  <legend>Background Information:</legend>
                   <div class="row" >
-                      <div class="col-sm-3">
-                          <mat-form-field>
-                          <input placeholder="Visit Number" type="text" [typeahead]="patients" (typeaheadOnSelect)="onVisit($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="visit_no"  formControlName="visit_number"[ngModelOptions]="{standalone: true}" matInput />
-                          <i class="icon-magnifier-add" matSuffix></i>
-                          <mat-error *ngIf="f.visit_number.errors">visit_number is required</mat-error>
-                          </mat-form-field>
-                          </div>
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input type="text"  placeholder="Search Payer"  matInput   [typeahead]="payers" (typeaheadLoading)="payerSearch(f.insurance_company.value)"
-                      (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" formControlName="insurance_company"  [ngModelOptions]="{standalone: true}" />
-                      <mat-error *ngIf="f.insurance_company.errors">Insurance is<strong> required</strong></mat-error>
-                      </mat-form-field>
-                      </div>
-        
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input   [typeahead]="schemes" (typeaheadLoading)="schemeSearch(f.scheme_name.value)" formControlName="scheme_name" placeholder="Scheme"
-                      (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="6" typeaheadOptionField="name"  matInput/>
-                      <mat-error *ngIf="f.scheme_name.errors">Scheme is required</mat-error>
-                      </mat-form-field>
-        
-                      </div>
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input [typeahead]="members" [typeaheadOptionsLimit]="7"
-                      typeaheadOptionField="name" (typeaheadOnSelect)="OnMember($event)"   formControlName="patient_name" placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
-                      <mat-error *ngIf="f.patient_name.errors">Member  is required</mat-error>
-                      </mat-form-field>
-                      </div>
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input type="text" formControlName="provider"  placeholder="Hospital" [ngModelOptions]="{standalone: true}"  matInput/>
-                      <mat-error *ngIf="f.provider.errors">Hospital is required</mat-error>
-                      </mat-form-field>
-                      </div>
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input type="text" formControlName="patient_number" placeholder="Patient Number"  [disabled]="true" matInput readonly/>
-                      <mat-error *ngIf="f.patient_number.errors">Patient number is required</mat-error>
-                      </mat-form-field>
-                      </div>
-                   
-        
-                      <div class="col-sm-3">
-        
-                      <mat-form-field>
-                      <!-- <mat-label>Select Visit Type</mat-label> -->
-                      <input type="text" formControlName="patient_number" placeholder="Visit Type"  [disabled]="true" matInput readonly/>
+                    <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Visit Number</mat-label>
+                        <input placeholder="Visit Number" type="text" [typeahead]="patients" (typeaheadOnSelect)="onVisit($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="visit_no"  formControlName="visit_number"[ngModelOptions]="{standalone: true}" matInput />
+                        <mat-error *ngIf="f.visit_number.errors">visit_number is required</mat-error>
+                        </mat-form-field>
+                        </div>
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Insurance</mat-label>
+                    <input type="text"  placeholder="Search Payer"  matInput   [typeahead]="payers" (typeaheadLoading)="payerSearch(f.insurance_company.value)"
+                    (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" formControlName="insurance_company"  [ngModelOptions]="{standalone: true}" />
+                    <mat-error *ngIf="f.insurance_company.errors">Insurance is<strong> required</strong></mat-error>
+                    </mat-form-field>
+                    </div>
+      
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Scheme</mat-label>
+                    <input   [typeahead]="schemes" (typeaheadLoading)="schemeSearch(f.scheme_name.value)" formControlName="scheme_name" placeholder="Scheme"
+                    (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="6" typeaheadOptionField="name"  matInput/>
+                    <mat-error *ngIf="f.scheme_name.errors">Scheme is required</mat-error>
+                    </mat-form-field>
+      
+                    </div>
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Member</mat-label>
+                    <input [typeahead]="members" [typeaheadOptionsLimit]="7"
+                    typeaheadOptionField="name" (typeaheadOnSelect)="OnMember($event)"   formControlName="patient_name" placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
+                    <mat-error *ngIf="f.patient_name.errors">Member  is required</mat-error>
+                    </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Patient Number</mat-label>
+                    <input type="text" formControlName="provider"  placeholder="Hospital" [ngModelOptions]="{standalone: true}"  matInput/>
+                    <mat-error *ngIf="f.provider.errors">Branch is required</mat-error>
+                    </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Patient Number</mat-label>
+                    <input type="text" formControlName="patient_number" placeholder="Patient Number"  [disabled]="true" matInput readonly/>
+                    <mat-error *ngIf="f.patient_number.errors">Patient number is required</mat-error>
+                    </mat-form-field>
+                    </div>
+                 
+      
+                    <div class="col-sm-3">
+      
+                    <mat-form-field  appearance="outline">
+                    <mat-label>Select Visit Type</mat-label>
+                    <input type="text" formControlName="visit_type" placeholder="Visit Type"  [disabled]="true" matInput readonly/>
 
-                      <!-- <mat-select formControlName="visit_type">
-                      <mat-option value="OUTPATIENT" selected>OUTPATIENT</mat-option>
-                      </mat-select> -->
-                      <mat-error *ngIf="f.visit_type?.errors">Visit Type <strong>required</strong></mat-error>
-                      </mat-form-field>
-                      </div>
-        
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input type="text" formControlName="check_in" placeholder="Check In" bsDatepicker 
-                      [bsConfig]="{ isAnimated: true }" [ngModelOptions]="{standalone: true}" matInput readonly />
-                      <mat-error *ngIf="f.check_in.errors">
-                      check in date is required
-                      </mat-error>
-                      </mat-form-field>  
-                      </div>
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input type="text" placeholder="Check Out" formControlName="check_out" readonly  bsDatepicker 
-                      [bsConfig]="{ isAnimated: true }"  [ngModelOptions]="{standalone: true}"  matInput  readonly/>
-                      <mat-error *ngIf="f.check_out.errors">check out is required</mat-error>
-                      </mat-form-field>
-                      </div>
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                      <input type="text" placeholder="Nhif Number" formControlName="nhif_number"  [ngModelOptions]="{standalone: true}" matInput/>
-        
-                      </mat-form-field>
-        
-                      </div>
-        
-                      <div class="col-sm-3">
-                      <mat-form-field>
-        
-                      <input type="text" placeholder="Doctor" formControlName="doctor" [ngModelOptions]="{standalone: true}" matInput />
-                      <mat-error *ngIf="f.doctor.errors">Doctor Name is required</mat-error>
-                      </mat-form-field>
-                      </div>
-                      </div>
-              </mat-card>
+                    <mat-error *ngIf="f.visit_type?.errors">Visit Type<strong>required</strong></mat-error>
+                    </mat-form-field>
+                    </div>
+      
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Check In</mat-label>
+                    <input type="text" formControlName="check_in" placeholder="Check In" bsDatepicker 
+                    [bsConfig]="{ isAnimated: true }" [ngModelOptions]="{standalone: true}" matInput readonly />
+                    <mat-error *ngIf="f.check_in.errors">
+                    check in date is required
+                    </mat-error>
+                    </mat-form-field>  
+                    </div>
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Check Out</mat-label>
+                    <input type="text" placeholder="Check Out" formControlName="check_out" readonly  bsDatepicker 
+                    [bsConfig]="{ isAnimated: true }"  [ngModelOptions]="{standalone: true}"  matInput  readonly/>
+                    <mat-error *ngIf="f.check_out.errors">check out is required</mat-error>
+                    </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Nhif Number</mat-label>
 
-              <br>
-              <mat-card>
-                <mat-card-title>
-                <span style="font-size:15px;">Diagnosis</span>
-                </mat-card-title>
-                  <div class="row">
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                        <input type="text"  matInput  
-                      [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]="diagnosesList"  placeholder="Diagnoisis"
-                      (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="5" [ngModelOptions]="{standalone: true}"
-                       (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"   [dropup]="true">
-                       <i class="icon-magnifier" matSuffix></i>
-                      </mat-form-field>
-                      </div>
-                    
-        
-        
-                      </div>
-                      <br>
-                      <div class="row">
-                      <div class="col-sm-6">
-                          <table class="table table-borderless">
-                              <tbody>
-                                <tr *ngFor="let item of diagnosis">
-                                  <td style="text-transform: capitalize;">{{item.description}}</td>
-                                  <td>{{item.code}}</td>
-                                  <td (click)="deleteDiagnosis(item)"><mat-icon color="warn">delete_sweep</mat-icon></td>
-                                </tr>
-                               
-                              </tbody>
-                          </table>
-                      </div>
-                      </div>
-              </mat-card>
-
+                    <input type="text" placeholder="Nhif Number" formControlName="nhif_number"  [ngModelOptions]="{standalone: true}" matInput/>
+      
+                    </mat-form-field>
+      
+                    </div>
+      
+                    <div class="col-sm-3">
+                    <mat-form-field  appearance="outline">
+      
+                    <input type="text" placeholder="Doctor" formControlName="doctor" [ngModelOptions]="{standalone: true}" matInput />
+                    <mat-error *ngIf="f.doctor.errors">Doctor Name is required</mat-error>
+                    </mat-form-field>
+                    </div>
+                    </div>
+                </fieldset>
+            
               <button  style="margin-top: 10px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
 
               </form>
               </mat-step>
 
+              <mat-step >
+
+                <ng-template matStepLabel>Diagnoisis</ng-template>
+                <mat-card>
+                  <mat-card-title>
+                  <span style="font-size:15px;">Diagnosis</span>
+                  </mat-card-title>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <mat-form-field>
+                          <input type="text"  matInput  
+                        [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]="diagnosesList"  placeholder="Diagnoisis"
+                        (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="5" [ngModelOptions]="{standalone: true}"
+                         (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"   [dropup]="true">
+                         <i class="icon-magnifier" matSuffix></i>
+                        </mat-form-field>
+                        </div>
+                      
+          
+          
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-sm-6">
+                            <table class="table table-borderless">
+                                <tbody>
+                                  <tr *ngFor="let item of diagnosis">
+                                    <td style="text-transform: capitalize;">{{item.description}}</td>
+                                    <td>{{item.code}}</td>
+                                    <td (click)="deleteDiagnosis(item)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                                  </tr>
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                </mat-card>s
+                <div>
+                <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
+                <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
+  
+                </div>
+  
+                </mat-step>
               <mat-step >
 
               <ng-template matStepLabel>Procedures</ng-template>
@@ -200,153 +215,7 @@
               </div>
 
               </mat-step>
-              <mat-step >
-
-              <ng-template matStepLabel>pharmaceuticals</ng-template>
-              <mat-card>
-                <mat-card-subtitle><div class="row">
-                    <div class="col-sm-12">
-                    <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{drugsCost}}  </span>
-                    <span class="badge badge-info pull-right" style="font-size: 14px;">{{prescription.length}}  </span>
-                    </div>
-                    </div>  </mat-card-subtitle>
-                  <div class="row">
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                        <input type="text" [(ngModel)]="selectedDrug.name" [typeahead]="drugs"
-                        [typeaheadOptionsInScrollableView]="5" typeaheadOptionField="name"
-                        (typeaheadOnSelect)="onDrug($event)" placeholder="Drug Name"
-                        typeaheadGroupField="strength" (typeaheadLoading)="searchPrescription(selectedDrug.name)" matInput>
-                      </mat-form-field>
-                      </div>
-                      <div class="col-sm-3">
-                      <mat-form-field>
-                        <input type="text"  placeholder="Form" [(ngModel)]="selectedDrug.form" matInput readonly>
-                      </mat-form-field>
-                      </div>
-                      <div class="col-sm-3">
-                        <mat-form-field>
-                            <input type="text" matInput [(ngModel)]="selectedDrug.strength" placeholder="Strength" readonly>
-                        </mat-form-field>
-                      </div>
-                      <div class="col-sm-2">
-                        <mat-form-field>
-                            <input type="number" placeholder="Quantity" matInput [(ngModel)]="selectedDrug.quantity">
-                        </mat-form-field>
-                      </div>
-                     
-                      <div class="col-sm-1"> <button mat-mini-fab [disabled]="!selectedDrug.name || selectedDrug.quantity < 1" (click)="addPrescription()"
-                      style="margin-top:7px;"> <i class="fa fa-plus"></i></button>
-                      </div>
-                      </div>
-                      <br>
-        
-                      <div class="row" >
-                      <div class="col-sm-12">
-                      <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8">
-                      <ng-container matColumnDef="Name">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                      </ng-container>
-        
-                      <ng-container matColumnDef="Strength">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Strength</th>
-                      <td mat-cell *matCellDef="let element"> {{element.strength}} </td>
-                      </ng-container>
-        
-                      <ng-container matColumnDef="Form">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Form</th>
-                      <td mat-cell *matCellDef="let element"> {{element.form}} </td>
-                      </ng-container>
-                      <ng-container matColumnDef="Quantity">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
-                      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-                      </ng-container>
-                      <ng-container matColumnDef="Delete">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                      <td mat-cell *matCellDef="let element" (click)="deleteDrug(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
-                      </ng-container>
-        
-        
-                      <tr mat-header-row *matHeaderRowDef="drugColumns"></tr>
-                      <tr mat-row *matRowDef="let row; columns: drugColumns;"></tr>
-                      </table> 
-        
-                      </div>
-                      </div>  
-                      
-              </mat-card>
-
-              <div>
-              <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
-              <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
-
-              </div>
-
-              </mat-step>
-              <mat-step  >
-
-              <ng-template matStepLabel>Lab Tests</ng-template>
-
-              <mat-card>
-                <mat-card-title>
-                  <div class="row">
-                      <div class="col-sm-12">
-                          <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{labCost}}  </span>
-                          <span class="badge badge-info pull-right" style="font-size: 14px;">{{labtest.length}}  </span>
-                          </div>
-                  </div>
-                </mat-card-title>
-
-              <div class="row">
               
-                  <div class="col-sm-3">
-                    <mat-form-field>
-                        <input [(ngModel)]="selectedTest.name" [typeahead]="test" (typeaheadOnSelect)="OnSelectTest($event)"
-                        [typeaheadOptionsLimit]="4" typeaheadOptionField="name"  
-                         type="text" (typeaheadLoading)="searchTest(selectedTest.name)" placeholder="Type the Test" matInput>
-                    </mat-form-field>
-                  </div>
-                 
-                  </div>
-                  <br>
-                  <div class="row">
-                  <div class="col-sm-12">
-                  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-                  <ng-container matColumnDef="Name">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                  </ng-container>
-    
-                  <ng-container matColumnDef="Code">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
-                  <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-                  </ng-container>
-    
-                  <ng-container matColumnDef="Cost">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
-                  <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="Delete">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
-                  <td mat-cell *matCellDef="let element" (click)="deleteLab(element)"> <mat-icon color="warn">delete_sweep</mat-icon> </td>
-                  </ng-container>
-    
-    
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                  </table> 
-                  </div>
-                  </div>
-              </mat-card>
-     
-              <div>
-              <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
-              <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
-
-              </div>
-
-              </mat-step>
 
               <mat-step>
               <ng-template matStepLabel>Preview & Submit</ng-template>
@@ -485,7 +354,7 @@
              
                 <mat-card>
                   <mat-card-subtitle>
-                      <i class="cui-list"></i> Procedures
+                      <i class="cui-list"></i> Services
                   </mat-card-subtitle>
                   <div class="row">
                       <div class="col-sm-12" *ngFor="let item of procedures"> <i class="fa fa-check text-success"></i> {{item.name}}</div>
@@ -500,41 +369,7 @@
                    </mat-card-actions>
                 </mat-card>
               
-              <br>
-          
-              <mat-card>
-                  <mat-card-subtitle>
-                      <i class="fa fa-medkit"></i> Pharmaceuticals
-                  </mat-card-subtitle>
-                  <div class="row">
-                      <div class="col-sm-12" *ngFor="let item of prescription" style="font-size: 16px;"> <i class="fa fa-check text-success"></i> {{item.name }} |<span class="text-primary">Strength :{{item.strength}} </span>| Quantity :{{item.quantity}}</div>
-                  </div>
-                  <mat-card-actions>
-                      <div class="row">
-                          <div class="col-sm-12">
-                              <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost :{{drugsCost}}  </span>
-                              <span class="badge badge-info pull-right" style="font-size: 14px;">{{prescription.length}} </span>
-                              </div>
-                      </div>
-                   </mat-card-actions>
-                </mat-card>
-              <br>
-              <mat-card>
-                  <mat-card-subtitle>
-                      <i class="icon-chemistry"></i> Lab Test
-                  </mat-card-subtitle>
-                  <div class="row">
-                      <div class="col-sm-12" *ngFor="let item of labtest"> <i class="fa fa-check text-success"></i> {{item.name}}</div>
-                  </div>
-                  <mat-card-actions>
-                      <div class="row">
-                          <div class="col-sm-12">
-                              <span class="badge badge-success pull-right" style="margin-left:9px;font-size: 14px;"> Sub Cost : {{labCost}}</span>
-                              <span class="badge badge-info pull-right" style="font-size: 14px;">{{labtest.length}}   </span>
-                              </div>
-                      </div>
-                   </mat-card-actions>
-                </mat-card>
+        
               <div>
 
               <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-info btn-sm pull-right"  mat-button matStepperPrevious> <i class="cui-arrow-left"></i> Back </button>

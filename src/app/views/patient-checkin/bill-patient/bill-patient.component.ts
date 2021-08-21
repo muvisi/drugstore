@@ -31,6 +31,7 @@ export class BillPatientComponent implements OnInit {
   @ViewChild('serviceModal', { static: false }) serviceModal: ModalDirective;
   @ViewChild('paginator', { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
+  mpesaColumns: string[] = ['sn','date','trans_id','name','msisdn','amount','status','use']
   cashColumns: string[] = ['sn','date','name','amount','trx'];
   feesColumns: string[] = ['sn','date','type','amount','transaction','refund'];
   serviceColumns: string[] = ['sn','name','code','amount','delete'];
@@ -49,6 +50,7 @@ export class BillPatientComponent implements OnInit {
   insurances =[];
   feesSource;
   claim_services =[];
+  cashSource;
   constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService,public router:Router) { }
   ngOnInit() {
     this.appointmentForm = this.formBuilder.group({
@@ -93,6 +95,7 @@ export class BillPatientComponent implements OnInit {
     this.getServices();
     this.getpayers();
     this.getFee();
+    
   }
   get f() { return this.appointmentForm.controls; }
   get g() { return this.counselorForm.controls; }
@@ -104,6 +107,7 @@ export class BillPatientComponent implements OnInit {
     this.service.getAppointment(id).subscribe((res)=>{
       this.data = res;
       this.customer = this.data.client;
+      this.getMpesa(this.customer.phone);
       this.serviceSource = new MatTableDataSource(this.data.services);
       this.serviceSource.paginator = this.paginator;
       this.getCash(this.route.snapshot.params.id);
@@ -218,6 +222,12 @@ export class BillPatientComponent implements OnInit {
   }
   getCash(id){
     this.service.cashList(id).subscribe((res)=>{
+      this.cashSource = res.results;
+    })
+  }
+  getMpesa(id){
+    id = id.substring(1);
+    this.service.mpesaMobileSearch(id).subscribe((res)=>{
       this.mpesaSource = res.results;
     })
   }
@@ -237,7 +247,29 @@ export class BillPatientComponent implements OnInit {
       })
     }
   }
-  
+
+  utilizeMpesa(item){
+    if (window.confirm("Do you really want to use this transaction?")) {
+      this.service.mpesaPayments({id:item.id,amount:item.amount,appointment:this.route.snapshot.params.id}).subscribe((res)=>{
+        this.toastr.success("Successfully Utilized");
+        this.staticModal.hide();
+        this.ngOnInit();
+      })
+    }
+  }
+  mpesaStk(){
+    let mobile = this.data.client.phone.substring(1)
+    let amount = this.data.amount-this.data.amount_paid
+    console.log(amount);
+    if(amount > 0){
+      this.service.mpesaStk({mobile:mobile,amount:amount,acc:'APPOINTMENT'}).subscribe((res)=>{
+        console.log(res)
+        this.toastr.success("Successfully sent stk push");
+      },(err)=>{
+        this.toastr.error('Stk push failed')
+      })
+    }
+  }
 
   getServices(){
     this.service.getProviderServices().subscribe((res)=>{

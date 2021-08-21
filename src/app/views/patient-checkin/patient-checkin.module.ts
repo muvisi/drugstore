@@ -76,7 +76,6 @@ import { BillingComponent } from './billing/billing.component';
 import { ReportComponent } from './report/report.component';
 import { RoomRevenueComponent } from './room-revenue/room-revenue.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
-
 @NgModule({
   declarations: [
     RegisterPatientComponent,

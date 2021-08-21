@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../../service.service';
 import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-reappointment',
   templateUrl: './reappointment.component.html',
@@ -38,10 +38,28 @@ export class ReappointmentComponent implements OnInit {
       this.customer = res;
       })
   }
+  
   onSubmit() {
   this.loading = true;
   this.submitted = true;
+  if(moment().format('YYYY-MM-DD') >= moment(this.appointmentForm.get('date').value).format('YYYY-MM-DD')){
+    if(moment().format('HH:mm') >= moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm')){
+      this.toastr.info("please select time future date or time");
+    this.loading = false; 
+    this.submitted = false;
+    return
+    }
+
+  } 
+  if(moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') >=moment('17:00','HH:mm').format('HH:mm') || moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') < moment('08:00','HH:mm').format('HH:mm') ){
+    this.toastr.info("please select time between 8am - 4pm");
+    this.loading = false; 
+    this.submitted = false;
+    return
+  }
    if (this.appointmentForm.invalid) {
+       this.loading = false; 
+       this.submitted = false;
        return;
    }
    let data:any ={};
@@ -70,11 +88,11 @@ export class ReappointmentComponent implements OnInit {
   this.appointmentForm.patchValue({name:data.name,phone:data.phone});
 }
 searchTransaction(text){
-  this.service.searchncbaPaymentsByPhone(text).subscribe((res)=>{
+  this.service.mpesaAppointmentPayment(text).subscribe((res)=>{
     this.transactions = res.results;
   })
 }
 typeaheadOnSelect(item){
-  this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.trans_id})
+  this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.description})
 }
 }

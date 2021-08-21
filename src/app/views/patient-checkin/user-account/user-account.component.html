@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <h6 class="card-header">Account Details</h6>
+            <h5 class="card-header bg-success">Account Details</h5>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
@@ -14,7 +14,7 @@
                           <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
-                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}}</div>
+                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;font-size: 18px;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}}</div>
                                 <div class="col-sm-12" > {{customer.phone}} </div>
                                 <div class="col-sm-12" > {{customer.email}} </div>
                             </div>
@@ -34,6 +34,7 @@
                             <mat-tab>
                               <ng-template mat-tab-label>
                                Appointments
+                               <mat-icon style="margin-left:6px;">edit_calendar</mat-icon>
                               </ng-template>
                               <br>
                               <div class="row container-fluid">
@@ -45,7 +46,7 @@
                                             <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
                                             </ng-container>
                                             <ng-container matColumnDef="date">
-                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                                             <td mat-cell *matCellDef="let element"> {{element.date}} </td>
                                             </ng-container>
                                            
@@ -83,6 +84,7 @@
                             <mat-tab>
                               <ng-template mat-tab-label>
                                  Revenues
+                                 <mat-icon style="margin-left:6px;" >payments</mat-icon>
                               </ng-template>
                               <br>
                               <div class="col-sm-12">
@@ -144,6 +146,7 @@
                             <mat-tab>
                               <ng-template mat-tab-label>
                                 Supervisions
+                                <mat-icon style="margin-left:6px;">group</mat-icon>
                               </ng-template>
                               <br>
                               <div class="col-sm-12">

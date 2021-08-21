@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-             <h4> Staff</h4>
+             <h5> Staff</h5>
             </div>
             <div class="card-body">
                 
@@ -13,10 +13,9 @@
                   </mat-form-field>
                 </div>
                 <div class="col-sm-9">
-                  <button class="btn btn-success pull-right"  (click)="userModal.show()"> <i class="fa fa-plus" aria-hidden="true"></i>  Add User</button>
+                  <button class="btn btn-success pull-right"  (click)="userModal.show()">Add User</button>
                 </div>
-           
-                       
+               
                </div>
   
                <div class="mat-elevation-z8 table-responsive">
@@ -48,14 +47,14 @@
                         </ng-container>
                         <ng-container matColumnDef="view">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header>VIEW</th>
-                          <td mat-cell *matCellDef="let element">
-                            <button class="btn btn-primary btn-sm" (click)="view(element)">View</button>
+                          <td mat-cell *matCellDef="let element" (click)="view(element)">
+                            <mat-icon>visibility</mat-icon>
                           </td>
                           </ng-container>
                           <ng-container matColumnDef="edit">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>EDIT</th>
-                            <td mat-cell *matCellDef="let element">
-                              <button class="btn btn-info btn-sm" (click)="employee=element;userModal.show();edit=false">Edit</button>
+                            <td mat-cell *matCellDef="let element"  (click)="employee=element;userModal.show();edit=false">
+                              <mat-icon color="primary">create</mat-icon>
                                </td>
                           </ng-container>
                           <ng-container matColumnDef="deactivate">
@@ -83,9 +82,11 @@
                tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-               <div class="modal-header">
-                <span *ngIf="!edit">Add User</span>
+               <div class="modal-header bg-success">
+                <h5>
+                  <span *ngIf="!edit">Add User</span>
                 <span *ngIf="edit">Update User</span>
+                </h5>
                  <button type="button" class="close" (click)="userModal.hide()" data-dismiss="modal" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
@@ -121,7 +122,7 @@
                             <mat-form-field appearance="outline">
                                 <mat-label>Branch</mat-label>
                                 <mat-select [(ngModel)]="employee.hospital">
-                                  <mat-option *ngFor="let item of provider_list" [value]="item.id">
+                                  <mat-option (onSelectionChange)="setDepartments(item)" *ngFor="let item of provider_list" [value]="item.id">
                                     {{item.name}}
                                   </mat-option>
                                 </mat-select>
@@ -144,18 +145,12 @@
                             [(ngModel)]="employee.phone" matInput>
                         </mat-form-field>
                       </div>
-                     <div class="col-sm-6">
-                        <mat-form-field appearance="outline">
-                          <mat-label>Username</mat-label>
-                            <input type="text" id="text-input" name="username" placeholder="USERNAME"
-                            [(ngModel)]="employee.username" matInput style="text-transform: none;">
-                        </mat-form-field>
-                      </div>
+                    
                         <div class="col-sm-6">
                           <mat-form-field appearance="outline">
                             <mat-label>Department</mat-label>
                             <mat-select  [(ngModel)]="employee.department">
-                              <mat-option *ngFor="let item of hospital?.departments" [value]="item.id">
+                              <mat-option *ngFor="let item of departments" [value]="item.id">
                                 {{item.name}}
                               </mat-option>
                             </mat-select>
@@ -173,8 +168,8 @@
                              <div class="col-sm-12">
                              </div>
                              <div class="col-sm-12">
-                                <button *ngIf="edit" class=" btn btn-success btn-sm pull-right" (click)="addUser()"><i class="fa fa-plus"></i> Add User</button>
-                                <button *ngIf="!edit" class="btn btn-primary btn-sm pull-right" (click)="updateUser()" style="margin-right: 8px;">Update</button>
+                                <button *ngIf="!edit" class=" btn btn-success btn-sm pull-right" (click)="addUser()"> Submit </button>
+                                <button *ngIf="edit" class="btn btn-primary btn-sm pull-right" (click)="updateUser()" style="margin-right: 8px;"> Update </button>
                               </div>
                   </div>
                 </div>
@@ -249,3 +244,5 @@
           </div>
     </div>
 </div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>

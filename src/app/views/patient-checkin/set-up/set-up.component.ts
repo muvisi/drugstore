@@ -34,6 +34,8 @@ export class SetUpComponent implements OnInit {
   @ViewChild('deleteModal', { static: false }) deleteModal: ModalDirective;
   @ViewChild('providerModal', { static: false }) providerModal: ModalDirective;
   @ViewChild('deleteHospitalModal', { static: false }) deleteHospitalModal: ModalDirective;
+  @ViewChild('insuranceModal', { static: false }) insuranceModal: ModalDirective;
+
   selected = 'doctor';
   user;
   edit = true;
@@ -57,12 +59,13 @@ export class SetUpComponent implements OnInit {
   selectedService:any = {};
   selectedServices = [];
   displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role','view','edit','deactivate','activate'];
-  insuranceColumns: string[] = ['sn','name','linked','phone', 'email'];
+  insuranceColumns: string[] = ['sn','name','linked','phone', 'email','user'];
   hospitalColumns: string[] = ['sn','name', 'provider_type','reg_no','contact_number','view','delete'];
   columns: string[] = ['sn','name','code', 'cost','edit','delete'];
   departmentColumns: string[] = ['sn', 'name', 'edit', 'delete'];
   roomColumns: string[] = ['sn','name', 'type', 'floor','cost','status','edit','delete'];
   payers: any;
+  branchPayers: any;
   departmentSource;
   typeForm: FormGroup;
   types =[];
@@ -73,6 +76,7 @@ export class SetUpComponent implements OnInit {
   providerForm: FormGroup;
   loading=false;
   id;
+  insuranceForm: FormGroup;
   constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder,public router:Router) {
   }
 
@@ -84,6 +88,12 @@ export class SetUpComponent implements OnInit {
       cost: ['', Validators.required],
       description:['',Validators.required]
   });
+  this.insuranceForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    type: ['', Validators.required],
+    id: ['']
+});
+
   this.providerForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', Validators.required],
@@ -123,15 +133,29 @@ export class SetUpComponent implements OnInit {
     this.getFloor();
     this.getRoomTypes();
     this.getRoom();
+    this.getBranchPayers();
   }
   get f() { return this.typeForm.controls; }
   get g() { return this.floorForm.controls; }
-
+  get i() { return this.insuranceForm.controls;}
   getHospitals(){
     this.service.providerDetails(this.user.hospital).subscribe((res) => {
       this.provider_list = res;
       this.hospitalList = new MatTableDataSource(res);
     });
+  }
+  onInsurance(){
+    this.loading = true;
+    this.service.createBranchPayers(this.insuranceForm.value).subscribe((res)=>{
+      this.toastr.success('Successfully Added');
+      this.getBranchPayers();
+      this.insuranceModal.hide();
+      this.insuranceForm.patchValue({id:'',name:'',type:''})
+      this.loading = false
+    },(err)=>{
+      this.toastr.error('Request Failed');
+      this.loading = false
+    })
   }
   searchHospital(filterValue){
     this.hospitalList.filter = filterValue.trim().toLowerCase();
@@ -162,6 +186,11 @@ export class SetUpComponent implements OnInit {
   getPayers(){
     this.service.getPayers().subscribe((res)=>{
       this.payers = res.results;
+    })
+  }
+  getBranchPayers(){
+    this.service.getBranchPayers().subscribe((res)=>{
+      this.branchPayers = res.results;
     })
   }
   getFloor(){
@@ -202,6 +231,11 @@ dropService(item) {
 onSelect(item) {
   this.selectedService = item.item;
 }
+onSelectInsurance(item) {
+  this.selectedService = item.item;
+  this.insuranceForm.patchValue({id:item.item.id,name:item.item.name,type:item.item.type.toUpperCase()})
+}
+
 submitServices() {
 const data = {
   'id': this.user.hospital,

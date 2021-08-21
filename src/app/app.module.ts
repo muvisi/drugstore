@@ -7,7 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxLoadingModule } from 'ngx-loading';
+import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { GestureConfig, MatFormFieldModule, MatInputModule } from '@angular/material';
@@ -19,7 +19,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 
 import { AppComponent } from './app.component';
-
 // Import containers
 import { DefaultLayoutComponent } from './containers';
 
@@ -40,10 +39,7 @@ import {
   AppSidebarModule,
 } from '@coreui/angular';
 
-// Import routing module
 import { AppRoutingModule } from './app.routing';
-
-// Import 3rd party components
 import { HideableHeaderModule } from 'ngx-hideable-header';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -81,7 +77,15 @@ export function tokenGetter() {
     ModalModule.forRoot(),
     MatFormFieldModule,
     MatInputModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.rectangleBounce,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBorderRadius: '4px',
+      primaryColour: '#71FF33', 
+      secondaryColour: '#71FF33', 
+      tertiaryColour: '#71FF33'
+  })
   ],
   declarations: [
     AppComponent,
