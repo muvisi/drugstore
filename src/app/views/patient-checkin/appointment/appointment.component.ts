@@ -31,7 +31,7 @@ export class AppointmentComponent implements OnInit {
       phone: ['',Validators.required],
       type: ['', Validators.required],
       payment_type:['',Validators.required],
-      amount:['',Validators.required],
+      amount:['',[Validators.required,Validators.min(10)]],
       time: ['', Validators.required],
       reason: ['', Validators.required],
       first_name: ['', Validators.required],

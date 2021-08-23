@@ -16,6 +16,7 @@ import * as moment from 'moment';
 export class AppointmentDetailsComponent implements OnInit {
   customer:any={};
   data:any={};
+  icd =[];
   appointmentForm: FormGroup;
   counselorForm: FormGroup;
   counsolers: any=[];
@@ -26,11 +27,13 @@ export class AppointmentDetailsComponent implements OnInit {
   serviceSource;
   submitted=false;
   minDate=new Date();
+  diagnosis:any ={};
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('serviceModal', { static: false }) serviceModal: ModalDirective;
   @ViewChild('paginator', { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
   cashColumns: string[] = ['sn','date','name','amount','trx'];
+  diaColumns: string[] = ['sn','date','name','code'];
   feesColumns: string[] = ['sn','date','type','amount','transaction','refund'];
   serviceColumns: string[] = ['sn','name','code','amount','delete'];
   billsColumns: string[] = ['sn','name','code','amount','delete'];
@@ -181,6 +184,22 @@ export class AppointmentDetailsComponent implements OnInit {
       this.member_data = res.member_data;
       this.member_data.benefits = JSON.parse(this.member_data.benefits)
     })
+  }
+  searchDiagnosis(text){
+    this.service.searchDiagnosis(text).subscribe((res)=>{
+      this.icd = res.results;
+    })
+  }
+  onDiagnosis(item){
+    let data:any ={}; 
+    data.patient =  this.customer.id;
+    data.description=item.item.code;
+    console.log(data);
+    this.service.historyDiagnosis(data).subscribe((res)=>{
+      this.toastr.success("Successfully Added");
+      this.diagnosis ={};
+    })
+
   }
   onSelect(id){
     let data = this.counsolers.find(obj=>obj.id == id);

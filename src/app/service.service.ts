@@ -293,9 +293,8 @@ searchProcedure(data): Observable<any> {
 
   }
   searchDiagnosis(data): Observable<any> {
-    return this.http.get(endpoint + 'data/icdDescription/?search=' + data).pipe(
+    return this.http.get(endpoint + 'data/icdcode/?search=' + data).pipe(
       map(this.extractData));
-
   }
   getSearchedMembers(): Observable<any> {
     return this.http.get(endpoint + 'insurecheck/view_searched_members/').pipe(
@@ -684,6 +683,12 @@ searchBills(data): Observable<any>{
   }
   saveHistory(data): Observable<any> {
     return this.http.post<{}>(endpoint + 'treatment/history/', data ).pipe(
+      map(this.extractData
+    ));
+  }
+
+  historyDiagnosis(data): Observable<any> {
+    return this.http.post(endpoint + 'history/diagnosis/', data ).pipe(
       map(this.extractData
     ));
   }

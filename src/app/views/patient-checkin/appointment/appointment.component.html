@@ -268,7 +268,10 @@
                   <mat-form-field appearance="outline">
                     <mat-label>Amount</mat-label>
                       <input matInput placeholder="Amount"  formControlName="amount">
-                      <mat-error *ngIf="f.amount.errors && submitted">Amount<strong>required</strong></mat-error>
+                      <mat-error *ngIf="f.amount.errors && submitted">
+                        <div *ngIf="f.amount.errors.required">Amount is required</div>
+                        <div *ngIf="f.amount.errors.min">Minimum amount is 10/=</div>
+                      </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12">

@@ -77,6 +77,7 @@ export class SetUpComponent implements OnInit {
   loading=false;
   id;
   insuranceForm: FormGroup;
+  serviceForm: FormGroup;
   constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder,public router:Router) {
   }
 
@@ -91,7 +92,15 @@ export class SetUpComponent implements OnInit {
   this.insuranceForm = this.formBuilder.group({
     name: ['', Validators.required],
     type: ['', Validators.required],
-    id: ['']
+    id: [''],
+    hospitals: [[],Validators.required],
+});
+
+this.serviceForm = this.formBuilder.group({
+  name: ['', Validators.required],
+  code: ['', Validators.required],
+  cost: ['', Validators.required],
+  description: ['', Validators.required]
 });
 
   this.providerForm = this.formBuilder.group({
@@ -138,6 +147,7 @@ export class SetUpComponent implements OnInit {
   get f() { return this.typeForm.controls; }
   get g() { return this.floorForm.controls; }
   get i() { return this.insuranceForm.controls;}
+  get s() { return this.serviceForm.controls;}
   getHospitals(){
     this.service.providerDetails(this.user.hospital).subscribe((res) => {
       this.provider_list = res;
@@ -146,11 +156,12 @@ export class SetUpComponent implements OnInit {
   }
   onInsurance(){
     this.loading = true;
+    
     this.service.createBranchPayers(this.insuranceForm.value).subscribe((res)=>{
       this.toastr.success('Successfully Added');
       this.getBranchPayers();
       this.insuranceModal.hide();
-      this.insuranceForm.patchValue({id:'',name:'',type:''})
+      this.insuranceForm.patchValue({id:'',name:'',type:'',hospitals:[]})
       this.loading = false
     },(err)=>{
       this.toastr.error('Request Failed');
@@ -205,9 +216,14 @@ export class SetUpComponent implements OnInit {
   }
 
 addService() {
-  console.log(this.selectedService);
-  this.selectedServices.push(this.selectedService);
-  this.selectedService = {};
+  let data = this.serviceForm.value
+  if(this.selectedServices.some((obj)=>obj.name.toLowerCase == data.name.toLowerCase)){
+    this.toastr.info('You have already added service');
+
+  }else{
+    this.selectedServices.push(this.serviceForm.value);
+  }
+  this.serviceForm.patchValue({name:'',code:'',cost:'',description:''})
 }
 deleteService(obj) {
 const index: number = this.selectedServices.indexOf(obj);
