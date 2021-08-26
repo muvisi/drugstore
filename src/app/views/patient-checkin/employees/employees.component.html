@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-             <h5> Staff</h5>
+             <h5> Staff Management</h5>
             </div>
             <div class="card-body">
                 
@@ -13,7 +13,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-sm-9">
-                  <button class="btn btn-success pull-right"  (click)="userModal.show()">Add User</button>
+                  <button class="btn btn-success pull-right"  (click)="addModal.show()">Add User</button>
                 </div>
                
                </div>
@@ -28,11 +28,7 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
                         <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="username">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>USERNAME</th>
-                        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
-                        </ng-container>
-          
+                  
                         <ng-container matColumnDef="phone">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
                         <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
@@ -53,7 +49,7 @@
                           </ng-container>
                           <ng-container matColumnDef="edit">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>EDIT</th>
-                            <td mat-cell *matCellDef="let element"  (click)="employee=element;userModal.show();edit=false">
+                            <td mat-cell *matCellDef="let element"  (click)="employeeEdit(element)">
                               <mat-icon color="primary">create</mat-icon>
                                </td>
                           </ng-container>
@@ -84,8 +80,7 @@
               <div class="modal-content">
                <div class="modal-header bg-success">
                 <h5>
-                  <span *ngIf="!edit">Add User</span>
-                <span *ngIf="edit">Update User</span>
+                <span>Update User</span>
                 </h5>
                  <button type="button" class="close" (click)="userModal.hide()" data-dismiss="modal" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
@@ -168,8 +163,7 @@
                              <div class="col-sm-12">
                              </div>
                              <div class="col-sm-12">
-                                <button *ngIf="!edit" class=" btn btn-success btn-sm pull-right" (click)="addUser()"> Submit </button>
-                                <button *ngIf="edit" class="btn btn-primary btn-sm pull-right" (click)="updateUser()" style="margin-right: 8px;"> Update </button>
+                                <button class="btn btn-primary btn-sm pull-right" (click)="updateUser()" style="margin-right: 8px;"> Update </button>
                               </div>
                   </div>
                 </div>
@@ -177,6 +171,114 @@
             </div>
           </div> 
   
+
+
+
+          <div class="modal fade" bsModal #addModal="bs-modal" [config]="{backdrop: 'static'}"
+               tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+               <div class="modal-header bg-success">
+                <h5>
+                <span>Add Staff</span>
+                </h5>
+                 <button type="button" class="close" (click)="addModal.hide()" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+                <div class="modal-body">
+                   <form [formGroup]="registerForm">
+                  <div class="row">
+                          
+                    <div class="col-sm-6">
+                      <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                          <input type="text" id="text-input" name="first_name"  placeholder="FIRST NAME"
+                          formControlName="first_name" matInput>
+                      </mat-form-field>
+                    </div>
+                      <div class="col-sm-6">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                              <input type="text" id="text-input"  placeholder="LAST NAME"
+                              formControlName="last_name" matInput>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                          <mat-form-field appearance="outline">
+                              <mat-label>Gender</mat-label>
+                              <mat-select formControlName="gender">
+                                <mat-option value="Female">Female</mat-option>
+                                <mat-option value="Male">Male</mat-option>
+                                <mat-option value="Other">Other</mat-option>
+
+                              </mat-select>
+                            </mat-form-field>
+                       </div>
+                        <div class="col-sm-6">
+                
+                            <mat-form-field appearance="outline">
+                                <mat-label>Branch</mat-label>
+                                <mat-select formControlName="hospital">
+                                  <mat-option (onSelectionChange)="setDepartments(item)" *ngFor="let item of provider_list" [value]="item.id">
+                                    {{item.name}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                          </div>
+                     
+                     <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Role</mat-label>
+                            <mat-select formControlName="role">
+                              <mat-option value="counselor">Counselor</mat-option>
+                              <mat-option value="finance">Finance</mat-option>
+                              <mat-option value="doctor">doctor</mat-option>
+                              <mat-option value="admin">Admin</mat-option>
+                              <mat-option value="front_office">Front Office</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                     </div>
+                     <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Phone</mat-label>
+                            <input type="text" placeholder="PHONE"
+                            formControlName="phone" matInput>
+                        </mat-form-field>
+                      </div>
+                    
+                        <div class="col-sm-6">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Department</mat-label>
+                            <mat-select  formControlName="department">
+                              <mat-option *ngFor="let item of departments" [value]="item.id">
+                                {{item.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          
+                          </div>
+                          <div class="col-sm-6">
+                              <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                  <input type="email" id="text-input"   placeholder="EMAIL"
+                                  formControlName="email" matInput>
+                              </mat-form-field>
+                            </div>
+                          
+                             <div class="col-sm-12">
+                             </div>
+                             <div class="col-sm-12">
+                                <button class="btn btn-primary btn-sm pull-right" (click)="addUser()" style="margin-right: 8px;">Submit</button>
+                              </div>
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+
                <div class="modal fade" bsModal #profileModal="bs-modal" [config]="{backdrop: 'static'}"
                tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
             <div class="modal-dialog modal-lg">

@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employees',
@@ -16,7 +17,7 @@ export class EmployeesComponent implements OnInit {
   selectedUser:any={};
   dataSource;
   departments =[];
-  displayedColumns: string[] = ['sn','name', 'username', 'phone', 'email','role','view','edit','deactivate','activate'];
+  displayedColumns: string[] = ['sn','name', 'phone', 'email','role','view','edit','deactivate','activate'];
   employee: any={};
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
   @ViewChild('uSort', {static: true}) uSort: MatSort;
@@ -26,12 +27,24 @@ export class EmployeesComponent implements OnInit {
   provider_list: any=[];
   user: any;
   loading = false;
-  constructor(public  service:ServiceService,public toastr:ToastrService,public router:Router) { }
-
+  registerForm: FormGroup;
+  constructor(public  service:ServiceService,public toastr:ToastrService,public router:Router,public formBuilder:FormBuilder) { }
   ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      hospital: ['', Validators.required],
+      email: ['', Validators.required],
+      department:['',Validators.required],
+      phone:['',Validators.required],
+      role:['',Validators.required],
+      gender:['',Validators.required],
+      username:['',Validators.required]
+  });
     this.employeesList();
     this.user = JSON.parse(sessionStorage.getItem('user'));
     this.getHospitals();
+    
   }
   addUser() {
     this.loading = true;
@@ -50,6 +63,10 @@ export class EmployeesComponent implements OnInit {
   }
   setDepartments(item){
     this.departments=item.departments;
+  }
+  employeeEdit(item){
+    this.employee = item;
+    this.userModal.show();
   }
   updateUser() {
     console.log(this.employee);
@@ -105,6 +122,7 @@ export class EmployeesComponent implements OnInit {
   }
   getHospitals(){
     this.service.providerDetails(this.user.hospital).subscribe((res) => {
+      console.log('sss',res)
       this.provider_list = res;
     });
   }

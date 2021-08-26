@@ -266,22 +266,19 @@ export class AppointmentDetailsComponent implements OnInit {
     }
   }
   addStatus(text){
-  //  console.log(moment().format('H:mm'))
-  //  if(moment(this.data.StartTime).format('H:mm') == '13:00' ){
-  //    console.log("Sawa")
-  //  }else{
-  //   console.log("no")
-  //  }
     let data:any ={}
     data.id = this.route.snapshot.params.id
     data.status = text
     this.service.addStatus(data).subscribe((res)=>{
       if (text =='ongoing'){
         this.toastr.success("Started a session","Success");
+        this.getAppointment(this.route.snapshot.params.id);
       }else{
         this.toastr.success("Ended a session","Success");
+        this.getAppointment(this.route.snapshot.params.id);
       }
     })
+  
   }
   getServices(){
     this.service.getProviderServices().subscribe((res)=>{

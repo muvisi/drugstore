@@ -12,7 +12,7 @@ import { ServiceService } from '../../../service.service';
 export class AppointmentListComponent implements OnInit {
   dataSource;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  Columns: string[] = ['sn','StartTime','EndTime','Client','national_id','phone','Counselor','residence','create']
+  Columns: string[] = ['sn','StartTime','EndTime','Client','phone','Counselor','residence','create']
   constructor(public service:ServiceService,public router:Router) { }
   ngOnInit() {
     this.getRecords();
