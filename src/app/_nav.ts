@@ -52,7 +52,7 @@ export const navItems: NavData[] = [
   {
     name: 'Rooms',
     icon: 'fa fa-home',
-    url: '/dashboard/rooms/list'
+    url: '/dashboard/rooms-dashboard'
   },
 
   {

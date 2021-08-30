@@ -1,0 +1,74 @@
+
+
+<div class="card">
+    <div class="card-header">
+        <span style="font-size: 20px;">Reservations</span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-tab-group>
+                    <mat-tab>
+                      <ng-template mat-tab-label>
+                        Appointment
+                      </ng-template>
+                      <div>
+                          <br>
+                          <div class="col-sm-12">
+  
+                            <div class="mat-elevation-z8 table-responsive">
+                              <table mat-table [dataSource]="dataSource">
+                                <ng-container matColumnDef="sn">
+                                    <th mat-header-cell *matHeaderCellDef>S/No </th>
+                                    <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef> </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                                    </ng-container>
+                                   
+                                    <ng-container matColumnDef="start">
+                                    <th mat-header-cell *matHeaderCellDef>Start</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.start}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="end">
+                                    <th mat-header-cell *matHeaderCellDef>End</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.end}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="type">
+                                      <th mat-header-cell *matHeaderCellDef>Type</th>
+                                      <td mat-cell *matCellDef="let element">
+                                        <span *ngIf="element.appointment">Appointment</span>
+                                        <span *ngIf="!element.appointment">Room Booking</span>
+                                      </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="staff">
+                                      <th mat-header-cell *matHeaderCellDef>Staff</th>
+                                      <td mat-cell *matCellDef="let element"> {{element.staff}} </td>
+                                    </ng-container>
+                                   
+                                    <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns:Columns;"></tr>
+                              </table>
+                          
+                              <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+                            </div>
+                          </div>
+                      </div>
+                      <br>
+                    </mat-tab>
+                  
+                    <mat-tab>
+                      <ng-template mat-tab-label>
+                        Counsellors
+                      </ng-template>
+                      Content 2
+                    </mat-tab>
+                  
+                  </mat-tab-group>
+                  
+            </div>
+        </div>
+        
+    </div>
+  </div>

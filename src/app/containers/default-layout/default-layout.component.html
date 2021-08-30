@@ -21,7 +21,7 @@
                <i class="fa fa-cogs" aria-hidden="true"></i> configure
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item" routerLink="/dashboard/set-up" ><i class="icon-wrench"></i>Set up</a>
+        <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="icon-wrench"></i>Set up</a>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
         <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-lock"></i>Change password </a>
       </div>
@@ -30,7 +30,9 @@
 </app-header>
 <div class="app-body">
   <app-sidebar [fixed]="true" [display]="'lg'">
-    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    <app-sidebar-nav *ngIf="user.role == 'admin'" [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    <app-sidebar-nav *ngIf="user.role == 'counselor'" [navItems]="docNavItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
   <!-- Main content -->

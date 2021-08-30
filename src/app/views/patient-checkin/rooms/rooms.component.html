@@ -1,29 +1,37 @@
 <div class="card">
     <div class="card-header">
-      <h6>
-        Rooms List
-      </h6>
+      <span style="font-size:20px;">Rooms List</span>
     </div>
     <div class="card-body">
      <div class="row">
-         <div class="col-sm-3">
+         <!-- <div class="col-sm-3">
             <mat-form-field >
                 <mat-label>Room No</mat-label>
                 <input type="text" matInput placeholder="Room No." (keyup)="searchRoom($event.target.value)">
               </mat-form-field>
               
          </div>
-         <!-- <div class="col-sm-3">
-            <mat-form-field>
-                <mat-label>Status Filter</mat-label>
-                <mat-select>
-                  <mat-option value="10px">Booked</mat-option>
-                  <mat-option value="12px">Reservations</mat-option>
-                  <mat-option value="14px">Open</mat-option>
-                </mat-select>
-              </mat-form-field>
-         </div> -->
-         <div class="col-sm-12">
+         -->
+       
+
+
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-2" *ngFor="let item of rooms">
+              <mat-card [ngClass]="{'open':item.status == 'Open'}" (click)="rowClick(item)">
+                <mat-card-content>
+                  <span style="text-transform: uppercase;">Name: <b>{{item.name}}</b> </span> <br>
+                  <span  style="text-transform: uppercase;">Type: <b>{{item.type_name}}</b> </span>
+                  <br>
+                  <button  style="text-align: center;" class="btn btn-primary btn-sm">Book Room</button>
+                </mat-card-content>
+               
+              </mat-card>
+          </div>
+        
+         </div>
+        </div>
+         <!-- <div class="col-sm-12">
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="rooms" #dSort="matSort"   matSort>
                     <ng-container matColumnDef="sn">
@@ -71,12 +79,17 @@
               
                 <mat-paginator #pagination [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
               </div>
-         </div>
+         </div> -->
      </div>
     </div>
+
+
+
   </div>
 
 
+
+ 
   <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
   <div class="modal-dialog modal-md">

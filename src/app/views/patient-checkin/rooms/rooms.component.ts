@@ -5,6 +5,7 @@ import { ServiceService } from '../../../service.service';
 import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rooms',
@@ -24,7 +25,7 @@ export class RoomsComponent implements OnInit {
   date = new Date();
   counsolers =[];
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
-  constructor(public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
+  constructor(public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService,public router:Router) { }
   ngOnInit() {
     this.getRoom();
     this.getCounselors();
@@ -39,14 +40,15 @@ export class RoomsComponent implements OnInit {
 
   getRoom() {
     this.service.getRooms().subscribe((res) => {
-      this.rooms = new MatTableDataSource(res.results);
-      this.rooms.paginator =this.paginator;
+      this.rooms =res.results
+      // // this.rooms = new MatTableDataSource(res.results);
+      // this.rooms.paginator =this.paginator;
     });
   }
 searchRoom(text){
   this.service.searchRooms(text).subscribe((res) => {
-    this.rooms = new MatTableDataSource(res.results);
-    this.rooms.paginator =this.paginator;
+    this.rooms =res.results
+    // this.rooms.paginator =this.paginator;
   });
 }
 onBook(){
@@ -68,12 +70,16 @@ getCounselors(){
   })
 }
 reservations(item){
-this.service.reservationList(item.id).subscribe((res)=>{
+this.service.reservationList().subscribe((res)=>{
   this.dataSource = new MatTableDataSource(res.results);
   this.dataSource.paginator = this.paginator1;
   this.reservationModal.show();
 
 })
+}
+
+rowClick(item){
+  this.router.navigate(['/dashboard/book-room/',item.id])
 }
 }
 

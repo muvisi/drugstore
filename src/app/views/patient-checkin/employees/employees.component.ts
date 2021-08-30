@@ -20,6 +20,7 @@ export class EmployeesComponent implements OnInit {
   displayedColumns: string[] = ['sn','name', 'phone', 'email','role','view','edit','deactivate','activate'];
   employee: any={};
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
+  @ViewChild('addModal', { static: false }) addModal: ModalDirective;
   @ViewChild('uSort', {static: true}) uSort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   hospital: any ={};
@@ -38,8 +39,7 @@ export class EmployeesComponent implements OnInit {
       department:['',Validators.required],
       phone:['',Validators.required],
       role:['',Validators.required],
-      gender:['',Validators.required],
-      username:['',Validators.required]
+      gender:['',Validators.required]
   });
     this.employeesList();
     this.user = JSON.parse(sessionStorage.getItem('user'));
@@ -47,12 +47,12 @@ export class EmployeesComponent implements OnInit {
     
   }
   addUser() {
-    this.loading = true;
-    this.service.createUser(this.employee).subscribe((res) => {
+    if(this.registerForm.valid){
+      this.loading = true;
+    this.service.createUser(this.registerForm.value).subscribe((res) => {
       this.ngOnInit();
       this.toastr.success('Successfully Added Employee');
-      this.employee = {};
-      this.userModal.hide();
+      this.addModal.hide();
       this.loading = false;
     },
     (error)=>{
@@ -60,6 +60,7 @@ export class EmployeesComponent implements OnInit {
       this.loading = false;
     }
     );
+    }
   }
   setDepartments(item){
     this.departments=item.departments;
@@ -69,7 +70,6 @@ export class EmployeesComponent implements OnInit {
     this.userModal.show();
   }
   updateUser() {
-    console.log(this.employee);
     this.service.updateUser(this.employee).subscribe((res) => {
       this.ngOnInit();
       this.toastr.success('Successfully Updated User');

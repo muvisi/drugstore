@@ -47,7 +47,10 @@ import { ClientsComponent } from '../patient-checkin/clients/clients.component';
 import { BookingComponent } from '../patient-checkin/booking/booking.component';
 import { BillingComponent } from '../patient-checkin/billing/billing.component';
 import { ReportComponent } from '../patient-checkin/report/report.component';
+import { BookRoomComponent } from '../patient-checkin/book-room/book-room.component';
 import { RoomRevenueComponent } from '../patient-checkin/room-revenue/room-revenue.component';
+import { RoomDashboardComponent } from '../patient-checkin/room-dashboard/room-dashboard.component';
+import { ReservationsComponent } from '../patient-checkin/reservations/reservations.component';
 
 const routes: Routes = [
   {
@@ -140,6 +143,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'book-room/:id',
+    component: BookRoomComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'tests component'
+    }
+  },
+  {
     path: 'rooms/list',
     component: RoomsComponent,
     canActivate: [AuthGuard],
@@ -148,8 +159,24 @@ const routes: Routes = [
     }
   },
   {
+    path: 'rooms-dashboard',
+    component: RoomDashboardComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'tests component'
+    }
+  },
+  {
     path: 'rooms/create',
     component: CreateRoomComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'tests component'
+    }
+  },
+  {
+    path: 'reservations',
+    component: ReservationsComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'tests component'
@@ -372,9 +399,6 @@ const routes: Routes = [
 {
 path : 'calendar',
 component : CalendarComponent,
-data: {
-  title: 'Tags'
-}
 },
 {
   path : 'reports',

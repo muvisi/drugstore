@@ -187,7 +187,7 @@
                  </button>
                </div>
                 <div class="modal-body">
-                   <form [formGroup]="registerForm">
+                   <form [formGroup]="registerForm" (ngSubmit)="addUser()">
                   <div class="row">
                           
                     <div class="col-sm-6">
@@ -269,7 +269,7 @@
                              <div class="col-sm-12">
                              </div>
                              <div class="col-sm-12">
-                                <button class="btn btn-primary btn-sm pull-right" (click)="addUser()" style="margin-right: 8px;">Submit</button>
+                                <button class="btn btn-primary btn-sm pull-right"  style="margin-right: 8px;">Submit</button>
                               </div>
                   </div>
                 </form>

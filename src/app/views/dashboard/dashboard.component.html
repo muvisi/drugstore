@@ -5,7 +5,7 @@
 </style>
 <div class="animated fadeIn">
   <div class="row">
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-3" >
       <a routerLink="booking/">
         <div class="card">
           <div class="card-body">
@@ -24,7 +24,7 @@
         </div>
       </a>
     </div>
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-3" [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
       <a routerLink="clients/">
         <div class="card">
           <div class="card-body">
@@ -43,7 +43,7 @@
         </div>
       </a>
     </div>
-      <div class="col-sm-6 col-md-3">
+      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
         <a routerLink="staff">
           <div class="card">
             <div class="card-body">
@@ -62,105 +62,7 @@
           </div>
         </a>
       </div>
-      <div class="col-sm-6 col-md-3">
-    
-        <a routerLink="rooms/list">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-      
-                  <i class="fa fa-home fa-stack-4x" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >Rooms</div>
-    
-            </div>
-          </div>
-        </a>
-      </div>
-      
-      <!-- <div class="col-sm-6 col-md-3">
-     
-          <a routerLink="authletter-requests">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-      
-                  <i class="icon-note fa-stack-4x" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >AUTHORIZATION REQUEST</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div> -->
-      <!-- <div class="col-sm-6 col-md-3">
-        <a routerLink="lab">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-      
-                  <i class="icon-chemistry fa-stack-4x" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >LABS/PROCEDURES</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-3">
-        <a routerLink="pharmacy">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-      
-                  <i class="fa fa-medkit fa-stack-4x" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >PHARMACY</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-3">
-          <a routerLink="payments">
-            <div class="card">
-              <div class="card-body">
-                <div class="text-center">
-                  <span class="fa-stack fa-4x">
-                    <i class=" fa-stack-2x icon-background4"></i>
-                    <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-    
-                    <i class="icon-wallet fa-stack-4x" style="color:#A6CF39;"></i>
-                  </span>
-                </div>
-                <div class="text-center item">PAYMENTS</div>
-    
-    
-              </div>
-            </div>
-          </a>
-        </div> -->
-       
-    
+
       <div class="col-sm-6 col-md-3">
         <a routerLink="calendar/">
           <div class="card">
@@ -180,7 +82,27 @@
           </div>
         </a>
       </div>
+
       <div class="col-sm-6 col-md-3">
+    
+        <a routerLink="rooms-dashboard">
+          <div class="card">
+            <div class="card-body">
+              <div class="text-center">
+                <span class="fa-stack fa-4x">
+                  <i class=" fa-stack-2x icon-background4"></i>
+                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
+      
+                  <i class="fa fa-home fa-stack-4x" style="color:#A6CF39;"></i>
+                </span>
+              </div>
+              <div class="text-center item" >Rooms</div>
+    
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
         <a routerLink="billing/">
           <div class="card">
             <div class="card-body">
@@ -199,7 +121,7 @@
           </div>
         </a>
       </div>
-      <div class="col-sm-6 col-md-3">
+      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
       
         <a routerLink="eclaims-dashboard">
         <div class="card">
@@ -218,7 +140,7 @@
       </a>
     </div>
     
-      <div class="col-sm-6 col-md-3">
+      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
         <a routerLink="report">
           <div class="card">
             <div class="card-body">

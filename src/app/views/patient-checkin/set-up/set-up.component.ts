@@ -117,6 +117,7 @@ this.serviceForm = this.formBuilder.group({
 
   this.editRoom = this.formBuilder.group({
     name: ['', Validators.required],
+    cost: ['', Validators.required],
     type: ['', Validators.required],
     floor: ['', Validators.required],
     description:['',Validators.required],
@@ -325,7 +326,7 @@ addRoom(){
   })
 }
 editUpdate(item){
-  this.editRoom.patchValue({id:item.id,description:item.description,type:item.type,floor:item.floor,name:item.name})
+  this.editRoom.patchValue({id:item.id,description:item.description,type:item.type,floor:item.floor,name:item.name,cost:item.cost})
   this.roomEditModal.show();
 }
 updateRoom(){

@@ -31,5 +31,5 @@ export class AppointmentListComponent implements OnInit {
   }
   rowClick(item){
     this.router.navigate(['/dashboard/appointment-details/',item.id])
-   }
+  }
 }

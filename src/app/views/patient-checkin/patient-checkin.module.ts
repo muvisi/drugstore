@@ -75,6 +75,9 @@ import { BookingComponent } from './booking/booking.component';
 import { BillingComponent } from './billing/billing.component';
 import { ReportComponent } from './report/report.component';
 import { RoomRevenueComponent } from './room-revenue/room-revenue.component';
+import { BookRoomComponent } from './book-room/book-room.component';
+import { RoomDashboardComponent } from './room-dashboard/room-dashboard.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
   declarations: [
@@ -124,7 +127,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BookingComponent,
     BillingComponent,
     ReportComponent,
-    RoomRevenueComponent
+    RoomRevenueComponent,
+    BookRoomComponent,
+    RoomDashboardComponent,
+    ReservationsComponent
   ],
   imports: [
     CommonModule,

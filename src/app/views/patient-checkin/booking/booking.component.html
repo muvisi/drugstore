@@ -6,7 +6,7 @@
   <div class="animated fadeIn">
     <div class="row">
     
-      <div class="col-sm-6 col-md-3">
+      <div class="col-sm-6 col-md-3" [hidden]="user.role == 'counselor'">
         <a routerLink="/dashboard/appointments/">
           <div class="card">
             <div class="card-body">

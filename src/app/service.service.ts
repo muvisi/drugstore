@@ -397,6 +397,10 @@ searchProcedure(data): Observable<any> {
     return this.http.delete(endpoint + 'booking/room/'+id+'/').pipe(
       map(this.extractData));
   }
+  getRoom(id){
+    return this.http.get(endpoint + 'booking/room/'+id+'/').pipe(
+      map(this.extractData));
+  }
   updateRoom(data){
     console.log(data);
     return this.http.put(endpoint + 'booking/room/'+data.id+'/',data).pipe(
@@ -407,12 +411,12 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
   }
   reservation(data){
-    return this.http.post(endpoint + 'booking/reservation/',data).pipe(
+    return this.http.post(endpoint + 'booking/counsellor/',data).pipe(
       map(this.extractData));
   }
 
-  reservationList(data){
-    return this.http.get(endpoint + 'booking/reservation/?room='+data).pipe(
+  reservationList(){
+    return this.http.get(endpoint + 'booking/reservation/').pipe(
       map(this.extractData));
   }
   roomRevenues(){
