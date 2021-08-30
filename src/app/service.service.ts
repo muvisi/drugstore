@@ -419,6 +419,10 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'booking/reservation/').pipe(
       map(this.extractData));
   }
+  reservationListSearch(data){
+    return this.http.get(endpoint + 'booking/reservation/?search='+data).pipe(
+      map(this.extractData));
+  }
   roomRevenues(){
     return this.http.get(endpoint + 'booking/room_revenue/').pipe(
       map(this.extractData));

@@ -19,6 +19,8 @@ export class BookRoomComponent implements OnInit {
   counsolers =[];
   transactions =[];
   submitted=false;
+  @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  paymentForm: FormGroup;
   constructor(public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService,public router:Router,private route: ActivatedRoute) { }
   ngOnInit() {
     this.getRoom(this.route.snapshot.params.id);
@@ -36,9 +38,16 @@ export class BookRoomComponent implements OnInit {
       staff: ['', Validators.required],
       payment_type: ['', Validators.required]
     }
+    
       );
+      this.paymentForm = this.formBuilder.group({
+        mobile: ['', Validators.required],
+        amount: ['', Validators.required],
+        acc: ['kapc', Validators.required]
+      })
   }
   get f() { return this.bookingForm.controls; }
+  get p() { return this.paymentForm.controls; }
   getRoom(id) {
     this.service.getRoom(id).subscribe((res) => {
       this.room =res
@@ -66,10 +75,17 @@ this.router.navigateByUrl('/dashboard/rooms/list')
 open(item){
   this.bookingForm.patchValue({room:item.id});
 }
+onPayment(){
+console.log("dawa")
+}
 getCounselors(){
   this.service.getAppointmentUsers().subscribe((res)=>{
     this.counsolers = res.results;
   })
+}
+mpesa(){
+  this.paymentForm.patchValue({amount:this.bookingForm.get('cost').value})
+  this.staticModal.show();
 }
 typeaheadOnSelect(item){
   this.bookingForm.patchValue({amount:item.item.amount,no:item.item.description})

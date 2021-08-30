@@ -45,9 +45,9 @@ interface NavAttributes {
       url: '/dashboard/booking',
     },
     {
-      name: 'Rooms',
-      icon: 'fa fa-home',
-      url: '/dashboard/rooms/list'
+      name: 'Bookings',
+      icon: 'fa fa-book',
+      url: '/dashboard/reservations'
     }
   ];
   

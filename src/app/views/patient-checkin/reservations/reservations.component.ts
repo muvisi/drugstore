@@ -9,8 +9,8 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./reservations.component.scss']
 })
 export class ReservationsComponent implements OnInit {
-  Columns: string[] = ['sn','date', 'start', 'end','type','staff'];
-  @ViewChild('pagination', {static: true}) paginator: MatPaginator;
+  Columns: string[] = ['sn','date', 'start', 'end','room','type','staff'];
+  @ViewChild(MatPaginator,{static: true}) paginator: MatPaginator;
   dataSource: MatTableDataSource<unknown>;
   constructor(public service:ServiceService) { }
   ngOnInit() {
@@ -21,5 +21,11 @@ export class ReservationsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res.results);
       this.dataSource.paginator = this.paginator;    
     })
+    }
+    search(text){
+      this.service.reservationListSearch(text).subscribe((res)=>{
+        this.dataSource = new MatTableDataSource(res.results);
+        this.dataSource.paginator = this.paginator;    
+      })
     }
 }
