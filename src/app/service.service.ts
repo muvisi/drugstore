@@ -419,6 +419,14 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'booking/reservation/').pipe(
       map(this.extractData));
   }
+  getReservation(id){
+    return this.http.get(endpoint + 'booking/reservation/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  updateReservation(id,data){
+    return this.http.put(endpoint + 'booking/reservation/'+id+'/',data).pipe(
+      map(this.extractData));
+  }
   reservationListSearch(data){
     return this.http.get(endpoint + 'booking/reservation/?search='+data).pipe(
       map(this.extractData));

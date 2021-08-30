@@ -76,7 +76,12 @@ open(item){
   this.bookingForm.patchValue({room:item.id});
 }
 onPayment(){
-console.log("dawa")
+this.service.mpesaStk(this.paymentForm.value).subscribe((res)=>{
+  this.toastr.success("Request Sent","Success")
+  this.staticModal.hide();
+},(err)=>{
+  this.toastr.error("Request Failed","Failed")
+})
 }
 getCounselors(){
   this.service.getAppointmentUsers().subscribe((res)=>{
@@ -84,7 +89,7 @@ getCounselors(){
   })
 }
 mpesa(){
-  this.paymentForm.patchValue({amount:this.bookingForm.get('cost').value})
+  this.paymentForm.patchValue({amount:parseInt(this.bookingForm.get('cost').value),acc:"kapc"})
   this.staticModal.show();
 }
 typeaheadOnSelect(item){

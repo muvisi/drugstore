@@ -38,7 +38,6 @@ export class AppointmentDetailsComponent implements OnInit {
   serviceColumns: string[] = ['sn','name','code','amount','delete'];
   billsColumns: string[] = ['sn','name','code','amount','delete'];
   allColumns: string[] = ['sn','created','mode','amount','delete'];
-  time =['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
   cashForm: FormGroup;
   noteForm: FormGroup;
   services: any=[];
@@ -148,7 +147,10 @@ export class AppointmentDetailsComponent implements OnInit {
     let data = this.appointmentForm.value
     data.id = this.route.snapshot.params.id
     this.service.rescheduleAppointment(data).subscribe((res)=>{
+      this.toastr.success("Successfully updated",'Success');
       this.ngOnInit();
+    },(err)=>{
+      this.toastr.info(err.error.error,"Failed");
     })
   }
   getFee(){

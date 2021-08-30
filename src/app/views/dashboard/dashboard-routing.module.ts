@@ -51,6 +51,7 @@ import { BookRoomComponent } from '../patient-checkin/book-room/book-room.compon
 import { RoomRevenueComponent } from '../patient-checkin/room-revenue/room-revenue.component';
 import { RoomDashboardComponent } from '../patient-checkin/room-dashboard/room-dashboard.component';
 import { ReservationsComponent } from '../patient-checkin/reservations/reservations.component';
+import { EditReservationsComponent } from '../patient-checkin/edit-reservations/edit-reservations.component';
 
 const routes: Routes = [
   {
@@ -177,6 +178,14 @@ const routes: Routes = [
   {
     path: 'reservations',
     component: ReservationsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'tests component'
+    }
+  },
+  {
+    path: 'reservations/:id',
+    component:EditReservationsComponent,
     canActivate: [AuthGuard],
     data: {
       title: 'tests component'

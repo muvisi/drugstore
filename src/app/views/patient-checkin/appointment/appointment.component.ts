@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl,FormArray} from '@angul
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -22,6 +23,8 @@ export class AppointmentComponent implements OnInit {
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
   maxDate = new Date();
   dobDate= new Date(moment().subtract(4,'years').format())
+  paymentForm: FormGroup;
+  @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   constructor(public service: ServiceService,private formBuilder: FormBuilder,public toastr: ToastrService,public router:Router ) { 
     console.log(this.dobDate);
   }
@@ -51,6 +54,11 @@ export class AppointmentComponent implements OnInit {
       visit_type:['NEW',Validators.required],
       date:['',Validators.required]
     });
+    this.paymentForm = this.formBuilder.group({
+      mobile: ['', Validators.required],
+      amount: [0, Validators.required],
+      acc: ['kapc', Validators.required]
+    })
     this.patientsList();
     
   }
@@ -62,8 +70,18 @@ export class AppointmentComponent implements OnInit {
     );
  }
  get f() { return this.appointmentForm.controls; }
+ get p() { return this.paymentForm.controls; }
 
- 
+ onPayment(){
+   console.log(this.paymentForm.value)
+  this.service.mpesaStk(this.paymentForm.value).subscribe((res)=>{
+    this.toastr.success("Request Sent","Success")
+    this.paymentForm.reset();
+    this.staticModal.hide()
+  },(err)=>{
+    this.toastr.error("Request Failed","Failed")
+  })
+  }
  onSubmit() {
    this.submitted = true;
    this.loading = true;
@@ -114,5 +132,8 @@ searchTransaction(text){
 typeaheadOnSelect(item){
   this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.description})
 }
-
+mpesa(){
+  this.paymentForm.patchValue({amount:1000,acc:"kapc"})
+  this.staticModal.show();
+}
 }

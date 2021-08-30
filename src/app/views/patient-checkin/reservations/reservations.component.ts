@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../../../service.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservations',
@@ -9,10 +10,10 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./reservations.component.scss']
 })
 export class ReservationsComponent implements OnInit {
-  Columns: string[] = ['sn','date', 'start', 'end','room','type','staff'];
+  Columns: string[] = ['sn','date', 'start', 'end','room','type','staff','edit'];
   @ViewChild(MatPaginator,{static: true}) paginator: MatPaginator;
   dataSource: MatTableDataSource<unknown>;
-  constructor(public service:ServiceService) { }
+  constructor(public service:ServiceService,public router:Router) { }
   ngOnInit() {
     this.reservations();
   }
@@ -27,5 +28,9 @@ export class ReservationsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(res.results);
         this.dataSource.paginator = this.paginator;    
       })
+    }
+    edit(element){
+      this.router.navigate(['/dashboard/reservations/',element.id])
+
     }
 }
