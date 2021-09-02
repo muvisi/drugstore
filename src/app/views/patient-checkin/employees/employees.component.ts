@@ -17,7 +17,7 @@ export class EmployeesComponent implements OnInit {
   selectedUser:any={};
   dataSource;
   departments =[];
-  displayedColumns: string[] = ['sn','name', 'phone', 'email','role','view','edit','deactivate','activate'];
+  displayedColumns: string[] = ['sn','name', 'phone', 'email','role','view','edit','deactivate','activate','reset'];
   employee: any={};
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
   @ViewChild('addModal', { static: false }) addModal: ModalDirective;
@@ -90,6 +90,15 @@ export class EmployeesComponent implements OnInit {
 
   });
   }
+
+  reset(element){
+    this.service.reset(element).subscribe((res)=>{
+      this.toastr.success('Successfully reset password');
+    },(err)=>{
+      this.toastr.error('Password reset failed','Failed');
+    })
+  }
+
   deactivate(item){
     if(item.is_active){
       const data={
