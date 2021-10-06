@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ServiceService } from '../../../service.service';
@@ -11,21 +12,44 @@ import { ServiceService } from '../../../service.service';
 })
 export class AppointmentListComponent implements OnInit {
   dataSource;
+  appointmentsList;
+  loading=false;
+  idnumber;
+  phonenumber;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  Columns: string[] = ['sn','StartTime','EndTime','Client','phone','Counselor','residence','create']
-  constructor(public service:ServiceService,public router:Router) { }
+  Columns: string[] = ['sn','StartTime','EndTime','Client','phone','Counselor','residence','delete','create']
+  constructor(public service:ServiceService,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
+    this.idnumber="";
+    this.phonenumber="";
     this.getRecords();
   }
+  deleteAppointment(item,row){
+    this.loading=true;
+    console.log(item);
+    this.service.deleteAppointment(item.id).subscribe((res)=>{
+    this.loading=false;
+      this.appointmentsList.splice(row,0)
+      this.dataSource = new MatTableDataSource(this.appointmentsList); 
+      this.toastr.success("Appointment Deleted");
+      this.dataSource._updateChangeSubscription() 
+      this.dataSource.paginator = this.paginator;
+      
+    })
+  }
   getRecords(){
+    // this.loading=true;
     this.service.getAppointments().subscribe((res)=>{
-      this.dataSource = new MatTableDataSource(res.results);
+      this.loading=false;
+      this.appointmentsList=res.results
+      this.dataSource = new MatTableDataSource();
       this.dataSource.paginator = this.paginator;
     })
   }
   applyFilter(filterValue: string) {
     this.service.searchAppointments(filterValue).subscribe((res)=>{
       this.dataSource = new MatTableDataSource(res.results);
+      this.appointmentsList=res.results
       this.dataSource.paginator = this.paginator;
     })
   }

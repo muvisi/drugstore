@@ -13,6 +13,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 export class AppointmentComponent implements OnInit {
   visits = [];
   appointmentForm: FormGroup;
+  student=false;
   limit = new Date();
   toadysList;
   submitted=false;
@@ -33,8 +34,8 @@ export class AppointmentComponent implements OnInit {
     this.appointmentForm = this.formBuilder.group({
       phone: ['',Validators.required],
       type: ['', Validators.required],
-      payment_type:['',Validators.required],
-      amount:['',[Validators.required,Validators.min(10)]],
+      payment_type:[''],
+      amount:[''],
       time: ['', Validators.required],
       reason: ['', Validators.required],
       first_name: ['', Validators.required],
@@ -100,6 +101,11 @@ export class AppointmentComponent implements OnInit {
     this.submitted = false;
     return
   }
+  if(!this.student &&(this.appointmentForm.get('payment_type').value==''|| this.appointmentForm.get('amount').value=='') ){
+    this.toastr.error('Fill in All the Fields Marked with *');
+    this.loading=false;
+    return;
+  }
   if (this.appointmentForm.invalid) {
     this.toastr.error('Fill in All the Fields Marked with *');
       this.loading=false;
@@ -119,6 +125,12 @@ export class AppointmentComponent implements OnInit {
   })
 
 }
+
+appointmentTypeSelected(value){
+  
+  if(value=="student")this.student=true;else this.student=false;
+}
+
 onSelect(item){
   const data = item.item;
   console.log(data)

@@ -66,6 +66,10 @@ export class ServiceService {
     return this.http.get(endpoint + 'appointments/all/?search='+id).pipe(
       map(this.extractData));
   }
+  deleteAppointment(id): Observable<any> {
+    return this.http.put(endpoint + 'appointments/'+id+'/delete/',{}).pipe(
+      map(this.extractData));
+    } 
   updateAppointments(data): Observable<any> {
     return this.http.post(endpoint + 'appointments/update/',data).pipe(
       map(this.extractData));
@@ -93,6 +97,14 @@ export class ServiceService {
   }
   addStatus(data): Observable<any> {
     return this.http.post(endpoint + 'appointments/add_status/',data).pipe(
+      map(this.extractData));
+  }
+  addSpouse(id,data): Observable<any> {
+    return this.http.post(endpoint + 'appointments/'+id+'/addspouse/',data).pipe(
+      map(this.extractData));
+  }
+  getSpouse(id): Observable<any> {
+    return this.http.get(endpoint + 'appointments/'+id+'/spouse/').pipe(
       map(this.extractData));
   }
   getAppointment(id): Observable<any> {
@@ -425,6 +437,18 @@ searchProcedure(data): Observable<any> {
   }
   updateReservation(id,data){
     return this.http.put(endpoint + 'booking/reservation/'+id+'/',data).pipe(
+      map(this.extractData));
+  }
+  startReservation(id){
+    return this.http.put(endpoint + 'booking/reservation/'+id+'/start/',{}).pipe(
+      map(this.extractData));
+  }
+  endReservation(id){
+    return this.http.put(endpoint + 'booking/reservation/'+id+'/end/',{}).pipe(
+      map(this.extractData));
+  }
+  cancelReservation(id){
+    return this.http.put(endpoint + 'booking/reservation/'+id+'/cancel/',{}).pipe(
       map(this.extractData));
   }
   reservationListSearch(data){

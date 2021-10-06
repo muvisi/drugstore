@@ -16,6 +16,7 @@ export class ReappointmentComponent implements OnInit {
   loading = false;
   appointmentForm: FormGroup;
   submitted: boolean;
+  student=false;
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
   transactions=[];
   constructor(private route: ActivatedRoute,public router:Router,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
@@ -57,29 +58,44 @@ export class ReappointmentComponent implements OnInit {
     this.submitted = false;
     return
   }
-   if (this.appointmentForm.invalid) {
+   if (!this.student && (this.appointmentForm.get('date').value=='' || 
+    this.appointmentForm.get('time').value=='' ||
+    this.appointmentForm.get('payment_type').value=='' ||
+    this.appointmentForm.get('amount').value=='' ||
+    this.appointmentForm.get('reason').value==''
+   )) {
        this.loading = false; 
        this.submitted = false;
+       this.toastr.info("please write correct details");
        return;
-   }
-   let data:any ={};
-   data.id = this.route.snapshot.params.id
-   data.date = this.appointmentForm.get('date').value
-   data.time = this.appointmentForm.get('time').value
-   data.reason = this.appointmentForm.get('reason').value
-   data.payment_type = this.appointmentForm.get('payment_type').value
-   data.amount = this.appointmentForm.get('amount').value
-   data.no = this.appointmentForm.get('no').value
-   data.type = this.appointmentForm.get('type').value
-   this.service.createReappointment(data).subscribe((res)=>{
-   this.toastr.success("Successfully addeded appointment");
+   }else if(this.student && (this.appointmentForm.get('date').value=='' || 
+   this.appointmentForm.get('time').value=='' ||
+   this.appointmentForm.get('reason').value==''
+  )){
+    this.loading = false; 
     this.submitted = false;
-    this.loading = false;
-    this.router.navigate(['/dashboard/appointment-list/'])
-   },(err)=>{
-    this.loading = false;
-    this.toastr.info(err.error.error,'Information');
-   })
+    this.toastr.info("please write correct details");
+    return;
+  }
+    let data:any ={};
+    data.id = this.route.snapshot.params.id
+    data.date = this.appointmentForm.get('date').value
+    data.time = this.appointmentForm.get('time').value
+    data.reason = this.appointmentForm.get('reason').value
+    data.payment_type = this.appointmentForm.get('payment_type').value
+    data.amount = this.appointmentForm.get('amount').value
+    data.no = this.appointmentForm.get('no').value
+    data.type = this.appointmentForm.get('type').value
+    this.service.createReappointment(data).subscribe((res)=>{
+      console.log(res);
+    this.toastr.success("Successfully addeded appointment");
+      this.submitted = false;
+      this.loading = false;
+      this.router.navigate(['/dashboard/appointment-list/'])
+    },(err)=>{
+      this.loading = false;
+      this.toastr.info(err.error.error,'Information');
+    })
  
  }
  onSelect(item){
@@ -94,5 +110,9 @@ searchTransaction(text){
 }
 typeaheadOnSelect(item){
   this.appointmentForm.patchValue({amount:item.item.amount,no:item.item.description})
+}
+appointmentTypeSelected(value){
+  console.log("vvv",value);
+  if(value=="student")this.student=true;else this.student=false;
 }
 }

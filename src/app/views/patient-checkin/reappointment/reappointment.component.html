@@ -61,20 +61,29 @@
                                   </mat-form-field>
                                 </div>
                                 <div class="col-sm-2">
-                                  <mat-form-field appearance="outline">
+                                  <mat-form-field appearance="outline"  >
                                     <mat-label>Appointment Type</mat-label>
-                                    <mat-select formControlName="type">
+                                    <mat-select formControlName="type" (selectionChange)="appointmentTypeSelected($event.value)">
+                                      <mat-option  value="student">
+                                        Student
+                                      </mat-option>
+                                      <mat-option  value="couple">
+                                        Couple
+                                      </mat-option>
+                                      <mat-option  value="group">
+                                        Group
+                                      </mat-option>
                                       <mat-option  value="standard">
                                         Standard
                                       </mat-option>
-                                      <mat-option  value="Supervision">
+                                      <mat-option  value="supervision">
                                         Supervision
                                       </mat-option>
                                     </mat-select>
                                     <mat-error *ngIf="f.type && submitted">Appointment Type <strong>required</strong></mat-error>
                                   </mat-form-field>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-2"  *ngIf="!student">
                                   <mat-form-field appearance="outline">
                                     <mat-label>Payment Type</mat-label>
                                     <mat-select formControlName="payment_type">
@@ -85,10 +94,10 @@
                                       Mpesa
                                       </mat-option>
                                     </mat-select>
-                                    <mat-error *ngIf="f.payment_type && submitted">Payment Type <strong>required</strong></mat-error>
+                                    <mat-error *ngIf="f.payment_type && submitted && !student">Payment Type <strong>required</strong></mat-error>
                                   </mat-form-field>
                                 </div>
-                                <div class="col-sm-2" *ngIf="f.payment_type.value == 'Mpesa'" >
+                                <div class="col-sm-2" *ngIf="f.payment_type.value == 'Mpesa' && !student" >
                                 
                                   <mat-form-field appearance="outline" >
                                     <mat-label>Transaction No</mat-label>
@@ -97,11 +106,11 @@
                                     </mat-form-field>
                                 </div>
                 
-                                <div class="col-sm-2">
+                                <div class="col-sm-2"  *ngIf="!student">
                                   <mat-form-field appearance="outline">
                                     <mat-label>Amount</mat-label>
                                       <input matInput placeholder="Amount"  formControlName="amount">
-                                      <mat-error *ngIf="f.amount.errors && submitted">Amount<strong>required</strong></mat-error>
+                                      <mat-error *ngIf="f.amount.errors && submitted && !student">Amount<strong>required</strong></mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-12">

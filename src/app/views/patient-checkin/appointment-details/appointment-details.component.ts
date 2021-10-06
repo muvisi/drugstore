@@ -14,11 +14,13 @@ import * as moment from 'moment';
   styleUrls: ['./appointment-details.component.scss']
 })
 export class AppointmentDetailsComponent implements OnInit {
+  maxDate = new Date();
   customer:any={};
   data:any={};
   icd =[];
   appointmentForm: FormGroup;
   counselorForm: FormGroup;
+  spouseForm:FormGroup;
   counsolers: any=[];
   rooms: any=[];
   claim:any={};
@@ -50,6 +52,14 @@ export class AppointmentDetailsComponent implements OnInit {
   insurances =[];
   feesSource;
   claim_services =[];
+
+  addspouse=false;
+  spouse=false;
+  spouse_submiited=false;
+
+
+  loading=false;
+  loading_count=0;
   constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService,public router:Router) { }
   ngOnInit() {
     this.appointmentForm = this.formBuilder.group({
@@ -57,6 +67,17 @@ export class AppointmentDetailsComponent implements OnInit {
       reason: ['', Validators.required],
       type: ['', Validators.required],
       date:['',Validators.required]
+    });
+
+    this.spouseForm = this.formBuilder.group({
+      s_phone: new FormControl('', Validators.required),
+      f_name:  new FormControl('', Validators.required),
+      l_name:  new FormControl('', Validators.required),
+      o_names:  new FormControl('', Validators.required),
+      dob:  new FormControl('', Validators.required),
+      s_gender:  new FormControl('', Validators.required),
+      national_id: new FormControl('', Validators.required),
+      s_email:  new FormControl('', Validators.required)    
     });
 
     this.serviceForm = this.formBuilder.group({
@@ -88,13 +109,17 @@ export class AppointmentDetailsComponent implements OnInit {
     this.cashForm = this.formBuilder.group({
       amount: [0, [Validators.required,Validators.min(10)]],
     });
+    this.loading=true;
     this.getRoom();
     this.getAppointment(this.route.snapshot.params.id);
     this.getCounselors();
     this.getServices();
     this.getpayers();
     this.getFee();
+    this.getSpouse(this.route.snapshot.params.id);
+    
   }
+  get s() { return this.spouseForm.controls; }
   get f() { return this.appointmentForm.controls; }
   get g() { return this.counselorForm.controls; }
   get h() { return this.cashForm.controls; }
@@ -103,9 +128,16 @@ export class AppointmentDetailsComponent implements OnInit {
   navigate(){
     this.router.navigate(['/dashboard/bill-client/',this.route.snapshot.params.id])
    }
+   appointmentTypeSelected(value){
+     if(value=='couple')
+     this.addspouse=true;
+     else 
+     this.addspouse=false;
+   }
   getAppointment(id){
     this.service.getAppointment(id).subscribe((res)=>{
       this.data = res;
+      if(this.data.type=='couple')this.addspouse=true; else this.addspouse=false;
       this.customer = this.data.client;
       this.serviceSource = new MatTableDataSource(this.data.services);
       this.serviceSource.paginator = this.paginator;
@@ -126,11 +158,46 @@ export class AppointmentDetailsComponent implements OnInit {
       }
       console.log(moment(this.data.StartTime).format('H:mm'))
       this.appointmentForm.patchValue({date:new Date(this.data.StartTime),reason:this.data.Description,time:moment(this.data.StartTime).format('H:mm'),type:this.data.type})
+    this.loading_count=this.loading_count+1
+    if(this.loading_count==7)this.loading=false;
     })
+
+  }
+  addSpouseClicked(){
+    this.loading=true;
+    this.spouse_submiited=true;
+    if(moment().format('YYYY-MM-DD') <= moment(this.spouseForm.get('dob').value).format('YYYY-MM-DD')){
+        this.toastr.info("please select correctdate");
+      this.loading = false; 
+      this.spouse_submiited = false;
+      return
+      }
+    this.spouse_submiited=true;
+    this.service.addSpouse(this.data.id,this.spouseForm.value).subscribe((res)=>{
+    
+    this.loading=false;
+    this.spouse_submiited=false;
+    })
+
+    
+  }
+
+  getSpouse(id){
+    this.service.getSpouse(id).subscribe((res)=>{
+      console.log("api",res)
+      if (res.spouse){
+        this.addspouse=true;
+      this.spouseForm.patchValue(res)
+      }
+      this.loading_count=this.loading_count+1
+      if(this.loading_count==7)this.loading=false;
+    });
   }
   getRoom() {
     this.service.getRooms().subscribe((res) => {
       this.rooms = res.results;
+      this.loading_count=this.loading_count+1
+      if(this.loading_count==7)this.loading=false;
     });
   }
   refund(data){
@@ -141,6 +208,8 @@ export class AppointmentDetailsComponent implements OnInit {
   getCounselors(){
     this.service.getAppointmentUsers().subscribe((res)=>{
       this.counsolers = res.results;
+      this.loading_count=this.loading_count+1
+      if(this.loading_count==7)this.loading=false;
     })
   }
   onSubmit(){
@@ -156,6 +225,8 @@ export class AppointmentDetailsComponent implements OnInit {
   getFee(){
     this.service.appointmentFee(this.route.snapshot.params.id).subscribe((res)=>{
       this.feesSource = new MatTableDataSource(res.results)
+      this.loading_count=this.loading_count+1
+      if(this.loading_count==7)this.loading=false;
     })
   }
   onInsurance(item){
@@ -231,16 +302,21 @@ export class AppointmentDetailsComponent implements OnInit {
   getPayments(id){
     this.service.clientPayments({mobile:id}).subscribe((res)=>{
       this.dataSource = new MatTableDataSource(res);
+     
     })
   }
   getpayers(){
     this.service.getPayers().subscribe((res)=>{
       this.insurances = res.results;
+      this.loading_count=this.loading_count+1
+      if(this.loading_count==7)this.loading=false;
     })
   }
   getCash(id){
     this.service.cashList(id).subscribe((res)=>{
       this.mpesaSource = res.results;
+      this.loading_count=this.loading_count+1
+      if(this.loading_count==7)this.loading=false;
     })
   }
   onCash(){
@@ -285,6 +361,8 @@ export class AppointmentDetailsComponent implements OnInit {
   getServices(){
     this.service.getProviderServices().subscribe((res)=>{
       this.services = res.results;
+      this.loading_count=this.loading_count+1
+      if(this.loading_count==7)this.loading=false;
     })
   }
 
