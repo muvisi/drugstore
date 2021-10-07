@@ -43,7 +43,7 @@ export class AppointmentListComponent implements OnInit {
     this.service.getAppointments().subscribe((res)=>{
       this.loading=false;
       this.appointmentsList=res.results
-      this.dataSource = new MatTableDataSource();
+      this.dataSource = new MatTableDataSource(res.results);
       this.dataSource.paginator = this.paginator;
     })
   }
