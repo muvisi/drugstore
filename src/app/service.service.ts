@@ -39,11 +39,11 @@ export class ServiceService {
       map(this.extractData));
   }
   getEvents(): Observable<any> {
-    return this.http.get(endpoint + 'appointments/appointment_list/').pipe(
+    return this.http.get(endpoint + 'appointments/appointment_list/?limit=1000').pipe(
       map(this.extractData));
   }
   getAppointments(): Observable<any> {
-    return this.http.get(endpoint + 'appointments/all/').pipe(
+    return this.http.get(endpoint + 'appointments/all/?limit=1000').pipe(
       map(this.extractData));
   }
   getAppointmentsRevenues(): Observable<any> {
@@ -63,7 +63,7 @@ export class ServiceService {
       map(this.extractData));
   }
   searchAppointments(id): Observable<any> {
-    return this.http.get(endpoint + 'appointments/all/?search='+id).pipe(
+    return this.http.get(endpoint + 'appointments/all/?search='+id+'&limit=1000').pipe(
       map(this.extractData));
   }
   deleteAppointment(id): Observable<any> {
@@ -901,6 +901,11 @@ searchScheme(payer, searchTerm): Observable<any> {
   }
   getProviderServices(): Observable<any> {
     return this.http.get(endpoint + 'services/services/').pipe(
+      map(this.extractData));
+
+  }
+  getProviderServicesQuery(text): Observable<any> {
+    return this.http.get(endpoint + 'services/services/?search='+text).pipe(
       map(this.extractData));
 
   }

@@ -110,9 +110,9 @@ export class AppointmentDetailsComponent implements OnInit {
       amount: [0, [Validators.required,Validators.min(10)]],
     });
     this.loading=true;
+    this.getCounselors();
     this.getRoom();
     this.getAppointment(this.route.snapshot.params.id);
-    this.getCounselors();
     this.getServices();
     this.getpayers();
     this.getFee();
@@ -276,7 +276,9 @@ export class AppointmentDetailsComponent implements OnInit {
   }
   onSelect(id){
     let data = this.counsolers.find(obj=>obj.id == id);
-    this.counselorForm.patchValue({first_name:data.first_name ? data.first_name: '',last_name : data.last_name,phone:data.phone,email:data.email,id:id})
+    if(data !=undefined){
+      this.counselorForm.patchValue({first_name:data.first_name ? data.first_name: '',last_name : data.last_name,phone:data.phone,email:data.email,id:id})
+    }
   }
   onCounsoler(id){
     let data = this.counsolers.find(obj=>obj.id==id);

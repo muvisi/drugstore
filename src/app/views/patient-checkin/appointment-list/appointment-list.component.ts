@@ -23,13 +23,14 @@ export class AppointmentListComponent implements OnInit {
     this.idnumber="";
     this.phonenumber="";
     this.getRecords();
+
   }
   deleteAppointment(item,row){
     this.loading=true;
     console.log(item);
     this.service.deleteAppointment(item.id).subscribe((res)=>{
     this.loading=false;
-      this.appointmentsList.splice(row,0)
+      this.appointmentsList.splice(row,1)
       this.dataSource = new MatTableDataSource(this.appointmentsList); 
       this.toastr.success("Appointment Deleted");
       this.dataSource._updateChangeSubscription() 

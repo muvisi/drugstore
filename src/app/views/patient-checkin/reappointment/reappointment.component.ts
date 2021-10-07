@@ -69,14 +69,14 @@ export class ReappointmentComponent implements OnInit {
        this.toastr.info("please write correct details");
        return;
    }else if(this.student && (this.appointmentForm.get('date').value=='' || 
-   this.appointmentForm.get('time').value=='' ||
-   this.appointmentForm.get('reason').value==''
-  )){
-    this.loading = false; 
-    this.submitted = false;
-    this.toastr.info("please write correct details");
-    return;
-  }
+      this.appointmentForm.get('time').value=='' ||
+      this.appointmentForm.get('reason').value==''
+      )){
+        this.loading = false; 
+        this.submitted = false;
+        this.toastr.info("please write correct details");
+        return;
+      }
     let data:any ={};
     data.id = this.route.snapshot.params.id
     data.date = this.appointmentForm.get('date').value

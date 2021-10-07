@@ -12,16 +12,10 @@
                 <fieldset>
                   <legend>Background Information:</legend>
                   <div class="row" >
-                    <div class="col-sm-3">
-                        <mat-form-field appearance="outline">
-                          <mat-label>Visit Number</mat-label>
-                        <input placeholder="Visit Number" type="text" [typeahead]="patients" (typeaheadOnSelect)="onVisit($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="visit_no"  formControlName="visit_number"[ngModelOptions]="{standalone: true}" matInput />
-                        <mat-error *ngIf="f.visit_number.errors">visit_number is required</mat-error>
-                        </mat-form-field>
-                        </div>
+                   
                     <div class="col-sm-3">
                     <mat-form-field  appearance="outline">
-                      <mat-label>Insurance</mat-label>
+                      <mat-label>Insurance Name</mat-label>
                     <input type="text"  placeholder="Search Payer"  matInput   [typeahead]="payers" (typeaheadLoading)="payerSearch(f.insurance_company.value)"
                     (typeaheadOnSelect)="OnPayer($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name" formControlName="insurance_company"  [ngModelOptions]="{standalone: true}" />
                     <mat-error *ngIf="f.insurance_company.errors">Insurance is<strong> required</strong></mat-error>
@@ -30,7 +24,7 @@
       
                     <div class="col-sm-3">
                     <mat-form-field  appearance="outline">
-                      <mat-label>Scheme</mat-label>
+                      <mat-label>Scheme Name</mat-label>
                     <input   [typeahead]="schemes" (typeaheadLoading)="schemeSearch(f.scheme_name.value)" formControlName="scheme_name" placeholder="Scheme"
                     (typeaheadOnSelect)="OnScheme($event)" [typeaheadOptionsLimit]="6" typeaheadOptionField="name"  matInput/>
                     <mat-error *ngIf="f.scheme_name.errors">Scheme is required</mat-error>
@@ -39,28 +33,27 @@
                     </div>
                     <div class="col-sm-3">
                     <mat-form-field  appearance="outline">
-                      <mat-label>Member</mat-label>
+                      <mat-label>Member Name</mat-label>
                     <input [typeahead]="members" [typeaheadOptionsLimit]="7"
                     typeaheadOptionField="name" (typeaheadOnSelect)="OnMember($event)"   formControlName="patient_name" placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
                     <mat-error *ngIf="f.patient_name.errors">Member  is required</mat-error>
                     </mat-form-field>
                     </div>
                     <div class="col-sm-3">
-                    <mat-form-field  appearance="outline">
-                      <mat-label>Patient Number</mat-label>
-                    <input type="text" formControlName="provider"  placeholder="Hospital" [ngModelOptions]="{standalone: true}"  matInput/>
-                    <mat-error *ngIf="f.provider.errors">Branch is required</mat-error>
-                    </mat-form-field>
-                    </div>
+                      <mat-form-field  appearance="outline">
+                        <mat-label>Member Number</mat-label>
+                      <input  formControlName="member_number" placeholder="Member Number" matInput />
+                      <mat-error *ngIf="f.member_number.errors">Member Number is required</mat-error>
+                      </mat-form-field>
+                      </div>
                     <div class="col-sm-3">
-                    <mat-form-field  appearance="outline">
-                      <mat-label>Patient Number</mat-label>
-                    <input type="text" formControlName="patient_number" placeholder="Patient Number"  [disabled]="true" matInput readonly/>
-                    <mat-error *ngIf="f.patient_number.errors">Patient number is required</mat-error>
-                    </mat-form-field>
-                    </div>
-                 
-      
+                      <mat-form-field  appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                      <input formControlName="phone" placeholder="Phone"  matInput />
+                      <mat-error *ngIf="f.phone?.errors">Phone  is required</mat-error>
+                      </mat-form-field>
+                      </div>
+                    
                     <div class="col-sm-3">
       
                     <mat-form-field  appearance="outline">
@@ -100,11 +93,18 @@
                     </div>
       
                     <div class="col-sm-3">
-                    <mat-form-field  appearance="outline">
-      
-                    <input type="text" placeholder="Doctor" formControlName="doctor" [ngModelOptions]="{standalone: true}" matInput />
-                    <mat-error *ngIf="f.doctor.errors">Doctor Name is required</mat-error>
-                    </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Counselor</mat-label>
+                        <mat-select formControlName="doctor">
+                          <mat-option *ngFor="let item of counsolers" [value]="item.id">
+                              {{item.first_name}} {{item.last_name}}
+                          </mat-option>
+                         
+                        </mat-select>
+                        <mat-error *ngIf="f.doctor.errors">Counsellor Name is required</mat-error>
+                      </mat-form-field>
+
+                  
                     </div>
                     </div>
                 </fieldset>
@@ -127,7 +127,7 @@
                           <input type="text"  matInput  
                         [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]="diagnosesList"  placeholder="Diagnoisis"
                         (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="5" [ngModelOptions]="{standalone: true}"
-                         (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"   [dropup]="true">
+                         (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"   [dropup]="false">
                          <i class="icon-magnifier" matSuffix></i>
                         </mat-form-field>
                         </div>
@@ -137,7 +137,28 @@
                         </div>
                         <br>
                         <div class="row">
-                        <div class="col-sm-6">
+                          <div class="col-sm-12">
+                            <table class="table" style="width: 100%;">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Id</th>
+                                  <th scope="col">Description</th>
+                                  <th>Code</th>
+                                  <th scope="col">Delete</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let item of diagnosis;let i=index">
+                                  <th scope="row">{{i+1}}</th>
+                                  <td>{{item.description}}</td>
+                                  <td>{{item.code}}</td>
+                                  <td (click)="deleteDiagnosis(item)"><mat-icon color="warn">delete_sweep</mat-icon></td>
+                                </tr>
+                                
+                              </tbody>
+                            </table>
+                          </div>
+                        <!-- <div class="col-sm-6">
                             <table class="table table-borderless">
                                 <tbody>
                                   <tr *ngFor="let item of diagnosis">
@@ -148,9 +169,9 @@
                                  
                                 </tbody>
                             </table>
+                        </div> -->
                         </div>
-                        </div>
-                </mat-card>s
+                </mat-card>
                 <div>
                 <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
                 <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
@@ -160,7 +181,7 @@
                 </mat-step>
               <mat-step >
 
-              <ng-template matStepLabel>Procedures</ng-template>
+              <ng-template matStepLabel>Services</ng-template>
               <mat-card>
                 <mat-card-subtitle>
                  <div class="row">
@@ -171,13 +192,18 @@
                  </div>
                 </mat-card-subtitle>
                 
+
+                
+
+
               <div class="row" >
                   <div class="col-sm-3">
                       <mat-form-field>
-                        <input type="text"  (typeaheadOnSelect)="onSelect($event)" name="test"
-                        placeholder="Pocedure" typeaheadOptionField="name" [(ngModel)]="selectedOption.name"
-                        [typeahead]="services" [typeaheadOptionsLimit]="3"
-                        (typeaheadLoading)="searchProcedure(selectedOption.name)" matInput>
+                        <input  matInput type="text"  (typeaheadOnSelect)="onSelect($event)" name="test"
+                        placeholder="Service" typeaheadOptionField="name" [(ngModel)]="selectedOption.name"
+                        [typeahead]="services" [typeaheadOptionsLimit]="3" [ngModelOptions]="{standalone: true}"
+                        (typeaheadLoading)="searchServices(selectedOption.name)"   [dropup]="false">
+                        <i class="icon-magnifier" matSuffix></i>
                       </mat-form-field>
                     </div>
                 <div class="col-sm-12" >
@@ -221,13 +247,13 @@
               <ng-template matStepLabel>Preview & Submit</ng-template>
               <div class="row">
               <div class="col-sm-12">
-              <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" [disabled]="!claimForm.valid" (click)="submitClaim()"> <i class="icon-check"></i> Claim Submit</button>
+              <button  style="margin-top: 10px;"  class="btn btn-info pull-right" [disabled]="!claimForm.valid" (click)="submitClaim()"> <i class="icon-check"></i> Claim Submit</button>
               </div>
               </div>
               <br>
               <mat-card>
                 <mat-card-subtitle>
-                    <i class="icon-people"></i> Patient Details
+                    <i class="icon-people"></i>CLIENT DETAILS
                 </mat-card-subtitle>
                 <div class="row">
                     <div class="col-sm-12">
@@ -236,53 +262,40 @@
                             <h4><b class="text-success">{{f.patient_name.value}}</b> <span *ngIf="f.nhif_number.value">| <span>NHIF NO: {{f.nhif_number.value}} </span></span></h4>
                         </div>
                         <div class="col-sm-6">
-                          <h4><span style="font-size:14px;font-weight:bold"> INSURANCE :
-                              <span class="text-primary">{{f.insurance_company.value}}</span>
-                              </span> 
-                              <span style="font-size:14px;font-weight:bold"> SCHEME :
-                                  <span class="text-primary">{{f.scheme_name.value}}</span>
-                                  </span>
-                            </h4>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <h4><span style="font-size:14px;font-weight:bold"> INSURANCE :
+                                <span class="text-primary">{{f.insurance_company.value}}</span>
+                                </span></h4>
+                            </div>
+                            <div class="col-sm-6">
+                              <h4>
+                                <span style="font-size:14px;font-weight:bold"> SCHEME :
+                                    <span class="text-primary">{{f.scheme_name.value}}</span>
+                                    </span>
+                              </h4>
+                            </div>
+                          </div>
+                       
                         </div>
                       </div>
                     </div>
                     
-                    <div class="col-sm-12">
-                       <div class="row">
-                         <div class="col-sm-3">HOSPITAL</div>
-                         <div class="col-sm-9">
-                            <span style="font-size:14px;font-weight:bold">
-                                 {{f.provider.value}}</span>
-                                 
-                                
-                            
-                         </div>
-                       </div>
-          
-                        </div>
+
                     <div class="col-sm-12">
                     <div class="row">
                       <div class="col-sm-3">
-                          PATIENT  NUMBER
+                          COUNSELLOR
                       </div>
                       <div class="col-sm-5">
                           <span style="font-size:14px;font-weight:bold">
-                              <span class="text-primary">{{f.patient_number.value}}</span>
+                              <!-- <span class="text-primary">{{f.patient_number.value}}</span> -->
                               </span>
                       </div>
                     </div>
                     </div>
                    
-                    <div class="col-sm-12">
-                      <div class="row">
-                        <div class="col-sm-3">
-                           VISIT NUMBER
-                        </div>
-                        <div class="col-sm-5">
-                            {{f.patient_number.value}}
-                        </div>
-                      </div>
-                    </div>
+                    
                     <div class="col-sm-12">
                         <div class="row">
                           <div class="col-sm-3">
@@ -333,7 +346,7 @@
               <br>
               <mat-card>
                 <mat-card-subtitle>
-                   <i class="fa fa-heartbeat"></i> Diagnoses
+                   <i class="fa fa-heartbeat"></i> DIAGNOSES
                 </mat-card-subtitle>
                  <div class="row">
                     <div class="col-sm-12">
@@ -354,10 +367,29 @@
              
                 <mat-card>
                   <mat-card-subtitle>
-                      <i class="cui-list"></i> Services
+                      <i class="cui-list"></i> SERVICES
                   </mat-card-subtitle>
                   <div class="row">
-                      <div class="col-sm-12" *ngFor="let item of procedures"> <i class="fa fa-check text-success"></i> {{item.name}}</div>
+                    <div class="col-sm-12">
+                      <table class="table" style="width: 100%;">
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of procedures;let i=index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{item.name}}</td>
+                            <td>{{item.cost}}</td>
+                            
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                   <mat-card-actions>
                       <div class="row">

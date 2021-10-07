@@ -48,6 +48,7 @@ export class CreateClaimComponent implements OnInit {
   id:any;
 
   patients = [];
+  counsolers =[];
   constructor(private formBuilder: FormBuilder, public service: ServiceService, private datePipe: DatePipe, public toastr: ToastrService,
   public navCtrl: NgxNavigationWithDataComponent) {
    }
@@ -55,14 +56,13 @@ export class CreateClaimComponent implements OnInit {
    ngOnInit() {
     this.claimForm = this.formBuilder.group({
         patient_name: ['', Validators.required],
+        member_number: ['', Validators.required],
         insurance_company: ['', Validators.required],
         scheme_name: ['', Validators.required],
-        visit_number: ['', Validators.required],
         check_out: ['', Validators.required],
         nhif_number: [''],
+        phone: [''],
         check_in: ['', Validators.required],
-        patient_number: ['', Validators.required],
-        provider: ['', Validators.required],
         visit_type: ['OUTPATIENT', Validators.required],
         doctor: ['', Validators.required],
     });
@@ -72,6 +72,12 @@ this.getPrescription();
 this.Payers();
 this.getDiagnoses();
 this.getPatients();
+this.getCounselors();
+}
+getCounselors(){
+  this.service.getAppointmentUsers().subscribe((res)=>{
+    this.counsolers = res.results;
+  })
 }
 
 // convenience getter for easy access to form fields
@@ -90,11 +96,10 @@ Payers() {
 onVisit(item){
   const data = item.item;
   this.diagnosis =data.diagnosis;
-  this.claimForm.patchValue({patient_number: data.patient.patient_no,check_in: new Date(data.check_in),check_out:new Date(data.check_in),patient_name:data.name});
+  this.claimForm.patchValue({check_in: new Date(data.check_in),check_out:new Date(data.check_in),patient_name:data.name});
 
 }
 OnPayer(item) {
-  console.log(item.item);
   this.payerId = item.item.id;
   this.service.getSchemes(this.payerId).subscribe((res) => {
    this.schemes = res.results;
@@ -158,7 +163,12 @@ OnMember(item) {
 
 }
 getServices() {
-  this.service.getProcedures().subscribe((res) => {
+  this.service.getProviderServices().subscribe((res) => {
+    this.services = res.results;
+  });
+}
+searchServices(text) {
+  this.service.getProviderServicesQuery(text).subscribe((res) => {
     this.services = res.results;
   });
 }
@@ -293,14 +303,13 @@ searchTest(text) {
     submitClaim() {
      let patient = this.claimForm.value
      patient.id = this.id;
+
     const data = {
       'diagnosis': this.diagnosis,
-      'prescriptions': this.prescription,
-      'tests': this.labtest,
       'services': this.procedures,
+      'payer':this.payerId,
       'patient':patient
     };
-    console.log(data);
     this.service.createSingleClaim(data).subscribe((res) => {
       this.submitted = true;
       this.toastr.success('Successfully Created Claim');
