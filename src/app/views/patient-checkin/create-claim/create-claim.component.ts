@@ -18,9 +18,12 @@ export class CreateClaimComponent implements OnInit {
   drugColumns: string[] = ['Name', 'Strength', 'Form', 'Quantity', 'Delete'];
   @ViewChild(MatSort, { 'static': true}) sort: MatSort;
   claimForm: FormGroup;
+  appointmentForm: FormGroup;
   dataSource;
   dataSource1;
   submitted = false;
+  student=false;
+  appointment_submitted= false;
   selectedOption: any = {};
   selectedDrug: any = {};
   selectedTest: any = {};
@@ -66,6 +69,29 @@ export class CreateClaimComponent implements OnInit {
         visit_type: ['OUTPATIENT', Validators.required],
         doctor: ['', Validators.required],
     });
+    this.appointmentForm = this.formBuilder.group({
+      phone: ['',Validators.required],
+      type: ['', Validators.required],
+      amount:[''],
+      time: ['', Validators.required],
+      reason: ['', Validators.required],
+      first_name: ['', Validators.required],
+      other_names: [''],
+      doc_type: ['', Validators.required],
+      last_name: ['', Validators.required],
+      gender: ['Female', Validators.required],
+      email: ['',Validators.email],
+      dob: ['', Validators.required],
+      priority: ['3', Validators.required],
+      residence: [''],
+      national_id: ['',Validators.required],
+      passport_no: [''],
+      occupation: [''],
+      no:[],
+      code:['+254',Validators.required],
+      visit_type:['NEW',Validators.required],
+      date:['',Validators.required]
+    });
 this.getTests();
 this.getServices();
 this.getPrescription();
@@ -82,6 +108,7 @@ getCounselors(){
 
 // convenience getter for easy access to form fields
 get f() { return this.claimForm.controls; }
+get af() { return this.appointmentForm.controls; }
 getPatients(){
   this.service.patientVisit().subscribe((res)=>{
     this.patients = res.results;
@@ -192,6 +219,13 @@ onSelect(event) {
 
 onSubmit() {
     this.submitted = true;
+}
+appointmentTypeSelected(value){
+  
+  if(value=="student")this.student=true;else this.student=false;
+}
+onAppointmentsubmit() {
+  this.appointment_submitted = true;
 }
 getPrescription() {
   this.service.prescriptions().subscribe((res) => {
@@ -308,10 +342,14 @@ searchTest(text) {
       'diagnosis': this.diagnosis,
       'services': this.procedures,
       'payer':this.payerId,
-      'patient':patient
+      'member':patient,
+      'appointment':this.appointmentForm.value
+      
     };
     this.service.createSingleClaim(data).subscribe((res) => {
+      console.log(res);
       this.submitted = true;
+      this.appointment_submitted=false
       this.toastr.success('Successfully Created Claim');
       this.navCtrl.navigate('/dashboard/claims');
       this.ngOnInit();
@@ -320,6 +358,7 @@ searchTest(text) {
       this.procedures = [];
       this.prescription = [];
       this.diagnosis = [];
+
 
     });
     }
