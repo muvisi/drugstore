@@ -25,6 +25,51 @@ export class AppointmentComponent implements OnInit {
   maxDate = new Date();
   dobDate= new Date(moment().subtract(4,'years').format())
   paymentForm: FormGroup;
+
+  counsellling_type=[
+    {
+      type:"Couples",
+      code:201,
+      value:"couple"
+
+    },
+    {
+      type:"Family",
+      code:202,
+      value:"family"
+
+    },  
+    {
+      type:"Children",
+      code:203,
+      value:"children"
+
+    },  {
+      type:"Groups",
+      code:204,
+      value:"group"
+
+    },
+    {
+      type:"Webinars",
+      code:205,
+      value:"webinar"
+
+    },
+    {
+      type:"Individual",
+      code:206,
+      value:"individual"
+
+    },  {
+      type:"Students",
+      code:207,
+      value:"student"
+
+    }
+
+  ]
+
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   constructor(public service: ServiceService,private formBuilder: FormBuilder,public toastr: ToastrService,public router:Router ) { 
     console.log(this.dobDate);

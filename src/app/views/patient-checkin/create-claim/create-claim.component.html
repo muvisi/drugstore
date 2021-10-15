@@ -327,28 +327,17 @@
                         <mat-form-field appearance="outline">
                           <mat-label>Appointment Type</mat-label>
                           <mat-select formControlName="type"  (selectionChange)="appointmentTypeSelected($event.value)">
-                            <mat-option  value="student">
-                              Student
+                            <mat-option *ngFor="let item of counsellling_type"  [value]="item.value">
+                              {{item.type}}
                             </mat-option>
-                            <mat-option  value="couple">
-                              Couple
-                            </mat-option>
-                            <mat-option  value="group">
-                              Group
-                            </mat-option>
-                            <mat-option  value="standard">
-                              Standard
-                            </mat-option>
-                            <mat-option  value="supervision">
-                              Supervision
-                            </mat-option>
+                         
                             
                           </mat-select>
                           <mat-error *ngIf="af.type && appointment_submitted">Appointment Type <strong>required</strong></mat-error>
                         </mat-form-field>
                       </div>
       
-                      <div class="col-sm-2"  *ngIf="!student">
+                      <!-- <div class="col-sm-2"  *ngIf="!student">
                         <mat-form-field appearance="outline">
                           <mat-label>Amount</mat-label>
                             <input matInput placeholder="Amount"  formControlName="amount">
@@ -357,7 +346,7 @@
                               <div *ngIf="af.amount.errors.min">Minimum amount is 10/=</div>
                             </mat-error>
                           </mat-form-field>
-                      </div>
+                      </div> -->
                       <div class="col-sm-12">
                             
                         <mat-form-field  appearance="outline">
@@ -386,70 +375,6 @@
 
               </mat-step>
 
-              <mat-step >
-
-                <ng-template matStepLabel>Diagnoisis</ng-template>
-             
-                  <fieldset>
-                    <legend>Diagnosis</legend>
-                    <div class="row">
-                        <div class="col-sm-3">
-                        <mat-form-field>
-                          <input type="text"  matInput  
-                        [(ngModel)]="selectedDiagnosis.description" typeaheadOptionField="description" [typeahead]="diagnosesList"  placeholder="Diagnoisis"
-                        (typeaheadOnSelect)="onDiagnosis($event)" [typeaheadOptionsLimit]="5" [ngModelOptions]="{standalone: true}"
-                         (typeaheadLoading)="searchDiagnosis(selectedDiagnosis.description)"   [dropup]="false">
-                         <i class="icon-magnifier" matSuffix></i>
-                        </mat-form-field>
-                        </div>
-                      
-          
-          
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <table class="table" style="width: 100%;">
-                              <thead>
-                                <tr>
-                                  <th scope="col">Id</th>
-                                  <th scope="col">Description</th>
-                                  <th>Code</th>
-                                  <th scope="col">Delete</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let item of diagnosis;let i=index">
-                                  <th scope="row">{{i+1}}</th>
-                                  <td>{{item.description}}</td>
-                                  <td>{{item.code}}</td>
-                                  <td (click)="deleteDiagnosis(item)"><mat-icon color="warn">delete_sweep</mat-icon></td>
-                                </tr>
-                                
-                              </tbody>
-                            </table>
-                          </div>
-                        <!-- <div class="col-sm-6">
-                            <table class="table table-borderless">
-                                <tbody>
-                                  <tr *ngFor="let item of diagnosis">
-                                    <td style="text-transform: capitalize;">{{item.description}}</td>
-                                    <td>{{item.code}}</td>
-                                    <td (click)="deleteDiagnosis(item)"><mat-icon color="warn">delete_sweep</mat-icon></td>
-                                  </tr>
-                                 
-                                </tbody>
-                            </table>
-                        </div> -->
-                        </div>
-                  </fieldset>
-                <div>
-                <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
-                <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
-  
-                </div>
-  
-                </mat-step>
               <mat-step >
 
               <ng-template matStepLabel>Services</ng-template>
@@ -531,7 +456,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                       <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <h4><b class="text-success">{{f.patient_name.value}}</b> <span *ngIf="f.nhif_number.value">| <span>NHIF NO: {{f.nhif_number.value}} </span></span></h4>
                         </div>
                         <div class="col-sm-6">
@@ -557,46 +482,46 @@
 
                     <div class="col-sm-12">
                       <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             PATIENT NAME
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-2">
                             <span style="font-size:14px;font-weight:bold">
                                 <span class="text-primary">{{af.first_name.value}}  {{af.last_name.value}}  {{af.other_names.value}}</span>
                                 </span>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             GENDER
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <span style="font-size:14px;font-weight:bold">
                                 <span class="text-primary">{{af.gender.value}}</span>
                                 </span>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                           DOB
                       </div>
-                      <div class="col-sm-3">
+                      <div class="col-sm-2">
                           <span style="font-size:14px;font-weight:bold">
-                              <span class="text-primary">{{af.dob.value}}</span>
+                              <span class="text-primary">{{af.dob.value | date:'MMMM d, y'}}</span>
                               </span>
                       </div>
                       </div>
                       <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             PHONE
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <span style="font-size:14px;font-weight:bold">
                                 <span class="text-primary">{{af.code.value}}{{af.phone.value}}</span>
                                 </span>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                           EMAIL
                       </div>
-                      <div class="col-sm-3">
+                      <div class="col-sm-2">
                           <span style="font-size:14px;font-weight:bold">
                               <span class="text-primary">{{af.email.value}}</span>
                               </span>
@@ -617,10 +542,10 @@
                     
                     <div class="col-sm-12">
                         <div class="row">
-                          <div class="col-sm-3">
+                          <div class="col-sm-2">
                               VISIT TYPE
                           </div>
-                          <div class="col-sm-5">
+                          <div class="col-sm-2">
                               <span style="font-size:14px;font-weight:bold">
                                   <span class="text-primary">{{f.visit_type.value}}</span>
                                   </span>
@@ -629,8 +554,8 @@
                         </div>
                     <div class="col-sm-12">
                       <div class="row">
-                        <div class="col-sm-3"> CHECKIN</div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-2"> CHECKIN</div>
+                        <div class="col-sm-2">
                             <span style="font-size:14px;font-weight:bold">
                                 <span class="text-primary">{{f.check_in.value | date}}</span>
                                  </span>
@@ -640,8 +565,8 @@
                         </div>
                         <div class="col-sm-12">
                           <div class="row">
-                            <div class="col-sm-3">CHECKOUT</div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-2">CHECKOUT</div>
+                            <div class="col-sm-2">
                                 <span style="font-size:14px;font-weight:bold">
                                     <span class="text-primary">{{f.check_out.value | date}}</span>
                                     </span>
@@ -671,14 +596,14 @@
                     <div class="col-sm-12">
                      
                         <div class="row">
-                          <div class="col-sm-3">DATE</div>
-                          <div class="col-sm-3">
+                          <div class="col-sm-2">DATE</div>
+                          <div class="col-sm-2">
                               <span style="font-size:14px;font-weight:bold">
                                   <span class="text-primary">{{af.date.value | date}}</span>
                                   </span>
                           </div>
-                          <div class="col-sm-3">TIME</div>
-                          <div class="col-sm-3">
+                          <div class="col-sm-2">TIME</div>
+                          <div class="col-sm-2">
                               <span style="font-size:14px;font-weight:bold">
                                   <span class="text-primary">{{af.time.value }}</span>
                                   </span>
@@ -686,22 +611,17 @@
                         </div>
 
                         <div class="row">
-                          <div class="col-sm-3">TYPE</div>
-                          <div class="col-sm-3">
+                          <div class="col-sm-2">TYPE</div>
+                          <div class="col-sm-2">
                               <span style="font-size:14px;font-weight:bold">
                                   <span class="text-primary">{{af.type.value }}</span>
                                   </span>
                           </div>
-                          <div class="col-sm-3" *ngIf="!student">AMOUNT</div>
-                          <div class="col-sm-3"  *ngIf="!student" >
-                              <span style="font-size:14px;font-weight:bold">
-                                  <span class="text-primary">{{af.amount.value }}</span>
-                                  </span>
-                          </div>
+                     
                         </div>
                         <div class="row">
-                          <div class="col-sm-3">REASON</div>
-                          <div class="col-sm-5">
+                          <div class="col-sm-2">REASON</div>
+                          <div class="col-sm-2">
                               <span style="font-size:14px;font-weight:bold">
                                   <span class="text-primary">{{af.reason.value }}</span>
                                   </span>
@@ -710,27 +630,7 @@
                         </div>
                  </div>
               </mat-card>
-              <br>
-             
-              <mat-card>
-                <mat-card-subtitle>
-                   <i class="fa fa-heartbeat"></i> DIAGNOSES
-                </mat-card-subtitle>
-                 <div class="row">
-                    <div class="col-sm-12">
-                     
-                        <div class="row">
-                        <div class="col-sm-12">
-                          <ol>
-                            <li *ngFor="let item of diagnosis" style="font-size: 14px;"><b>{{item.description}}</b></li>
-                          </ol>
-                        </div>
-          
-                        </div>
-                        
-                        </div>
-                 </div>
-              </mat-card>
+              
               <br>
              
                 <mat-card>

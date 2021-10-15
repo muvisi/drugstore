@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-export const endpoint='http://localhost:8000/';
-// export const endpoint = 'https://kapc.healthixsolutions.com:7000/';
+// export const endpoint='http://localhost:8000/';
+export const endpoint = 'https://kapc.healthixsolutions.com:7000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -111,6 +111,19 @@ export class ServiceService {
     return this.http.get(endpoint + 'appointments/'+id+'/').pipe(
       map(this.extractData));
   }
+  postAppointmentIssuesTests(id,data): Observable<any> {
+    return this.http.post(endpoint + 'appointments/'+id+'/issues_tests/',data).pipe(
+      map(this.extractData));
+  }
+  getAppointmentIssuesTests(id): Observable<any> {
+    return this.http.get(endpoint + 'appointments/'+id+'/issues_tests/').pipe(
+      map(this.extractData));
+  }
+  deleteAppointmentIssuesTests(id,data): Observable<any> {
+    return this.http.put(endpoint + 'appointments/'+id+'/issues_tests/',data).pipe(
+      map(this.extractData));
+  }
+
   recordList(): Observable<any> {
     return this.http.get(endpoint + 'patients/record_list/?limit=500').pipe(
       map(this.extractData));

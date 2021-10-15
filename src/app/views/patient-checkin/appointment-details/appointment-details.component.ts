@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-appointment-details',
@@ -24,12 +25,15 @@ export class AppointmentDetailsComponent implements OnInit {
   counsolers: any=[];
   rooms: any=[];
   claim:any={};
+  feesSource;
   dataSource;
   mpesaSource;
   serviceSource;
   submitted=false;
+  start_session_enabled=false;
   minDate=new Date();
   diagnosis:any ={};
+  diagnosisSource;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('serviceModal', { static: false }) serviceModal: ModalDirective;
   @ViewChild('paginator', { static: true}) paginator: MatPaginator;
@@ -50,8 +54,176 @@ export class AppointmentDetailsComponent implements OnInit {
   text: string;
   supervisionForm: FormGroup;
   insurances =[];
-  feesSource;
-  claim_services =[];
+  issues_tests_change={
+      "issues":[],
+      "tests":[]
+    }
+  issues =[
+    {
+      name:"Marital Issues",
+      code :101,
+      checked:false
+    },
+    {
+      name:"Relationship Issue",
+      code :102,
+      checked:false
+    },
+    {
+      name:"Loss & Grief",
+      code :103,
+      checked:false
+    },
+    {
+      name:"Stress/Anxiety",
+      code :104,
+      checked:false
+    },
+    {
+      name:"Self- Awareness/Esteem",
+      code :105,
+      checked:false
+    },
+    {
+      name:"Work/Career",
+      code :106,
+      checked:false
+    },
+    {
+      name:"Adolescence/Teenage/Parenting",
+      code :107,
+      checked:false
+    },
+    {
+      name:"Alcoholism/Substance Abuse",
+      code :108,
+      checked:false
+    },
+    {
+      name:"CDM",
+      code :109,
+      checked:false
+    },
+    {
+      name:"Trauma",
+      code :110,
+      checked:false
+    },
+    {
+      name:"Family Issues",
+      code :111,
+      checked:false
+    },
+    {
+      name:"Mental Health",
+      code :112,
+      checked:false
+    },
+    {
+      name:"Anger Management",
+      code :113,
+      checked:false
+    },
+    {
+      name:"Financial Issues",
+      code :114,
+      checked:false
+    },
+    {
+      name:"Gambling addiction",
+      code :115,
+      checked:false
+    },
+    {
+      name:"Relationship-Divorced/married/single/cohabiting/",
+      code :116,
+      checked:false
+    }
+  ]
+  tests=[
+    {
+      name:"DSM/ICD",
+      code:301,
+      slider:false,
+      value:1
+
+    },
+    {
+      name:"Sexual satisfaction",
+      code:302,
+      slider:true,
+      value:1
+    },
+    {
+      name:"Intelligent",
+      code:303,
+      slider:true,
+      value:1
+
+    },
+    {
+      name:"Drug test",
+      code:304,
+      slider:true,
+      value:1
+    },
+    {
+      name:"Depression",
+      code:305,
+      slider:true,
+      value:1
+    },
+    {
+      name:"Personality Test",
+      code:306,
+      slider:false,
+      value:1
+    }
+
+  ]
+  counsellling_type=[
+    {
+      type:"Couples",
+      code:201,
+      value:"couple"
+
+    },
+    {
+      type:"Family",
+      code:202,
+      value:"family"
+
+    },  
+    {
+      type:"Children",
+      code:203,
+      value:"children"
+
+    },  {
+      type:"Groups",
+      code:204,
+      value:"group"
+
+    },
+    {
+      type:"Webinars",
+      code:205,
+      value:"webinar"
+
+    },
+    {
+      type:"Individual",
+      code:206,
+      value:"individual"
+
+    },  {
+      type:"Students",
+      code:207,
+      value:"student"
+
+    }
+
+  ]
 
   addspouse=false;
   spouse=false;
@@ -117,6 +289,7 @@ export class AppointmentDetailsComponent implements OnInit {
     this.getpayers();
     this.getFee();
     this.getSpouse(this.route.snapshot.params.id);
+    this.getIssuesAndTests(this.route.snapshot.params.id);
     
   }
   get s() { return this.spouseForm.controls; }
@@ -129,6 +302,7 @@ export class AppointmentDetailsComponent implements OnInit {
     this.router.navigate(['/dashboard/bill-client/',this.route.snapshot.params.id])
    }
    appointmentTypeSelected(value){
+     console.log("SELECTED",value);
      if(value=='couple')
      this.addspouse=true;
      else 
@@ -140,6 +314,7 @@ export class AppointmentDetailsComponent implements OnInit {
       if(this.data.type=='couple')this.addspouse=true; else this.addspouse=false;
       this.customer = this.data.client;
       this.serviceSource = new MatTableDataSource(this.data.services);
+      this.diagnosisSource = new MatTableDataSource(this.data.diagnosis);
       this.serviceSource.paginator = this.paginator;
       this.getCash(res.client.id);
       this.getPayments(this.customer.phone);
@@ -174,8 +349,9 @@ export class AppointmentDetailsComponent implements OnInit {
       }
     this.spouse_submiited=true;
     this.service.addSpouse(this.data.id,this.spouseForm.value).subscribe((res)=>{
-    
+    this.toastr.success("Spouse Added");
     this.loading=false;
+
     this.spouse_submiited=false;
     })
 
@@ -233,17 +409,17 @@ export class AppointmentDetailsComponent implements OnInit {
    this.member.id = item.item.id;
   }
   claimService(item){
-    let data = this.claim_services.find(obj => obj.id == item.id);
+    let data = this.claim.services.find(obj => obj.id == item.id);
     if(data == undefined){
-      this.claim_services.push(item);
+      this.claim.services.push(item);
      }else{
-      let index = this.claim_services.findIndex(obj => obj.id == item.id);
-      this.claim_services.splice(index,1);
+      let index = this.claim.services.findIndex(obj => obj.id == item.id);
+      this.claim.services.splice(index,1);
      }
   }
   claimSubmit(){
     let claim:any ={};
-    claim.services = this.claim_services;
+    claim.services = this.claim.services;
     claim.appointment = this.route.snapshot.params.id;
     claim.member = this.member_data;
     this.service.createSingleClaim(claim).subscribe((res)=>{
@@ -269,8 +445,12 @@ export class AppointmentDetailsComponent implements OnInit {
     data.description=item.item.code;
     console.log(data);
     this.service.historyDiagnosis(data).subscribe((res)=>{
+      console.log(res);
       this.toastr.success("Successfully Added");
       this.diagnosis ={};
+      this.data.diagnosis.push(res);
+      this.diagnosisSource=new MatTableDataSource(this.data.diagnosis);
+      this.diagnosisSource._updateChangeSubscription();
     })
 
   }
@@ -409,4 +589,100 @@ export class AppointmentDetailsComponent implements OnInit {
       this.toastr.error(err.error.error,"Error");
     })
   }
+
+  getIssuesAndTests(id){
+    this.service.getAppointmentIssuesTests(id).subscribe((res)=>{
+      console.log(res);
+      let data_issues=res.issues
+      let data_tests=res.tests
+      data_issues.forEach(element => {
+        for(var i=0;i<this.issues.length;i++){
+          if (this.issues[i].code==element.code){
+            
+            this.issues[i].checked=true;
+            break;
+          }
+        }        
+      });
+      data_tests.forEach(element => {
+        for(var i=0;i<this.tests.length;i++){
+          if (this.tests[i].code==element.code){
+          this.tests[i].value=element.value;
+          break;
+          }
+        }        
+      });
+      if(this.check_if_issues_tests_selected()){
+        console.log("FOUND","asjdalkjkljfsklajk");
+        this.start_session_enabled=true;
+      }else{
+        this.start_session_enabled=false;
+      }
+ 
+
+    }
+
+      )
+  }
+
+  onIssuesChange(event,data) {
+    console.log(event);
+    if(event.checked){
+      
+      data.checked=true;
+      this.issues_tests_change.issues.push(data);
+      this.service.postAppointmentIssuesTests(this.route.snapshot.params.id,this.issues_tests_change).subscribe((res)=>{
+        this.issues_tests_change.issues=[]
+        if(this.check_if_issues_tests_selected()){
+          this.start_session_enabled=true;
+        }else{
+          this.start_session_enabled=false;
+        }
+      })
+    }else{
+      data.checked=true;
+      this.issues_tests_change.issues.push(data);
+    this.service.deleteAppointmentIssuesTests(this.route.snapshot.params.id,this.issues_tests_change).subscribe((res)=>{
+      this.issues_tests_change.issues=[]
+      if(this.check_if_issues_tests_selected()){
+        this.start_session_enabled=true;
+      }else{
+        this.start_session_enabled=false;
+      }
+    });
+      
+    }
+    
+ } 
+
+ onTestsChange(event,data) {
+    this.issues_tests_change.tests.push(data);
+    data.value=event.value;
+    this.service.postAppointmentIssuesTests(this.route.snapshot.params.id,this.issues_tests_change).subscribe((res)=>{
+      this.issues_tests_change.tests=[]
+      if(this.check_if_issues_tests_selected()){
+        this.start_session_enabled=true;
+      }else{
+        this.start_session_enabled=false;
+      }
+    }
+ 
+    )
+}
+
+
+check_if_issues_tests_selected(){
+ for(var i=0;i<this.issues.length;i++){
+    if(this.issues[i].checked){
+     for(var j=0;j<this.tests.length;j++){
+       
+     if(this.tests[j].value>1){
+      //  console.log("VALUE",element2.value);
+       return true;}
+     }
+   
+   }
+  }
+return false;
+}
 }

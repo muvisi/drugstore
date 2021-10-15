@@ -49,9 +49,54 @@ export class CreateClaimComponent implements OnInit {
   dataSource2;
   dataSource3;
   id:any;
-
+  dobDate;
+  maxDate= new Date();
   patients = [];
   counsolers =[];
+
+  counsellling_type=[
+    {
+      type:"Couples",
+      code:201,
+      value:"couple"
+
+    },
+    {
+      type:"Family",
+      code:202,
+      value:"family"
+
+    },  
+    {
+      type:"Children",
+      code:203,
+      value:"children"
+
+    },  {
+      type:"Groups",
+      code:204,
+      value:"group"
+
+    },
+    {
+      type:"Webinars",
+      code:205,
+      value:"webinar"
+
+    },
+    {
+      type:"Individual",
+      code:206,
+      value:"individual"
+
+    },  {
+      type:"Students",
+      code:207,
+      value:"student"
+
+    }
+
+  ]
   constructor(private formBuilder: FormBuilder, public service: ServiceService, private datePipe: DatePipe, public toastr: ToastrService,
   public navCtrl: NgxNavigationWithDataComponent) {
    }
@@ -72,7 +117,6 @@ export class CreateClaimComponent implements OnInit {
     this.appointmentForm = this.formBuilder.group({
       phone: ['',Validators.required],
       type: ['', Validators.required],
-      amount:[''],
       time: ['', Validators.required],
       reason: ['', Validators.required],
       first_name: ['', Validators.required],
@@ -106,7 +150,6 @@ getCounselors(){
   })
 }
 
-// convenience getter for easy access to form fields
 get f() { return this.claimForm.controls; }
 get af() { return this.appointmentForm.controls; }
 getPatients(){
@@ -351,7 +394,7 @@ searchTest(text) {
       this.submitted = true;
       this.appointment_submitted=false
       this.toastr.success('Successfully Created Claim');
-      this.navCtrl.navigate('/dashboard/claims');
+      this.navCtrl.navigate('/dashboard/eclaims-dashboard/checking');
       this.ngOnInit();
       console.log(res);
       this.labtest = [];

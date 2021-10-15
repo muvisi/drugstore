@@ -26,6 +26,11 @@ export class ReportsComponent implements OnInit {
   dataSource1;
   payments = [];
   id;
+  graphic_data={
+    total_clients:5000,
+    monthly_clients:300
+  
+  }
   displayedColumns: string[] = ['sn','date','amount','trx','client','mobile','name'];
   Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status']
   roomsColumns: string[] = ['sn','date','room','start', 'end','amount','type','staff'];

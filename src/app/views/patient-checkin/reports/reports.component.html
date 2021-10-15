@@ -1,13 +1,77 @@
 <div class="card" *ngIf="!loading">
 <h5 class="card-header"> <i class="icon-chart text-success"></i>  Reports</h5>
-<div class="card-body">
+<div class="card-body ">
     <mat-tab-group>
       <mat-tab>
         <ng-template mat-tab-label>
           Graphical Reports
         </ng-template>
-        <br>
+       
+        <div class="graphic-reports-background">
+          <!-- <br>
+          <br>
         <div class="row container-fluid">
+          <div class="col-sm-3">
+            <mat-card>
+              <div class="row">
+                <div class="col-sm-12">
+                  
+                  <div class="text-center item" >
+                    <span style="font-size:16px;font-weight:bold">
+                      <span class="text-primary">Total Clients</span>
+                      </span>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  
+                  <div class="text-center item" >
+                    <span style="font-size:14px;font-weight:bold">
+                      <span class="text-primary">{{graphic_data.total_clients}}</span>
+                      </span>
+                    </div>
+                </div>
+
+              </div>
+            </mat-card>
+
+          </div>
+          <div class="col-sm-3">
+            <mat-card>
+              <div class="row">
+                <div class="col-sm-12">
+                  
+
+                  <div class="text-center item" >
+                    <span style="font-size:16px;font-weight:bold">
+                      <span class="text-primary">Monthly Clients</span>
+                      </span></div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  
+                  <div class="text-center item" >
+                    <span style="font-size:14px;font-weight:bold">
+                      <span class="text-primary">{{graphic_data.monthly_clients}}</span>
+                      </span>
+                    </div>
+             
+                </div>
+
+              </div>
+            </mat-card>
+
+          </div>
+        </div>-->
+    <br> 
+    <br>
+        <div class="row container-fluid">
+          
           <div class="col-sm-5" *ngIf="(data | keyvalue)?.length">
                   <fusioncharts
                   [height]="height"
@@ -39,6 +103,7 @@
                 </fusioncharts>
           </div>
            -->
+           <br>
            <div class="col-sm-12"  *ngIf="(profit| keyvalue)?.length">
             <fusioncharts
             width="100%"
@@ -49,6 +114,7 @@
           </fusioncharts>
     </div>
       </div>
+    </div>
       
       </mat-tab>
     
