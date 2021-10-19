@@ -14,7 +14,7 @@ export class ServiceService {
   }
   private extractData(res) {
     const  body = res;
-    console.log('service response', res);
+    // console.log('service response', res);
     return body || { };
   }
   private handleError<T> (operation = 'operation', result?: T) {
@@ -109,6 +109,22 @@ export class ServiceService {
   }
   getAppointment(id): Observable<any> {
     return this.http.get(endpoint + 'appointments/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  getClientMonthlyTotal(): Observable<any> {
+    return this.http.get(endpoint + 'appointments/clients_monthly_total/').pipe(
+      map(this.extractData));
+  }
+  getSessionPerPlatform(): Observable<any> {
+    return this.http.get(endpoint + 'appointments/sessions_per_platform/').pipe(
+      map(this.extractData));
+  }
+  getRevenuePerConsellor(): Observable<any> {
+    return this.http.get(endpoint + 'appointments/revenue_per_counsellor/').pipe(
+      map(this.extractData));
+  }
+  getAppointmentPerStatus(): Observable<any> {
+    return this.http.get(endpoint + 'appointments/appointments_per_status/').pipe(
       map(this.extractData));
   }
   postAppointmentIssuesTests(id,data): Observable<any> {
@@ -380,6 +396,15 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/?search='+ data).pipe(
       map(this.extractData));
   }
+  getRevenuePerInsurance(): Observable<any>{
+    return this.http.get(endpoint + 'claims/revenue_per_insurance/?').pipe(
+      map(this.extractData));
+  }
+  getClaimsPerInsurance(): Observable<any>{
+    return this.http.get(endpoint + 'claims/claims_per_insurance/').pipe(
+      map(this.extractData));
+  }
+  
   triageList(): Observable<any> {
     return this.http.get(endpoint + 'patients/triage_list/').pipe(
       map(this.extractData));
@@ -396,6 +421,10 @@ searchProcedure(data): Observable<any> {
   }
   closeClaim(id) {
     return this.http.post(endpoint + 'patients/close_claim/', id).pipe(
+      map(this.extractData));
+  }
+  getRevenuePerRoom(): Observable<any>{
+    return this.http.get(endpoint + 'booking/revenue_per_room/').pipe(
       map(this.extractData));
   }
   addRoomType(data) {

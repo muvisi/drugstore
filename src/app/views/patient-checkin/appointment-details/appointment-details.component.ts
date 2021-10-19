@@ -228,7 +228,7 @@ export class AppointmentDetailsComponent implements OnInit {
   addspouse=false;
   spouse=false;
   spouse_submiited=false;
-
+  session_platform;
 
   loading=false;
   loading_count=0;
@@ -281,6 +281,7 @@ export class AppointmentDetailsComponent implements OnInit {
     this.cashForm = this.formBuilder.group({
       amount: [0, [Validators.required,Validators.min(10)]],
     });
+    this.loading_count=0;
     this.loading=true;
     this.getCounselors();
     this.getRoom();
@@ -290,6 +291,7 @@ export class AppointmentDetailsComponent implements OnInit {
     this.getFee();
     this.getSpouse(this.route.snapshot.params.id);
     this.getIssuesAndTests(this.route.snapshot.params.id);
+
     
   }
   get s() { return this.spouseForm.controls; }
@@ -312,6 +314,7 @@ export class AppointmentDetailsComponent implements OnInit {
     this.service.getAppointment(id).subscribe((res)=>{
       this.data = res;
       if(this.data.type=='couple')this.addspouse=true; else this.addspouse=false;
+      this.session_platform=this.data.platform;
       this.customer = this.data.client;
       this.serviceSource = new MatTableDataSource(this.data.services);
       this.diagnosisSource = new MatTableDataSource(this.data.diagnosis);
@@ -481,6 +484,8 @@ export class AppointmentDetailsComponent implements OnInit {
       this.toastr.info(err.error.error,"Failed");
     })
   }
+
+
   getPayments(id){
     this.service.clientPayments({mobile:id}).subscribe((res)=>{
       this.dataSource = new MatTableDataSource(res);
@@ -526,9 +531,14 @@ export class AppointmentDetailsComponent implements OnInit {
     }
   }
   addStatus(text){
+    if (this.session_platform==null){
+      this.toastr.error("Select a session paltform");
+      return;
+    }
     let data:any ={}
     data.id = this.route.snapshot.params.id
-    data.status = text
+    data.status = text;
+    data.platform=this.session_platform;
     this.service.addStatus(data).subscribe((res)=>{
       if (text =='ongoing'){
         this.toastr.success("Started a session","Success");
@@ -585,6 +595,7 @@ export class AppointmentDetailsComponent implements OnInit {
     data.appointment = this.route.snapshot.params.id
     this.service.appointmentSupervison(data).subscribe((res)=>{
       this.toastr.success("Added Supervision","Success");
+      this.ngOnInit();
     },(err)=>{
       this.toastr.error(err.error.error,"Error");
     })

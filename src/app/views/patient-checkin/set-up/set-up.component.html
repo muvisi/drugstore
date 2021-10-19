@@ -83,11 +83,24 @@
                             <mat-card-title>DEPARTMENT</mat-card-title>
                             <div class="row">
                               <div class="col-sm-8">
+                              <div class="row">
+                              <mat-form-field appearance="outline">
+                                <mat-label>Branch</mat-label>
+                                <mat-select [(ngModel)]="department.branch" (selectionChange)="branchTypeSelected($event.value)">
+                                  <mat-option *ngFor="let item of provider_list" [value]="item.id">
+                                  {{item.name}}
+                                  </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="(department.branch==null ||department.branch=='' ) && branch_selected">Select branch <strong>required</strong></mat-error>
+                              </mat-form-field>
+                            </div>
+                            <div class="row">
                                <mat-form-field >
                                  <input type="text" matInput placeholder="DEPARTMENT" [(ngModel)]="department.name">
                                </mat-form-field>
                               </div>
-                              <div class="col-sm-4"> <button mat-mini-fab (click)="addDepartment()" [disabled]="!department.name">  <i class="fa fa-plus"></i> </button> </div>
+                              </div>
+                              <div class="col-sm-4"> <button mat-mini-fab (click)="addDepartment()" [disabled]="!department.name || !branch_selected">  <i class="fa fa-plus"></i> </button> </div>
                
                             </div>
                             <div class="row">

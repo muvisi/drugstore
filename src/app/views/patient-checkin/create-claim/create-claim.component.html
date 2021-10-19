@@ -35,7 +35,7 @@
                     <mat-form-field  appearance="outline">
                       <mat-label>Member Name</mat-label>
                     <input [typeahead]="members" [typeaheadOptionsLimit]="7"
-                    typeaheadOptionField="name" (typeaheadOnSelect)="OnMember($event)"   formControlName="patient_name" placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
+                    typeaheadOptionField="name" (typeaheadOnSelect)="OnMember($event)" (change)="onTextChange($event.target.value)"  formControlName="patient_name" placeholder="Member" [ngModelOptions]="{standalone: true}" matInput />
                     <mat-error *ngIf="f.patient_name.errors">Member  is required</mat-error>
                     </mat-form-field>
                     </div>

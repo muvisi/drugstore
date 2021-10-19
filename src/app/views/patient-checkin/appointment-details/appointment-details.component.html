@@ -360,15 +360,19 @@
                               </div>
                                 </fieldset>
                                 <div class="row">
-                                  <mat-radio-group aria-label="Session platform">
-                                    <mat-radio-button value="Online Zoom">Online Zoom</mat-radio-button>
+                                  <label id="example-radio-group-label">Session platform</label>
+                                </div>
+                             
+                                  <div class="row" style="padding-top: 20px;">
+                                  <mat-radio-group aria-label="Session platform"  [(ngModel)]="session_platform">
+                              
+                                   <mat-radio-button value="Online Zoom">Online Zoom</mat-radio-button>
                                     <mat-radio-button value="Google Meet">Google Meet</mat-radio-button>
-                                    <mat-radio-button value="Google Meet">Physical</mat-radio-button>
-                                    <mat-radio-button value="Google Meet">Tele Session</mat-radio-button>
-                                    <mat-radio-button value="Google Meet">Play Therapy</mat-radio-button>
-
+                                    <mat-radio-button value="Physical">Physical</mat-radio-button>
+                                    <mat-radio-button value="Tele Session">Tele Session</mat-radio-button>
+                                    <mat-radio-button value="Play Therapy">Play Therapy</mat-radio-button>                              
+      
                                   </mat-radio-group>
-                                  
                                 </div>
                               <div class="col-sm-12">
                                 <button class="pull-right btn btn-danger btn-sm" (click)="addStatus('complete')" [disabled]="data.status=='complete' || data.status=='paid' || data.status=='created' " >End Session</button>

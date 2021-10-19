@@ -78,6 +78,8 @@ export class SetUpComponent implements OnInit {
   id;
   insuranceForm: FormGroup;
   serviceForm: FormGroup;
+
+  branch_selected=false;
   constructor(public service: ServiceService , private toastr: ToastrService, public navCtrl: NgxNavigationWithDataComponent,private formBuilder: FormBuilder,public router:Router) {
   }
 
@@ -225,6 +227,10 @@ addService() {
     this.selectedServices.push(this.serviceForm.value);
   }
   this.serviceForm.patchValue({name:'',code:'',cost:'',description:''})
+}
+
+branchTypeSelected(value){
+  this.branch_selected=true;
 }
 deleteService(obj) {
 const index: number = this.selectedServices.indexOf(obj);
@@ -427,6 +433,10 @@ deleteRoom(){
    });
  }
  addDepartment(){
+   if (!this.branch_selected){
+     this.toastr.error("Please select  hospital branch ");
+     return;
+   }
   
   this.service.createDepartment(this.department).subscribe((res)=>{
     console.log(res);

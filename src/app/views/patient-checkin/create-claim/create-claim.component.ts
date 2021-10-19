@@ -370,6 +370,34 @@ searchTest(text) {
   savePrescription() {
     console.log('ok');
   }
+  hasWhiteSpace(s) {
+    return (/\s/).test(s);
+  }
+  onTextChange(value){
+    if(this.hasWhiteSpace(value)){
+      
+        var s=value.split(" ");
+        if(s.length==2){
+        this.appointmentForm.patchValue({
+          'first_name':s[0],
+          'last_name':s[1]
+  
+        });}
+        else{
+          this.appointmentForm.patchValue({
+            'first_name':s[0],
+            'last_name':s[1],
+            'other_names':s[2]
+    
+          });
+        }
+    }else{
+      this.appointmentForm.patchValue({
+        'first_name':value
+      })
+    }
+      
+  }
   searchProcedure(text) {
     console.log(text);
       this.service.searchProcedure(text).subscribe((res) => {

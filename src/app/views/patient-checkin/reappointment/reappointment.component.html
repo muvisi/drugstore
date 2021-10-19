@@ -64,20 +64,8 @@
                                   <mat-form-field appearance="outline"  >
                                     <mat-label>Appointment Type</mat-label>
                                     <mat-select formControlName="type" (selectionChange)="appointmentTypeSelected($event.value)">
-                                      <mat-option  value="student">
-                                        Student
-                                      </mat-option>
-                                      <mat-option  value="couple">
-                                        Couple
-                                      </mat-option>
-                                      <mat-option  value="group">
-                                        Group
-                                      </mat-option>
-                                      <mat-option  value="standard">
-                                        Standard
-                                      </mat-option>
-                                      <mat-option  value="supervision">
-                                        Supervision
+                                      <mat-option *ngFor="let item of counsellling_type"  [value]="item.value">
+                                        {{item.type}}
                                       </mat-option>
                                     </mat-select>
                                     <mat-error *ngIf="f.type && submitted">Appointment Type <strong>required</strong></mat-error>

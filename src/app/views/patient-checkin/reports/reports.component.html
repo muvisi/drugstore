@@ -6,19 +6,19 @@
         <ng-template mat-tab-label>
           Graphical Reports
         </ng-template>
-       
-        <div class="graphic-reports-background">
-          <!-- <br>
+       <!-- class="graphic-reports-background" -->
+        <div >
+          <br>
           <br>
         <div class="row container-fluid">
-          <div class="col-sm-3">
+          <div class="col-sm-3" *ngFor="let item  of graphic_data.clients_monthly_total">
             <mat-card>
               <div class="row">
                 <div class="col-sm-12">
                   
                   <div class="text-center item" >
                     <span style="font-size:16px;font-weight:bold">
-                      <span class="text-primary">Total Clients</span>
+                      <span class="text-primary">{{item.label}}</span>
                       </span>
                   </div>
 
@@ -30,7 +30,7 @@
                   
                   <div class="text-center item" >
                     <span style="font-size:14px;font-weight:bold">
-                      <span class="text-primary">{{graphic_data.total_clients}}</span>
+                      <span class="text-primary">{{item.value}}</span>
                       </span>
                     </div>
                 </div>
@@ -39,81 +39,171 @@
             </mat-card>
 
           </div>
-          <div class="col-sm-3">
-            <mat-card>
-              <div class="row">
-                <div class="col-sm-12">
-                  
-
-                  <div class="text-center item" >
-                    <span style="font-size:16px;font-weight:bold">
-                      <span class="text-primary">Monthly Clients</span>
-                      </span></div>
-                </div>
-
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  
-                  <div class="text-center item" >
-                    <span style="font-size:14px;font-weight:bold">
-                      <span class="text-primary">{{graphic_data.monthly_clients}}</span>
-                      </span>
-                    </div>
-             
-                </div>
-
-              </div>
-            </mat-card>
-
-          </div>
-        </div>-->
+      
+        </div>
     <br> 
     <br>
-        <div class="row container-fluid">
+        <div class="row container-fluid" *ngIf="graphic_data.revenue_per_counsellor.data.length>0">
           
-          <div class="col-sm-5" *ngIf="(data | keyvalue)?.length">
+          <div class="col-sm-5" >
+            <fusioncharts
+                  [height]="height"
+                  width="100%"
+                  type="pie2d"
+                  [dataFormat]="dataFormat"
+                  [dataSource]="graphic_data.revenue_per_counsellor.PIE"
+                >
+                </fusioncharts>
+              
+          </div>
+
+          <div class="col-sm-7">
+               
+                <fusioncharts
+                [height]="height"
+                type="bar2d"
+                width="100%"
+                [dataFormat]="dataFormat"
+                [dataSource]="graphic_data.revenue_per_counsellor.BAR"
+              >
+              </fusioncharts>
+          </div>
+          </div>
+          <div class="row container-fluid" style="margin-top: 10px;"  *ngIf="graphic_data.revenue_per_insurance.data.length>0">
+          
+            <div class="col-sm-5" >
+              <fusioncharts
+                    [height]="height"
+                    width="100%"
+                    type="pie2d"
+                    [dataFormat]="dataFormat"
+                    [dataSource]="graphic_data.revenue_per_insurance.PIE"
+                  >
+                  </fusioncharts>
+                
+            </div>
+            <div class="col-sm-7">
+                 
                   <fusioncharts
                   [height]="height"
                   type="bar2d"
                   width="100%"
                   [dataFormat]="dataFormat"
-                  [dataSource]="data"
+                  [dataSource]="graphic_data.revenue_per_insurance.BAR"
                 >
                 </fusioncharts>
-          </div>
-          <div class="col-sm-7" *ngIf="(visits| keyvalue)?.length">
+            </div>
+         
+            </div>
+            
+            <div class="row container-fluid" style="margin-top: 10px;" *ngIf="graphic_data.revenue_per_room.data.length>0">
+          
+              <div class="col-sm-5" >
+                <fusioncharts
+                      [height]="height"
+                      width="100%"
+                      type="pie2d"
+                      [dataFormat]="dataFormat"
+                      [dataSource]="graphic_data.revenue_per_room.PIE"
+                    >
+                    </fusioncharts>
+                  
+              </div>
+              <div class="col-sm-7">
+                   
+                    <fusioncharts
+                    [height]="height"
+                    type="bar2d"
+                    width="100%"
+                    [dataFormat]="dataFormat"
+                    [dataSource]="graphic_data.revenue_per_room.BAR"
+                  >
+                  </fusioncharts>
+              </div>
+           
+              </div>
+              <div class="row container-fluid" style="margin-top: 10px;" *ngIf="graphic_data.sessions_per_platform.data.length>0">
+          
+                <div class="col-sm-5" >
                   <fusioncharts
-                  [height]="height"
-                  type="column2d"
-                  width="100%"
-                  [dataFormat]="dataFormat"
-                  [dataSource]="visits"
-                >
-                </fusioncharts>
-          </div>
-          <!-- <div class="col-sm-4" *ngIf="(gender| keyvalue)?.length">
-                  <fusioncharts
-                  [height]="height"
-                  width="100%"
-                  type="pie2d"
-                  [dataFormat]="dataFormat"
-                  [dataSource]="gender"
-                >
-                </fusioncharts>
-          </div>
-           -->
-           <br>
-           <div class="col-sm-12"  *ngIf="(profit| keyvalue)?.length">
-            <fusioncharts
-            width="100%"
-            height="400"
-            type = "mscombi2d"
-            [dataFormat]="dataFormat"
-            [dataSource]="profit">
-          </fusioncharts>
-    </div>
-      </div>
+                        [height]="height"
+                        width="100%"
+                        type="pie2d"
+                        [dataFormat]="dataFormat"
+                        [dataSource]="graphic_data.sessions_per_platform.PIE"
+                      >
+                      </fusioncharts>
+                    
+                </div>
+                <div class="col-sm-7">
+                     
+                      <fusioncharts
+                      [height]="height"
+                      type="bar2d"
+                      width="100%"
+                      [dataFormat]="dataFormat"
+                      [dataSource]="graphic_data.sessions_per_platform.BAR"
+                    >
+                    </fusioncharts>
+                </div>
+             
+                </div>
+                <div class="row container-fluid" style="margin-top: 10px;" *ngIf="graphic_data.appointments_per_status.data.length>0">
+          
+                  <div class="col-sm-5" >
+                    <fusioncharts
+                          [height]="height"
+                          width="100%"
+                          type="pie2d"
+                          [dataFormat]="dataFormat"
+                          [dataSource]="graphic_data.appointments_per_status.PIE"
+                        >
+                        </fusioncharts>
+                      
+                  </div>
+                  <div class="col-sm-7">
+                       
+                        <fusioncharts
+                        [height]="height"
+                        type="bar2d"
+                        width="100%"
+                        [dataFormat]="dataFormat"
+                        [dataSource]="graphic_data.appointments_per_status.BAR"
+                      >
+                      </fusioncharts>
+                  </div>
+               
+                  </div>
+
+
+                  <div class="row container-fluid" style="margin-top: 10px;"  *ngIf="graphic_data.claims_per_insurance.data.length>0">
+          
+                    <div class="col-sm-5" >
+                      <fusioncharts
+                            [height]="height"
+                            width="100%"
+                            type="pie2d"
+                            [dataFormat]="dataFormat"
+                            [dataSource]="graphic_data.claims_per_insurance.PIE"
+                          >
+                          </fusioncharts>
+                        
+                    </div>
+                    <div class="col-sm-7">
+                         
+                          <fusioncharts
+                          [height]="height"
+                          type="bar2d"
+                          width="100%"
+                          [dataFormat]="dataFormat"
+                          [dataSource]="graphic_data.claims_per_insurance.BAR"
+                        >
+                        </fusioncharts>
+                    </div>
+                 
+                    </div>
+
+       
     </div>
       
       </mat-tab>

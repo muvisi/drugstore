@@ -19,6 +19,49 @@ export class ReappointmentComponent implements OnInit {
   student=false;
   time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
   transactions=[];
+  counsellling_type=[
+    {
+      type:"Couples",
+      code:201,
+      value:"couple"
+
+    },
+    {
+      type:"Family",
+      code:202,
+      value:"family"
+
+    },  
+    {
+      type:"Children",
+      code:203,
+      value:"children"
+
+    },  {
+      type:"Groups",
+      code:204,
+      value:"group"
+
+    },
+    {
+      type:"Webinars",
+      code:205,
+      value:"webinar"
+
+    },
+    {
+      type:"Individual",
+      code:206,
+      value:"individual"
+
+    },  {
+      type:"Students",
+      code:207,
+      value:"student"
+
+    }
+
+  ]
   constructor(private route: ActivatedRoute,public router:Router,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService) { }
   ngOnInit() {
     this.getPatient(this.route.snapshot.params.id);

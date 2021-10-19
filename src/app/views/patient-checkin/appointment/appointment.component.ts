@@ -147,11 +147,14 @@ export class AppointmentComponent implements OnInit {
     return
   }
   if(!this.student &&(this.appointmentForm.get('payment_type').value==''|| this.appointmentForm.get('amount').value=='') ){
+    console.log(this.appointmentForm.get('payment_type').value);
+    console.log(this.appointmentForm.get('amount').value)
     this.toastr.error('Fill in All the Fields Marked with *');
     this.loading=false;
     return;
   }
   if (this.appointmentForm.invalid) {
+    console.log(this.appointmentForm.errors);
     this.toastr.error('Fill in All the Fields Marked with *');
       this.loading=false;
       return;
