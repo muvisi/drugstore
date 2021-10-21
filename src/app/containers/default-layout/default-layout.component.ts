@@ -2,6 +2,7 @@ import { Component, OnDestroy, Inject, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
 import {  docNavItems } from '../../_doctor';
+import {  insuranceItems } from '../../_insurance';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../service.service';
@@ -14,6 +15,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 export class DefaultLayoutComponent implements OnDestroy {
   public navItems = navItems;
   public docNavItems = docNavItems;
+  public insuranceItems = insuranceItems;
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;

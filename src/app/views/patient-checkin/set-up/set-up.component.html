@@ -78,66 +78,61 @@
                            <br>
                   </div>
                   <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <mat-form-field >
+                          <mat-label>Branch</mat-label>
+                          <mat-select [(ngModel)]="department.branch" (selectionChange)="branchTypeSelected($event.value)">
+                            <mat-option *ngFor="let item of provider_list" [value]="item.id">
+                            {{item.name}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="(department.branch==null ||department.branch=='' ) && branch_selected">Select branch <strong>required</strong></mat-error>
+                        </mat-form-field>
 
-                        <mat-card>
-                            <mat-card-title>DEPARTMENT</mat-card-title>
-                            <div class="row">
-                              <div class="col-sm-8">
-                              <div class="row">
-                              <mat-form-field appearance="outline">
-                                <mat-label>Branch</mat-label>
-                                <mat-select [(ngModel)]="department.branch" (selectionChange)="branchTypeSelected($event.value)">
-                                  <mat-option *ngFor="let item of provider_list" [value]="item.id">
-                                  {{item.name}}
-                                  </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="(department.branch==null ||department.branch=='' ) && branch_selected">Select branch <strong>required</strong></mat-error>
-                              </mat-form-field>
-                            </div>
-                            <div class="row">
-                               <mat-form-field >
-                                 <input type="text" matInput placeholder="DEPARTMENT" [(ngModel)]="department.name">
-                               </mat-form-field>
-                              </div>
-                              </div>
-                              <div class="col-sm-4"> <button mat-mini-fab (click)="addDepartment()" [disabled]="!department.name || !branch_selected">  <i class="fa fa-plus"></i> </button> </div>
-               
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <table mat-table [dataSource]="hospital?.departments" class="mat-elevation-z8">
+                      </div>
+                      <div class="col-sm-5">
+                        <mat-form-field >
+                          <input type="text" matInput placeholder="DEPARTMENT" [(ngModel)]="department.name">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2"> <button mat-mini-fab (click)="addDepartment()" [disabled]="!department.name || !branch_selected">  <i class="fa fa-plus"></i> </button> </div>
+       
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table mat-table [dataSource]="hospital?.departments" class="mat-elevation-z8">
 
-                                  <ng-container matColumnDef="sn">
-                                    <th mat-header-cell *matHeaderCellDef> S/No. </th>
-                                    <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
-                                  </ng-container>
-                                
-                                  <ng-container matColumnDef="name">
-                                    <th mat-header-cell *matHeaderCellDef> NAME </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                  </ng-container>
-                                
-                                  <ng-container matColumnDef="edit">
-                                    <th mat-header-cell *matHeaderCellDef>EDIT</th>
-                                    <td mat-cell *matCellDef="let element"  (click)="this.checkModal.show();selectedDepartment = element">
-                                      <mat-icon color="primary">create</mat-icon>
-                                       </td>
-                                  </ng-container>
-                                
-                                  <ng-container matColumnDef="delete">
-                                    <th mat-header-cell *matHeaderCellDef>DELETE</th>
-                                    <td mat-cell *matCellDef="let element">
-                                      <mat-icon color="warn" (click)="deleteDepartment(element)">delete_sweep</mat-icon>
-                                    </td>
-                                  </ng-container>
-                                
-                                  <tr mat-header-row *matHeaderRowDef="departmentColumns"></tr>
-                                  <tr mat-row *matRowDef="let row; columns: departmentColumns;"></tr>
-                                </table>
-                                
-                              </div>
-                            </div>
-                           </mat-card>
+                          <ng-container matColumnDef="sn">
+                            <th mat-header-cell *matHeaderCellDef> S/No. </th>
+                            <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> NAME </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="edit">
+                            <th mat-header-cell *matHeaderCellDef>EDIT</th>
+                            <td mat-cell *matCellDef="let element"  (click)="this.checkModal.show();selectedDepartment = element">
+                              <mat-icon color="primary">create</mat-icon>
+                               </td>
+                          </ng-container>
+                        
+                          <ng-container matColumnDef="delete">
+                            <th mat-header-cell *matHeaderCellDef>DELETE</th>
+                            <td mat-cell *matCellDef="let element">
+                              <mat-icon color="warn" (click)="deleteDepartment(element)">delete_sweep</mat-icon>
+                            </td>
+                          </ng-container>
+                        
+                          <tr mat-header-row *matHeaderRowDef="departmentColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: departmentColumns;"></tr>
+                        </table>
+                        
+                      </div>
+                    </div>
                   </div>
              </div>
         

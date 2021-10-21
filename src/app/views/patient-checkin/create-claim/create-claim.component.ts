@@ -4,9 +4,9 @@ import { ServiceService } from '../../../service.service';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { ModalDirective } from 'ngx-bootstrap';
 @Component({
   selector: 'app-create-claim',
   templateUrl: './create-claim.component.html',
@@ -17,6 +17,7 @@ export class CreateClaimComponent implements OnInit {
   displayedColumns: string[] = ['Name', 'Code', 'Cost', 'Delete'];
   drugColumns: string[] = ['Name', 'Strength', 'Form', 'Quantity', 'Delete'];
   @ViewChild(MatSort, { 'static': true}) sort: MatSort;
+  @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   claimForm: FormGroup;
   appointmentForm: FormGroup;
   dataSource;
@@ -97,6 +98,8 @@ export class CreateClaimComponent implements OnInit {
     }
 
   ]
+  serviceForm: FormGroup;
+  seleted:any={};
   constructor(private formBuilder: FormBuilder, public service: ServiceService, private datePipe: DatePipe, public toastr: ToastrService,
   public navCtrl: NgxNavigationWithDataComponent) {
    }
@@ -107,10 +110,8 @@ export class CreateClaimComponent implements OnInit {
         member_number: ['', Validators.required],
         insurance_company: ['', Validators.required],
         scheme_name: ['', Validators.required],
-        check_out: ['', Validators.required],
         nhif_number: [''],
         phone: [''],
-        check_in: ['', Validators.required],
         visit_type: ['OUTPATIENT', Validators.required],
         doctor: ['', Validators.required],
     });
@@ -136,6 +137,14 @@ export class CreateClaimComponent implements OnInit {
       visit_type:['NEW',Validators.required],
       date:['',Validators.required]
     });
+
+    this.serviceForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      cost: ['', Validators.required],
+      id:['',Validators.required],
+      code:['',Validators.required],
+    });
+    
 this.getTests();
 this.getServices();
 this.getPrescription();
@@ -242,8 +251,8 @@ searchServices(text) {
     this.services = res.results;
   });
 }
-onSelect(event) {
-      this.selectedOption = event.item;
+onService(){
+      this.selectedOption = this.serviceForm.value;
       console.log(this.procedures.findIndex(obj => obj.code === this.selectedOption.code));
       if (this.procedures.findIndex(obj => obj.code === this.selectedOption.code)) {
       this.procedures.push(this.selectedOption);
@@ -258,6 +267,13 @@ onSelect(event) {
       this.dataSource1 = new MatTableDataSource(this.procedures);
       this.totalAmount = this.proceduresCost + this.labCost + this.drugsCost;
       this.selectedOption = {};
+      this.staticModal.hide();
+}
+onSelect(event) {
+  this.seleted = event.item;
+  this.serviceForm.patchValue({id:this.seleted.id,code:this.seleted.code,cost:this.seleted.cost,name:this.seleted.name})
+  this.staticModal.show();
+
 }
 
 onSubmit() {

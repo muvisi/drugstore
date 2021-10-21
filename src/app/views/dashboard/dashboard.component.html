@@ -24,7 +24,7 @@
         </div>
       </a>
     </div>
-    <div class="col-sm-6 col-md-3" [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
+    <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' || user.role == 'insurance_counsellor'">
       <a routerLink="clients/">
         <div class="card">
           <div class="card-body">
@@ -43,7 +43,7 @@
         </div>
       </a>
     </div>
-      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
+      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' || user.role == 'insurance_counsellor'">
         <a routerLink="staff">
           <div class="card">
             <div class="card-body">
@@ -102,7 +102,7 @@
           </div>
         </a>
       </div>
-      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
+      <div class="col-sm-6 col-md-3"   [hidden]="user.role == 'counselor' || user.role == 'doctor' || user.role == 'insurance_counsellor'">
         <a routerLink="billing/">
           <div class="card">
             <div class="card-body">
@@ -121,7 +121,7 @@
           </div>
         </a>
       </div>
-      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
+      <div class="col-sm-6 col-md-3"   [hidden]="user.role == 'counselor' || user.role == 'doctor'">
       
         <a routerLink="eclaims-dashboard">
         <div class="card">
@@ -140,7 +140,7 @@
       </a>
     </div>
     
-      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' ">
+      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor'">
         <a routerLink="report">
           <div class="card">
             <div class="card-body">

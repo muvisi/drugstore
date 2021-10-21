@@ -7,7 +7,7 @@
               <div class="col-sm-12">
               <mat-horizontal-stepper labelPosition="end" #stepper>
               <mat-step>
-              <ng-template matStepLabel>Patient Information</ng-template>
+              <ng-template matStepLabel>Clients Information</ng-template>
               <form [formGroup]="claimForm" (ngSubmit)="onSubmit()">
                 <fieldset>
                   <legend>Background Information:</legend>
@@ -64,24 +64,7 @@
                     </mat-form-field>
                     </div>
       
-                    <div class="col-sm-3">
-                    <mat-form-field  appearance="outline">
-                      <mat-label>Check In</mat-label>
-                    <input type="text" formControlName="check_in" placeholder="Check In" bsDatepicker 
-                    [bsConfig]="{ isAnimated: true }" [ngModelOptions]="{standalone: true}" matInput readonly />
-                    <mat-error *ngIf="f.check_in.errors">
-                    check in date is required
-                    </mat-error>
-                    </mat-form-field>  
-                    </div>
-                    <div class="col-sm-3">
-                    <mat-form-field  appearance="outline">
-                      <mat-label>Check Out</mat-label>
-                    <input type="text" placeholder="Check Out" formControlName="check_out" readonly  bsDatepicker 
-                    [bsConfig]="{ isAnimated: true }"  [ngModelOptions]="{standalone: true}"  matInput  readonly/>
-                    <mat-error *ngIf="f.check_out.errors">check out is required</mat-error>
-                    </mat-form-field>
-                    </div>
+                    
                     <div class="col-sm-3">
                     <mat-form-field  appearance="outline">
                       <mat-label>Nhif Number</mat-label>
@@ -90,21 +73,6 @@
       
                     </mat-form-field>
       
-                    </div>
-      
-                    <div class="col-sm-3">
-                      <mat-form-field appearance="outline">
-                        <mat-label>Counselor</mat-label>
-                        <mat-select formControlName="doctor">
-                          <mat-option *ngFor="let item of counsolers" [value]="item.id">
-                              {{item.first_name}} {{item.last_name}}
-                          </mat-option>
-                         
-                        </mat-select>
-                        <mat-error *ngIf="f.doctor.errors">Counsellor Name is required</mat-error>
-                      </mat-form-field>
-
-                  
                     </div>
                     </div>
                 </fieldset>
@@ -435,20 +403,12 @@
               </fieldset>
               <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-success btn-sm pull-right" mat-button matStepperNext>Next Step <i class="cui-arrow-right"></i> </button>
               <button  style="margin-top: 10px;"  class="btn btn-info btn-sm pull-right" mat-button matStepperPrevious><i class="cui-arrow-left"></i> Back </button>
-
-           
-
               </mat-step>
               
 
               <mat-step>
               <ng-template matStepLabel>Preview & Submit</ng-template>
-              <div class="row">
-              <div class="col-sm-12">
-              <button  style="margin-top: 10px;"  class="btn btn-info pull-right" [disabled]="!claimForm.valid" (click)="submitClaim()"> <i class="icon-check"></i> Claim Submit</button>
-              </div>
-              </div>
-              <br>
+    
               <mat-card>
                 <mat-card-subtitle>
                     <i class="icon-people"></i>CLIENT DETAILS
@@ -462,14 +422,14 @@
                         <div class="col-sm-6">
                           <div class="row">
                             <div class="col-sm-6">
-                              <h4><span style="font-size:14px;font-weight:bold"> INSURANCE :
-                                <span class="text-primary">{{f.insurance_company.value}}</span>
+                              <h4><span style="font-size:14px;font-weight:500"> INSURANCE :
+                                <span class="text-success">{{f.insurance_company.value}}</span>
                                 </span></h4>
                             </div>
                             <div class="col-sm-6">
                               <h4>
-                                <span style="font-size:14px;font-weight:bold"> SCHEME :
-                                    <span class="text-primary">{{f.scheme_name.value}}</span>
+                                <span style="font-size:14px;font-weight:500"> SCHEME :
+                                    <span class="text-success">{{f.scheme_name.value}}</span>
                                     </span>
                               </h4>
                             </div>
@@ -481,31 +441,22 @@
                     
 
                     <div class="col-sm-12">
-                      <div class="row">
-                        <div class="col-sm-2">
-                            PATIENT NAME
-                        </div>
-                        <div class="col-sm-2">
-                            <span style="font-size:14px;font-weight:bold">
-                                <span class="text-primary">{{af.first_name.value}}  {{af.last_name.value}}  {{af.other_names.value}}</span>
-                                </span>
-                        </div>
-                      </div>
+                  
                       <div class="row">
                         <div class="col-sm-2">
                             GENDER
                         </div>
                         <div class="col-sm-2">
-                            <span style="font-size:14px;font-weight:bold">
-                                <span class="text-primary">{{af.gender.value}}</span>
+                            <span style="font-size:14px;font-weight:500">
+                                <span class="">{{af.gender.value}}</span>
                                 </span>
                         </div>
                         <div class="col-sm-2">
                           DOB
                       </div>
                       <div class="col-sm-2">
-                          <span style="font-size:14px;font-weight:bold">
-                              <span class="text-primary">{{af.dob.value | date:'MMMM d, y'}}</span>
+                          <span style="font-size:14px;font-weight:500">
+                              <span class="">{{af.dob.value | date:'MMMM d, y'}}</span>
                               </span>
                       </div>
                       </div>
@@ -514,29 +465,20 @@
                             PHONE
                         </div>
                         <div class="col-sm-2">
-                            <span style="font-size:14px;font-weight:bold">
-                                <span class="text-primary">{{af.code.value}}{{af.phone.value}}</span>
+                            <span style="font-size:14px;font-weight:500">
+                                <span class="">{{af.code.value}}{{af.phone.value}}</span>
                                 </span>
                         </div>
                         <div class="col-sm-2">
                           EMAIL
                       </div>
                       <div class="col-sm-2">
-                          <span style="font-size:14px;font-weight:bold">
-                              <span class="text-primary">{{af.email.value}}</span>
+                          <span style="font-size:14px;font-weight:500">
+                              <span class="">{{af.email.value}}</span>
                               </span>
                       </div>
                       </div>
-                    <div class="row">
-                      <div class="col-sm-3">
-                          COUNSELLOR
-                      </div>
-                      <div class="col-sm-5">
-                          <span style="font-size:14px;font-weight:bold">
-                              <!-- <span class="text-primary">{{f.patient_number.value}}</span> -->
-                              </span>
-                      </div>
-                    </div>
+                   
                     </div>
                    
                     
@@ -546,35 +488,13 @@
                               VISIT TYPE
                           </div>
                           <div class="col-sm-2">
-                              <span style="font-size:14px;font-weight:bold">
-                                  <span class="text-primary">{{f.visit_type.value}}</span>
+                              <span style="font-size:14px;font-weight:500">
+                                  <span class="">{{f.visit_type.value}}</span>
                                   </span>
                           </div>
                         </div>
                         </div>
-                    <div class="col-sm-12">
-                      <div class="row">
-                        <div class="col-sm-2"> CHECKIN</div>
-                        <div class="col-sm-2">
-                            <span style="font-size:14px;font-weight:bold">
-                                <span class="text-primary">{{f.check_in.value | date}}</span>
-                                 </span>
-                        </div>
-                      </div>
-                      
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="row">
-                            <div class="col-sm-2">CHECKOUT</div>
-                            <div class="col-sm-2">
-                                <span style="font-size:14px;font-weight:bold">
-                                    <span class="text-primary">{{f.check_out.value | date}}</span>
-                                    </span>
-                            </div>
-                          </div>
-                        
-          
-                        </div>
+                
                   
                     
                     </div>
@@ -582,7 +502,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 
-                                <span class="badge badge-info pull-right" style="font-size: 14px;"> Claim Amount : {{totalAmount | number}}  </span>
+                                <span class="badge badge-success pull-right" style="font-size: 14px;"> Claim Amount : {{totalAmount | number}}  </span>
                                 </div>
                         </div>
                      </mat-card-actions>
@@ -671,10 +591,7 @@
               
         
               <div>
-
-              <button  style="margin-top: 10px;margin-left: 5px;"  class="btn btn-info btn-sm pull-right"  mat-button matStepperPrevious> <i class="cui-arrow-left"></i> Back </button>
-              <button  style="margin-top: 10px;"  class="btn btn-info pull-right" [disabled]="!claimForm.valid" (click)="submitClaim()"> <i class="icon-check"></i> Claim Submit</button>
-
+                <button  style="margin-top: 10px;"  class="btn btn-info pull-right" [disabled]="!claimForm.valid" (click)="submitClaim()">Claim Submit</button>
               </div>
               </mat-step>
               </mat-horizontal-stepper>
@@ -683,3 +600,45 @@
               </div>
               </div>
               </div>
+
+              <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+                      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+                    <div class="modal-dialog modal-md">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 id="dialog-static-name" class="modal-title pull-left">Add Service</h4>
+                          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                            <span aria-hidden="true" class="visually-hidden">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form  [formGroup]="serviceForm" (ngSubmit)="onService()">
+                         <div class="row">
+                          <div class="col-sm-12">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Service</mat-label>
+                                <input matInput placeholder="Service" formControlName="name" readonly >
+                              </mat-form-field>
+                          </div>
+                          <div class="col-sm-12">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Code</mat-label>
+                                <input matInput placeholder="Code" formControlName="code" readonly>
+                              </mat-form-field>
+                          </div>
+                          <div class="col-sm-12">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Cost</mat-label>
+                                <input matInput placeholder="Cost" formControlName="cost">
+                              </mat-form-field>
+                          </div>
+                          <diiv class="col-sm-12">
+                            <button class="btn btn-success pull-right" type="submit">Submit</button>
+                          </diiv>
+                         </div>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
