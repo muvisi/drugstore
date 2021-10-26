@@ -113,7 +113,6 @@ export class CreateClaimComponent implements OnInit {
         nhif_number: [''],
         phone: [''],
         visit_type: ['OUTPATIENT', Validators.required],
-        doctor: ['', Validators.required],
     });
     this.appointmentForm = this.formBuilder.group({
       phone: ['',Validators.required],
