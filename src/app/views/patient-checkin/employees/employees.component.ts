@@ -67,6 +67,7 @@ export class EmployeesComponent implements OnInit {
   }
   employeeEdit(item){
     this.employee = item;
+    console.log('employees',item);
     this.userModal.show();
   }
   updateUser() {
