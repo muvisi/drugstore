@@ -17,15 +17,15 @@
                 <i class="fa fa-calendar-plus-o fa-stack-4x" style="color:#A6CF39;"></i>
               </span>
             </div>
-            <div class="text-center item" >Appointments</div>
+            <div class="text-center item" >Booking</div>
     
     
           </div>
         </div>
       </a>
     </div>
-    <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' || user.role == 'insurance_counsellor'">
-      <a routerLink="clients/">
+    <div class="col-sm-6 col-md-3"  >
+      <a routerLink="/dashboard/records">
         <div class="card">
           <div class="card-body">
             <div class="text-center">
@@ -43,25 +43,7 @@
         </div>
       </a>
     </div>
-      <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor' || user.role == 'insurance_counsellor'">
-        <a routerLink="staff">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-      
-                  <i class="icon-user-following fa-stack-4x" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >Counselors</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div>
+     
 
       <div class="col-sm-6 col-md-3">
         <a routerLink="calendar/">
@@ -83,62 +65,7 @@
         </a>
       </div>
 
-      <div class="col-sm-6 col-md-3">
     
-        <a routerLink="rooms-dashboard">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-      
-                  <i class="fa fa-home fa-stack-4x" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >Rooms</div>
-    
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-3"   [hidden]="user.role == 'counselor' || user.role == 'doctor' || user.role == 'insurance_counsellor'">
-        <a routerLink="billing/">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-      
-                  <i class="fa fa-database fa-stack-4x" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item"   >Billing</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-3"   [hidden]="user.role == 'counselor' || user.role == 'doctor'">
-      
-        <a routerLink="eclaims-dashboard">
-        <div class="card">
-          <div class="card-body">
-            <div class="text-center">
-              <span class="fa-stack fa-4x">
-                <i class=" fa-stack-2x icon-background4"></i>
-                <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-    
-                <i class="icon-layers fa-stack-4x" style="color:#A6CF39;"></i>
-              </span>
-            </div>
-            <div class="text-center item"  >Claims</div>
-          </div>
-        </div>
-      </a>
-    </div>
     
       <div class="col-sm-6 col-md-3"  [hidden]="user.role == 'counselor' || user.role == 'doctor'">
         <a routerLink="report">

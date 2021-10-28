@@ -12,14 +12,11 @@ MatBadgeModule
 } from '@angular/material';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
-import { InsureCheckComponent } from './insure-check/insure-check.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { MemberInformationComponent } from './member-information/member-information.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { NewPatientComponent } from './new-patient/new-patient.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { BillPatientComponent } from './bill-patient/bill-patient.component';
 import { ClaimsComponent } from './claims/claims.component';
@@ -33,21 +30,9 @@ import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 import { SetUpComponent } from './set-up/set-up.component';
 import { NgxPrintModule } from 'ngx-print';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { PaymentsComponent } from './payments/payments.component';
-import { PaymentListComponent } from './payment-list/payment-list.component';
-import { EclaimsDashboardComponent } from './eclaims-dashboard/eclaims-dashboard.component';
-import { BatchingComponent } from './batching/batching.component';
-import { BatchesComponent } from './batches/batches.component';
-import { BatchDetailComponent } from './batch-detail/batch-detail.component';
-import { InventoryComponent } from './inventory/inventory.component';
-import { StockLevelComponent } from './stock-level/stock-level.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { TriageComponent } from './triage/triage.component';
-import { CreateClaimComponent } from './create-claim/create-claim.component';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { AuthorizationLetterComponent } from './authorization-letter/authorization-letter.component';
-import { AuthletterRequestComponent } from './authletter-request/authletter-request.component';
-import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { HospitalComponent } from './hospital/hospital.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -56,8 +41,6 @@ import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { RecordsComponent } from './records/records.component';
 import { RecordListComponent } from './record-list/record-list.component';
 import { AppointmentComponent } from './appointment/appointment.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { CreateRoomComponent } from './create-room/create-room.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
@@ -67,47 +50,24 @@ import { ReappointmentComponent } from './reappointment/reappointment.component'
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentDetailsComponent } from './appointment-details/appointment-details.component';
 import { UserAccountComponent } from './user-account/user-account.component';
-import { ClaimsCheckComponent } from './claims-check/claims-check.component';
-import { OutpatientComponent } from './outpatient/outpatient.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { ClientsComponent } from './clients/clients.component';
 import { BookingComponent } from './booking/booking.component';
 import { BillingComponent } from './billing/billing.component';
-import { ReportComponent } from './report/report.component';
-import { RoomRevenueComponent } from './room-revenue/room-revenue.component';
-import { BookRoomComponent } from './book-room/book-room.component';
-import { RoomDashboardComponent } from './room-dashboard/room-dashboard.component';
-import { ReservationsComponent } from './reservations/reservations.component';
-import { EditReservationsComponent } from './edit-reservations/edit-reservations.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
   declarations: [
     RegisterPatientComponent,
     DiagnosisComponent,
-    InsureCheckComponent,
     TreatmentComponent,
-    MemberInformationComponent,
     PatientDashboardComponent,
-    NewPatientComponent,
     PatientListComponent,
     BillPatientComponent,
     ClaimsComponent,
     ClaimDetailComponent,
     TriageDetailsComponent,
     SetUpComponent,
-    PaymentsComponent,
-    PaymentListComponent,
-    EclaimsDashboardComponent,
-    BatchingComponent,
-    BatchesComponent,
-    BatchDetailComponent,
-    InventoryComponent,
-    StockLevelComponent,
-    CreateClaimComponent,
     TriageComponent,
-    AuthorizationLetterComponent,
-    AuthletterRequestComponent,
-    PharmacyComponent,
     HospitalComponent,
     CalendarComponent,
     ReportsComponent,
@@ -115,24 +75,14 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     RecordsComponent,
     RecordListComponent,
     AppointmentComponent,
-    RoomsComponent,
-    CreateRoomComponent,
     ReappointmentComponent,
     AppointmentListComponent,
     AppointmentDetailsComponent,
     UserAccountComponent,
-    ClaimsCheckComponent,
-    OutpatientComponent,
     EmployeesComponent,
     ClientsComponent,
     BookingComponent,
-    BillingComponent,
-    ReportComponent,
-    RoomRevenueComponent,
-    BookRoomComponent,
-    RoomDashboardComponent,
-    ReservationsComponent,
-    EditReservationsComponent
+    BillingComponent 
   ],
   imports: [
     CommonModule,

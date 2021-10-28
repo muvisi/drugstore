@@ -39,27 +39,13 @@ export const navItems: NavData[] = [
     title: true,
     name: 'Main'
   },
+ 
   {
-    name: 'Client Actions',
-    url: '/dashboard/clients',
-    icon: 'icon-people'
-  },
-  {
-    name: 'Appointments',
+    name: 'Booking',
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
   },
-  {
-    name: 'Rooms',
-    icon: 'fa fa-home',
-    url: '/dashboard/rooms-dashboard'
-  },
 
-  {
-    name: 'eClaims',
-    url: '/dashboard/eclaims-dashboard',
-    icon: 'icon-layers',
-  },
   {
     name: 'Report',
     url: '/dashboard/report',

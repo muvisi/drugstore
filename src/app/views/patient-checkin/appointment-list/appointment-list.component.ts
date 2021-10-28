@@ -17,7 +17,7 @@ export class AppointmentListComponent implements OnInit {
   idnumber;
   phonenumber;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  Columns: string[] = ['sn','StartTime','EndTime','Client','phone','Counselor','residence','delete','create']
+  Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','action']
   constructor(public service:ServiceService,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
     this.idnumber="";
@@ -43,13 +43,13 @@ export class AppointmentListComponent implements OnInit {
     this.service.getAppointments().subscribe((res)=>{
       this.loading=false;
       this.appointmentsList=res.results
-      this.dataSource = new MatTableDataSource(res.results);
+      this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
     })
   }
   applyFilter(filterValue: string) {
     this.service.searchAppointments(filterValue).subscribe((res)=>{
-      this.dataSource = new MatTableDataSource(res.results);
+      this.dataSource = new MatTableDataSource(res);
       this.appointmentsList=res.results
       this.dataSource.paginator = this.paginator;
     })

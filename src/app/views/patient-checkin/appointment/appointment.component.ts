@@ -28,47 +28,20 @@ export class AppointmentComponent implements OnInit {
 
   counsellling_type=[
     {
-      type:"Couples",
+      type:"First Dose",
       code:201,
-      value:"couple"
+      value:"First Dose"
 
     },
     {
-      type:"Family",
+      type:"Second Dose",
       code:202,
-      value:"family"
-
-    },  
-    {
-      type:"Children",
-      code:203,
-      value:"children"
-
-    },  {
-      type:"Groups",
-      code:204,
-      value:"group"
-
-    },
-    {
-      type:"Webinars",
-      code:205,
-      value:"webinar"
-
-    },
-    {
-      type:"Individual",
-      code:206,
-      value:"individual"
-
-    },  {
-      type:"Students",
-      code:207,
-      value:"student"
+      value:"Second Dose"
 
     }
 
   ]
+
 
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   constructor(public service: ServiceService,private formBuilder: FormBuilder,public toastr: ToastrService,public router:Router ) { 
@@ -78,26 +51,19 @@ export class AppointmentComponent implements OnInit {
     this.maxDate = new Date();
     this.appointmentForm = this.formBuilder.group({
       phone: ['',Validators.required],
-      type: ['', Validators.required],
-      payment_type:[''],
-      amount:[''],
+      dose: ['', Validators.required],
       time: ['', Validators.required],
       reason: ['', Validators.required],
       first_name: ['', Validators.required],
-      other_names: [''],
       doc_type: ['', Validators.required],
       last_name: ['', Validators.required],
       gender: ['Female', Validators.required],
       email: ['',Validators.email],
       dob: ['', Validators.required],
-      priority: ['3', Validators.required],
       residence: [''],
       national_id: ['',Validators.required],
       passport_no: [''],
       occupation: [''],
-      no:[],
-      code:['+254',Validators.required],
-      visit_type:['NEW',Validators.required],
       date:['',Validators.required]
     });
     this.paymentForm = this.formBuilder.group({

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint='http://localhost:8000/';
-export const endpoint = 'https://kapc.healthixsolutions.com:7000/';
+export const endpoint='http://192.168.0.105:8000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -43,7 +42,7 @@ export class ServiceService {
       map(this.extractData));
   }
   getAppointments(): Observable<any> {
-    return this.http.get(endpoint + 'appointments/all/?limit=1000').pipe(
+    return this.http.get(endpoint + 'api/appointment/').pipe(
       map(this.extractData));
   }
   getAppointmentsRevenues(): Observable<any> {
@@ -63,7 +62,7 @@ export class ServiceService {
       map(this.extractData));
   }
   searchAppointments(id): Observable<any> {
-    return this.http.get(endpoint + 'appointments/all/?search='+id+'&limit=1000').pipe(
+    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=1000').pipe(
       map(this.extractData));
   }
   deleteAppointment(id): Observable<any> {
@@ -108,7 +107,11 @@ export class ServiceService {
       map(this.extractData));
   }
   getAppointment(id): Observable<any> {
-    return this.http.get(endpoint + 'appointments/'+id+'/').pipe(
+    return this.http.get(endpoint + 'api/appointment/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  postTriage(data): Observable<any> {
+    return this.http.post(endpoint + 'api/triage/',data).pipe(
       map(this.extractData));
   }
   getClientMonthlyTotal(): Observable<any> {
@@ -698,8 +701,8 @@ searchBills(data): Observable<any>{
       ));
   }
   logIn(data): Observable<any> {
-  console.log(data);
-  return this.http.post(endpoint + 'users/login/', data).pipe(
+  console.log('dddd',data);
+  return this.http.post(endpoint + 'account/login/',data).pipe(
     map(this.extractData
     ));
   }
