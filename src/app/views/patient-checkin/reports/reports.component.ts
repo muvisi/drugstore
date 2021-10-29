@@ -15,6 +15,7 @@ export class ReportsComponent implements OnInit {
   appointmentsList;
   loading=false;
   idnumber;
+  appointmentdate;
   phonenumber;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','action']

@@ -258,6 +258,9 @@ export class AppointmentDetailsComponent implements OnInit {
        console.log(res);
      })
    }
+   onNote(){
+     
+   }
    appointmentTypeSelected(value){
      console.log("SELECTED",value);
      if(value=='couple')
