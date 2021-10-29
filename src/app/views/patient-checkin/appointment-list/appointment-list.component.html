@@ -18,6 +18,11 @@
                       <input matInput [(ngModel)]="idnumber" (keyup)="applyFilter($event.target.value)"  placeholder="National id" type="input">
                     </mat-form-field>
               </div>
+              <div class="col-sm-2">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="appointmentdate" (keyup)="applyFilter($event.target.value)"  placeholder="Date" type="input">
+                  </mat-form-field>
+            </div>
               </div>
             </div>
               <div class="col-sm-12">

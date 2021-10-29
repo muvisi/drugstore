@@ -24,11 +24,14 @@
                       <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                       <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
                       </ng-container>
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
-                        <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.name}} </td>
+                    <ng-container matColumnDef="first_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> FIRST Name </th>
+                        <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.first_name}} </td>
                         </ng-container>
-                  
+                        <ng-container matColumnDef="last_name">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>LAST NAME </th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.last_name}} </td>
+                          </ng-container>
                         <ng-container matColumnDef="phone">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
                         <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
@@ -118,7 +121,7 @@
                               </mat-select>
                             </mat-form-field>
                        </div>
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                 
                             <mat-form-field appearance="outline">
                                 <mat-label>Branch</mat-label>
@@ -128,7 +131,7 @@
                                   </mat-option>
                                 </mat-select>
                               </mat-form-field>
-                          </div>
+                          </div> -->
                      
                      <div class="col-sm-6">
                         <mat-form-field appearance="outline">
@@ -152,7 +155,7 @@
                         </mat-form-field>
                       </div>
                     
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                           <mat-form-field appearance="outline">
                             <mat-label>Department</mat-label>
                             <mat-select  [(ngModel)]="employee.department">
@@ -162,7 +165,7 @@
                             </mat-select>
                           </mat-form-field>
                           
-                          </div>
+                          </div> -->
                           <div class="col-sm-6">
                               <mat-form-field appearance="outline">
                                 <mat-label>Email</mat-label>
@@ -226,7 +229,7 @@
                               </mat-select>
                             </mat-form-field>
                        </div>
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                 
                             <mat-form-field appearance="outline">
                                 <mat-label>Branch</mat-label>
@@ -236,7 +239,7 @@
                                   </mat-option>
                                 </mat-select>
                               </mat-form-field>
-                          </div>
+                          </div> -->
                      
                      <div class="col-sm-6">
                         <mat-form-field appearance="outline">
@@ -259,7 +262,7 @@
                         </mat-form-field>
                       </div>
                     
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                           <mat-form-field appearance="outline">
                             <mat-label>Department</mat-label>
                             <mat-select  formControlName="department">
@@ -267,9 +270,9 @@
                                 {{item.name}}
                               </mat-option>
                             </mat-select>
-                          </mat-form-field>
+                          </mat-form-field> 
                           
-                          </div>
+                           </div> -->
                           <div class="col-sm-6">
                               <mat-form-field appearance="outline">
                                 <mat-label>Email</mat-label>

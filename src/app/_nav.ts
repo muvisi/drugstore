@@ -48,7 +48,7 @@ export const navItems: NavData[] = [
 
   {
     name: 'Report',
-    url: '/dashboard/report',
+    url: '/dashboard/reports',
     icon: 'icon-chart',
   },
   {

@@ -250,7 +250,11 @@ export class AppointmentDetailsComponent implements OnInit {
    triageSave(){
      let data = this.triageForm.value;
      data.id = this.route.snapshot.params.id
+     this.loading=true;
      this.service.postTriage(data).subscribe((res)=>{
+       
+       this.loading=false;
+       this.toastr.success("Triage Saved")
        console.log(res);
      })
    }
@@ -268,6 +272,7 @@ export class AppointmentDetailsComponent implements OnInit {
       this.customer = this.data.patient;
       console.log('ddd',this.data);
       this.appointmentForm.patchValue({date:new Date(this.data.date),reason:this.data.reason,time:this.data.time,type:this.data.dose})
+      this.triageForm.patchValue(res.triage);
     //   if(this.data.type=='couple')this.addspouse=true; else this.addspouse=false;
     //   this.session_platform=this.data.platform;
     //   this.customer = this.data.client;

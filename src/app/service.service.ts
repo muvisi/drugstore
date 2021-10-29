@@ -657,7 +657,7 @@ searchBills(data): Observable<any>{
 
   }
   createAppointment(data): Observable<any>{
-    return this.http.post(endpoint + 'patients/appointment/',data).pipe(
+    return this.http.post(endpoint + 'api/appointment/',data).pipe(
       map(this.extractData));
   }
   createReappointment(data): Observable<any>{
@@ -702,7 +702,7 @@ searchBills(data): Observable<any>{
   }
   logIn(data): Observable<any> {
   console.log('dddd',data);
-  return this.http.post(endpoint + 'account/login/',data).pipe(
+  return this.http.post(endpoint + 'users/login/',data).pipe(
     map(this.extractData
     ));
   }
@@ -712,13 +712,23 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+  getUsers(): Observable<[]> {
+    return this.http.get(endpoint + 'users/',  ).pipe(
+      map(this.extractData
+      ));
+  }
   updateUser(data): Observable<{}> {
     return this.http.post<{}>(endpoint + 'users/update_user/', data ).pipe(
       map(this.extractData
       ));
   }
-  reset(data): Observable<{}> {
-    return this.http.post<{}>(endpoint + 'users/reset/', data ).pipe(
+  userReset(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/user/reset/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  adminReset(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/admin/reset/', data ).pipe(
       map(this.extractData
       ));
   }

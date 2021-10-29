@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit  {
     if(this.resetData.pass1!= this.resetData.pass2){
       this.toastr.error('Non matching password');
     }
-    this.User.reset(this.resetData).subscribe((res)=>{
+    this.User.userReset(this.resetData).subscribe((res)=>{
       this.toastr.success('Password Change Success');
       this.staticModal.hide();
     })

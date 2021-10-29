@@ -17,7 +17,7 @@ export class EmployeesComponent implements OnInit {
   selectedUser:any={};
   dataSource;
   departments =[];
-  displayedColumns: string[] = ['sn','name', 'phone', 'email','role','view','edit','deactivate','activate','reset'];
+  displayedColumns: string[] = ['sn','first_name','last_name', 'phone', 'email','role','view','edit','deactivate','activate','reset'];
   employee: any={};
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
   @ViewChild('addModal', { static: false }) addModal: ModalDirective;
@@ -33,15 +33,15 @@ export class EmployeesComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      hospital: ['', Validators.required],
-      email: ['', Validators.required],
-      department:['',Validators.required],
+      last_name: ['', Validators.required],    
+      email: ['', Validators.required],     
       phone:['',Validators.required],
       role:['',Validators.required],
       gender:['',Validators.required]
   });
-    this.employeesList();
+  // department:['',Validators.required],
+  // hospital: ['', Validators.required],
+    this.getUserList();
     this.user = JSON.parse(sessionStorage.getItem('user'));
     this.getHospitals();
     
@@ -56,8 +56,9 @@ export class EmployeesComponent implements OnInit {
       this.loading = false;
     },
     (error)=>{
-      this.toastr.error(error.error.error);
+      this.toastr.error("Check if user email exists");
       this.loading = false;
+      
     }
     );
     }
@@ -83,9 +84,10 @@ export class EmployeesComponent implements OnInit {
     }
     );
   }
-  employeesList() {
-  this.service.getDoctors().subscribe((res) => {
-  this.dataSource = new MatTableDataSource<[]>(res.results)
+  getUserList() {
+  this.service.getUsers().subscribe((res) => {
+  console.log("PRIORTY",res);
+  this.dataSource = new MatTableDataSource<[]>(res)
   this.dataSource.sort = this.uSort;
   this.dataSource.paginator = this.paginator;
 
@@ -93,7 +95,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   reset(element){
-    this.service.reset(element).subscribe((res)=>{
+    this.service.adminReset(element).subscribe((res)=>{
       this.toastr.success('Successfully reset password');
     },(err)=>{
       this.toastr.error('Password reset failed','Failed');
@@ -109,7 +111,7 @@ export class EmployeesComponent implements OnInit {
       this.service.deactivateUser(data,item.id).subscribe((res)=>{
         this.toastr.error('Successfully deactivated user' + ' '+ item.name);
         this.selectedUser = res;
-        this.employeesList();
+        this.getUserList();
       })
     } else{
       const data={
@@ -119,7 +121,7 @@ export class EmployeesComponent implements OnInit {
       this.service.deactivateUser(data,item.id).subscribe((res)=>{
       this.selectedUser = res;
       this.toastr.info('Successfully activated user' + ' '+ item.name);
-        this.employeesList();
+        this.getUserList();
       })
     }
    

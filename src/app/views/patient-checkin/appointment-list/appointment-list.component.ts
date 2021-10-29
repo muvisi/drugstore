@@ -49,6 +49,7 @@ export class AppointmentListComponent implements OnInit {
   }
   applyFilter(filterValue: string) {
     this.service.searchAppointments(filterValue).subscribe((res)=>{
+      console.log("RESP",res);
       this.dataSource = new MatTableDataSource(res);
       this.appointmentsList=res.results
       this.dataSource.paginator = this.paginator;
