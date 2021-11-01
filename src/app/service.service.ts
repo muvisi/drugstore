@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-export const endpoint='http://192.168.0.105:8000/';
+// export const endpoint='http://192.168.0.105:8000/';
+export const endpoint='http://localhost:8000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -759,6 +760,13 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+
+  completeAppointment(data){
+    return this.http.post(endpoint + 'api/appointment_finish/',data).pipe(
+      map(this.extractData
+      ));
+  } 
+
   appointmentFee(data){
     return this.http.get(endpoint + 'appointments/fee/?appointment='+data).pipe(
       map(this.extractData

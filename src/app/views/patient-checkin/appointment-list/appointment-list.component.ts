@@ -17,7 +17,7 @@ export class AppointmentListComponent implements OnInit {
   idnumber;
   phonenumber;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','action']
+  Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','status','action']
   constructor(public service:ServiceService,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
     this.idnumber="";
