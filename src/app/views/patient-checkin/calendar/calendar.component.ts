@@ -14,52 +14,54 @@ import { DateTimePicker } from '@syncfusion/ej2-calendars';
 })
 export class CalendarComponent implements OnInit {
 token: string = sessionStorage.getItem('Token');
-selectedDate: Date = new Date();
+// selectedDate: Date = new Date();
 setView: View ='MonthAgenda';
 scheduleHours: WorkHoursModel  = { highlight: true, start: '08:00', end: '05:00' };
-workWeekDays: number[] = [1,2,3,4,5];
+public workWeekDays: number[] = [6];
 setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
-dataManager: DataManager = new DataManager({
-  url: endpoint+'appointments/appointments/',
-  crudUrl: endpoint+'appointments/appointment_list/',
-  adaptor: new UrlAdaptor,
-  headers: [{ 'Authorization': 'Bearer ' + this.token}]
-});
-eventSettings: EventSettingsModel = { dataSource: this.dataManager
+// dataManager: DataManager = new DataManager({
+//   url: endpoint+'api/appointment/',
+//   crudUrl: endpoint+'api/appointment/',
+//   adaptor: new UrlAdaptor,
+//   headers: [{ 'Authorization': 'Bearer ' + this.token}]
+// });
+public scheduleViews: View[] = ['Week', 'WorkWeek', 'Month', 'TimelineWeek', 'TimelineWorkWeek'];
+public showWeekend: boolean = true;
+public data: object[] = [{
+  Id: 1,
+  Subject: 'Meeting',
+  StartTime: new Date(2018, 1, 15, 10, 0),
+  EndTime: new Date(2018, 1, 15, 12, 30)
+    }];
+eventSettings: EventSettingsModel = { dataSource: this.data
 }
-group: GroupModel = { resources: ['Owners'] };
-ownerDataSource: Object[] = [];
+selectedDate: Date = new Date(2018, 1, 15);
   constructor( public service: ServiceService) {
    }
 
   ngOnInit() {
-    this.getCounsellors()
-  }
-  getCounsellors(){
-    this.service.getcounsellors().subscribe((res)=>{
-      this.ownerDataSource = res.results;
-    })
+    // this.getCounsellors()
   }
 
 onPopupOpen(args: PopupOpenEventArgs): void {
-  if (args.type === 'Editor') {
-      let statusElement: HTMLInputElement = args.element.querySelector('#EventType') as HTMLInputElement;
-      if (!statusElement.classList.contains('e-dropdownlist')) {
-          let dropDownListObject: DropDownList = new DropDownList({
-              placeholder: 'Choose status', value: statusElement.value,
-              dataSource: ['New', 'Requested', 'Confirmed']
-          });
-          dropDownListObject.appendTo(statusElement);
-          statusElement.setAttribute('name', 'EventType');
-      }
-      let startElement: HTMLInputElement = args.element.querySelector('#StartTime') as HTMLInputElement;
-      if (!startElement.classList.contains('e-datetimepicker')) {
-          new DateTimePicker({ value: new Date(startElement.value) || new Date() }, startElement);
-      }
-      let endElement: HTMLInputElement = args.element.querySelector('#EndTime') as HTMLInputElement;
-      if (!endElement.classList.contains('e-datetimepicker')) {
-          new DateTimePicker({ value: new Date(endElement.value) || new Date() }, endElement);
-      }
-  }
+  // if (args.type === 'Editor') {
+  //     let statusElement: HTMLInputElement = args.element.querySelector('#EventType') as HTMLInputElement;
+  //     if (!statusElement.classList.contains('e-dropdownlist')) {
+  //         let dropDownListObject: DropDownList = new DropDownList({
+  //             placeholder: 'Choose status', value: statusElement.value,
+  //             dataSource: ['New', 'Requested', 'Confirmed']
+  //         });
+  //         dropDownListObject.appendTo(statusElement);
+  //         statusElement.setAttribute('name', 'EventType');
+  //     }
+  //     let startElement: HTMLInputElement = args.element.querySelector('#StartTime') as HTMLInputElement;
+  //     if (!startElement.classList.contains('e-datetimepicker')) {
+  //         new DateTimePicker({ value: new Date(startElement.value) || new Date() }, startElement);
+  //     }
+  //     let endElement: HTMLInputElement = args.element.querySelector('#EndTime') as HTMLInputElement;
+  //     if (!endElement.classList.contains('e-datetimepicker')) {
+  //         new DateTimePicker({ value: new Date(endElement.value) || new Date() }, endElement);
+  //     }
+  // }
 }
 }

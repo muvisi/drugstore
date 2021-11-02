@@ -21,9 +21,8 @@ export class AppointmentComponent implements OnInit {
   loading = false;
   displayedColumns: string[] = ['patient_no', 'name','phone','appointment_date','time','reason','transaction'];
   listColumns: string[] = ['S/No', 'name','phone','time'];
-  time =['8:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00']
   maxDate = new Date();
-  dobDate= new Date(moment().subtract(4,'years').format())
+  dobDate= new Date(moment().subtract(18,'years').format())
   paymentForm: FormGroup;
 
   counsellling_type=[
@@ -83,7 +82,14 @@ export class AppointmentComponent implements OnInit {
  }
  get f() { return this.appointmentForm.controls; }
  get p() { return this.paymentForm.controls; }
-
+onTime(){
+  if(moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') >=moment('17:00','HH:mm').format('HH:mm') || moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') < moment('08:00','HH:mm').format('HH:mm') ){
+    this.toastr.info("please select time between 8am - 5pm");
+    this.loading = false; 
+    this.submitted = false;
+    return
+  }
+}
  onPayment(){
    console.log(this.paymentForm.value)
   this.service.mpesaStk(this.paymentForm.value).subscribe((res)=>{
@@ -107,7 +113,7 @@ export class AppointmentComponent implements OnInit {
 
   }
   if(moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') >=moment('17:00','HH:mm').format('HH:mm') || moment(this.appointmentForm.get('time').value,'HH:mm').format('HH:mm') < moment('08:00','HH:mm').format('HH:mm') ){
-    this.toastr.info("please select time between 8am - 4pm");
+    this.toastr.info("please select time between 8am - 5pm");
     this.loading = false; 
     this.submitted = false;
     return

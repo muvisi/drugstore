@@ -159,19 +159,9 @@
                       </mat-form-field>
                 </div>
                 <div class="col-sm-2">
-                  <!-- <mat-form-field appearance="outline">
-                    <mat-label>Appointment Time</mat-label>
-                    <mat-select formControlName="time">
-                      <mat-option *ngFor="let item of time" [value]="item">
-                        {{item}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="f.time && submitted">Appointment Time <strong>required</strong></mat-error>
-
-                  </mat-form-field> -->
                   <mat-form-field appearance="outline">
                     <mat-label>Appointment Time</mat-label>
-                    <input matInput placeholder="Time" formControlName="time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top">
+                    <input matInput placeholder="Time" formControlName="time" (ngModelChange)="onTime()"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top">
                     <mat-error *ngIf="f.time && submitted">Appointment Time <strong>required</strong></mat-error>
 
                   </mat-form-field>
