@@ -36,6 +36,7 @@ export class ReportsComponent implements OnInit {
   date1;
   date2;
   date3;
+  date_b;
   selected_date;
   loading=false;
 
