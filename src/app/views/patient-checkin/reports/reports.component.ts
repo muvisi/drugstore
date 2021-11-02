@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ServiceService } from '../../../service.service';
+import { ExcelGeneratorService } from '../../../excel-generator.service'
 import { FormControl } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common'
@@ -36,7 +37,7 @@ export class ReportsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','status']
   Columns2: string[] = ['sn','date','time','Client','phone','national_id']
-  constructor(public service:ServiceService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
+  constructor(public service:ServiceService,public excelGeneratorService: ExcelGeneratorService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
     this.month=new Date().getMonth()
     this.year=new Date().getFullYear()
@@ -112,10 +113,18 @@ downloadReportFirstDose(){
     //   this.handle_download(res);
     // })
   
-      const workSheet = XLSX.utils.json_to_sheet(this.firstDoseAppointMent.data);
-      const workBook: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workBook, workSheet, 'SheetName');
-      XLSX.writeFile(workBook, 'First Dose.xlsx');
+      // const workSheet = XLSX.utils.json_to_sheet(this.firstDoseAppointMent.data);
+      // const workBook: XLSX.WorkBook = XLSX.utils.book_new();
+      // let titleRow = workSheet.addRow(["First Dose Vaccination As At "+ this.datepipe.transform(new Date(),"MMM d, y,")]);
+      
+      // titleRow.font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+      // workSheet.addRow([]);
+      // XLSX.utils.book_append_sheet(workBook, workSheet, 'SheetName');
+      // XLSX.writeFile(workBook, 'First Dose.xlsx');
+      this.excelGeneratorService.generate("First Dose Vaccination As At "+ this.datepipe.transform(new Date(),"MMM d, y,"),
+      ["Date","Time","Client","Mobile Number","National ID","Dose","Status"],
+      this.formatData1(this.firstDoseAppointMentList)   
+      )
   
 
   }
