@@ -10,7 +10,17 @@
           <mat-tab label="First Dose"> 
 
             <div class="row container-fluid" style="margin-top: 12px;">
-              <div class="col-sm-12">
+              <div class="col-sm-2">
+                  
+                <mat-form-field appearance="outline">
+                  <mat-label>Appointment Date</mat-label>
+                    <input matInput placeholder="Date" [max]="selected_date"  [matDatepickerFilter]="dateFilter"  [(ngModel)]="date1"  [matDatepicker]="picker" (ngModelChange)="getFirstDose()">
+                    <mat-error *ngIf="date_b">Appointment Date <strong>required</strong></mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+              <div class="col-sm-8">
                 <button  (click)="downloadReportFirstDose()" class="btn btn-success pull-right">Download </button>
               </div>
                 <div class="col-sm-12" style="margin-top: 12px;">
@@ -21,6 +31,10 @@
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                               <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                       </ng-container>
+                      <ng-container matColumnDef="no">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment No</th>
+                        <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                </ng-container>
                             <ng-container matColumnDef="date">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                                     <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
@@ -66,7 +80,17 @@
           </mat-tab>
           <mat-tab label="Second Dose"> 
             <div class="row container-fluid" style="margin-top: 12px;">
-                  <div class="col-sm-12">
+              <div class="col-sm-2">
+                  
+                <mat-form-field appearance="outline">
+                  <mat-label>Appointment Date</mat-label>
+                    <input matInput placeholder="Date" [max]="selected_date"  [matDatepickerFilter]="dateFilter"  [(ngModel)]="date2"  [matDatepicker]="picker2" (ngModelChange)="getSecondDose()">
+                    <mat-error *ngIf="date_b">Appointment Date <strong>required</strong></mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+            </div>
+                  <div class="col-sm-8">
                     <button  (click)="downloadReportSecondDose()" class="btn btn-success pull-right">Download </button>
                   </div>
 
@@ -78,6 +102,10 @@
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                               <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                       </ng-container>
+                      <ng-container matColumnDef="no">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment No</th>
+                        <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                </ng-container>
                             <ng-container matColumnDef="date">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                                     <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
@@ -125,17 +153,23 @@
 
 
             <div class="row container-fluid" style="margin-top: 12px;">
-              <div class="col-sm-12">
-                <div class="row">
-                 
+             
+              <div class="col-sm-2">
+                  
+                <mat-form-field appearance="outline">
+                  <mat-label>Appointment Date</mat-label>
+                    <input matInput placeholder="Date" [max]="selected_date"  [matDatepickerFilter]="dateFilter"  [(ngModel)]="date3"  [matDatepicker]="picker3" (ngModelChange)="getCompleted()">
+                    <mat-error *ngIf="date_b">Appointment Date <strong>required</strong></mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
+            </div>
 
-                  <div class="col-sm-12">
+                  <div class="col-sm-8">
                     <button  (click)="downloadReportCompleted()" class="btn btn-success pull-right">Download </button>
                   </div>
 
 
-                </div>
-              </div>
                 <div class="col-sm-12" style="margin-top: 12px;">
     
                     <div class="mat-elevation-z8 table-responsive">
@@ -144,6 +178,10 @@
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                               <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                       </ng-container>
+                      <ng-container matColumnDef="no">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment No</th>
+                        <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                </ng-container>
                             <ng-container matColumnDef="date">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                                     <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
@@ -169,7 +207,7 @@
                        
                         
                         <tr mat-header-row *matHeaderRowDef="Columns2"></tr>
-                        <tr mat-row *matRowDef="let row; columns:Column2;" ></tr>
+                        <tr mat-row *matRowDef="let row; columns:Columns2;" ></tr>
                       </table>
                   
                       <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
@@ -212,6 +250,10 @@
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                               <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                       </ng-container>
+                      <ng-container matColumnDef="no">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment No</th>
+                        <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                </ng-container>
                             <ng-container matColumnDef="date">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                                     <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
@@ -284,10 +326,15 @@
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                               <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                       </ng-container>
+                        <ng-container matColumnDef="no">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment No</th>
+                          <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                  </ng-container>
                             <ng-container matColumnDef="date">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                                     <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
                             </ng-container>
+
                         <ng-container matColumnDef="time">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
                           <td mat-cell *matCellDef="let element"> {{element.time}}</td>
