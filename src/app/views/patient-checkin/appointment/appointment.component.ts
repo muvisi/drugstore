@@ -162,4 +162,5 @@ mpesa(){
   this.paymentForm.patchValue({amount:1000,acc:"kapc"})
   this.staticModal.show();
 }
+
 }

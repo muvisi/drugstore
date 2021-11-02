@@ -13,6 +13,9 @@ export class ServiceService {
 
   constructor(private http: HttpClient) {
   }
+  getendpoint(){
+    return endpoint;
+  }
   private extractData(res) {
     const  body = res;
     // console.log('service response', res);
@@ -542,6 +545,15 @@ searchProcedure(data): Observable<any> {
   reports(): Observable<any>{
     return this.http.get(endpoint + 'payments/reports/');
   }
+  getAppointmentreports(urlparams): Observable<any>{
+    return this.http.get(endpoint + 'api/reports/?'+urlparams);
+  }
+
+
+downloadAppointmentreports(urlparams): Observable<any>{
+  return this.http.get(endpoint + 'api/reports_download/?'+urlparams);
+}
+
   sendBatch(data) {
     return this.http.post(endpoint + 'claims/send_batch_to_insurance/', data ).pipe(
       map(this.extractData));
@@ -761,6 +773,13 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+
+  completeAppointment(data){
+    return this.http.post(endpoint + 'api/appointment_finish/',data).pipe(
+      map(this.extractData
+      ));
+  } 
+
   appointmentFee(data){
     return this.http.get(endpoint + 'appointments/fee/?appointment='+data).pipe(
       map(this.extractData
