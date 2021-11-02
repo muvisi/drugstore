@@ -23,8 +23,12 @@ export class ExcelGeneratorService {
     worksheet.pageSetup.verticalCentered=true;
 
     let titleRow = worksheet.addRow([title]);
+    if(header.length==6){
+      worksheet.mergeCells('A1:F1');
+    }else{
+      worksheet.mergeCells('A1:H1');
+    }
 
-    worksheet.mergeCells('A1:G1');
     worksheet.getCell('A1').alignment = { vertical: 'middle', horizontal: 'center' };
     // Set font, size and style in title row.
     titleRow.font = { name: 'Candara', family: 4, size: 16, underline: 'single', bold: true, align:'center' };
