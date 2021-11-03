@@ -23,7 +23,9 @@
 
                         </div>
                             <div class="col-sm-7" style="text-align:right">
-                              
+                              <button type="submit"  *ngIf="!data.status"  (click)="completeAppointment()" class="btn btn-primary pull-right">Finish</button>
+                              <button  *ngIf="data.status" [disabled]="data.status"  class="btn btn-success pull-right">Finished </button>
+
                             </div>
                           </div>
               
@@ -105,7 +107,7 @@
                                 <form [formGroup]="triageForm" (ngSubmit)="triageSave()">
 
                                   <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                        <mat-form-field>
                                            <input matInput placeholder="Temperature value" type="number" formControlName="temperature" [ngClass]="{ 'is-invalid': submitted && f.temperature.errors }" >
                                            <i matSuffix class="fa fa-thermometer-half"></i>
@@ -114,49 +116,8 @@
                                          </mat-form-field>
                                     </div>
                                    
-                                    <div class="col-sm-4">
-                                       <mat-form-field >
-                                           <input matInput placeholder="B/P(systolic)" type="number"  formControlName="systolic"  [ngClass]="{ 'is-invalid': submitted && f.systolic.errors }">
-                                           <i matSuffix class="fa fa-yelp"></i>
-                                         </mat-form-field>
-                                    </div>
-                                    <div class="col-sm-4">
-                                       <mat-form-field >
-                
-                                           <input matInput placeholder="B/P (diastolic)" type="number" formControlName="diastolic"  [ngClass]="{ 'is-invalid': submitted && f.diastolic.errors }">
-                                           <i matSuffix class="fa fa-yelp"></i>
-                                      
-                                         </mat-form-field>
-                                    </div>
                                    
-                                    <div class="col-sm-4">
-                                      <mat-form-field>
-                                         
-                                          <input matInput placeholder="Height(cm)" type="number"  formControlName="height"  [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
-                                          <i matSuffix class="fa fa-yelp"></i>
-                                        </mat-form-field>
-                                   </div>  
                    
-                                   <div class="col-sm-4">
-                                          <mat-form-field >
-                         
-                                              <input matInput placeholder="Weight(kgs)" type="number"  formControlName="weight"  [ngClass]="{ 'is-invalid': submitted && f.weight.errors }">
-                                              <i matSuffix class="fa fa-yelp"></i>
-                                            </mat-form-field>
-                                       </div>     
-                                    
-                                       <div class="col-sm-4">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Pulse rate" type="number" formControlName="pulse"  [ngClass]="{ 'is-invalid': submitted && f.pulse.errors }">
-                                            <i matSuffix class="fa fa-heartbeat"></i>
-                                          </mat-form-field>
-                                     </div>
-                                     <div class="col-sm-4">
-                                      <mat-form-field>
-                                          <input matInput placeholder="Respiratory" type="number" formControlName="respiratory"  [ngClass]="{ 'is-invalid': submitted && f.respiratory.errors }">
-                                          <i matSuffix class="fa fa-heartbeat"></i>
-                                        </mat-form-field>
-                                   </div>
                                    <div class="col-sm-12">
                                      <button  *ngIf="!data.status" class="btn btn-success pull-right">Save Triage </button>
                                      <button  *ngIf="data.status"  [disabled]="data.status"  class="btn btn-success pull-right">Triage Saved </button>
@@ -168,36 +129,7 @@
                             </div>
                             <br>
                             </mat-tab>
-                            <mat-tab>
-                              <ng-template mat-tab-label>
-                                Appointments Notes
-                              </ng-template>
-                              <br>
-                            <div class="row container-fluid">
-                            
-                             
-                              <div class="col-sm-12">
-                                <form [formGroup]="noteForm" (ngSubmit)="completeAppointment()">
-                                  <div class="row">
-                                    <div class="col-sm-12">
-                                      <mat-form-field >
-                                        <mat-label>Counselor Notes </mat-label>
-                                        <textarea  matInput  formControlName="notes" (ngModelChange)="onNote()" placeholder="Notes ......"></textarea>
-                                      </mat-form-field>
-                                    </div>
-                                  
-                                  </div>
-                                  <div class="col-sm-12">
-                                    <button type="submit"  *ngIf="!data.status"  class="btn btn-success pull-right">Finish </button>
-                                    <button  *ngIf="data.status" [disabled]="data.status"  class="btn btn-success pull-right">Finished </button>
-                                  </div>
-                                </form>
-                              </div>
-                    
-                            </div>
-                            <br>
-                            </mat-tab>
-                            
+                        
   
                           </mat-tab-group>
                     </div>
