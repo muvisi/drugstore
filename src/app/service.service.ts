@@ -647,16 +647,16 @@ searchBills(data): Observable<any>{
   }
 
   patientRecords(): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient/').pipe(
+    return this.http.get(endpoint + 'api/patient/').pipe(
       map(this.extractData));
   }
   getPatient(id): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient/'+id+'/').pipe(
+    return this.http.get(endpoint + 'api/patient/'+id+'/').pipe(
       map(this.extractData));
   }
 
   SearchPatientRecords(data): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient/?search='+data).pipe(
+    return this.http.get(endpoint + 'api/patient/?search='+data).pipe(
       map(this.extractData));
 
   }
