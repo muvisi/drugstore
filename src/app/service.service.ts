@@ -17,7 +17,6 @@ export class ServiceService {
   }
   private extractData(res) {
     const  body = res;
-    // console.log('service response', res);
     return body || { };
   }
   private handleError<T> (operation = 'operation', result?: T) {
