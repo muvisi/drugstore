@@ -158,7 +158,7 @@
                                         </mat-form-field>
                                    </div>
                                    <div class="col-sm-12">
-                                     <button  *ngIf="!data.status" class="btn btn-success pull-right">Save Triage </button>
+                                     <button  *ngIf="!data.status" [disabled]="!data.active" class="btn btn-success pull-right">Save Triage </button>
                                      <button  *ngIf="data.status"  [disabled]="data.status"  class="btn btn-success pull-right">Triage Saved </button>
                                    </div>
                                 </div>
@@ -188,7 +188,7 @@
                                   
                                   </div>
                                   <div class="col-sm-12">
-                                    <button type="submit"  *ngIf="!data.status"  class="btn btn-success pull-right">Finish </button>
+                                    <button type="submit"  *ngIf="!data.status" [disabled]="!data.active"  class="btn btn-success pull-right">Finish </button>
                                     <button  *ngIf="data.status" [disabled]="data.status"  class="btn btn-success pull-right">Finished </button>
                                   </div>
                                 </form>
