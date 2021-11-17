@@ -28,6 +28,7 @@ import { EmployeesComponent } from '../patient-checkin/employees/employees.compo
 import { ClientsComponent } from '../patient-checkin/clients/clients.component';
 import { BookingComponent } from '../patient-checkin/booking/booking.component';
 import { BillingComponent } from '../patient-checkin/billing/billing.component';
+import { VaccineComponent } from '../patient-checkin/vaccine/vaccine.component';
 const routes: Routes = [
   {
     path: '',
@@ -89,6 +90,16 @@ const routes: Routes = [
       title: 'parients-dashboard'
     }
   },
+
+  {
+    path: 'vaccine-setup',
+    component:VaccineComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'parients-dashboard'
+    }
+  },
+  
   
   {
     path: 'patients/edit',

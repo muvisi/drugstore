@@ -54,6 +54,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { ClientsComponent } from './clients/clients.component';
 import { BookingComponent } from './booking/booking.component';
 import { BillingComponent } from './billing/billing.component';
+import { VaccineComponent } from './vaccine/vaccine.component';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     EmployeesComponent,
     ClientsComponent,
     BookingComponent,
-    BillingComponent 
+    BillingComponent,
+    VaccineComponent 
   ],
   imports: [
     CommonModule,

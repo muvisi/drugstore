@@ -144,7 +144,6 @@ appointmentTypeSelected(value){
   
   if(value=="student")this.student=true;else this.student=false;
 }
-
 weekendsDatesFilter = (d: Date): boolean => {
   const day = d.getDay();
   return day !== 0 && day !== 1 && day !==2 && day !== 3 && day !== 4 && day !== 5;

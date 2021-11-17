@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-header">
+    <h5>Vaccinate Setup</h5>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-2">
+                  
+            <mat-form-field appearance="outline">
+              <mat-label>Appointment Date</mat-label>
+                <input matInput placeholder="Appointment Date" [matDatepickerFilter]="weekendsDatesFilter" [min]="minDate" formControlName="date" [matDatepicker]="picker1">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-sm-5">
+            <mat-form-field appearance="outline">
+                <mat-label>Select Vaccines</mat-label>
+                <mat-select formControlName="names" multiple>
+                  <mat-option *ngFor="let vaccine of vaccines" [value]="vaccine">{{vaccine}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-success">Submit</button>
+        </div>
+    </div>
+
+    </form>
+        <div class="mat-elevation-z8" style="margin-top: 8px;">
+            <table mat-table [dataSource]="dataSource">
+          
+              <ng-container matColumnDef="no">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>date</th>
+                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Vaccines</th>
+                <td mat-cell *matCellDef="let element"> {{element.names}}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                           showFirstLastButtons 
+                           aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div>
+    </div>
+  </div>

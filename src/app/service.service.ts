@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8000/';
-export const endpoint='http://192.168.12.15:4000/';
+export const endpoint='http://134.209.199.123:9000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -569,8 +569,16 @@ downloadAppointmentreports(urlparams): Observable<any>{
       map(this.extractData));
   }
   updateClient(data) {
-      return this.http.put(endpoint + 'patients/patient/'+data.id+'/', data ).pipe(
+      return this.http.put(endpoint + 'api/patient/'+data.id+'/', data ).pipe(
         map(this.extractData));
+  }
+  addVaccine(data) {
+    return this.http.post(endpoint + 'api/vaccine/',data).pipe(
+      map(this.extractData));
+  }
+  getVaccine() {
+    return this.http.get(endpoint + 'api/vaccine/').pipe(
+      map(this.extractData));
   }
   saveClaim(data) {
     return this.http.post(endpoint + 'claims/save_claim/', data ).pipe(

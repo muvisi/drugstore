@@ -52,6 +52,7 @@ rowClick(item){
 }
 applyFilter(filterValue: string) {
   this.service.SearchPatientRecords(filterValue).subscribe((res)=>{
+    console.log(res)
     this.dataSource = new MatTableDataSource(res);
     this.dataSource.paginator = this.paginator;
   })

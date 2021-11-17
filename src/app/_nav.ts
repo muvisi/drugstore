@@ -51,9 +51,14 @@ export const navItems: NavData[] = [
     url: '/dashboard/reports',
     icon: 'icon-chart',
   },
+  // {
+  //   name: 'Staff',
+  //   url: '/dashboard/staff',
+  //   icon: 'icon-user-following',
+  // },
   {
-    name: 'Staff',
-    url: '/dashboard/staff',
-    icon: 'icon-user-following',
+    name: 'Vaccine Setup',
+    url: '/dashboard/vaccine-setup',
+    icon: 'fas fa-syringe',
   }
 ];
