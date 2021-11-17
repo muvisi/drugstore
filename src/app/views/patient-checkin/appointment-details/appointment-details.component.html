@@ -16,9 +16,14 @@
                           <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
-                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} || <span class="text-success">{{customer.age}}</span></div>
+                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} || <span class="text-success">{{customer.age}} <span *ngIf="customer.age >1">years</span> <span *ngIf="customer.age < 1">Months</span> </span></div>
                                 <div class="col-sm-12" > {{customer.phone}} </div>
                                 <div class="col-sm-12" > {{customer.email}} </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-12" (click)="edit()">
+                                <i class="fa fa-pencil text-primary" ></i> Edit Details
+                              </div>
                             </div>
 
                         </div>
@@ -63,14 +68,20 @@
                                             <input matInput placeholder="Time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top"  formControlName="time">
                                           </mat-form-field>
                                         </div>
+                                        
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Vaccine</mat-label>
+                                            <input type="text" formControlName="vaccine" readonly matInput>
+                                           
+                                            <mat-error *ngIf="f.vaccine && submitted">Appointment Type <strong>required</strong></mat-error>
+                                          </mat-form-field>
+                                        </div>
                                         <div class="col-sm-3">
                                           <mat-form-field appearance="outline">
                                             <mat-label>Appointment Type</mat-label>
-                                            <mat-select formControlName="type" (selectionChange)="appointmentTypeSelected($event.value)">
-                                              <mat-option *ngFor="let item of counsellling_type" [value]="item.type">
-                                                {{item.type}}
-                                              </mat-option>
-                                            </mat-select>
+                                            <input type="text" formControlName="type" readonly matInput>
+                                           
                                             <mat-error *ngIf="f.type && submitted">Appointment Type <strong>required</strong></mat-error>
                                           </mat-form-field>
                                         </div>
@@ -135,7 +146,8 @@
                   
             </div>
           </div>
-    </div>
+    </div> 
+
 </div>
 
 <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
@@ -152,7 +164,7 @@
         
         <div class="row">
           <div class="col-sm-12">
-          Kindly confirm that {{customer.first_name}} {{customer.last_name}} {{customer.other_names}} has taken the  {{f.type.value}}
+          Kindly confirm that {{customer.first_name}} {{customer.last_name}} {{customer.other_names}} is taking {{f.vaccine.value}} {{f.type.value}}
           </div>
           <div class="col-sm-12" style="text-align: right;">
             <button class="btn btn-danger btn-sm" (click)="staticModal.hide()">cancel</button>
@@ -164,4 +176,135 @@
   </div>
 </div>
 
+
+<div class="modal fade" bsModal #confirmModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 id="dialog-static-name" class="modal-title pull-left">Confirmation</h6>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="confrimModal.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-sm-12">
+          Kindly confirm that you want to vaccinate before {{f.date.value | date:'d-M-y'}} 
+          </div>
+          <div class="col-sm-12" style="text-align: right;">
+            <button class="btn btn-danger btn-sm" (click)="confirmModal.hide()">cancel</button>
+            <button (click)="confirm()" class="btn btn-success btn-sm">confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
+
+
+
+<div class="modal fade" bsModal #clientModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Edit Client</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form [formGroup]="clientForm"  (ngSubmit)="onSave()">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Surname</mat-label>
+                <input matInput placeholder="Surname" formControlName="last_name">
+                <mat-error *ngIf="c.last_name.errors && submitted">Surname <strong>required</strong></mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="first_name">
+                
+                <mat-error *ngIf="c.first_name.errors && submitted">First Name <strong>required</strong></mat-error>
+              </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Middle</mat-label>
+              <input matInput placeholder="Middle Name" formControlName="other_names">
+             
+              <mat-error *ngIf="c.other_names.errors && submitted">Middle Name <strong>required</strong></mat-error>
+            </mat-form-field>
+      </div>
+       <div class="col-sm-4">
+        <mat-radio-group  formControlName="gender">
+          <label>Gender</label>
+          <div class="row" >
+             <div class="col-sm-4">
+                 <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
+               </div>
+               <div class="col-sm-4">
+                   <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
+                 </div>
+          </div>
+         </mat-radio-group>
+       </div>
+       <div class="col-sm-4">
+        <mat-form-field  appearance="outline">
+          <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" formControlName="phone">
+            <mat-error *ngIf="c.phone.errors && submitted">Phone <strong>required</strong></mat-error>
+
+          </mat-form-field>
+       </div>
+       <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>D.O.B</mat-label>
+            <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="dob" [matDatepicker]="picker">
+            <mat-error *ngIf="c.dob.errors && submitted">Date of birth <strong>required</strong></mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>National ID</mat-label>
+             <input matInput placeholder="National ID" formControlName="national_id">
+             <mat-error *ngIf="c.national_id.errors && submitted">National ID <strong>required</strong></mat-error>
+           </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+             <input matInput placeholder="Email" formControlName="email">
+             <mat-error *ngIf="c.email.errors && submitted">Valid email <strong>required</strong></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Occupation</mat-label>
+            <input matInput placeholder="Occupation" formControlName="occupation">
+          </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Residence</mat-label>
+            <input matInput placeholder="Residence" formControlName="residence">
+          </mat-form-field>
+    </div>
+  <div class="col-sm-8" *ngIf="clientForm.dirty">
+  <button class="btn btn-success pull-right">Update</button>
+</div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

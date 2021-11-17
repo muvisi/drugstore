@@ -45,17 +45,22 @@ export const navItems: NavData[] = [
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
   },
+  {
+    name: 'Clients',
+    url: '/dashboard/records',
+    icon: 'icon-people',
+  },
+  {
+    name: 'Calendar',
+    url: '/dashboard/calendar',
+    icon: 'fa fa-calendar-check-o',
+  },
 
   {
     name: 'Report',
     url: '/dashboard/reports',
     icon: 'icon-chart',
   },
-  // {
-  //   name: 'Staff',
-  //   url: '/dashboard/staff',
-  //   icon: 'icon-user-following',
-  // },
   {
     name: 'Vaccine Setup',
     url: '/dashboard/vaccine-setup',

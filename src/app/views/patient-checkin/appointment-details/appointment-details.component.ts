@@ -7,12 +7,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
-import { element } from 'protractor';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-appointment-details',
   templateUrl: './appointment-details.component.html',
-  styleUrls: ['./appointment-details.component.scss']
+  styleUrls: ['./appointment-details.component.scss'],
+  providers:[DatePipe]
 })
 export class AppointmentDetailsComponent implements OnInit {
   maxDate = new Date();
@@ -35,7 +36,9 @@ export class AppointmentDetailsComponent implements OnInit {
   diagnosis:any ={};
   diagnosisSource;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  @ViewChild('clientModal', { static: false }) clientModal: ModalDirective;
   @ViewChild('paginator', { static: true}) paginator: MatPaginator;
+  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective;
   Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
   cashColumns: string[] = ['sn','date','name','amount','trx'];
   diaColumns: string[] = ['sn','date','name','code'];
@@ -64,13 +67,29 @@ export class AppointmentDetailsComponent implements OnInit {
     {type:"First Dose"},
     {type:"Second Dose"}
   ]
-  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService,public router:Router) { }
+  clientForm: FormGroup;
+  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,public toastr:ToastrService,public router:Router,public datePipe:DatePipe) { }
   ngOnInit() {
     this.appointmentForm = this.formBuilder.group({
       time: ['', Validators.required],
       reason: ['', Validators.required],
       type: ['', Validators.required],
+      vaccine:['', Validators.required],
       date:['',Validators.required]
+    });
+
+    this.clientForm = this.formBuilder.group({
+      phone: ['',Validators.required],
+      first_name: ['', Validators.required],
+      other_names: [''],
+      last_name: ['', Validators.required],
+      gender: ['', Validators.required],
+      email: ['',Validators.email],
+      dob: ['', Validators.required],
+      residence: [''],
+      national_id: ['',Validators.required],
+      occupation: [''],
+      id: ['']
     });
 
     this.triageForm = this.formBuilder.group({
@@ -100,8 +119,7 @@ export class AppointmentDetailsComponent implements OnInit {
   get s() { return this.spouseForm.controls; }
   get f() { return this.appointmentForm.controls; }
   get g() { return this.counselorForm.controls; }
-  get h() { return this.cashForm.controls; }
-  get i() { return this.supervisionForm.controls; }
+  get c() { return this.clientForm.controls; }
 
   navigate(){
     this.router.navigate(['/dashboard/bill-client/',this.route.snapshot.params.id])
@@ -139,7 +157,7 @@ export class AppointmentDetailsComponent implements OnInit {
       this.data = res;
       this.loading = false
       this.customer = this.data.patient;
-      this.appointmentForm.patchValue({date:new Date(this.data.date),reason:this.data.reason,time:this.data.time,type:this.data.dose})
+      this.appointmentForm.patchValue({date:new Date(this.data.date),reason:this.data.reason,time:this.data.time,type:this.data.dose,vaccine:this.data.vaccine})
       if(res.triage !=undefined){
         this.triageForm.patchValue(res.triage);  
       }
@@ -150,7 +168,18 @@ export class AppointmentDetailsComponent implements OnInit {
   }
   
 
-  
+  onSave(){
+    this.submitted = true;
+    let data = this.clientForm.value;
+    data.dob = this.datePipe.transform(data.dob,'yyyy-MM-dd');
+    this.service.updateClient(data).subscribe((res)=>{
+       this.clientModal.hide();
+       this.submitted = false;
+       this.toastr.success('Successfully updated client','Success');
+       this.ngOnInit();
+    })
+   }
+   
  
   refund(data){
     this.service.appointmentRefund(data).subscribe((res)=>{
@@ -170,10 +199,22 @@ export class AppointmentDetailsComponent implements OnInit {
   }
 
   completeAppointment(){
-    if(this.triageForm.get('temperature').value == ''){
-      this.toastr.info("Kindly take temperature",'Temperature');
+    let date= moment(this.appointmentForm.get('date').value).format('YYYY-MM-DD')
+    if(date! =moment().format('YYYY-MM-DD')){
+      this.confirmModal.show();
+    }else{
+      if(this.triageForm.get('temperature').value == ''){
+        this.toastr.info("Kindly take temperature",'Temperature');
+        return
+      }
+      this.staticModal.show();
     }
+  
+  }
+  confirm(){
+    this.confirmModal.hide();
     this.staticModal.show();
+
   }
 finish(){
   let data = this.noteForm.value
@@ -189,5 +230,13 @@ finish(){
     this.toastr.info(err.error.error,"Failed");
   })
 }
- 
+
+edit(){
+  let item = this.customer;
+  this.clientForm.patchValue({first_name:item.first_name,last_name:item.last_name,other_names:item.other_names,phone:item.phone,
+    dob:new Date(item.dob),gender:item.gender,email:item.email,residence:item.residence,national_id:item.national_id,occupation:item.occupation,id:item.id
+  })
+  this.clientModal.show();
+}
+
 }
