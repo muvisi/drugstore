@@ -16,6 +16,7 @@ export class VaccineComponent implements OnInit {
   minDate = new Date()
   date;
   dataSource;
+  loading=false;
   selected;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   displayedColumns: string[] = ['no','date','name','delete'];
