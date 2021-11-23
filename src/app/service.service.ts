@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint='http://localhost:8000/';
-export const endpoint='http://134.209.199.123:9000/';
+export const endpoint='http://localhost:8000/';
+// export const endpoint='http://134.209.199.123:9000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -1015,4 +1015,31 @@ searchScheme(payer, searchTerm): Observable<any> {
       map(this.extractData));
 
   }
+
+list():Observable<any>  {
+  return this.http.get(endpoint+'api/bookings');
+}
+
+
+alllist():Observable<any>  {
+return this.http.get(endpoint+'api/patients');
+}
+
+queuelist():Observable<any>  {
+return this.http.get(endpoint+'api/queuenumber');
+}
+
+
+searchFor(phone): Observable<any> {
+  return this.http.get(endpoint + 'api/filtering/?search='+ phone).pipe(
+    map(this.extractData));
+}
+searchbooking(phone): Observable<any> {
+  return this.http.get(endpoint + 'api/searchbooking/?search='+ phone).pipe(
+    map(this.extractData));
+}
+searchpatient(phone): Observable<any> {
+  return this.http.get(endpoint + 'api/searchpatient/?search='+ phone).pipe(
+    map(this.extractData));
+}
 }

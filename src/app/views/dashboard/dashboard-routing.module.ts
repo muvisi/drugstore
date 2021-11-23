@@ -29,6 +29,10 @@ import { ClientsComponent } from '../patient-checkin/clients/clients.component';
 import { BookingComponent } from '../patient-checkin/booking/booking.component';
 import { BillingComponent } from '../patient-checkin/billing/billing.component';
 import { VaccineComponent } from '../patient-checkin/vaccine/vaccine.component';
+import { QueueComponent } from '../patient-checkin/queue/queue.component';
+import { PexperienceComponent } from '../patient-checkin/pexperience/pexperience.component';
+import { AllbookingComponent } from '../patient-checkin/allbooking/allbooking.component';
+import { QueuelistComponent } from '../patient-checkin/queuelist/queuelist.component';
 const routes: Routes = [
   {
     path: '',
@@ -50,6 +54,26 @@ const routes: Routes = [
   {
     path: 'appointments',
     component: AppointmentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'queueline',
+    component: QueuelistComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'queue',
+    component: QueueComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'allbooking',
+    component: AllbookingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'pexperience',
+    component: PexperienceComponent,
     canActivate: [AuthGuard]
   },
   {

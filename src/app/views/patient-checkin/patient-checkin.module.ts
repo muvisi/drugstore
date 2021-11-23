@@ -55,6 +55,11 @@ import { ClientsComponent } from './clients/clients.component';
 import { BookingComponent } from './booking/booking.component';
 import { BillingComponent } from './billing/billing.component';
 import { VaccineComponent } from './vaccine/vaccine.component';
+import { QueuelistComponent } from './queuelist/queuelist.component';
+import { PexperienceComponent } from './pexperience/pexperience.component';
+import { AllbookingComponent } from './allbooking/allbooking.component';
+import { QueueComponent } from './queue/queue.component';
+
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
   declarations: [
@@ -84,7 +89,12 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     ClientsComponent,
     BookingComponent,
     BillingComponent,
-    VaccineComponent 
+    VaccineComponent ,
+    QueueComponent,
+    QueuelistComponent,
+    PexperienceComponent,
+    AllbookingComponent
+
   ],
   imports: [
     CommonModule,

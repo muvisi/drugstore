@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PatientCheckinModule } from '../patient-checkin/patient-checkin.module';
 
+
 @NgModule({
   imports: [
     FormsModule,
