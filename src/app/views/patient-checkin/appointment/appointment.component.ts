@@ -52,7 +52,7 @@ export class AppointmentComponent implements OnInit {
       phone: ['',Validators.required],
       dose: ['', Validators.required],
       time: ['', Validators.required],
-      reason: ['', Validators.required],
+      reason: ['Covid 19 Vaccination', Validators.required],
       first_name: ['', Validators.required],
       doc_type: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -133,7 +133,7 @@ onTime(){
    this.submitted = false;
    this.loading=false;
   },(err)=>{
-    this.toastr.error(err.error.error);
+    this.toastr.error(err.error.message);
   this.submitted = false;
    this.loading=false;
   })
@@ -143,6 +143,10 @@ onTime(){
 appointmentTypeSelected(value){
   
   if(value=="student")this.student=true;else this.student=false;
+}
+weekendsDatesFilter = (d: Date): boolean => {
+  const day = d.getDay();
+  return day !== 0 && day !== 1 && day !==2 && day !== 3 && day !== 4 && day !== 5;
 }
 
 onSelect(item){

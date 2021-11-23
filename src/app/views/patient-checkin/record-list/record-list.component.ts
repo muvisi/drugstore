@@ -42,7 +42,7 @@ export class RecordListComponent implements OnInit {
   get f() { return this.clientForm.controls; }
 getRecords(){
   this.service.patientRecords().subscribe((res)=>{
-    this.dataSource = new MatTableDataSource(res.results);
+    this.dataSource = new MatTableDataSource(res);
     this.dataSource.paginator = this.paginator;
   })
 }
@@ -52,7 +52,8 @@ rowClick(item){
 }
 applyFilter(filterValue: string) {
   this.service.SearchPatientRecords(filterValue).subscribe((res)=>{
-    this.dataSource = new MatTableDataSource(res.results);
+    console.log(res)
+    this.dataSource = new MatTableDataSource(res);
     this.dataSource.paginator = this.paginator;
   })
 }

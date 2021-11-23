@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-export const endpoint='http://localhost:8000/';
-// export const endpoint='http://134.209.199.123:9000/';
-
+// export const endpoint='http://localhost:8000/';
+export const endpoint='http://134.209.199.123:9000/';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +17,6 @@ export class ServiceService {
   }
   private extractData(res) {
     const  body = res;
-    // console.log('service response', res);
     return body || { };
   }
   private handleError<T> (operation = 'operation', result?: T) {
@@ -571,8 +569,20 @@ downloadAppointmentreports(urlparams): Observable<any>{
       map(this.extractData));
   }
   updateClient(data) {
-      return this.http.put(endpoint + 'patients/patient/'+data.id+'/', data ).pipe(
+      return this.http.put(endpoint + 'api/patient/'+data.id+'/', data ).pipe(
         map(this.extractData));
+  }
+  addVaccine(data) {
+    return this.http.post(endpoint + 'api/vaccine/',data).pipe(
+      map(this.extractData));
+  }
+  getVaccine() {
+    return this.http.get(endpoint + 'api/vaccine/').pipe(
+      map(this.extractData));
+  }
+  deleteVaccine(id) {
+    return this.http.delete(endpoint + 'api/vaccine/'+id+'/').pipe(
+      map(this.extractData));
   }
   saveClaim(data) {
     return this.http.post(endpoint + 'claims/save_claim/', data ).pipe(
@@ -647,16 +657,16 @@ searchBills(data): Observable<any>{
   }
 
   patientRecords(): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient/').pipe(
+    return this.http.get(endpoint + 'api/patient/').pipe(
       map(this.extractData));
   }
   getPatient(id): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient/'+id+'/').pipe(
+    return this.http.get(endpoint + 'api/patient/'+id+'/').pipe(
       map(this.extractData));
   }
 
   SearchPatientRecords(data): Observable<any> {
-    return this.http.get(endpoint + 'patients/patient/?search='+data).pipe(
+    return this.http.get(endpoint + 'api/patient/?search='+data).pipe(
       map(this.extractData));
 
   }
