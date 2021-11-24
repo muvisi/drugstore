@@ -41,7 +41,7 @@ export const navItems: NavData[] = [
   },
  
   {
-    name: 'Booking',
+    name: 'Bookings',
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
   },
@@ -57,8 +57,13 @@ export const navItems: NavData[] = [
   },
 
   {
-    name: 'Report',
+    name: 'Covid Report',
     url: '/dashboard/reports',
+    icon: 'icon-chart',
+  },
+  {
+    name: 'Bookings Report',
+    url: '/dashboard/queuereports',
     icon: 'icon-chart',
   },
   {

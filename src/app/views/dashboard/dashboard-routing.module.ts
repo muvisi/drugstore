@@ -33,6 +33,8 @@ import { QueueComponent } from '../patient-checkin/queue/queue.component';
 import { PexperienceComponent } from '../patient-checkin/pexperience/pexperience.component';
 import { AllbookingComponent } from '../patient-checkin/allbooking/allbooking.component';
 import { QueuelistComponent } from '../patient-checkin/queuelist/queuelist.component';
+import { OnlinereportsComponent } from '../../onlinereports/onlinereports.component';
+import { MaincovidComponent } from '../../maincovid/maincovid.component';
 const routes: Routes = [
   {
     path: '',
@@ -59,6 +61,16 @@ const routes: Routes = [
   {
     path: 'queueline',
     component: QueuelistComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'queuereports',
+    component: OnlinereportsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'maincovid',
+    component: MaincovidComponent,
     canActivate: [AuthGuard]
   },
   {

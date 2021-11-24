@@ -59,6 +59,8 @@ import { QueuelistComponent } from './queuelist/queuelist.component';
 import { PexperienceComponent } from './pexperience/pexperience.component';
 import { AllbookingComponent } from './allbooking/allbooking.component';
 import { QueueComponent } from './queue/queue.component';
+import { OnlinereportsComponent } from '../../onlinereports/onlinereports.component';
+import { MaincovidComponent } from '../../maincovid/maincovid.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
@@ -93,7 +95,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     QueueComponent,
     QueuelistComponent,
     PexperienceComponent,
-    AllbookingComponent
+    AllbookingComponent,
+    OnlinereportsComponent,
+    MaincovidComponent
 
   ],
   imports: [
