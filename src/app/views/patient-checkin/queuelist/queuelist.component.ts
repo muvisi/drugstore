@@ -28,7 +28,7 @@ export class QueuelistComponent implements OnInit {
         this.dataSource = new MatTableDataSource <[]>(data.queuelist);
         this.dataSource.paginator = this.paginator;
         this.loading = false;
-        this.toastr.success('finished loading Quelist');
+        
         
       },
      

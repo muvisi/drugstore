@@ -33,7 +33,7 @@ export class PexperienceComponent implements OnInit {
         this.dataSource = new MatTableDataSource <[]>(data.list);
         this.dataSource.paginator = this.paginator;
         this.loading = false;
-        this.toastr.success('finished loading Patients');
+        // this.toastr.success('finished loading Patients');
         
       
       },
