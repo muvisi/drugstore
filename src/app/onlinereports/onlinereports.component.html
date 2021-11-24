@@ -36,7 +36,7 @@
                       
                             <ng-container matColumnDef="specialist">
                               <th mat-header-cell *matHeaderCellDef  mat-sort-header>Specialist</th>
-                              <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.patient.specialist}}</td>
+                              <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.specialist}}</td>
                             </ng-container>
                           
                             <ng-container matColumnDef="phone">
@@ -49,17 +49,21 @@
                             </ng-container>
                             <ng-container matColumnDef="payment">
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment</th>
-                              <td mat-cell *matCellDef="let element"> {{element.patient.payment}} </td>
+                              <td mat-cell *matCellDef="let element"> {{element.payment}} </td>
                             </ng-container>
                             <ng-container matColumnDef="email">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
                                 <td mat-cell *matCellDef="let element"> {{element.patient.email}} </td>
                               </ng-container>
+                              <ng-container matColumnDef="symptoms">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>symptoms</th>
+                                <td mat-cell *matCellDef="let element"> {{element.symptoms}} </td>
+                              </ng-container>
                             
                             
                             
-                            <tr mat-header-row *matHeaderRowDef="Columns3"></tr>
-                            <tr mat-row *matRowDef="let row; columns:Columns3;" ></tr>
+                            <tr mat-header-row *matHeaderRowDef="Columns4"></tr>
+                            <tr mat-row *matRowDef="let row; columns:Columns4;" ></tr>
                           </table>
                       
                           <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>

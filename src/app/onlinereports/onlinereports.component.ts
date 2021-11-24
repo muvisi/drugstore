@@ -19,7 +19,8 @@ export class OnlinereportsComponent implements OnInit {
   loading;
   // idnumber;
   // phonenumber;
-  Columns3: string[] = ['sn','first','last','email','gender','payment','specialist']
+  Columns4: string[] = ['sn','first','last','email','specialist','payment','gender','symptoms']
+  Columns3: string[] = ['sn','first','last','email','specialist','payment','gender']
   Columns2: string[] = ['sn','first','last','email','payments','gender','residence']
   Columns: string[] = ['sn','first','last','email','phone','gender','residence',]
   constructor(public service:ServiceService,public toastr:ToastrService) { }
