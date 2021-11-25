@@ -21,6 +21,7 @@ export class TimeslotComponent implements OnInit {
   date;
   selected;
   dataSource;
+
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   registerForm: FormGroup;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
@@ -60,13 +61,11 @@ export class TimeslotComponent implements OnInit {
     console.log(data)
     data.date = this.datePipe.transform(this.registerForm.get('date').value,'y-M-d')
     this.service.timeslot(this.registerForm.value).subscribe((res)=>{
-    // this.toastr.success('Saved Vaccines','Success');
+     this.toastr.success('created clots','Success');
     this.getData();
-    this.registerForm.reset()
-    // this.registerForm.reset({date:'',start:'',end:'',slots:''});
-    // this.registerForm.markAsPristine();
-    //  this.registerForm.markAsUntouched();
+  
      })
+     this.registerForm.reset()
 }
 delete(){
   console.log(this.selected);
