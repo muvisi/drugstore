@@ -62,9 +62,10 @@ export class TimeslotComponent implements OnInit {
     this.service.timeslot(this.registerForm.value).subscribe((res)=>{
     // this.toastr.success('Saved Vaccines','Success');
     this.getData();
-    this.registerForm.reset({date:'',start:'',end:'',slots:''});
+    this.registerForm.reset()
+    // this.registerForm.reset({date:'',start:'',end:'',slots:''});
     // this.registerForm.markAsPristine();
-     this.registerForm.markAsUntouched();
+    //  this.registerForm.markAsUntouched();
      })
 }
 delete(){
