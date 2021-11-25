@@ -70,13 +70,17 @@
                 <td mat-cell *matCellDef="let element"> {{element.end}}</td>
               </ng-container>
               <ng-container matColumnDef="slots">
-                <th mat-header-cell *matHeaderCellDef>User</th>
+                <th mat-header-cell *matHeaderCellDef>Slot</th>
+                <td mat-cell *matCellDef="let element"> {{element.slots}}</td>
+              </ng-container>
+              <ng-container matColumnDef="user">
+                <th mat-header-cell *matHeaderCellDef>Created By</th>
                 <td mat-cell *matCellDef="let element"> {{element.user}}</td>
               </ng-container>
-              <!-- <ng-container matColumnDef="delete">
+              <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef>Delete</th>
                 <td mat-cell *matCellDef="let element"><mat-icon color="warn" (click)="selected=element;staticModal.show()">delete_sweep</mat-icon></td>
-              </ng-container> -->
+              </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -91,7 +95,7 @@
   </div>
 
 
-  <!-- <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+   <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -105,7 +109,7 @@
         
         <div class="row">
           <div class="col-sm-12">
-          Do you really want to delete?
+          Please confirm you want to delete?
           </div>
           <div class="col-sm-12" style="text-align: right;">
             <button class="btn btn-danger btn-sm" (click)="staticModal.hide()">cancel</button>
@@ -115,5 +119,4 @@
       </div>
     </div>
   </div>
-</div>  -->
-
+</div>  

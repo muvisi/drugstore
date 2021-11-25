@@ -16,7 +16,7 @@ import { ServiceService } from '../service.service';
 })
 export class TimeslotComponent implements OnInit {
   
-  displayedColumns: string[] = ['no','date','start','end','slots'];
+  displayedColumns: string[] = ['no','date','start','end','slots','user','delete'];
   minDate = new Date()
   date;
   selected;
@@ -67,13 +67,13 @@ export class TimeslotComponent implements OnInit {
      this.registerForm.markAsUntouched();
      })
 }
-// delete(){
-//   console.log(this.selected);
-//   this.service.deleteVaccine(this.selected.id).subscribe((res)=>{
-//   this.toastr.success('Successfully deleted','Success');
-//   this.getData();
-//   this.staticModal.hide();
-//   })
-// }
+delete(){
+  console.log(this.selected);
+  this.service.deleteslot(this.selected.id).subscribe((res)=>{
+  this.toastr.success('Successfully deleted','Success');
+  this.getData();
+  this.staticModal.hide();
+  })
+}
 
 }
