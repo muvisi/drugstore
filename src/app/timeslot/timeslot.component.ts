@@ -27,12 +27,12 @@ export class TimeslotComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,public service:ServiceService,public datePipe:DatePipe,public toastr:ToastrService){}
   ngOnInit() {
     this.getData()
-    this.registerForm = this.formBuilder.group({
-      date: ['', Validators.required],
-      start:['',Validators.required],
-      end:['',Validators.required],
-      slots:['',Validators.required]
-  });
+  //   this.registerForm = this.formBuilder.group({
+  //     date: ['', Validators.required],
+  //     start:['',Validators.required],
+  //     end:['',Validators.required],
+  //     slots:['',Validators.required]
+  // });
  
 
   }

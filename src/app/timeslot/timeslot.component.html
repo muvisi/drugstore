@@ -10,7 +10,7 @@
                   
             <mat-form-field appearance="outline">
               <mat-label>Appointment Date</mat-label>
-                <input matInput placeholder="Appointment Date" [matDatepickerFilter]="weekendsDatesFilter" [min]="minDate" formControlName="date" [matDatepicker]="picker1">
+                <input matInput placeholder="Appointment Date" [matDatepickerFilter]="weekendsDatesFilter" [min]="minDate" formControlName="date" [matDatepicker]="picker1" required>
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
@@ -19,7 +19,7 @@
         <div class="col-sm-4">
             <mat-form-field appearance="outline">
                 <mat-label>Start Time</mat-label>
-                <input matInput placeholder="Start Time"  autocomplete="off" data-clocklet formControlName="start">
+                <input matInput placeholder="Start Time" required autocomplete="off" data-clocklet formControlName="start">
                
 
               </mat-form-field>
@@ -27,7 +27,7 @@
         <div class="col-sm-4">
             <mat-form-field appearance="outline">
                 <mat-label>End Time</mat-label>
-                <input matInput placeholder="End Time" autocomplete="off"  data-clocklet formControlName="end">
+                <input matInput placeholder="End Time" required autocomplete="off"  data-clocklet formControlName="end">
                
 
               </mat-form-field>
@@ -36,7 +36,7 @@
       <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>Slot Per Hour</mat-label>
-            <input  matInput type="number" placeholder="slot" formControlName="slots">
+            <input  matInput type="number" placeholder="slot" required formControlName="slots">
             
 
           </mat-form-field>
