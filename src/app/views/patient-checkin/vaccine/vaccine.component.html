@@ -5,19 +5,28 @@
     <div class="card-body">
         <form [formGroup]="registerForm" >
       <div class="row">
-        <div class="col-sm-2">
-                  
-            <mat-form-field appearance="outline">
-              <mat-label>Appointment Date</mat-label>
-                <input matInput placeholder="Appointment Date" [matDatepickerFilter]="weekendsDatesFilter" [min]="minDate" formControlName="date" [matDatepicker]="picker1">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-              </mat-form-field>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline"> 
+            <mat-label>Select Dose</mat-label>
+            <mat-select formControlName="dose" [multiple]="false">
+              <mat-option *ngFor="let dose of doses" [value]="dose">{{dose}}</mat-option>
+            </mat-select>
+          </mat-form-field>  
+            
         </div>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Appointment Date</mat-label>
+              <input matInput placeholder="Appointment Date" [matDatepickerFilter]="weekendsDatesFilter" [min]="minDate" formControlName="date" [matDatepicker]="picker1">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          
+      </div>
         
       </div>
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
             <mat-form-field appearance="outline">
                 <mat-label>Select Vaccines</mat-label>
                 <mat-select formControlName="names" multiple>
@@ -25,6 +34,7 @@
                 </mat-select>
               </mat-form-field>
         </div>
+       
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -49,6 +59,10 @@
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef>Vaccines</th>
                 <td mat-cell *matCellDef="let element"> {{element.names}}</td>
+              </ng-container>
+              <ng-container matColumnDef="dose">
+                <th mat-header-cell *matHeaderCellDef>Dose</th>
+                <td mat-cell *matCellDef="let element"> {{element.dose}}</td>
               </ng-container>
               <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef>Delete</th>

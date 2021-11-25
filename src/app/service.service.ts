@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 export const endpoint='http://localhost:8000/';
-// export const endpoint='http://134.209.199.123:8888/';
+//  export const endpoint='http://134.209.199.123:8888/';
 @Injectable({
   providedIn: 'root'
 })
@@ -1017,16 +1017,16 @@ searchScheme(payer, searchTerm): Observable<any> {
   }
 
 list():Observable<any>  {
-  return this.http.get(endpoint+'api/bookings');
+  return this.http.get(endpoint+'api/bookings/');
 }
 transit():Observable<any>  {
-  return this.http.get(endpoint+'api/transit');
+  return this.http.get(endpoint+'api/transit/');
 }
 left():Observable<any>  {
-  return this.http.get(endpoint+'api/exited');
+  return this.http.get(endpoint+'api/exited/');
 }
 within():Observable<any>  {
-  return this.http.get(endpoint+'api/within');
+  return this.http.get(endpoint+'api/within/');
 }
 
 
@@ -1051,4 +1051,16 @@ searchpatient(phone): Observable<any> {
   return this.http.get(endpoint + 'api/searchpatient/?search='+ phone).pipe(
     map(this.extractData));
 }
+timeslot(data): Observable<any> {
+  return this.http.post(endpoint + 'api/calendar/slots/',data).pipe(
+    map(this.extractData));
+}
+getslots() {
+  return this.http.get(endpoint + 'api/slots').pipe(
+    map(this.extractData));
+  }
+  deleteslot(id) {
+    return this.http.delete(endpoint + 'api/calendar/slots/'+id+'/').pipe(
+      map(this.extractData));
+  }
 }

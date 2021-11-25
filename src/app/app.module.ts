@@ -51,6 +51,7 @@ import { from } from 'rxjs';
 import { TokenInterceptor } from './interceptor';
 
 
+
 export function tokenGetter() {
   return sessionStorage.getItem('Token');
 }
@@ -96,6 +97,8 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+   
+    
     
    
   ],

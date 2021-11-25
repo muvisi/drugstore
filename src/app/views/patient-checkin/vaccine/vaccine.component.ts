@@ -19,7 +19,8 @@ export class VaccineComponent implements OnInit {
   loading=false;
   selected;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
-  displayedColumns: string[] = ['no','date','name','delete'];
+  displayedColumns: string[] = ['no','date','dose','name','delete'];
+   doses: string[] = ['First Dose','Second Dose'  ];
   vaccines: string[] = ['Pfizer vaccine', 'Johnson & Johnson vaccine', 'Moderna vaccine', 'AstraZeneca vaccine', 'Sinopharm BBIBP vaccine'];
   registerForm: FormGroup;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
@@ -27,7 +28,8 @@ export class VaccineComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       date: ['', Validators.required],
-      names:[[],Validators.required]
+      names:[[],Validators.required],
+      dose:[[],Validators.required]
   });
  this.getData()
   }
@@ -52,7 +54,7 @@ export class VaccineComponent implements OnInit {
     this.service.addVaccine(this.registerForm.value).subscribe((res)=>{
     this.toastr.success('Saved Vaccines','Success');
     this.getData();
-    this.registerForm.reset({date:'',names:[]});
+    this.registerForm.reset({date:'',names:[],dose:[]});
     this.registerForm.markAsPristine();
     this.registerForm.markAsUntouched();
     })

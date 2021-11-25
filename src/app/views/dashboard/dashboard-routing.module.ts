@@ -35,6 +35,8 @@ import { AllbookingComponent } from '../patient-checkin/allbooking/allbooking.co
 import { QueuelistComponent } from '../patient-checkin/queuelist/queuelist.component';
 import { OnlinereportsComponent } from '../../onlinereports/onlinereports.component';
 import { MaincovidComponent } from '../../maincovid/maincovid.component';
+import { ToastrService } from 'ngx-toastr';
+import { TimeslotComponent } from '../../timeslot/timeslot.component';
 const routes: Routes = [
   {
     path: '',
@@ -64,6 +66,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'timeslot',
+    component: TimeslotComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'queuereports',
     component: OnlinereportsComponent,
     canActivate: [AuthGuard]
@@ -88,6 +95,7 @@ const routes: Routes = [
     component: PexperienceComponent,
     canActivate: [AuthGuard]
   },
+  
   {
     path: 'appointment-list',
     component: AppointmentListComponent,
