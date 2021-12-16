@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-export const endpoint='http://localhost:8888/';
+// export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://197.248.31.237:8548/';
 @Injectable({
   providedIn: 'root'
 })
