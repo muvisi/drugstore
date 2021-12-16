@@ -55,6 +55,7 @@ export const navItems: NavData[] = [
     url: '/dashboard/calendar',
     icon: 'fa fa-calendar-check-o',
   },
+  
 
   {
     name: 'Covid Report',
@@ -70,5 +71,11 @@ export const navItems: NavData[] = [
     name: 'Vaccine Setup',
     url: '/dashboard/vaccine-setup',
     icon: 'fas fa-syringe',
+  },
+  {
+    name: 'Time Slot Setup',
+    url: '/dashboard/timeslot',
+    icon: 'fas fa-address-book',
+  
   }
 ];
