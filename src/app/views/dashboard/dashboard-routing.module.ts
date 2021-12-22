@@ -37,6 +37,7 @@ import { OnlinereportsComponent } from '../../onlinereports/onlinereports.compon
 import { MaincovidComponent } from '../../maincovid/maincovid.component';
 import { ToastrService } from 'ngx-toastr';
 import { TimeslotComponent } from '../../timeslot/timeslot.component';
+import { TestresultComponent } from '../../testresult/testresult.component';
 const routes: Routes = [
   {
     path: '',
@@ -76,13 +77,18 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'maincovid',
+    path: 'action',
     component: MaincovidComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'queue',
     component: QueueComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'results',
+    component: TestresultComponent,
     canActivate: [AuthGuard]
   },
   {
