@@ -2,6 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "skipLibCheck": true,
+    "emitDecoratorMetadata":true,
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "esnext",
@@ -15,6 +16,10 @@
   },
   "angularCompilerOptions": {
     "disableTypeScriptVersionCheck": true,
+   
+    "strictInjectionParameters": true,
+    "allowSyntheticDefaultImports": true,
+   
     "enableIvy": false
   },
   "exclude": [
