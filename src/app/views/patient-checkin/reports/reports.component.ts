@@ -44,7 +44,7 @@ export class ReportsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','status']
   Columns1: string[] = ['sn','date','time','Client','phone','national_id','status']
-  Columns3: string[] = ['sn','date','time','patient_no','Client','phone','national_id','status','dob']
+  Columns3: string[] = ['sn','date','names','patient_no','email','phone','national_id','status','dob']
   Columns2: string[] = ['sn','date','time','Client','phone','national_id']
   constructor(public service:ServiceService,public excelGeneratorService: ExcelGeneratorService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
