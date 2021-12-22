@@ -63,6 +63,7 @@ import { OnlinereportsComponent } from '../../onlinereports/onlinereports.compon
 import { MaincovidComponent } from '../../maincovid/maincovid.component';
 import { TimeslotComponent } from '../../timeslot/timeslot.component';
 import { TestresultComponent } from '../../testresult/testresult.component';
+import { ViewlistComponent } from '../../viewlist/viewlist.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -102,7 +103,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     OnlinereportsComponent,
     MaincovidComponent,
     TimeslotComponent,
-    TestresultComponent
+    TestresultComponent,
+    ViewlistComponent
     
 
   ],

@@ -37,12 +37,14 @@ export class ReportsComponent implements OnInit {
   date2;
   date3;
   date_b;
+  testing;
   selected_date;
   loading=false;
 
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','status']
   Columns1: string[] = ['sn','date','time','Client','phone','national_id','status']
+  Columns3: string[] = ['sn','date','time','patient_no','Client','phone','national_id','status','dob']
   Columns2: string[] = ['sn','date','time','Client','phone','national_id']
   constructor(public service:ServiceService,public excelGeneratorService: ExcelGeneratorService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
@@ -54,6 +56,7 @@ export class ReportsComponent implements OnInit {
     this.getCompleted();
     this.getMonthly();
     this.getDaily();
+    this.getAlltest();
 
 
   }
@@ -81,6 +84,16 @@ export class ReportsComponent implements OnInit {
       this.secondDoseAppointMent.paginator = this.paginator;
     })
   }
+  getAlltest(){
+    this.service.getAlltesting().subscribe((res)=>{
+      // this.loading=false;
+      this.testing=res
+      this.testing = new MatTableDataSource(this.formatData1(res));
+      this.testing.paginator = this.paginator;
+    })
+  
+  }
+  
   getCompleted(){
     // this.loading=true;
     this.service.getAppointmentreports("report_type=Completed&date="+this.date3).subscribe((res)=>{

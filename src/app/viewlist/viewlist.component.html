@@ -1,0 +1,385 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <h6 class="card-header bg-success">TESTING DETAILS
+
+            </h6>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-12 col-md-1 col-lg-1 col-3">
+                          <img src="assets/img/avatars/female.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Female' || customer.gender == 'female'">
+                          <img src="assets/img/avatars/male.png" class="rounded-circle" alt="" style="width: 90px;" *ngIf="customer.gender == 'Male' || customer.gender == 'male'">
+                        </div>
+                        <div class="col-sm-12 col-md-11 col-lg-11 col-9">
+                          <div class="row">
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} || <span class="text-success">{{customer.age}} <span *ngIf="customer.age >1">years</span> <span *ngIf="customer.age < 1">Months</span> </span></div>
+                                <div class="col-sm-12" > {{customer.phone}} </div>
+                                <div class="col-sm-12" > {{customer.email}} </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-12" (click)="edit()">
+                                <i class="fa fa-pencil text-primary" ></i> Edit Details
+                              </div>
+                            </div>
+
+                        </div>
+                            <div class="col-sm-7" style="text-align:right">
+                              <button type="submit"  *ngIf="!data.status"  (click)="completeAppointment()" class="btn btn-primary pull-right"> <i class="fas fa-syringe"></i> Vaccinate</button>
+                              <button  *ngIf="data.status" [disabled]="data.status"  class="btn btn-success pull-right">Vaccinated</button>
+
+                            </div>
+                          </div>
+              
+                        </div>
+                      </div>
+                     
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-tab-group>
+                         
+
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                                Testing Details
+                              </ng-template>
+                            
+                              <br>
+                              <fieldset>
+                                <legend>Testing Details</legend>
+                                <div class="col-sm-12">
+                                  <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Appointment Date</mat-label>
+                                                <input matInput placeholder="Appointment Date" [minDate]="minDate" formControlName="date" [matDatepicker]="picker1">
+                                                <mat-error *ngIf="f.date.errors && submitted">Appointment Date <strong>required</strong></mat-error>
+                                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker1></mat-datepicker>
+                                              </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Select Time</mat-label>
+                                            <input matInput placeholder="Time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top"  formControlName="time">
+                                          </mat-form-field>
+                                        </div>
+                                        
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Vaccine</mat-label>
+                                            <input type="text" formControlName="vaccine" readonly matInput>
+                                           
+                                            <mat-error *ngIf="f.vaccine && submitted">Appointment Type <strong>required</strong></mat-error>
+                                          </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Appointment Type</mat-label>
+                                            <input type="text" formControlName="type" readonly matInput>
+                                           
+                                            <mat-error *ngIf="f.type && submitted">Appointment Type <strong>required</strong></mat-error>
+                                          </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12">
+                                              
+                                          <mat-form-field  appearance="outline">
+                                              <mat-label>Appointment Reason</mat-label>
+                                              <textarea matInput cols="30" rows="5"  placeholder="Reason for Appointment" formControlName="reason"></textarea>
+                                          <mat-error *ngIf="f.reason && submitted">Reason for Appointment <strong>required</strong></mat-error>
+                                            </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-12">
+                                         <button *ngIf="!data.status && appointmentForm.dirty"  class="btn btn-success btn-sm pull-right" >update</button>
+                                         <button *ngIf="data.status"  [disabled]="data.status"   class="btn btn-success btn-sm pull-right">closed</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </fieldset>
+                              
+                            <br>
+
+  
+                            </mat-tab>
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                                Triage Details
+                              </ng-template>
+                              <br>
+                            <div class="row container-fluid">
+                            
+                             
+                              <div class="col-sm-12">
+                                <form [formGroup]="triageForm" (ngSubmit)="triageSave()">
+
+                                  <div class="row">
+                                    <div class="col-sm-3">
+                                       <mat-form-field>
+                                           <input matInput placeholder="Temperature value" type="number" formControlName="temperature">
+                                           <i matSuffix class="fa fa-thermometer-half"></i>
+                                           <mat-error >temperature <strong> is required</strong></mat-error>
+                                         </mat-form-field>
+                                    </div>
+                                   
+                                    <div class="col-sm-4">
+                                       <mat-form-field >
+                                           <input matInput placeholder="B/P(systolic)" type="number"  formControlName="systolic"  [ngClass]="{ 'is-invalid': submitted && f.systolic.errors }">
+                                           <i matSuffix class="fa fa-yelp"></i>
+                                         </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-4">
+                                       <mat-form-field >
+                
+                                           <input matInput placeholder="B/P (diastolic)" type="number" formControlName="diastolic"  [ngClass]="{ 'is-invalid': submitted && f.diastolic.errors }">
+                                           <i matSuffix class="fa fa-yelp"></i>
+                                      
+                                         </mat-form-field>
+                                    </div>
+                                   
+                                    <div class="col-sm-4">
+                                      <mat-form-field>
+                                         
+                                          <input matInput placeholder="Height(cm)" type="number"  formControlName="height"  [ngClass]="{ 'is-invalid': submitted && f.height.errors }">
+                                          <i matSuffix class="fa fa-yelp"></i>
+                                        </mat-form-field>
+                                   </div>  
+                   
+                                   <div class="col-sm-4">
+                                          <mat-form-field >
+                         
+                                              <input matInput placeholder="Weight(kgs)" type="number"  formControlName="weight"  [ngClass]="{ 'is-invalid': submitted && f.weight.errors }">
+                                              <i matSuffix class="fa fa-yelp"></i>
+                                            </mat-form-field>
+                                       </div>     
+                                    
+                                       <div class="col-sm-4">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Pulse rate" type="number" formControlName="pulse"  [ngClass]="{ 'is-invalid': submitted && f.pulse.errors }">
+                                            <i matSuffix class="fa fa-heartbeat"></i>
+                                          </mat-form-field>
+                                     </div>
+                                     <div class="col-sm-4">
+                                      <mat-form-field>
+                                          <input matInput placeholder="Respiratory" type="number" formControlName="respiratory"  [ngClass]="{ 'is-invalid': submitted && f.respiratory.errors }">
+                                          <i matSuffix class="fa fa-heartbeat"></i>
+                                        </mat-form-field>
+                                   </div>
+                                   <!-- <div class="col-sm-12">
+                                     <button  *ngIf="!data.status" [disabled]="!data.active" class="btn btn-success pull-right">Save Triage </button>
+                                     <button  *ngIf="data.status"  [disabled]="data.status"  class="btn btn-success pull-right">Triage Saved </button> -->
+                                   <div class="col-sm-2">
+                                     <button  *ngIf="!data.status" class="btn btn-success">Save Triage </button>
+                                     <button  *ngIf="data.status"  [disabled]="data.status"  class="btn btn-success">Triage Saved </button>
+                                   </div>
+                                </div>
+                              </form>
+                              </div>
+                    
+                            </div>
+                            <br>
+                            </mat-tab>
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                                Appointments Notes
+                              </ng-template>
+                              <br>
+                            <div class="row container-fluid">
+                            
+                             
+                              <div class="col-sm-12">
+                                <form [formGroup]="noteForm" (ngSubmit)="completeAppointment()">
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <mat-form-field >
+                                        <mat-label>Counselor Notes </mat-label>
+                                        <textarea  matInput  formControlName="notes" (ngModelChange)="onNote()" placeholder="Notes ......"></textarea>
+                                      </mat-form-field>
+                                    </div>
+                                  
+                                  </div>
+                                  <div class="col-sm-12">
+                                    <button type="submit"  *ngIf="!data.status" [disabled]="!data.active"  class="btn btn-success pull-right">Finish </button>
+                                    <button  *ngIf="data.status" [disabled]="data.status"  class="btn btn-success pull-right">Finished </button>
+                                  </div>
+                                </form>
+                              </div>
+                    
+                            </div>
+                            <br>
+                            </mat-tab>
+                            
+  
+                          </mat-tab-group>
+                    </div>
+                    
+                  </div>
+                  
+            </div>
+          </div>
+    </div> 
+
+</div>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 id="dialog-static-name" class="modal-title pull-left">Confirmation</h6>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-sm-12">
+          Kindly confirm that {{customer.first_name}} {{customer.last_name}} {{customer.other_names}} is taking {{f.vaccine.value}} {{f.type.value}}
+          </div>
+          <div class="col-sm-12" style="text-align: right;">
+            <button class="btn btn-danger btn-sm" (click)="staticModal.hide()">cancel</button>
+            <button (click)="finish()" class="btn btn-success btn-sm">confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" bsModal #confirmModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 id="dialog-static-name" class="modal-title pull-left">Confirmation</h6>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="confirmModal.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-sm-12">
+          Kindly confirm that you want to vaccinate before {{f.date.value | date:'d-M-y'}} 
+          </div>
+          <div class="col-sm-12" style="text-align: right;">
+            <button class="btn btn-danger btn-sm" (click)="confirmModal.hide()">cancel</button>
+            <button (click)="confirm()" class="btn btn-success btn-sm">confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
+
+
+
+<div class="modal fade" bsModal #clientModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Edit Client</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form [formGroup]="clientForm"  (ngSubmit)="onSave()">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Surname</mat-label>
+                <input matInput placeholder="Surname" formControlName="last_name">
+                <mat-error *ngIf="c.last_name.errors && submitted">Surname <strong>required</strong></mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="first_name">
+                
+                <mat-error *ngIf="c.first_name.errors && submitted">First Name <strong>required</strong></mat-error>
+              </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Middle</mat-label>
+              <input matInput placeholder="Middle Name" formControlName="other_names">
+             
+              <mat-error *ngIf="c.other_names.errors && submitted">Middle Name <strong>required</strong></mat-error>
+            </mat-form-field>
+      </div>
+       <div class="col-sm-4">
+        <mat-radio-group  formControlName="gender">
+          <label>Gender</label>
+          <div class="row" >
+             <div class="col-sm-4">
+                 <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
+               </div>
+               <div class="col-sm-4">
+                   <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
+                 </div>
+          </div>
+         </mat-radio-group>
+       </div>
+       <div class="col-sm-4">
+        <mat-form-field  appearance="outline">
+          <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" formControlName="phone">
+            <mat-error *ngIf="c.phone.errors && submitted">Phone <strong>required</strong></mat-error>
+
+          </mat-form-field>
+       </div>
+       <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>D.O.B</mat-label>
+            <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="dob" [matDatepicker]="picker">
+            <mat-error *ngIf="c.dob.errors && submitted">Date of birth <strong>required</strong></mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>National ID</mat-label>
+             <input matInput placeholder="National ID" formControlName="national_id">
+             <mat-error *ngIf="c.national_id.errors && submitted">National ID <strong>required</strong></mat-error>
+           </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+             <input matInput placeholder="Email" formControlName="email">
+             <mat-error *ngIf="c.email.errors && submitted">Valid email <strong>required</strong></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Occupation</mat-label>
+            <input matInput placeholder="Occupation" formControlName="occupation">
+          </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Residence</mat-label>
+            <input matInput placeholder="Residence" formControlName="residence">
+          </mat-form-field>
+    </div>
+  <div class="col-sm-8" *ngIf="clientForm.dirty">
+  <button class="btn btn-success pull-right">Update</button>
+</div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

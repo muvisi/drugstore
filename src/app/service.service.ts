@@ -341,6 +341,11 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
 
   }
+  getAlltesting(): Observable<any> {
+    return this.http.get(endpoint + 'api/covid_testing/').pipe(
+      map(this.extractData));
+
+  }
   searchDiagnosis(data): Observable<any> {
     return this.http.get(endpoint + 'data/icdcode/?search=' + data).pipe(
       map(this.extractData));

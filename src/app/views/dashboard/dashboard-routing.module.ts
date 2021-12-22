@@ -38,6 +38,7 @@ import { MaincovidComponent } from '../../maincovid/maincovid.component';
 import { ToastrService } from 'ngx-toastr';
 import { TimeslotComponent } from '../../timeslot/timeslot.component';
 import { TestresultComponent } from '../../testresult/testresult.component';
+import { ViewlistComponent } from '../../viewlist/viewlist.component';
 const routes: Routes = [
   {
     path: '',
@@ -130,6 +131,11 @@ const routes: Routes = [
   {
     path: 'booking',
     component:BookingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'test',
+    component:ViewlistComponent,
     canActivate: [AuthGuard]
   },
   {

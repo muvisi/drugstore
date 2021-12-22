@@ -59,6 +59,6 @@ export class TestresultComponent implements OnInit {
     })
   }
   rowClick(item){
-    this.router.navigate(['/dashboard/appointment-details/',item.id])
+    this.router.navigate(['/dashboard/test/',item.id])
   }
 }
