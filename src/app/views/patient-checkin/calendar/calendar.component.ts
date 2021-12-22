@@ -26,7 +26,7 @@ dataManager: DataManager = new DataManager({
   adaptor: new UrlAdaptor,
   headers: [{ 'Authorization': 'Bearer ' + this.token}]
 });
-public eventSettings: EventSettingsModel = { dataSource: this.dataManager };
+// public eventSettings: EventSettingsModel = { dataSource: this.dataManager };
 public scheduleViews: View[] = ['Week', 'WorkWeek', 'Month', 'TimelineWeek', 'TimelineWorkWeek'];
 public showWeekend: boolean = true;
 // public data: object[] = [{
