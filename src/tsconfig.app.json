@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "skipLibCheck": true,
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "esnext",
@@ -13,6 +14,7 @@
     }
   },
   "angularCompilerOptions": {
+    "disableTypeScriptVersionCheck": true,
     "enableIvy": false
   },
   "exclude": [
