@@ -13,7 +13,7 @@ export class QueuelistComponent implements OnInit {
   dataSource;
   loading;
   phonenumber;
-  Columns: string[] = ['sn','checkin','First','Last','Email','gender','residence','phone']
+  Columns: string[] = ['sn','checkin','First','Email','gender','residence','phone']
 
   constructor(public service:ServiceService, public toastr:ToastrService) { }
 

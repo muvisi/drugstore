@@ -38,6 +38,7 @@ export class ReportsComponent implements OnInit {
   date3;
   date_b;
   testing;
+  testingcomplete;
   selected_date;
   loading=false;
 
@@ -45,6 +46,7 @@ export class ReportsComponent implements OnInit {
   Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','status']
   Columns1: string[] = ['sn','date','time','Client','phone','national_id','status']
   Columns3: string[] = ['sn','names','patient_no','email','phone','national_id','status','dob','date','Time']
+  Columns4: string[] = ['sn','names','patient_no','phone','national_id','gender','date','Time','status']
   Columns2: string[] = ['sn','date','time','Client','phone','national_id']
   constructor(public service:ServiceService,public excelGeneratorService: ExcelGeneratorService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
@@ -57,6 +59,7 @@ export class ReportsComponent implements OnInit {
     this.getMonthly();
     this.getDaily();
     this.getAlltest();
+    this.getAlltestcomplete();
 
 
   }
@@ -90,6 +93,15 @@ export class ReportsComponent implements OnInit {
       this.testing=res
       this.testing = new MatTableDataSource(res);
       this.testing.paginator = this.paginator;
+    })
+  
+  }
+  getAlltestcomplete(){
+    this.service.getAlltestingcomplete().subscribe((res)=>{
+      // this.loading=false;
+      this.testingcomplete=res
+      this.testingcomplete = new MatTableDataSource(res);
+      this.testingcomplete.paginator = this.paginator;
     })
   
   }

@@ -15,7 +15,7 @@ export class AllbookingComponent implements OnInit {
   loading;
   idnumber;
   phonenumber;
-  Columns: string[] = ['sn','First','Last','Email','gender','symptoms','payment','residence','phone']
+  Columns: string[] = ['sn','First','gender','payment','residence','phone','symptoms']
   constructor(public service:ServiceService,public toastr:ToastrService) { }
 
   ngOnInit() {
