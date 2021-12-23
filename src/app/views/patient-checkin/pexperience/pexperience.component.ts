@@ -17,7 +17,7 @@ export class PexperienceComponent implements OnInit {
   loading;
   // idnumber;
   phonenumber;
-  Columns: string[] = ['sn','First','Last','Email','gender','residence','phone']
+  Columns: string[] = ['sn','First','gender','residence','phone']
 
   constructor(public service:ServiceService,private toastr:ToastrService) { }
  

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint='http://localhost:8888/';
-export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://localhost:8000/';
+// export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 // export const endpoint='https://bookings.aarhospital.com/';
 @Injectable({
@@ -351,6 +351,11 @@ searchProcedure(data): Observable<any> {
   }
   getAlltesting(): Observable<any> {
     return this.http.get(endpoint + 'api/covid_testing/').pipe(
+      map(this.extractData));
+
+  }
+  getAlltestingcomplete(): Observable<any> {
+    return this.http.get(endpoint + 'api/covidcompleted/').pipe(
       map(this.extractData));
 
   }
@@ -1071,6 +1076,10 @@ searchbooking(phone): Observable<any> {
 }
 searchpatient(phone): Observable<any> {
   return this.http.get(endpoint + 'api/searchpatient/?search='+ phone).pipe(
+    map(this.extractData));
+}
+searchtest(phone): Observable<any> {
+  return this.http.get(endpoint + 'api/searchtest/?search='+ phone).pipe(
     map(this.extractData));
 }
 timeslot(data): Observable<any> {
