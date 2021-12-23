@@ -26,13 +26,13 @@
                           </ng-container>
                        
                                 <ng-container matColumnDef="first">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.patient.first_name}} </td>
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Name</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
                                 </ng-container>
-                            <ng-container matColumnDef="last">
+                            <!-- <ng-container matColumnDef="last">
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
                               <td mat-cell *matCellDef="let element"> {{element.patient.last_name}}</td>
-                            </ng-container>
+                            </ng-container> -->
                       
                             <ng-container matColumnDef="specialist">
                               <th mat-header-cell *matHeaderCellDef  mat-sort-header>Specialist</th>
@@ -92,13 +92,13 @@
                           </ng-container>
                        
                                 <ng-container matColumnDef="first">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.patient.first_name}} </td>
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Name</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.patient.first_name}}  {{element.patient.last_name}} </td>
                                 </ng-container>
-                            <ng-container matColumnDef="last">
+                            <!-- <ng-container matColumnDef="last">
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
                               <td mat-cell *matCellDef="let element"> {{element.patient.last_name}}</td>
-                            </ng-container>
+                            </ng-container> -->
                       
                             <ng-container matColumnDef="email">
                               <th mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
@@ -156,14 +156,14 @@
                           </ng-container>
                        
                                 <ng-container matColumnDef="first">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-                                        <td mat-cell *matCellDef="let element"> {{element.patient.first_name}} </td>
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient Name</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
                                 </ng-container>
-                            <ng-container matColumnDef="last">
+                            <!-- <ng-container matColumnDef="last">
                               <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
                               <td mat-cell *matCellDef="let element"> {{element.patient.last_name}}</td>
                             </ng-container>
-                      
+                       -->
                             <ng-container matColumnDef="email">
                               <th mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
                               <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.patient.email}}</td>
