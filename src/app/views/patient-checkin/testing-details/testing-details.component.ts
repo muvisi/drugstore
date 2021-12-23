@@ -214,6 +214,10 @@ export class TestingDetailsComponent implements OnInit {
     })
   }
 
+  testedCompleted(){
+    
+  }
+
   completeAppointment(){
     let date= moment(this.appointmentForm.get('date').value).format('YYYY-MM-DD')
     if(date! =moment().format('YYYY-MM-DD')){
