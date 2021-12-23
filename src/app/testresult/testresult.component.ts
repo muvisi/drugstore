@@ -43,7 +43,7 @@ export class TestresultComponent implements OnInit {
   }
   getRecords(){
     // this.loading=true;
-    this.service.getAppointments().subscribe((res)=>{
+    this.service.getAlltesting().subscribe((res)=>{
       this.loading=false;
       this.appointmentsList=res.results
       this.dataSource = new MatTableDataSource(res);
