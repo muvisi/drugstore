@@ -44,7 +44,7 @@ export class ReportsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','status']
   Columns1: string[] = ['sn','date','time','Client','phone','national_id','status']
-  Columns3: string[] = ['sn','date','time','patient_no','Client','phone','national_id','status','dob']
+  Columns3: string[] = ['sn','names','patient_no','email','phone','national_id','status','dob','date','Time']
   Columns2: string[] = ['sn','date','time','Client','phone','national_id']
   constructor(public service:ServiceService,public excelGeneratorService: ExcelGeneratorService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
@@ -88,7 +88,7 @@ export class ReportsComponent implements OnInit {
     this.service.getAlltesting().subscribe((res)=>{
       // this.loading=false;
       this.testing=res
-      this.testing = new MatTableDataSource(this.formatData1(res));
+      this.testing = new MatTableDataSource(res);
       this.testing.paginator = this.paginator;
     })
   
