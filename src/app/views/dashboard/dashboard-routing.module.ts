@@ -39,6 +39,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TimeslotComponent } from '../../timeslot/timeslot.component';
 import { TestresultComponent } from '../../testresult/testresult.component';
 import { ViewlistComponent } from '../../viewlist/viewlist.component';
+import { TestingDetailsComponent } from '../patient-checkin/testing-details/testing-details.component';
 const routes: Routes = [
   {
     path: '',
@@ -116,6 +117,11 @@ const routes: Routes = [
   {
     path: 'appointment-details/:id',
     component: AppointmentDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'testing-details/:id',
+    component: TestingDetailsComponent,
     canActivate: [AuthGuard]
   },
   {

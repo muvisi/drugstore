@@ -115,8 +115,16 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/appointment/'+id+'/').pipe(
       map(this.extractData));
   }
+  getTestingAppointment(id): Observable<any> {
+    return this.http.get(endpoint + 'api/covid_testing/'+id+'/').pipe(
+      map(this.extractData));
+  }
   postTriage(data): Observable<any> {
     return this.http.post(endpoint + 'api/triage/',data).pipe(
+      map(this.extractData));
+  }
+  postTestingTriage(data): Observable<any> {
+    return this.http.post(endpoint + 'api/testing_triage/',data).pipe(
       map(this.extractData));
   }
   getClientMonthlyTotal(): Observable<any> {
@@ -793,6 +801,13 @@ searchBills(data): Observable<any>{
 
   completeAppointment(data){
     return this.http.post(endpoint + 'api/appointment_finish/',data).pipe(
+      map(this.extractData
+      ));
+  } 
+
+
+  completeCovidTesting(data){
+    return this.http.post(endpoint + 'api/covid_testing_finish/',data).pipe(
       map(this.extractData
       ));
   } 
