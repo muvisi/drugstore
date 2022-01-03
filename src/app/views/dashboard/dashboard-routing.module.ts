@@ -39,6 +39,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TimeslotComponent } from '../../timeslot/timeslot.component';
 import { TestresultComponent } from '../../testresult/testresult.component';
 import { ViewlistComponent } from '../../viewlist/viewlist.component';
+import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.component';
 const routes: Routes = [
   {
     path: '',
@@ -75,6 +76,11 @@ const routes: Routes = [
   {
     path: 'queuereports',
     component: OnlinereportsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'revenues',
+    component: CovidrevenuesComponent,
     canActivate: [AuthGuard]
   },
   {

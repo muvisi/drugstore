@@ -1067,6 +1067,14 @@ searchtest(phone): Observable<any> {
   return this.http.get(endpoint + 'api/searchtest/?search='+ phone).pipe(
     map(this.extractData));
 }
+searchcode(code): Observable<any> {
+  return this.http.get(endpoint + 'api/searchcode/?search='+ code).pipe(
+    map(this.extractData));
+}
+searchmoney(phone): Observable<any> {
+  return this.http.get(endpoint + 'api/searchRevenues/?search='+ phone).pipe(
+    map(this.extractData));
+}
 timeslot(data): Observable<any> {
   return this.http.post(endpoint + 'api/calendar/slots/',data).pipe(
     map(this.extractData));
@@ -1075,6 +1083,10 @@ getslots() {
   return this.http.get(endpoint + 'api/slots').pipe(
     map(this.extractData));
   }
+  getRevenues() {
+    return this.http.get(endpoint + 'payment/payments/').pipe(
+      map(this.extractData));
+    }
   deleteslot(id) {
     return this.http.delete(endpoint + 'api/slots/'+id+'/').pipe(
       map(this.extractData));
