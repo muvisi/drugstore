@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-export const endpoint='http://localhost:8000/';
+// export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
-// export const endpoint='https://bookings.aarhospital.com/';
+export const endpoint='https://bookings.aarhospital.com/';
 @Injectable({
   providedIn: 'root'
 })
@@ -115,8 +115,16 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/appointment/'+id+'/').pipe(
       map(this.extractData));
   }
+  getTestingAppointment(id): Observable<any> {
+    return this.http.get(endpoint + 'api/covid_testing/'+id+'/').pipe(
+      map(this.extractData));
+  }
   postTriage(data): Observable<any> {
     return this.http.post(endpoint + 'api/triage/',data).pipe(
+      map(this.extractData));
+  }
+  postTestingTriage(data): Observable<any> {
+    return this.http.post(endpoint + 'api/testing_triage/',data).pipe(
       map(this.extractData));
   }
   getClientMonthlyTotal(): Observable<any> {
@@ -798,6 +806,13 @@ searchBills(data): Observable<any>{
 
   completeAppointment(data){
     return this.http.post(endpoint + 'api/appointment_finish/',data).pipe(
+      map(this.extractData
+      ));
+  } 
+
+
+  completeCovidTesting(data){
+    return this.http.post(endpoint + 'api/covid_testing_finish/',data).pipe(
       map(this.extractData
       ));
   } 
