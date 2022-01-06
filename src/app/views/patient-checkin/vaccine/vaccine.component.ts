@@ -42,7 +42,7 @@ export class VaccineComponent implements OnInit {
   }
   weekendsDatesFilter = (d: Date): boolean => {
     const day = d.getDay();
-    return day !== 0 && day !== 1 && day !==2 && day !== 3 && day !== 4 && day !== 5;
+    return day !== 0 && day !== 1 && day !==2 && day !== 4 && day !== 5;
   }
   onSubmit() {
 
