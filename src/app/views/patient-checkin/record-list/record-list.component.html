@@ -10,13 +10,13 @@
             <div class="row">
               <div class="col-sm-2">
                   <mat-form-field>
-                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Mobile">
+                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Mobile , National id" autocomplete="off" autofocus="off">
                     </mat-form-field>
               </div>
               <div class="col-sm-2">
-                <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="National id">
-                  </mat-form-field>
+                <!-- <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="n_id"  placeholder="National id" autocomplete="off" type="search">
+                  </mat-form-field> -->
             </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
                     <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
                   </table>
               
-                  <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+                  <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
                 </div>
               </div>
         </div>

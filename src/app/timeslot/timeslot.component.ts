@@ -28,12 +28,12 @@ export class TimeslotComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,public service:ServiceService,public datePipe:DatePipe,public toastr:ToastrService){}
   ngOnInit() {
     this.getData()
-  //   this.registerForm = this.formBuilder.group({
-  //     date: ['', Validators.required],
-  //     start:['',Validators.required],
-  //     end:['',Validators.required],
-  //     slots:['',Validators.required]
-  // });
+    this.registerForm = this.formBuilder.group({
+      date: ['', Validators.required],
+      start:['',Validators.required],
+      end:['',Validators.required],
+      slots:['',Validators.required]
+  });
  
 
   }
@@ -49,11 +49,10 @@ export class TimeslotComponent implements OnInit {
   // filtering weekends on appointment date
   weekendsDatesFilter = (d: Date): boolean => {
     const day = d.getDay();
-    return day !== 0 && day !== 1 && day !==2 && day !== 3 && day !== 4 && day !== 5;
+    return day !== 0 && day !== 1 && day !==2 && day !== 4 && day !== 5;
   }
  
-  onSubmit() {
-
+  onSubmitted() {
     if (this.registerForm.invalid) {
         return;
     }

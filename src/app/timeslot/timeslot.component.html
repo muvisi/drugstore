@@ -36,18 +36,18 @@
       <div class="col-sm-4">
         <mat-form-field appearance="outline">
             <mat-label>Slot Per Hour</mat-label>
-            <input  matInput type="number" placeholder="slot" required formControlName="slots">
-            
+            <input  matInput type="number" placeholder="slot" required formControlName="slots">  
 
           </mat-form-field>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <button class="btn btn-success" (click)="onSubmit()">Submit</button>
-        </div>
-    </div>
-
+ 
     </form>
+    <div class="row">
+      <div class="col-sm-12">
+          <button class="btn btn-success" (click)="onSubmitted()">Submit</button>
+      </div>
+  </div>
+
          <div class="mat-elevation-z8" style="margin-top: 8px;">
             <table mat-table [dataSource]="dataSource">
           
