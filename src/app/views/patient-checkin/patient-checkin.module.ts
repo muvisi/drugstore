@@ -67,6 +67,7 @@ import { ViewlistComponent } from '../../viewlist/viewlist.component';
 import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.component';
 
 import { TestingDetailsComponent } from './testing-details/testing-details.component';
+import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -109,7 +110,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     TestresultComponent,
     ViewlistComponent,
     CovidrevenuesComponent,
-    TestingDetailsComponent
+    TestingDetailsComponent,
+    FeedbacksComponent
+
     
 
   ],

@@ -41,6 +41,7 @@ import { TestresultComponent } from '../../testresult/testresult.component';
 import { ViewlistComponent } from '../../viewlist/viewlist.component';
 import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.component';
 import { TestingDetailsComponent } from '../patient-checkin/testing-details/testing-details.component';
+import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
 const routes: Routes = [
   {
     path: '',
@@ -143,6 +144,11 @@ const routes: Routes = [
   {
     path: 'booking',
     component:BookingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'feedback',
+    component:FeedbacksComponent,
     canActivate: [AuthGuard]
   },
   {

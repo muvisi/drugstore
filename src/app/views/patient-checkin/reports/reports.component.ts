@@ -45,7 +45,7 @@ export class ReportsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','date','time','Client','phone','national_id','dose','status']
   Columns1: string[] = ['sn','date','time','Client','phone','national_id','status']
-  Columns3: string[] = ['sn','names','patient_no','email','phone','national_id','status','dob','date','Time']
+  Columns3: string[] = ['sn','names','patient_no','email','phone','status','dob','date','Time','vaccinated']
   Columns4: string[] = ['sn','names','patient_no','phone','national_id','gender','date','Time','status']
   Columns2: string[] = ['sn','date','time','Client','phone','national_id']
   constructor(public service:ServiceService,public excelGeneratorService: ExcelGeneratorService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
