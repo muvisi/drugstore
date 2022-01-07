@@ -38,6 +38,7 @@ export class RecordListComponent implements OnInit {
       id: ['']
     });
     this.getRecords();
+
   }
   get f() { return this.clientForm.controls; }
 getRecords(){
