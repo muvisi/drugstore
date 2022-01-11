@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common'
 import { element } from 'protractor';
 import { dataBinding } from '@syncfusion/ej2-schedule';
 import { listenerCount } from 'process';
+import { datepickerAnimation } from 'ngx-bootstrap/datepicker/datepicker-animations';
 
 @Component({
   selector: 'app-reports',
@@ -33,11 +34,13 @@ export class ReportsComponent implements OnInit {
   dailyAppointMent;
   dailyAppointMentList;
   date;
+  dated;
   date1;
   date2;
   date3;
   date_b;
   testing;
+  datedtesting;
   testingcomplete;
   selected_date;
   loading=false;
@@ -98,6 +101,17 @@ export class ReportsComponent implements OnInit {
       this.testing=res
       this.testing = new MatTableDataSource(this.formatData3(res));
       this.testing.paginator = this.paginator;
+    })
+  
+  }
+  Search(){
+    console.log(this.dated)
+    this.service.getdatedtesting(this.dated).subscribe((res)=>{
+      
+      // this.loading=false;
+      this.datedtesting=res
+      this.datedtesting = new MatTableDataSource(this.formatData3(res));
+      this.datedtesting.paginator = this.paginator;
     })
   
   }

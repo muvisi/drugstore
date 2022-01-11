@@ -357,6 +357,11 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
 
   }
+  getdatedtesting(dated): Observable<any> {
+    return this.http.get(endpoint + 'api/datedcovidtesting/',dated).pipe(
+      map(this.extractData));
+
+  }
   getAlltestingcomplete(): Observable<any> {
     return this.http.get(endpoint + 'api/covidcompleted/').pipe(
       map(this.extractData));
