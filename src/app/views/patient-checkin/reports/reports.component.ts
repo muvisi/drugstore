@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { ServiceService } from '../../../service.service';
+import { endpoint, ServiceService } from '../../../service.service';
 import { ExcelGeneratorService } from '../../../excel-generator.service'
 import { FormControl } from '@angular/forms';
 import * as XLSX from 'xlsx';
@@ -49,6 +49,8 @@ export class ReportsComponent implements OnInit {
   Columns4: string[] = ['sn','names','patient_no','phone','national_id','gender','date','Time','status']
   Columns2: string[] = ['sn','date','time','Client','phone','national_id']
   constructor(public service:ServiceService,public excelGeneratorService: ExcelGeneratorService,public datepipe: DatePipe,public toastr: ToastrService,public router:Router) { }
+
+  
   ngOnInit() {
     this.month=new Date().getMonth()
     this.year=new Date().getFullYear()
@@ -62,6 +64,9 @@ export class ReportsComponent implements OnInit {
     this.getAlltestcomplete();
 
 
+  }
+  getendpoint(){
+    return endpoint;
   }
 
   dateFilter = (d: Date): boolean => {
@@ -91,7 +96,7 @@ export class ReportsComponent implements OnInit {
     this.service.getAlltesting().subscribe((res)=>{
       // this.loading=false;
       this.testing=res
-      this.testing = new MatTableDataSource(res);
+      this.testing = new MatTableDataSource(this.formatData3(res));
       this.testing.paginator = this.paginator;
     })
   
@@ -167,6 +172,32 @@ jsonToLIST2(elements){
     
 }
 return li;  
+}
+jsonToLIST3(elements){
+  var li=[]
+  for (var i =0;i<elements.length;i++){
+    li.push([
+      elements[i].client,
+    elements[i].no,
+    elements[i].travel_places,
+    elements[i].symptoms_date,
+    elements[i].date,
+    elements[i].time,
+    elements[i].symptoms,
+   
+    ]);
+    
+}
+return li;  
+}
+downloadCovidTestReport(){
+  
+  this.excelGeneratorService.generate("Covid 19 Testing As At "+ this.datepipe.transform(new Date(),"MMM d, y,"),
+  ["Names","Appoitment No","Travel places","symptoms date","Appointment date","Appointment Time","Symptoms"],
+  this.jsonToLIST2(this.formatData3(this.testing) )  
+  )
+
+
 }
 
 
@@ -260,7 +291,26 @@ handle_download(data){
     }
   return return_data;
 }
-
+formatData3(elements){
+  var return_data=[];
+  for (var i=0;i<elements.length;i++) {
+    var element=elements[i];
+    return_data.push(
+      {
+        no:element.no,
+        travel_places:element.travel_places,
+        time:element.time,
+        date:element.date,
+        symptoms_date:element.symptoms_date,
+        symptoms:element.symptoms,
+        client:element.patient.first_name + " " +element.patient.last_name,
+       
+      }
+    ) 
+    
+  }
+return return_data;
+}
 }
 
 
