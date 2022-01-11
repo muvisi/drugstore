@@ -77,5 +77,11 @@ export const navItems: NavData[] = [
     url: '/dashboard/timeslot',
     icon: 'fas fa-address-book',
   
+  },
+  {
+    name: 'Covid Test Payments',
+    url: '/dashboard/revenues',
+    icon: 'fas fa-address-book',
+  
   }
 ];
