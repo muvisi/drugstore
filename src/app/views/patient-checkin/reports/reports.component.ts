@@ -108,6 +108,17 @@ export class ReportsComponent implements OnInit {
     })
   
   }
+  Search(){
+    console.log(this.dated)
+    this.service.getdatedtesting({dated:this.dated,datede:this.datede}).subscribe((res)=>{
+      
+      // this.loading=false;
+      this.datedtesting=res
+      this.datedtesting = new MatTableDataSource(this.formatData3(res));
+      this.datedtesting.paginator = this.paginator;
+    })
+  
+  }
   
   getCompleted(){
     // this.loading=true;
