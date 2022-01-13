@@ -35,6 +35,7 @@ export class ReportsComponent implements OnInit {
   dailyAppointMentList;
   date;
   dated;
+  datede;
   date1;
   date2;
   date3;
@@ -106,7 +107,7 @@ export class ReportsComponent implements OnInit {
   }
   Search(){
     console.log(this.dated)
-    this.service.getdatedtesting(this.dated).subscribe((res)=>{
+    this.service.getdatedtesting({dated:this.dated,datede:this.datede}).subscribe((res)=>{
       
       // this.loading=false;
       this.datedtesting=res

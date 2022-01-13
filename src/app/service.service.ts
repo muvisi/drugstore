@@ -358,7 +358,7 @@ searchProcedure(data): Observable<any> {
 
   }
   getdatedtesting(dated): Observable<any> {
-    return this.http.get(endpoint + 'api/datedcovidtesting/',dated).pipe(
+    return this.http.post(endpoint + 'api/datedcovidtesting/',dated).pipe(
       map(this.extractData));
 
   }

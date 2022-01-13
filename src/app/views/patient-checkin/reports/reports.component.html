@@ -148,7 +148,7 @@
            
           
             <div class="col-sm-9">
-               <button class="btn btn-success pull-right"><a href="{{endpoint}}api/covidreport/?">Download All </a></button>
+               <button class="btn btn-success pull-right"><a href="http://127.0.0.1:8000/api/covidreport/?">Download All </a></button>
             </div> 
 
                 <div class="col-sm-12" style="margin-top: 12px;">
@@ -220,13 +220,17 @@
                
             </div>
             <div class="col-sm-3">
+              <input type="date" [(ngModel)]="datede">
+             
+          </div>
+            <div class="col-sm-3">
               
               <button (click)="Search()" class="btn btn-success pull-right">Search</button>
           </div>
           
-            <!-- <div class="col-sm-3">
-               <button class="btn btn-success pull-right"><a href="{{endpoint}}api/covidreport/?">Download </a></button>
-            </div>  -->
+            <div class="col-sm-3">
+               <a   class="btn btn-success pull-right" ng-disabled="!dated" href="http://127.0.0.1:8000/api/dated/?from={{this.dated}}&to={{this.datede}}">Download </a>
+            </div> 
 
                 <div class="col-sm-12" style="margin-top: 12px;">
     
