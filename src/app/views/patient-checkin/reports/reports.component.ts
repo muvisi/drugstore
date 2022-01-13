@@ -29,7 +29,10 @@ export class ReportsComponent implements OnInit {
   monthlyAppointMent;
   monthlyAppointMentList;
   month;
+  dated;
   year;
+  datede;
+  datedtesting;
   dailyAppointMent;
   dailyAppointMentList;
   date;
