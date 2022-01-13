@@ -401,6 +401,12 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/?processing_status='+status+'&search='+text).pipe(
       map(this.extractData));
   }
+  getdatedtesting(dated): Observable<any> {
+    return this.http.post(endpoint + 'api/datedcovidtesting/',dated).pipe(
+      map(this.extractData));
+
+  }
+  g
   getCompleted(): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/?complete=1').pipe(
       map(this.extractData));

@@ -150,6 +150,44 @@ export class ReportsComponent implements OnInit {
       this.dailyAppointMent.paginator = this.paginator;
     })
   }
+  jsonToLIST3(elements){
+    var li=[]
+    for (var i =0;i<elements.length;i++){
+      li.push([
+        elements[i].client,
+      elements[i].no,
+      elements[i].travel_places,
+      elements[i].symptoms_date,
+      elements[i].date,
+      elements[i].time,
+      elements[i].symptoms,
+    
+      ]);
+     
+   }
+   return li; 
+   }
+   formatData3(elements){
+    var return_data=[];
+    for (var i=0;i<elements.length;i++) {
+      var element=elements[i];
+      return_data.push(
+        {
+          no:element.no,
+          travel_places:element.travel_places,
+          time:element.time,
+          date:element.date,
+          symptoms_date:element.symptoms_date,
+          symptoms:element.symptoms,
+          client:element.patient.first_name + " " +element.patient.last_name,
+        
+        }
+      )
+     
+    }
+   return return_data;
+   }
+   
 jsonToLIST1(elements){
   var li=[]
   for (var i =0;i<elements.length;i++){
