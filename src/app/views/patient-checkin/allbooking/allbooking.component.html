@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5>All Bookings</h5>
+          <h5>Appointment Bookings</h5>
         </div>
         <div class="card-body">
           <div class="row">
@@ -14,21 +14,24 @@
                           <input matInput (keyup)="applyFilter($event.target.value)"   placeholder="Mobile" type="search">
                         </mat-form-field>
                   </div>
-                  <!-- <div class="col-sm-2">
+                  <div class="col-sm-2">
                     <mat-form-field>
                         <input matInput [(ngModel)]="idnumber" (keyup)="applyFilter($event.target.value)"  placeholder="National id" type="input">
                       </mat-form-field>
-                </div> -->
+                </div>
                 </div>
               </div>
             <div class="col-sm-12">
               <div class="mat-elevation-z8 table-responsive">
                 <table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="sn">
-                        <th mat-header-cell *matHeaderCellDef>Next in Line</th>
+                        <th mat-header-cell *matHeaderCellDef>S/N</th>
                         <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
                 </ng-container>
-                
+                <ng-container matColumnDef="created">
+                  <th mat-header-cell *matHeaderCellDef>Created Date</th>
+                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;">  {{element.createdon | date:'dd/MM/yyyy h:mm a'}}  </td>
+                </ng-container>
                 <ng-container matColumnDef="First">
                   <th mat-header-cell *matHeaderCellDef>Patient Name</th>
                   <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
