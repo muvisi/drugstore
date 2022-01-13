@@ -49,6 +49,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { from } from 'rxjs';
 import { TokenInterceptor } from './interceptor';
+// import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 
 
@@ -99,6 +100,7 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+  
    
    
     

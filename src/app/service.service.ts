@@ -68,7 +68,7 @@ export class ServiceService {
       map(this.extractData));
   }
   searchAppointments(id): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=100').pipe(
+    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=100  6').pipe(
       map(this.extractData));
   }
   deleteAppointment(id): Observable<any> {
