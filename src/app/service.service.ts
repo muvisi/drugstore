@@ -817,7 +817,10 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   } 
-
+  feedbacks(): Observable<any> {
+    return this.http.get(endpoint + 'api/response/').pipe(
+      map(this.extractData));
+    }
   appointmentFee(data){
     return this.http.get(endpoint + 'appointments/fee/?appointment='+data).pipe(
       map(this.extractData
