@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint='http://localhost:8888/';
-export const endpoint = 'https://booking.healthixsolutions.com/';
+export const endpoint='http://localhost:8888/';
+// export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 // export const endpoint='https://bookings.aarhospital.com/';
@@ -44,11 +44,11 @@ export class ServiceService {
       map(this.extractData));
   }
   getEvents(): Observable<any> {
-    return this.http.get(endpoint + 'appointments/appointment_list/?limit=1000').pipe(
+    return this.http.get(endpoint + 'appointments/appointment_list/?limit=100').pipe(
       map(this.extractData));
   }
   getAppointments(): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/').pipe(
+    return this.http.get(endpoint + 'api/appointment/?limit=100').pipe(
       map(this.extractData));
   }
   getAppointmentsRevenues(): Observable<any> {
@@ -68,7 +68,7 @@ export class ServiceService {
       map(this.extractData));
   }
   searchAppointments(id): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=1000').pipe(
+    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=100').pipe(
       map(this.extractData));
   }
   deleteAppointment(id): Observable<any> {

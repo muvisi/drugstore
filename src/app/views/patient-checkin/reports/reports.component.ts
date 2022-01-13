@@ -67,7 +67,7 @@ export class ReportsComponent implements OnInit {
   dateFilter = (d: Date): boolean => {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
-    return day == 6;
+    return day == 6 || day == 3;
   }
   getFirstDose(){
     // this.loading=true;
@@ -206,7 +206,7 @@ downloadReportDaily(){
   
   this.excelGeneratorService.generate("Daily Vaccination  At "+ this.datepipe.transform(new Date(),"MMM d, y,"),
   ["Appointment No","Date","Time","Client","Mobile Number","National ID","Dose","Status"],
-  this.jsonToLIST1(this.formatData1(this.firstDoseAppointMentList) )  
+  this.jsonToLIST1(this.formatData1(this.dailyAppointMentList) )  
   )
 
 }
@@ -234,7 +234,7 @@ handle_download(data){
             phone:element.patient.phone,
             national_id:element.patient.national_id,
             dose:element.dose,            
-            status: (element.status) ? "Vaccinated" : "Pending", 
+            status: (element.status=='Completed') ? "Vaccinated" : element.status, 
 
           }
         ) 
