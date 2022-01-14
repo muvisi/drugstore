@@ -95,7 +95,7 @@
                                             </mat-form-field>
                                       </div>
                                       <div class="col-sm-12">
-                                         <button *ngIf="!data.status=='Pending' && appointmentForm.dirty"  class="btn btn-success btn-sm pull-right" >update</button>
+                                         <button *ngIf="data.status=='Pending' && appointmentForm.dirty"  class="btn btn-success btn-sm pull-right" >update</button>
                                          <button *ngIf="data.status!='Pending'"  [disabled]="data.status!='Pending'"   class="btn btn-success btn-sm pull-right">closed</button>
                                          
                                       </div>
