@@ -8,7 +8,7 @@
         <div class="col-sm-3">
           <mat-form-field appearance="outline"> 
             <mat-label>Select Dose</mat-label>
-            <mat-select formControlName="dose" [multiple]="false">
+            <mat-select formControlName="dose" [multiple]="false" (selectionChange)="doseSelected($event.value)">
               <mat-option *ngFor="let dose of doses" [value]="dose">{{dose}}</mat-option>
             </mat-select>
           </mat-form-field>  
