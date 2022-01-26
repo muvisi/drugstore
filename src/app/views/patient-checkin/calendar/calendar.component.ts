@@ -22,14 +22,14 @@ public workWeekDays: number[] = [6];
 setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
 
 dataManager: DataManager = new DataManager({
-  url: endpoint+'api/calendar/',
-  crudUrl: endpoint+'api/calendar/',
+  url: endpoint+'api/calreport/',
+  crudUrl: endpoint+'api/calreport/',
   adaptor: new UrlAdaptor,
   headers: [{ 'Authorization': 'Bearer ' + this.token}]
 });
 dataManager1: DataManager = new DataManager({
-  url: endpoint+'api/calreport/',
-  crudUrl: endpoint+'api/calreport/',
+  url: endpoint+'api/calendar/',
+  crudUrl: endpoint+'api/calendar/',
   adaptor: new UrlAdaptor,
   headers: [{ 'Authorization': 'Bearer ' + this.token}]
 });
