@@ -42,6 +42,7 @@ import { ViewlistComponent } from '../../viewlist/viewlist.component';
 import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.component';
 import { TestingDetailsComponent } from '../patient-checkin/testing-details/testing-details.component';
 import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
+import { InsuranceFormsComponent } from '../patient-checkin/insurance-forms/insurance-forms.component';
 const routes: Routes = [
   {
     path: '',
@@ -210,6 +211,11 @@ const routes: Routes = [
     data: {
       title: 'claims'
     }
+  },
+  {
+    path: 'insurance-forms/:id',
+    component:InsuranceFormsComponent,
+    
   },
   {
     path: 'eclaims-dashboard/claims',

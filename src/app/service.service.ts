@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint='http://localhost:8/';
+// export const endpoint='http://localhost:8000/';
 // export const endpoint='http://192.168.12.15:8888/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
-// export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
-export const endpoint='https://bookings.aarhospital.com/';
+// export const endpoint='https://bookings.aarhospital.com/';
 @Injectable({
   providedIn: 'root'
 })
@@ -62,6 +62,10 @@ export class ServiceService {
   }
   getBilling(): Observable<any> {
     return this.http.get(endpoint + 'appointments/payments/').pipe(
+      map(this.extractData));
+  }
+  getInsurance(id): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
       map(this.extractData));
   }
   searchBilling(id): Observable<any> {
