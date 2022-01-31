@@ -50,9 +50,14 @@ export const navItems: NavData[] = [
     url: '/dashboard/records',
     icon: 'icon-people',
   },
+  // {
+  //   name: 'Calendar',
+  //   url: '/dashboard/calendar',
+  //   icon: 'fa fa-calendar-check-o',
+  // },
   {
-    name: 'Calendar',
-    url: '/dashboard/calendar',
+    name: 'Specialty Calendar',
+    url: '/dashboard/specialty',
     icon: 'fa fa-calendar-check-o',
   },
   
@@ -61,6 +66,11 @@ export const navItems: NavData[] = [
     name: 'Covid Report',
     url: '/dashboard/reports',
     icon: 'icon-chart',
+  },
+  {
+    name: 'Clinic-Setup',
+    url: '/dashboard/clinic-setup',
+    icon: 'fa fa-thermometer-half',
   },
   {
     name: 'Bookings Report',

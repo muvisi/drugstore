@@ -42,6 +42,8 @@ import { ViewlistComponent } from '../../viewlist/viewlist.component';
 import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.component';
 import { TestingDetailsComponent } from '../patient-checkin/testing-details/testing-details.component';
 import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
+import { SpecialtyComponent } from '../patient-checkin/specialty/specialty.component';
+import { ClinicSetupComponent } from '../patient-checkin/clinic-setup/clinic-setup.component';
 const routes: Routes = [
   {
     path: '',
@@ -106,6 +108,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'specialty',
+    component: SpecialtyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'pexperience',
     component: PexperienceComponent,
     canActivate: [AuthGuard]
@@ -154,6 +161,11 @@ const routes: Routes = [
   {
     path: 'test',
     component:ViewlistComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic-setup',
+    component:ClinicSetupComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -293,7 +305,7 @@ const routes: Routes = [
   ,
 
 {
-path : 'calendar',
+path : 'calendar/:speciality',
 component : CalendarComponent,
 },
 {

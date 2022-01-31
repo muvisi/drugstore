@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 export const endpoint='http://localhost:8000/';
-// export const endpoint='http://134.209.199.123:8888/';
+// export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
@@ -1106,16 +1106,36 @@ timeslot(data): Observable<any> {
   return this.http.post(endpoint + 'api/calendar/slots/',data).pipe(
     map(this.extractData));
 }
+clinicsetup(data): Observable<any> {
+  return this.http.post(endpoint + 'api/specialty/clinic-setup/',data).pipe(
+    map(this.extractData));
+}
 getslots() {
   return this.http.get(endpoint + 'api/slots').pipe(
     map(this.extractData));
   }
+  getClinics() {
+    return this.http.get(endpoint + 'api/clinicdata/').pipe(
+      map(this.extractData));
+    }
+getdepartment() {
+    return this.http.get(endpoint + 'api/specialty/').pipe(
+      map(this.extractData));
+    }
+filtercalendar(specialist) {
+      return this.http.post(endpoint + 'api/specialtyfilter/',specialist).pipe(
+        map(this.extractData));
+      }
   getRevenues() {
     return this.http.get(endpoint + 'payment/payments/').pipe(
       map(this.extractData));
     }
   deleteslot(id) {
     return this.http.delete(endpoint + 'api/slots/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  deleteclinic(id) {
+    return this.http.delete(endpoint + 'api/deleteclinic/'+id+'/').pipe(
       map(this.extractData));
   }
 }
