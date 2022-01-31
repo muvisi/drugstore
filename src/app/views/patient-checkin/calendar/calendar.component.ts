@@ -21,12 +21,6 @@ scheduleHours: WorkHoursModel  = { highlight: true, start: '08:00', end: '05:00'
 public workWeekDays: number[] = [6];
 setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
 
-// dataManager: DataManager = new DataManager({
-//   url: endpoint+'api/calendar/',
-//   crudUrl: endpoint+'api/calendar/',
-//   adaptor: new UrlAdaptor,
-//   headers: [{ 'Authorization': 'Bearer ' + this.token}]
-// });
 dataManager: DataManager = new DataManager({
   url: endpoint+'api/calreport/',
   crudUrl: endpoint+'api/calreport/',
