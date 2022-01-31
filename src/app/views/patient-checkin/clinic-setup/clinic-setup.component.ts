@@ -31,6 +31,7 @@ export class ClinicSetupComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,public service:ServiceService,public datePipe:DatePipe,public toastr:ToastrService){}
   ngOnInit() {
     this.getData()
+    this.setDay()
   
     this.registerForm = this.formBuilder.group({
       date: ['', Validators.required],
