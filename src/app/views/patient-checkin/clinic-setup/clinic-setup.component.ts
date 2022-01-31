@@ -79,12 +79,12 @@ delete(){
   this.staticModal.hide();
   })
 }
-setDay(d, day, week_starts_monday) {
-  var c_day = d.getDay();
-  if (week_starts_monday && c_day === 0)
-      c_day = 7; // adjust so `0` is last week sunday, 7 is this week sunday
-  d.setDate(d.getDate() - c_day + day);
-  console.log()
-  return d;
-}
+// setDay(d, day, week_starts_monday) {
+//   var c_day = d.getDay();
+//   if (week_starts_monday && c_day === 0)
+//       c_day = 7; // adjust so `0` is last week sunday, 7 is this week sunday
+//   d.setDate(d.getDate() - c_day + day);
+//   console.log()
+//   return d;
+// }
 }
