@@ -28,8 +28,9 @@
 
                         </div>
                             <div class="col-sm-7" style="text-align:right">
-                              <button type="submit"  *ngIf="!data.status"  (click)="completeAppointment()" class="btn btn-primary pull-right"> <i class="fas fa-syringe"></i> Vaccinate</button>
-                              <button  *ngIf="data.status" [disabled]="data.status"  class="btn btn-success pull-right">Vaccinated</button>
+                              <button type="submit"  *ngIf="data.status=='Pending'"  (click)="completeAppointment()" class="btn btn-primary pull-right"> <i class="fas fa-syringe"></i> Vaccinate</button>
+                              <button type="submit"  *ngIf="data.status=='No Show' || data.status=='Cancelled'" [disabled]="data.status=='No Show' || data.status=='Cancelled'"  (click)="completeAppointment()" class="btn btn-primary pull-right"> <i class="fas fa-syringe"></i> Vaccinate</button>
+                              <button  *ngIf="data.status=='Completed'" [disabled]="data.status=='Completed'"  class="btn btn-success pull-right">Vaccinated</button>
 
                             </div>
                           </div>
@@ -94,8 +95,9 @@
                                             </mat-form-field>
                                       </div>
                                       <div class="col-sm-12">
-                                         <button *ngIf="!data.status && appointmentForm.dirty"  class="btn btn-success btn-sm pull-right" >update</button>
-                                         <button *ngIf="data.status"  [disabled]="data.status"   class="btn btn-success btn-sm pull-right">closed</button>
+                                         <button *ngIf="data.status=='Pending' && appointmentForm.dirty"  class="btn btn-success btn-sm pull-right" >update</button>
+                                         <button *ngIf="data.status!='Pending'"  [disabled]="data.status!='Pending'"   class="btn btn-success btn-sm pull-right">closed</button>
+                                         
                                       </div>
                                     </div>
                                   </form>
@@ -173,8 +175,9 @@
                                      <button  *ngIf="!data.status" [disabled]="!data.active" class="btn btn-success pull-right">Save Triage </button>
                                      <button  *ngIf="data.status"  [disabled]="data.status"  class="btn btn-success pull-right">Triage Saved </button> -->
                                    <div class="col-sm-2">
-                                     <button  *ngIf="!data.status" class="btn btn-success">Save Triage </button>
-                                     <button  *ngIf="data.status"  [disabled]="data.status"  class="btn btn-success">Triage Saved </button>
+                                     <button  *ngIf="data.status=='Pending'" class="btn btn-success">Save Triage </button>
+                                     <button  *ngIf="data.status=='Completed'"  [disabled]="data.status"  class="btn btn-success">Triage Saved </button>
+                                     <button  *ngIf="data.status=='No Show' || data.status=='Cancelled'"  [disabled]="data.status=='No Show' || data.status=='Cancelled'" class="btn btn-success">Triage Closed </button>
                                    </div>
                                 </div>
                               </form>
@@ -203,8 +206,9 @@
                                   
                                   </div>
                                   <div class="col-sm-12">
-                                    <button type="submit"  *ngIf="!data.status" [disabled]="!data.active"  class="btn btn-success pull-right">Finish </button>
-                                    <button  *ngIf="data.status" [disabled]="data.status"  class="btn btn-success pull-right">Finished </button>
+                                    <button type="submit"  *ngIf="data.status=='Pending'" [disabled]="!data.active"  class="btn btn-success pull-right">Finish </button>
+                                    <button  *ngIf="data.status=='Completed'" [disabled]="data.status=='Completed'"  class="btn btn-success pull-right">Finished </button>
+                                    <button  *ngIf="data.status=='No Show' || data.status=='Cancelled'" [disabled]="data.status=='No Show' || data.status=='Cancelled'"  class="btn btn-success pull-right">data.status </button>
                                   </div>
                                 </form>
                               </div>

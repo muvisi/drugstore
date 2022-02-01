@@ -45,6 +45,7 @@ import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
 import { SpecialtyComponent } from '../patient-checkin/specialty/specialty.component';
 import { ClinicSetupComponent } from '../patient-checkin/clinic-setup/clinic-setup.component';
 import { SpecificClinicsetupComponent } from '../patient-checkin/specific-clinicsetup/specific-clinicsetup.component';
+import { InsuranceFormsComponent } from '../patient-checkin/insurance-forms/insurance-forms.component';
 const routes: Routes = [
   {
     path: '',
@@ -228,6 +229,11 @@ const routes: Routes = [
     data: {
       title: 'claims'
     }
+  },
+  {
+    path: 'insurance-forms/:id',
+    component:InsuranceFormsComponent,
+    
   },
   {
     path: 'eclaims-dashboard/claims',

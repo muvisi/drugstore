@@ -67,6 +67,11 @@ export const navItems: NavData[] = [
     url: '/dashboard/reports',
     icon: 'icon-chart',
   },
+  // {
+  //   name: 'Claim Form',
+  //   url: '/dashboard/insurance-forms',
+  //   icon: 'fa fa-folder-open',
+  // },
   {
     name: 'Clinic-Setup',
     url: '/dashboard/clinic-setup',

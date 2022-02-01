@@ -37,6 +37,12 @@ export class AppointmentComponent implements OnInit {
       code:202,
       value:"Second Dose"
 
+    },
+    {
+      type:"Booster Dose",
+      code:203,
+      value:"Booster Dose"
+
     }
 
   ]

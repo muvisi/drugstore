@@ -46,11 +46,11 @@ export class ServiceService {
       map(this.extractData));
   }
   getEvents(): Observable<any> {
-    return this.http.get(endpoint + 'appointments/appointment_list/?limit=1000').pipe(
+    return this.http.get(endpoint + 'appointments/appointment_list/?limit=100').pipe(
       map(this.extractData));
   }
   getAppointments(): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/').pipe(
+    return this.http.get(endpoint + 'api/appointment/?limit=100').pipe(
       map(this.extractData));
   }
   getAppointmentsRevenues(): Observable<any> {
@@ -65,12 +65,16 @@ export class ServiceService {
     return this.http.get(endpoint + 'appointments/payments/').pipe(
       map(this.extractData));
   }
+  getInsurance(id): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
+      map(this.extractData));
+  }
   searchBilling(id): Observable<any> {
     return this.http.get(endpoint + 'appointments/payments/?search='+id).pipe(
       map(this.extractData));
   }
   searchAppointments(id): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=1000').pipe(
+    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=100  6').pipe(
       map(this.extractData));
   }
   deleteAppointment(id): Observable<any> {
@@ -357,11 +361,6 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
 
   }
-  getdatedtesting(dated): Observable<any> {
-    return this.http.post(endpoint + 'api/datedcovidtesting/',dated).pipe(
-      map(this.extractData));
-
-  }
   getAlltestingcomplete(): Observable<any> {
     return this.http.get(endpoint + 'api/covidcompleted/').pipe(
       map(this.extractData));
@@ -408,6 +407,12 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/?processing_status='+status+'&search='+text).pipe(
       map(this.extractData));
   }
+  getdatedtesting(dated): Observable<any> {
+    return this.http.post(endpoint + 'api/datedcovidtesting/',dated).pipe(
+      map(this.extractData));
+
+  }
+  g
   getCompleted(): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/?complete=1').pipe(
       map(this.extractData));
@@ -688,10 +693,6 @@ searchBills(data): Observable<any>{
     return this.http.get(endpoint + 'api/patient/').pipe(
       map(this.extractData));
   }
-  feedbacks(): Observable<any> {
-    return this.http.get(endpoint + 'api/response/').pipe(
-      map(this.extractData));
-  }
   getPatient(id): Observable<any> {
     return this.http.get(endpoint + 'api/patient/'+id+'/').pipe(
       map(this.extractData));
@@ -828,7 +829,10 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   } 
-
+  feedbacks(): Observable<any> {
+    return this.http.get(endpoint + 'api/response/').pipe(
+      map(this.extractData));
+    }
   appointmentFee(data){
     return this.http.get(endpoint + 'appointments/fee/?appointment='+data).pipe(
       map(this.extractData

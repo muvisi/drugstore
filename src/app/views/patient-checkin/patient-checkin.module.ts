@@ -71,6 +71,7 @@ import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
 import { SpecialtyComponent } from './specialty/specialty.component';
 import { ClinicSetupComponent } from './clinic-setup/clinic-setup.component';
 import { SpecificClinicsetupComponent } from './specific-clinicsetup/specific-clinicsetup.component';
+import { InsuranceFormsComponent } from './insurance-forms/insurance-forms.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -117,7 +118,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FeedbacksComponent,
     SpecialtyComponent,
     ClinicSetupComponent,
-    SpecificClinicsetupComponent
+    SpecificClinicsetupComponent,
+    InsuranceFormsComponent
 
     
 
