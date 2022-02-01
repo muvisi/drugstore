@@ -70,6 +70,7 @@ import { TestingDetailsComponent } from './testing-details/testing-details.compo
 import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
 import { SpecialtyComponent } from './specialty/specialty.component';
 import { ClinicSetupComponent } from './clinic-setup/clinic-setup.component';
+import { SpecificClinicsetupComponent } from './specific-clinicsetup/specific-clinicsetup.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -115,7 +116,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     TestingDetailsComponent,
     FeedbacksComponent,
     SpecialtyComponent,
-    ClinicSetupComponent
+    ClinicSetupComponent,
+    SpecificClinicsetupComponent
 
     
 

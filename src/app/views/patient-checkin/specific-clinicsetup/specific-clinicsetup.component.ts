@@ -8,22 +8,19 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ServiceService } from '../../../service.service';
-// import * as moment from 'moment';
-// import { ServiceService } from '../service.service';
 
 @Component({
-  selector: 'app-clinic-setup',
-  templateUrl: './clinic-setup.component.html',
-  styleUrls: ['./clinic-setup.component.scss']
+  selector: 'app-specific-clinicsetup',
+  templateUrl: './specific-clinicsetup.component.html',
+  styleUrls: ['./specific-clinicsetup.component.scss']
 })
-export class ClinicSetupComponent implements OnInit {
+export class SpecificClinicsetupComponent implements OnInit {
 
-  displayedColumns: string[] = ['no','date','start','end','clinic','week','user','delete'];
+  displayedColumns: string[] = ['no','clinic','weekfrom','weekto','openingtime','clossingtime','delete'];
   minDate = new Date()
   date;
   selected;
   dataSource;
-  MONTHS=[];
   CLINIC_DATA;
   WEEK_DAYS=[
     {day:"Monday"},
@@ -35,42 +32,45 @@ export class ClinicSetupComponent implements OnInit {
     {day:"Sunday"},
 ]
 
-
-
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   registerForm: FormGroup;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
   constructor(private formBuilder: FormBuilder,public service:ServiceService,public datePipe:DatePipe,public toastr:ToastrService){}
   ngOnInit() {
     this.getData()
-    this. getdepartments()
+    this.getdepartments()
+    // this.getsingleClinics()
     
   
     this.registerForm = this.formBuilder.group({
-      date: ['', Validators.required],
       clinic: [''],
-      
-      week: [''],
+      weekfrom: ['', Validators.required],
+      weekto: ['', Validators.required],
+      // date: ['', Validators.required],
       start:['',Validators.required],
       end:['',Validators.required],
-      // comment:['']
+      list:['']
   });
  
 
   }
   // data to the table
   getData(){
-    this.service.getClinics().subscribe((res)=>{
+    this.service. getsingleClinics().subscribe((res)=>{
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
      
        })
   }
+
   getdepartments() {
     this.service.getdepartment().subscribe(
       data => {
         this.CLINIC_DATA=data
-        // console.log("CLINIC_DATA",this.CLINIC_DATA)
+
+        // this.CLINIC_DATA = new MatTableDataSource <[]>(data);
+        // this.CLINIC_DATA.paginator = this.paginator;
+        console.log("CLINIC_DATA",this.CLINIC_DATA)
         
         
       
@@ -81,17 +81,14 @@ export class ClinicSetupComponent implements OnInit {
       () => console.log('There is an error')
     );
   }
- 
   onSubmitted() {
-    if (this.registerForm.invalid) {
-        return;
-    }
+    console.log("kamwana")
     let data = this.registerForm.value
-    console.log("RESP DATA",data)
-    data.date = this.datePipe.transform(this.registerForm.get('date').value,'y-M-d')
-    this.service.clinicsetup(this.registerForm.value).subscribe((res)=>{
+    console.log(data)
+    // data.date = this.datePipe.transform(this.registerForm.get('date').value,'y-M-d')
+    this.service.Singleclinicsetup(this.registerForm.value).subscribe((res)=>{
      this.toastr.success('created clinic','Success');
-    this.getData();
+    // this.getData();
   
      })
      this.registerForm.reset()
