@@ -44,6 +44,7 @@ import { TestingDetailsComponent } from '../patient-checkin/testing-details/test
 import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
 import { SpecialtyComponent } from '../patient-checkin/specialty/specialty.component';
 import { ClinicSetupComponent } from '../patient-checkin/clinic-setup/clinic-setup.component';
+import { SpecificClinicsetupComponent } from '../patient-checkin/specific-clinicsetup/specific-clinicsetup.component';
 const routes: Routes = [
   {
     path: '',
@@ -168,6 +169,11 @@ const routes: Routes = [
     component:ClinicSetupComponent,
     canActivate: [AuthGuard]
   },
+  // {
+  //   path: 'specific-clinic-setup',
+  //   component:SpecificClinicsetupComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'records',
     component: RecordListComponent,

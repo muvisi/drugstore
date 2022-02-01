@@ -1110,6 +1110,10 @@ clinicsetup(data): Observable<any> {
   return this.http.post(endpoint + 'api/specialty/clinic-setup/',data).pipe(
     map(this.extractData));
 }
+Singleclinicsetup(data): Observable<any> {
+  return this.http.post(endpoint + 'api/singleclinic/',data).pipe(
+    map(this.extractData));
+}
 getslots() {
   return this.http.get(endpoint + 'api/slots').pipe(
     map(this.extractData));
@@ -1118,6 +1122,10 @@ getslots() {
     return this.http.get(endpoint + 'api/clinicdata/').pipe(
       map(this.extractData));
     }
+    getsingleClinics() {
+      return this.http.get(endpoint + 'api/singleclinicdata/').pipe(
+        map(this.extractData));
+      }
 getdepartment() {
     return this.http.get(endpoint + 'api/specialty/').pipe(
       map(this.extractData));
