@@ -46,6 +46,11 @@ import { SpecialtyComponent } from '../patient-checkin/specialty/specialty.compo
 import { ClinicSetupComponent } from '../patient-checkin/clinic-setup/clinic-setup.component';
 import { SpecificClinicsetupComponent } from '../patient-checkin/specific-clinicsetup/specific-clinicsetup.component';
 import { InsuranceFormsComponent } from '../patient-checkin/insurance-forms/insurance-forms.component';
+import { CooperativeClaimformComponent } from '../patient-checkin/cooperative-claimform/cooperative-claimform.component';
+import { AarClaimformComponent } from '../patient-checkin/aar-claimform/aar-claimform.component';
+import { FirstassuranceComponent } from '../patient-checkin/firstassurance/firstassurance.component';
+import { SedgrickComponent } from '../patient-checkin/sedgrick/sedgrick.component';
+import { ApaClaimformComponent } from '../patient-checkin/apa-claimform/apa-claimform.component';
 const routes: Routes = [
   {
     path: '',
@@ -161,6 +166,26 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'AAR/Claimform',
+    component:AarClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'FirstAssurance',
+    component:FirstassuranceComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sedgrick',
+    component:SedgrickComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'APA',
+    component:ApaClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'test',
     component:ViewlistComponent,
     canActivate: [AuthGuard]
@@ -170,11 +195,11 @@ const routes: Routes = [
     component:ClinicSetupComponent,
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'specific-clinic-setup',
-  //   component:SpecificClinicsetupComponent,
-  //   canActivate: [AuthGuard]
-  // },
+  {
+    path: 'cooperative-claimform',
+    component:CooperativeClaimformComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'records',
     component: RecordListComponent,

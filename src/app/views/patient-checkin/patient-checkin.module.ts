@@ -72,6 +72,11 @@ import { SpecialtyComponent } from './specialty/specialty.component';
 import { ClinicSetupComponent } from './clinic-setup/clinic-setup.component';
 import { SpecificClinicsetupComponent } from './specific-clinicsetup/specific-clinicsetup.component';
 import { InsuranceFormsComponent } from './insurance-forms/insurance-forms.component';
+import { CooperativeClaimformComponent } from './cooperative-claimform/cooperative-claimform.component';
+import { AarClaimformComponent } from './aar-claimform/aar-claimform.component';
+import { FirstassuranceComponent } from './firstassurance/firstassurance.component';
+import { ApaClaimformComponent } from './apa-claimform/apa-claimform.component';
+import { SedgrickComponent } from './sedgrick/sedgrick.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -119,7 +124,12 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     SpecialtyComponent,
     ClinicSetupComponent,
     SpecificClinicsetupComponent,
-    InsuranceFormsComponent
+    InsuranceFormsComponent,
+    CooperativeClaimformComponent,
+    AarClaimformComponent,
+    FirstassuranceComponent,
+    ApaClaimformComponent,
+    SedgrickComponent
 
     
 

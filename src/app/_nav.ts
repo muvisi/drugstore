@@ -93,12 +93,12 @@ export const navItems: NavData[] = [
     icon: 'fas fa-address-book',
   
   },
-  // {
-  //   name: 'clinics Setup',
-  //   url: '/dashboard/specific-clinic-setup',
-  //   icon: 'fas fa-address-book',
+  {
+    name: 'coperative-form',
+    url: '/dashboard/cooperative-claimform',
+    icon: 'fas fa-address-book',
   
-  // }
+  }
   // {
   //   name: 'Covid Test Payments',
   //   url: '/dashboard/revenues',
