@@ -5,7 +5,8 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8000/';
 // export const endpoint='http://192.168.12.15:8888/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
-export const endpoint='http://134.209.199.123:8888/';
+// export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://locahost:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 // export const endpoint='https://bookings.aarhospital.com/';
 @Injectable({
