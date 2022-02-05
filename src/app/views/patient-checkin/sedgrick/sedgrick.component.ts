@@ -8,14 +8,14 @@ import { ServiceService } from '../../../service.service';
   styleUrls: ['./sedgrick.component.scss']
 })
 export class SedgrickComponent implements OnInit {
-  data:any={}
+  patient:any={}
     hospital='AAR HOSPITAL'
     constructor(private route: ActivatedRoute,public service:ServiceService) { }
   
     ngOnInit() {
       this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
         console.log(res);
-        this.data = res;
+        this.patient = res;
       })
     }  
    printPage() {

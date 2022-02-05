@@ -171,7 +171,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'FirstAssurance',
+    path: 'FirstAssurance/:id',
     component:FirstassuranceComponent,
     canActivate: [AuthGuard]
   },

@@ -69,4 +69,8 @@ export class AllbookingComponent implements OnInit {
   coopInsuranceClicked(item){
     this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
   }
+medInsuranceClicked(item){
+  this.router.navigate(['/dashboard/FirstAssurance/',item.id])
+
+}
 }
