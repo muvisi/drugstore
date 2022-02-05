@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceService } from '../../../service.service';
 
 @Component({
   selector: 'app-cooperative-claimform',
@@ -8,17 +9,21 @@ import { Router } from '@angular/router';
 })
 export class CooperativeClaimformComponent implements OnInit {
 
-  constructor(public router:Router) { }
+
+ 
+   
+  data:any={}
+  hospital='AAR HOSPITAL'
+  constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {
-  }
-  Aarform(){
-
-    this.router.navigate(['/dashboard/AAR/Claimform'])
-    // this.router.navigate(['/dashboard/calendar/',this.selected.specialist])
-  }
-  printPage() {
-    window.print();
-  }
+    this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
+      console.log(res);
+      this.data = res;
+    })
+  }  
+ printPage() {
+  window.print();
+}
 
 }

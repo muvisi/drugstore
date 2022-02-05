@@ -66,33 +66,33 @@
                 <div class="row">
                     <div class="col-sm-2">Name of the Employee:</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="data.employee">
                     </div>
                     <div class="col-sm-2">Staff Number:</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="data.booking.member_number">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Department:</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="data.booking.department">
                     </div>
                     <div class="col-sm-2">scheme Number:</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="data.scheme_number">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Patient Name:</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text"  [(ngModel)]="data.employee">
                     </div>
                     <div class="col-sm-2">Age:</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text"  [(ngModel)]="data.patient.age">
                     </div>
                     
                 </div>
@@ -101,7 +101,7 @@
                 <div class="row">
                     <div class="col-sm-2">Relationship with employee:</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.employee">
+                    <input type="text" [(ngModel)]="data.relation">
                     </div>
                     
                 </div>

@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-sm-2">Employee Name:</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.employee">
+                    <input type="text" [(ngModel)]="patient.booking.employee">
                     </div>
                     
                 </div>
@@ -67,11 +67,11 @@
                 <div class="row">
                     <div class="col-sm-2">Date Of Birth:</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="patient.patient.dob">
                     </div>
                     <div class="col-sm-3">Relationship Of the Pateint to Employee:</div>
                     <div class="col-sm-3">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="patient.relation">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -85,7 +85,7 @@
                 <div class="row">
                     <div class="col-sm-2">Client contact Cell Phone:</div>
                     <div class="col-sm-10">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="patient.patient.phone">
                     </div>
                 </div>
             </div>
