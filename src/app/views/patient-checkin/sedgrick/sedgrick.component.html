@@ -1,0 +1,262 @@
+<div class="card">
+    <div class="card-body" id="print-section">
+        <div class="row">
+            <div class="col-sm-12" >
+                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                <div class="clearfix"></div>
+                <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="APA()">APA Claimform</button>
+
+
+    
+            </div>
+        </div>
+        <div class="row" >
+           
+            <div class="col-sm-8">
+                <h1>
+                    <img src="../../../../assets/img/avatars/sedg.png" alt="">
+                </h1>
+               
+            </div>
+            <div class="col-sm-4">
+               
+                <address style="color:purple">
+                   <strong> Sedgwick Kenya Insurance Brokers Limited<br> 
+                    4th Avenue Towers, 14th Floor,4th Ngong Avenue<br> </strong>
+                    <span style="margin-left:20px;"> P.O Box 40709-00100 Nairobi,Kenya</span><br>
+                  
+                    T: +2540202913000/+2540202723088<br> 
+                    M: 0727222269/0738704066<br> 
+                    E: medical@sedgwick.co.ke<br>
+                    W:www.sedgwick.co.ke<br>
+                    </address>
+            </div>
+            <div class="col-sm-12" >
+                <div style="background-color:purple;" >
+                    <h3 style="color: white;margin-left: 210px;">MEDICAL INSURANCE EXPENSES CLAIM FORM</h3>
+                </div>
+                <hr>
+                <div  class="col-sm-6">
+                    <div style="background-color:purple;" >
+                        <h3 style="color: white;">General conditions</h3>
+                    </div>
+                </div>
+                <div class="col-sm-12" >
+                   
+                    <div class="col-sm-12" > 
+                        <ul  >
+                            Complete a separate claim form for each insured person and for every visit<br>
+                            Attach all diadnostic request forms,refferal letter and prescription where application<br>
+                            Original detailed account must be attached to this form<br>
+                            This form must be dully completed, signed by the patient and attending Doctor<br>
+                            All invoices must be signed by the patient/gurdian
+                        </ul>
+                    </div>
+            <div class="col-sm-12" >
+               
+               
+                <div class="row">
+                    <div class="col-sm-2">Name of the Employer:</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Name of the Employee:</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">Staff Number:</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Department:</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">scheme Number:</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Patient Name:</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">Age:</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Relationship with employee:</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+
+
+               
+               
+                
+            </div>
+
+
+            <div  class="col-sm-6">
+                <div style="background-color:purple;" >
+                    <h3 style="color: white;">Medical Information</h3>
+                </div>
+            </div>
+            
+
+            <div class="col-sm-12" >
+               
+               
+                <div class="row">
+                    <div class="col-sm-4">(To be answered by the attending doctor):</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-4">Nature of the sickness/Diagnosis</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                
+                <div class="row">
+                    <div class="col-sm-4">Nature of the sickness start:</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-4">When did the patient consult the doctor(first Time):</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-4">Is the illness Congenital, Chronic/Recurring</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-4">If accident, give brief particulars</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-4">Nature of the treatment </div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-4">Does the Patient require any referral or specification treatment</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                
+               
+                
+
+
+               
+               
+                
+            </div>
+            <div  class="col-sm-6">
+                <div style="background-color:purple;" >
+                    <h3 style="color: white;">Member's Certificate</h3>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 30px;">
+                <div class="col-sm-12" >
+                I hereby warrant the truth of the above statement, I have not withheld any information related to this claim and <br>
+                I have no objection to Sedgwick Kenysa or their representative communicating with my medical provider.<br> 
+               
+                </div>
+                
+            </div>
+            <div class="row" style="margin-top: 12px; margin-left: 30px;">
+                <div class="col-sm-8">
+                    Member's Signature______________________________________________________________
+                </div>
+                <div class="col-sm-4">
+                    Date_______________________________________
+                </div>
+                
+            </div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div  class="col-sm-6">
+                <div style="background-color:purple;" >
+                    <h3 style="color: white;">Doctor's Certificate</h3>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 30px;">
+                <div class="col-sm-12">
+                I hereby certify that the above amounts are in accordance  with my specified treatment and to the best of my<br>
+                knowledge and belief.The claim is approved for payment/reimbursement.
+                </div>
+                
+            </div>
+            <div class="row" style="margin-top: 12px; margin-left: 30px;">
+                <div class="col-sm-8">
+                    Member's Signature______________________________________________________________
+                </div>
+                <div class="col-sm-4">
+                    Date_______________________________________
+                </div>
+                
+            </div>
+            <div class="row" style="margin-top: 12px; margin-left: 30px;">
+                <div class="col-sm-6">
+                    Date of Service________________________
+                </div>
+                <div class="col-sm-3">
+                    Signature________________
+                </div>
+                <div class="col-sm-3">
+                    Stamp________________
+                </div>
+                
+            </div>
+        </div>
+       
+      
+    </div>
+  </div>

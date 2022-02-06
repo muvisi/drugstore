@@ -20,7 +20,7 @@ export class TestresultComponent implements OnInit {
   phonenumber;
   appointmentdate;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  Columns: string[] = ['sn','date','time','Client','phone','national_id','status','action']
+  Columns: string[] = ['sn','created','date','time','Client','phone','national_id','status','action']
   constructor(public service:ServiceService,public toastr: ToastrService,public router:Router) { }
   ngOnInit() {
     this.idnumber="";

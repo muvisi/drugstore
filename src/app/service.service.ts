@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint='http://localhost:8000/';
-export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://localhost:8000/';
+// export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
@@ -46,11 +46,11 @@ export class ServiceService {
       map(this.extractData));
   }
   getEvents(): Observable<any> {
-    return this.http.get(endpoint + 'appointments/appointment_list/?limit=1000').pipe(
+    return this.http.get(endpoint + 'appointments/appointment_list/?limit=100').pipe(
       map(this.extractData));
   }
   getAppointments(): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/').pipe(
+    return this.http.get(endpoint + 'api/appointment/?limit=100').pipe(
       map(this.extractData));
   }
   getAppointmentsRevenues(): Observable<any> {
@@ -65,12 +65,16 @@ export class ServiceService {
     return this.http.get(endpoint + 'appointments/payments/').pipe(
       map(this.extractData));
   }
+  getInsurance(id): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
+      map(this.extractData));
+  }
   searchBilling(id): Observable<any> {
     return this.http.get(endpoint + 'appointments/payments/?search='+id).pipe(
       map(this.extractData));
   }
   searchAppointments(id): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=1000').pipe(
+    return this.http.get(endpoint + 'api/appointment/?search='+id+'&limit=100  6').pipe(
       map(this.extractData));
   }
   deleteAppointment(id): Observable<any> {
@@ -357,11 +361,6 @@ searchProcedure(data): Observable<any> {
       map(this.extractData));
 
   }
-  getdatedtesting(dated): Observable<any> {
-    return this.http.post(endpoint + 'api/datedcovidtesting/',dated).pipe(
-      map(this.extractData));
-
-  }
   getAlltestingcomplete(): Observable<any> {
     return this.http.get(endpoint + 'api/covidcompleted/').pipe(
       map(this.extractData));
@@ -408,6 +407,12 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/?processing_status='+status+'&search='+text).pipe(
       map(this.extractData));
   }
+  getdatedtesting(dated): Observable<any> {
+    return this.http.post(endpoint + 'api/datedcovidtesting/',dated).pipe(
+      map(this.extractData));
+
+  }
+  g
   getCompleted(): Observable<any> {
     return this.http.get(endpoint + 'claims/claims/?complete=1').pipe(
       map(this.extractData));
@@ -688,10 +693,6 @@ searchBills(data): Observable<any>{
     return this.http.get(endpoint + 'api/patient/').pipe(
       map(this.extractData));
   }
-  feedbacks(): Observable<any> {
-    return this.http.get(endpoint + 'api/response/').pipe(
-      map(this.extractData));
-  }
   getPatient(id): Observable<any> {
     return this.http.get(endpoint + 'api/patient/'+id+'/').pipe(
       map(this.extractData));
@@ -828,7 +829,10 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   } 
-
+  feedbacks(): Observable<any> {
+    return this.http.get(endpoint + 'api/response/').pipe(
+      map(this.extractData));
+    }
   appointmentFee(data){
     return this.http.get(endpoint + 'appointments/fee/?appointment='+data).pipe(
       map(this.extractData
@@ -1106,16 +1110,44 @@ timeslot(data): Observable<any> {
   return this.http.post(endpoint + 'api/calendar/slots/',data).pipe(
     map(this.extractData));
 }
+clinicsetup(data): Observable<any> {
+  return this.http.post(endpoint + 'api/specialty/clinic-setup/',data).pipe(
+    map(this.extractData));
+}
+Singleclinicsetup(data): Observable<any> {
+  return this.http.post(endpoint + 'api/singleclinic/',data).pipe(
+    map(this.extractData));
+}
 getslots() {
   return this.http.get(endpoint + 'api/slots').pipe(
     map(this.extractData));
   }
+  getClinics() {
+    return this.http.get(endpoint + 'api/clinicdata/').pipe(
+      map(this.extractData));
+    }
+    getsingleClinics() {
+      return this.http.get(endpoint + 'api/singleclinicdata/').pipe(
+        map(this.extractData));
+      }
+getdepartment() {
+    return this.http.get(endpoint + 'api/specialty/').pipe(
+      map(this.extractData));
+    }
+filtercalendar(specialist) {
+      return this.http.post(endpoint + 'api/specialtyfilter/',specialist).pipe(
+        map(this.extractData));
+      }
   getRevenues() {
     return this.http.get(endpoint + 'payment/payments/').pipe(
       map(this.extractData));
     }
   deleteslot(id) {
     return this.http.delete(endpoint + 'api/slots/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  deleteclinic(id) {
+    return this.http.delete(endpoint + 'api/deleteclinic/'+id+'/').pipe(
       map(this.extractData));
   }
 }

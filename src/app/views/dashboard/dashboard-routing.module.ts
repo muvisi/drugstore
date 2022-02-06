@@ -42,6 +42,15 @@ import { ViewlistComponent } from '../../viewlist/viewlist.component';
 import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.component';
 import { TestingDetailsComponent } from '../patient-checkin/testing-details/testing-details.component';
 import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
+import { SpecialtyComponent } from '../patient-checkin/specialty/specialty.component';
+import { ClinicSetupComponent } from '../patient-checkin/clinic-setup/clinic-setup.component';
+import { SpecificClinicsetupComponent } from '../patient-checkin/specific-clinicsetup/specific-clinicsetup.component';
+import { InsuranceFormsComponent } from '../patient-checkin/insurance-forms/insurance-forms.component';
+import { CooperativeClaimformComponent } from '../patient-checkin/cooperative-claimform/cooperative-claimform.component';
+import { AarClaimformComponent } from '../patient-checkin/aar-claimform/aar-claimform.component';
+import { FirstassuranceComponent } from '../patient-checkin/firstassurance/firstassurance.component';
+import { SedgrickComponent } from '../patient-checkin/sedgrick/sedgrick.component';
+import { ApaClaimformComponent } from '../patient-checkin/apa-claimform/apa-claimform.component';
 const routes: Routes = [
   {
     path: '',
@@ -106,6 +115,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'specialty',
+    component: SpecialtyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'pexperience',
     component: PexperienceComponent,
     canActivate: [AuthGuard]
@@ -152,8 +166,38 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'AAR/Claimform',
+    component:AarClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'FirstAssurance',
+    component:FirstassuranceComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sedgrick',
+    component:SedgrickComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'APA',
+    component:ApaClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'test',
     component:ViewlistComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic-setup',
+    component:ClinicSetupComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'cooperative-claimform',
+    component:CooperativeClaimformComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -210,6 +254,11 @@ const routes: Routes = [
     data: {
       title: 'claims'
     }
+  },
+  {
+    path: 'insurance-forms/:id',
+    component:InsuranceFormsComponent,
+    
   },
   {
     path: 'eclaims-dashboard/claims',
@@ -293,7 +342,7 @@ const routes: Routes = [
   ,
 
 {
-path : 'calendar',
+path : 'calendar/:speciality',
 component : CalendarComponent,
 },
 {

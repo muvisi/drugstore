@@ -68,6 +68,15 @@ import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.compon
 
 import { TestingDetailsComponent } from './testing-details/testing-details.component';
 import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
+import { SpecialtyComponent } from './specialty/specialty.component';
+import { ClinicSetupComponent } from './clinic-setup/clinic-setup.component';
+import { SpecificClinicsetupComponent } from './specific-clinicsetup/specific-clinicsetup.component';
+import { InsuranceFormsComponent } from './insurance-forms/insurance-forms.component';
+import { CooperativeClaimformComponent } from './cooperative-claimform/cooperative-claimform.component';
+import { AarClaimformComponent } from './aar-claimform/aar-claimform.component';
+import { FirstassuranceComponent } from './firstassurance/firstassurance.component';
+import { ApaClaimformComponent } from './apa-claimform/apa-claimform.component';
+import { SedgrickComponent } from './sedgrick/sedgrick.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -111,7 +120,16 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     ViewlistComponent,
     CovidrevenuesComponent,
     TestingDetailsComponent,
-    FeedbacksComponent
+    FeedbacksComponent,
+    SpecialtyComponent,
+    ClinicSetupComponent,
+    SpecificClinicsetupComponent,
+    InsuranceFormsComponent,
+    CooperativeClaimformComponent,
+    AarClaimformComponent,
+    FirstassuranceComponent,
+    ApaClaimformComponent,
+    SedgrickComponent
 
     
 

@@ -20,8 +20,10 @@ export class VaccineComponent implements OnInit {
   selected;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   displayedColumns: string[] = ['no','date','dose','name','delete'];
-   doses: string[] = ['First Dose','Second Dose'  ];
+  doses: string[] = ['First Dose','Second Dose','Booster'];
+  
   vaccines: string[] = ['Pfizer vaccine', 'Johnson & Johnson vaccine', 'Moderna vaccine', 'AstraZeneca vaccine', 'Sinopharm BBIBP vaccine'];
+  
   registerForm: FormGroup;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
   constructor(private formBuilder: FormBuilder,public service:ServiceService,public datePipe:DatePipe,public toastr:ToastrService){}
@@ -32,6 +34,15 @@ export class VaccineComponent implements OnInit {
       dose:[[],Validators.required]
   });
  this.getData()
+  }
+  doseSelected(value){
+    
+    if(value=='Second Dose'){
+     this.vaccines = ['Pfizer vaccine', 'Moderna vaccine', 'AstraZeneca vaccine', 'Sinopharm BBIBP vaccine'];
+    }else{
+      this.vaccines = ['Pfizer vaccine', 'Johnson & Johnson vaccine', 'Moderna vaccine', 'AstraZeneca vaccine', 'Sinopharm BBIBP vaccine'];
+    }
+
   }
   getData(){
     this.service.getVaccine().subscribe((res)=>{

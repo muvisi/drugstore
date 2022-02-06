@@ -3,6 +3,7 @@ import { ServiceService } from '../../../service.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-allbooking',
@@ -15,8 +16,8 @@ export class AllbookingComponent implements OnInit {
   loading;
   idnumber;
   phonenumber;
-  Columns: string[] = ['sn','First','gender','payment','residence','phone','symptoms']
-  constructor(public service:ServiceService,public toastr:ToastrService) { }
+  Columns: string[] = ['sn','created','First','gender','payment','residence','phone','symptoms','form']
+  constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {
     this.idnumber="";
@@ -51,6 +52,8 @@ export class AllbookingComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     })
   }
-
+  rowClick(item){
+    this.router.navigate(['/dashboard/insurance-forms/',item.id])
+  }
 
 }
