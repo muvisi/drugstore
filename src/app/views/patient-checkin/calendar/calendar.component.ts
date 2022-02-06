@@ -21,10 +21,6 @@ setView: View ='MonthAgenda';
 scheduleHours: WorkHoursModel  = { highlight: true, start: '08:00', end: '05:00' };
 public workWeekDays: number[] = [6];
 setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
-<<<<<<< HEAD
-
-=======
->>>>>>> cf01ef02dd0e98b3c5aa68c477c3c2cd5af8793e
 dataManager: DataManager = new DataManager({
   url: endpoint+'api/calendar/?speciality='+this.route.snapshot.params.speciality,
 
