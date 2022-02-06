@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceService } from '../../../service.service';
 
 @Component({
   selector: 'app-sedgrick',
@@ -7,18 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./sedgrick.component.scss']
 })
 export class SedgrickComponent implements OnInit {
-
-  constructor(public router:Router) { }
-
-  ngOnInit() {
-  }
-  APA(){
-
-    this.router.navigate(['/dashboard/APA'])
-  }
-  printPage() {
+  patient:any={}
+    hospital='AAR HOSPITAL'
+    constructor(private route: ActivatedRoute,public service:ServiceService) { }
+  
+    ngOnInit() {
+      this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
+        console.log(res);
+        this.patient = res;
+      })
+    }  
+   printPage() {
     window.print();
   }
+  getData(){
+    
+  //     this.service.getApadata().subscribe(
+  //       (res)=>{
+  //        this.dataSource=res;
+  //        console.log("datasource",res)
+    
+  //       },
 
+  }
 
 }

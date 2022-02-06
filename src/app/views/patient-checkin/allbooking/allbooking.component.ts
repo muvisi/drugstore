@@ -52,8 +52,25 @@ export class AllbookingComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     })
   }
-  rowClick(item){
+  sanlamInsuranceClicked(item){
     this.router.navigate(['/dashboard/insurance-forms/',item.id])
   }
+  apaInsuranceClicked(item){
+    this.router.navigate(['/dashboard/APA/',item.id])
+  }
+  sedgrickInsuranceClicked(item){
+    this.router.navigate(['/dashboard/sedgrick/',item.id])
 
+  }
+  aarInsuranceClicked(item){
+    this.router.navigate(['/dashboard/AAR/Claimform/',item.id])
+
+  }
+  coopInsuranceClicked(item){
+    this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
+  }
+medInsuranceClicked(item){
+  this.router.navigate(['/dashboard/FirstAssurance/',item.id])
+
+}
 }

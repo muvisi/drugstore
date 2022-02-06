@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceService } from '../../../service.service';
 
 @Component({
   selector: 'app-firstassurance',
@@ -8,17 +9,22 @@ import { Router } from '@angular/router';
 })
 export class FirstassuranceComponent implements OnInit {
 
-  constructor(public router:Router) { }
+ 
+
+ 
+   
+  patient:any={}
+  hospital='AAR HOSPITAL'
+  constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {
-  }
-  sedgrick(){
-
-    this.router.navigate(['/dashboard/sedgrick'])
-    // this.router.navigate(['/dashboard/calendar/',this.selected.specialist])
-  }
-  printPage() {
-    window.print();
-  }
+    this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
+      console.log(res);
+      this.patient = res;
+    })
+  }  
+ printPage() {
+  window.print();
+}
 
 }

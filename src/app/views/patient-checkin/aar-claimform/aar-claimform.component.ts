@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceService } from '../../../service.service';
 
 @Component({
   selector: 'app-aar-claimform',
@@ -7,17 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./aar-claimform.component.scss']
 })
 export class AarClaimformComponent implements OnInit {
-
-  constructor(public router:Router) { }
+  data:any={}
+  hospital='AAR HOSPITAL'
+  constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {
-  }
-  FirstAssurance(){
-
-    this.router.navigate(['/dashboard/FirstAssurance'])
-  }
-  printPage() {
-    window.print();
-  }
-
+    this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
+      console.log(res);
+      this.data = res;
+    })
+  }  
+ printPage() {
+  window.print();
 }
+}
+

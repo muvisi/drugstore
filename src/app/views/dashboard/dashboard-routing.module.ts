@@ -166,22 +166,22 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'AAR/Claimform',
+    path: 'AAR/Claimform/:id',
     component:AarClaimformComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'FirstAssurance',
+    path: 'FirstAssurance/:id',
     component:FirstassuranceComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'sedgrick',
+    path: 'sedgrick/:id',
     component:SedgrickComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'APA',
+    path: 'APA/:id',
     component:ApaClaimformComponent,
     canActivate: [AuthGuard]
   },
@@ -196,7 +196,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'cooperative-claimform',
+    path: 'cooperative-claimform/:id',
     component:CooperativeClaimformComponent,
     canActivate: [AuthGuard]
   },

@@ -4,7 +4,7 @@
             <div class="col-sm-12" >
                 <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
                 <div class="clearfix"></div>
-                <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="Aarform()">AAR Claimform</button>
+                <!-- <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="Aarform()">AAR Claimform</button> -->
 
 
     
@@ -44,14 +44,14 @@
                 <div class="row">
                     <div class="col-sm-5">Patient Membership Number(Appers on the smart card):</div>
                     <div class="col-sm-7">
-                    <input type="text" [(ngModel)]="patient.member_number">
+                    <input type="text" [(ngModel)]="patient.relation">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-5">Principle Member Name(staff):</div>
                     <div class="col-sm-7">
-                    <input type="text" [(ngModel)]="patient.scheme_name">
+                    <input type="text" [(ngModel)]="patient.employee">
                     </div>
                 </div>
                 <div class="clearfix"></div>

@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-export const endpoint='http://localhost:8000/';
+// export const endpoint='http://localhost:8000/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
-// export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 // export const endpoint='https://bookings.aarhospital.com/';
 @Injectable({
@@ -1142,6 +1142,10 @@ filtercalendar(specialist) {
     return this.http.get(endpoint + 'payment/payments/').pipe(
       map(this.extractData));
     }
+    getApadata() {
+      return this.http.get(endpoint + 'api/APADATA').pipe(
+        map(this.extractData));
+      }
   deleteslot(id) {
     return this.http.delete(endpoint + 'api/slots/'+id+'/').pipe(
       map(this.extractData));
