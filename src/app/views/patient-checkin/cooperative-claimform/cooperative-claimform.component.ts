@@ -23,6 +23,7 @@ export class CooperativeClaimformComponent implements OnInit {
     })
   }  
  printPage() {
+  document.title=this.patient.patient.phone
   window.print();
 }
 

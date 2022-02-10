@@ -19,6 +19,7 @@ export class SedgrickComponent implements OnInit {
       })
     }  
    printPage() {
+    document.title=this.patient.patient.phone
     window.print();
   }
   getData(){

@@ -20,6 +20,7 @@ export class InsuranceFormsComponent implements OnInit {
   }
 
   printPage() {
+    document.title=this.patient.patient.phone
     window.print();
   }
 }

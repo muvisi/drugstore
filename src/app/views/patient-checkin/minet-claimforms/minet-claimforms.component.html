@@ -1,0 +1,289 @@
+<div class="card">
+    <div class="card-body" id="print-section">
+        <div class="row">
+            <div class="col-sm-12" >
+                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                <div class="clearfix"></div>
+                <!-- <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="Aarform()">AAR Claimform</button> -->
+
+
+    
+            </div>
+            <div class="col-sm-12" >
+                <div class="clearfix"></div>
+
+
+    
+            </div>
+           
+            
+            
+        </div>
+        <div class="row">
+           
+            <h3>
+                <img src="../../../../assets/img/avatars/minet.png" alt="" height="100" width="300">
+               
+                 
+               
+            </h3>
+           
+            <div class="col-sm-12" style="margin-left: 320px;">
+                
+              <h4 style="color: black;">OUTPATIENT MEDICAL CLAIM FORM</h4>
+             
+            </div> 
+           
+           
+             
+            
+            
+            <div class="col-sm-12" >
+               
+              <div style="background-color: black;">  
+                <p style="color: white;">
+                   PATIENT'S INFORMATION
+                  </p>
+              </div>
+              
+                <div class="row">
+                    <div class="col-sm-2">Name of employer:</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.employer">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-sm-2">Full Name of Employee</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Mobile number</div>
+                    <div class="col-sm-2">
+                    <input type="text"[(ngModel)]="patient.patient.phone" >
+                    </div>
+                    <div class="col-sm-2">Medical card No</div>
+                    <div class="col-sm-2">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">Date of Birth</div>
+                    <div class="col-sm-2" [(ngModel)]="patient.patient.dob">
+                    <input type="text">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Full name of Claimant</div>
+                    <div class="col-sm-4">
+                    <input type="text" readonly value="{{patient.patient.first_name}} {{patient.patient.last_name}}" >
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+               
+                
+              
+               
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-12" >
+               
+                  
+                <div style="background-color: black;">  
+                    <p style="color: white;">
+                       MEDICAL INFORMATION
+                      </p>
+                  </div>
+                <div class="row">
+                    <div class="col-sm-12">Exact nature of illness/accident/medical applications e.g Wheelchair:</div>
+                    <div class="col-sm-12">
+                    <input type="text" >
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-12">Is condition work related or occupation illness/injury? Please explain:</div>
+                    <div class="col-sm-12">
+                    <input type="text" >
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-8">Date when the condition was first diagnosed?</div>
+                    <div class="col-sm-4">
+                    <input type="text" >
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-8">Date of Preveous treatment for this illness/injury</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-8">Date of current treatment?</div>
+                    <div class="col-sm-4">
+                    <input type="text" >
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-8">Any Underlying conditions which could result to this illness/injury</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-8">was patient referred to a specialist? </div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-12">Indicate specialist services & specialist name</div>
+                    <div class="col-sm-12">
+                    <input type="text" >
+                    </div>
+
+                   
+                </div>
+            <p>
+                (Please attach all receipts/invoices and copies of prescriptions relating to this claim including chemist bills-otherwise the <br>
+                bill will not be settled).
+            </p>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Treatment given</div>
+                    
+                   
+                    <div class="col-sm-2">consultation</div>
+                    <div class="col-sm-1">
+                        <input type="text">
+                        </div>
+                   
+                    <div class="col-sm-1">Laboratory</div>
+                    <div class="col-sm-1">
+                        <input type="text">
+                        </div>
+                    <div class="col-sm-2">Dental/Optical</div>
+                    <div class="col-sm-1">
+                        <input type="text">
+                        </div>
+                    <div class="col-sm-1">Drugs</div>
+                    <div class="col-sm-1">
+                        <input type="text">
+                        </div>
+
+                   
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">Total cost of treatment </div>
+                    <div class="col-sm-8">
+                    <input type="text">
+                    </div>
+                   
+                </div>
+                <p style="color: red;">
+                    (For reimbursement claims,please complete the bank details form available from your HR).
+                </p>
+
+                <div style="background-color: black;">  
+                    <p style="color: white;">
+                       MEMBER'S DECLARATION & CONSENT
+                      </p>
+                  </div>
+                  <p>
+                      I hereby confirm that all particulars stated above are true and complete. No information has been ommitd. I authorise the provider<br>
+                      of service(s) to disclose the required medical information to include the nature of my illness and that of my dependants to Aon for its<br>
+                      confidential use.
+                  </p>
+                  <div class="row" style="margin: 40px;">
+                    <div class="col-sm-6">
+                        Signed_______________________________________________
+                    </div>
+                  
+                    <div class="col-sm-6">
+                        Date:____________________________
+                    </div>
+                   
+                    
+                </div>
+                
+               
+                <div style="background-color: black;">  
+                    <p style="color: white;">
+                      DOCTOR'S CERTIFICATE
+                      </p>
+                  </div>
+                  <p>
+                    I certify that the above amounts are in accordance with my specified treatment and to nthe best of my knowlendge and<br>
+                    belief the claim is approved for payment/reimbursement
+                  </p>
+                  <div class="row" style="margin: 40px;">
+                    <div class="col-sm-4">
+                        Name_______________________________
+                    </div>
+                  
+                    <div class="col-sm-4">
+                        Qualifications:____________________________
+                    </div>
+                    <div class="col-sm-4">
+                        Signd:____________________________
+                    </div>
+                   
+                    
+                </div>
+                  <div class="row" style="margin: 40px;">
+                    <div class="col-sm-6">
+                        Stamped_______________________________
+                    </div>
+                  
+                    <div class="col-sm-6">
+                        Date:____________________________
+                    </div>
+                   
+                    
+                </div>
+                <div style="background-color: black;">  
+                    <p style="color: white;">
+                     FOR OFFICIAL USE ONLY
+                      </p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">Amount payable Ksh</div>
+                    <div class="col-sm-8">
+                    <input type="text" >
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div style="background-color: red">  
+                    <p style="color: white;">
+                      Minet Kenya insurance Brokers Ltd,    Minet House,   Off Nyerere road |    P.O Box 48279-00100 Nairobi, Kenya<br>
+                      (t) +254(0)204974444/0719044444    (f)2721825 |   (e)casemanagement@minet.co.ke www.minet.co.ke
+                      </p>
+                  </div>
+                  <div>  
+                    <p style="color: black">
+                     <strong>Risk.Reinsurance.People</strong>
+                      </p>
+                  </div>

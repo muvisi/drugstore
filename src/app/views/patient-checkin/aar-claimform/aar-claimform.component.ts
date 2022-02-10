@@ -8,17 +8,20 @@ import { ServiceService } from '../../../service.service';
   styleUrls: ['./aar-claimform.component.scss']
 })
 export class AarClaimformComponent implements OnInit {
-  data:any={}
+  patient:any={}
   hospital='AAR HOSPITAL'
+  // title=this.patient.patient.phone
   constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {
     this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
       console.log(res);
-      this.data = res;
+      this.patient = res;
     })
   }  
  printPage() {
+console.log("Resp", this.patient.patient.phone)
+document.title=this.patient.patient.phone.concat('-01')
   window.print();
 }
 }

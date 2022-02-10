@@ -121,11 +121,11 @@
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">Name of Member(if the patient is a Dependant):</div>
                     <div class="col-sm-3">
-                    <input type="text" [(ngModel)]="patient.member">
+                    <input type="text" [(ngModel)]="patient.member_name">
                     </div>
                     <div class="col-sm-2">Id/Passport:</div>
                     <div class="col-sm-2">
-                    <input type="text" [(ngModel)]="patient.patient.id">
+                    <input type="text" [(ngModel)]="patient.patient.national_id">
                     </div>
                     
                 </div>
@@ -135,14 +135,14 @@
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">Patients Relationship with Member/Employee:</div>
                     <div class="col-sm-8">
-                    <input type="text" [(ngModel)]="patient.relative">
+                    <input type="text" [(ngModel)]="patient.relation">
                     </div>
                     
                     
                 </div>
                 <div class="clearfix"></div>
 
-                <div class="row" style="position: relative;">
+                <div class="row" style="position: relation;">
                     <div class="col-sm-6">Are you insured under any medical expense scheme/Work compesation/personal Accident:</div>
                     
                     <div class="col-sm-3">
@@ -160,7 +160,7 @@
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">(If so give Details):</div>
                     <div class="col-sm-8">
-                    <input type="text" [(ngModel)]="patient.member_number">
+                    <input type="text">
                     </div>
                     
                     

@@ -77,6 +77,16 @@ import { AarClaimformComponent } from './aar-claimform/aar-claimform.component';
 import { FirstassuranceComponent } from './firstassurance/firstassurance.component';
 import { ApaClaimformComponent } from './apa-claimform/apa-claimform.component';
 import { SedgrickComponent } from './sedgrick/sedgrick.component';
+import { OldmutualClaimformComponent } from './oldmutual-claimform/oldmutual-claimform.component';
+import { MTNClaimformComponent } from './mtn-claimform/mtn-claimform.component';
+// import { PacisClaimformsComponent } from './pacis-claimforms/pacis-claimforms.component';
+import { MinetClaimformsComponent } from './minet-claimforms/minet-claimforms.component';
+// import { GAClaimformsComponent } from './ga-claimforms/ga-claimforms.component';
+import { JubileeClaimformComponent } from './jubilee-claimform/jubilee-claimform.component';
+import { CignaClaimformComponent } from './cigna-claimform/cigna-claimform.component';
+import { HeritageClaimformComponent } from './heritage-claimform/heritage-claimform.component';
+import { CicgroupClaimformComponent } from './cicgroup-claimform/cicgroup-claimform.component';
+import { BupaclobalClaimformComponent } from './bupaclobal-claimform/bupaclobal-claimform.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -129,7 +139,17 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     AarClaimformComponent,
     FirstassuranceComponent,
     ApaClaimformComponent,
-    SedgrickComponent
+    SedgrickComponent,
+    OldmutualClaimformComponent,
+    MTNClaimformComponent,
+    
+    MinetClaimformsComponent,
+    
+    JubileeClaimformComponent,
+    CignaClaimformComponent,
+    HeritageClaimformComponent,
+    CicgroupClaimformComponent,
+    BupaclobalClaimformComponent
 
     
 

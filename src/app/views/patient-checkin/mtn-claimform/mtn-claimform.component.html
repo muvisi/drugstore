@@ -1,0 +1,331 @@
+<div class="card">
+    <div class="card-body" id="print-section">
+        <div class="row">
+            <div class="col-sm-12" >
+                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                <div class="clearfix"></div>
+                <!-- <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="Aarform()">AAR Claimform</button> -->
+
+
+    
+            </div>
+           
+            
+            
+        </div>
+        <div class="row" style="justify-content: center;">
+           
+            <div class="col-sm-4">
+                <h3>
+                    <img src="../../../../assets/img/avatars/mtn.png" alt="" height="100" width="100">
+                   
+                     
+                   
+                </h3>
+              <h6 style="color: brown;">MEDICAL INSURANCE CLAIM FORM</h6>
+             
+            </div> 
+           
+             
+            
+            
+            <div class="col-sm-12" >
+                <hr>
+                <p>
+                  <strong>EMPLOYEE(MEMBER) INFORMATION</strong>  (This is the principal member in the scheme)
+                </p>
+                <!-- <div style="display: flex !important;" class="text">
+                    <h3 >A. PATIENT DETAILS (to be completed by patient/parent/gurdian) </h3>
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-2">Scheme</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.scheme_name">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-sm-2">Name</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">I.D No</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.id_number">
+                    </div>
+                    <div class="col-sm-2">Employmnt No</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.employee_number">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Postal Address</div>
+                    <div class="col-sm-4">
+                    <input type="text" >
+                    </div>
+                    <div class="col-sm-2">Postal code</div>
+                    <div class="col-sm-4">
+                    <input type="text" >
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Telephone</div>
+                    <div class="col-sm-2">
+                    <input type="text" >
+                    </div>
+                    <div class="col-sm-2">House</div>
+                    <div class="col-sm-2">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">Mobile</div>
+                    <div class="col-sm-2">
+                    <input type="text">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Fax</div>
+                    <div class="col-sm-4">
+                    <input type="text" >
+                    </div>
+                    <div class="col-sm-2">Email</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                </div>
+                <hr>
+               
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-12" >
+               
+                  
+                <div style="display: flex !important;" class="text">
+                    <P><strong>PATIENT INFORMATION </strong></P>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">Patient Name</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.patient.first_name">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Membership N..</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">Sex</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.gender">
+                    </div>
+                  
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Date of Birth</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    </div>
+                    <div class="col-sm-2">Relationship</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.relation">
+                    </div>
+                  
+                </div><hr>
+                <div class="col-sm-12" >
+                    <hr>
+                    <p>
+                      <strong>MEDICAL INFORMATION</strong>  (TO be completed by the Doctor / Physical treating the patient.)
+                    </p>
+                   
+                    <div class="row">
+                        <div class="col-sm-8">What was the nature of illness or injury from which the patient suffered?</div>
+                        <div class="col-sm-4">
+                        <input type="text" >
+                        </div>
+                        
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-sm-4">Is the condition recurrent or chronic?</div>
+                        <div class="col-sm-8">
+                        <input type="text">
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-3">Date(s) of Preveous treatment for this illness or injury</div>
+                       
+                        <div class="col-sm-1">1.</div>
+                        <div class="col-sm-2">
+                        <input type="text" >
+                        </div>
+                        <div class="col-sm-1">2.</div>
+                        <div class="col-sm-2">
+                        <input type="text">
+                        </div>
+                        <div class="col-sm-1">3..</div>
+                        <div class="col-sm-2">
+                        <input type="text" >
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+    
+                    <div class="row">
+                        <div class="col-sm-8">Any underlying conditions which could result in this illness or injury?</div>
+                        <div class="col-sm-4">
+                        <input type="text">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-8">Any underlying conditions which could result in this illness or injury?</div>
+                        <div class="col-sm-4">
+                        <input type="text" >
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                   
+                    <div class="row">
+                        <div class="col-sm-4">Nature of treatment</div>
+                        <div class="col-sm-8">
+                        <input type="text">
+                        </div>
+                       
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-4">Was the patient referred to a specialist?</div>
+                        <div class="col-sm-8">
+                        <input type="text">
+                        </div>
+                       
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-4">if Yes,provide details of the specialist</div>
+                        <div class="col-sm-8">
+                        <input type="text">
+                        </div>
+                       
+                    </div>
+                    
+                    <hr>
+                      
+                <div style="display: flex !important;" class="text">
+                    <P><strong>CERTIFICATION BY MEDICAL PRACTITIONER </strong></P>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">I certify thet the above information regarding Mr./Mrs./Mst./Ms</div>
+                    <div class="col-sm-6">
+                    <input type="text">
+                    </div>
+                    <p >
+                        <span style="margin-left: 15px;">
+                            is true to the best of my knowledge and the expenses incurred are as a result of the accident/illness referred to.<br>
+
+
+                        </span>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-sm-4">Name and address of Doctor/Physician</div>
+                    <div class="col-sm-8">
+                    <input type="text">
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row" style="margin: 40px;">
+                    <div class="col-sm-4">
+                        Date:____________________________
+                    </div>
+                    <div class="col-sm-8">
+                        Signature and official stamp:_______________________________________________
+                    </div>
+                  
+                    
+                </div>
+        
+                
+                <div style="display: flex !important;" class="text">
+                    <P><strong>AUTHORISED FOR RELEASE OF INFORMATION (Patient or parent must sign below) </strong></P>
+                </div>
+                <div style="display: flex !important;" class="text">
+                    <P>
+                        I hereby warrant the truth of the above statement, that i have not withheld from the insurer any information<br>
+                        relating to this claim. I have no objection to the insurer and /or their representatives comunicating with the<br>
+                        Doctor / Physician/ Hospital  i have consulted or visited and shall submit to any medical examination(s) if so<br>
+                        required by the insurer.  
+                    </P>
+                </div>
+                <div class="row" style="margin: 40px;">
+                    <div class="col-sm-8">
+                        Signature of patient/patient(if patient is a minor)_______________________________________________
+                    </div>
+                  
+                    <div class="col-sm-4">
+                        Date:____________________________
+                    </div>
+                   
+                    
+                </div>
+                <div style="display: flex !important;  background-color: black;" class="text">
+                    <P style="color: white; margin-left: 120px;">
+                       2nd Floor, Jabavu House Jabavu lane-off Argwins Kodhek Road, Hurlingam,Nairobi-Kenya<br>
+                       P.O Box 8523-00100,Nairobi. Tel:+254202604997/8/9, 736365021 Fax:+254203577607<br>
+                       Website:www.mtninsurance.co.ke Email:info@mtninsurance.co.ke
+                    </P>
+                </div>
+
+                
+           
+                
+            
+
+        </div>
+       
+       
+        
+
+
+       
+
+
+
+
+
+
+
+
+
+        
+      
+    </div>
+   
+  
+        
+          
+           
+       
+  </div>
+  
