@@ -55,61 +55,9 @@ export class AllbookingComponent implements OnInit {
     })
   }
   
-//   sanlamInsuranceClicked(item){
-//     this.router.navigate(['/dashboard/insurance-forms/',item.id])
-//   }
-//   apaInsuranceClicked(item){
-//     this.router.navigate(['/dashboard/APA/',item.id])
-//   }
-//   sedgrickInsuranceClicked(item){
-//     this.router.navigate(['/dashboard/sedgrick/',item.id])
 
-//   }
-//   aarInsuranceClicked(item){
-//     // console.log(this.selected.specialist);
-//     console.log("RESP",this.selected.insurance_company)
-//     this.router.navigate(['/dashboard/AAR/Claimform/',item.id])
 
-//   }
-  
-//   coopInsuranceClicked(item){
-//     this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
-//   }
-// medInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/FirstAssurance/',item.id])
 
-// }
-// uapInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/uapoldmutual/',item.id])
-
-// }
-// mtnInsuranceClicked(item){
-
-//   this.router.navigate(['/dashboard/mtninsurance/',item.id])
-// }
-
-// heritageInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/heritageinsurance/',item.id])
-// }
-// minetInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/minetinsurance/',item.id])
-// }
-// jubileeInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
-
-// }
-// cignaInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/cignainsurance/',item.id])
-
-// }
-// cicInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/cicinsurance/',item.id])
-
-// }
-// bupaInsuranceClicked(item){
-//   this.router.navigate(['/dashboard/bupaglobal/',item.id])
-
-// }
 clickRow(item){
   console.log("Insurance",this.selected.insurance_company)
   
@@ -118,15 +66,110 @@ clickRow(item){
  
   this.router.navigate(['/dashboard/cignainsurance/',item.id])
    }
+   if (this.selected.insurance_company=='Sanlam Insurance Company Ltd') 
+     {
+ 
+  this.router.navigate(['/dashboard/insurance-forms/',item.id])
+   }
+   if (this.selected.insurance_company=='Sanlam General Insurance Limited') 
+   {
+
+this.router.navigate(['/dashboard/insurance-forms/',item.id])
+ }
    if (this.selected.insurance_company=='AAR INSURANCE') 
      {
   
   this.router.navigate(['/dashboard/AAR/Claimform/',item.id])
    }
+   if (this.selected.insurance_company=='Sedgwick Kenya Insurance Brokers Limited') 
+     {
+  
+  this.router.navigate(['/dashboard/sedgrick/',item.id])
+   }
+   if (this.selected.insurance_company=='THE CO-OPERATIVE BANK OF KENYA') 
+   {
 
-if (false) {
-  console.log('This will never executed.');
+this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
+ }
+ if (this.selected.insurance_company=='UAP OLD MUTUAL INSURANCE') 
+ {
+
+this.router.navigate(['/dashboard/uapoldmutual/',item.id])
 }
-  // this.router.navigate(['/dashboard/',this.selected.insurance_company])
+if (this.selected.insurance_company=='UAP Old Mutual Insurance') 
+ {
+
+this.router.navigate(['/dashboard/uapoldmutual/',item.id])
+}
+if (this.selected.insurance_company=='APA Insurance') 
+ {
+
+this.router.navigate(['/dashboard/APA/',item.id])
+}
+if (this.selected.insurance_company=='BUPA INTERNATIONAL') 
+ {
+
+this.router.navigate(['/dashboard/bupaglobal/',item.id])
+}
+if (this.selected.insurance_company=='Bupa International') 
+ {
+
+this.router.navigate(['/dashboard/bupaglobal/',item.id])
+}
+if (this.selected.insurance_company=='CIC INSURANCE') 
+ {
+
+this.router.navigate(['/dashboard/cicinsurance/',item.id])
+}
+if (this.selected.insurance_company=='CO-PERATIVE KENYA LTD') 
+ {
+
+this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
+}
+if (this.selected.insurance_company=='FIRST ASSURANCE') 
+ {
+
+this.router.navigate(['/dashboard/FirstAssurance/',item.id])
+}
+if (this.selected.insurance_company=='First Assurance') 
+ {
+
+this.router.navigate(['/dashboard/FirstAssurance/',item.id])
+}
+if (this.selected.insurance_company=='HERITAGE INSURANCE') 
+ {
+
+this.router.navigate(['/dashboard/heritageinsurance/',item.id])
+}
+if (this.selected.insurance_company=='Heritage Insurance') 
+ {
+
+this.router.navigate(['/dashboard/heritageinsurance/',item.id])
+}
+if (this.selected.insurance_company=='JUBILEE INSURANCE') 
+ {
+
+this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
+}
+if (this.selected.insurance_company=='Jubilee Insurance') 
+ {
+
+this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
+}
+if (this.selected.insurance_company=='MINET KENYA STAFF') 
+ {
+
+this.router.navigate(['/dashboard/minetinsurance/',item.id])
+}
+if (this.selected.insurance_company=='MTN INSURANCE') 
+{
+
+  this.router.navigate(['/dashboard/mtninsurance/',item.id])
+  }
+if (false) {
+  this.toastr.warning('Payment not Insurance!')
+  
+}
+  // this.router.navigate(['/dashboard/',this.selected.insurance_company]) UAP Old Mutual Insurance
 }
 }
