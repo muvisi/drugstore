@@ -1,0 +1,311 @@
+<div class="card">
+    <div class="card-body" id="print-section">
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+    
+            </div>
+        </div>
+        <div class="row" >
+            <div class="row">
+                <div class="col-sm-6">
+                 <h1>
+                     <img src="../../../../assets/img/avatars/jubilee.png" alt="">
+                 </h1>
+                </div>
+              <div class="col-sm-6">
+                 <h1>
+                     <img src="../../../../assets/img/avatars/mdc.png" alt="">
+                 </h1>
+              </div>
+            </div>
+            
+                
+            <div class="col-sm-6" style="margin-left: 15px;">
+                    <strong style="color: red;">JUBILEE HEALTH INSURANCE LIMITED</strong><br> 
+               <strong> Head Office<br></strong>
+                Jubilee Insurance House,Wabera Street,<br>
+                P.O Box 6694-00100 GPO Nairobi,Kenya<br>
+                Tel:+254203281000<br>
+                Call Centre:+254709949000<br>
+                Email: talk2us@jubileekenya.com<br>
+               wwww.jubileeinsurance.com<br>
+            </div>
+                
+                <div class="col-sm-6" style="margin-left: 500px; margin-top: 1px;background-color: grey;">
+                   <i>
+                    DIRECTIONS:<br>
+                    please read carefully and fill out the entire form in BLOCK LETTERS.<br>
+                    1.Complete a separate claim form for each insured individual and for each visit<br>
+                    to the doctor or service provider.
+                    2.Attach All medical bill(s) relating to the claim.<br>
+                    a.Make certain,all bills identify the respective patient.<br>
+                    b.All bills should indicate date of treatment,description of service & charges.<br>
+                    3.Date and sign the form and ensure that the same is signed and stamped by <br>
+                    the doctor /Provider in spaces provided.
+                    4.No claim will be considered if submitted <br>after 90 days from the date of illness<br>
+                    5.providers are advised to cross check the medical card againest the national id<br>
+                    card for adult patients to ensure that member details are correct.
+                    6.All invoices must be signed by client.
+                   </i>
+
+                </div>
+               
+                    
+                   
+                
+               
+               
+                
+            </div> 
+           
+           
+           
+            <div class="col-sm-12" >
+                <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
+                <div class="text">
+                    <h6 style="color: black;">EMPLOYEE(MEMBER) INFORMATION (This is the individual whose name is on the ID card) </h6>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">Scheme:</div>
+                    <div class="col-sm-10">
+                    <input type="text" [(ngModel)]="patient.booking.scheme">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-sm-2">Name:</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    <div class="col-sm-2">ID No</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.id_number">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-sm-2">Member No</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.member_number">
+                    </div>
+                    <div class="col-sm-2">Mobile</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">P.O BOX</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">Email</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                </div>
+               
+              
+            </div>
+            <div class="col-sm-12" >
+                <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
+                <div class="text">
+                    <h6 style="color: black;">PATIENT INFORMATION </h6>
+                </div>
+               
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-sm-2">Patient Name:</div>
+                    <div class="col-sm-4">
+                    <input type="text" value="{{patient.patient.first_name}} {{patient.patient.last_name}}">
+                    </div>
+                    <div class="col-sm-2">Member No</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.member_number">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-sm-2">Date of Birth</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    </div>
+                    <div class="col-sm-2">Sex</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.gender">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">P.O BOX</div>
+                    <div class="col-sm-2">
+                    <input type="text" >
+                    </div>
+                    <div class="col-sm-2">Email</div>
+                    <div class="col-sm-2">
+                    <input type="text">
+                    </div>
+                    <div class="col-sm-2">Relationship</div>
+                    <div class="col-sm-2">
+                    <input type="text" [(ngModel)]="patient.relation">
+                    </div>
+                </div>
+               
+              
+            </div>
+            <div class="clearfix"></div>
+            <div class="text">
+                <h6 style="color: black;">AUTHORISATION FOR RELEASE OF INFORMATION(Patient, Parent or gurdian must sign below) </h6>
+            </div>
+            <p>
+                I hereby warrant the truth of the above statements, that i have not withheld from jubilee Health Insurance Limited any information relating to this claim.I have<br>
+                 not objection to jubilee Health insuarnce Limited and/or their representatives communicating with the Doctor/Physician or hospital i have consulted or visited<br>
+                 and shall submit to any medical examination(s) if so required by jubilee Health Insurance Limited. 
+            </p>
+            <div class="row" style="margin-top: 12px;">
+                <div class="col-sm-8">
+                    Signature of patient,parent or gurdian(if patient is a minor):_____________________________
+                </div>
+                <div class="col-sm-4">
+                    Date:___________________
+                </div>
+                
+            </div>
+            <div class="text">
+                <h6 style="color: black;">MEDICAL INFORMATION(To  be completed by the doctor/physician treating the patient) </h6>
+            </div>
+            <!-- <p>
+                I hereby warrant the truth of the above statements, that i have not withheld from jubilee Health Insurance Limited any information relating to this claim.I have<br>
+                 not objection to jubilee Health insuarnce Limited and/or their representatives communicating with the Doctor/Physician or hospital i have consulted or visited<br>
+                 and shall submit to any medical examination(s) if so required by jubilee Health Insurance Limited. 
+            </p> -->
+
+            <div class="row">
+                <div class="col-sm-8">What is the diagnosis for the patient ?(Write in <strong>BLOCK LETTERS</strong> No Medical Shorthand)</div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    <textarea rows="3" style="width: 100%;"></textarea>
+                </div>
+                
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-sm-3">Date(s) of preveous treatment for this illness or injury</div>
+               
+              
+                <div class="col-sm-1">1.</div>
+                <div class="col-sm-2">
+                <input type="text">
+                </div>
+                <div class="col-sm-1">2.</div>
+                <div class="col-sm-2">
+                <input type="text">
+                </div>
+                <div class="col-sm-1">3.</div>
+                <div class="col-sm-2">
+                <input type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">Any underlying conditions which could result in this illness or injury?</div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    <textarea rows="3" style="width: 100%;"></textarea>
+                </div>
+                <div class="clearfix"></div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-2">Nature of treatment</div>
+                <div class="col-sm-10">
+                <input type="text">
+                </div>
+                
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-sm-2">Was patient reffered to specialist</div>
+                <div class="col-sm-10">
+                <input type="text">
+                </div>
+                
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-sm-12">If yes provide the details of the specialist or in c ase of accidental injury, provide details</div>
+                <div class="col-sm-12">
+                    <textarea rows="3" style="width: 100%;"></textarea>
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="text">
+            <h6 style="color: black;">CERTIFICATION BY MEDICAL PRACTITIONER</h6>
+        </div>
+        <P>
+            I certify that the above information regarding Mr/Mrs/Mst/Ms.______________________________________________________________________<br>
+            is true, to the best of my knowledge and the expences incured are as a result of the accident/illness referred to.<br>
+
+        </P>
+
+
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-sm-4">Name and address of Doctor/Physician:</div>
+            <div class="col-sm-8">
+            <input type="text">
+            </div>
+            
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-sm-2">Qualifications</div>
+            <div class="col-sm-10">
+            <input type="text">
+            </div>
+            
+        </div>
+        <div class="row" style="margin-top: 12px;">
+            <div class="col-sm-4">
+                Date:_______________________________________
+            </div>
+            
+            <div class="col-sm-8">
+                Signature and Official Stamp:______________________________________________________________
+            </div>
+           
+        </div>
+        <div class="clearfix"></div>
+        <p>
+            <strong>
+                <i>
+                    *Incomplete forms shall  ot be processed
+
+                </i>
+            </strong>
+        </p>
+
+
+
+
+
+
+
+
+     
+      
+
+
+      
+
+      
+   
+  </div>

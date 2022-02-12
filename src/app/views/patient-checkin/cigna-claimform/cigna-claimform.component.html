@@ -1,0 +1,235 @@
+<div class="card">
+    <div class="card-body" id="print-section">
+        <div class="row">
+            <div class="col-sm-12" >
+                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                <div class="clearfix"></div>
+
+
+    
+            </div>
+           
+           
+            
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <h2 style="white-space:nowrap; margin-top: 0px;">
+                    <img src="../../../../assets/img/avatars/cigna.png" alt="" height="200" width="200">
+                   
+                     
+                   
+                </h2>
+                
+             
+            </div> 
+            <div class="col-sm-8">
+                
+                <address>
+                This form, duly completed and signed, should be retured,<br> 
+                <span style="margin-left:40px;">along with a detailed invoice to:</span><br>
+                <span style="margin-left:40px;">Email: bills@cigna.com:</span><br>
+                Europe, Africa and Middle East:P.O Box 19612.Greenock PA159DB .Scotland<br> 
+               Asia and pacific:P.O Box 10612 .50718 kuala Lumpur malaysia<br> 
+               North and South America:P.O Box 451989 .fl 33345 Sunrise .USA<br> 
+            
+                </address>
+            </div>
+           
+          
+            <div class="col-sm-12" >
+               
+                <h3 style="justify-content: center; margin-top: 65px; color: black;">Provider claim form for direct payment of outpatient medical services</h3>
+
+               
+              </div> 
+            
+            <div class="col-sm-8" >
+               
+                <h6 style=" margin-top: 65px; color: grey;">CLAIM ONLY VALID WITH PATIENT SIGNATURE</h6>
+
+               
+              </div>
+              <div class="col-sm-4" >
+               
+                <h6 style=" margin-top: 65px; color: grey;">(Only for providers under agreement)</h6>
+
+               
+              </div>
+              <div class="col-sm-8" >
+               
+                <h6 style=" margin-top: 65px; color: black;"><strong>Patient information</strong>(on patient's Cigna memebrship card)</h6>
+
+               
+              </div>
+              
+            
+              <div class="col-sm-12" >
+               
+               
+                <div class="row">
+                    <div class="col-sm-2">CIGNA PERSONAL REFERENCE NO.</div>
+                    <div class="col-sm-10">
+                    <input type="text"  >
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">NAME-FIRST NAME</div>
+                    <div class="col-sm-10">
+                    <input type="text" value="{{patient.patient.first_name}} {{patient.patient.last_name}}">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-3">DATE OF BIRTH( D-M-Y)</div>
+                    <div class="col-sm-9">
+                    <input type="text" [(ngModel)]="patient.patient.dob"  >
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="clearfix"></div>
+                <div class="col-sm-5">
+                    <h5 style="white-space:nowrap; margin-top: 0px;">
+                        <img src="../../../../assets/img/avatars/cigna-id.png" alt="" height="200" width="200">
+                       
+                         
+                       
+                    </h5>
+                    
+                 
+                </div> 
+                <div class="clearfix"></div>
+                <div class="col-sm-5">
+                    <h5 style="white-space:nowrap; margin-top: 0px;">
+                        <img src="../../../../assets/img/avatars/cigna-id2.png" alt="" height="200" width="200">
+                       
+                         
+                       
+                    </h5>
+                    
+                 
+                </div> 
+
+                </div>
+                <div class="col-sm-8" >
+               
+                    <h6 style=" margin-top: 65px; color: black;"><strong>Services rendered</strong>(Please also attach the invoice(s)) </h6>
+    
+                   
+                  </div>
+                  <div class="col-sm-8" >
+               
+                    <h6 style=" margin-top: 65px; color: black;"><strong>DIAGNOSIS OR NATURE OF ILLNESS</strong> </h6>
+    
+                   
+                  </div>
+                  
+                
+                  <div class="col-sm-12" >
+                   
+                   
+                    <div class="row">
+                        <div class="col-sm-2">AMOUNT OF EXPENCES</div>
+                        <div class="col-sm-10">
+                        <input type="text"  >
+                        </div>
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-2">AMOUNT PAID BY PATIENT</div>
+                        <div class="col-sm-10">
+                        <input type="text"  >
+                        </div>
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-3">BALANCE DUE BY CIGNA</div>
+                        <div class="col-sm-9">
+                        <input type="text"  >
+                        </div>
+                        
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <p>
+                        I hereby certify that 1 or (a) Members(s) of my staff have/has rendered the services as described in attached invoices. i also<br>
+                        confirm that, to the best of my knowledge, and as i have verified the patient's membership card, the patient treated is <br>
+                        indeed the person named on this form.
+                    </p>
+                    <div class="clearfix"></div>
+                    <div class="row" style="margin: 40px;">
+                        <div class="col-sm-3">
+                            DATE:_________________
+                        </div>
+                        <div class="col-sm-5">
+                          PROVIDER'S SIGNATURE:______________
+                        </div>
+                        <div class="col-sm-4">
+                            PROVIDER'S STAMP AND NAME_____________________
+                         </div>
+                        
+                    </div> 
+                    <div class="clearfix"></div>
+                    <div class="col-sm-8" >
+               
+                        <h6 style=" margin-top: 65px; color: black;"><strong>Patient's authorisation</strong> </h6>
+        
+                       
+                      </div>
+                      <p>
+                          1. i hereby certify that i understand that this claim form will allow Cigna to settle (part of) the claim(s) related to my treatment directly with the health care provider.I hereby also<br>
+                          authorise the above mentioned health care provider to provide Cigna's Medical consultamt with all information that may be relevant  or neccesary for the correct assessment of this<br>
+                          claim. I hereby certify that i will not lay any claim to cigna againest monies receivable by the provider of medical services.<br>
+                          2.i hereby agree to return the ptient portion to Cigna in case there is a diffrence between the amount paid by cigna to the provider and the covered expences according to my plan<br>
+                          benefits.
+                          3.I hereby certify that i received the services as bdescribed in the attached invoices(s)
+                          4. I accept the terms and conditions. i certify that the above information is to the best of my knowledge and belief correct and true. The issuance of false claims, the provission of<br>
+                           misleading information or the withholding of information related thereto is an offence punishable by law. I hereby confirm i have read and fully understood Cigna's Data<br>
+                           protection Notice (https://www.cignahealthbenefits.com/en/privacy).If i provide Cigna with personal information relating to others, i will make them aware of Cigna's Data<br>
+                            protection  Notice
+                      </p>
+                      <div class="clearfix"></div>
+                      <div class="row" style="margin: 40px;">
+                          <div class="col-sm-5">
+                              DATE:_________________
+                          </div>
+                         
+                          <div class="col-sm-7">
+                              PATIENT'S SIGNATURE_____________________
+                           </div>
+                          
+                      </div> 
+        
+              
+
+                
+                
+              
+               
+                
+                   
+                
+            </div>
+           
+             
+            
+              
+            
+            
+           
+            
+
+        
+           
+
+           
+          
+             

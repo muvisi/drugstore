@@ -1,0 +1,323 @@
+<div class="card">
+    <div class="card-body" id="print-section">
+        <div class="row">
+            <div class="col-sm-12" >
+                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                <div class="clearfix"></div>
+
+
+    
+            </div>
+           
+           
+            
+            
+        </div>
+        <div class="row">
+           
+            <div class="col-sm-4">
+                <h5 style="white-space:nowrap; margin-top: 0px;">
+                    <img src="../../../../assets/img/avatars/uap.png" alt="" height="200" width="200">
+                   
+                     
+                   
+                </h5>
+                
+             
+            </div> 
+            <div class="col-sm-8" >
+               
+                <h1 style="justify-content: center; margin-top: 65px; color: white;background-color: green;">OLDMUTUAL</h1>
+
+               
+              </div> 
+            
+            <div class="col-sm-8" >
+               
+                <h1 style=" margin-top: 65px; color: orangered;">OUT-PATIENT</h1>
+                <h1 style="margin-top: 65px; color: green;">CLAIM-FORM</h1>
+
+               
+              </div>
+              
+            
+              <div class="col-sm-12" >
+               
+               
+                <div class="row">
+                    <div class="col-sm-2">Practitioners Name</div>
+                    <div class="col-sm-10">
+                    <input type="text"  >
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Postal Address</div>
+                    <div class="col-sm-10">
+                    <input type="text"  >
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Tel No</div>
+                    <div class="col-sm-4">
+                    <input type="text" >
+                    </div>
+                    <div class="col-sm-2">Mobile</div>
+                    <div class="col-sm-4">
+                    <input type="text" >
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Email</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                   
+                </div>
+
+               
+                <div class="clearfix"></div>
+
+                <div class="col-sm-8" >
+               
+                    <h3 style="justify-content: center; margin-top: 65px; color: green;">PATIENT'S PARTICULARS</h3>
+    
+                   
+                  </div> 
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Full Name of Patient</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.first_name">
+                    </div>
+                    <div class="col-sm-2">Date of Birth</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    </div>
+                </div>
+                
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-7">Full Name of Member(if patient is a dependant)</div>
+                    <div class="col-sm-5">
+                    <input type="text" [(ngModel)]="patient.member_name">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-3">Members's Tel No</div>
+                    <div class="col-sm-3">
+                    <input type="text" [(ngModel)]="patient.patient.phone">
+                    </div>
+                    <div class="col-sm-2">Member No</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.member_number">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-2">Member's Employer Name</div>
+                    <div class="col-sm-4">
+                    <input type="text"  [(ngModel)]="patient.employee">
+                    </div>
+                    <div class="col-sm-2">Dept./Branch</div>
+                    <div class="col-sm-4">
+                    <input type="text"  [(ngModel)]="patient.patient.age">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row" style="position: relative;">
+                    <div class="col-sm-6">Have you suffered from this sickness in the past?</div>
+                    
+                    <div class="col-sm-3">
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        YES
+                    </div>
+                    <div class="col-sm-3">
+                     <mat-checkbox class="example-margin" ></mat-checkbox>
+                    NO
+                  </div>
+                    
+                </div>
+                <div class="row" style="position: relative;">
+                    <div class="col-sm-12">if YES, when did it start and how frequent is it?_______________________________________________</div>
+                    
+                   
+                    
+                </div>
+                   
+                
+            </div>
+            <div class="col-sm-8" >
+               
+                <h3 style="justify-content: center; margin-top: 65px; color: green;">CONSULTATION/REFERRALS<br>DIAGNOSIS:</h3>
+
+               
+              </div> 
+              <div class="col-sm-8" >
+               
+                <h6 style="justify-content: center; margin-top: 65px; color: black;">TREATMENT PRESCRIBED</h6>
+
+               
+              </div> 
+              
+            <div class="row" style="font-size: 15px;">
+                <div class="col-sm-2">MEDICINES</div>
+                
+                <div class="col-sm-3">
+                    Prescription______
+                  
+                   
+                </div>
+                <div class="col-sm-3">
+                    Injection given______
+                   
+                   
+                </div>
+                <div class="col-sm-2">
+                    Dispensed______
+                   
+                   
+                </div>
+                <div class="col-sm-2">
+                    None______
+               
+               
+              </div>
+                
+            </div>
+            <div class="row" style="font-size: 15px;">
+                <div class="col-sm-3">RADIOLOGY</div>
+                
+                <div class="col-sm-2">
+                    X-Ray___
+                  
+                   
+                </div>
+                <div class="col-sm-3">
+                    MRI/Cat scan___
+                   
+                   
+                </div>
+                <div class="col-sm-2">
+                    Other____
+                   
+                   
+                </div>
+                <div class="col-sm-2">
+                    Other____
+               
+               
+              </div>
+                
+            </div>
+            <div class="row" style=" font-size: 15px;">
+                <div class="col-sm-2">PATHOLOGY</div>
+                
+                <div class="col-sm-3">
+                    Haematology______
+                   
+                </div>
+                <div class="col-sm-3">
+                   Microbiology______
+                   
+                   
+                </div>
+                <div class="col-sm-2">
+                    Biochemstry______
+                   
+                </div>
+                <div class="col-sm-2">
+                    Histology______
+               
+              </div>
+                
+            </div>
+            <div class="row" style="margin: 40px;">
+                <div class="col-sm-3">
+                    Hospital Name:_________________
+                </div>
+                <div class="col-sm-5">
+                  Consultant Referred To:______________
+                </div>
+                <div class="col-sm-4">
+                    Specialty_____________________
+                 </div>
+                
+            </div> 
+
+            <div class="col-sm-12" >
+               
+                <h6 style="justify-content: center; margin-top: 65px; color: black;">MEDICATION PRESCRIBED:<br>
+                    ________________________________________________________________________________________________________________________________<br>
+                    <div class="clearfix"></div>
+                    ________________________________________________________________________________________________________________________________<br>
+                    <div class="clearfix"></div>
+                    _________________________________________________________________________________________________________________________________<br>
+                    <div class="clearfix"></div>
+                    _________________________________________________________________________________________________________________________________<br>
+                    <div class="clearfix"></div>
+                    _________________________________________________________________________________________________________________________________<br>
+      </h6>
+
+               
+              </div>
+              <div class="row" style="margin: 40px;">
+                <div class="col-sm-6">
+                    <strong>
+                        Member's Signature:_____________________________________
+
+
+                    </strong>
+                </div>
+                <div class="col-sm-6"><strong>
+                    Date____________________________
+
+                </strong>
+                </div>
+                
+            </div>
+
+            <div class="row" style="margin-left: 30px;">
+                <div class="col-sm-12">
+                    Declaration:<br>
+                   I warrant the truth of the above statements. i have not withheld or misstated material information relating to this claim and have <br>no objection to yourselves communicating with 
+                   my medical doctor with regards to this claim.
+                </div>
+            </div>  
+            <div class="row" style="margin: 40px;">
+                <div class="col-sm-8">
+                    Member's Signature_______________________________________________
+                </div>
+                <div class="col-sm-4">
+                    Date:____________________________
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <p  style="color: black; margin-left: 300PX;">
+                    <strong>
+                        UAP Insurance Company Limited
+                    </strong>
+                </p>
+                <p style="color: black; margin-left: 120PX;">
+                    UAP Old Mutual Tower, Upperhill Road. P.O BOX 43013-00100 Nairobi, Tel:+254711065100/+254202850000<br>
+                   <span style="margin-left:60px;">
+                    Email:uapoutpatient@uapoldmutual.com Website:uapoldmutual.com
+                   </span>
+                </p>
+               <div class="row"  >
+              <div class="col-sm-12" style="margin-left: 150PX;">
+              
+                    ISO 9001 Certified | A Member of the Association of Kenya Insurers(AKI)<br>
+                   <span style="margin-left:60px;"> Regulated by the Insurance Regulatory Authority </span>
+               
+              </div>
+               </div>
+           
+               

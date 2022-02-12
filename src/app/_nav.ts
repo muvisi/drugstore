@@ -94,8 +94,8 @@ export const navItems: NavData[] = [
   
   },
   {
-    name: 'coperative-form',
-    url: '/dashboard/cooperative-claimform',
+    name: 'old mutual',
+    url: '/dashboard/uapoldmutual',
     icon: 'fas fa-address-book',
   
   }

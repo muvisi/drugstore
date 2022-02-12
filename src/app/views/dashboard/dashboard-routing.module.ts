@@ -51,6 +51,16 @@ import { AarClaimformComponent } from '../patient-checkin/aar-claimform/aar-clai
 import { FirstassuranceComponent } from '../patient-checkin/firstassurance/firstassurance.component';
 import { SedgrickComponent } from '../patient-checkin/sedgrick/sedgrick.component';
 import { ApaClaimformComponent } from '../patient-checkin/apa-claimform/apa-claimform.component';
+import { OldmutualClaimformComponent } from '../patient-checkin/oldmutual-claimform/oldmutual-claimform.component';
+import { MTNClaimformComponent } from '../patient-checkin/mtn-claimform/mtn-claimform.component';
+// import { PacisClaimformsComponent } from '../patient-checkin/pacis-claimforms/pacis-claimforms.component';
+import { MinetClaimformsComponent } from '../patient-checkin/minet-claimforms/minet-claimforms.component';
+// import { GAClaimformsComponent } from '../patient-checkin/ga-claimforms/ga-claimforms.component';
+import { JubileeClaimformComponent } from '../patient-checkin/jubilee-claimform/jubilee-claimform.component';
+import { CignaClaimformComponent } from '../patient-checkin/cigna-claimform/cigna-claimform.component';
+import { HeritageClaimformComponent } from '../patient-checkin/heritage-claimform/heritage-claimform.component';
+import { CicgroupClaimformComponent } from '../patient-checkin/cicgroup-claimform/cicgroup-claimform.component';
+import { BupaclobalClaimformComponent } from '../patient-checkin/bupaclobal-claimform/bupaclobal-claimform.component';
 const routes: Routes = [
   {
     path: '',
@@ -171,13 +181,54 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'cignainsurance/:id',
+    component:CignaClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'uapoldmutual/:id',
+    component:OldmutualClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'jubileeinsurance/:id',
+    component:JubileeClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'mtninsurance/:id',
+    component:MTNClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'minetinsurance/:id',
+    component:MinetClaimformsComponent,
+    canActivate: [AuthGuard]
+  },
+  //  
+  {
     path: 'FirstAssurance/:id',
     component:FirstassuranceComponent,
     canActivate: [AuthGuard]
   },
   {
+    path: 'heritageinsurance/:id',
+    component:  HeritageClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'bupaglobal/:id',
+    component:BupaclobalClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'sedgrick/:id',
     component:SedgrickComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'cicinsurance/:id',
+    component:CicgroupClaimformComponent,
     canActivate: [AuthGuard]
   },
   {

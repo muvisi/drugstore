@@ -1,0 +1,540 @@
+<div class="card">
+    <div class="card-body" id="print-section">
+        <div class="row">
+            <div class="col-sm-12" >
+                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                <div class="clearfix"></div>
+                <!-- <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="sedgrick()">SEDGWICK Claimform</button> -->
+
+
+    
+            </div>
+           
+           
+            
+            
+        </div>
+        <div class="row">
+           
+            <div class="col-sm-8">
+                <h5 style="white-space:nowrap; margin-top: 35px;">
+                    <img src="../../../../assets/img/avatars/heritage.png" alt="" height="100" width="200">
+                   
+                     
+                   
+                </h5>
+             
+            </div> 
+            <!-- <div class="col-sm-4" >
+               
+              <h1 style="justify-content: center; margin-top: 60px; color: tomato;">FIRST MED</h1>
+             
+            </div>  -->
+            <div class="col-sm-4">
+                <div class="row" style="justify-content: right; margin-top: 35px;">
+                    <h1 ><img  src="../../../../assets/img/avatars/blue.png" alt=""  height="100" width="300">
+                   </h1>
+                </div>
+            </div>
+            <div class="row" style="position: relative; background-color: darkblue; margin-left: 20px;">
+                <div class="col-sm-2" >CLAIM FORM</div>
+                
+                <div class="col-sm-4">BLUE  INVOICE NUMBER</div>
+                <div class="col-sm-6">
+                    <input type="text" [(ngModel)]="patient.patient.invoice__no">
+                    </div>
+            
+                
+            </div>
+            
+            <p style="margin-left: 20px;">
+                THIS FORM MUST BE COMPLETED FOR EVERY PATIENT RECEIVING TREATMENT. PLEASE COMPLETE A SEPARATE CLAIM FORM FOR EACH VISIT AND ATTACH YOUR INVOICE<br>
+                FOR PROCEESSING. THE PATIENT SHOULD BE GIVEN A DUPLICATE
+                 COPY FOR THHEIR RECORDS. PLESE ATTACH DETAILED INVOICE WHERE POSSIBLE TO EXPEDITE PAYMENT.<br>
+                <strong>PLEASE COMPLETE FORM IN BLOCK LETTERS.</strong><br>
+                <span style="margin-left: 30px;"><strong>
+                    IMPORTANT:THE HERITAGE INSURANCE COMPANY KENYA LTD WILL DECLINE ILLEGIBLE OR IONC0OMPLETE CLAIMS.
+                </strong></span>
+            </p>
+
+            <div class="clearfix"></div>
+            
+            <div class="col-sm-12" style="background-color: darkblue;  margin-left: 20px;" >
+               
+                <h4 style=" color: white">PATIENT DETAILS</h4>
+
+               
+              </div>
+              <div class="clearfix"></div>
+
+              <div class="clearfix"></div>
+              <div class="clearfix"></div>
+                <div class="row" style="position: relative; margin-left: 20px;">
+                    <div class="col-sm-2">FIRST NAME</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.first_name">
+                    </div>
+                    <div class="col-sm-2">SURNAME</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.last_name">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row" style="position: relative;  margin-left: 20px;">
+                <div class="col-sm-2">MEMBER NO.</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.member_number">
+                    </div>
+                <div class="row" style="position: relative;">
+                        <div class="col-sm-4">DEP CODE.</div>
+                        <div class="col-sm-2">
+                        <input type="text">
+                        </div>
+                    </div>
+                    
+                        <div class="clearfix"></div>
+                        <div class="row" style="position: relative; margin-left: 20px; ">
+                            <div class="col-sm-2">GENDER.</div>
+                            <div class="col-sm-4">
+                            <input type="text" [(ngModel)]="patient.patient.gender">
+                            </div>
+                    <div class="col-sm-2">DOB</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    </div>
+                    
+                </div>
+                <div class="col-sm-12" style="background-color: darkblue;  margin-left: 20px;" >
+               
+                    <h4 style=" color: white">MAIN MEMBER DETAILS</h4>
+    
+                   
+                  </div>
+                <div class="clearfix"></div>
+              
+                <div class="row" style="position: relative;  margin-left: 20px;">
+                    <div class="col-sm-2">FIRST NAME</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    <div class="col-sm-2">SURNAME</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.employee">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row" style="position: relative;  margin-left: 20px;">
+                    <div class="col-sm-4">EMPLOYER</div>
+                    <div class="col-sm-6">
+                    <input type="text" [(ngModel)]="patient.employer">
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12" style="background-color: darkblue;  margin-left: 20px;" >
+               
+                    <h4 style=" color: white">SERVICE PROVIDER DETAILS</h4>
+    
+                   
+                  </div>
+                <div class="clearfix"></div>
+              
+                <div class="row" style="position: relative;  margin-left: 20px;">
+                    <div class="col-sm-2">NAME OF PROVIDER</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.member">
+                    </div>
+                    <div class="col-sm-2">CONSULTING PHYSICIAN</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row" style="position: relative;  margin-left: 20px;">
+                    <div class="col-sm-2">HERITAGE PROVIDER NO</div>
+                    <div class="col-sm-4">
+                    <input type="text" [(ngModel)]="patient.member">
+                    </div>
+                    <div class="col-sm-2">TREATEMENT DATE</div>
+                    <div class="col-sm-4">
+                    <input type="text">
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+               <P>
+                   SHOULD HOSPITALISATION BE REQUIRED PLEASE COMPLETE A HOSPITALISATION PRE-AUTHORISATION FORM
+               </P>
+               <div class="row" style="font-size: 8px; color: black;">
+                
+                <div class="col-sm-2">
+                    <strong style="background-color: darkblue;">DIAGNOSIS</strong><br>
+                   ALLERGIC RHINITIS,<br> 
+                    ANAEMIA<br>
+                    ANTENATAL SCREENING<br>
+                    BRONCHITIS<br>
+                    CANDIDIASIS<br>
+                    CONJUNCTIVITIS<br>
+                </div>
+                    
+                
+                <div class="col-sm-1">
+                    <strong style="background-color: darkblue;">CODE (TICK)</strong><br>
+                    J30<br> 
+                    D64<br>
+
+                    Z36<br>
+                    J40<br>
+                    J37<br>
+                    H10<br>
+                    
+                   
+                </div>
+                <div class="col-sm-2">
+                    <strong style="background-color: darkblue;">DIAGNOSIS</strong><br>
+                    C-SECTION<br>
+                    DENTAL CARRIES<br>
+                    DERMATITIS<br>
+                    DIARRHOEA/GASTRO<br>
+                    GASTRITIS<br>
+                    INFLUENZA<br>
+                   
+                </div>
+                <div class="col-sm-1">
+                    <strong style="background-color: darkblue;">CODE (TICK)</strong><br>
+                    082<br> 
+                    K02<br>
+
+                    L30<br>
+                    A09<br>
+                    K29<br>
+                    J10<br>
+                    
+                   
+                </div>
+                <div class="col-sm-2">
+                    <strong style="background-color: darkblue;">DIAGNOSIS</strong><br>
+                    MALARIA<br>
+                    MYOPIA<br>
+                    OPTICAL EXAMINATION OF<br>
+                   EYES AND VISION<br>
+                   OTITUS MEDIA<br>
+                    PEPTIC ULCER<br>
+                   
+                </div>
+           
+            <div class="col-sm-1">
+                <strong style="background-color: darkblue;"> CODE (TICK)</strong><br>
+                B54<br> 
+                H52<br>
+
+                Z01<br>
+                Z01<br>
+                H66<br>
+                K27<br>
+                
+               
+            </div>
+            <div class="col-sm-2">
+                <strong style="background-color: darkblue;">DIAGNOSIS</strong><br>
+                PHARYNGITIS<br>
+                PNEUMONIA<br>
+               SPONTANEOUS BIRTH<br>
+               TONSILLITIS<br>
+               URTI<br>
+                UTI<br>
+               
+            </div>
+            <div class="col-sm-1">
+                <strong style="background-color: darkblue;">CODE (TICK)</strong><br>
+                J02<br> 
+                J18<br>
+
+                080<br>
+                J03<br>
+                J06<br>
+                N39<br>
+                
+               
+            </div>
+                    
+                   
+                
+                
+                
+                
+        
+           
+            
+            
+            <div class="col-sm-12" >
+          
+          <h5>
+              <strong>
+                  OTHER (SPECIFY DIAGNOSIS)
+              </strong>
+            </h5>
+            <div class="row" style="font-size: 8px; color: black;">
+                
+                <div class="col-sm-2">
+                    <strong style="background-color: darkblue;">CONSULTATION</strong><br>
+                   
+                </div>
+                <div class="col-sm-1">
+                 
+                   0190<br> 
+                    GPA<br>
+                    
+                </div>
+                <div class="col-sm-2">
+                 
+                    0191<br> 
+                     SPECIALIST<br>
+                     
+                 </div>
+                 <div class="col-sm-2">
+                 
+                    110001<br> 
+                    OPTICAL<br>
+                     
+                 </div>
+                 <div class="col-sm-2">
+                 
+                    8101<br> 
+                     DENTAL<br>
+                     
+                 </div>
+                 <div class="col-sm-1">
+                 
+                    OTHER<br> 
+                   
+                     
+                 </div>
+                 <div class="col-sm-2">
+                    <strong style="background-color: darkblue;">COST</strong><br>
+                 
+                   
+                     
+                 </div>
+                 <div class="clearfix"></div>
+                 <div class="row" style="position: relative;  margin-left: 20px;">
+                    <div class="col-sm-6">IS THIS A MATERNITY RELATED CLAIM?</div>
+                   
+                        <div class="col-sm-3">
+                            <mat-checkbox class="example-margin" ></mat-checkbox>
+                            Yes
+                        </div>
+                        <div class="col-sm-3">
+                         <mat-checkbox class="example-margin" ></mat-checkbox>
+                        No
+                      </div>
+                </div>
+
+                
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row" style="font-size: 8px; color: black;">
+                
+            <div class="col-sm-3">
+                <strong style="background-color: darkblue;">SERVICE PROVIDED </strong><br>
+               
+            </div>
+            <div class="col-sm-3">
+                <strong style="background-color: darkblue;">CODE </strong><br>
+               
+            </div>
+            <div class="col-sm-3">
+                <strong style="background-color: darkblue;">DESCRIPTION</strong><br>
+               
+            </div>
+            <div class="col-sm-3">
+                <strong style="background-color: darkblue;">COST</strong><br>
+               
+            </div>
+            
+       
+            
+             
+               
+                <div class="row" style="position: relative; font-size: 8PX;">
+                    <div class="col-sm-3">LABORATORY TESTS:</div>
+                    <div class="col-sm-3">
+                    <input type="text" [(ngModel)]="patient.patient.last_name">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" [(ngModel)]="patient.patient.last_name">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" [(ngModel)]="patient.patient.last_name">
+                            </div>
+                    
+                   
+                  
+                </div>
+                <div class="row" style="position: relative; font-size: 8PX;">
+                    <div class="col-sm-3">OTHER DIAGNOSTIC PROCEDURES/TESTS:</div>
+                    <div class="col-sm-3">
+                    <input type="text" [(ngModel)]="patient.patient.last_name">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" [(ngModel)]="patient.patient.last_name">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" [(ngModel)]="patient.patient.last_name">
+                            </div>
+                    
+                   
+                  
+                </div>
+                <div class="row" style="position: relative; font-size: 8PX;">
+                    <div class="col-sm-3">OPTICAL:</div>
+                    <div class="col-sm-3">
+                    <input type="text" [(ngModel)]="patient.patient.last_name">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" [(ngModel)]="patient.patient.last_name">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" [(ngModel)]="patient.patient.last_name">
+                            </div>
+                    
+                   
+                  
+                </div>
+                <div class="row" style="position: relative; font-size: 8PX;">
+                    <div class="col-sm-3">DENTAL</div>
+                    <div class="col-sm-3">
+                    <input type="text" [(ngModel)]="patient.patient.last_name">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" [(ngModel)]="patient.patient.last_name">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" [(ngModel)]="patient.patient.last_name">
+                            </div>
+                    
+                   
+                  
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row" style="font-size: 12px; color: black;">
+                
+                   
+                    <div class="col-sm-3">
+                        <strong style="background-color: darkblue;">CODE </strong><br>
+                       
+                    </div>
+                    <div class="col-sm-3">
+                        <strong style="background-color: darkblue;">QUANTITY</strong><br>
+                       
+                    </div>
+                    <div class="col-sm-3">
+                        <strong style="background-color: darkblue;">DOSAGE</strong><br>
+                       
+                    </div>
+                    <div class="col-sm-3">
+                        <strong style="background-color: darkblue;">DESCRIPTION</strong><br>
+                       
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                <div class="row" style="position: relative; margin-left: 20px;">
+                    <div class="col-sm-4">PPRESCRIPTION DRUGS ATTACH COPY OF PRESCRIPTION</div>
+                    <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="patient.relative">
+                    </div>
+                    
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row" style="position: relative; margin-left: 20px">
+                    <div class="col-sm-6">TOTAL MEDICAL COSTS(INDICATE CURRENCY)</div>
+                    <div class="col-sm-6">
+                    <input type="text" [(ngModel)]="patient.relative">
+                    </div>
+                    
+                    
+                </div>
+                <div class="col-sm-12" style="background-color: darkblue;  margin-left: 20px;" >
+               
+                    <h4 style=" color: white">PROVIDER'S DECLARATION</h4>
+    
+                   
+                  </div>
+                  <P style="margin-left: 20px;">
+                      I CERTIFY THAT THE ABOVE PATIENTS HAS RECEIVED THE SERVICES  & TREATMENT NOTED ON THIS FORM, DIAGNOSIS AND<br>
+                      ADMINISTRATION BY MYSELF AND THAT THIS CLAIM IS IN ACCORDANCE WITH MY SPOECIFIED TREATMENT.
+                  </P>
+                  <div class="row" style="margin: 40px;">
+                    <div class="col-sm-4">
+                        SIGNED___________________________________________
+                    </div>
+                    <div class="col-sm-4">
+                    DATE____________________________
+                    </div>
+                    <div class="col-sm-4">
+                        PROVIDER STAMP____________________________
+                        </div>
+                    
+                </div>
+                
+                <div class="col-sm-12" style="background-color: darkblue;  margin-left: 20px;" >
+               
+                    <h4 style=" color: white">PATIENT'S/ PATIENT'S GURDIAN DECLARATION</h4>
+
+    
+                   
+                  </div>
+                 
+                  <div class="clearfix"></div>
+                  <P style="margin-left: 20px;">
+                    I____________________________ __________________________________________________________HEREBY DECLARE THE ABOVE STATED TO BE TRU AND IN ACCORDANCE WITH THE <br>
+                    MEDICAL SCHEME RULES. I CONFIRM THAT THE DETAILS GIVEN ABOVE ARE CORRECT, THAT THE AMOUNT CLAIMED HEREIN IS NOT CLAIMABLE FROM ANOTHER SOURCE AND THAT<br>
+                    THE PATIENT IS A MEMBER POR DEPEDANT ON BLUE HEALTH INSURANCE. I AUTHORISE THE PROVIDER OF SERVICES TO DISCLOSE THE NATURE OF ILLNESS TO BLUE FOR ITS<br>
+                  CONFIDENTIAL USE AND I AGREE THAT NO AWARDS WILL BE MADE FOR THIS TREATMENT UNLESS CONTRIBUTIONS ARE RECEIVED IN RESPECT OF THE PERIOD OF TREATMENT. THE<br>
+                  HERITAGE INSUARANCE COMPANY LMT RESERVES THE RIGHT TO RECOVERY ANY AMOUNTS PAID TO PROVIDERS IN EXCESS OF BENEFITS DIRECTLY.
+                </P>
+                <div class="clearfix"></div>
+                <div class="row" style="margin: 40px;">
+                    <div class="col-sm-8">
+                        SIGNED(PATIENT/GURDIAN)___________________________________________
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                    CELL PHONE NO.____________________________
+                    </div>
+                    <div class="col-sm-6">
+                        DATE____________________________
+                        </div>
+                    
+                </div>
+                <div class="col-sm-12" style="background-color: darkblue;  margin-left: 20px;" >
+               
+                    <h4 style=" color: white"></h4>
+
+    
+                   
+                  </div>
+               
+              
+               
+               
+                <div class="col-sm-12">
+                    <div class="text" style="font-size: 12px;">
+                        <p style="color: black;text-align: right;font-weight:600;">
+                           <strong>The Heritage Insurance Company Kenya Limited</strong><br>
+                            Liberty House, Processional Way, PO Box 30390-00100,Nairobi, Kenya<br>
+                            25420278300 m 0711039000, 0734101000<br>
+                            <strong>contact centre: mobile 0711076333 f</strong> 254202727800<br>
+                            e info@heritage.co.ke, healthcareundertakings@heritage.co.ke w www.heritageinsurance.co.ke<br>
+                            A member of the Association of Kenya insurers<br>
+                            Reulatred by the insurance Regulatory Authority<br>
+                        </p>
+                    </div>
+                </div>
