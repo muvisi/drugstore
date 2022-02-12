@@ -7,6 +7,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 export const endpoint='http://134.209.199.123:8888/';
+export const SOCKET_URL="ws://134.209.199.123:8888/api/signature/";
 // export const endpoint='http://197.248.31.237:8548/';
 // export const endpoint='https://bookings.aarhospital.com/';
 @Injectable({
@@ -19,6 +20,9 @@ export class ServiceService {
   }
   getendpoint(){
     return endpoint;
+  }
+  getSignatureUrl(){
+    return endpoint+"signature/"
   }
   private extractData(res) {
     const  body = res;

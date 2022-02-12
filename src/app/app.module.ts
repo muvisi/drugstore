@@ -50,6 +50,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { from } from 'rxjs';
 import { TokenInterceptor } from './interceptor';
+import { SignatureService } from './signature.service';
 // import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 
@@ -127,7 +128,9 @@ export function tokenGetter() {
   WorkWeekService, 
   MonthService,
   AgendaService,
-  MonthAgendaService
+  MonthAgendaService,
+  SignatureService
+
 ],
   bootstrap: [ AppComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
