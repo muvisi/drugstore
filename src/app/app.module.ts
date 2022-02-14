@@ -53,7 +53,7 @@ import { TokenInterceptor } from './interceptor';
 import { SignatureService } from './signature.service';
 // import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
-
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 
@@ -94,7 +94,8 @@ export function tokenGetter() {
       primaryColour: '#71FF33', 
       secondaryColour: '#71FF33', 
       tertiaryColour: '#71FF33'
-  })
+  }),
+  QRCodeModule,
   ],
   declarations: [
     AppComponent,
