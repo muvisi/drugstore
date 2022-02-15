@@ -84,11 +84,7 @@
     "@angular/language-service": "^8.2.11",
     "@types/jasmine": "^3.4.4",
     "@types/jasminewd2": "^2.0.6",
-<<<<<<< HEAD
     "@types/node": "12.19.12",
-=======
-    "@types/node": "10.17.48",
->>>>>>> n2022_1
     "codelyzer": "^5.1.0",
     "jasmine-core": "^3.4.0",
     "jasmine-spec-reporter": "^4.2.1",

@@ -12,6 +12,7 @@ export class AarClaimformComponent implements OnInit {
   patient:any={
     patient:{}
    };
+   today;
    signature1_src;
    signature1_show;
    signature2_show;
@@ -30,12 +31,18 @@ export class AarClaimformComponent implements OnInit {
         console.log("images",res);
         if (this.signature_type=="staff"){
         
-          this.signature2_show=true;
-          this.signature2_src=this.service.getSignatureUrl()+res;
-        }else if(this.signature_type=="member"){
-          this.signature1_show=true;
        
-        this.signature1_src=this.service.getSignatureUrl()+res;
+          this.signature2_src=this.service.getSignatureUrl()+res;
+          if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
+            this.signature2_show=true;
+          }
+        }else if(this.signature_type=="member"){
+          this.signature1_src=this.service.getSignatureUrl()+res;
+          if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
+          this.signature1_show=true;
+          this.today=new Date();
+          }
+       
         }
     });
     this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
@@ -51,6 +58,8 @@ document.title=this.patient.patient.phone.concat('-01')
 
 activateMemberSignature(){
   this.signature_type="member"
+  this.signature1_show=false;
+  
   let data={
     'status':'activate',
     'type':'member'
@@ -60,6 +69,7 @@ activateMemberSignature(){
 
 activateStaffSignature(){
   this.signature_type="staff";
+  this.signature2_show=false;
   let data={
     'status':'activate',
     'type':'staff'
