@@ -17,7 +17,7 @@ export class AllbookingComponent implements OnInit {
   selected;
   idnumber;
   phonenumber;
-  Columns: string[] = ['sn','created','First','gender','payment','residence','phone','insurancecompany','symptoms','print']
+  Columns: string[] = ['sn','created','First','gender','payment','residence','phone','insurancecompany','symptoms','print','action']
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {
@@ -55,7 +55,9 @@ export class AllbookingComponent implements OnInit {
     })
   }
   
-
+  rowSelectedView(item){
+    this.router.navigate(['/dashboard/booking-details/',item.id])
+  }
 
 
 clickRow(item){

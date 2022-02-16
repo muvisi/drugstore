@@ -1,32 +1,47 @@
 <div class="container" style="margin-top: 30px;">
     <div class="row">
         <div class="col-sm-12">
-
-            <form [formGroup]="patientMobileForm"   #patientConfirm="ngForm">
+            <div class="row">
                 <div class="col-sm-12">
-                <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Enter the phone number</span></h2></div>
+                    <div class="card">
+                        <h6 class="card-header bg-success">
+            
+                        </h6>
+                        <div class="card-body">
+                            
 
-            <br>
-                    <div class="row" style="justify-content: center;">
-                    <div class="col-sm-5">
-                    <mat-form-field class="example-full-width"  appearance="outline">
-                        <mat-label>phone number</mat-label>
-                        <input type="text" matInput  formControlName="phone" >
-                     
-                    </mat-form-field>
+                            <form [formGroup]="patientMobileForm"   #patientConfirm="ngForm">
+                                <div class="col-sm-12">
+                                <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Enter the phone number</span></h2></div>
+
+                            <br>
+                                    <div class="row" style="justify-content: center;">
+                                    <div class="col-sm-5">
+                                    <mat-form-field class="example-full-width"  appearance="outline">
+                                        <mat-label>phone number</mat-label>
+                                        <input type="text" matInput  formControlName="phone" style="font-size: x-large;">
+                                    
+                                    </mat-form-field>
+                                    </div>
+                                </div>
+                                
+
+                                <!-- <mat-error *ngIf="fs.first_time.errors?.required">select yes or no</mat-error> -->
+                            </div> 
+
+                            <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+                                    <button mat-raised-button   style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;background-color: #4dbd74 !important;color: white;"  (click)= "submitPhone()">Send</button>
+                            
+                            </div>
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
 
-                <!-- <mat-error *ngIf="fs.first_time.errors?.required">select yes or no</mat-error> -->
-            </div> 
-
-            <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
-            
-                    <button mat-raised-button   style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;background-color: #EF2D2D;color: white;"  (click)= "submitPhone()">Send</button>
-            
-            </div>
-                </form>
             </div>
 </div>
 </div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

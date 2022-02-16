@@ -10,6 +10,7 @@ import { ServiceService } from '../../../service.service';
 })
 export class RegistrationLinkComponent implements OnInit {
   patientMobileForm: FormGroup;
+  loading;
   constructor(private formBuilder: FormBuilder,private service:ServiceService,private toast: ToastrService) {
   
    }
@@ -20,13 +21,16 @@ export class RegistrationLinkComponent implements OnInit {
     })
   }
   submitPhone(){
+    this.loading=true;
     this.service.getRegistrationLink(this.patientMobileForm.value).subscribe((res)=>{
+      this.loading=false
       if(res.status){
         this.toast.success("Successfully sent");
       }else{
         this.toast.warning("System error")
       }
     },(err)=>{
+      this.loading=false;
       this.toast.warning("Network error")
     })
 

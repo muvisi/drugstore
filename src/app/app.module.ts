@@ -54,6 +54,7 @@ import { SignatureService } from './signature.service';
 // import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 import { QRCodeModule } from 'angularx-qrcode';
+import { ServiceService } from './service.service';
 
 
 

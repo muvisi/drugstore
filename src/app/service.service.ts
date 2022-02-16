@@ -55,6 +55,10 @@ export class ServiceService {
     return this.http.post(endpoint + 'api/registration-link/',data).pipe(
       map(this.extractData));
   }
+  getFeedbackLink(data): Observable<any> {
+    return this.http.post(endpoint + 'api/feedback-link/',data).pipe(
+      map(this.extractData));
+  }
   getEvents(): Observable<any> {
     return this.http.get(endpoint + 'appointments/appointment_list/?limit=100').pipe(
       map(this.extractData));
@@ -77,6 +81,10 @@ export class ServiceService {
   }
   getInsurance(id): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  getbookingDetails(id): Observable<any> {
+    return this.http.get(endpoint + 'api/booking/'+id+'/').pipe(
       map(this.extractData));
   }
   searchBilling(id): Observable<any> {

@@ -62,6 +62,7 @@ import { HeritageClaimformComponent } from '../patient-checkin/heritage-claimfor
 import { CicgroupClaimformComponent } from '../patient-checkin/cicgroup-claimform/cicgroup-claimform.component';
 import { BupaclobalClaimformComponent } from '../patient-checkin/bupaclobal-claimform/bupaclobal-claimform.component';
 import { RegistrationLinkComponent } from '../patient-checkin/registration-link/registration-link.component';
+import { BookingDetailComponent } from '../patient-checkin/booking-detail/booking-detail.component';
 const routes: Routes = [
   {
     path: '',
@@ -123,6 +124,11 @@ const routes: Routes = [
   {
     path: 'allbooking',
     component: AllbookingComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'booking-details/:id',
+    component: BookingDetailComponent,
     canActivate: [AuthGuard]
   },
   {

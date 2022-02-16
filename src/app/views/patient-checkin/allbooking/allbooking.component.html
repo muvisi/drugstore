@@ -63,6 +63,13 @@
                           <button class="btn btn-success btn-sm" (click)="clickRow(selected=element)">Print</button>
                            </td>
                       </ng-container>
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>Action</th>
+                        <td mat-cell *matCellDef="let element"> 
+                          <button class="btn btn-success btn-sm" (click)="rowSelectedView(element)">View </button>
+                           </td>
+                      </ng-container>
+                      
                       
                  
                       <!-- <ng-container matColumnDef="form">
