@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <div class="container" id="component2">
    
     
@@ -5,6 +6,10 @@
 
 
 <div class="card" id="component1">
+=======
+
+<div class="card">
+>>>>>>> e290ed969881c6ae3c840ba02b8aac8de9c04253
     <div class="card-body" id="print-section">
         <div class="row">
             <div class="col-sm-12">
@@ -115,12 +120,35 @@
                     </div>
                    
     
+<<<<<<< HEAD
                     <div class="row" style="margin-top: 12px; font-size: 8px;">
                         <div class="col-sm-8">
                             Member/Guardian Signature:______________________________________________________________
+=======
+                    <div class="row" style="margin-top: 12px;">
+                        <div class="col-sm-8" (click)="activateMemberSignature()">
+                            <div class="row">
+                                <div class="col-sm-4">Member/Gurdian Signature:</div>
+                                <div class="col-sm-8">
+                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: 0px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
+                                <div class="row">_______________________________________________________________ </div>
+                                </div>
+                             </div>
+>>>>>>> e290ed969881c6ae3c840ba02b8aac8de9c04253
                         </div>
                         <div class="col-sm-4">
-                            Date:_______________________________________
+                            <div class="row"> 
+                                <div class="col-sm-4">Date:</div>
+                                <div class="col-sm-8">
+                                    <div class="row" style="position: absolute;bottom: 0;">
+                                            {{ today | date:"MMM d, y"}}
+                                    </div>
+                                    <div class="row">
+                                    _______________________________________
+                                    </div>
+                                </div>
+                            </div>
+                          
                         </div>
                         
                     </div>
@@ -210,10 +238,17 @@
                     <div class="clearfix"></div> 
                 </div>
                 <div class="row" style="margin-top: 12px;">
-                    <div class="col-sm-6">
-                       Sign:_________________
+                    <div class="col-sm-6" (click)="activateStaffSignature()">
+                        <div class="row">
+                        <div class="col-sm-4">Sign:</div>
+                        <div class="col-sm-8">
+                            <div class="row" style="position: absolute;bottom: 0;margin-bottom: 0px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                        <div class="row">___________________________</div>
+                    </div>
+                    </div>
                     </div>
                     <div class="col-sm-6">
+
                         Official Stamp:____________________________________
                     </div>
                     

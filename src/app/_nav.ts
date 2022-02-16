@@ -94,8 +94,8 @@ export const navItems: NavData[] = [
   
   },
   {
-    name: 'old mutual',
-    url: '/dashboard/uapoldmutual',
+    name: 'Send Register Link',
+    url: '/dashboard/registration-link',
     icon: 'fas fa-address-book',
   
   }

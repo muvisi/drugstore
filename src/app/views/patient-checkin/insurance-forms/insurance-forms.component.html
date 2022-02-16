@@ -193,8 +193,19 @@
                
 
                 <div class="row" style="margin-top: 12px;">
-                    <div class="col-sm-8">
-                        Member's Signature:______________________________________________________________
+                    <div class="col-sm-8" (click)="signatureClicked()">
+                        <div class="row">
+                            <div class="col-sm-4">Member's Signature:</div>
+                            <div class="col-sm-8">
+                                <div class="row" style="position: absolute;bottom: 0; margin-bottom: -30px;" >
+                                    <img src="{{image_src}}"  height="100px" width="80px" *ngIf="show_signature_patient">
+                                </div>
+                            <div class="row"> ______________________________________________________________</div>
+                           
+                                
+                            </div>
+                        </div>
+                       
                     </div>
                     <div class="col-sm-4">
                         Date:_______________________________________
