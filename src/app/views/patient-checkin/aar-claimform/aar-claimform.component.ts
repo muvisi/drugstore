@@ -37,25 +37,26 @@ export class AarClaimformComponent implements OnInit {
       console.log("HEALTHIX",res);
       this.patient = res;
     })
-    this.signatureService.socket().subscribe((res)=>{
-      console.log("images",res);
-      if (this.signature_type=="staff"){
+    this.today1=new Date();
+  //   this.signatureService.socket().subscribe((res)=>{
+  //     console.log("images",res);
+  //     if (this.signature_type=="staff"){
       
      
-        this.signature2_src=this.service.getSignatureUrl()+res;
-        if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
-          this.signature2_show=true;
-          this.today2=new Date();
-        }
-      }else if(this.signature_type=="member"){
-        this.signature1_src=this.service.getSignatureUrl()+res;
-        if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
-        this.signature1_show=true;
-        this.today1=new Date();
-        }
+  //       this.signature2_src=this.service.getSignatureUrl()+res;
+  //       if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
+  //         this.signature2_show=true;
+  //         this.today2=new Date();
+  //       }
+  //     }else if(this.signature_type=="member"){
+  //       this.signature1_src=this.service.getSignatureUrl()+res;
+  //       if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
+  //       this.signature1_show=true;
+  //       this.today1=new Date();
+  //       }
      
-      }
-  });
+  //     }
+  // });
    
   }  
  
@@ -96,25 +97,25 @@ document.title=this.patient[0].visit_number.concat("-01")
   }
 
 
-  activateMemberSignature(){
-    this.signature_type="member"
-    this.signature1_show=false;
+  // activateMemberSignature(){
+  //   this.signature_type="member"
+  //   this.signature1_show=false;
     
-    let data={
-      'status':'activate',
-      'type':'member'
-    }
-    this.signatureService.send(JSON.stringify(data))
-  }
+  //   let data={
+  //     'status':'activate',
+  //     'type':'member'
+  //   }
+  //   this.signatureService.send(JSON.stringify(data))
+  // }
   
-  activateStaffSignature(){
-    this.signature_type="staff";
-    this.signature2_show=false;
-    let data={
-      'status':'activate',
-      'type':'staff'
-    }
-    this.signatureService.send(JSON.stringify(data))
-  }
+  // activateStaffSignature(){
+  //   this.signature_type="staff";
+  //   this.signature2_show=false;
+  //   let data={
+  //     'status':'activate',
+  //     'type':'staff'
+  //   }
+  //   this.signatureService.send(JSON.stringify(data))
+  // }
 }
 

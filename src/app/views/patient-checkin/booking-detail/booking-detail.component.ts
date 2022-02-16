@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../../service.service';
+// import { ServiceService } from '../../../service.service';
 
 @Component({
   selector: 'app-booking-detail',
@@ -22,6 +23,7 @@ export class BookingDetailComponent implements OnInit {
   customer;
   show_insurance;
   loading: boolean;
+  maxDate;
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute,private service:ServiceService,private toast:ToastrService) { }
 
   ngOnInit() {

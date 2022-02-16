@@ -8,7 +8,7 @@
         </div>
         <div class="row" >
            
-            <div class="col-sm-8">
+            <div class="col-sm-8" style="font-size: 8px;">
                 <h1>
                     <img src="../../../../assets/img/avatars/sanlam-logo.png" alt="">
                 </h1>
@@ -28,7 +28,7 @@
                     Form</h1>
                 </div>
             </div>
-            <div class="col-sm-12" >
+            <div class="col-sm-12" style="font-size: 10px;" >
                 <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
                 <div style="background-color:#0075c9 !important;" class="text">
                     <h3 style="color: white;"> Personal Details </h3>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-sm-2">Employee Name:</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.booking.employee">
+                    <input type="text" value="{{employee}}">
                     </div>
                     
                 </div>
@@ -45,14 +45,14 @@
                 <div class="row">
                     <div class="col-sm-2">Membership No:</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.member_number">
+                    <input type="text" value="{{patient[0].member_number}}">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-3">Name of Policy holder/Employer:</div>
                     <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="patient.scheme_name">
+                    <input type="text"value="{{employer}}">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -60,32 +60,32 @@
                 <div class="row">
                     <div class="col-sm-2">Patient Name:</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.member_name" >
+                    <input type="text" value="{{patient[0].member}}" >
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Date Of Birth:</div>
                     <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    <input type="text" value="{{patient[0].dob}}">
                     </div>
                     <div class="col-sm-3">Relationship Of the Pateint to Employee:</div>
                     <div class="col-sm-3">
-                    <input type="text" [(ngModel)]="patient.relation">
+                    <input type="text" value="{{relation}}">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Hospital:</div>
                     <div class="col-sm-10">
-                    <input type="text"  [(ngModel)]="hospital" >
+                    <input type="text"  value="{{hospital}}" >
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Client contact Cell Phone:</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.patient.phone">
+                    <input type="text" value="{{patient[0].phone}}">
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
             
 
         </div>
-        <div class="row" style="margin-top: 20px;">
+        <div class="row" style="margin-top: 20px; font-size: 10px;">
             <div class="col-sm-12" >
                 <div style="background-color:#0075c9;">
                     <h3 style="color: white;">  Official Use Only </h3>
@@ -102,7 +102,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                     1.Diagnosis <br>
-                    <textarea rows="5" style="width: 100%;"></textarea>
+                    <textarea rows="5" style="width: 100%;">{{patient[0].diagnoses}} {{patient[0].description}}</textarea>
                     </div>
                     
                 </div>
@@ -181,7 +181,7 @@
                     <h3 style="color: white;"> Declaration </h3>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="font-size: 10px;">
                     I ______________________________________________________________ Phone ___________________________________________  do hereby authorize 
                     any doctor,hospital,clinic or medical provider,insurance company,institution or person who has any record or information about me  and/or
                     family members to provide Sanlam General Insurance Company Limitted with complete information including hospitalization.
@@ -193,13 +193,13 @@
                
 
                 <div class="row" style="margin-top: 12px;">
-                    <div class="col-sm-8" (click)="signatureClicked()">
+                    <div class="col-sm-8">
                         <div class="row">
                             <div class="col-sm-4">Member's Signature:</div>
                             <div class="col-sm-8">
-                                <div class="row" style="position: absolute;bottom: 0; margin-bottom: -30px;" >
+                                <!-- <div class="row" style="position: absolute;bottom: 0; margin-bottom: -30px;" >
                                     <img src="{{image_src}}"  height="100px" width="80px" *ngIf="show_signature_patient">
-                                </div>
+                                </div> -->
                             <div class="row"> ______________________________________________________________</div>
                            
                                 
