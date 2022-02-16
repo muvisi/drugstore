@@ -83,7 +83,7 @@ clickRow(item){
  
   this.router.navigate(['/dashboard/cignainsurance/',item.id])
    }
-   if (this.selected.insurance_company=='Sanlam Insurance Company Ltd') 
+   if (this.selected.insurance_company=='	SANLAM INSURANCE COMPANY LTD') 
      {
  
   this.router.navigate(['/dashboard/insurance-forms/',item.id])

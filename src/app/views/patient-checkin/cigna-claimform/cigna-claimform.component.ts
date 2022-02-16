@@ -12,7 +12,6 @@ export class CignaClaimformComponent implements OnInit {
 
   patient:any={}
   hospital='AAR HOSPITAL'
-<<<<<<< HEAD
   specialist='Yes'
   employer='Employer Name'
   condition='No Underlying Condition'
@@ -22,8 +21,7 @@ export class CignaClaimformComponent implements OnInit {
   normal='Bacterial'
   amount='000.0'
   Aartelephone='Emergency:+254 725 225 225 | +254 734 225 225'
-  constructor(private route: ActivatedRoute,public service:ServiceService) { }
-=======
+  // constructor(private route: ActivatedRoute,public service:ServiceService) { }
   today1;
   today2;
    signature1_src;
@@ -32,28 +30,12 @@ export class CignaClaimformComponent implements OnInit {
    signature2_src;
    signature_type;
   constructor(private route: ActivatedRoute,public service:ServiceService,private signatureService:SignatureService) { }
->>>>>>> e290ed969881c6ae3c840ba02b8aac8de9c04253
 
   ngOnInit() {
     this.service.getSinglePatientData_Hospserver(this.route.snapshot.params.id).subscribe((res)=>{
       console.log("HEALTHIX",res);
       this.patient = res;
     })
-<<<<<<< HEAD
-   
-  }  
- 
- printPage() {
-console.log("Resp", this.patient)
-document.title=this.patient[0].visit_number.concat("-01")
-
-
-  window.print();
- 
-}
-
-=======
-
     this.signatureService.socket().subscribe((res)=>{
       console.log("images",res);
       if (this.signature_type=="staff"){
@@ -73,9 +55,41 @@ document.title=this.patient[0].visit_number.concat("-01")
      
       }
   });
-  }
+   
+  }  
+ 
+ printPage() {
+console.log("Resp", this.patient)
+document.title=this.patient[0].visit_number.concat("-01")
 
-  printPage() {
+
+  window.print();
+ 
+}
+
+// mmm(){
+//     this.signatureService.socket().subscribe((res)=>{
+//       console.log("images",res);
+//       if (this.signature_type=="staff"){
+      
+     
+//         this.signature2_src=this.service.getSignatureUrl()+res;
+//         if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
+//           this.signature2_show=true;
+//           this.today2=new Date();
+//         }
+//       }else if(this.signature_type=="member"){
+//         this.signature1_src=this.service.getSignatureUrl()+res;
+//         if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
+//         this.signature1_show=true;
+//         this.today1=new Date();
+//         }
+     
+//       }
+//   });
+//   }
+
+  printPagew() {
   document.title=this.patient.patient.phone.concat('-01')
     window.print();
   }
@@ -101,6 +115,5 @@ document.title=this.patient[0].visit_number.concat("-01")
     }
     this.signatureService.send(JSON.stringify(data))
   }
->>>>>>> e290ed969881c6ae3c840ba02b8aac8de9c04253
 }
 

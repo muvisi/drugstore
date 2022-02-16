@@ -42,7 +42,7 @@
     "@syncfusion/ej2-angular-schedule": "^17.3.17",
     "angular-calendar-scheduler": "^11.0.1",
     "angular-fusioncharts": "^3.0.3",
-    "angularx-qrcode": "~2.1.4",
+    "angularx-qrcode": "^2.1.4",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "ckeditor4-angular": "^1.0.0-beta.2",
