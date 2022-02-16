@@ -92,7 +92,7 @@
                     <h3 style="color:darkblue;margin-left: 210px;"><strong>MEDICAL INSURANCE CLAIM FORM</strong></h3>
                 </div>
                 <div class="col-sm-12" style="color: darkblue;">
-                    <p style="margin-left: 30px;"><strong>
+                    <p style="margin-left: 30px; font-size: 8px;"><strong>
                         <!-- IMPORTANT NOTES<br> -->
                         1.This formshall not be accepted unless fully completed and signed by both the doctor and the insured.<br>
                         2.No addmissio of liability is made by insurer by the issue of this form<br>
@@ -103,74 +103,74 @@
                     </strong>
                     </p>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2">Name of Hospital/Provider:</div>
                         <div class="col-sm-4">
-                        <input type="text"  [(ngModel)]="hospital">
+                        <input type="text"  value="{{hospital}}">
                         </div>
                         <div class="col-sm-2">Tel &Fax No:</div>
                         <div class="col-sm-4">
-                        <input type="text">
+                        <input type="text" value="{{Aartelephone}}">
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                <div class="row"  style="margin-left: 30px;">
+                <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">Name of the Employer</div>
                     <div class="col-sm-10">
-                    <input type="text">
+                <input type="text" value="{{employer}}">
                   
                     </div>
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row"  style="margin-left: 30px;">
+                <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">Policy/Membership No</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.member_number">
+                    <input type="text" value="{{patient[0].member_number}}">
                     </div>
                     
                 </div>
                 <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2">Employees Name</div>
                         <div class="col-sm-4">
-                        <input type="text" [(ngModel)]="patient.employee">
+                        <input type="text" value="{{employee}}">
                         </div>
                         <div class="col-sm-2">Mobile No</div>
                         <div class="col-sm-4">
-                        <input type="text" [(ngModel)]="patient.patient.phone">
+                        <input type="text" >
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2">Patient Name</div>
                         <div class="col-sm-4">
-                        <input type="text" value="{{patient.patient.first_name}} {{patient.patient.last_name}}">
+                        <input type="text" value="{{patient[0].member}}">
                         </div>
                         <div class="col-sm-2">Date of Birth/Age:</div>
                         <div class="col-sm-4">
-                        <input type="text" [(ngModel)]="patient.patient.dob">
+                        <input type="text" value="{{patient[0].dob}}" >
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2">Relationship to Employee:</div>
                         <div class="col-sm-4">
-                        <input type="text" [(ngModel)]="patient.relation">
+                        <input type="text" >
                         </div>
                         <div class="col-sm-2">ID No:</div>
                         <div class="col-sm-4">
-                        <input type="text" [(ngModel)]="patient.patient.national_id">
+                        <input type="text" >
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                   <div class="row"  style="margin-left: 30px;">
+                   <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <p>
                         Are you insured under any other medical expense scheme e.g NHIF, Workmen's Compesation, Personal Accident included?<br>
                         If so, please give particulars_____________________________________________________________________________________<br>
                     </p>
                    </div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-12">
                         I ______________________________________________________________ ________________________  do hereby authorize 
                         any doctor,hospital,clinic or medical provider,insurance company,institution or person who has any record or information about me  and/or
@@ -181,7 +181,7 @@
                         </div>
                         
                     </div>
-                    <div class="row" style="margin-top: 12px; margin-left: 30px;">
+                    <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-8">
                            Signature of  Member______________________________________________________________
                         </div>
@@ -194,34 +194,34 @@
 
                 </div>
                
-                 <div  class="col-sm-6" style="color: darkblue;">
-                    <div style="background-color:white;margin-left: 30px;" >
-                        <h3 style="color: darkblue">TO BE FILLED BY DOCTOR</h3>
+                 <div  class="col-sm-6" style="color: darkblue; font-size: 8px;">
+                    <div style="background-color:white;margin-left: 30px; " >
+                        <h6 style="color: darkblue">TO BE FILLED BY DOCTOR</h6>
                     </div>
                 </div>
                 <div class="col-sm-12"  style="color: darkblue;" >
                
                
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">Final Diagnosis of condition treated:</div>
                         <div class="col-sm-7">
-                        <input type="text">
+                        <input type="text" value="{{patient[0].diagnoses}}{{patient[0].description}}">
                         </div>
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">When was the condition first diagnosed:</div>
                         <div class="col-sm-7">
-                        <input type="text">
+                        <input type="text" value="{{patient[0].check_in| date: 'dd/MM/yyyy'}}">
                         </div>
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">Details of Preveous treatment for this ill;ness/injury:</div>
                         <div class="col-sm-7">
-                        <input type="text">
+                        <input type="text" value="{{details}}">
                         </div>
                         
                     </div>
@@ -232,50 +232,57 @@
                    
                     
                 </div>
-                <div  class="col-sm-6">
-                    <div style="background-color:white;margin-left: 30px;" >
-                        <h3 style="color: darkblue"><u>SICKNESS</u></h3>
+                <div  class="col-sm-6" style="font-size: 8px;">
+                    <div style="background-color:white;margin-left: 30px; ">
+                        <h6 style="color: darkblue"><u>SICKNESS</u></h6>
                     </div>
                 </div>
                 <div class="col-sm-12"  style="color: darkblue;" >
                
                
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">Cause of illness/es:</div>
                         <div class="col-sm-7">
-                        <input type="text">
+                        <input type="text" value="{{normal}}">
                         </div>
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">Is the condition Recurrent, Chronic or Congenital:</div>
                         <div class="col-sm-7">
-                        <input type="text">
+                        <input type="text" value="{{state}}">
                         </div>
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">Nature of treatment and given recommendations:</div>
                         <div class="col-sm-7">
                         <input type="text">
                         </div>
                         
                     </div>
-                   <div class="row" style="margin-left: 30px;">
-                    <p  >
-                        Does the patient require referral to a specialist? Yes/No.<br>
-                        If Yes, Name of Consultant___________________________________________________________________Speciality___________________________________________
-                    </p>
+                    <div class="clearfix"></div>
+
+                   <!-- <div class="row" style="margin-left: 30px; font-size: 8px;"> -->
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
+                        <div class="col-sm-4">Does the patient require referral to a specialist?</div>
+                        <div class="col-sm-2">
+                        <input type="text" value="{{specialist}}">
+                        </div>
+                        <div class="col-sm-2">Name of cunsultant</div>
+                        <div class="col-sm-4">
+                        <input type="text"  value="{{patient[0].doctor_name}}">
+                        </div>
+                    </div>
                    
-                   </div>
-    
     
                    
                    
                     
                 </div>
+                <div class="clearfix"></div>
                 <div class="col-sm-12"  style="color: darkblue;" >
                    
                    
@@ -287,11 +294,11 @@
            
             <div  class="col-sm-6">
                 <div style="background-color:white; margin-left: 30px;" >
-                    <h3 style="color: darkblue;"><u>ACCIDENTS</u></h3>
+                    <h6 style="color: darkblue;"><u>ACCIDENTS</u></h6>
                 </div>
             </div>
             <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px;">
+                    <div class="row" style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2"> i. Date of accident:</div>
                         <div class="col-sm-4">
                         <input type="text">
@@ -302,7 +309,7 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px;">
+                    <div class="row" style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2"> ii. Name of Injuries:</div>
                         <div class="col-sm-10">
                         <input type="text">
@@ -310,7 +317,7 @@
                        
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2">Private doctors Fees:</div>
                         <div class="col-sm-4">
                         <input type="text">
@@ -319,7 +326,7 @@
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px;">
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-2">Prescribed Drugs:</div>
                         <div class="col-sm-4">
                         <input type="text">
@@ -328,7 +335,7 @@
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px;">
+                    <div class="row" style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">Specialist,Pathologist.X-ray & Physiotheraphy fees:</div>
                         <div class="col-sm-4">
                         <input type="text">
@@ -337,7 +344,7 @@
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px;">
+                    <div class="row" style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-5">Total claims:</div>
                         <div class="col-sm-4">
                         <input type="text">
@@ -345,32 +352,26 @@
                         <div class="col-sm-2"></div>
                         
                     </div>
-                    <div class="row" style="margin-left: 30px;">
+                    <div class="row" style="margin-left: 30px; font-size: 8px;">
                         <div class="col-sm-12">
                         I hereby confirm that the information provided above is correct and true to the best of my knowledge
                         </div>
                         
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="row"  style="margin-left: 30px; font-size: 8px;">
+                        <div class="col-sm-2">Name of Doctor</div>
+                        <div class="col-sm-4">
+                        <input type="text" value="{{patient[0].doctor_name}}">
+                        </div>
+                        <div class="col-sm-2">Telephone No:</div>
+                        <div class="col-sm-4">
+                        <input type="text" >
+                        </div>
+                    </div>
            
-            <div class="row" style="margin-top: 12px; margin-left: 30px;">
-                <div class="col-sm-12">
-                    Name of Doctor______________________________________________________________
-                </div>
-                <!-- <div class="col-sm-4">
-                    Date_______________________________________
-                </div> -->
-                
-            </div>
-            <div class="row" style="margin-top: 12px; margin-left: 30px;">
-                <div class="col-sm-12">
-                    Telephone Number______________________________________________________________
-                </div>
-                <!-- <div class="col-sm-4">
-                    Date_______________________________________
-                </div> -->
-                
-            </div>
-            <div class="row" style="margin-top: 12px; margin-left: 30px;">
+            
+            <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 8px;">
                 <div class="col-sm-8">
                     Doctor's Signature & stamp ______________________________________________________________
                 </div>
