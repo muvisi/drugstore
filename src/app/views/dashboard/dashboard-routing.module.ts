@@ -61,6 +61,7 @@ import { CignaClaimformComponent } from '../patient-checkin/cigna-claimform/cign
 import { HeritageClaimformComponent } from '../patient-checkin/heritage-claimform/heritage-claimform.component';
 import { CicgroupClaimformComponent } from '../patient-checkin/cicgroup-claimform/cicgroup-claimform.component';
 import { BupaclobalClaimformComponent } from '../patient-checkin/bupaclobal-claimform/bupaclobal-claimform.component';
+import { RegistrationLinkComponent } from '../patient-checkin/registration-link/registration-link.component';
 const routes: Routes = [
   {
     path: '',
@@ -257,6 +258,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'parients-dashboard'
+    }
+  },
+  {
+    path: 'registration-link',
+    component: RegistrationLinkComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Patient Registration Link'
     }
   },
 

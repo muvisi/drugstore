@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-// export const endpoint='http://localhost:8000/';
+// export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
-export const endpoint='https://booking.healthixsolutions.com/';
-// export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint='https://booking.healthixsolutions.com/';
+export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
@@ -48,6 +48,11 @@ export class ServiceService {
   }
   getTriage(data): Observable<any> {
     return this.http.post(endpoint + 'triage/get_triage/',data).pipe(
+      map(this.extractData));
+  }
+
+  getRegistrationLink(data): Observable<any> {
+    return this.http.post(endpoint + 'api/registration-link/',data).pipe(
       map(this.extractData));
   }
   getEvents(): Observable<any> {

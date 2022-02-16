@@ -87,6 +87,7 @@ import { CignaClaimformComponent } from './cigna-claimform/cigna-claimform.compo
 import { HeritageClaimformComponent } from './heritage-claimform/heritage-claimform.component';
 import { CicgroupClaimformComponent } from './cicgroup-claimform/cicgroup-claimform.component';
 import { BupaclobalClaimformComponent } from './bupaclobal-claimform/bupaclobal-claimform.component';
+import { RegistrationLinkComponent } from './registration-link/registration-link.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -149,7 +150,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     CignaClaimformComponent,
     HeritageClaimformComponent,
     CicgroupClaimformComponent,
-    BupaclobalClaimformComponent
+    BupaclobalClaimformComponent,
+    RegistrationLinkComponent
 
     
 

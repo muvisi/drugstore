@@ -167,10 +167,27 @@
                     <div class="clearfix"></div>
                     <div class="row" style="margin: 40px;">
                         <div class="col-sm-3">
-                            DATE:_________________
+                            <div class="row"> 
+                                <div class="col-sm-4">Date:</div>
+                                <div class="col-sm-8">
+                                    <div class="row" style="position: absolute;bottom: 0;">
+                                            {{ today2 | date:"MMM d, y"}}
+                                    </div>
+                                    <div class="row">
+                                    _______________________________________
+                                    </div>
+                                </div>
+                            </div>
+                          
                         </div>
-                        <div class="col-sm-5">
-                          PROVIDER'S SIGNATURE:______________
+                        <div class="col-sm-5"  (click)="activateStaffSignature()">
+                            <div class="row">
+                                <div class="col-sm-6">PROVIDER'S SIGNATURE:</div>
+                                <div class="col-sm-6">
+                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: 0px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                                <div class="row">___________________________</div>
+                            </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
                             PROVIDER'S STAMP AND NAME_____________________
@@ -198,12 +215,29 @@
                       </p>
                       <div class="clearfix"></div>
                       <div class="row" style="margin: 40px;">
-                          <div class="col-sm-5">
-                              DATE:_________________
-                          </div>
-                         
-                          <div class="col-sm-7">
-                              PATIENT'S SIGNATURE_____________________
+                        <div class="col-sm-5">
+                            <div class="row"> 
+                                <div class="col-sm-4">Date:</div>
+                                <div class="col-sm-8">
+                                    <div class="row" style="position: absolute;bottom: 0;">
+                                            {{ today1 | date:"MMM d, y"}}
+                                    </div>
+                                    <div class="row">
+                                    _______________________________________
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                          <div class="col-sm-7" (click)="activateMemberSignature()">
+                           
+                              <div class="row">
+                                <div class="col-sm-6"> PATIENT'S SIGNATURE:</div>
+                                <div class="col-sm-6">
+                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: 0px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
+                                <div class="row">  _____________________ </div>
+                                </div>
+                             </div>
                            </div>
                           
                       </div> 
