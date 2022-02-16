@@ -39,7 +39,12 @@ export const navItems: NavData[] = [
     title: true,
     name: 'Main'
   },
- 
+  {
+    name: 'Send Register Link',
+    url: '/dashboard/registration-link',
+    icon: 'fas fa-address-book',
+  
+  },
   {
     name: 'Bookings',
     icon: 'fa fa-calendar-o',
@@ -92,13 +97,8 @@ export const navItems: NavData[] = [
     url: '/dashboard/timeslot',
     icon: 'fas fa-address-book',
   
-  },
-  {
-    name: 'Send Register Link',
-    url: '/dashboard/registration-link',
-    icon: 'fas fa-address-book',
-  
   }
+  
   // {
   //   name: 'Covid Test Payments',
   //   url: '/dashboard/revenues',

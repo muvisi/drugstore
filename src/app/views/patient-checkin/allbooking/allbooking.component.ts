@@ -72,7 +72,9 @@ export class AllbookingComponent implements OnInit {
     })
   }
   
-
+  rowSelectedView(item){
+    this.router.navigate(['/dashboard/booking-details/',item.id])
+  }
 
 
 clickRow(item){
