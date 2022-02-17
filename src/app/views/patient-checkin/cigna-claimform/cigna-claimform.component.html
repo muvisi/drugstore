@@ -13,7 +13,7 @@
             
             
         </div>
-        <div class="row">
+        <div class="row" style="font-size: 8px;">
             <div class="col-sm-4">
                 <h2 style="white-space:nowrap; margin-top: 0px;">
                     <img src="../../../../assets/img/avatars/cigna.png" alt="" height="200" width="200">
@@ -40,26 +40,26 @@
           
             <div class="col-sm-12" >
                
-                <h3 style="justify-content: center; margin-top: 65px; color: black;">Provider claim form for direct payment of outpatient medical services</h3>
+                <h5 style="justify-content: center; color: black;">Provider claim form for direct payment of outpatient medical services</h5>
 
                
               </div> 
             
             <div class="col-sm-8" >
                
-                <h6 style=" margin-top: 65px; color: grey;">CLAIM ONLY VALID WITH PATIENT SIGNATURE</h6>
+                <h6 style=" color: grey;">CLAIM ONLY VALID WITH PATIENT SIGNATURE</h6>
 
                
               </div>
               <div class="col-sm-4" >
                
-                <h6 style=" margin-top: 65px; color: grey;">(Only for providers under agreement)</h6>
+                <h6 style="  color: grey;">(Only for providers under agreement)</h6>
 
                
               </div>
               <div class="col-sm-8" >
                
-                <h6 style=" margin-top: 65px; color: black;"><strong>Patient information</strong>(on patient's Cigna memebrship card)</h6>
+                <h6 style="  color: black;"><strong>Patient information</strong>(on patient's Cigna memebrship card)</h6>
 
                
               </div>
@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="col-sm-2">CIGNA PERSONAL REFERENCE NO.</div>
                     <div class="col-sm-10">
-                    <input type="text"  >
+                    <input type="text" value="{{patient[0].member_number}}" >
                     </div>
                     
                 </div>
@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-sm-2">NAME-FIRST NAME</div>
                     <div class="col-sm-10">
-                    <input type="text" value="{{patient.patient.first_name}} {{patient.patient.last_name}}">
+                    <input type="text" value="{{patient[0].member}}">
                     </div>
                     
                 </div>
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-sm-3">DATE OF BIRTH( D-M-Y)</div>
                     <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="patient.patient.dob"  >
+                    <input type="text" value="{{patient[0].dob}}"  >
                     </div>
                     
                 </div>
@@ -119,13 +119,13 @@
                 </div>
                 <div class="col-sm-8" >
                
-                    <h6 style=" margin-top: 65px; color: black;"><strong>Services rendered</strong>(Please also attach the invoice(s)) </h6>
+                    <h6 style=" color: black;"><strong>Services rendered</strong>(Please also attach the invoice(s)) </h6>
     
                    
                   </div>
                   <div class="col-sm-8" >
                
-                    <h6 style=" margin-top: 65px; color: black;"><strong>DIAGNOSIS OR NATURE OF ILLNESS</strong> </h6>
+                    <h6 style=" color: black;"><strong>DIAGNOSIS OR NATURE OF ILLNESS</strong> </h6>
     
                    
                   </div>
@@ -137,7 +137,7 @@
                     <div class="row">
                         <div class="col-sm-2">AMOUNT OF EXPENCES</div>
                         <div class="col-sm-10">
-                        <input type="text"  >
+                        <input type="text" value="{{patient[0].amount}}" >
                         </div>
                         
                     </div>
@@ -145,7 +145,7 @@
                     <div class="row">
                         <div class="col-sm-2">AMOUNT PAID BY PATIENT</div>
                         <div class="col-sm-10">
-                        <input type="text"  >
+                        <input type="text" value="{{amount}}">
                         </div>
                         
                     </div>
@@ -153,7 +153,7 @@
                     <div class="row">
                         <div class="col-sm-3">BALANCE DUE BY CIGNA</div>
                         <div class="col-sm-9">
-                        <input type="text"  >
+                        <input type="text" value="{{patient[0].amount}}" >
                         </div>
                         
                     </div>
@@ -180,7 +180,7 @@
                             </div>
                           
                         </div>
-                        <div class="col-sm-5"  (click)="activateStaffSignature()">
+                        <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-sm-6">PROVIDER'S SIGNATURE:</div>
                                 <div class="col-sm-6">
@@ -229,7 +229,7 @@
                             </div>
                           
                         </div>
-                          <div class="col-sm-7" (click)="activateMemberSignature()">
+                          <div class="col-sm-7">
                            
                               <div class="row">
                                 <div class="col-sm-6"> PATIENT'S SIGNATURE:</div>

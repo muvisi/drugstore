@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { endpoint, ServiceService } from '../../../service.service';
-import { SignatureService } from '../../../signature.service';
+import { ServiceService } from '../../../service.service';
+// import { endpoint, ServiceService } from '../../../service.service';
+// import { SignatureService } from '../../../signature.service';
 @Component({
   selector: 'app-insurance-forms',
   templateUrl: './insurance-forms.component.html',
@@ -10,32 +11,29 @@ import { SignatureService } from '../../../signature.service';
 export class InsuranceFormsComponent implements OnInit {
   patient:any={}
   hospital='AAR HOSPITAL'
-  image_src;
-  show_signature_patient=false;
-  constructor(private route: ActivatedRoute,public service:ServiceService,private signatureService: SignatureService) { }
+  specialist='Yes'
+  employer='AAR Hospital Ltd'
+  condition='No Underlying Condition'
+  employee='Employee Name'
+  relation='Self'
+  constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {
-    this.signatureService.api.subscribe((res)=>{
-      console.log(res);
-      this.image_src=this.service.getSignatureUrl()+res;
-      this.show_signature_patient=true;
-    },
-    (err) => {
-      console.log("ws",err);
-    }
-    );
-    this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
-      console.log(res);
+    this.service.getSinglePatientData_Hospserver(this.route.snapshot.params.id).subscribe((res)=>{
+      console.log("HEALTHIX",res);
       this.patient = res;
     })
-  }
+   
+  }  
+ 
+ printPage() {
+console.log("Resp", this.patient)
+document.title=this.patient[0].visit_number
 
-  printPage() {
-    document.title=this.patient.patient.phone
-    window.print();
-  }
 
-  signatureClicked(){
-
-  }
+  window.print();
+ 
 }
+
+}
+

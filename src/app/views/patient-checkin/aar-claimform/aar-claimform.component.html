@@ -39,11 +39,11 @@
                       
                     </p>
                    <div class="row">
-                    <div >
-                        <p>
+                    <div style="margin-left: 15px;">
+                        
                             For Querries contanct our 24 Hour medical services helpline at +254202895000/+254730633000/+254703063000<br> or email
                          <strong style="color: tomato;">medicalservices@aar.co.ke</strong>/www.aar-insurance.com
-                          </p>
+                          
                     </div>
 
                    </div>
@@ -52,15 +52,15 @@
             
             </div>
 
-            <div class="col-sm-12" >
+            <div class="col-sm-12" style="font-size: 9px;">
                 <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
-                <div style="display: flex !important;" class="text">
-                    <h3 >A. PATIENT INFORMATION (to be completed by patient/parent/gurdian) </h3>
+                <div style="display: flex !important; font-size: 10px;" class="text">
+                    <h3 >A. PATIENT INFORMATION (to be completed by patient/parent/guardian) </h3>
                 </div>
                 <div class="row">
                     <div class="col-sm-2">Name:</div>
                     <div class="col-sm-10">
-                    <input type="text" readonly value="{{patient.patient.first_name}} {{patient.patient.last_name}}" > 
+                    <input type="text" readonly value="{{patient[0].member}}" > 
                     
                     </div>
                     
@@ -70,26 +70,26 @@
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">Date of Birth:</div>
                     <div class="col-sm-2">
-                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    <input type="text" >
                     </div>
                     <div class="col-sm-2">Membership No:</div>
                     <div class="col-sm-2">
-                    <input type="text" readonly [(ngModel)]="patient.relation">
+                    <input type="text" readonly value="{{patient[0].member_number}}" >
                     </div>
                     <div class="col-sm-2">Company/Employer:</div>
                     <div class="col-sm-2">
-                    <input type="text" readonly [(ngModel)]="patient.scheme_name">
+        <input type="text" readonly >
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">Telephone No:</div>
                     <div class="col-sm-4">
-                    <input type="text" readonly [(ngModel)]="patient.patient.phone">
+                    <input type="text" readonly >
                     </div>
                     <div class="col-sm-2">Email:</div>
                     <div class="col-sm-4">
-                    <input type="text" readonly [(ngModel)]="patient.patient.email">
+                    <input type="text" readonly>
                     </div>
                    
                 </div>
@@ -111,7 +111,7 @@
                    
     
                     <div class="row" style="margin-top: 12px;">
-                        <div class="col-sm-8" (click)="activateMemberSignature()">
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-sm-4">Member/Gurdian Signature:</div>
                                 <div class="col-sm-8">
@@ -125,7 +125,7 @@
                                 <div class="col-sm-4">Date:</div>
                                 <div class="col-sm-8">
                                     <div class="row" style="position: absolute;bottom: 0;">
-                                            {{ today | date:"MMM d, y"}}
+                                            {{ today1 | date:"MMM d, y"}}
                                     </div>
                                     <div class="row">
                                     _______________________________________
@@ -141,61 +141,64 @@
                 <div class="clearfix"></div>
 
             </div>
-            <div style="display: flex !important;" class="text">
+            <div style="display: flex !important; font-size: 10px;" class="text">
                 <h3 >B. CLINICAL INFORMATION (to be completed by attending medical Practitioner or consultant) </h3>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
+            <div class="row" style="margin-left: 15px; font-size: 8px;">
+                <div class="col-sm-4">
                     <mat-checkbox class="example-margin" ></mat-checkbox>
                     First Visit
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                  <mat-checkbox class="example-margin" ></mat-checkbox>
                  Review (Review visit will be assumed if first visit is not checked)
               </div>
             </div>
             <div class="clearfix"></div>
-            <div class="row" style=" margin: 30px;">
-                <div class="col-sm-12">Complaints including date of onset:  _______________________________________________________________________________________________________________________<br>
-                     _______________________________________________________________________________________________________________________________________________________________<br>
-                      _______________________________________________________________________________________________________________________________________________________________
-                     <br>
+            <div class="row" style=" margin: 30px;font-size: 8px;">
+               
+                <div class="row">
+                    <div class="col-sm-12">Complaints including date of onset:</div>
+                    <div class="col-sm-10">
+                    <input type="text" readonly value="{{patient[0].check_in| date: 'dd/MM/yyyy'}}" > 
+                    
+                    </div>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-12">Physical Findings:</div>
+                    <div class="col-sm-10">
+                    <input type="text" readonly value="{{patient[0].findings}}" > 
+                    
+                    </div>
+                    
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">Laboratory & Radiology Findings:</div>
+                    <div class="col-sm-10">
+                    <input type="text" readonly value="{{patient[0].findings}}" > 
+                    
+                    </div>
+                   
+                    
+                </div>
+                
+               
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-12">Diagnosis: </div>
+                    <div class="col-sm-10">
+                        <input type="text" readonly value="{{patient[0].diagnoses}} {{patient[0].description }}" >
+                        
+                        </div> 
+                </div>
 
 
-                </div><br>
-                <!-- <div class="col-sm-4">
-                <input type="text" [(ngModel)]="patient.employee">
-                </div> -->
-                <div class="col-sm-12">physical findings:  _______________________________________________________________________________________________________________________<br>
-                    _______________________________________________________________________________________________________________________________________________________________<br>
-                     _______________________________________________________________________________________________________________________________________________________________
-                    <br>
 
-
-
-
-                </div><br>
-                <div class="col-sm-12">Laboratory & Radiology findings:
-
-                    _______________________________________________________________________________________________________________________<br>
-                    _______________________________________________________________________________________________________________________________________________________________<br>
-                     _______________________________________________________________________________________________________________________________________________________________
-                    <br>
-
-
-
-
-                </div><br>
-                <div class="col-sm-12">Diadnosis:
-                    _______________________________________________________________________________________________________________________<br>
-                    _______________________________________________________________________________________________________________________________________________________________<br>
-                     _______________________________________________________________________________________________________________________________________________________________
-                    <br>
-
-
-
-
-                </div><br>
+              
+                <div class="clearfix"></div>
                 <div class="col-sm-12">Management plan:(Including estimated costs for procedures): _______________________________________________________________________________________________________________________<br>
                     _______________________________________________________________________________________________________________________________________________________________<br>
                      _______________________________________________________________________________________________________________________________________________________________
@@ -207,7 +210,11 @@
                 </div><br>
                 <div class="row" style="margin-top: 12px;">
                     <div class="col-sm-6">
-                        Attending  Practitioner:_______________________________________________
+                        Attending  Practitioner:
+                        <div class="col-sm-10">
+                            <input type="text" readonly value="{{patient[0].doctor_name}}" > 
+                            
+                            </div>
                     </div>
                     <div class="col-sm-6">
                         Specialty:_____________________________
@@ -215,7 +222,7 @@
                     <div class="clearfix"></div> 
                 </div>
                 <div class="row" style="margin-top: 12px;">
-                    <div class="col-sm-6" (click)="activateStaffSignature()">
+                    <div class="col-sm-6">
                         <div class="row">
                         <div class="col-sm-4">Sign:</div>
                         <div class="col-sm-8">
@@ -238,26 +245,23 @@
             
 
         </div>
-        <p>
+        <div class="row" style="font-size: 8px;">
+            <div class="col-sm-6">
             Please attach a detail invoice and a copy of referral form<br>
             (If patient was referred to your center) and send to AAR insurance Kenya<br>
             within 30 days of visit for payment purposes.<br><br>
             In case of any admission, Send/Email this completed form to <br>
             AAR Insurance Kenya Within 24 hours of admission.
 
-        </p>
-       
-      
-
-
-        
-
-        <div class="col-sm-12">
-            <div class="row" style="float: right; margin-top: 50px;">
-                <!-- <h5 style="color: white;"> <i class="fa fa-chevron-right" style="color: white;font-size: 14px;" aria-hidden="true"></i> Sanlam General Insurance Ltd</h5> -->
-                <h1 ><img  src="../../../../assets/img/avatars/aar.png" alt="">
-               </h1>
             </div>
+            <div class="col-sm-6" style="font-size: 8px;">
+                <div class="row" style="float: right;">
+                    <h1 ><img  src="../../../../assets/img/avatars/aar.png" alt="">
+                   </h1>
+                </div>
+            </div>
+
         </div>
+       
     </div>
   </div>

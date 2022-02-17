@@ -13,7 +13,7 @@
             
             
         </div>
-        <div class="row">
+        <div class="row" style="font-size: 8px;">
            
             <div class="col-sm-4">
                 <h5 style="white-space:nowrap; margin-top: 0px;">
@@ -32,16 +32,16 @@
                
               </div> 
             
-            <div class="col-sm-8" >
+            <div class="col-sm-8" style="font-size: 10px;">
                
-                <h1 style=" margin-top: 65px; color: orangered;">OUT-PATIENT</h1>
-                <h1 style="margin-top: 65px; color: green;">CLAIM-FORM</h1>
+                <h3 style="  color: orangered;">OUT-PATIENT</h3>
+                <h3 style=" color: green;">CLAIM-FORM</h3>
 
                
               </div>
               
             
-              <div class="col-sm-12" >
+              <div class="col-sm-12" style="font-size: 10px;">
                
                
                 <div class="row">
@@ -84,7 +84,7 @@
 
                 <div class="col-sm-8" >
                
-                    <h3 style="justify-content: center; margin-top: 65px; color: green;">PATIENT'S PARTICULARS</h3>
+                    <h3 style="justify-content: center;  color: green;">PATIENT'S PARTICULARS</h3>
     
                    
                   </div> 
@@ -92,11 +92,11 @@
                 <div class="row">
                     <div class="col-sm-2">Full Name of Patient</div>
                     <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.patient.first_name">
+                    <input type="text" value="{{patient[0].member}}">
                     </div>
                     <div class="col-sm-2">Date of Birth</div>
                     <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    <input type="text" value="{{patient[0].member}}">
                     </div>
                 </div>
                 
@@ -104,7 +104,7 @@
                 <div class="row">
                     <div class="col-sm-7">Full Name of Member(if patient is a dependant)</div>
                     <div class="col-sm-5">
-                    <input type="text" [(ngModel)]="patient.member_name">
+                    <input type="text" value="{{patient[0].member}}">
                     </div>
                     
                 </div>
@@ -112,22 +112,22 @@
                 <div class="row">
                     <div class="col-sm-3">Members's Tel No</div>
                     <div class="col-sm-3">
-                    <input type="text" [(ngModel)]="patient.patient.phone">
+                    <input type="text" value="{{patient[0].member_number}}">
                     </div>
                     <div class="col-sm-2">Member No</div>
                     <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.member_number">
+                    <input type="text" value="{{patient[0].member_number}}">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Member's Employer Name</div>
                     <div class="col-sm-4">
-                    <input type="text"  [(ngModel)]="patient.employee">
+                    <input type="text" value="{{employer}}">
                     </div>
                     <div class="col-sm-2">Dept./Branch</div>
                     <div class="col-sm-4">
-                    <input type="text"  [(ngModel)]="patient.patient.age">
+                    <input type="text" value="{{hospital}}" >
                     </div>
                     
                 </div>
@@ -146,7 +146,7 @@
                     
                 </div>
                 <div class="row" style="position: relative;">
-                    <div class="col-sm-12">if YES, when did it start and how frequent is it?_______________________________________________</div>
+                    <div class="col-sm-12">If YES, when did it start and how frequent is it?_______________________________________________</div>
                     
                    
                     
@@ -154,20 +154,20 @@
                    
                 
             </div>
-            <div class="col-sm-8" >
+            <div class="col-sm-8" style="font-size: 8px;">
                
-                <h3 style="justify-content: center; margin-top: 65px; color: green;">CONSULTATION/REFERRALS<br>DIAGNOSIS:</h3>
+                <h6 style="justify-content: center;  color: green;">CONSULTATION/REFERRALS<br>DIAGNOSIS:</h6>
 
                
               </div> 
-              <div class="col-sm-8" >
+              <div class="col-sm-8" style="font-size: 8px;">
                
-                <h6 style="justify-content: center; margin-top: 65px; color: black;">TREATMENT PRESCRIBED</h6>
+                <h6 style="justify-content: center;  color: black;">TREATMENT PRESCRIBED</h6>
 
                
               </div> 
               
-            <div class="row" style="font-size: 15px;">
+            <div class="row" style="font-size: 10px;">
                 <div class="col-sm-2">MEDICINES</div>
                 
                 <div class="col-sm-3">
@@ -192,7 +192,7 @@
               </div>
                 
             </div>
-            <div class="row" style="font-size: 15px;">
+            <div class="row" style="font-size: 10px;">
                 <div class="col-sm-3">RADIOLOGY</div>
                 
                 <div class="col-sm-2">
@@ -217,7 +217,7 @@
               </div>
                 
             </div>
-            <div class="row" style=" font-size: 15px;">
+            <div class="row" style=" font-size: 10px;">
                 <div class="col-sm-2">PATHOLOGY</div>
                 
                 <div class="col-sm-3">
@@ -241,34 +241,34 @@
             </div>
             <div class="row" style="margin: 40px;">
                 <div class="col-sm-3">
-                    Hospital Name:_________________
+                    Hospital Name:</div>
+                    <div class="col-sm-3">
+                        <input type="text" value="{{patient[0].doctor_name}}">
+                        </div>
+                <div class="col-sm-3">
+                  Consultant Referred To:____
                 </div>
-                <div class="col-sm-5">
-                  Consultant Referred To:______________
-                </div>
-                <div class="col-sm-4">
-                    Specialty_____________________
+                <div class="col-sm-3">
+                    Specialty________________
                  </div>
                 
             </div> 
 
             <div class="col-sm-12" >
                
-                <h6 style="justify-content: center; margin-top: 65px; color: black;">MEDICATION PRESCRIBED:<br>
-                    ________________________________________________________________________________________________________________________________<br>
-                    <div class="clearfix"></div>
-                    ________________________________________________________________________________________________________________________________<br>
-                    <div class="clearfix"></div>
-                    _________________________________________________________________________________________________________________________________<br>
-                    <div class="clearfix"></div>
-                    _________________________________________________________________________________________________________________________________<br>
-                    <div class="clearfix"></div>
-                    _________________________________________________________________________________________________________________________________<br>
-      </h6>
+                <h6 style="justify-content: center;  color: black;">MEDICATION PRESCRIBED:<br>
+
+
+                    <div class="col-sm-12">
+                        <input type="text" >
+                        </div>
+
+
+                   </h6>
 
                
               </div>
-              <div class="row" style="margin: 40px;">
+              <div class="row" style="margin: 40px; font-size: 10px;">
                 <div class="col-sm-6">
                     <strong>
                         Member's Signature:_____________________________________
@@ -284,7 +284,7 @@
                 
             </div>
 
-            <div class="row" style="margin-left: 30px;">
+            <div class="row" style="margin-left: 30px; font-size: 10px;">
                 <div class="col-sm-12">
                     Declaration:<br>
                    I warrant the truth of the above statements. i have not withheld or misstated material information relating to this claim and have <br>no objection to yourselves communicating with 

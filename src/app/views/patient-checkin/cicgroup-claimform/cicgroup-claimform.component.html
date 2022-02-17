@@ -55,51 +55,51 @@
               <div class="row"  style="margin-left: 30px;">
                   <div class="col-sm-2">Scheme Name</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.booking.scheme">
+                  <input type="text"value="{{patient[0].scheme_name}}">
                   </div>
                   <div class="col-sm-2">Employee's Name</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.employee">
+                  <input type="text"value="{{employee}}">
                   </div>
               </div>
               <div class="clearfix"></div>
               <div class="row"  style="margin-left: 30px;">
                   <div class="col-sm-2">Membership No</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.member_number">
+                  <input type="text" value="{{patient[0].member_number}}">
                   </div>
                   <div class="col-sm-2">National ID(must provide):</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.patient.national_id">
+                  <input type="text" value="{{patient[0].national_id}}">
                   </div>
               </div>
               <div class="clearfix"></div>
               <div class="row"  style="margin-left: 30px;">
                   <div class="col-sm-2">Patient mobile number</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.patient.phone">
+                  <input type="text" value="{{patient[0].phone}}">
                   </div>
                   <div class="col-sm-2">Email</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.patient.email">
+                  <input type="text" value="{{patient[0].email}}">
                   </div>
               </div>
               <div class="clearfix"></div>
               <div class="row"  style="margin-left: 30px;">
                   <div class="col-sm-2">Date of Birth</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.patient.dob">
+                  <input type="text" value="{{patient[0].dob}}">
                   </div>
                   <div class="col-sm-2">Patient's Name</div>
                   <div class="col-sm-4">
-                  <input type="text" value="{{patient.patient.first_name}} {{patient.patient.last_name}}">
+                  <input type="text" value="{{patient[0].member}}">
                   </div>
               </div>
               <div class="clearfix"></div>
               <div class="row"  style="margin-left: 30px;">
                   <div class="col-sm-6">Relationship of patient to Employee:(Tick againest the box)</div>
                   <div class="col-sm-6">
-                  <input type="text" [(ngModel)]="patient.patient.relation">
+                  <input type="text" value="{{relationship}}">
                   </div>
                  
                  
@@ -148,18 +148,18 @@
               <div class="row"  style="margin-left: 30px;">
                   <div class="col-sm-2">Name of Clinic </div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="hospital">
+                  <input type="text" value="{{hospital}}">
                   </div>
                   <div class="col-sm-2">Consulting Physician</div>
                   <div class="col-sm-4">
-                  <input type="text" [(ngModel)]="patient.patient.doctor">
+                  <input type="text" value="{{patient[0].doctor_name}}">
                   </div>
               </div>
                 <div class="clearfix"></div>
                 <div class="row"  style="margin-left: 30px;">
                     <div class="col-sm-4">Treatment Date </div>
                     <div class="col-sm-8">
-                    <input type="text">
+                    <input type="text" value="{{patient[0].check_in| date: 'dd/MM/yyyy'}}">
                     </div>
                    
                 </div>
@@ -476,13 +476,21 @@
                       ADMINISTRATION BY MYSELF AND THAT THIS CLAIM IS IN ACCORDANCE WITH MY SPOECIFIED TREATMENT.
                   </P>
                   <div class="row" style="margin: 40px;">
-                    <div class="col-sm-4">
+                    <div class="clearfix"></div>
+              <div class="row"  style="margin-left: 30px;">
+                  <div class="col-sm-2">Scheme Name</div>
+                  <div class="col-sm-4">
+                  <input type="text"value="{{patient[0].doctor_name}}">
+                  </div>
+                 
+              </div>
+                    <!-- <div class="col-sm-4">
                         Doctor's Name___________________________________________
-                    </div>
-                    <div class="col-sm-4">
+                    </div> -->
+                    <div class="col-sm-3">
                     signature___________________________
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         Date____________________________
                         </div>
                     
