@@ -14,10 +14,10 @@
             
             
         </div>
-        <div class="row">
+        <div class="row" style="font-size: 8px;">
            
             <div class="col-sm-4">
-                <h5 style="white-space:nowrap; margin-top: 35px;">
+                <h5 style="white-space:nowrap; margin-top: 10px;">
                     <img src="../../../../assets/img/avatars/first.png" alt="" height="100" width="300">
                    
                      
@@ -27,7 +27,7 @@
             </div> 
             <div class="col-sm-4" >
                
-              <h1 style="justify-content: center; margin-top: 60px; color: tomato;">FIRST MED</h1>
+              <h1 style="justify-content: center; margin-top: 30px; color: tomato;">FIRST MED</h1>
              
             </div> 
             <div class="col-sm-4">
@@ -36,11 +36,13 @@
                    </h1>
                 </div>
             </div>
+            <div class="col-sm-12" >   <hr></div>
+         
             
-            <div class="col-sm-12" >
-            <hr>
+            
+            
             <div class="row" style="position: relative; margin: 30px;">
-                <div class="col-sm-5"><strong>Head office:</strong>First Assurance House<br> 
+                <div class="col-sm-12"><strong>Head office:</strong>First Assurance House<br> 
                     <address>
                         Clyde Gardens, Gitanga Road Lavington<br> 
                         P.O Box 30064-00100 Nairobi,Kenya<br>
@@ -52,13 +54,8 @@
 
 
                 </div>
-                      
-
-
-                </div> 
-               
                 <div class="col-sm-7">
-                    <h4 style="color: red;">Medical Claim for Treatment and Referrals<br> </h4>
+                    <h6 style="color: red; font-size: 8px;">Medical Claim for Treatment and Referrals<br> </h6>
                     <p><strong>
                         IMPORTANT NOTES<br>
                         1.This form MUST be dully completed and signed by the patient and the attending Doctor<br>
@@ -75,67 +72,60 @@
 
 
                 </div>
-
-        </div>
-       
-            
-             <hr>
-                <div style="display: flex !important;" class="text">
-                    <h3 >PATIENT PARTICULARS </h3>
-                   
-                </div>
-                <hr>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-0.5">Surname:</div>
-                    <div class="col-sm-2">
-                    <input type="text" [(ngModel)]="patient.patient.last_name">
-                    </div>
-                    <div class="col-sm-2">First Name:</div>
-                    <div class="col-sm-2">
-                    <input type="text" [(ngModel)]="patient.patient.first_name">
-                    </div>
-                    <div class="col-sm-0.5">Age:</div>
-                    <div class="col-sm-1">
-                    <input type="text" [(ngModel)]="patient.patient.age">
-                    </div>
-                    <div class="col-sm-0.5">Membership No:</div>
-                    <div class="col-sm-2">
-                    <input type="text" [(ngModel)]="patient.member_number">
+                <div class="col-sm-12">
+                    <!-- <hr> -->
+                    <div style="display: flex !important; font-size: 10px;" class="row">
+                        <p >PATIENT PARTICULARS </p>
+                    
                     </div>
                 </div>
-                <div class="clearfix"></div>
+                <div class="col-sm-12" style="position: relative; margin: 30px;">
+                    <div class="row" >
+                       
+                        <div class="col-sm-2">Name:</div>
+                        <div class="col-sm-2">
+                        <input type="text" value="{{patient[0].member}}">
+                        </div>
+                        <div class="col-sm-1">Age:</div>
+                        <div class="col-sm-1">
+                        <input type="text">
+                        </div>
+                        <div class="col-sm-2">Membership No:</div>
+                        <div class="col-sm-2">
+                        <input type="text"  value="{{patient[0].member_number}}">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
 
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">Employer:</div>
                     <div class="col-sm-3">
-                    <input type="text" [(ngModel)]="patient.employer">
+                    <input type="text"  value="{{employer}}">
                     </div>
-                    <div class="col-sm-4">Patient/Member number/Phone Number:</div>
-                    <div class="col-sm-3">
-                    <input type="text" [(ngModel)]="patient.patient.phone">
+                    <div class="col-sm-3">Patient/Member number/Phone Number:</div>
+                    <div class="col-sm-2">
+                    <input type="text" value="{{patient[0].phone}}">
                     </div>
                     
                 </div>
-               
                 <div class="clearfix"></div>
+
                 <div class="row" style="position: relative;">
-                    <div class="col-sm-4">Name of Member(if the patient is a Dependant):</div>
-                    <div class="col-sm-3">
-                    <input type="text" [(ngModel)]="patient.member_name">
+                    <div class="col-sm-3">Name of Member(if the patient is a Dependant):</div>
+                    <div class="col-sm-2">
+                    <input type="text" value="{{patient[0].member_name}}">
                     </div>
                     <div class="col-sm-2">Id/Passport:</div>
                     <div class="col-sm-2">
-                    <input type="text" [(ngModel)]="patient.patient.national_id">
+                    <input type="text" >
                     </div>
                     
                 </div>
-
-                
                 <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">Patients Relationship with Member/Employee:</div>
-                    <div class="col-sm-8">
-                    <input type="text" [(ngModel)]="patient.relation">
+                    <div class="col-sm-6">
+                    <input type="text"value="{{relation}}">
                     </div>
                     
                     
@@ -155,11 +145,10 @@
                   </div>
                     
                 </div>
-               
                 <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">(If so give Details):</div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                     <input type="text">
                     </div>
                     
@@ -180,20 +169,23 @@
                     
                 </div>
 
-
-
+               
                 
-            </div>
-            <div class="col-sm-12" >
-                <hr>
-                  
-                <div style="display: flex !important;" class="text">
-                    <h3>CONSOLTATIONS/REFFFERALS TO SPECIALIST AND HOSPITAL ADMISSION </h3><br>
-                   
-                  
-                    
-                        
-                        
+
+                </div> 
+               
+               
+
+        </div>
+       
+    
+                
+            </div> <hr>
+            <div class="col-sm-12" style="font-size: 8px;">
+             
+                <div style="display: flex !important; font-size: 8px;" class="text">
+                    <p>CONSOLTATIONS/REFFFERALS TO SPECIALIST AND HOSPITAL ADMISSION </p><br>
+               
                     </div>
                     <strong><P>(SICKNESS TO BE COMPLETED BY ATTENDING DOCTOR)</P></strong>
                     <div class="clearfix"></div>
@@ -243,7 +235,7 @@
                 <div class="row">
                     <div class="col-sm-4">SPECIALIST REFFERED TO:</div>
                     <div class="col-sm-8">
-                    <input type="text">
+                    <input type="text" value="{{patient[0].doctor_name}}">
                     </div>
                     
                     
@@ -251,8 +243,8 @@
                 <div class="clearfix"></div>
 
 
-                <div style="display: flex !important;" class="text">
-                    <h3 >DETAILS OF MEDICAL EXPENSE </h3>
+                <div style="display: flex !important; font-size: 8px;" class="text">
+                    <p >DETAILS OF MEDICAL EXPENSE </p>
                    
                 </div>
                 <hr>
@@ -271,10 +263,11 @@
                     </div>
                     <div class="col-sm-4">Hospital confinement:</div>
                     <div class="col-sm-3">
-                    <input type="text">
+                    <input type="text" value="{{hospital}}">
                     </div>
                     
                 </div>
+                <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">consultation fee:</div>
                     <div class="col-sm-3">
@@ -298,6 +291,7 @@
                     </div>
                     
                 </div>
+                <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">Cost of Injection/procedure</div>
                     <div class="col-sm-3">
@@ -309,6 +303,7 @@
                     </div>
                     
                 </div>
+                <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">Other expenses<br>(X-ray Laboratory test etc)</div>
                     <div class="col-sm-3">
@@ -320,6 +315,7 @@
                     </div>
                     
                 </div>
+                <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">TOTAL</div>
                     <div class="col-sm-3">
@@ -332,68 +328,77 @@
                     
                 </div>
                 
-           
-                <div class="row" style="margin: 40px;">
-                    <div class="col-sm-12">
-                        Name of attending doctor:_______________________________________________
+           <div class="col-sm-12" style="margin-top: 5px;">
+            <!-- <div class="row" style="margin: 40px; font-size: 8px; ">
+                <div class="col-sm-12">
+                    Name of attending doctor:_______________________________________________
+                </div>
+               
+                
+            </div> -->
+            <div class="clearfix"></div>
+            <div class="row" style="margin: 40px; font-size: 8px; ">
+                <div class="col-sm-4">Name of Attending Doctor:</div>
+                <div class="col-sm-8">
+                <input type="text" value="{{patient[0].doctor_name}}">
+                </div>
+                <!-- <div class="col-sm-4">Hospital confinement:</div>
+                <div class="col-sm-3">
+                <input type="text" value="{{hospital}}">
+                </div> -->
+                
+            </div>
+            <div class="row" style="margin: 40px; font-size: 8px;">
+                <div class="col-sm-8">
+                    ADDRESS OF PRACTICE:_______________________________________________
+                </div>
+                <div class="col-sm-4">
+                   DR SIGNATURE____________________________
+                </div>
+                
+            </div>
+            <div class="row" style="margin: 40px; font-size: 8px;">
+                <div class="col-sm-12">
+                    _______________________________________________Date & Stamp:_______________________________________________
+                </div>
+                
+                <div class="row" style="margin: 40px; ">
+                    <div class="col-sm-8">
+                        Member Signature:_______________________________________________
                     </div>
-                   
+                    <div class="col-sm-4">
+                       Date____________________________
+                    </div>
                     
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    Declaration:I warrant the truth of the above statement. I have not withheld/misstated any material information relating to this claim and have no objection
+                    to First Assurance and/or their representatives communicating with my medical Doctor/Physician or Hospital i have consulted or visted. I guarantee to pay
+                    any expenses no9t covered by my insurance plan or in excess of Limit provided under my plan or any deductable or co-pay determined by this plan.
                 </div>
                 <div class="row" style="margin: 40px;">
                     <div class="col-sm-8">
-                        ADDRESS OF PRACTICE:_______________________________________________
+                        Member Signature_______________________________________________
                     </div>
                     <div class="col-sm-4">
-                       DR SIGNATURE____________________________
+                        Date:____________________________
                     </div>
                     
                 </div>
-                <div class="row" style="margin: 40px;">
-                    <div class="col-sm-12">
-                        _______________________________________________Date & Stamp:_______________________________________________
-                    </div>
-                    <hr>
-                    <div class="row" style="margin: 40px;">
-                        <div class="col-sm-8">
-                            Member Signature:_______________________________________________
-                        </div>
-                        <div class="col-sm-4">
-                           Date____________________________
-                        </div>
-                        
-                    </div>
-                  
-                    
-                </div>
-                <hr>
-            
-
-        </div>
-       
-        <div class="row" style="margin-left: 30px;">
-            <div class="col-sm-12">
-                Declaration:I warrant the truth of the above statement. I have not withheld/misstated any material information relating to this claim and have no objection<br>
-                to First Assurance and/or their representatives communicating with my medical Doctor/Physician or Hospital i have consulted or visted. I guarantee to pay<br>
-                any expenses no9t covered by my insurance plan or in excess of Limit provided under my plan or any deductable or co-pay determined by this plan.
+              
+                
             </div>
-        </div>  
-      
-        <div class="row" style="position: relative; margin: 50px;">
-       
-        <div class="row" style="margin: 40px;">
-            <div class="col-sm-8">
-                Member Signature_______________________________________________
-            </div>
-            <div class="col-sm-4">
-                Date:____________________________
-            </div>
-            
-        </div>
+              
+           </div>
         
-            
-        <!-- </div> -->
-
+        </div>
+       
+       
+      
+       
+       
+        
        
         
 

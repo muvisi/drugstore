@@ -89,6 +89,7 @@ import { CicgroupClaimformComponent } from './cicgroup-claimform/cicgroup-claimf
 import { BupaclobalClaimformComponent } from './bupaclobal-claimform/bupaclobal-claimform.component';
 import { RegistrationLinkComponent } from './registration-link/registration-link.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
+import { PrintInsuranceFormsComponent } from './print-insurance-forms/print-insurance-forms.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -153,7 +154,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     CicgroupClaimformComponent,
     BupaclobalClaimformComponent,
     RegistrationLinkComponent,
-    BookingDetailComponent
+    BookingDetailComponent,
+    PrintInsuranceFormsComponent
 
     
 

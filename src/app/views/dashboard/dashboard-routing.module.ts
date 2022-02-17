@@ -63,6 +63,7 @@ import { CicgroupClaimformComponent } from '../patient-checkin/cicgroup-claimfor
 import { BupaclobalClaimformComponent } from '../patient-checkin/bupaclobal-claimform/bupaclobal-claimform.component';
 import { RegistrationLinkComponent } from '../patient-checkin/registration-link/registration-link.component';
 import { BookingDetailComponent } from '../patient-checkin/booking-detail/booking-detail.component';
+import { PrintInsuranceFormsComponent } from '../patient-checkin/print-insurance-forms/print-insurance-forms.component';
 const routes: Routes = [
   {
     path: '',
@@ -251,6 +252,11 @@ const routes: Routes = [
   {
     path: 'clinic-setup',
     component:ClinicSetupComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'InsuranceclaimsForm',
+    component:PrintInsuranceFormsComponent,
     canActivate: [AuthGuard]
   },
   {
