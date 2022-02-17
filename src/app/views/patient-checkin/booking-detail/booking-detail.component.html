@@ -166,16 +166,16 @@
                                     <mat-radio-group  formControlName="payment">
                                       <div class="row"  style="justify-content: center;display: flex;">
                                         <div class="col-sm-3">
-                                             <mat-radio-button    value="Cash"   style="font-family: lato light;margin-right: 30px;"><h3>Cash</h3></mat-radio-button>
+                                             <mat-radio-button    value="Cash"  [checked]="payment_type.payment=='Cash'"  style="font-family: lato light;margin-right: 30px;"><h3>Cash</h3></mat-radio-button>
                                          </div>
                                          <div class="col-sm-3">
-                                          <mat-radio-button    value="Mpesa"    style="font-family: lato light;margin-right: 30px;"><h3>Mpesa</h3></mat-radio-button>
+                                          <mat-radio-button    value="Mpesa"   [checked]="payment_type.payment=='Mpesa'"   style="font-family: lato light;margin-right: 30px;"><h3>Mpesa</h3></mat-radio-button>
                                       </div>
                                          <div class="col-sm-3">
-                                               <mat-radio-button value="credit Card"  style="font-family: lato light; margin-right: 30px;" ><h3>Credit Card</h3></mat-radio-button>
+                                               <mat-radio-button value="credit Card" [checked]="payment_type.payment=='credit Card'"   style="font-family: lato light; margin-right: 30px;" ><h3>Credit Card</h3></mat-radio-button>
                                           </div>
                                           <div class="col-sm-3">
-                                               <mat-radio-button value="Insurance"  style="font-family: lato light;margin-right: 30px;" ><h3>Insurance</h3></mat-radio-button>
+                                               <mat-radio-button value="Insurance"   [checked]="payment_type.payment=='Insurance'"  style="font-family: lato light;margin-right: 30px;" ><h3>Insurance</h3></mat-radio-button>
                                           </div>                       
                                       </div>
                       

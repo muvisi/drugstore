@@ -127,6 +127,7 @@ export class BookingDetailComponent implements OnInit {
     if(this.clientForm!=null)
       this.clientForm.patchValue(this.patient_info);
       this.paymentForm.patchValue(this.payment_type);
+      this.paymentForm.get("payment").setValue(this.payment_type.payment);
   }
   get c() { return this.clientForm.controls; }
   get p() { return this.paymentForm.controls; }
