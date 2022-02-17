@@ -16,7 +16,7 @@
                           <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
-                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} || <span class="text-success">{{customer.age}} <span *ngIf="customer.age >1">years</span> <span *ngIf="customer.age < 1">Months</span> </span></div>
+                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} <span class="text-success">{{customer.age}} <span *ngIf="customer.age >1">years</span> <span *ngIf="customer.age < 1">Months</span> </span></div>
                                 <div class="col-sm-12" > {{customer.phone}} </div>
                                 <div class="col-sm-12" > {{customer.email}} </div>
                             </div>
@@ -102,7 +102,7 @@
                                        <div class="col-sm-4">
                                         <mat-form-field appearance="outline">
                                           <mat-label>D.O.B</mat-label>
-                                            <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="dob" [matDatepicker]="picker">
+                                            <input matInput placeholder="Date of Birth"  formControlName="dob" [matDatepicker]="picker">
                                             <mat-error *ngIf="c.dob.errors && submitted">Date of birth <strong>required</strong></mat-error>
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
