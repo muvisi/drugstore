@@ -13,7 +13,6 @@ import { PatientCheckinModule } from '../patient-checkin/patient-checkin.module'
     FormsModule,
     DashboardRoutingModule,
     // ChartsModule,
-    BsDropdownModule,
     ButtonsModule.forRoot(),
     PatientCheckinModule
   ],

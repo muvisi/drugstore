@@ -10,41 +10,55 @@
             <div class="col-sm-12">
                 <div class="row">
                   <div class="col-sm-2">
-                     
+                          <mat-form-field>
+                          <input matInput [(ngModel)]="mobile"  autocomplete="off"    placeholder="Mobile, ID, Name" type="search">
+                        </mat-form-field>
                   </div>
                   <div class="col-sm-2">
-                   
+                  
+
                 </div>
+                <div class="col-sm-2">
+                  <button  (click)="applyFilter()"  class="btn btn-success pull-right">search</button> 
+              </div>
+                
                 </div>
               </div>
             <div class="col-sm-12">
               <div class="mat-elevation-z8 table-responsive">
-                <table mat-table [dataSource]="Claims_DATA">
+                <table mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="sn">
                         <th mat-header-cell *matHeaderCellDef>S/N</th>
                         <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
                 </ng-container>
-                <!-- <ng-container matColumnDef="created">
+                <ng-container matColumnDef="created">
                   <th mat-header-cell *matHeaderCellDef>Created Date</th>
-                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;">  {{element.created | date:'dd/MM/yyyy'}}  </td>
-                </ng-container> -->
+                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;">  {{element.createdon | date:'dd/MM/yyyy h:mm a'}}  </td>
+                </ng-container>
                 <ng-container matColumnDef="First">
                   <th mat-header-cell *matHeaderCellDef>Patient Name</th>
-                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;"> {{element.member}} </td>
+                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
                 </ng-container>
                
-                  <ng-container matColumnDef="visit_no">
-                    <th mat-header-cell *matHeaderCellDef>Visit Number</th>
-                    <td mat-cell *matCellDef="let element"> {{element.visit_number}} </td>
+                  <ng-container matColumnDef="gender">
+                    <th mat-header-cell *matHeaderCellDef>Gender</th>
+                    <td mat-cell *matCellDef="let element"> {{element.patient.gender}} </td>
                   </ng-container>
-                    <ng-container matColumnDef="memberno">
-                      <th mat-header-cell *matHeaderCellDef>Member Number</th>
-                      <td mat-cell *matCellDef="let element"> {{element.member_number}} </td>
+                    <ng-container matColumnDef="residence">
+                      <th mat-header-cell *matHeaderCellDef>Residence</th>
+                      <td mat-cell *matCellDef="let element"> {{element.patient.residence}} </td>
                     </ng-container>  
-               
+                    <ng-container matColumnDef="symptoms">
+                      <th mat-header-cell *matHeaderCellDef>symptoms</th>
+                      <td mat-cell *matCellDef="let element"> {{element.symptoms}} </td>
+                    </ng-container>  
+                    <ng-container matColumnDef="payment">
+                      <th mat-header-cell *matHeaderCellDef>payment</th>
+                      <td mat-cell *matCellDef="let element"> {{element.payment}} </td>
+                    </ng-container>  
                     <ng-container matColumnDef="phone">
-                        <th mat-header-cell *matHeaderCellDef>Scheme</th>
-                        <td mat-cell *matCellDef="let element"> {{element.scheme_name}} </td>
+                        <th mat-header-cell *matHeaderCellDef>phone</th>
+                        <td mat-cell *matCellDef="let element"> {{element.patient.phone}} </td>
                       </ng-container>
                       <ng-container matColumnDef="insurancecompany">
                         <th mat-header-cell *matHeaderCellDef>Company</th>

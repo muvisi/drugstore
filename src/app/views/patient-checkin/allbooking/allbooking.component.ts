@@ -16,9 +16,9 @@ export class AllbookingComponent implements OnInit {
   loading;
   selected;
   idnumber;
+  mobile;
   phonenumber;
-  Claims_DATA;
-  Columns: string[] = ['sn','First','visit_no','memberno','phone','insurancecompany','print']
+  Columns: string[] = ['sn','created','First','gender','payment','residence','phone','insurancecompany','symptoms','print','action']
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {
@@ -26,24 +26,8 @@ export class AllbookingComponent implements OnInit {
     this.phonenumber="";
     this.getbooking();
     this.loading=true
-    this.getPatientData();
 
   }
-  getPatientData(){
-    this.service.getPatientData_Hospserver().subscribe(
-      
-        data => {
-          this.Claims_DATA = new MatTableDataSource <[]>(data);
-          
-          this.Claims_DATA.paginator = this.paginator;
-          this.loading = false;
-        //  this.toastr.success('finished loading Bookings');
-         
-          
-     
-    },(err)=>{
-
-    })}
   getbooking() {
    
     this.service.list().subscribe(
@@ -63,8 +47,8 @@ export class AllbookingComponent implements OnInit {
     );
   }
   
-  applyFilter(filterValue: string) {
-    this.service.searchbooking(filterValue).subscribe((data)=>{
+  applyFilter() {
+    this.service.searchbooking(this.mobile).subscribe((data)=>{
       console.log("RESP",data);
       this.dataSource = new MatTableDataSource(data);
     
@@ -80,17 +64,17 @@ export class AllbookingComponent implements OnInit {
 clickRow(item){
   console.log("Insurance",this.selected.insurance_company)
   
-  if (this.selected.insurance_company=='CIGNA INTERNATIONAL') 
+  if (this.selected.insurance_company=='Cigna insurance') 
      {
  
   this.router.navigate(['/dashboard/cignainsurance/',item.id])
    }
-   if (this.selected.insurance_company=='	SANLAM INSURANCE COMPANY LTD') 
+   if (this.selected.insurance_company=='Sanlam Insurance Company Ltd') 
      {
  
   this.router.navigate(['/dashboard/insurance-forms/',item.id])
    }
-   if (this.selected.insurance_company=='SANLAM INSURANCE COMPANY LTD') 
+   if (this.selected.insurance_company=='Sanlam General Insurance Limited') 
    {
 
 this.router.navigate(['/dashboard/insurance-forms/',item.id])
@@ -120,7 +104,7 @@ if (this.selected.insurance_company=='UAP Old Mutual Insurance')
 
 this.router.navigate(['/dashboard/uapoldmutual/',item.id])
 }
-if (this.selected.insurance_company=='APA INSURANCE') 
+if (this.selected.insurance_company=='APA Insurance') 
  {
 
 this.router.navigate(['/dashboard/APA/',item.id])
@@ -175,7 +159,7 @@ if (this.selected.insurance_company=='Jubilee Insurance')
 
 this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
 }
-if (this.selected.insurance_company=='MINET KENYA INSURANCE BROKERS LTD') 
+if (this.selected.insurance_company=='MINET KENYA STAFF') 
  {
 
 this.router.navigate(['/dashboard/minetinsurance/',item.id])
@@ -189,5 +173,6 @@ if (false) {
   this.toastr.warning('Payment not Insurance!')
   
 }
+  // this.router.navigate(['/dashboard/',this.selected.insurance_company]) UAP Old Mutual Insurance
 }
 }

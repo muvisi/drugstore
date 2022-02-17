@@ -17,7 +17,7 @@ export class FeedbacksComponent implements OnInit {
   loading;
   // idnumber;
   phonenumber;
-  Columns: string[] = ['sn','First','email','service','platform','created','comments']
+  Columns: string[] = ['sn','date','service','rating','issues','compliments','comments']
 
   constructor(public service:ServiceService,private toastr:ToastrService) { }
  

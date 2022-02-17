@@ -131,7 +131,9 @@ export function tokenGetter() {
   MonthService,
   AgendaService,
   MonthAgendaService,
-  SignatureService
+  ServiceService,
+  SignatureService,
+
 
 ],
   bootstrap: [ AppComponent ],
