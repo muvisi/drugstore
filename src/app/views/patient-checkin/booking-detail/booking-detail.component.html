@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <h6 class="card-header bg-success">Booking DETAILS
+            <h6 class="card-header bg-success">Booking Details
 
             </h6>
             <div class="card-body">
@@ -16,7 +16,7 @@
                           <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
-                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} <span class="text-success">{{customer.age}} <span *ngIf="customer.age >1">years</span> <span *ngIf="customer.age < 1">Months</span> </span></div>
+                                <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} </div>
                                 <div class="col-sm-12" > {{customer.phone}} </div>
                                 <div class="col-sm-12" > {{customer.email}} </div>
                             </div>
@@ -86,7 +86,7 @@
                                                  <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
                                                </div>
                                                <div class="col-sm-4">
-                                                   <mat-radio-button value="Female"  style="font-family: lato light" checked><b>Female</b></mat-radio-button>
+                                                   <mat-radio-button value="Female"  style="font-family: lato light"><b>Female</b></mat-radio-button>
                                                  </div>
                                           </div>
                                          </mat-radio-group>
@@ -254,11 +254,7 @@
                                           <div class="col-sm-4">
                                             <mat-form-field appearance="outline">
                                               <mat-label>Relationship to Employee</mat-label>
-                                              <mat-select formControlName="relation">
-                                                <mat-option *ngFor="let item of EMPLOYEE_RELATIONSHIP" [value]="item">
-                                                  {{item}}
-                                                </mat-option>
-                                              </mat-select>  
+                                              <input matInput placeholder="Relationship to Employee" formControlName="relation"> 
                                               <mat-error *ngIf="p.relation.errors?.required && show_insurance">Relationship to Employee is required</mat-error>
                                             </mat-form-field>
                                         </div>
@@ -310,11 +306,22 @@
                              
                               <div class="col-sm-12">
                                   
-                                <div class="row" *ngFor="let item of symptoms" style="justify-content: left;">
+                                <!-- <div class="row" *ngFor="let item of symptoms" style="justify-content: left;">
                                     <div class="col-sm-6" style="text-align: left;">
                                     {{item}}
                                     </div>
-                                </div>
+                                </div> -->
+                                <table style="border:1px">
+                                  <thead>
+                                    <th>S/N</th>
+                                    <th>Symptoms</th>
+                                  </thead>
+                                <tbody>
+                                  <tr *ngFor="let item of symptoms; index as i">
+                                    <td>{{i+1}}</td><td>{{item}}</td> 
+                                  </tr>
+                                </tbody>
+                              </table>
                               </div>
                     
                             </div>
@@ -329,13 +336,23 @@
                               <div class="row container-fluid">
                                 <div class="col-sm-12">
                                     <div class="row" style="text-align: left;">{{department}}</div>
-                                    <div class="row" *ngFor="let item of speciality" style="justify-content: left;">
-                                        <div class="col-sm-6" style="text-align: center;">
+                                    <!-- <div class="row" *ngFor="let item of speciality" style="justify-content: left;">
+                                        <div class="col-sm-6" style="text-align: left;">
                                         {{item}}
                                         </div>
-                                    </div>
+                                    </div> -->
                                     
-                                  
+                                    <table style="border:1px">
+                                      <thead>
+                                        <th>S/N</th>
+                                        <th>Speciality</th>
+                                      </thead>
+                                    <tbody>
+                                      <tr *ngFor="let item of speciality; index as i">
+                                        <td>{{i+1}}</td><td>{{item}}</td> 
+                                      </tr>
+                                    </tbody>
+                                  </table>
                                 </div>
                       
                               </div>

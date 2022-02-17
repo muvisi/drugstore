@@ -20,7 +20,7 @@ export class BookingDetailComponent implements OnInit {
   speciality=[];
   symptoms=[];
   submitted;
-  customer;
+  customer: any;
   show_insurance;
   loading: boolean;
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
