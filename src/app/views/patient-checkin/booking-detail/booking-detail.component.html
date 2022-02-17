@@ -20,11 +20,11 @@
                                 <div class="col-sm-12" > {{customer.phone}} </div>
                                 <div class="col-sm-12" > {{customer.email}} </div>
                             </div>
-                            <div class="row">
-                              <div class="col-sm-12" (click)="edit()">
+                            <!-- <div class="row">
+                              <div class="col-sm-12" >
                                 <i class="fa fa-pencil text-primary" ></i> Edit Details
                               </div>
-                            </div>
+                            </div> -->
 
                         </div>
                             <div class="col-sm-7" style="text-align:right">
@@ -52,7 +52,7 @@
                                 <legend>Patient Details</legend>
                                 <div class="col-sm-12">
                                  
-                                    <form [formGroup]="clientForm"  (ngSubmit)="onSave()">
+                                    <form [formGroup]="clientForm" >
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <mat-form-field appearance="outline">
