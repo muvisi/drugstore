@@ -14,6 +14,7 @@ export class BupaclobalClaimformComponent implements OnInit {
   employer='AAR Hospital Ltd'
   condition='No Underlying Condition'
   employee='Employee Name'
+   today = new Date()
   constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {

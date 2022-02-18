@@ -352,9 +352,7 @@
                  
                 <div class="col-sm-12" >
                   
-                    <!-- <p>
-                      <strong>MEDICAL INFORMATION</strong>  (TO be completed by the Doctor / Physical treating the patient.)
-                    </p> -->
+                    
                     <div >
                         <p style="color: black;">
                           <strong>Medical Practitioner's details</strong>
@@ -362,45 +360,61 @@
                       </div>
                    
                       <div class="clearfix"></div>
-                      <div class="col-sm-6">Annual Check</div>
-                      <div class="col-sm-3">
-                          <mat-checkbox class="example-margin" ></mat-checkbox>
-                          Preventive
-                      </div>
-                      <div class="col-sm-3">
-                       <mat-checkbox class="example-margin" ></mat-checkbox>
-                     
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="col-sm-6">major restorative</div>
-                    <div class="col-sm-3">
-                        <mat-checkbox class="example-margin" ></mat-checkbox>
-                        Orthodontics
-                    </div>
-                    <div class="col-sm-3">
-                     <mat-checkbox class="example-margin" ></mat-checkbox>
-                   
-                  </div>
-                  <div class="clearfix"></div>
-                  <div class="col-sm-6">Accident /emergency treatment</div>
-                  <div class="col-sm-3">
-                      <mat-checkbox class="example-margin" ></mat-checkbox>
+                      <div class="colsm-12">
+                          <div class="row">
+                            <div class="col-sm-6">
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
+                                Annual Check</div>
+                            <div class="col-sm-6">
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
+                               
+                                Preventive
+                            </div>
+                          </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
+
+                                major restorative</div>
+                                <div class="col-sm-6">
+                                    <mat-checkbox class="example-margin" ></mat-checkbox>
+                                    Orthodontics
+                                </div>
                     
-                  </div>
-                  <div class="col-sm-3">
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+
+                            <div class="col-sm-12">
+                                <mat-checkbox class="example-margin" ></mat-checkbox>
+                                Accident /emergency treatment</div>
+                 
+
+                            </div>
+                          </div>
+
+                      </div>
+                    
+                    
+                 
+                  
+                  <!-- <div class="col-sm-3">
                    <mat-checkbox class="example-margin" ></mat-checkbox>
                  
-                </div>
+                </div> -->
                 <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-sm-4" style="background-color: grey;">Details of Treatment</div>
-                    <div class="col-sm-12">
-                        <textarea rows="2" style="width:100%;"></textarea>
-    
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-4" style="background-color: grey;">Details of Treatment</div>
+                        <div class="col-sm-12">
+                            <textarea rows="2" style="width:100%;"></textarea>
+        
+                        </div>
+                        
                     </div>
-                    
-                </div>
-                <div class="clearfix"></div>
+                    <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Hospital Dates</div>
                     <div class="col-sm-2">Admission date</div>
@@ -475,15 +489,11 @@
     
                     </div>
                     
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
                     <div class="col-sm-2">Date</div>
                     <div class="col-sm-4">
-                        <textarea rows="2" style="width:100%;"></textarea>
+                        <textarea rows="2" style="width:100%;"> {{today| date:'mediumDate'}}</textarea>
     
                     </div>
-                    
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
@@ -495,6 +505,20 @@
                     </div>
                     
                 </div>
+                </div>
+               
+                </div>
+                
+                
+                
+                
+               
+               
+                
+                
+                
+               
+               
                
 
 
@@ -561,27 +585,42 @@
     
                     </p>
                     <div class="clearfix"></div>
-                <div class="col-sm-6">Doctor /hospital</div>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <mat-checkbox class="example-margin" ></mat-checkbox>
+                            Doctor /hospital
+                            
+                        </div>
                 <div class="col-sm-3">
                     <mat-checkbox class="example-margin" ></mat-checkbox>
                     Principal member
                 </div>
-                <div class="col-sm-3">
-                 <mat-checkbox class="example-margin" ></mat-checkbox>
                
-              </div>
-                   
+
                     </div>
                     <div class="clearfix"></div>
-                    <div class="col-sm-6">Patient</div>
+                    <div class="row">
+                       
+                    <div class="col-sm-6">
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        Patient</div>
                     <div class="col-sm-3">
                         <mat-checkbox class="example-margin" ></mat-checkbox>
                        Group
                     </div>
                     <div class="col-sm-3">
-                     <mat-checkbox class="example-margin" ></mat-checkbox>
-                   
+             
                   </div>
+
+                    </div>
+
+                    
+
+                </div>
+                   
+                    </div>
+                    
                        
                         </div>
                         
@@ -620,27 +659,31 @@
         
                         </p>
                         <div class="clearfix"></div>
-                    <div class="col-sm-6">Currency of your invoices</div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                        <div class="col-sm-6">Currency of your invoices</div>
                     <div class="col-sm-3">
                         <mat-checkbox class="example-margin" ></mat-checkbox>
                         Currency of your subscriptions
                     </div>
-                    <!-- <div class="col-sm-3">
-                     <mat-checkbox class="example-margin" ></mat-checkbox>
-                   
-                  </div> -->
-                       
+
                         </div>
                         <div class="clearfix"></div>
-                        <div class="col-sm-6">Currency of your bank account</div>
+                        <div class="row">
+                            <div class="col-sm-6">Currency of your bank account</div>
                         <div class="col-sm-3">
                             <mat-checkbox class="example-margin" ></mat-checkbox>
                            Group
                         </div>
-                        <!-- <div class="col-sm-3">
-                         <mat-checkbox class="example-margin" ></mat-checkbox>
+
+
+                        </div>
+                    </div>
+                  
                        
-                      </div> -->
+                        </div>
+                        
+                        
                      
                      
                            
@@ -665,7 +708,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> Bank name</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text">
                                       </div>
                                       
                                   </div>
@@ -673,7 +716,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> SWIFT/BIC code</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text" >
                                       </div>
                                       
                                   </div>
@@ -681,7 +724,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> Sort code(UK only)</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text">
                                       </div>
                                       
                                   </div>
@@ -689,7 +732,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> Account number </div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text" >
                                       </div>
                                       
                                   </div>
@@ -698,7 +741,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> IBAN:</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text" >
                                       </div>
                                       
                                   </div>
@@ -707,7 +750,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> Account Name/Payee</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text" >
                                       </div>
                                       
                                   </div>
@@ -716,7 +759,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;">Currency for the transfer</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text" >
                                       </div>
                                       
                                   </div>
@@ -725,7 +768,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;">Bank address</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text" >
                                       </div>
                                       
                                   </div>
@@ -734,7 +777,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;">Post/Zip code</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text">
                                       </div>
                                       
                                   </div>
@@ -743,7 +786,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;">Country</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text">
                                       </div>
                                       
                                   </div>
@@ -916,7 +959,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> Name</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text">
                                       </div>
                                       
                                   </div>
@@ -924,7 +967,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> Address</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text">
                                       </div>
                                       
                                   </div>
@@ -932,7 +975,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;"> Email</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text">
                                       </div>
                                       
                                   </div>
@@ -940,7 +983,7 @@
                                   <div class="row">
                                       <div class="col-sm-2" style="background-color: grey;">Telephone</div>
                                       <div class="col-sm-10">
-                                      <input type="text" [(ngModel)]="patient.id_number">
+                                      <input type="text" >
                                       </div>
                                       
                                   </div>
