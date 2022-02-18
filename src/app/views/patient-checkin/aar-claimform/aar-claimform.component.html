@@ -20,7 +20,7 @@
                 </p>
                 <div>
                     <p>
-                        All Claims Should be submitted to:
+                      <strong>  All Claims Should be submitted to:</strong>
                     </p>
                 </div>
                 <div>
@@ -38,59 +38,106 @@
                     </strong>
                       
                     </p>
-                   <div class="row">
-                    <div style="margin-left: 15px;">
-                        
-                            For Querries contanct our 24 Hour medical services helpline at +254202895000/+254730633000/+254703063000<br> or email
-                         <strong style="color: tomato;">medicalservices@aar.co.ke</strong>/www.aar-insurance.com
-                          
-                    </div>
-
-                   </div>
+                  
                    
                 </div>
+               
             
             </div>
+            <div class="row" >
+                <div class="col-sm-12"  style="margin-left: 15px;">
+                    
+                        For Querries contanct our 24 Hour medical services helpline at +254202895000/+254730633000/+254703063000<br> or email
+                     <strong style="color: tomato;">medicalservices@aar.co.ke</strong>/www.aar-insurance.com
+                      
+                </div>
+
+               </div>
 
             <div class="col-sm-12" style="font-size: 9px;">
                 <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
-                <div style="display: flex !important; font-size: 10px;" class="text">
-                    <h3 >A. PATIENT INFORMATION (to be completed by patient/parent/guardian) </h3>
+                <div style="display: flex !important; font-size: 8px;" class="text">
+                    <h6 ><u>A. PATIENT INFORMATION (to be completed by patient/parent/guardian)</u> </h6>
                 </div>
                 <div class="row">
                     <div class="col-sm-2">Name:</div>
                     <div class="col-sm-10">
-                    <input type="text" readonly value="{{patient[0].member}}" > 
-                    
+                        <div class="row" style="position: absolute;bottom: 0;">
+                               <strong> {{ member}}</strong>
+                        </div>
+                        <div class="row">
+                        _________________________________________________________________________________________________________________________________________________________________________________________________________________
+                        </div>
                     </div>
-                    
+                   
                 </div>
                 <div class="clearfix"></div>
 
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">Date of Birth:</div>
                     <div class="col-sm-2">
-                    <input type="text" >
+                        <div class="row" style="position: absolute;bottom: 1;">
+                                <!-- {{ member}} -->
+                        </div>
+                        <div class="row">
+            ______________________________
+                        </div>
                     </div>
+                   
                     <div class="col-sm-2">Membership No:</div>
                     <div class="col-sm-2">
-                    <input type="text" readonly value="{{patient[0].member_number}}" >
+                        <div class="row" style="position: absolute;bottom: 1;">
+                              <strong>  {{ membernumber}}</strong>
+                        </div>
+                        <div class="row">
+            ______________________________
+                        </div>
                     </div>
                     <div class="col-sm-2">Company/Employer:</div>
                     <div class="col-sm-2">
-        <input type="text" readonly >
+                        <div class="row" style="position: absolute;bottom: 1;">
+                              <strong>  {{ scheme}}</strong>
+                        </div>
+                        <div class="row">
+            ______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-2">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                            
+                        </div>
+                        <div class="row">
+            ______________________________
+                        </div>
+                    </div> -->
                 </div>
                 <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-2">Telephone No:</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                              <strong>  {{ membernumber}}</strong>
+                        </div>
+                        <div class="row">
+            ______________________________
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="col-sm-4">
                     <input type="text" readonly value="{{patient[0].phone}}" >
-                    </div>
+                    </div> -->
                     <div class="col-sm-2">Email:</div>
-                    <div class="col-sm-4">
-                    <input type="text" readonly value="{{patient[0].email}}">
+                    <div class="col-sm-2">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                               <strong> {{ email}}</strong>
+                        </div>
+                        <div class="row">
+            ______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-4">
+                    <input type="text" readonly value="{{patient[0].email}}">
+                    </div> -->
                    
                 </div>
                 <div class="clearfix"></div>
@@ -99,9 +146,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             Declaration:I declare that,to the best of my knowledge,all the information provided on this form is correct.
-                             I understand that AAR insurance will rely on the information provided as such.I agree and accept that this declaration 
-                             gives AAR Insurance and its appointed representatives the right to request past,present and future medical information in relation to this claim
-                             or any other related claim, from any third party, including providers and medical practitioners.I understand that any deliberate misrepresentation 
+                             I understand that AAR insurance will rely on the information<br> provided as such.I agree and accept that this declaration 
+                             gives AAR Insurance and its appointed representatives the right to request past,present and future medical<br>  information in relation to this claim
+                             or any other related claim, from any third party, including providers and medical practitioners.I understand that any deliberate <br> misrepresentation 
                              or the ommision of anyb material facts may result in denial of the claim and/cancellation of cover,and possible legal action.
                         
 
@@ -111,11 +158,11 @@
                    
     
                     <div class="row" style="margin-top: 12px;">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8" (click)="activateMemberSignature()">
                             <div class="row">
                                 <div class="col-sm-4">Member/Gurdian Signature:</div>
                                 <div class="col-sm-8">
-                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: 0px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
+                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
                                 <div class="row">_______________________________________________________________ </div>
                                 </div>
                              </div>
@@ -125,7 +172,7 @@
                                 <div class="col-sm-4">Date:</div>
                                 <div class="col-sm-8">
                                     <div class="row" style="position: absolute;bottom: 0;">
-                                            {{ today1 | date:"MMM d, y"}}
+                                          <strong>  {{ today1 | date:"MMM d, y"}}</strong>
                                     </div>
                                     <div class="row">
                                     _______________________________________
@@ -141,102 +188,151 @@
                 <div class="clearfix"></div>
 
             </div>
-            <div style="display: flex !important; font-size: 10px;" class="text">
-                <h3 >B. CLINICAL INFORMATION (to be completed by attending medical Practitioner or consultant) </h3>
-            </div>
-            <div class="row" style="margin-left: 15px; font-size: 8px;">
-                <div class="col-sm-4">
-                    <mat-checkbox class="example-margin" ></mat-checkbox>
-                    First Visit
+            <div class="row" style="font-size: 8px; margin-left: 10px;">
+                <div style="display: flex !important; " class="col-sm-12">
+                    <h6 ><u>B. CLINICAL INFORMATION (to be completed by attending medical Practitioner or consultant)</u> </h6>
                 </div>
-                <div class="col-sm-8">
-                 <mat-checkbox class="example-margin" ></mat-checkbox>
-                 Review (Review visit will be assumed if first visit is not checked)
-              </div>
+
+            </div>
+            <div class="col-sm-12">
+                <div class="row" style="margin-left: 15px; font-size: 8px;">
+                    <div class="col-sm-4">
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        First Visit
+                    </div>
+                    <div class="col-sm-8">
+                     <mat-checkbox class="example-margin" ></mat-checkbox>
+                     Review (Review visit will be assumed if first visit is not checked)
+                  </div>
+                </div>
+
             </div>
             <div class="clearfix"></div>
             <div class="row" style=" margin: 30px;font-size: 8px;">
                
                 <div class="row">
-                    <div class="col-sm-12">Complaints including date of onset:</div>
-                    <div class="col-sm-10">
-                    <input type="text" readonly value="{{patient[0].check_in| date: 'dd/MM/yyyy'}}" > 
+                    <div class="col-sm-12">Complaints including date of onset:
+                        ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
                     
-                    </div>
-                    
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        
+                </div>
+                   
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="col-sm-12">Physical Findings:</div>
-                    <div class="col-sm-10">
-                    <input type="text" readonly value="{{patient[0].findings}}" > 
-                    
-                    </div>
-                    
-                    
+                    <div class="col-sm-12">Physical findings:
+                        ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                       
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">Laboratory & Radiology Findings:</div>
-                    <div class="col-sm-10">
-                    <input type="text" readonly value="{{patient[0].findings}}" > 
-                    
-                    </div>
                    
-                    
                 </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-12">Laboratory &Radiology findings:
+                        ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                     
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                        
+                </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-12">Diagnoses:
+                        <div class="col-sm-8">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                  <strong>  {{ diagnoses}}   {{ description}}</strong>
+                            </div>
+                            <div class="row">
+                               _____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                
+                                _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                                _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
+                                 <div class="clearfix"></div>
+                                
+                            </div>
+                        </div>
+                       
+                </div>
+                   
+                </div>
+             
+                
                 
                
                 <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-sm-12">Diagnosis: </div>
-                    <div class="col-sm-10">
-                        <input type="text" readonly value="{{patient[0].diagnoses}} {{patient[0].description }}" >
-                        
-                        </div> 
-                </div>
+                
 
 
 
-              
+                
                 <div class="clearfix"></div>
-                <div class="col-sm-12">Management plan:(Including estimated costs for procedures): _______________________________________________________________________________________________________________________<br>
-                    _______________________________________________________________________________________________________________________________________________________________<br>
-                     _______________________________________________________________________________________________________________________________________________________________
-                    <br>
-
-
-
-
-                </div><br>
-                <div class="row" style="margin-top: 12px;">
-                    <div class="col-sm-6">
-                        Attending  Practitioner:
-                        <div class="col-sm-10">
-                            <input type="text" readonly value="{{patient[0].doctor_name}}" > 
-                            
+                
+                <div class="col-sm-12">
+                    <div class="row" style="margin-top: 12px;">
+                        <div class="col-sm-3">
+                            Attending  Practitioner:
+    
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                 <strong>   {{doctor}}</strong>
                             </div>
-                    </div>
-                    <div class="col-sm-6">
-                        Specialty:_____________________________
+                            <div class="row">
+                            _______________________________
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            Specialty:_____________________________
+                        </div>
+                        <div class="clearfix"></div> 
                     </div>
                     <div class="clearfix"></div> 
+                    <!-- <div class="row" style="margin-top: 12px;">
+                        <div class="col-sm-3">
+                            Attending  Practitioner:
+    
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                    {{doctor}}
+                            </div>
+                            <div class="row">
+                            _______________________________
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            Specialty:_____________________________
+                        </div>
+                        <div class="clearfix"></div> 
+                    </div> -->
+                    <div class="row" style="margin-top: 12px;" >
+                        <div class="col-sm-6" (click)="activateStaffSignature()">
+                            <div class="row">
+                            <div class="col-sm-4">Sign:</div>
+                            <div class="col-sm-8">
+                                <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                            <div class="row">___________________________</div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+    
+                            Official Stamp:____________________________________
+                        </div>
+                        
+                    </div>
                 </div>
-                <div class="row" style="margin-top: 12px;">
-                    <div class="col-sm-6">
-                        <div class="row">
-                        <div class="col-sm-4">Sign:</div>
-                        <div class="col-sm-8">
-                            <div class="row" style="position: absolute;bottom: 0;margin-bottom: 0px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
-                        <div class="row">___________________________</div>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="col-sm-6">
-
-                        Official Stamp:____________________________________
-                    </div>
-                    
-                </div>
+                
 
         </div>
 
