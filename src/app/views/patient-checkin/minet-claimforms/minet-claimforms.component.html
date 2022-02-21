@@ -19,13 +19,39 @@
             
         </div>
         <div class="row">
+            <div class="row">
+                <div class="col-sm-10">
+                    <img src="../../../../assets/img/avatars/minet.png" alt="" height="100" width="300">
+                </div>
+               
+                
+               
+                <div class="col-sm-2" style="text-align: t">
+                    <img src="../../../../assets/img/avatars/minet2.png" alt="" height="100" width="300">
+
+                </div>
+                
+                
+            </div>
            
-            <h3>
-                <img src="../../../../assets/img/avatars/minet.png" alt="" height="100" width="300">
-               
-                 
-               
-            </h3>
+           <!-- <div  class="row" >
+               <div class="col-sm-12">
+                <h3>
+                    <img src="../../../../assets/img/avatars/minet.png" alt="" height="100" width="300">
+                   
+                     
+                   
+                </h3>
+                <h3>
+                    <img src="../../../../assets/img/avatars/minet2.png" alt="" height="100" width="300">
+                   
+                     
+                   
+                </h3>
+
+               </div>
+
+           </div> -->
            
             <div class="col-sm-12" style="margin-left: 320px; font-size: 10px;">
                 
@@ -48,7 +74,7 @@
                 <div class="row">
                     <div class="col-sm-2">Name of employer:</div>
                     <div class="col-sm-10">
-                    <input type="text" value="{{employer}}">
+                    <input type="text" value="{{patient[0].scheme_name}}">
                     </div>
                     
                 </div>
@@ -271,7 +297,7 @@
                   <div class="row" style="font-size: 8px;">
                     <div class="col-sm-4">Amount payable Ksh</div>
                     <div class="col-sm-8">
-                    <input type="text" >
+                    <input type="text"value="{{patient[0].amount}}" >
                     </div>
                    
                 </div>

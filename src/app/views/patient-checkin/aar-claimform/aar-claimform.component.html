@@ -1,363 +1,351 @@
 
-<div class="card">
-    <div class="card-body" id="print-section">
-        <div class="row">
-            <div class="col-sm-12">
-                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
-                <div class="clearfix"></div>
-    
-            </div>
-        </div>
-        <div class="row" >
-           
-            <div class="col-sm-8">
-                <h1 style="color: tomato;">
-                    MEDICAL CLAIM FORM
-                    <!-- <img src="../../../../assets/img/avatars/sanlam-logo.png" alt=""> -->
-                </h1>
-                <p>
-                    Please fill all sections (Use Separate form per member per visit)
-                </p>
-                <div>
-                    <p>
-                      <strong>  All Claims Should be submitted to:</strong>
-                    </p>
+    <div class="card">
+        <div class="card-body" id="print-section">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                    <div class="clearfix"></div>
+        
                 </div>
-                <div>
-                    <p>
-                      <strong>
-                        Claims Department Mananger
-                      </strong>
-                    </p>
-                </div>
-                <div>
-                    <p><strong>
-                        AAR Insurance Kenys Ltd<br>
-                        Real Towers, Hospital Road, Upper-Hill,Ground Floor<br>
-                        P.O Box 41766-00100 GPO Nairobi,Kenya
-                    </strong>
-                      
-                    </p>
-                  
-                   
-                </div>
-               
-            
             </div>
             <div class="row" >
-                <div class="col-sm-12"  style="margin-left: 15px;">
-                    
-                        For Querries contanct our 24 Hour medical services helpline at +254202895000/+254730633000/+254703063000<br> or email
-                     <strong style="color: tomato;">medicalservices@aar.co.ke</strong>/www.aar-insurance.com
+               
+                <div class="col-sm-8">
+                    <h1 style="color: tomato;">
+                        MEDICAL CLAIM FORM
+                        <!-- <img src="../../../../assets/img/avatars/sanlam-logo.png" alt=""> -->
+                    </h1>
+                    <p>
+                        Please fill all sections (Use Separate form per member per visit)
+                    </p>
+                    <div>
+                        <p>
+                          <strong>  All Claims Should be submitted to:</strong>
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                          <strong>
+                            Claims Department Mananger
+                          </strong>
+                        </p>
+                    </div>
+                    <div>
+                        <p><strong>
+                            AAR Insurance Kenys Ltd<br>
+                            Real Towers, Hospital Road, Upper-Hill,Ground Floor<br>
+                            P.O Box 41766-00100 GPO Nairobi,Kenya
+                        </strong>
+                          
+                        </p>
                       
-                </div>
-
-               </div>
-
-            <div class="col-sm-12" style="font-size: 9px;">
-                <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
-                <div style="display: flex !important; font-size: 8px;" class="text">
-                    <h6 ><u>A. PATIENT INFORMATION (to be completed by patient/parent/guardian)</u> </h6>
-                </div>
-                <div class="row">
-                    <div class="col-sm-2">Name:</div>
-                    <div class="col-sm-10">
-                        <div class="row" style="position: absolute;bottom: 0;">
-                               <strong> {{ member}}</strong>
-                        </div>
-                        <div class="row">
-                        _________________________________________________________________________________________________________________________________________________________________________________________________________________
-                        </div>
+                       
                     </div>
                    
+                
                 </div>
-                <div class="clearfix"></div>
-
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">Date of Birth:</div>
-                    <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                                <!-- {{ member}} -->
-                        </div>
-                        <div class="row">
-            ______________________________
-                        </div>
+                <div class="row" >
+                    <div class="col-sm-12"  style="margin-left: 15px;">
+                        
+                            For Querries contanct our 24 Hour medical services helpline at +254202895000/+254730633000/+254703063000<br> or email
+                         <strong style="color: tomato;">medicalservices@aar.co.ke</strong>/www.aar-insurance.com
+                          
                     </div>
-                   
-                    <div class="col-sm-2">Membership No:</div>
-                    <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                              <strong>  {{ membernumber}}</strong>
-                        </div>
-                        <div class="row">
-            ______________________________
-                        </div>
+    
+                   </div>
+    
+                <div class="col-sm-12" style="font-size: 9px;">
+                    <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
+                    <div style="display: flex !important; font-size: 10px;" class="text">
+                        <h6 ><u>A. PATIENT INFORMATION (to be completed by patient/parent/guardian)</u> </h6>
                     </div>
-                    <div class="col-sm-2">Company/Employer:</div>
-                    <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                              <strong>  {{ scheme}}</strong>
+                    <div class="row">
+                        <div class="col-sm-2">Name:</div>
+                        <div class="col-sm-10">
+                            <div class="row" style="position: absolute;bottom: 0;">
+                                   <strong> {{ member}}</strong>
+                            </div>
+                            <div class="row">
+                           ________________________________________________________________________________________________________________________________________________________________________________________
+                            </div>
                         </div>
-                        <div class="row">
-            ______________________________
-                        </div>
+                       
                     </div>
-                    <!-- <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
+                    <div class="clearfix"></div>
+    
+                    <div class="row" style="position: relative;">
+                        <div class="col-sm-2">Date of Birth:</div>
+                        <div class="col-sm-2">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                    <!-- {{ member}} -->
+                            </div>
+                            <div class="row">
+                ______________________________
+                            </div>
+                        </div>
+                       
+                        <div class="col-sm-2">Membership No:</div>
+                        <div class="col-sm-2">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                  <strong>  {{ membernumber}}</strong>
+                            </div>
+                            <div class="row">
+                ______________________________
+                            </div>
+                        </div>
+                        <div class="col-sm-2">Company/Employer:</div>
+                        <div class="col-sm-2">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                  <strong>  {{ scheme}}</strong>
+                            </div>
+                            <div class="row">
+                ______________________________
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row" style="position: relative;">
+                        <div class="col-sm-2">Telephone No:</div>
+                        <div class="col-sm-2">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                  <strong>  {{ membernumber}}</strong>
+                            </div>
+                            <div class="row">
+                ______________________________
+                            </div>
+                        </div>
+                        
+                       
+                        <div class="col-sm-2">Email:</div>
+                        <div class="col-sm-2">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                   <strong> {{ email}}</strong>
+                            </div>
+                            <div class="row">
+                ______________________________
+                            </div>
+                        </div>
+                       
+                       
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12" >
+                       
+                        <div class="row">
+                            <div class="col-sm-12" style="font-size: 12px;">
+                                Declaration:I declare that,to the best of my knowledge,all the information provided on this form is correct.
+                                 I understand that AAR insurance will rely on the information<br> provided as such.I agree and accept that this declaration 
+                                 gives AAR Insurance and its appointed representatives the right to request past,present and future medical<br>  information in relation to this claim
+                                 or any other related claim, from any third party, including providers and medical practitioners.I understand that any deliberate <br> misrepresentation 
+                                 or the ommision of anyb material facts may result in denial of the claim and/cancellation of cover,and possible legal action.
+                            
+    
+                            </div>
                             
                         </div>
-                        <div class="row">
-            ______________________________
+                        <div class="clearfix"></div>
+                       
+        
+                        <div class="row" style="margin-top: 12px;">
+                            <div class="col-sm-8" (click)="activateMemberSignature()">
+                                <div class="row">
+                                    <div class="col-sm-4">Member/Gurdian Signature:</div>
+                                    <div class="col-sm-8">
+                                        <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="100px" height="50px"/></div>
+                                    <div class="row">_______________________________________________________________ </div>
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row"> 
+                                    <div class="col-sm-4">Date:</div>
+                                    <div class="col-sm-8">
+                                        <div class="row" style="position: absolute;bottom: 0;">
+                                              <strong>  {{ today1 | date:"MMM d, y"}}</strong>
+                                        </div>
+                                        <div class="row">
+                                        _______________________________________
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                            
                         </div>
-                    </div> -->
+        
+                    </div>
+                    <div class="clearfix"></div>
+    
+                </div>
+                <div class="row" style="font-size: 10px; margin-left: 10px;">
+                    <div style="display: flex !important; " class="col-sm-12">
+                        <h6 ><u>B. CLINICAL INFORMATION (to be completed by attending medical Practitioner or consultant)</u> </h6>
+                    </div>
+    
+                </div>
+                <div class="col-sm-12">
+                    <div class="row" style="margin-left: 15px; font-size: 8px;">
+                        <div class="col-sm-4">
+                            <mat-checkbox class="example-margin" ></mat-checkbox>
+                            First Visit
+                        </div>
+                        <div class="col-sm-8">
+                         <mat-checkbox class="example-margin" ></mat-checkbox>
+                         Review (Review visit will be assumed if first visit is not checked)
+                      </div>
+                    </div>
+    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">Telephone No:</div>
-                    <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                              <strong>  {{ membernumber}}</strong>
-                        </div>
-                        <div class="row">
-            ______________________________
-                        </div>
-                    </div>
-                    
-                    <!-- <div class="col-sm-4">
-                    <input type="text" readonly value="{{patient[0].phone}}" >
-                    </div> -->
-                    <div class="col-sm-2">Email:</div>
-                    <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                               <strong> {{ email}}</strong>
-                        </div>
-                        <div class="row">
-            ______________________________
-                        </div>
-                    </div>
-                    <!-- <div class="col-sm-4">
-                    <input type="text" readonly value="{{patient[0].email}}">
-                    </div> -->
-                   
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-sm-12" >
+                <div class="row" style=" margin: 30px;font-size: 8px;">
                    
                     <div class="row">
-                        <div class="col-sm-12">
-                            Declaration:I declare that,to the best of my knowledge,all the information provided on this form is correct.
-                             I understand that AAR insurance will rely on the information<br> provided as such.I agree and accept that this declaration 
-                             gives AAR Insurance and its appointed representatives the right to request past,present and future medical<br>  information in relation to this claim
-                             or any other related claim, from any third party, including providers and medical practitioners.I understand that any deliberate <br> misrepresentation 
-                             or the ommision of anyb material facts may result in denial of the claim and/cancellation of cover,and possible legal action.
-                        
-
-                        </div>
-                        
-                    </div>
-                   
-    
-                    <div class="row" style="margin-top: 12px;">
-                        <div class="col-sm-8" (click)="activateMemberSignature()">
-                            <div class="row">
-                                <div class="col-sm-4">Member/Gurdian Signature:</div>
-                                <div class="col-sm-8">
-                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
-                                <div class="row">_______________________________________________________________ </div>
-                                </div>
-                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="row"> 
-                                <div class="col-sm-4">Date:</div>
-                                <div class="col-sm-8">
-                                    <div class="row" style="position: absolute;bottom: 0;">
-                                          <strong>  {{ today1 | date:"MMM d, y"}}</strong>
-                                    </div>
-                                    <div class="row">
-                                    _______________________________________
-                                    </div>
-                                </div>
-                            </div>
-                          
-                        </div>
-                        
-                    </div>
-    
-                </div>
-                <div class="clearfix"></div>
-
-            </div>
-            <div class="row" style="font-size: 8px; margin-left: 10px;">
-                <div style="display: flex !important; " class="col-sm-12">
-                    <h6 ><u>B. CLINICAL INFORMATION (to be completed by attending medical Practitioner or consultant)</u> </h6>
-                </div>
-
-            </div>
-            <div class="col-sm-12">
-                <div class="row" style="margin-left: 15px; font-size: 8px;">
-                    <div class="col-sm-4">
-                        <mat-checkbox class="example-margin" ></mat-checkbox>
-                        First Visit
-                    </div>
-                    <div class="col-sm-8">
-                     <mat-checkbox class="example-margin" ></mat-checkbox>
-                     Review (Review visit will be assumed if first visit is not checked)
-                  </div>
-                </div>
-
-            </div>
-            <div class="clearfix"></div>
-            <div class="row" style=" margin: 30px;font-size: 8px;">
-               
-                <div class="row">
-                    <div class="col-sm-12">Complaints including date of onset:
-                        ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
-                    
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        
-                </div>
-                   
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-sm-12">Physical findings:
-                        ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
-                       
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        
-                </div>
-                   
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-sm-12">Laboratory &Radiology findings:
-                        ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
-                     
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                        
-                </div>
-                   
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-sm-12">Diagnoses:
-                        <div class="col-sm-8">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                  <strong>  {{ diagnoses}}   {{ description}}</strong>
-                            </div>
-                            <div class="row">
-                               _____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
-                                
-                                _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                                _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-                                 <div class="clearfix"></div>
-                                
-                            </div>
-                        </div>
-                       
-                </div>
-                   
-                </div>
-             
-                
-                
-               
-                <div class="clearfix"></div>
-                
-
-
-
-                
-                <div class="clearfix"></div>
-                
-                <div class="col-sm-12">
-                    <div class="row" style="margin-top: 12px;">
-                        <div class="col-sm-3">
-                            Attending  Practitioner:
-    
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{doctor}}</strong>
-                            </div>
-                            <div class="row">
-                            _______________________________
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            Specialty:_____________________________
-                        </div>
-                        <div class="clearfix"></div> 
-                    </div>
-                    <div class="clearfix"></div> 
-                    <!-- <div class="row" style="margin-top: 12px;">
-                        <div class="col-sm-3">
-                            Attending  Practitioner:
-    
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                    {{doctor}}
-                            </div>
-                            <div class="row">
-                            _______________________________
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            Specialty:_____________________________
-                        </div>
-                        <div class="clearfix"></div> 
-                    </div> -->
-                    <div class="row" style="margin-top: 12px;" >
-                        <div class="col-sm-6" (click)="activateStaffSignature()">
-                            <div class="row">
-                            <div class="col-sm-4">Sign:</div>
+                        <div class="col-sm-8">Complaints including date of onset:
                             <div class="col-sm-8">
-                                <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
-                            <div class="row">___________________________</div>
-                        </div>
-                        </div>
-                        </div>
-                        <div class="col-sm-6">
+                                <div class="row">
+                                    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>                        
+                                      
+                                      
+                                  </div>
+        
+                            </div>
+                    </div>
+                       
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-8">Physical findings:
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>                        
+                                      
+                                      
+                                  </div>
+        
+                            </div>
+                    </div>
+                       
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-8">Laboratory &Radiology findings:<br>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>                        
+                                  
+                                  
+                              </div>
     
-                            Official Stamp:____________________________________
                         </div>
-                        
+                            
+                    </div>
+                    </div>
+     
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-12">Diagnoses:
+                            <div class="col-sm-8">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                      <strong>  {{ diagnoses}}   {{ description}}</strong>
+                                </div>
+                                <div class="row" style="margin-left: 15px;">
+                                    ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                    ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>
+                                    ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>                        
+                                     <div class="clearfix"></div>
+                                    
+                                </div>
+                            </div>
+                           
+                    </div>
+                       
+                    </div>
+                 
+                    
+                    
+                   
+                    <div class="clearfix"></div>
+                    
+    
+    
+    
+                    
+                    <div class="clearfix"></div>
+                    
+                    <div class="col-sm-12">
+                        <div class="row" style="margin-top: 12px;">
+                            <div class="col-sm-3">
+                                Attending  Practitioner:
+        
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{doctor}}</strong>
+                                </div>
+                                <div class="row">
+                                _______________________________
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                Specialty:_____________________________
+                            </div>
+                            <div class="clearfix"></div> 
+                        </div>
+                        <div class="clearfix"></div> 
+                       
+                        <div class="row" style="margin-top: 12px;" >
+                            <div class="col-sm-6" (click)="activateStaffSignature()">
+                                <div class="row">
+                                <div class="col-sm-4">Sign:</div>
+                                <div class="col-sm-8">
+                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                                <div class="row">___________________________</div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-sm-6">
+        
+                                Official Stamp:____________________________________
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+    
+            </div>
+    
+    
+    
+                
+    
+            </div>
+            <div class="row" style="font-size: 10px;">
+                <div class="col-sm-6">
+                Please attach a detail invoice and a copy of referral form<br>
+                (If patient was referred to your center) and send to AAR insurance Kenya<br>
+                within 30 days of visit for payment purposes.<br><br>
+                In case of any admission, Send/Email this completed form to <br>
+                AAR Insurance Kenya Within 24 hours of admission.
+    
+                </div>
+                <div class="col-sm-6" style="font-size: 12px;">
+                    <div class="row" style="float: right;">
+                        <h1 ><img  src="../../../../assets/img/avatars/aar.png" alt="">
+                       </h1>
                     </div>
                 </div>
-                
-
-        </div>
-
-
-
-            
-
-        </div>
-        <div class="row" style="font-size: 8px;">
-            <div class="col-sm-6">
-            Please attach a detail invoice and a copy of referral form<br>
-            (If patient was referred to your center) and send to AAR insurance Kenya<br>
-            within 30 days of visit for payment purposes.<br><br>
-            In case of any admission, Send/Email this completed form to <br>
-            AAR Insurance Kenya Within 24 hours of admission.
-
+    
             </div>
-            <div class="col-sm-6" style="font-size: 8px;">
-                <div class="row" style="float: right;">
-                    <h1 ><img  src="../../../../assets/img/avatars/aar.png" alt="">
-                   </h1>
-                </div>
-            </div>
-
+           
         </div>
-       
-    </div>
-  </div>
+      </div>
+   
+
+

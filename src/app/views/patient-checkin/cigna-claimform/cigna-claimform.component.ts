@@ -10,6 +10,7 @@ import { SignatureService } from '../../../signature.service';
 })
 export class CignaClaimformComponent implements OnInit {
 
+
   patient:any={}
   hospital='AAR HOSPITAL'
   specialist='Yes'
@@ -20,9 +21,17 @@ export class CignaClaimformComponent implements OnInit {
   state='Congenital'
   normal='Bacterial'
   amount='000.0'
+ 
   Aartelephone='Emergency:+254 725 225 225 | +254 734 225 225'
-  // constructor(private route: ActivatedRoute,public service:ServiceService) { }
   today1;
+  member;
+  scheme;
+  diagnoses;
+  email;
+  Tamount;
+  doctor;
+  membernumber;
+  description;
   today2;
    signature1_src;
    signature1_show;
@@ -35,26 +44,16 @@ export class CignaClaimformComponent implements OnInit {
     this.service.getSinglePatientData_Hospserver(this.route.snapshot.params.id).subscribe((res)=>{
       console.log("HEALTHIX",res);
       this.patient = res;
+      this.email=this.patient[0].email
+      this.Tamount=this.patient[0].amount
+      this.doctor=this.patient[0].doctor_name
+      this.diagnoses=this.patient[0].diagnoses
+      this.scheme=this.patient[0].scheme_name
+      this.description=this.patient[0].description
+      this.member=this.patient[0].member
+      this.membernumber=this.patient[0].member_number
     })
-  //   this.signatureService.socket().subscribe((res)=>{
-  //     console.log("images",res);
-  //     if (this.signature_type=="staff"){
-      
-     
-  //       this.signature2_src=this.service.getSignatureUrl()+res;
-  //       if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
-  //         this.signature2_show=true;
-  //         this.today2=new Date();
-  //       }
-  //     }else if(this.signature_type=="member"){
-  //       this.signature1_src=this.service.getSignatureUrl()+res;
-  //       if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
-  //       this.signature1_show=true;
-  //       this.today1=new Date();
-  //       }
-     
-  //     }
-  // });
+  
    
   }  
  
@@ -67,53 +66,8 @@ document.title=this.patient[0].visit_number.concat("-01")
  
 }
 
-// mmm(){
-//     this.signatureService.socket().subscribe((res)=>{
-//       console.log("images",res);
-//       if (this.signature_type=="staff"){
-      
-     
-//         this.signature2_src=this.service.getSignatureUrl()+res;
-//         if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
-//           this.signature2_show=true;
-//           this.today2=new Date();
-//         }
-//       }else if(this.signature_type=="member"){
-//         this.signature1_src=this.service.getSignatureUrl()+res;
-//         if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
-//         this.signature1_show=true;
-//         this.today1=new Date();
-//         }
-     
-//       }
-//   });
-//   }
 
-  // printPagew() {
-  // document.title=this.patient.patient.phone.concat('-01')
-  //   window.print();
-  // }
-
-
-  // activateMemberSignature(){
-  //   this.signature_type="member"
-  //   this.signature1_show=false;
-    
-  //   let data={
-  //     'status':'activate',
-  //     'type':'member'
-  //   }
-  //   this.signatureService.send(JSON.stringify(data))
-  // }
   
-  // activateStaffSignature(){
-  //   this.signature_type="staff";
-  //   this.signature2_show=false;
-  //   let data={
-  //     'status':'activate',
-  //     'type':'staff'
-  //   }
-  //   this.signatureService.send(JSON.stringify(data))
-  // }
+ 
 }
 

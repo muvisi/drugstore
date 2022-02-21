@@ -46,36 +46,73 @@
                
                 <div class="row">
                     <div class="col-sm-2">Practitioners Name</div>
-                    <div class="col-sm-10">
-                    <input type="text"  >
+                   
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{doctor}}</strong>
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
+                    <div class="col-sm-5"><strong>Practitioner's Official Stamp</strong></div>
                     
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Postal Address</div>
-                    <div class="col-sm-10">
-                    <input type="text"  >
+                  
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{member}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
                     
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Tel No</div>
-                    <div class="col-sm-4">
-                    <input type="text" >
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{phone}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-4">
+                    <input type="text" >
+                    </div> -->
                     <div class="col-sm-2">Mobile</div>
-                    <div class="col-sm-4">
-                    <input type="text" >
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{phone}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-4">
+                    <input type="text" >
+                    </div> -->
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Email</div>
-                    <div class="col-sm-4">
-                    <input type="text">
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{email}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-4">
+                    <input type="text">
+                    </div> -->
                    
                 </div>
 
@@ -91,20 +128,38 @@
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Full Name of Patient</div>
-                    <div class="col-sm-4">
-                    <input type="text" value="{{patient[0].member}}">
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{member}}</strong>
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-4">
+                    <input type="text" value="{{patient[0].member}}">
+                    </div> -->
                     <div class="col-sm-2">Date of Birth</div>
-                    <div class="col-sm-4">
-                    <input type="text" value="{{patient[0].dob}}">
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{dob}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
                 </div>
                 
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-7">Full Name of Member(if patient is a dependant)</div>
-                    <div class="col-sm-5">
-                    <input type="text" value="{{patient[0].member_name}}">
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{member}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
                     
                 </div>
@@ -112,22 +167,51 @@
                 <div class="row">
                     <div class="col-sm-3">Members's Tel No</div>
                     <div class="col-sm-3">
-                    <input type="text" value="{{patient[0].phone}}">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{phone}}</strong>
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-3">
+                    <input type="text" value="{{patient[0].phone}}">
+                    </div> -->
                     <div class="col-sm-2">Member No</div>
-                    <div class="col-sm-4">
-                    <input type="text" value="{{patient[0].member_number}}">
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{membernumber}}</strong>
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Member's Employer Name</div>
                     <div class="col-sm-4">
-                    <input type="text" value="{{employer}}">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{scheme}}</strong>
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
+                    <!-- <div class="col-sm-4">
+                    <input type="text" value="{{employer}}">
+                    </div> -->
                     <div class="col-sm-2">Dept./Branch</div>
-                    <div class="col-sm-4">
+                    <!-- <div class="col-sm-4">
                     <input type="text" value="{{hospital}}" >
+                    </div> -->
+                    <div class="col-sm-3">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
                     </div>
                     
                 </div>
@@ -171,92 +255,127 @@
               <div class="col-sm-12">
                 <div class="row" style="font-size: 10px;">
                     <div class="col-sm-2">MEDICINES</div>
+                    <div class="col-sm-3">
+                        Prescription
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
+                    </div>
+                   
+                    <div class="col-sm-3">
+                        Injection given
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
+                    </div>
                     
-                    <div class="col-sm-3">
-                        Prescription______
-                      
-                       
-                    </div>
-                    <div class="col-sm-3">
-                        Injection given______
-                       
-                       
-                    </div>
                     <div class="col-sm-2">
-                        Dispensed______
-                       
-                       
+                        Dispensed
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
                     </div>
+                   
                     <div class="col-sm-2">
-                        None______
+                        None
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
+                    </div>
                    
-                   
-                  </div>
                     
                 </div>
                 <div class="clearfix"></div>
                 <div class="row" style="font-size: 10px;">
                     <div class="col-sm-2">RADIOLOGY</div>
                     
-                    <div class="col-sm-2">
-                        X-Ray___
-                      
-                       
+                   
+                    <div class="col-sm-3">
+                        X-Ray
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
                     </div>
                     <div class="col-sm-3">
-                        MRI/Cat scan___
-                       
-                       
+                        MRI/Cat scan
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
                     </div>
-                    <div class="col-sm-2">
-                        Other____
-                       
-                       
-                    </div>
-                    <div class="col-sm-2">
-                        Other____
                    
                    
-                  </div>
+                    <div class="col-sm-2">
+                        Other
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
+                    </div>
+                    
+                  <div class="col-sm-2">
+                    Other
+                    <mat-checkbox class="example-margin" ></mat-checkbox>
+                    
+                </div>
                     
                 </div>
                 <div class="clearfix"></div>
                 <div class="row" style=" font-size: 10px;">
                     <div class="col-sm-2">PATHOLOGY</div>
                     
+                  
                     <div class="col-sm-3">
-                        Haematology______
-                       
+                        Haematology
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
                     </div>
                     <div class="col-sm-3">
-                       Microbiology______
-                       
-                       
+                        Microbiology
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
                     </div>
-                    <div class="col-sm-2">
-                        Biochemstry______
-                       
-                    </div>
-                    <div class="col-sm-2">
-                        Histology______
                    
-                  </div>
+                    <div class="col-sm-2">
+                        Biochemstry
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        
+                    </div>
+                   
+                  <div class="col-sm-2">
+                    Biochemstry
+                    <mat-checkbox class="example-margin" ></mat-checkbox>
+                    
+                </div>
                     
                 </div>
                 <div class="clearfix"></div>
  
                 <div class="row" style="margin: 40px;">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         Hospital Name:</div>
-                        <div class="col-sm-3">
-                            <input type="text" value="{{patient[0].doctor_name}}">
+                        <div class="col-sm-2">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                 <strong>   {{hospital}}</strong>
                             </div>
-                    <div class="col-sm-3">
-                      Consultant Referred To:____
+                            <div class="row">
+                            _______________________________
+                            </div>
+                        </div>
+                       
+                    <div class="col-sm-2">
+                      Consultant Referred To:
                     </div>
-                    <div class="col-sm-3">
-                        Specialty________________
+                    <div class="col-sm-2">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{doctor}}</strong>
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        Specialty
                      </div>
+                     <div class="col-sm-2">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{hospital}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _______________________________
+                        </div>
+                    </div>
                     
                 </div> 
             </div>
@@ -267,12 +386,12 @@
 
             <div class="col-sm-12" >
                
-                <h6 style="justify-content: center;  color: black;">MEDICATION PRESCRIBED:<br>
+                <h6 style="justify-content: center;  color: black;">MEDICATION PRESCRIBED:_______________________________________________<br>
 
 
-                    <div class="col-sm-12">
+                    <!-- <div class="col-sm-12">
                         <input type="text" >
-                        </div>
+                        </div> -->
 
 
                    </h6>

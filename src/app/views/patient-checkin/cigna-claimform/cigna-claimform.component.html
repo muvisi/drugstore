@@ -70,16 +70,28 @@
                
                 <div class="row">
                     <div class="col-sm-2">CIGNA PERSONAL REFERENCE NO.</div>
-                    <div class="col-sm-10">
+                    <!-- <div class="col-sm-10">
                     <input type="text" value="{{patient[0].member_number}}" >
+                    </div> -->
+                    <div class="col-sm-10">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{membernumber}}</strong>
+                        </div>
+                        <div class="row">
+                        _____________________________________________________________________
+                        </div>
                     </div>
-                    
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">NAME-FIRST NAME</div>
                     <div class="col-sm-10">
-                    <input type="text" value="{{patient[0].member}}">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{member}}</strong>
+                        </div>
+                        <div class="row">
+                        _____________________________________________________________________
+                        </div>
                     </div>
                     
                 </div>
@@ -87,7 +99,12 @@
                 <div class="row">
                     <div class="col-sm-3">DATE OF BIRTH( D-M-Y)</div>
                     <div class="col-sm-9">
-                    <input type="text" value="{{patient[0].dob}}"  >
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <!-- <strong>   {{dob}}</strong> -->
+                        </div>
+                        <div class="row">
+                        _____________________________________________________________________
+                        </div>
                     </div>
                     
                 </div>
@@ -123,37 +140,68 @@
     
                    
                   </div>
-                  <div class="col-sm-8" >
+                  <div class="row">
+                    <div class="col-sm-12" >
                
-                    <h6 style=" color: black;"><strong>DIAGNOSIS OR NATURE OF ILLNESS</strong> </h6>
-    
-                   
+                        <p style=" color: black; font-size: 10px;">DIAGNOSIS OR NATURE OF ILLNESS </p><br>
+                        
+                        
+                      </div>
+                     
+                      <div class="col-sm-12" style="margin-left: 15px;">
+                        <div class="row" style="position: absolute;bottom: 1;">
+                             <strong>   {{diagnoses}} {{description}}</strong>
+                        </div>
+                        <div class="row">
+                        _______________________________________________________________________________________________________________________________________
+                        </div>
+                    </div>
+
                   </div>
+                  <div class="clearfix"></div>
                   
                 
                   <div class="col-sm-12" >
                    
                    
                     <div class="row">
-                        <div class="col-sm-2">AMOUNT OF EXPENCES</div>
-                        <div class="col-sm-10">
-                        <input type="text" value="{{patient[0].amount}}" >
+                        <div class="col-sm-3">AMOUNT OF EXPENCES</div>
+                        <div class="col-sm-8">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                 <strong>   {{Tamount}}</strong>
+                            </div>
+                            <div class="row">
+                            _____________________________________________________________________
+                            </div>
                         </div>
                         
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
-                        <div class="col-sm-2">AMOUNT PAID BY PATIENT</div>
-                        <div class="col-sm-10">
+                        <div class="col-sm-3">AMOUNT PAID BY PATIENT</div>
+                        <!-- <div class="col-sm-10">
                         <input type="text" value="{{amount}}">
                         </div>
-                        
+                         -->
+                         <div class="col-sm-8">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                 <strong>   {{amount}}</strong>
+                            </div>
+                            <div class="row">
+                            _____________________________________________________________________
+                            </div>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
                         <div class="col-sm-3">BALANCE DUE BY CIGNA</div>
-                        <div class="col-sm-9">
-                        <input type="text" value="{{patient[0].amount}}" >
+                        <div class="col-sm-8">
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                 <strong>   {{Tamount}}</strong>
+                            </div>
+                            <div class="row">
+                            _____________________________________________________________________
+                            </div>
                         </div>
                         
                     </div>

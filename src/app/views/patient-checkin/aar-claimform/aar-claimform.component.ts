@@ -79,8 +79,7 @@ export class AarClaimformComponent implements OnInit {
  
  printPage() {
 console.log("Resp", this.patient)
-// this.member=this.patient[0].member
-// console.log("member",this.member)
+
 document.title=this.patient[0].visit_number.concat("-01")
 
 
@@ -88,32 +87,8 @@ document.title=this.patient[0].visit_number.concat("-01")
  
 }
 
-// mmm(){
-//     this.signatureService.socket().subscribe((res)=>{
-//       console.log("images",res);
-//       if (this.signature_type=="staff"){
-      
-     
-//         this.signature2_src=this.service.getSignatureUrl()+res;
-//         if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
-//           this.signature2_show=true;
-//           this.today2=new Date();
-//         }
-//       }else if(this.signature_type=="member"){
-//         this.signature1_src=this.service.getSignatureUrl()+res;
-//         if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
-//         this.signature1_show=true;
-//         this.today1=new Date();
-//         }
-     
-//       }
-//   });
-//   }
 
-  // printPagew() {
-  // document.title=this.patient.patient.phone.concat('-01')
-  //   window.print();
-  // }
+
 
 
   activateMemberSignature(){

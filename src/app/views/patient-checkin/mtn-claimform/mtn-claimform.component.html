@@ -12,23 +12,23 @@
             
             
         </div>
-        <div class="row" style="justify-content: center;">
+        <div class="row" style="justify-content: center; font-size: 8px;">
            
-            <div class="col-sm-4">
-                <h3>
-                    <img src="../../../../assets/img/avatars/mtn.png" alt="" height="100" width="100">
+            <div class="col-sm-4" style="text-align: center;">
+                <h6>
+                    <img src="../../../../assets/img/avatars/mtn.png" alt="" height="50" width="50">
                    
                      
                    
-                </h3>
-              <h6 style="color: brown;">MEDICAL INSURANCE CLAIM FORM</h6>
+                </h6>
+              <h6 style="color: brown; text-align: center; font-size: 10px;">MEDICAL INSURANCE CLAIM FORM</h6>
              
             </div> 
            
              
             
             
-            <div class="col-sm-12" >
+            <div class="col-sm-12" style="font-size: 10px;" >
                 <hr>
                 <p>
                   <strong>EMPLOYEE(MEMBER) INFORMATION</strong>  (This is the principal member in the scheme)
@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-sm-2">Scheme</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.scheme_name">
+                    <input type="text" value="{{patient[0].scheme_name}}">
                     </div>
                     
                 </div>
@@ -48,18 +48,18 @@
                 <div class="row">
                     <div class="col-sm-2">Name</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.employee">
+                    <input type="text">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">I.D No</div>
                     <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.id_number">
+                    <input type="text" >
                     </div>
                     <div class="col-sm-2">Employmnt No</div>
                     <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.employee_number">
+                    <input type="text" >
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="col-sm-2">Telephone</div>
                     <div class="col-sm-2">
-                    <input type="text" >
+                    <input type="text" value="{{patient[0].phone}}" >
                     </div>
                     <div class="col-sm-2">House</div>
                     <div class="col-sm-2">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-sm-2">Mobile</div>
                     <div class="col-sm-2">
-                    <input type="text">
+                    <input type="text" value="{{patient[0].phone}}">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -96,14 +96,14 @@
                     </div>
                     <div class="col-sm-2">Email</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text" value="{{patient[0].email}}">
                     </div>
                 </div>
                 <hr>
                
                 <div class="clearfix"></div>
             </div>
-            <div class="col-sm-12" >
+            <div class="col-sm-12" style="font-size: 10px;" >
                
                   
                 <div style="display: flex !important;" class="text">
@@ -112,7 +112,7 @@
                 <div class="row">
                     <div class="col-sm-2">Patient Name</div>
                     <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="patient.patient.first_name">
+                    <input type="text" value="{{patient[0].member}}">
                     </div>
                     
                 </div>
@@ -120,24 +120,42 @@
                 <div class="row">
                     <div class="col-sm-2">Membership N..</div>
                     <div class="col-sm-4">
-                    <input type="text">
+                    <input type="text" value="{{patient[0].member_number}}">
                     </div>
                     <div class="col-sm-2">Sex</div>
-                    <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.patient.gender">
+                    <div class="col-sm-2">
+                         <mat-checkbox class="example-margin" ></mat-checkbox>
+                         Male
                     </div>
+                    <div class="col-sm-2">
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        Female
+                   </div>
+                    
                   
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Date of Birth</div>
-                    <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.patient.dob">
+                    <div class="col-sm-2">
+                    <input type="text" >
                     </div>
                     <div class="col-sm-2">Relationship</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        Employee
+                   </div>
+                   <div class="col-sm-2">
+                    <mat-checkbox class="example-margin" ></mat-checkbox>
+                    Spouse
+               </div>
+               <div class="col-sm-2">
+                <mat-checkbox class="example-margin" ></mat-checkbox>
+                Child
+           </div>
+                    <!-- <div class="col-sm-4">
                     <input type="text" [(ngModel)]="patient.relation">
-                    </div>
+                    </div> -->
                   
                 </div><hr>
                 <div class="col-sm-12" >
@@ -208,11 +226,19 @@
 
                     <div class="clearfix"></div>
                     <div class="row">
-                        <div class="col-sm-4">Was the patient referred to a specialist?</div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8">Was the patient referred to a specialist?</div>
+                        <!-- <div class="col-sm-8">
                         <input type="text">
                         </div>
-                       
+                        -->
+                        <div class="col-sm-2">
+                            <mat-checkbox class="example-margin" ></mat-checkbox>
+                            Yes
+                       </div>
+                       <div class="col-sm-2">
+                        <mat-checkbox class="example-margin" ></mat-checkbox>
+                        No
+                   </div>
                     </div>
 
                     <div class="clearfix"></div>
@@ -248,7 +274,7 @@
                 <div class="row">
                     <div class="col-sm-4">Name and address of Doctor/Physician</div>
                     <div class="col-sm-8">
-                    <input type="text">
+                    <input type="text" value="{{patient[0].doctor_name}}">
                     </div>
                    
                 </div>
