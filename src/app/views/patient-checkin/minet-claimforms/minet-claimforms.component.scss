@@ -21,11 +21,12 @@
   input{
       width: 100%;
       float: right;
-      border:2px solid black;
+      background-color: #FFF2ED;
+      border:none;
       text-transform: capitalize;
   }
   textarea{
-    border:2px solid black;
+    background-color: orangered;
   }
 
   fieldset 
@@ -50,7 +51,7 @@
           background-color:#0075c9;
       }
       .clearfix{
-          margin-top:10px;
+          margin-top:18px;
       }
       hr{
         background-color:#0075c9

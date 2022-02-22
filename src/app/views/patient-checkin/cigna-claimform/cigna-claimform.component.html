@@ -73,7 +73,7 @@
                    
                     <div class="col-sm-10">
                         <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{membernumber}}</strong>
+                             <strong>   {{patient.member_number}}</strong>
                         </div>
                         <div class="row">
                         _____________________________________________________________________
@@ -85,7 +85,7 @@
                     <div class="col-sm-2">NAME-FIRST NAME</div>
                     <div class="col-sm-10">
                         <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{member}}</strong>
+                             <strong>{{patient.patient.first_name}} {{patient.patient.last_name}}</strong>
                         </div>
                         <div class="row">
                         _____________________________________________________________________
@@ -98,7 +98,7 @@
                     <div class="col-sm-3">DATE OF BIRTH( D-M-Y)</div>
                     <div class="col-sm-9">
                         <div class="row" style="position: absolute;bottom: 1;">
-                             <!-- <strong>   {{dob}}</strong> -->
+                             <strong>   {{patient.patient.dob}}</strong>
                         </div>
                         <div class="row">
                         _____________________________________________________________________
@@ -148,7 +148,7 @@
                      
                       <div class="col-sm-12" style="margin-left: 15px;">
                         <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{diagnoses}} {{description}}</strong>
+                             <!-- <strong>   {{patien}} {{description}}</strong> -->
                         </div>
                         <div class="row">
                         _______________________________________________________________________________________________________________________________________
@@ -166,7 +166,7 @@
                         <div class="col-sm-3">AMOUNT OF EXPENCES</div>
                         <div class="col-sm-8">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{Tamount}}</strong>
+                                 <!-- <strong>   {{Tamount}}</strong> -->
                             </div>
                             <div class="row">
                             _____________________________________________________________________
@@ -177,13 +177,10 @@
                     <div class="clearfix"></div>
                     <div class="row">
                         <div class="col-sm-3">AMOUNT PAID BY PATIENT</div>
-                        <!-- <div class="col-sm-10">
-                        <input type="text" value="{{amount}}">
-                        </div>
-                         -->
+                       
                          <div class="col-sm-8">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{amount}}</strong>
+                               
                             </div>
                             <div class="row">
                             _____________________________________________________________________
@@ -195,7 +192,7 @@
                         <div class="col-sm-3">BALANCE DUE BY CIGNA</div>
                         <div class="col-sm-8">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{Tamount}}</strong>
+                              
                             </div>
                             <div class="row">
                             _____________________________________________________________________
@@ -247,18 +244,24 @@
         
                        
                       </div>
-                      <p>
-                          1. i hereby certify that i understand that this claim form will allow Cigna to settle (part of) the claim(s) related to my treatment directly with the health care provider.I hereby also<br>
-                          authorise the above mentioned health care provider to provide Cigna's Medical consultamt with all information that may be relevant  or neccesary for the correct assessment of this<br>
-                          claim. I hereby certify that i will not lay any claim to cigna againest monies receivable by the provider of medical services.<br>
-                          2.i hereby agree to return the ptient portion to Cigna in case there is a diffrence between the amount paid by cigna to the provider and the covered expences according to my plan<br>
-                          benefits.
-                          3.I hereby certify that i received the services as bdescribed in the attached invoices(s)
-                          4. I accept the terms and conditions. i certify that the above information is to the best of my knowledge and belief correct and true. The issuance of false claims, the provission of<br>
-                           misleading information or the withholding of information related thereto is an offence punishable by law. I hereby confirm i have read and fully understood Cigna's Data<br>
-                           protection Notice (https://www.cignahealthbenefits.com/en/privacy).If i provide Cigna with personal information relating to others, i will make them aware of Cigna's Data<br>
-                            protection  Notice
-                      </p>
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <p>
+                                1. I hereby certify that i understand that this claim form will allow Cigna to settle (part of) the claim(s) related to my treatment directly with the health care provider.I hereby also<br>
+                                authorise the above mentioned health care provider to provide Cigna's Medical consultamt with all information that may be relevant  or neccesary for the correct assessment of this<br>
+                                claim. I hereby certify that i will not lay any claim to cigna againest monies receivable by the provider of medical services.<br>
+                                2.I hereby agree to return the ptient portion to Cigna in case there is a diffrence between the amount paid by cigna to the provider and the covered expences according to my plan<br>
+                                benefits.<br>
+                                3.I hereby certify that i received the services as bdescribed in the attached invoices(s)
+                                4. I accept the terms and conditions. i certify that the above information is to the best of my knowledge and belief correct and true. The issuance of false claims, the provission of<br>
+                                 misleading information or the withholding of information related thereto is an offence punishable by law. I hereby confirm i have read and fully understood Cigna's Data<br>
+                                 protection Notice (https://www.cignahealthbenefits.com/en/privacy).If i provide Cigna with personal information relating to others, i will make them aware of Cigna's Data<br>
+                                  protection  Notice
+                            </p>
+
+                          </div>
+
+                      </div>
                       <div class="clearfix"></div>
                       <div class="row" style="margin: 40px;">
                         <div class="col-sm-5">

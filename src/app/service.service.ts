@@ -5,15 +5,15 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
-// export const endpoint = 'https://booking.healthixsolutions.com/';
-export const endpoint='http://134.209.199.123:8888/';
+export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint='http://134.209.199.123:8888/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
 // export const endpoint='http://197.248.31.237:8548/';
 // export const endpoint='https://bookings.aarhospital.com/';
-export const HEALTHIX_BACKEND_URL_AAR ='http://134.209.199.123:7777/'
+// export const HEALTHIX_BACKEND_URL_AAR ='http://134.209.199.123:7777/'
 // export const HEALTHIX_BACKEND_URL_AAR ='https://aarclaims.healthixsolutions.com/';
-// export const HEALTHIX_BACKEND_URL_AAR ='http://localhost:8000/'
+export const HEALTHIX_BACKEND_URL_AAR ='http://localhost:8000/'
 @Injectable({
   providedIn: 'root'
 })
@@ -82,8 +82,16 @@ export class ServiceService {
     return this.http.get(endpoint + 'appointments/payments/').pipe(
       map(this.extractData));
   }
+  getPatientInfo(): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details/').pipe(
+      map(this.extractData));
+  }
   getInsurance(id): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  getInsurancePatientData(id): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_patientdetails/'+id+'/').pipe(
       map(this.extractData));
   }
   getbookingDetails(id): Observable<any> {

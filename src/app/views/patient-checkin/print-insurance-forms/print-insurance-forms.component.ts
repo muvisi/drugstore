@@ -29,14 +29,14 @@ export class PrintInsuranceFormsComponent implements OnInit {
 
   }
   getPatientData(){
-    this.service.getPatientData_Hospserver().subscribe(
+    this.service.getPatientInfo().subscribe(
       
         data => {
           this.Claims_DATA = new MatTableDataSource <[]>(data);
           
           this.Claims_DATA.paginator = this.paginator;
           this.loading = false;
-        //  this.toastr.success('finished loading Bookings');
+        
          
           
      
@@ -50,7 +50,7 @@ export class PrintInsuranceFormsComponent implements OnInit {
         this.dataSource = new MatTableDataSource <[]>(data.booking);
         this.dataSource.paginator = this.paginator;
         this.loading = false;
-      //  this.toastr.success('finished loading Bookings');
+     
        
         
       
