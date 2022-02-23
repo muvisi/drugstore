@@ -15,6 +15,7 @@ export class PrintInsuranceFormsComponent implements OnInit {
   loading;
   selected;
   idnumber;
+  searchText;
   phonenumber;
   Claims_DATA;
   Columns: string[] = ['sn','visit_no','First','memberno','phone','insurancecompany','print']
@@ -29,20 +30,36 @@ export class PrintInsuranceFormsComponent implements OnInit {
 
   }
   getPatientData(){
+    this.loading=true;
     this.service.getPatientInfo().subscribe(
       
         data => {
+          this.loading=false;
           this.Claims_DATA = new MatTableDataSource <[]>(data);
           
           this.Claims_DATA.paginator = this.paginator;
-          this.loading = false;
         
          
           
      
     },(err)=>{
+      this.loading=false;
 
     })}
+
+    clickSearch(){
+      this.loading=true;
+      this.service.getInsuranceVisitSearch(this.searchText).subscribe((res)=>{
+      this.loading=false;
+      this.Claims_DATA = new MatTableDataSource <[]>(res);
+          
+      this.Claims_DATA.paginator = this.paginator;
+      },(err)=>{
+        this.loading=false;
+
+      })
+      
+    }
   getbooking() {
    
     this.service.list().subscribe(

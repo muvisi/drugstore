@@ -23,7 +23,7 @@ export class AllbookingComponent implements OnInit {
   phonenumber;
   insurance;
   insurance_companys;
-  Columns: string[] = ['sn','created','First','gender','payment','residence','phone','insurancecompany','symptoms','print','action']
+  Columns: string[] = ['sn','created','First','gender','payment','residence','phone','insurancecompany','symptoms','action']
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {
