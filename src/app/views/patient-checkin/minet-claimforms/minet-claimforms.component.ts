@@ -28,28 +28,23 @@ export class MinetClaimformsComponent implements OnInit {
   constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {
-    this.service.getSinglePatientData_Hospserver(this.route.snapshot.params.id).subscribe((res)=>{
+ 
+    this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
+      console.log("HEALTHIX",res);
       this.patient = res;
-    this.email=this.patient[0].email
-    this.doctor=this.patient[0].doctor_name
-    // this.diagnoses=this.patient[0].diagnoses
-    this.scheme=this.patient[0].scheme_name
-    // this.description=this.patient[0].description
-    this.member=this.patient[0].member
-    this.membernumber=this.patient[0].member_number
-    this.visit=this.patient[0].visit_number
     })
    
   }  
  
- printPage() {
-console.log("Resp", this.patient)
-document.title=this.visit.concat('-01')
-
-
-  window.print();
- 
-}
-
+  printPage() {
+    console.log("Resp", this.patient)
+    
+    document.title=this.patient.insuranceVisit.visit_number.concat("-01")
+    
+    
+      window.print();
+     
+    }
+    
 }
 

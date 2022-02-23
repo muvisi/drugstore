@@ -1,5 +1,13 @@
 <div class="card">
     <div class="card-body" id="print-section">
+       
+
+
+
+
+
+
+
         <div class="row">
             <div class="col-sm-12" >
                 <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
@@ -14,128 +22,143 @@
             
             
         </div>
-       <div class="col-sm-12">
-        <div class="row" style="font-size: 8px;">
-           
-            <div class="col-sm-4">
-                <p style="white-space:nowrap; margin-top: 10px;">
-                    <img src="../../../../assets/img/avatars/first.png" alt="" height="50" width="300">
+        <div class="row">
+            <div class="col-sm-12">
+                <p style="white-space:nowrap; margin-top: 0px;">
+                    <img src="../../../../assets/img/avatars/med004.png" alt="" width="900" >
                    
                      
                    
                 </p>
-               
-            </div> 
-            
-                <div class="col-sm-4" >
-           
-                    <p style=" color: tomato; font-size: 12px; justify-content: center;margin-top: 30px;">FIRST MED</p>
-                   
-                  </div> 
 
-            
-         
-            
-           <div class="row">
-            <div class="col-sm-4">
-                <div class="row">
-                    <h1 ><img  src="../../../../assets/img/avatars/med2.png" alt=""  height="50" width="150">
-                   </h1>
-                </div>
+
             </div>
 
-       </div>
-           </div><hr>
-            <div class="col-sm-12" >   </div>
+        </div>
+       <div class="col-sm-12">
+       
+            
          
             
             
             
-            <div class="row" style="position: relative; margin: 0px; font-size: 8px;">
-                <div class="col-sm-12"><strong>Head office:</strong>First Assurance House<br> 
-                    <address>
-                        Clyde Gardens, Gitanga Road Lavington<br> 
-                        P.O Box 30064-00100 Nairobi,Kenya<br>
-                        Tel:+254202900000,2692250<br>
-                        Call Centre No: 0709122000<br>
-                        Email: medical@firstassurance.co.ke<br>
-                        </address>
-                      
-
-
-                </div>
-                <div class="col-sm-7" style="margin: 0px;" >
-                    <h6 style="color: red; font-size: 8px;">Medical Claim for Treatment and Referrals<br> </h6>
-                    <p><strong>
-                        IMPORTANT NOTES<br>
-                        1.This form MUST be dully completed and signed by the patient and the attending Doctor<br>
-                        2. Attach original invoices, receipts and copies of prescriptions to the claim form.<br>
-                        3.Medication/drugs bought over-the-counter  will not be re-im bused by the scheme<br>
-                        4.Claims received after 60 days from treatment date will not be hounered<br>
-                        5. Patients must indentify themselves with a first med photo card<br>
-                        6.Incomplete claim forms will delay serttlement of claims.
-
-
-                    </strong>
-                    </p>
-                      
-
-
-                </div>
+            <div class="row" style="position: relative; margin: 0px; font-size: 12px;">
+               
+               
+                
+                
                 <div class="col-sm-12">
-                    <!-- <hr> -->
-                    <div style="display: flex !important; font-size: 10px;" class="row">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="white-space:nowrap;">
+                                <img src="../../../../assets/img/avatars/medoo2.png" alt="" width="900" >
+                               
+                                 
+                               
+                            </p>
+            
+            
+                        </div>
+            
+                    </div>
+                   
+                    <!-- <div style="display: flex !important; font-size: 10px;  background-color: #FFF2ED;" class="row">
                         <p >PATIENT PARTICULARS </p>
                     
-                    </div>
+                    </div> -->
+                  <!-- <strong>  <hr></strong> -->
                 </div>
-                <div class="col-sm-12" style="position: relative;  font-size: 8px;">
+                <div class="col-sm-12" style="position: relative;  font-size: 10px; margin: 8px;">
                     <div class="row" >
                        
-                        <div class="col-sm-2">Name:</div>
+                        <div class="col-sm-1">Surname</div>
+                        
+                        
+                            <div class="col-sm-2">
+                                
+                                
+                                <div class="row" style="position: absolute;bottom: -1;">
+                                    <strong>{{patient.patient.first_name}} </strong>
+                                </div> <hr>
+                            </div>
+                            
+                        
+                        <div class="col-sm-1">Firstname</div>
+                        
                         <div class="col-sm-2">
-                        <input type="text" value="{{patient[0].member}}">
+                                
+                                
+                            <div class="row" style="position: absolute;bottom: -1;">
+                                <strong>{{patient.patient.last_name}} </strong>
+                            </div> <hr>
                         </div>
+                      
                         <div class="col-sm-1">Age:</div>
-                        <div class="col-sm-1">
-                        <input type="text">
-                        </div>
-                        <div class="col-sm-2">Membership No:</div>
+                        
                         <div class="col-sm-2">
-                        <input type="text"  value="{{patient[0].member_number}}">
+                                
+                                
+                            <div class="row" style="position: absolute;bottom: -1;">
+                                <strong>{{patient.patient.age}} </strong>
+                            </div> <hr>
                         </div>
-                    </div>
-                    <div class="clearfix"></div>
-
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">Employer:</div>
-                    <div class="col-sm-3">
-                    <input type="text"  value="{{employer}}">
-                    </div>
-                    <div class="col-sm-3">Patient/Member number/Phone Number:</div>
-                    <div class="col-sm-2">
-                    <input type="text" value="{{patient[0].phone}}">
-                    </div>
+                        
+                        <div class="col-sm-1">Membership No:</div>
+                        <div class="col-sm-2">
+                                
+                                
+                            <div class="row" style="position: absolute;bottom: -1;">
+                                <strong>{{patient.member_number}} </strong>
+                            </div> <hr>
+                        </div>
                     
-                </div>
+                    
+                 </div>
+                 <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-sm-2">Employer:</div>
+                        <div class="col-sm-4"> <hr>
+                            <div class="row" style="position: absolute;bottom: 1;">
+                            </div>
+                        
+                        </div>
+                        <div class="col-sm-3">Patient/Member number/Phone Number:</div>
+                        <div class="col-sm-2">
+                                
+                                
+                            <div class="row" style="position: absolute;bottom: -1;">
+                                <strong>{{patient.patient.phone}} </strong>
+                            </div> <hr>
+                        </div>
+                        
+                    </div>
                 <div class="clearfix"></div>
 
                 <div class="row" style="position: relative;">
                     <div class="col-sm-3">Name of Member(if the patient is a Dependant):</div>
-                    <div class="col-sm-2">
-                    <input type="text" value="{{patient[0].member_name}}">
+                     <div class="col-sm-2">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1;">
+                            <strong>{{patient.member_name}} </strong>
+                        </div> <hr>
                     </div>
                     <div class="col-sm-2">Id/Passport:</div>
-                    <div class="col-sm-2">
-                    <input type="text" >
+                    <div class="col-sm-4"> <hr>
+                      
                     </div>
                     
                 </div>
                 <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">Patients Relationship with Member/Employee:</div>
-                    <div class="col-sm-6">
-                    <input type="text"value="{{relation}}">
+                    <div class="col-sm-2">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1;">
+                            <strong>{{patient.relation}} </strong>
+                        </div> <hr>
                     </div>
                     
                     
@@ -158,14 +181,17 @@
                 <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">(If so give Details):</div>
-                    <div class="col-sm-6">
-                    <input type="text">
+                    <div class="col-sm-8"> <hr>
+                      
                     </div>
                     
                     
                 </div>
+                
+            </div>
+               
                 <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
+                <div class="row" style="position: relative;  margin: 8px;">
                     <div class="col-sm-6">Are you a member of Natinal  Hospital Insurace fund?:</div>
                     
                     <div class="col-sm-3">
@@ -190,197 +216,138 @@
        
     
                 
-            </div> <hr>
-            <div class="col-sm-12" style="font-size: 6px;">
+            </div> 
+            <div class="col-sm-12" style="font-size: 12px;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p style="white-space:nowrap;">
+                            <img src="../../../../assets/img/avatars/med003.png" alt="" width="900" >
+                           
+                             
+                           
+                        </p>
+        
+        
+                    </div>
+        
+                </div>
              
-                <div style="display: flex !important; font-size: 8px;" class="text">
-                    <p>CONSOLTATIONS/REFFFERALS TO SPECIALIST AND HOSPITAL ADMISSION </p><br>
-               
-                    </div>
-                    <strong><P>(SICKNESS TO BE COMPLETED BY ATTENDING DOCTOR)</P></strong>
+              
+                    <strong><P style="margin: 8px;">(SICKNESS TO BE COMPLETED BY ATTENDING DOCTOR)</P></strong>
                     <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
+                <div class="row" style="position: relative; margin: 8px;">
                     <div class="col-sm-4">NATURE OF SICKNESS/AILMENT:</div>
-                    <div class="col-sm-8">
-                    <input type="text">
+                    <div class="col-sm-8"> <hr>
+                      
                     </div>
                     
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row">
+                <div class="row" style="margin: 8px;">
                     <div class="col-sm-4">WHEN DID IT FIRST OCCUR:</div>
-                    <div class="col-sm-8">
-                    <input type="text">
+                    <div class="col-sm-8"> <hr>
+                      
                     </div>
                     
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" >
+                <div class="row"  style="margin: 8px;">
                     <div class="col-sm-4">NATURE OF TREATMENT:</div>
-                    <div class="col-sm-8">
-                    <input type="text">
+                    <div class="col-sm-8"> <hr>
+                      
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="row">
+                <div class="row"  style="margin: 8px;">
                     <div class="col-sm-8">IN YOUR OPINION, WHAT IS THE CAUSE OF AILMENT:</div>
-                    <div class="col-sm-4">
-                    <input type="text">
+                    <div class="col-sm-4"> <hr>
+                      
                     </div>
                     
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" >
-                    <div class="col-sm-8">IN YOUR OPINION, IS THIS AILMENT CHRONIC/RECURRING:</div>
-                    <div class="col-sm-4">
-                    <input type="text">
+                <div class="row"  style="margin: 8px;">
+                    <div class="col-sm-6">IN YOUR OPINION, IS THIS AILMENT CHRONIC/RECURRING:</div>
+                    <div class="col-sm-6"> <hr>
+                      
                     </div>
                     
                     
                 </div>
                 <div class="clearfix"></div>
+                <div class="row"  style="margin: 8px;">
+                    <div class="col-sm-6">SPECIALIST REFFERED TO:</div>
+                    <div class="col-sm-2">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1;">
+                            <strong>{{patient.insuranceVisit.doctor}} </strong>
+                        </div> <hr>
+                    </div>
+                    
+                    
+                </div>
+                <div class="clearfix"></div>
+
+
                 <div class="row">
-                    <div class="col-sm-4">SPECIALIST REFFERED TO:</div>
-                    <div class="col-sm-8">
-                    <input type="text" value="{{patient[0].doctor_name}}">
+                    <div class="col-sm-12">
+                        <p style="white-space:nowrap;">
+                            <img src="../../../../assets/img/avatars/payment.png" alt="" width="900" >
+                           
+                             
+                           
+                        </p>
+        
+        
                     </div>
-                    
-                    
+        
                 </div>
                 <div class="clearfix"></div>
-
-
-                <div style="display: flex !important; font-size: 8px;" class="text">
-                    <p >DETAILS OF MEDICAL EXPENSE </p>
-                   
-                </div>
-                <hr>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-6">OUTPATIENT<br> (Attach receipted accounts within 60 days)</div>
-                   
-                    <div class="col-sm-6">INPATIENT<br> (Attach receipted accounts within 60 days)</div>
-                    
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">Number of consultations:</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    <div class="col-sm-4">Hospital confinement:</div>
-                    <div class="col-sm-3">
-                    <input type="text" value="{{hospital}}">
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">consultation fee:</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    <div class="col-sm-4">Accomondation charges</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">Cost of prescribed drugs<br>(Attach a copy of prescription)</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    <div class="col-sm-4">Operation charges:DR</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">Cost of Injection/procedure</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    <div class="col-sm-4">Anaesthetic fee:Dr</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">Other expenses<br>(X-ray Laboratory test etc)</div>
-                    <div class="col-sm-3">
-                    <input type="text" >
-                    </div>
-                    <div class="col-sm-4">Prescribed drugs:</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
-                    <div class="col-sm-2">TOTAL</div>
-                    <div class="col-sm-3">
-                    <input type="text">
-                    </div>
-                    <div class="col-sm-4">TOTAL</div>
-                    <div class="col-sm-3">
-                    <input type="text" >
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row" style="position: relative;">
+               <div class="col-sm-12">
+                <div class="row" style="position: relative; margin: 8px;">
                     <div class="col-sm-4">Name of Attending Doctor:</div>
-                    <div class="col-sm-8">
-                    <input type="text" value="{{patient[0].doctor_name}}">
+                    <div class="col-sm-2">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1;">
+                            <strong>{{patient.insuranceVisit.doctor}} </strong>
+                        </div> <hr>
                     </div>
                   
                 </div>
-                <div class="row" style="position: relative; margin: 40px; font-size: 6px;">
-                    <div class="col-sm-8">
-                        ADDRESS OF PRACTICE:_______________________________________________
+                <div class="row" style="position: relative; margin: 8px; font-size: 12px;">
+                    <div class="col-sm-2">
+                        ADDRESS OF PRACTICE
                     </div>
-                    <div class="col-sm-4">
-                       DR SIGNATURE____________________________
+                    <div class="col-sm-4"> <hr>
+                      
                     </div>
-                    <div class="clearfix"></div>
+                    <div class="col-sm-2">
+                       DR SIGNATURE
+                    </div>
+                    <div class="col-sm-4"> <hr>
+                      
+                    </div>
                     
                 </div>
-                <div class="clearfix"></div>
-                <!-- <div class="row" style="position: relative; margin: 40px; font-size: 6px;">
-                    <div class="col-sm-8">
-                        ADDRESS OF PRACTICE:_______________________________________________
+                <div class="row" style="position: relative; margin: 40px; font-size: 12px;">
+                    <div class="col-sm-2">
+                       Date
                     </div>
-                    <div class="col-sm-4">
-                       DR SIGNATURE____________________________
+                    <div class="col-sm-4"> <hr>
+                      
                     </div>
-                    <div class="clearfix"></div>
-                    
-                </div> -->
-                
-                    <div class="col-sm-12" style="margin: 40px; font-size: 6px;">
-                        _______________________________________________Date & Stamp:_______________________________________________
+                    <div class="col-sm-2">
+                       Stamp
+                    </div>
+                    <div class="col-sm-4"> <hr>
+                      
                     </div>
                     
-                    <div class="clearfix"></div>
-                <!-- </div> -->
-                <div class="row" style="margin: 40px; ">
-                    <div class="col-sm-8" >
-                        Member Signature:_______________________________________________
-                    </div>
-                    <div class="col-sm-4">
-                       Date____________________________
-                    </div>
-                   
                 </div>
                 <div class="col-sm-12">
                     <p>
@@ -389,14 +356,33 @@
                     any expenses no9t covered by my insurance plan or in excess of Limit provided under my plan or any deductable or co-pay determined by this plan.
                     </p>
                 </div>
-                <div class="row" style="margin: 40px;">
-                    <div class="col-sm-8">
-                        Member Signature_______________________________________________
+                <div class="row">
+                    <div class="col-sm-2" >
+                        Member Signature:
                     </div>
-                    <div class="col-sm-4">
-                        Date:____________________________
+                    <div class="col-sm-4"> <hr>
+                      
                     </div>
-                    
-                </div>
-            </div>  
+                    <div class="col-sm-2">
+                       Date
+                    </div>
+                    <div class="col-sm-4"> <hr>
+                      
+                    </div>
+    
+                   </div>
+
+               </div>
                
+                
+               
+               
+                    
+                   
+               
+              
+                
+           
+             
+            </div>  
+        </div> 

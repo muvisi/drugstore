@@ -34,24 +34,7 @@
                 
             </div>
            
-           <!-- <div  class="row" >
-               <div class="col-sm-12">
-                <h3>
-                    <img src="../../../../assets/img/avatars/minet.png" alt="" height="100" width="300">
-                   
-                     
-                   
-                </h3>
-                <h3>
-                    <img src="../../../../assets/img/avatars/minet2.png" alt="" height="100" width="300">
-                   
-                     
-                   
-                </h3>
-
-               </div>
-
-           </div> -->
+           
            
             <div class="col-sm-12" style="margin-left: 320px; font-size: 10px;">
                 
@@ -63,7 +46,7 @@
              
             
             
-            <div class="col-sm-12" style="font-size: 8px;" >
+            <div class="col-sm-12" style="font-size: 12px;" >
                
               <div style="background-color: black;">  
                 <p style="color: white;">
@@ -74,7 +57,7 @@
                 <div class="row">
                     <div class="col-sm-2">Name of employer:</div>
                     <div class="col-sm-10">
-                    <input type="text" >{{scheme}}
+                    <input type="text"value="{{patient.scheme_name}}" >
                     </div>
                     
                 </div>
@@ -83,22 +66,22 @@
                 <div class="row">
                     <div class="col-sm-2">Full Name of Employee</div>
                     <div class="col-sm-10">
-                    <input type="text" value="{{employee}}">
+                    <input type="text" value="{{patient.employee}}">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-2">Mobile number</div>
                     <div class="col-sm-2">
-                    <input type="text">
+                    <input type="text" value="{{patient.patient.phone}}">
                     </div>
                     <div class="col-sm-2">Medical card No</div>
                     <div class="col-sm-2">
-                    <input type="text" >
+                    <input type="text" value="{{patient.card_number}}">
                     </div>
                     <div class="col-sm-2">Date of Birth</div>
                     <div class="col-sm-2" >
-                    <input type="text">
+                    <input type="text" value="{{patient.patient.dob}}">
                     </div>
                     
                 </div>
@@ -106,7 +89,7 @@
                 <div class="row">
                     <div class="col-sm-2">Full name of Claimant</div>
                     <div class="col-sm-4">
-                    <input type="text" readonly  >{{member}}
+                    <input type="text" value="{{patient.patient.first_name}} {{patient.patient.last_name}}"  >
                     </div>
                    
                 </div>
@@ -115,9 +98,9 @@
                 
               
                
-                <div class="clearfix"></div>
+                
             </div>
-            <div class="col-sm-12" style="font-size: 8px;">
+            <div class="col-sm-12" style="font-size: 12px;">
                
                   
                 <div style="background-color: black;">  
@@ -128,12 +111,12 @@
                 <div class="row">
                     <div class="col-sm-12">Exact nature of illness/accident/medical applications e.g Wheelchair:</div>
                     <div class="col-sm-12">
-                    <input type="text"  >{{diagnoses}}{{description}}
+                    <input type="text" value="{{patient.insuranceVisit.diagnoses}} {{patient.insuranceVisit.description}}">
                     </div>
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row"style="font-size: 8px;">
+                <div class="row"style="font-size: 12px;">
                     <div class="col-sm-12">Is condition work related or occupation illness/injury? Please explain:</div>
                     <div class="col-sm-12">
                     <input type="text"  >
@@ -141,7 +124,7 @@
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 8px;">
+                <div class="row" style="font-size: 12px;">
                     <div class="col-sm-4">Date when the condition was first diagnosed?</div>
                     <div class="col-sm-4">
                     <input type="text"  >
@@ -149,7 +132,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 8px;">
+                <div class="row" style="font-size: 12px;">
                     <div class="col-sm-4">Date of Preveous treatment for this illness/injury</div>
                     <div class="col-sm-4">
                     <input type="text">
@@ -157,7 +140,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 8px;">
+                <div class="row" style="font-size: 12px;">
                     <div class="col-sm-4">Date of current treatment?</div>
                     <div class="col-sm-4">
                     <input type="text" >
@@ -165,7 +148,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 8px;">
+                <div class="row" style="font-size: 12px;">
                     <div class="col-sm-8">Any Underlying conditions which could result to this illness/injury</div>
                     <div class="col-sm-4">
                     <input type="text" >
@@ -173,7 +156,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 8px;">
+                <div class="row" style="font-size: 12px;">
                     <div class="col-sm-4">was patient referred to a specialist? </div>
                     
                           <div class="col-sm-2">
@@ -184,15 +167,15 @@
                         </div>
                       </div>
                       <div class="clearfix"></div>
-                      <div class="row" style="font-size: 8px;">
+                      <div class="row" style="font-size: 12px;">
                           <div class="col-sm-12">Indicate specialist services & specialist name </div>
                           <div class="col-sm-12">
-                          <input type="text" >{{doctor}}
+                          <input type="text" value="{{patient.insuranceVisit.doctor}}" >
                           </div>
                           </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <p style="font-size: 8px;">
+                                <p style="font-size: 12px;">
                                     (Please attach all receipts/invoices and copies of prescriptions relating to this claim including chemist bills-otherwise the <br>
                                     bill will not be settled).
                                 </p>
@@ -202,7 +185,7 @@
 
                         </div>
                         <div class="clearfix"></div>
-                <div class="row" style="font-size: 8px;">
+                <div class="row" style="font-size: 12px;">
                     <div class="col-sm-2">Treatment given</div>
                     
                    
@@ -232,7 +215,7 @@
                     <div class="row" >
                         <div class="col-sm-3">Total cost of treatment </div>
                         <div class="col-sm-9">
-                        <input type="text"">
+                        <input type="text">
                         </div>
                        
                     </div>
@@ -247,7 +230,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div style="background-color: black; font-size: 8px;" >  
+                            <div style="background-color: black; font-size: 12px;" >  
                                 <p style="color: white;">
                                    MEMBER'S DECLARATION & CONSENT
                                   </p>
@@ -258,7 +241,7 @@
                     </div>
                     <div class="row"> 
                         <div class="col-sm-12">
-                            <p style="font-size: 8px;">
+                            <p style="font-size: 12px;">
                                 I hereby confirm that all particulars stated above are true and complete. No information has been ommitd. I authorise the provider<br>
                                 of service(s) to disclose the required medical information to include the nature of my illness and that of my dependants to Aon for its<br>
                                 confidential use.
@@ -267,7 +250,7 @@
                         </div>
 
                     </div>
-                    <div class="row" style=" font-size: 8px;">
+                    <div class="row" style=" font-size: 12px;">
                         <div class="col-sm-4">
                             Signed
                         </div>
@@ -286,7 +269,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div style="background-color: black; font-size: 8px;">  
+                            <div style="background-color: black; font-size: 12px;">  
                                 <p style="color: white;">
                                   DOCTOR'S CERTIFICATE
                                   </p>
@@ -297,7 +280,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p style="font-size: 8px;">
+                            <p style="font-size: 12px;">
                                 I certify that the above amounts are in accordance with my specified treatment and to nthe best of my knowlendge and<br>
                                 belief the claim is approved for payment/reimbursement
                               </p>
@@ -305,21 +288,22 @@
                         </div>
 
                     </div>
+                    <div class="clearfix"></div>
                     <div class="row" >
                         <div class="col-sm-2">
                             Name
                         </div>
                         <div class="col-sm-2" >
-                            <input type="text">{{doctor}}
+                            <input type="text" value="{{patient.insuranceVisit.doctor}}">
                             </div>
                       
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             Qualifications:
                         </div>
                         <div class="col-sm-2" >
                             <input type="text">
                             </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             Signd:
                         </div>
                         <div class="col-sm-2" >
@@ -328,19 +312,20 @@
                        
                         
                     </div>
-                    <div class="row" style=" font-size: 8px;">
-                        <div class="col-sm-4">
+                    <div class="clearfix"></div>
+                    <div class="row" style=" font-size: 12px;">
+                        <div class="col-sm-2">
                             Stamped
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             <input type="text">
                             </div>
                         
                       
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             Date:
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             <input type="text">
                             </div>
                        
@@ -348,7 +333,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div style="background-color: black; font-size: 8px;">  
+                            <div style="background-color: black; font-size: 12px;">  
                                 <p style="color: white;">
                                  FOR OFFICIAL USE ONLY
                                   </p>
@@ -358,16 +343,16 @@
                         </div>
 
                     </div>
-                    <div class="row" style="font-size: 8px;">
+                    <div class="row" style="font-size: 12px;">
                         <div class="col-sm-4">Amount payable Ksh</div>
                         <div class="col-sm-8">
-                        <input type="text">
+                        <input type="text" value="{{patient.insuranceVisit.claimed_amount}}">
                         </div>
                        
                     </div>
                <div class="row">
                    <div class="col-sm-12">
-                    <div style="background-color: red;font-size: 8px;">  
+                    <div style="background-color: red;font-size: 12px;">  
                         <p style="color: white;">
                           Minet Kenya insurance Brokers Ltd,    Minet House,   Off Nyerere road |    P.O Box 48279-00100 Nairobi, Kenya<br>
                           (t) +254(0)204974444/0719044444    (f)2721825 |   (e)casemanagement@minet.co.ke www.minet.co.ke

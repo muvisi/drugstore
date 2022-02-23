@@ -30,15 +30,12 @@ export class InsuranceFormsComponent implements OnInit {
   printPage() {
     console.log("Resp", this.patient)
     
-    document.title=this.patient.patient.phone.concat("-01")
+    document.title=this.patient.insuranceVisit.visit_number.concat("-01")
     
     
       window.print();
      
     }
     
- 
-
-
 }
 

@@ -24,7 +24,7 @@ export class PrintInsuranceFormsComponent implements OnInit {
     this.idnumber="";
     this.phonenumber="";
     this.getbooking();
-    this.loading=true
+    // this.loading=true
     this.getPatientData();
 
   }
