@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Script } from 'vm';
 import { ServiceService } from '../../../service.service';
 import { SignatureService } from '../../../signature.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { FormGroup } from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-aar-claimform',
@@ -11,8 +14,95 @@ import { SignatureService } from '../../../signature.service';
 })
 export class AarClaimformComponent implements OnInit {
 
-  patient:any={}
+  patient:any={
+    "id": "",
+    "patient": {
+    "id": "",
+    "first_name": "",
+    "last_name": "",
+    "age": null,
+    "other_names": "",
+    "dob": null,
+    "email": "",
+    "phone": "",
+    "occupation": null,
+    "gender": "",
+    "county": null,
+    "residence": null,
+    "national_id": null,
+    "created": ""
+    },
+    "booking": {},
+    "insuranceVisit": {
+    "id": "",
+    "visit_number": "",
+    "copay": "0.00",
+    "claimed_amount": "",
+    "doctor": " ",
+    "diagnoses": "",
+    "description": "",
+    "check_in": "",
+    "check_out": null,
+    "visit_type": "",
+    "services": {
+    "others": [],
+    "pharmacy": [
+    {
+    "name": "",
+    "amount": "603.40"
+    },
+    {
+    "name": "ZINCAT-OD 20MG5ML 60ML",
+    "amount": "143.640"
+    },
+    {
+    "name": "CYCLOPAM SUSP 30ML(DICYCLOMINE + SIMETHICONE)",
+    "amount": "173.60"
+    },
+    {
+    "name": "PAROL 250MG/5ML SYRUP 100ML(PARACETAMOL)",
+    "amount": "220.0"
+    },
+    {
+    "name": "EMITOSS SUSPENSION 2MG/5ML 30ML(ONDANSETRON)",
+    "amount": "322.0"
+    }
+    ],
+    "procedure": [
+    {
+    "name": "Outpatient Consultation Charges",
+    "amount": "1750.000"
+    },
+    {
+    "name": "TOTAL BLOOD COUNT (TBC,FBC,QBC)",
+    "amount": "1300.000"
+    },
+    {
+    "name": "URINE ROUTINE(URINALYSIS)",
+    "amount": "900.000"
+    }
+    ]
+    },
+    "services_status": "",
+    "status": "",
+    "patient": ""
+    },
+    "insurance_company": "",
+    "scheme_name": "",
+    "scheme_number": "",
+    "employee": null,
+    "employee_number": null,
+    "department": null,
+    "member_number": "",
+    "member_name": null,
+    "relation": null,
+    "card_number": null,
+    "id_number": null,
+    "nhif_number": null,
+    "created": ""
+    }
   hospital='AAR HOSPITAL'
+  maxDate
   specialist='Yes'
   employer='Employer Name'
   condition='No Underlying Condition'
@@ -21,6 +111,8 @@ export class AarClaimformComponent implements OnInit {
   state='Congenital'
   normal='Bacterial'
   amount='000.0'
+  @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  @ViewChild('clientModal', { static: false }) clientModal: ModalDirective;
  
   Aartelephone='Emergency:+254 725 225 225 | +254 734 225 225'
  
@@ -32,9 +124,24 @@ export class AarClaimformComponent implements OnInit {
    signature2_show;
    signature2_src;
    signature_type;
-  constructor(private route: ActivatedRoute,public service:ServiceService,private signatureService:SignatureService) { }
+   clientForm: FormGroup;
+  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,private signatureService:SignatureService) { }
 
   ngOnInit() {
+    this.clientForm = this.formBuilder.group({
+      surname: [''],
+      lastname: [''],
+      firstname: [''],
+      
+      email: [''],
+      dob: [''],
+      phone: [''],
+      occupation: [''],
+      memberno: [''],
+      doctor: [''],
+      specialty: ['']
+    });
+
     
     this.signatureService.connect();
     
@@ -63,7 +170,12 @@ export class AarClaimformComponent implements OnInit {
     this.patient = res;
     
   })
-  }  
+  
+
+
+
+
+}  
  
  printPage() {
 console.log("Resp", this.patient)
@@ -98,6 +210,19 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
       'type':'staff'
     }
     this.signatureService.send(JSON.stringify(data))
+  }
+  edit(){
+    // let item = this.customer;
+    // this.clientForm.patchValue({first_name:item.first_name,last_name:item.last_name,other_names:item.other_names,phone:item.phone,
+    //   dob:new Date(item.dob),gender:item.gender,email:item.email,residence:item.residence,national_id:item.national_id,occupation:item.occupation,id:item.id
+    // })
+    this.clientModal.show();
+  }
+  Update(){
+    console.log("DATA",this.clientForm.value)
+    
+    this.clientModal.hide();
+    
   }
 }
 

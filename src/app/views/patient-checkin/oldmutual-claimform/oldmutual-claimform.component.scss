@@ -19,11 +19,11 @@
     margin-left: 5px;
   }
   input{
-      width: 100%;
-      float: right;
-      border:2px solid black;
-      text-transform: capitalize;
-  }
+    width: 100%;
+    float: right;
+    border:none;
+    text-transform: capitalize;
+}
   textarea{
     border:2px solid black;
   }
@@ -50,7 +50,7 @@
           background-color:black;
       }
       .clearfix{
-          margin-top:30px;
+          margin-top:20px;
       }
       hr{
         background-color:green;

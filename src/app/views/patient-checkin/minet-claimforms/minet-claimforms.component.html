@@ -1,22 +1,21 @@
 <div class="card">
     <div class="card-body" id="print-section">
         <div class="row">
-            <div class="col-sm-12" >
+            <div class="col-sm-12">
                 <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+
                 <div class="clearfix"></div>
-
-
     
             </div>
-            <div class="col-sm-12" >
-                <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12">
+                <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
 
-
+                
     
             </div>
            
-            
-            
         </div>
         <div class="row">
             <div class="row">
@@ -81,7 +80,7 @@
                     </div>
                     <div class="col-sm-2">Date of Birth</div>
                     <div class="col-sm-2" >
-                    <input type="text" value="{{patient.patient.dob}}">
+                    <input type="text" value="{{patient.patient.dob | date}}">
                     </div>
                     
                 </div>
@@ -394,11 +393,116 @@
                   
                
                   
-                <div class="clearfix"></div>
-                <!-- <div style="background-color: red;font-size: 8px;">  
-                    <p style="color: white;">
-                      Minet Kenya insurance Brokers Ltd,    Minet House,   Off Nyerere road |    P.O Box 48279-00100 Nairobi, Kenya<br>
-                      (t) +254(0)204974444/0719044444    (f)2721825 |   (e)casemanagement@minet.co.ke www.minet.co.ke
-                      </p>
-                  </div> -->
-                  
+        </div>
+    </div>
+    <div class="modal fade" bsModal #clientModal="bs-modal" 
+        tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+     <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h4 id="dialog-static-name" class="modal-title pull-left">Edit Form</h4>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+         <form [formGroup]="clientForm"   >
+           
+           <div class="row">
+             <div class="col-sm-4">
+               <mat-form-field appearance="outline">
+                 <mat-label>Surname</mat-label>
+                   <input matInput placeholder="Surname" [(ngModel)]="patient.patient.last_name"  formControlName="surname" >
+                 </mat-form-field>
+             </div>
+             <div class="col-sm-4">
+               <mat-form-field appearance="outline">
+                 <mat-label>First Name</mat-label>
+                   <input matInput placeholder="First Name" [(ngModel)]="patient.patient.first_name"  formControlName="firstname" >
+                   
+                 </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+             <mat-form-field appearance="outline">
+               <mat-label>Other Name</mat-label>
+                 <input matInput placeholder="Other Name" [(ngModel)]="patient.patient.other_names"  formControlName="lastname">
+                
+               </mat-form-field>
+         </div>
+          
+          <div class="col-sm-4">
+           <mat-form-field appearance="outline" >
+             <mat-label>Telephone No</mat-label>
+               <input matInput placeholder="Phone" [(ngModel)]="patient.patient.phone" formControlName="phone" >
+   
+             </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+           <mat-form-field appearance="outline">
+             <mat-label>D.O.B</mat-label>
+               <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.patient.dob"  formControlName="dob" >
+               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+               <mat-datepicker #picker></mat-datepicker>
+             </mat-form-field>
+         </div>
+         <div class="col-sm-4">
+           <mat-form-field appearance="outline">
+             <mat-label>Membership No</mat-label>
+                <input matInput placeholder="National ID" [(ngModel)]="patient.member_number" formControlName="memberno" >
+              </mat-form-field>
+         </div>
+         <div class="col-sm-4">
+           <mat-form-field appearance="outline">
+             <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" [(ngModel)]="patient.patient.email"  formControlName="email">
+           </mat-form-field>
+         </div>
+         <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Date of Onset</mat-label>
+                <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker1"  formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field  appearance="outline">
+              <mat-label>Doctor's Name</mat-label>
+                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+    
+              </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+              <mat-label>Doctor's specialty</mat-label>
+                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.specialty" formControlName="specialty" >
+    
+              </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+              <mat-label>Employee</mat-label>
+                <input matInput placeholder="Employee"  [(ngModel)]="patient.employee" formControlName="employee" >
+    
+              </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+              <mat-label>Medical Card No</mat-label>
+                <input matInput placeholder="Medical Card No" [(ngModel)]="patient.card_number" formControlName="cardno" >
+    
+              </mat-form-field>
+           </div>
+          
+          
+          
+     <div class="col-sm-8" >
+     <button class="btn btn-success pull-right"  (click)="Update()">Update</button>
+   </div>
+           </div>
+         </form>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>    
