@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse, HttpBackend } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8888/';
@@ -11,6 +11,8 @@ export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
 // export const endpoint='http://197.248.31.237:8548/';
 export const endpoint='https://bookings.aarhospital.com/';
+export const payment_url='https://payments.healthixsolutions.com/payments/';
+
 // export const HEALTHIX_BACKEND_URL_AAR ='http://134.209.199.123:7777/'
 // export const HEALTHIX_BACKEND_URL_AAR ='https://aarclaims.healthixsolutions.com/';
 export const HEALTHIX_BACKEND_URL_AAR ='http://localhost:8000/'
@@ -19,8 +21,8 @@ export const HEALTHIX_BACKEND_URL_AAR ='http://localhost:8000/'
 })
 
 export class ServiceService {
-
-  constructor(private http: HttpClient) {
+  private customHttpClient: HttpClient;
+  constructor(private http: HttpClient,public backend: HttpBackend) {
   }
   getendpoint(){
     return endpoint;
@@ -48,6 +50,18 @@ export class ServiceService {
     return this.http.get(endpoint + 'patients/patient_treatments/').pipe(
       map(this.extractData));
 
+  }
+
+
+  getPayments() {
+    this.customHttpClient = new HttpClient(this.backend);
+    return this.customHttpClient.get(payment_url).pipe(
+      map(this.extractData));
+  }
+  searchPayments(text) {
+    this.customHttpClient = new HttpClient(this.backend);
+    return this.customHttpClient.get(payment_url+'?search='+text).pipe(
+      map(this.extractData));
   }
   getTriage(data): Observable<any> {
     return this.http.post(endpoint + 'triage/get_triage/',data).pipe(
