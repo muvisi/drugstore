@@ -10,13 +10,10 @@ export const endpoint = 'https://booking.healthixsolutions.com/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
 // export const endpoint='http://197.248.31.237:8548/';
-<<<<<<< HEAD
 // export const endpoint='https://bookings.aarhospital.com/';
-=======
-export const endpoint='https://bookings.aarhospital.com/';
+// export const endpoint='https://bookings.aarhospital.com/';
 export const payment_url='https://payments.healthixsolutions.com/payments/';
 
->>>>>>> 0a8749ade5fb188b9bc5cf67a53cf6eb8b6cad3c
 // export const HEALTHIX_BACKEND_URL_AAR ='http://134.209.199.123:7777/'
 // export const HEALTHIX_BACKEND_URL_AAR ='https://aarclaims.healthixsolutions.com/';
 export const HEALTHIX_BACKEND_URL_AAR ='http://localhost:8000/'
