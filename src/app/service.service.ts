@@ -104,6 +104,10 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
       map(this.extractData));
   }
+  getBookingInsuranceDetails(id): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_detail_booking/'+id+'/').pipe(
+      map(this.extractData));
+  }
   getInsuranceVisitSearch(s): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_details/?search='+s).pipe(
       map(this.extractData));
