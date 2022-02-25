@@ -19,6 +19,7 @@ export class BookingDetailComponent implements OnInit {
   department;
   speciality=[];
   symptoms=[];
+  payment_mode;
   submitted;
   customer: any;
   show_insurance;
@@ -74,12 +75,13 @@ export class BookingDetailComponent implements OnInit {
       this.symptoms=res.symptoms.split(",")
       this.department=res.department;
       this.payment_type={'payment':res.payment !=null ? res.payemnt : ''}
+      this.payment_mode=res.payment;
       
 
       console.log("pateint",this.patient_info);
       if(res.payment=="Insurance"){
         this.show_insurance=true;
-        this.service.getInsurance(res.id).subscribe((res2)=>{
+        this.service.getBookingInsuranceDetails(res.id).subscribe((res2)=>{
           console.log(res2);
 
           this.payment_info={
