@@ -77,7 +77,7 @@ export const navItems: NavData[] = [
   {
     name: 'Covid Report',
     url: '/dashboard/reports',
-    icon: 'icon-chart',
+    icon: 'fa fa-line-chart',
   },
   
   // {
@@ -85,11 +85,11 @@ export const navItems: NavData[] = [
   //   url: '/dashboard/clinic-setup',
   //   icon: 'fa fa-thermometer-half',
   // },
-  {
-    name: 'Bookings Report',
-    url: '/dashboard/queuereports',
-    icon: 'icon-chart',
-  },
+  // {
+  //   name: 'Bookings Report',
+  //   url: '/dashboard/queuereports',
+  //   icon: 'icon-chart',
+  // },
 
   // {
   //   name: 'Vaccine Setup',
@@ -97,11 +97,11 @@ export const navItems: NavData[] = [
   //   icon: 'fas fa-syringe',
   // },
 
-   {
-    name: 'Feedbacks',
-    url: '/dashboard/feedbacks',
-    icon: 'fas fa-comment',
-  },
+  //  {
+  //   name: 'Feedbacks',
+  //   url: '/dashboard/feedbacks',
+  //   icon: 'fas fa-comment',
+  // },
   
   // {
   //   name: 'Time Slot Setup',
