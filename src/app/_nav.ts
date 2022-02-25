@@ -86,15 +86,10 @@ export const navItems: NavData[] = [
   //   icon: 'fa fa-thermometer-half',
   // },
   {
-    name: 'Clinic-Setup',
-    url: '/dashboard/clinic-setup',
-    icon: 'fa fa-thermometer-half',
+    name: 'Bookings Report',
+    url: '/dashboard/queuereports',
+    icon: 'icon-chart',
   },
-  // {
-  //   name: 'Bookings Report',
-  //   url: '/dashboard/queuereports',
-  //   icon: 'icon-chart',
-  // },
 
   // {
   //   name: 'Vaccine Setup',
@@ -114,12 +109,12 @@ export const navItems: NavData[] = [
   //   icon: 'fas fa-address-book',
   
   // },
-  {
-    name: 'Payments',
-    url: '/dashboard/payments',
-    icon: 'icon-wallet',
+  // {
+  //   name: 'Payments',
+  //   url: '/dashboard/payments',
+  //   icon: 'icon-wallet',
   
-  }
+  // }
 
   // {
   //   name: 'Vaccine Setup',

@@ -120,8 +120,8 @@ this.date_positive="";
     
     this.service.feedbacks("?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative).subscribe(
       data => {
-        this.positive_dataSource = new MatTableDataSource <[]>(data);
-        this.positive_dataSource.paginator = this.paginator;
+        this.negative_dataSource = new MatTableDataSource <[]>(data);
+        this.negative_dataSource.paginator = this.paginator;
         this.loading = false;
         // this.toastr.success('finished loading Patients');
         
@@ -136,8 +136,8 @@ this.date_positive="";
   negativeVisitTypeChange(){
     this.service.feedbacks("?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative).subscribe(
       data => {
-        this.positive_dataSource = new MatTableDataSource <[]>(data);
-        this.positive_dataSource.paginator = this.paginator;
+        this.negative_dataSource = new MatTableDataSource <[]>(data);
+        this.negative_dataSource.paginator = this.paginator;
         this.loading = false;
         // this.toastr.success('finished loading Patients');
         
@@ -173,8 +173,8 @@ this.date_positive="";
     
     this.service.feedbacks("?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average).subscribe(
       data => {
-        this.positive_dataSource = new MatTableDataSource <[]>(data);
-        this.positive_dataSource.paginator = this.paginator;
+        this.average_dataSource = new MatTableDataSource <[]>(data);
+        this.average_dataSource.paginator = this.paginator;
         this.loading = false;
         // this.toastr.success('finished loading Patients');
         
@@ -190,8 +190,8 @@ this.date_positive="";
   averageVisitTypeChange(){
     this.service.feedbacks("?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average).subscribe(
       data => {
-        this.positive_dataSource = new MatTableDataSource <[]>(data);
-        this.positive_dataSource.paginator = this.paginator;
+        this.average_dataSource = new MatTableDataSource <[]>(data);
+        this.average_dataSource.paginator = this.paginator;
         this.loading = false;
         // this.toastr.success('finished loading Patients');
         
