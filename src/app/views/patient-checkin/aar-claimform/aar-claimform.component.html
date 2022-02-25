@@ -4,103 +4,44 @@
             <div class="row">
                 <div class="col-sm-12">
                     <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+
                     <div class="clearfix"></div>
         
                 </div>
-            </div>
-            <div class="row" >
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p style="white-space:nowrap; margin-top: 0px;">
-                            <img src="../../../../assets/img/avatars/aar001.png" alt="" width="1000" >
-                           
-                             
-                           
-                        </p>
-        
-        
-                    </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
+
+                    
         
                 </div>
-            <!-- <div class="row" style="font-size: 15px; position: relative; margin: 20px;">
-                <div class="col-sm-10">
-                    <h1 style="color: tomato;">
-                        MEDICAL    CLAIM    FORM
-                    </h1>
-    
-                </div> -->
-                <!-- <div class="col-sm-2" style="font-size: 12px; float: right; margin-top: 0px;">
-                    <div class="row" >
-                        <h1 ><img  src="../../../../assets/img/avatars/aarsidelogo.png" alt="" height="100px" width="200px">
-                       </h1>
-                    </div>
-                </div> -->
-    
-           <!-- </div> -->
                
-                <!-- <div class="row" style="margin: 15px;">
-                    <div class="col-sm-12">
-                        <div class="row">  
-                            <div class="col-sm-8" >
-                                <h1 style="color: tomato;">
-                                    MEDICAL CLAIM FORM
-                                </h1>
-                                <p>
-                                    Please fill all sections (Use Separate form per member per visit)
-                                </p>
-                                <div>
-                                    <p>
-                                      <strong>  All Claims Should be submitted to:</strong>
-                                    </p>
-                                </div>
-                                <div>
-                                    <p>
-                                      <strong>
-                                        Claims Department Mananger
-                                      </strong>
-                                    </p>
-                                </div>
-                                <div>
-                                    <p><strong>
-                                        AAR Insurance Kenys Ltd<br>
-                                        Real Towers, Hospital Road, Upper-Hill,Ground Floor<br>
-                                        P.O Box 41766-00100 GPO Nairobi,Kenya
-                                    </strong>
-                                      
-                                    </p>
-                                  
-                                   
-                                </div>
-                            </div>
-                            
-                        </div> 
-                        
-
-                    </div>
+            </div>
+            <div class="row" >
+               
+            
+    
+                <div class="col-sm-12" style="font-size: 10px;">
                     
-                   
-                  
-                
-                </div> -->
-                <!-- <div class="row" >
-                    <div class="col-sm-12"  style="margin-left: 15px;">
-                        
-                            For Querries contanct our 24 Hour medical services helpline at +254202895000/+254730633000/+254703063000<br> or email
-                         <strong style="color: tomato;">medicalservices@aar.co.ke</strong>/www.aar-insurance.com
-                          
-                    </div>
-    
-                   </div> -->
-    
-                <div class="col-sm-12" style="font-size: 12px;">
-                    <div style="display: flex !important; font-size: 12px;  margin: 30px; " class="text">
-                        <h6 ><u>A. PATIENT INFORMATION (to be completed by patient/parent/guardian)</u> </h6>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p style="white-space:nowrap; margin-top: 0px;">
+                                <img src="../../../../assets/img/avatars/aarthur.png" alt="" width="1000" height="300" >
+                               
+                                 
+                               
+                            </p>
+            
+            
+                        </div>
+            
                     </div>
                     <div class="row" style="margin: 12px;">
                         <div class="col-sm-2">Name:</div>
                         <div class="col-sm-10">
                             <div class="row" style="position: absolute;bottom: 0;" ng-click="editing = true">
-                                   <strong>{{patient.patient.first_name}} {{patient.patient.last_name}}</strong>
+                                   <strong>{{patient.patient.first_name}} {{patient.patient.last_name}} {{patient.patient.other_names}}</strong>
                             </div>
                             <div class="row">
                    ___________________________________________________________________________________________________________________________________
@@ -114,7 +55,7 @@
                         <div class="col-sm-2">Date of Birth:</div>
                         <div class="col-sm-2">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                <strong>{{patient.patient.dob}} </strong>
+                                <strong>{{patient.patient.dob | date }} </strong>
                             </div>
                             <div class="row">
                 _____________
@@ -215,14 +156,14 @@
                     <div class="clearfix"></div>
     
                 </div>
-                <div class="row" style="font-size: 12px; margin: 30px;">
+                <div class="row" style="font-size: 10px; margin: 30px;">
                     <div style="display: flex !important; " class="col-sm-12">
                         <h6 ><u>B. CLINICAL INFORMATION (to be completed by attending medical Practitioner or consultant)</u> </h6>
                     </div>
     
                 </div>
                 <div class="col-sm-12" style="margin: 12px;">
-                    <div class="row" style="margin-left: 12px; font-size: 12px;">
+                    <div class="row" style="margin-left: 12px; font-size: 11px;">
                         <div class="col-sm-4">
                             <mat-checkbox class="example-margin" ></mat-checkbox>
                             First Visit
@@ -244,7 +185,7 @@
                                     _______________________________________________________________________________________________________________________________________________________<br>
                                      _______________________________________________________________________________________________________________________________________________________<br>
                                    ______________________________________________________________________________________________________________________________________________________<br>                        
-                                            <div class="clearfix"></div>
+                                         
                                            
                                        </div>
         
@@ -260,7 +201,7 @@
                                     _______________________________________________________________________________________________________________________________________________________<br>
                                      _______________________________________________________________________________________________________________________________________________________<br>
                                    ______________________________________________________________________________________________________________________________________________________<br>                        
-                                            <div class="clearfix"></div>
+                                            
                                            
                                        </div>
         
@@ -276,7 +217,7 @@
                                 _______________________________________________________________________________________________________________________________________________________<br>
                                  _______________________________________________________________________________________________________________________________________________________<br>
                                ______________________________________________________________________________________________________________________________________________________<br>                        
-                                        <div class="clearfix"></div>
+                                      
                                        
                                    </div>
     
@@ -308,7 +249,7 @@
                     
                     
                    
-                    <div class="clearfix"></div>
+                  
                     
     
     
@@ -363,7 +304,7 @@
                 
     
             </div>
-            <div class="row" style="font-size: 12px;" style="margin: 10px;">
+            <div class="row" style="font-size: 12px;" style="margin: 8px;">
                 <div class="col-sm-6">
                 Please attach a detail invoice and a copy of referral form<br>
                 (If patient was referred to your center) and send to AAR insurance Kenya<br>
@@ -372,7 +313,7 @@
                 AAR Insurance Kenya Within 24 hours of admission.
     
                 </div>
-                <div class="col-sm-6" style="font-size: 10px;">
+                <div class="col-sm-6" style="font-size: 6pxpx;">
                     <div class="row" style="float: right;">
                         <h1 ><img  src="../../../../assets/img/avatars/aar.png" alt="">
                        </h1>
@@ -382,7 +323,111 @@
             </div>
            
         </div>
-      </div>
+        <div class="modal fade" bsModal #clientModal="bs-modal" 
+        tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+     <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h4 id="dialog-static-name" class="modal-title pull-left">Edit Form</h4>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+         <form [formGroup]="clientForm"   >
+           
+           <div class="row">
+             <div class="col-sm-4">
+               <mat-form-field appearance="outline">
+                 <mat-label>Surname</mat-label>
+                   <input matInput placeholder="Surname" [(ngModel)]="patient.patient.last_name"  formControlName="surname" >
+                 </mat-form-field>
+             </div>
+             <div class="col-sm-4">
+               <mat-form-field appearance="outline">
+                 <mat-label>First Name</mat-label>
+                   <input matInput placeholder="First Name" [(ngModel)]="patient.patient.first_name"  formControlName="firstname" >
+                   
+                 </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+             <mat-form-field appearance="outline">
+               <mat-label>Other Name</mat-label>
+                 <input matInput placeholder="Other Name" [(ngModel)]="patient.patient.other_names"  formControlName="lastname">
+                
+               </mat-form-field>
+         </div>
+          
+          <div class="col-sm-4">
+           <mat-form-field appearance="outline" >
+             <mat-label>Telephone No</mat-label>
+               <input matInput placeholder="Phone" [(ngModel)]="patient.patient.phone" formControlName="phone" >
    
+             </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+           <mat-form-field appearance="outline">
+             <mat-label>D.O.B</mat-label>
+               <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.patient.dob"  formControlName="dob" >
+               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+               <mat-datepicker #picker></mat-datepicker>
+             </mat-form-field>
+         </div>
+         <div class="col-sm-4">
+           <mat-form-field appearance="outline">
+             <mat-label>Membership No</mat-label>
+                <input matInput placeholder="National ID" [(ngModel)]="patient.member_number" formControlName="memberno" >
+              </mat-form-field>
+         </div>
+         <div class="col-sm-4">
+           <mat-form-field appearance="outline">
+             <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" [(ngModel)]="patient.patient.email"  formControlName="email">
+           </mat-form-field>
+         </div>
+         <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Date of Onset</mat-label>
+                <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker1"  formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field  appearance="outline">
+              <mat-label>Doctor's Name</mat-label>
+                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+    
+              </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+              <mat-label>Doctor's specialty</mat-label>
+                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.specialty" formControlName="specialty" >
+    
+              </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+              <mat-label>Diagnoses</mat-label>
+                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.specialty" formControlName="specialty" >
+    
+              </mat-form-field>
+           </div>
+          
+          
+          
+     <div class="col-sm-8" >
+     <button class="btn btn-success pull-right"  (click)="Update()">Update</button>
+   </div>
+           </div>
+         </form>
+         </div>
+       </div>
+     </div>
+   </div>
+      
+      </div>
+     
 
 

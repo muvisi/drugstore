@@ -21,10 +21,15 @@
                <i class="fa fa-cogs" aria-hidden="true"></i> configure
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="icon-wrench"></i>Set up</a>
-        <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
-        <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-lock"></i>Change password </a>
         <a class="dropdown-item" (click)="qrcodeModal.show()">Qrcode </a>
+        <a class="dropdown-item" routerLink="/dashboard/payments" > <i class="icon-wallet"></i>  Payments</a>
+        <a class="dropdown-item" routerLink="/dashboard/vaccine-setup" > <i class="fas fa-syringe"></i>Vaccine Setup</a>
+        <a class="dropdown-item" routerLink="/dashboard/timeslot" > <i class="fas fa-address-book"></i>Time Slot Setup</a>
+        <a class="dropdown-item" routerLink="/dashboard/clinic-setup" > <i class="fa fa-thermometer-half"></i>Clinic Setup</a>
+        <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="icon-wrench"></i>Set up</a>
+        <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-lock"></i>Change password </a>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
+       
       </div>
     </li>
   </ul>

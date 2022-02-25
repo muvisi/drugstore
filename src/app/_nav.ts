@@ -40,16 +40,28 @@ export const navItems: NavData[] = [
     name: 'Main'
   },
   {
-    name: 'Send Register Link',
+    name: 'Register Link',
     url: '/dashboard/registration-link',
     icon: 'fas fa-address-book',
   
   },
+
   {
     name: 'Bookings',
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
   },
+  {
+    name: 'Print Forms',
+    url: '/dashboard/InsuranceclaimsForm',
+    icon: 'fa fa-folder-open',
+  },
+  {
+    name: 'Calendar',
+    url: '/dashboard/specialty',
+    icon: 'fa fa-calendar-check-o',
+  },
+  
   {
     name: 'Clients',
     url: '/dashboard/records',
@@ -60,22 +72,18 @@ export const navItems: NavData[] = [
   //   url: '/dashboard/calendar',
   //   icon: 'fa fa-calendar-check-o',
   // },
-  {
-    name: 'Specialty Calendar',
-    url: '/dashboard/specialty',
-    icon: 'fa fa-calendar-check-o',
-  },
-  
+ 
 
   {
     name: 'Covid Report',
     url: '/dashboard/reports',
     icon: 'icon-chart',
   },
+  
   // {
-  //   name: 'Claim Form',
-  //   url: '/dashboard/insurance-forms',
-  //   icon: 'fa fa-folder-open',
+  //   name: 'Clinic-Setup',
+  //   url: '/dashboard/clinic-setup',
+  //   icon: 'fa fa-thermometer-half',
   // },
   {
     name: 'Clinic-Setup',
@@ -112,11 +120,24 @@ export const navItems: NavData[] = [
     icon: 'icon-wallet',
   
   }
-  
+
   // {
-  //   name: 'Covid Test Payments',
-  //   url: '/dashboard/revenues',
+  //   name: 'Vaccine Setup',
+  //   url: '/dashboard/vaccine-setup',
+  //   icon: 'fas fa-syringe',
+  // },
+  // {
+  //   name: 'Time Slot Setup',
+  //   url: '/dashboard/timeslot',
   //   icon: 'fas fa-address-book',
   
+  // },
+  // {
+  //   name: 'Payments',
+  //   url: '/dashboard/payments',
+  //   icon: 'icon-wallet',
+  
   // }
+  
+ 
 ];
