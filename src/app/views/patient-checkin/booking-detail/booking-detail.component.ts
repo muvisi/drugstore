@@ -21,6 +21,13 @@ export class BookingDetailComponent implements OnInit {
   symptoms=[];
   payment_mode;
   submitted;
+  nextofKin={
+    name:"",
+    phone:"",
+    residence:"",
+    relationship:""
+  
+  }
   customer: any;
   show_insurance;
   loading: boolean;
@@ -71,6 +78,7 @@ export class BookingDetailComponent implements OnInit {
           'other_names': res.patient.other_names != null ? res.patient.other_names : '',
           'occupation': res.patient.occupation !=null ? res.patient.occupation : ''
       }
+      this.nextofKin=res.nextofKin
       this.speciality=res.specialist.split(",")
       this.symptoms=res.symptoms.split(",")
       this.department=res.department;
