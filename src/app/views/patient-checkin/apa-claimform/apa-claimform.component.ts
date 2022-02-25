@@ -24,21 +24,21 @@ export class ApaClaimformComponent implements OnInit {
   constructor(private route: ActivatedRoute,public service:ServiceService) { }
 
   ngOnInit() {
-    this.service.getSinglePatientData_Hospserver(this.route.snapshot.params.id).subscribe((res)=>{
+    
+    this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
       console.log("HEALTHIX",res);
       this.patient = res;
+      
     })
-   
   }  
- 
- printPage() {
-console.log("Resp", this.patient)
-document.title=this.patient[0].visit_number.concat("-01")
-
-
-  window.print();
- 
+  printPage() {
+    console.log("Resp", this.patient)
+    
+    document.title=this.patient.insuranceVisit.visit_number.concat("-01")
+    
+    
+      window.print();
+     
+    }
+    
 }
-
-}
-

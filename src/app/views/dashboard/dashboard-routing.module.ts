@@ -64,6 +64,7 @@ import { BupaclobalClaimformComponent } from '../patient-checkin/bupaclobal-clai
 import { RegistrationLinkComponent } from '../patient-checkin/registration-link/registration-link.component';
 import { BookingDetailComponent } from '../patient-checkin/booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from '../patient-checkin/print-insurance-forms/print-insurance-forms.component';
+import { PaymentsComponent } from '../patient-checkin/payments/payments.component';
 const routes: Routes = [
   {
     path: '',
@@ -179,7 +180,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'feedback',
+    path: 'feedbacks',
     component:FeedbacksComponent,
     canActivate: [AuthGuard]
   },
@@ -330,6 +331,11 @@ const routes: Routes = [
   {
     path: 'insurance-forms/:id',
     component:InsuranceFormsComponent,
+    
+  },
+  {
+    path: 'payments',
+    component:PaymentsComponent,
     
   },
   {

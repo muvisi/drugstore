@@ -82,20 +82,34 @@ export const navItems: NavData[] = [
     url: '/dashboard/clinic-setup',
     icon: 'fa fa-thermometer-half',
   },
-  {
-    name: 'Bookings Report',
-    url: '/dashboard/queuereports',
-    icon: 'icon-chart',
+  // {
+  //   name: 'Bookings Report',
+  //   url: '/dashboard/queuereports',
+  //   icon: 'icon-chart',
+  // },
+
+  // {
+  //   name: 'Vaccine Setup',
+  //   url: '/dashboard/vaccine-setup',
+  //   icon: 'fas fa-syringe',
+  // },
+
+   {
+    name: 'Feedbacks',
+    url: '/dashboard/feedbacks',
+    icon: 'fas fa-comment',
   },
+  
+  // {
+  //   name: 'Time Slot Setup',
+  //   url: '/dashboard/timeslot',
+  //   icon: 'fas fa-address-book',
+  
+  // },
   {
-    name: 'Vaccine Setup',
-    url: '/dashboard/vaccine-setup',
-    icon: 'fas fa-syringe',
-  },
-  {
-    name: 'Time Slot Setup',
-    url: '/dashboard/timeslot',
-    icon: 'fas fa-address-book',
+    name: 'Payments',
+    url: '/dashboard/payments',
+    icon: 'icon-wallet',
   
   }
   

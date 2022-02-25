@@ -90,6 +90,7 @@ import { BupaclobalClaimformComponent } from './bupaclobal-claimform/bupaclobal-
 import { RegistrationLinkComponent } from './registration-link/registration-link.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from './print-insurance-forms/print-insurance-forms.component';
+import { PaymentsComponent } from './payments/payments.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -155,7 +156,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BupaclobalClaimformComponent,
     RegistrationLinkComponent,
     BookingDetailComponent,
-    PrintInsuranceFormsComponent
+    PrintInsuranceFormsComponent,
+    PaymentsComponent
 
     
 
