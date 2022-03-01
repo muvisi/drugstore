@@ -150,6 +150,60 @@
                             </mat-tab>
                             <mat-tab>
                               <ng-template mat-tab-label>
+                                NextofKin Details
+                              </ng-template>
+                            
+                              <br>
+                              <fieldset>
+                                <legend>NextofKin Details</legend>
+                                <div class="col-sm-12">
+                                 
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <mat-form-field appearance="outline">
+                                                  <mat-label>Name</mat-label>
+                                                    <input matInput placeholder="Name" name="name" [(ngModel)]="nextofKin.name">
+                                                  </mat-form-field>
+                                            </div>
+                                     
+                                    
+                                  
+                                       <div class="col-sm-4">
+                                        <mat-form-field  appearance="outline">
+                                          <mat-label>Phone</mat-label>
+                                            <input matInput placeholder="Phone" name="phone" [(ngModel)]="nextofKin.phone">
+                                    
+                                          </mat-form-field>
+                                       </div>
+                                  
+                                       <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Relationship</mat-label>
+                                            <input matInput placeholder="Relationship" name="relationship"  [(ngModel)]="nextofKin.relationship">
+                                          </mat-form-field>
+                                    </div>
+                                     
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Residence</mat-label>
+                                            <input matInput placeholder="Residence"   name="residence" [(ngModel)]="nextofKin.residence">
+                                          </mat-form-field>
+                                    </div>
+                                  
+                                        </div>
+                                      </form>
+
+
+                                </div>
+                              </fieldset>
+                              
+                        
+
+  
+                            </mat-tab>
+                            <mat-tab>
+                              <ng-template mat-tab-label>
                                 Payment Details
                               </ng-template>
                               <br>
@@ -163,10 +217,10 @@
                                     <div class="col-sm-12">
                                       <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">How will you make payment for hospital bill?</span></h2></div>
                    
-                                    <mat-radio-group  formControlName="payment">
+                                    <mat-radio-group  formControlName="payment" [(ngModel)]="payment_mode">
                                       <div class="row"  style="justify-content: center;display: flex;">
                                         <div class="col-sm-3">
-                                             <mat-radio-button    value="Cash"  [checked]="payment_type.payment=='Cash'"  style="font-family: lato light;margin-right: 30px;"><h3>Cash</h3></mat-radio-button>
+                                             <mat-radio-button    value="Cash"  style="font-family: lato light;margin-right: 30px;"><h3>Cash</h3></mat-radio-button>
                                          </div>
                                          <div class="col-sm-3">
                                           <mat-radio-button    value="Mpesa"   [checked]="payment_type.payment=='Mpesa'"   style="font-family: lato light;margin-right: 30px;"><h3>Mpesa</h3></mat-radio-button>

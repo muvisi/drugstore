@@ -10,11 +10,17 @@
             <div class="col-sm-12">
                 <div class="row">
                   <div class="col-sm-2">
-                     
-                  </div>
-                  <div class="col-sm-2">
-                   
-                </div>
+                    <mat-form-field>
+                    <input matInput [(ngModel)]="searchText"  autocomplete="off"    placeholder="Mobile,  Name" type="search">
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+            
+
+          </div>
+          <div class="col-sm-2">
+            <button  (click)="clickSearch()"  class="btn btn-success pull-right">search</button> 
+        </div>
                 </div>
               </div>
             <div class="col-sm-12">

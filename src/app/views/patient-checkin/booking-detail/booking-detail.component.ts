@@ -21,7 +21,15 @@ export class BookingDetailComponent implements OnInit {
   date;
   speciality=[];
   symptoms=[];
+  payment_mode;
   submitted;
+  nextofKin={
+    name:"",
+    phone:"",
+    residence:"",
+    relationship:""
+  
+  }
   customer: any;
   show_insurance;
   loading: boolean;
@@ -76,10 +84,12 @@ export class BookingDetailComponent implements OnInit {
           'other_names': res.patient.other_names != null ? res.patient.other_names : '',
           'occupation': res.patient.occupation !=null ? res.patient.occupation : ''
       }
+      this.nextofKin=res.nextofKin
       this.speciality=res.specialist.split(",")
       this.symptoms=res.symptoms.split(",")
       this.department=res.department;
       this.payment_type={'payment':res.payment !=null ? res.payemnt : ''}
+      this.payment_mode=res.payment;
       
 
       console.log("pateint",this.patient_info);
@@ -89,7 +99,7 @@ export class BookingDetailComponent implements OnInit {
       // console.log("DOB",this.date)
       if(res.payment=="Insurance"){
         this.show_insurance=true;
-        this.service.getInsurance(res.id).subscribe((res2)=>{
+        this.service.getBookingInsuranceDetails(res.id).subscribe((res2)=>{
           console.log(res2);
 
           this.payment_info={

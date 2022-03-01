@@ -180,7 +180,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'feedback',
+    path: 'feedbacks',
     component:FeedbacksComponent,
     canActivate: [AuthGuard]
   },
