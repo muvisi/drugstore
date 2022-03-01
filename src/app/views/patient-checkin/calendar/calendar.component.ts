@@ -20,7 +20,7 @@ selectedDate: Date = new Date();
 setView: View ='MonthAgenda';
 scheduleHours: WorkHoursModel  = { highlight: true, start: '08:00', end: '05:00' };
 public workWeekDays: number[] = [6];
-setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
+setViews: View[] = ['Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
 dataManager: DataManager = new DataManager({
   url: endpoint+'api/calendar/?speciality='+this.route.snapshot.params.speciality,
 
@@ -31,7 +31,7 @@ dataManager: DataManager = new DataManager({
   headers: [{ 'Authorization': 'Bearer ' + this.token}]
 });
 public eventSettings: EventSettingsModel = { dataSource: this.dataManager };
-public scheduleViews: View[] = ['Week', 'WorkWeek', 'Month', 'TimelineWeek', 'TimelineWorkWeek'];
+public scheduleViews: View[] = ['Week', 'Month' ];
 public showWeekend: boolean = true;
 
   constructor( public service: ServiceService,private route: ActivatedRoute) {

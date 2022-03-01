@@ -65,8 +65,24 @@ export class SpecialtyComponent implements OnInit {
       this.router.navigate(['/dashboard/calendar/',this.selected.specialist])
      
     }
+  ViewAllBookings(){
+   ;
+    this.service.filtercalendar({specialist:this.selected.specialist}).subscribe((res)=>{
+   
+      console.log("RESP",res)
+      
+      // this.toastr.success('Successfully selected','Success');
+     
+
+      
+      })
+      this.router.navigate(['/dashboard/calendar/',this.selected.specialist])
+     
+    }
+
+  }
    
   
 
-  }
+  
 

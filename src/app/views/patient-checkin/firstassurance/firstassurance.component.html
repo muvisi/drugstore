@@ -9,23 +9,26 @@
 
 
         <div class="row">
-            <div class="col-sm-12" >
+            <div class="col-sm-12">
                 <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+
                 <div class="clearfix"></div>
-                <!-- <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="sedgrick()">SEDGWICK Claimform</button> -->
+    
+            </div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12">
+                <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
 
-
+                
     
             </div>
            
-           
-            
-            
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <p style="white-space:nowrap; margin-top: 0px;">
-                    <img src="../../../../assets/img/avatars/med004.png" alt="" width="900" >
+                    <img src="../../../../assets/img/avatars/med004.png" alt="" width="900" height="100" >
                    
                      
                    
@@ -51,7 +54,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p style="white-space:nowrap;">
-                                <img src="../../../../assets/img/avatars/medoo2.png" alt="" width="900" >
+                                <img src="../../../../assets/img/avatars/medoo2.png" alt="" width="900">
                                
                                  
                                
@@ -78,7 +81,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1;">
-                                    <strong>{{patient.patient.first_name}} </strong>
+                                   <span style="margin-left: 30px;"> <strong>{{patient.patient.first_name}} </strong></span>
                                 </div> <hr>
                             </div>
                             
@@ -118,10 +121,12 @@
 
                     <div class="row">
                         <div class="col-sm-2">Employer:</div>
-                        <div class="col-sm-4"> <hr>
-                            <div class="row" style="position: absolute;bottom: 1;">
-                            </div>
-                        
+                        <div class="col-sm-2">
+                                
+                                
+                            <div class="row" style="position: absolute;bottom: -1;">
+                                <strong>{{patient.employer}} </strong>
+                            </div> <hr>
                         </div>
                         <div class="col-sm-3">Patient/Member number/Phone Number:</div>
                         <div class="col-sm-2">
@@ -145,8 +150,12 @@
                         </div> <hr>
                     </div>
                     <div class="col-sm-2">Id/Passport:</div>
-                    <div class="col-sm-4"> <hr>
-                      
+                    <div class="col-sm-2">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1;">
+                            <strong>{{patient.idnumber}} </strong>
+                        </div> <hr>
                     </div>
                     
                 </div>
@@ -296,7 +305,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <p style="white-space:nowrap;">
-                            <img src="../../../../assets/img/avatars/payment.png" alt="" width="900" >
+                            <img src="../../../../assets/img/avatars/payment.png" alt="" width="900" height="200" >
                            
                              
                            
@@ -323,23 +332,33 @@
                     <div class="col-sm-2">
                         ADDRESS OF PRACTICE
                     </div>
-                    <div class="col-sm-4"> <hr>
-                      
-                    </div>
                     <div class="col-sm-2">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1;">
+                            <strong>{{patient.doctoraddress}} </strong>
+                        </div> <hr>
+                    </div>
+                    <div class="col-sm-2"  (click)="activateStaffSignature()">
                        DR SIGNATURE
                     </div>
-                    <div class="col-sm-4"> <hr>
-                      
-                    </div>
+                    <div class="col-sm-4">
+                        <div class="row" style="position: absolute;bottom: 0;margin-bottom: 5px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                    <div class="row" style="color: orangered;">___________________________</div>
+                </div>
+
                     
                 </div>
                 <div class="row" style="position: relative; margin: 40px; font-size: 12px;">
                     <div class="col-sm-2">
                        Date
                     </div>
-                    <div class="col-sm-4"> <hr>
-                      
+                    <div class="col-sm-2">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1;">
+                            <strong>{{patient.date}} </strong>
+                        </div> <hr>
                     </div>
                     <div class="col-sm-2">
                        Stamp
@@ -357,12 +376,17 @@
                     </p>
                 </div>
                 <div class="row">
-                    <div class="col-sm-2" >
+                    <div class="col-sm-2" (click)="activateMemberSignature()">
                         Member Signature:
                     </div>
-                    <div class="col-sm-4"> <hr>
+                    <div class="col-sm-4">
+                        <div class="row" style="position: absolute;bottom: 0;margin-bottom: 6px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
+                    <div class="row" style="color: orangered;">___________________________</div>
+                </div>
+
+                    <!-- <div class="col-sm-4"  (click)="activateMemberSignature()"> <hr>
                       
-                    </div>
+                    </div> -->
                     <div class="col-sm-2">
                        Date
                     </div>
@@ -385,4 +409,137 @@
            
              
             </div>  
-        </div> 
+       
+    </div>
+  <div class="modal fade" bsModal #clientModal="bs-modal" 
+        tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Edit Form</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <form [formGroup]="clientForm"   >
+        
+        <div class="row">
+            <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Surname</mat-label>
+                <input matInput placeholder="Surname" [(ngModel)]="patient.patient.last_name"  formControlName="surname" >
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" [(ngModel)]="patient.patient.first_name"  formControlName="firstname" >
+                
+                </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+            <mat-label>age</mat-label>
+                <input matInput placeholder="age" [(ngModel)]="patient.patient.age"  formControlName="age">
+                
+            </mat-form-field>
+        </div>
+        
+        <div class="col-sm-4">
+        <mat-form-field appearance="outline" >
+            <mat-label>Telephone No</mat-label>
+            <input matInput placeholder="Telephone No" [(ngModel)]="patient.patient.phone" formControlName="phone" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+            <mat-label>D.O.B</mat-label>
+            <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.date"  formControlName="date" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+            <mat-label>Membership No</mat-label>
+                <input matInput placeholder="Membership No" [(ngModel)]="patient.member_number" formControlName="memberno" >
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" [(ngModel)]="patient.patient.email"  formControlName="email">
+        </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+            <mat-label>Date of Onset</mat-label>
+                <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker1"  formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field  appearance="outline">
+            <mat-label>Doctor's Name</mat-label>
+                <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Doctor's specialty</mat-label>
+                <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Member Name</mat-label>
+                <input matInput placeholder="member_name" [(ngModel)]="patient.member_name" formControlName="diagnosis" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Relationship</mat-label>
+                <input matInput placeholder="Relation" [(ngModel)]="patient.relation" formControlName="description" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Employer</mat-label>
+                <input matInput placeholder="Employer" [(ngModel)]="patient.employer" formControlName="employer" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>ID/Passport</mat-label>
+                <input matInput placeholder="Passport" [(ngModel)]="patient.idnumber" formControlName="id" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Adress of Doctor</mat-label>
+                <input matInput placeholder="doctor address" [(ngModel)]="patient.doctoraddress" formControlName="address" >
+
+            </mat-form-field>
+        </div>
+        
+        
+        
+    <div class="col-sm-8" >
+    <button class="btn btn-success pull-right"  (click)="Update()">Update</button>
+    </div>
+        </div>
+        </form>
+        </div>
+    </div>
+    </div>
+   
+</div>

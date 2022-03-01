@@ -159,6 +159,7 @@
                    <div class="col-sm-12" style="margin-top: 15px;">
                     <div class="row">
                         <div class="col-sm-4" style="text-align: center;"> <hr>
+                            
                             <span >Signature</span>
                          </div>
                          <div class="col-sm-4" style="text-align: center;"> <hr>
@@ -196,14 +197,18 @@
 
                 <div class="row" style="margin-top: 12px;">
                     <div class="col-sm-8">
-                        <div class="row">
+                        <div class="row" (click)="activateMemberSignature()">
                             <div class="col-sm-4">Member's Signature:</div>
                             <div class="col-sm-8">
+                                <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="100px" height="50px"/></div>
+                            <div class="row">_______________________________________________________________ </div>
+                            </div>
+                            <!-- <div class="col-sm-8">
                                 
                             <div class="row"> ______________________________________________________________</div>
                            
                                 
-                            </div>
+                            </div> -->
                         </div>
                        
                     </div>
