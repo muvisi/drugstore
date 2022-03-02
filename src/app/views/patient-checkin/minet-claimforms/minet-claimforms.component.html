@@ -249,15 +249,23 @@
                         </div>
 
                     </div>
+                    <!-- <div class="col-sm-2"  (click)="activateStaffSignature()">
+                        PROVIDER'S SIGNATURE:
+                     </div> -->
+                     <!-- <div class="col-sm-3">
+                         <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                     <div class="row">___________________________</div>
+                 </div> -->
                     <div class="row" style=" font-size: 12px;">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2" (click)="activateMemberSignature()">
                             Signed
                         </div>
-                        <div class="col-sm-2" >
+                        <div class="col-sm-6"  >
+                            <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
                             <input type="text">
                             </div>
                       
-                        <div class="col-sm-6">
+                        <div class="col-sm-2">
                             Date:
                         </div>
                         <div class="col-sm-2" >
@@ -302,10 +310,12 @@
                         <div class="col-sm-2" >
                             <input type="text">
                             </div>
-                        <div class="col-sm-2">
-                            Signd:
+                        <div class="col-sm-2" (click)="activateStaffSignature()">
+                            Signed:
                         </div>
                         <div class="col-sm-2" >
+                            <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+
                             <input type="text">
                             </div>
                        

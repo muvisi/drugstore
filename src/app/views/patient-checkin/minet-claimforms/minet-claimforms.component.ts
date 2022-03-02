@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ServiceService } from '../../../service.service';
+import { SignatureService } from '../../../signature.service';
 
 @Component({
   selector: 'app-minet-claimforms',
@@ -113,10 +114,15 @@ export class MinetClaimformsComponent implements OnInit {
   membernumber;
   description;
   visit;
+  signature1_src;
+   signature1_show;
+   signature2_show;
+   signature2_src;
+   signature_type;
   clientForm: FormGroup;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('clientModal', { static: false }) clientModal: ModalDirective;
-  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,private signatureService:SignatureService) { }
 
   ngOnInit() {
     this.clientForm = this.formBuilder.group({
@@ -135,36 +141,83 @@ export class MinetClaimformsComponent implements OnInit {
       employee: [''],
       cardno: [''],
     });
- 
-    this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
-      console.log("HEALTHIX",res);
-      this.patient = res;
-    })
-   
-  }  
- 
-  printPage() {
-    console.log("Resp", this.patient)
+    this.signatureService.connect();
     
-    document.title=this.patient.insuranceVisit.visit_number.concat("-01")
-    
-    
-      window.print();
+    this.today1=new Date();
+
+    this.signatureService.socket().subscribe((res)=>{
+      console.log("images",res);
+      if (this.signature_type=="staff"){    
      
-    }
-    edit(){
-      // let item = this.customer;
-      // this.clientForm.patchValue({first_name:item.first_name,last_name:item.last_name,other_names:item.other_names,phone:item.phone,
-      //   dob:new Date(item.dob),gender:item.gender,email:item.email,residence:item.residence,national_id:item.national_id,occupation:item.occupation,id:item.id
-      // })
-      this.clientModal.show();
-    }
-    Update(){
-      console.log("DATA",this.clientForm.value)
-      
-      this.clientModal.hide();
-      
-    }
+        this.signature2_src=this.service.getSignatureUrl()+res;
+        if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
+          this.signature2_show=true;
+         
+        }
+      }else if(this.signature_type=="member"){
+        this.signature1_src=this.service.getSignatureUrl()+res;
+        if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
+        this.signature1_show=true;
+        this.today1=new Date();
+        }
+     
+      }
+  });
+  this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
+    console.log("HEALTHIX",res);
+    this.patient = res;
     
+  })
+  
+
+
+
+
+}  
+ 
+ printPage() {
+console.log("Resp", this.patient)
+
+document.title=this.patient.insuranceVisit.visit_number.concat("-01")
+
+
+  window.print();
+ 
+}
+
+
+
+
+
+  activateMemberSignature(){
+    this.signature_type="member"
+    this.signature1_show=false;
+    
+    let data={
+      'status':'activate',
+      'type':'member'
+    }
+    this.signatureService.send(JSON.stringify(data))
+  }
+  
+  activateStaffSignature(){
+    this.signature_type="staff";
+    this.signature2_show=false;
+    let data={
+      'status':'activate',
+      'type':'staff'
+    }
+    this.signatureService.send(JSON.stringify(data))
+  }
+  edit(){
+    
+    this.clientModal.show();
+  }
+  Update(){
+    console.log("DATA",this.clientForm.value)
+    
+    this.clientModal.hide();
+    
+  }
 }
 

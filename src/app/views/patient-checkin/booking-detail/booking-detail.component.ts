@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../../service.service';
+import dateFormat, { masks } from "dateformat";
 // import { ServiceService } from '../../../service.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class BookingDetailComponent implements OnInit {
   payment_type;
   payment_info;
   department;
+  date;
   speciality=[];
   symptoms=[];
   payment_mode;
@@ -66,8 +68,12 @@ export class BookingDetailComponent implements OnInit {
     });
     this.service.getbookingDetails(this.route.snapshot.params.id).subscribe((res)=>{
       this.customer=res.patient;
+      this.date=res.patient.dob;
+      // console.log(this.date,"kimmmm")
+       this.date=dateFormat(res.patient.dob, "dd/mm/yyyy");
+      // console.log("",this.date)
       this.patient_info={    
-          'dob': res.patient.dob != null ? res.patient.dob : '' ,
+          'dob': res.patient.dob,
           'email': res.patient.email != null ? res.patient.email : '',
           'first_name': res.patient.first_name != null ? res.patient.first_name : '',
           'gender':  res.patient.gender != null ?  res.patient.gender : '',
@@ -87,6 +93,10 @@ export class BookingDetailComponent implements OnInit {
       
 
       console.log("pateint",this.patient_info);
+      
+     
+
+      // console.log("DOB",this.date)
       if(res.payment=="Insurance"){
         this.show_insurance=true;
         this.service.getBookingInsuranceDetails(res.id).subscribe((res2)=>{

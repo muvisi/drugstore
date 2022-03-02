@@ -101,31 +101,31 @@ clickRow(item){
  
   this.router.navigate(['/dashboard/cignainsurance/',item.id])
    }
-   if (this.selected.insurance_company=='	SANLAM INSURANCE COMPANY LTD') 
-     {
+  //  if (this.selected.insurance_company=='	SANLAM INSURANCE COMPANY LTD') 
+  //    {
  
-  this.router.navigate(['/dashboard/insurance-forms/',item.id])
-   }
-   if (this.selected.insurance_company=='SANLAM INSURANCE COMPANY LTD') 
-   {
+  // this.router.navigate(['/dashboard/insurance-forms/',item.id])
+  //  }
+//    if (this.selected.insurance_company=='SANLAM INSURANCE COMPANY LTD') 
+//    {
 
-this.router.navigate(['/dashboard/insurance-forms/',item.id])
- }
+// this.router.navigate(['/dashboard/insurance-forms/',item.id])
+//  }
    if (this.selected.insurance_company=='AAR INSURANCE') 
      {
   
   this.router.navigate(['/dashboard/AAR/Claimform/',item.id])
    }
-   if (this.selected.insurance_company=='Sedgwick Kenya Insurance Brokers Limited') 
-     {
+  //  if (this.selected.insurance_company=='Sedgwick Kenya Insurance Brokers Limited') 
+  //    {
   
-  this.router.navigate(['/dashboard/sedgrick/',item.id])
-   }
-   if (this.selected.insurance_company=='THE CO-OPERATIVE BANK OF KENYA') 
-   {
+  // this.router.navigate(['/dashboard/sedgrick/',item.id])
+  //  }
+//    if (this.selected.insurance_company=='THE CO-OPERATIVE BANK OF KENYA') 
+//    {
 
-this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
- }
+// this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
+//  }
  if (this.selected.insurance_company=='UAP OLD MUTUAL INSURANCE') 
  {
 
@@ -141,26 +141,26 @@ if (this.selected.insurance_company=='APA INSURANCE')
 
 this.router.navigate(['/dashboard/APA/',item.id])
 }
-if (this.selected.insurance_company=='BUPA INTERNATIONAL') 
- {
+// if (this.selected.insurance_company=='BUPA INTERNATIONAL') 
+//  {
 
-this.router.navigate(['/dashboard/bupaglobal/',item.id])
-}
-if (this.selected.insurance_company=='Bupa International') 
- {
+// this.router.navigate(['/dashboard/bupaglobal/',item.id])
+// }
+// if (this.selected.insurance_company=='Bupa International') 
+//  {
 
-this.router.navigate(['/dashboard/bupaglobal/',item.id])
-}
-if (this.selected.insurance_company=='CIC INSURANCE') 
- {
+// this.router.navigate(['/dashboard/bupaglobal/',item.id])
+// }
+// // if (this.selected.insurance_company=='CIC INSURANCE') 
+//  {
 
-this.router.navigate(['/dashboard/cicinsurance/',item.id])
-}
-if (this.selected.insurance_company=='CO-PERATIVE KENYA LTD') 
- {
+// this.router.navigate(['/dashboard/cicinsurance/',item.id])
+// }
+// if (this.selected.insurance_company=='CO-PERATIVE KENYA LTD') 
+//  {
 
-this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
-}
+// this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
+// }
 if (this.selected.insurance_company=='FIRST ASSURANCE') 
  {
 
@@ -171,36 +171,36 @@ if (this.selected.insurance_company=='First Assurance')
 
 this.router.navigate(['/dashboard/FirstAssurance/',item.id])
 }
-if (this.selected.insurance_company=='HERITAGE INSURANCE') 
- {
+// if (this.selected.insurance_company=='HERITAGE INSURANCE') 
+//  {
 
-this.router.navigate(['/dashboard/heritageinsurance/',item.id])
-}
-if (this.selected.insurance_company=='Heritage Insurance') 
- {
+// this.router.navigate(['/dashboard/heritageinsurance/',item.id])
+// }
+// if (this.selected.insurance_company=='Heritage Insurance') 
+//  {
 
-this.router.navigate(['/dashboard/heritageinsurance/',item.id])
-}
-if (this.selected.insurance_company=='JUBILEE INSURANCE') 
- {
+// this.router.navigate(['/dashboard/heritageinsurance/',item.id])
+// }
+// if (this.selected.insurance_company=='JUBILEE INSURANCE') 
+//  {
 
-this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
-}
-if (this.selected.insurance_company=='Jubilee Insurance') 
- {
+// this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
+// }
+// if (this.selected.insurance_company=='Jubilee Insurance') 
+//  {
 
-this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
-}
+// this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
+// }
 if (this.selected.insurance_company=='MINET KENYA INSURANCE BROKERS LTD') 
  {
 
 this.router.navigate(['/dashboard/minetinsurance/',item.id])
 }
-if (this.selected.insurance_company=='MTN INSURANCE') 
-{
+// if (this.selected.insurance_company=='MTN INSURANCE') 
+// {
 
-  this.router.navigate(['/dashboard/mtninsurance/',item.id])
-  }
+//   this.router.navigate(['/dashboard/mtninsurance/',item.id])
+//   }
 if (false) {
   this.toastr.warning('Payment not Insurance!')
   

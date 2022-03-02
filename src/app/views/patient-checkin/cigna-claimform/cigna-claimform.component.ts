@@ -34,10 +34,11 @@ export class CignaClaimformComponent implements OnInit {
   constructor(private route: ActivatedRoute,public service:ServiceService,private signatureService:SignatureService) { }
 
   ngOnInit() {
+    this.today1=new Date().toISOString().slice(0,10);
     
     this.signatureService.connect();
     
-    this.today1=new Date();
+    
 
     this.signatureService.socket().subscribe((res)=>{
       console.log("images",res);
@@ -64,15 +65,18 @@ export class CignaClaimformComponent implements OnInit {
   })
   }  
  
- printPage() {
-console.log("Resp", this.patient)
-
-document.title=this.patient.patient.phone.concat("-01")
-
-
-  window.print();
- 
-}
+  printPage() {
+   
+    console.log(this.today1)
+    console.log("Resp", this.patient)
+    
+    document.title=this.patient.insuranceVisit.visit_number.concat("-01")
+    
+    
+      window.print();
+     
+    }
+    
 
 
 

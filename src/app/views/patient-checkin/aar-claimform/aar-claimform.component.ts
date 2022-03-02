@@ -99,6 +99,7 @@ export class AarClaimformComponent implements OnInit {
     "card_number": null,
     "id_number": null,
     "nhif_number": null,
+    "doctor_specialty": null,
     "created": ""
     }
   hospital='AAR HOSPITAL'
@@ -139,7 +140,9 @@ export class AarClaimformComponent implements OnInit {
       occupation: [''],
       memberno: [''],
       doctor: [''],
-      specialty: ['']
+      specialty: [''],
+      diagnosis:[''],
+      description:['']
     });
 
     
@@ -212,10 +215,7 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
     this.signatureService.send(JSON.stringify(data))
   }
   edit(){
-    // let item = this.customer;
-    // this.clientForm.patchValue({first_name:item.first_name,last_name:item.last_name,other_names:item.other_names,phone:item.phone,
-    //   dob:new Date(item.dob),gender:item.gender,email:item.email,residence:item.residence,national_id:item.national_id,occupation:item.occupation,id:item.id
-    // })
+    
     this.clientModal.show();
   }
   Update(){

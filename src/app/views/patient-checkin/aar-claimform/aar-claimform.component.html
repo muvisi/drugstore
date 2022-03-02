@@ -271,8 +271,16 @@
                                 _______________________________
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                Specialty:_____________________________
+                            <div class="col-sm-3">
+                                Specialty:
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>{{patient.doctor_specialty}}</strong>
+                                </div>
+                                <div class="row">
+                                _______________________________
+                                </div>
                             </div>
                             <div class="clearfix"></div> 
                         </div>
@@ -361,7 +369,7 @@
           <div class="col-sm-4">
            <mat-form-field appearance="outline" >
              <mat-label>Telephone No</mat-label>
-               <input matInput placeholder="Phone" [(ngModel)]="patient.patient.phone" formControlName="phone" >
+               <input matInput placeholder="Telephone No" [(ngModel)]="patient.patient.phone" formControlName="phone" >
    
              </mat-form-field>
           </div>
@@ -376,7 +384,7 @@
          <div class="col-sm-4">
            <mat-form-field appearance="outline">
              <mat-label>Membership No</mat-label>
-                <input matInput placeholder="National ID" [(ngModel)]="patient.member_number" formControlName="memberno" >
+                <input matInput placeholder="Membership No" [(ngModel)]="patient.member_number" formControlName="memberno" >
               </mat-form-field>
          </div>
          <div class="col-sm-4">
@@ -396,21 +404,28 @@
           <div class="col-sm-4">
             <mat-form-field  appearance="outline">
               <mat-label>Doctor's Name</mat-label>
-                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+                <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
     
               </mat-form-field>
            </div>
            <div class="col-sm-4">
             <mat-form-field appearance="outline" >
               <mat-label>Doctor's specialty</mat-label>
-                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.specialty" formControlName="specialty" >
+                <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
     
               </mat-form-field>
            </div>
            <div class="col-sm-4">
             <mat-form-field appearance="outline" >
               <mat-label>Diagnoses</mat-label>
-                <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.specialty" formControlName="specialty" >
+                <input matInput placeholder="Diagnosis" [(ngModel)]="patient.insuranceVisit.diagnoses" formControlName="diagnosis" >
+    
+              </mat-form-field>
+           </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+              <mat-label>description</mat-label>
+                <input matInput placeholder="Diagnosis" [(ngModel)]="patient.insuranceVisit.description" formControlName="description" >
     
               </mat-form-field>
            </div>

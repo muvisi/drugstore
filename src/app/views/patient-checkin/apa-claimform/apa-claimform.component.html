@@ -1,14 +1,21 @@
 <div class="card">
     <div class="card-body" id="print-section">
         <div class="row">
-            <div class="col-sm-12" >
+            <div class="col-sm-12">
                 <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+
                 <div class="clearfix"></div>
-                <!-- <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="APA()">APA Claimform</button> -->
-
-
     
             </div>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12">
+                <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
+
+                
+    
+            </div>
+           
         </div>
         <div class="row" >
             <div class="row" style="font-size: 8px; color: darkblue;">
@@ -117,9 +124,7 @@
                             
                         </div>
                         </div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text"  value="{{hospital}}">
-                        </div> -->
+                        
                         <div class="col-sm-2">Tel &Fax No:</div>
                         <!-- <div class="col-sm-4">
                         <input type="text" value="{{Aartelephone}}">
@@ -158,7 +163,7 @@
                     
                     <div class="col-sm-10">
                         <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.insuranceVisit.member_number}}</strong>
+                             <strong>   {{patient.member_number}}</strong>
                         </div>
                         <div class="row">
                        _________________________________________________________________________________________________________________________________________
@@ -169,7 +174,7 @@
                 </div>
                 <div class="clearfix"></div>
                     <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Employees Name</div>
+                        <div class="col-sm-2">Employee's Name</div>
                         <!-- <div class="col-sm-4">
                         <input type="text" value="{{employee}}">
                         </div> -->
@@ -217,7 +222,7 @@
                         </div> -->
                         <div class="col-sm-4">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.patient.dob}}</strong>
+                                 <strong>   {{patient.patient.age}}</strong>
                             </div>
                             <div class="row">
                      ______________________________________________
@@ -262,21 +267,41 @@
                     <!-- </p> -->
                    </div>
                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                    <div class="row"  style="margin-left: 40px; font-size: 12px;">
                         <div class="col-sm-12">
-                        I ______________________________________________________________ ________________________  do hereby authorize 
-                        any doctor,hospital,clinic or medical provider,insurance company,institution or person who has any record or information about me  and/or
-                        family members to provide my insurer with complete information including copies of records with reference to my illness or accident, any
-                        treatment, examination,advice, or hospitalization. I have also been advised by<br> APA INSURANCE LTD. and have understood the various 
-                        exclussions.Any photocopy of this authorisation shall be taken as the original copy.
+                       
+                       
+                            <div class="row" style="position: absolute;bottom: 1;">
+                                <span style="margin-left: 50px;"> <strong>   {{patient.patient.first_name}}     {{patient.patient.last_name}}</strong></span>
+                            </div>
+                            <div class="row">
+                                I   {{space}}      _________________________________________________________
+                                do hereby authorize 
+                                any doctor,hospital,clinic or medical provider,insurance company,institution or person who has any record or information about me  and/or
+                                family members to provide my insurer with complete information including copies of records with reference to my illness or accident, any
+                                treatment, examination,advice, or hospitalization. I have also been advised by<br> APA INSURANCE LTD. and have understood the various 
+                                exclussions.Any photocopy of this authorisation shall be taken as the original copy.
+                                
+                            
+                        </div>
                         
+                       
                         </div>
                         
                     </div>
                     <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-8">
-                           Signature of  Member______________________________________________________________
+                        <div class="col-sm-8" (click)="activateMemberSignature()">
+                            <div class="row">
+                                <div class="col-sm-4">Signature of  Member:</div>
+                                <div class="col-sm-8">
+                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="100px" height="50px"/></div>
+                                <div class="row">_______________________________________________________________ </div>
+                                </div>
+                             </div>
                         </div>
+                        <!-- <div class="col-sm-8" (click)="activateMemberSignature()">
+                           Signature of  Member______________________________________________________________
+                        </div> -->
                         <div class="col-sm-4">
                             Date_______________________________________
                         </div>
@@ -413,7 +438,7 @@
                         <div class="col-sm-2">Specialty</div>
                         <div class="col-sm-4">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                 <strong>   {{patient.doctor_specialty}}</strong>
                             </div>
                             <div class="row">
                     ______________________________________________
@@ -570,9 +595,16 @@
            
             
             <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
-                <div class="col-sm-8">
-                    Doctor's Signature & stamp ______________________________________________________________
-                </div>
+                <div class="col-sm-4"  (click)="activateStaffSignature()">
+                    Doctor's Signature & stamp
+                 </div>
+                 <div class="col-sm-4">
+                     <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                 <div class="row">___________________________</div>
+             </div>
+                <!-- <div class="col-sm-8">
+                    ______________________________________________________________
+                </div> -->
                 <div class="col-sm-4">
                     Date_______________________________________
                 </div>
@@ -588,3 +620,135 @@
       
     </div>
   </div>
+  <div class="modal fade" bsModal #clientModal="bs-modal" 
+  tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+  <div class="modal-header">
+  <h4 id="dialog-static-name" class="modal-title pull-left">Edit Form</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()">
+      <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-body">
+  <form [formGroup]="clientForm"   >
+  
+  <div class="row">
+      <div class="col-sm-4">
+      <mat-form-field appearance="outline">
+          <mat-label>Surname</mat-label>
+          <input matInput placeholder="Surname" [(ngModel)]="patient.patient.last_name"  formControlName="surname" >
+          </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+      <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="First Name" [(ngModel)]="patient.patient.first_name"  formControlName="firstname" >
+          
+          </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <mat-form-field appearance="outline">
+      <mat-label>age</mat-label>
+          <input matInput placeholder="age" [(ngModel)]="patient.patient.age"  formControlName="age">
+          
+      </mat-form-field>
+  </div>
+  
+  <div class="col-sm-4">
+  <mat-form-field appearance="outline" >
+      <mat-label>Telephone No</mat-label>
+      <input matInput placeholder="Telephone No" [(ngModel)]="patient.patient.phone" formControlName="phone" >
+
+      </mat-form-field>
+  </div>
+  <!-- <div class="col-sm-4">
+  <mat-form-field appearance="outline">
+      <mat-label>D.O.B</mat-label>
+      <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.date"  formControlName="date" >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </div> -->
+  <div class="col-sm-4">
+  <mat-form-field appearance="outline">
+      <mat-label>Membership No</mat-label>
+          <input matInput placeholder="Membership No" [(ngModel)]="patient.member_number" formControlName="memberno" >
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+  <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="patient.patient.email"  formControlName="email">
+  </mat-form-field>
+  </div>
+  <!-- <div class="col-sm-4">
+      <mat-form-field appearance="outline">
+      <mat-label>Date of Onset</mat-label>
+          <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker1"  formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+  </div> -->
+  <div class="col-sm-4">
+      <mat-form-field  appearance="outline">
+      <mat-label>Doctor's Name</mat-label>
+          <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>Doctor's specialty</mat-label>
+          <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
+
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>Member Name</mat-label>
+          <input matInput placeholder="member_name" [(ngModel)]="patient.member_name" formControlName="diagnosis" >
+
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>Relationship</mat-label>
+          <input matInput placeholder="Relation" [(ngModel)]="patient.relation" formControlName="description" >
+
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>Employer</mat-label>
+          <input matInput placeholder="Employer" [(ngModel)]="patient.employer" formControlName="employer" >
+
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>ID/Passport</mat-label>
+          <input matInput placeholder="Passport" [(ngModel)]="patient.patient.national_id" formControlName="id" >
+
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>Adress of Doctor</mat-label>
+          <input matInput placeholder="doctor address" [(ngModel)]="patient.doctoraddress" formControlName="address" >
+
+      </mat-form-field>
+  </div>
+  
+  
+  
+<div class="col-sm-8" >
+<button class="btn btn-success pull-right"  (click)="Update()">Update</button>
+</div>
+  </div>
+  </form>
+  </div>
+</div>
+</div>
+
+</div>
