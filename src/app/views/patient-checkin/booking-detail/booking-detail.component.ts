@@ -18,7 +18,6 @@ export class BookingDetailComponent implements OnInit {
   payment_type;
   payment_info;
   department;
-  date;
   speciality=[];
   symptoms=[];
   payment_mode;
@@ -30,28 +29,42 @@ export class BookingDetailComponent implements OnInit {
     relationship:""
   
   }
-  customer: any;
+  customer= {
+    gender:'male',
+    phone :'',
+    email:'',
+    first_name:'',
+    last_name:'',
+    other_names:''
+
+  };
   show_insurance;
   loading: boolean;
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
 
   ngOnInit() {
     this.clientForm = this.formBuilder.group({
-      phone: ['',Validators.required],
-      first_name: ['', Validators.required],
-      other_names: [''],
-      last_name: ['', Validators.required],
-      gender: ['', Validators.required],
-      email: ['',Validators.email],
+      email: ['',[Validators.required,Validators.email]],
+      phone: ['',[Validators.required,Validators.minLength(9)]],
+      last_name: ['',Validators.required],
+      first_name: ['',Validators.required],
+      other_names:['', Validators.required],
+      residence: ['', Validators.required],
       dob: ['', Validators.required],
-      residence: [''],
-      national_id: ['',Validators.required],
-      occupation: [''],
-      id: ['']
-    });
+      gender: ['', Validators.required],
+      religion: ['', Validators.required],
+      marital_status:[''],
+      occupation:[''],
+      nationality:[''],
+      national_id: [''],
+      brought_in_by: [''],
+  });
 
     this.paymentForm=this.formBuilder.group({
-      payment:['',[Validators.required]],
+      cash:['',[Validators.required]],
+      mpesa:['',[Validators.required]],
+      creditcard:['',[Validators.required]],
+      insurance:['',[Validators.required]],
       insurance_company:[''],
       scheme_name:[''],
       scheme_number:[''],
@@ -68,9 +81,7 @@ export class BookingDetailComponent implements OnInit {
     });
     this.service.getbookingDetails(this.route.snapshot.params.id).subscribe((res)=>{
       this.customer=res.patient;
-      this.date=res.patient.dob;
       // console.log(this.date,"kimmmm")
-       this.date=dateFormat(res.patient.dob, "dd/mm/yyyy");
       // console.log("",this.date)
       this.patient_info={    
           'dob': res.patient.dob,
@@ -84,11 +95,11 @@ export class BookingDetailComponent implements OnInit {
           'other_names': res.patient.other_names != null ? res.patient.other_names : '',
           'occupation': res.patient.occupation !=null ? res.patient.occupation : ''
       }
-      this.nextofKin=res.nextofKin
+      this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:''}
       this.speciality=res.specialist.split(",")
       this.symptoms=res.symptoms.split(",")
       this.department=res.department;
-      this.payment_type={'payment':res.payment !=null ? res.payemnt : ''}
+      this.payment_type={'payment':res.payment !=null ? res.payment : ''}
       this.payment_mode=res.payment;
       
 
@@ -144,10 +155,10 @@ export class BookingDetailComponent implements OnInit {
     });
   }
   ngAfterViewInit(){
-    if(this.clientForm!=null)
+    if(this.clientForm!=null){
       this.clientForm.patchValue(this.patient_info);
       this.paymentForm.patchValue(this.payment_type);
-      this.paymentForm.get("payment").setValue(this.payment_type.payment);
+    }
   }
   get c() { return this.clientForm.controls; }
   get p() { return this.paymentForm.controls; }

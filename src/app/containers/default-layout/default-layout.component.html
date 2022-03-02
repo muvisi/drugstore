@@ -22,8 +22,8 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
         <a class="dropdown-item" (click)="qrcodeModal.show()"> Signature Qrcode </a>
-        <a class="dropdown-item" (click)="inpatient.show()"> Inpatient Qrcode </a>
-        <a class="dropdown-item" (click)="outpatient.show()"> Outpatient Qrcode </a>
+        <a class="dropdown-item" (click)="downloadInpatient()"> Inpatient Qrcode </a>
+        <a class="dropdown-item" (click)="downloadOutpatient()"> Outpatient Qrcode </a>
 
         <a class="dropdown-item" routerLink="/dashboard/payments" > <i class="icon-wallet"></i>  Payments</a>
         <a class="dropdown-item" routerLink="/dashboard/vaccine-setup" > <i class="fas fa-syringe"></i>Vaccine Setup</a>
@@ -127,6 +127,9 @@
       <div class="modal-body">
         <qrcode [qrdata]="INPATIENT_QRCODE" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
       </div>
+      <div class="modal-footer">
+        <button mat-raised-button class="btn btn-success pull-right"   data-dismiss="modal" >download</button>
+      </div>
     </div>
   </div>
 </div>
@@ -139,6 +142,9 @@
       </div>
       <div class="modal-body">
         <qrcode [qrdata]="OUTPATIENT_QRCODE" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button class="btn btn-success pull-right"  data-dismiss="modal">download</button>
       </div>
     </div>
   </div>

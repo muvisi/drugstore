@@ -8,6 +8,7 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { CustomPreloadingStrategy } from './preloading';
+import { QRCodeComponent } from 'angularx-qrcode';
 export const routes: Routes = [
   // {
   //   path: '',
@@ -45,6 +46,13 @@ export const routes: Routes = [
     component: RegisterComponent,
     data: {
       title: 'Register Page'
+    }
+  },
+  {
+    path: 'qrcode-download',
+    component: QRCodeComponent,
+    data: {
+      title: 'QRcode'
     }
   },
   {

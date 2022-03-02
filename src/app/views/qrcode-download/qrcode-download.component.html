@@ -1,0 +1,18 @@
+<style>
+    @media print {
+    #download {
+      display: none;
+    }
+  }
+</style>
+<div class="container" id="qrcode_id" style="background-color: white;" >
+    <div class="row" style="padding-top: 20px; width: 100%; justify-content: end;">
+        <button class="btn btn-success"  id="download" style="float: right;" (click)="printPage()">download</button>
+
+    </div>
+<div class="row" style="justify-content: center;">
+    <span style="font-size: 100px;color: tomato; font-family: sans-serif;">{{TYPE}} Feedback</span>
+</div>
+<qrcode [qrdata]="QRCODE_DATA" [width]="width" [errorCorrectionLevel]="'M'"></qrcode>
+
+</div>

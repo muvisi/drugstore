@@ -91,6 +91,8 @@ import { RegistrationLinkComponent } from './registration-link/registration-link
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from './print-insurance-forms/print-insurance-forms.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -157,7 +159,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     RegistrationLinkComponent,
     BookingDetailComponent,
     PrintInsuranceFormsComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    QrcodeDownloadComponent
 
     
 
@@ -202,7 +205,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     DropDownListModule,
     FullCalendarModule,
     NgxMaterialTimepickerModule,
-    TimePickerModule
+    TimePickerModule,
+    QRCodeModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [DayService, 

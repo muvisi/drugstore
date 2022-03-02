@@ -65,6 +65,7 @@ import { RegistrationLinkComponent } from '../patient-checkin/registration-link/
 import { BookingDetailComponent } from '../patient-checkin/booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from '../patient-checkin/print-insurance-forms/print-insurance-forms.component';
 import { PaymentsComponent } from '../patient-checkin/payments/payments.component';
+import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
 const routes: Routes = [
   {
     path: '',
@@ -82,6 +83,10 @@ const routes: Routes = [
     data: {
       title: 'parients-dashboard'
     }
+  },
+  {
+    path: 'qrcode-download',
+    component: QrcodeDownloadComponent,
   },
   {
     path: 'appointments',
