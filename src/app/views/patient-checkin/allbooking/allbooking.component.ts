@@ -23,7 +23,7 @@ export class AllbookingComponent implements OnInit {
   phonenumber;
   insurance;
   insurance_companys;
-  Columns: string[] = ['sn','created','First','gender','payment','residence','phone','insurancecompany','symptoms','action']
+  Columns: string[] = ['sn','created','First','payment','phone','insurancecompany','action']
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class AllbookingComponent implements OnInit {
         console.log("HEALTHIX",data);
         this.patient = data;
       this.insurance=this.patient.insurance_company
-      this.insurance_companys=this.insurance.toUpperCase( )
+      // this.insurance_companys=this.insurance.toUpperCase( )
       console.log("resp",this.insurance_companys)
        
         

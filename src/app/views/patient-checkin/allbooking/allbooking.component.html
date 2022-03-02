@@ -31,82 +31,35 @@
                         <th mat-header-cell *matHeaderCellDef>S/N</th>
                         <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
                 </ng-container>
-                <ng-container matColumnDef="created">
-                  <th mat-header-cell *matHeaderCellDef>Created Date</th>
-                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;">  {{element.createdon | date:'dd/MM/yyyy h:mm a'}}  </td>
+                <ng-container matColumnDef="created" >
+                  <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Created Date</th>
+                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;">  {{element.createdon | date:'dd/MM/yyyy h:mm a'}}  </td>
                 </ng-container>
                 <ng-container matColumnDef="First">
-                  <th mat-header-cell *matHeaderCellDef>Patient Name</th>
-                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
+                  <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Patient Name</th>
+                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
                 </ng-container>
-               
-                  <ng-container matColumnDef="gender">
-                    <th mat-header-cell *matHeaderCellDef>Gender</th>
-                    <td mat-cell *matCellDef="let element"> {{element.patient.gender}} </td>
-                  </ng-container>
-                    <ng-container matColumnDef="residence">
-                      <th mat-header-cell *matHeaderCellDef>Residence</th>
-                      <td mat-cell *matCellDef="let element"> {{element.patient.residence}} </td>
-                    </ng-container>  
-                    <ng-container matColumnDef="symptoms">
-                      <th mat-header-cell *matHeaderCellDef>symptoms</th>
-                      <td mat-cell *matCellDef="let element"> {{element.symptoms}} </td>
-                    </ng-container>  
+              
                     <ng-container matColumnDef="payment">
-                      <th mat-header-cell *matHeaderCellDef>payment</th>
-                      <td mat-cell *matCellDef="let element"> {{element.payment}} </td>
+                      <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">payment</th>
+                      <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.payment}} </td>
                     </ng-container>  
-                    <ng-container matColumnDef="phone">
-                        <th mat-header-cell *matHeaderCellDef>phone</th>
-                        <td mat-cell *matCellDef="let element"> {{element.patient.phone}} </td>
+                    <ng-container matColumnDef="phone" style="font-size: 11px;">
+                        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">phone</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.patient.phone}} </td>
                       </ng-container>
                       <ng-container matColumnDef="insurancecompany">
-                        <th mat-header-cell *matHeaderCellDef>Company</th>
-                        <td mat-cell *matCellDef="let element"> {{element.insurance_company  | uppercase}} </td>
+                        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Company</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.insurance_company  | uppercase}} </td>
                       </ng-container>
                   
                       <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef>Action</th>
-                        <td mat-cell *matCellDef="let element"> 
-                          <button class="btn btn-success btn-sm" (click)="rowSelectedView(element)">View </button>
+                        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
+                          <button class="btn btn-success btn-sm" (click)="rowSelectedView(element)" style="font-size: 11px;">View </button>
                            </td>
                       </ng-container>
-                      
-                      
-                 
-                      <!-- <ng-container matColumnDef="form">
-                        <th mat-header-cell *matHeaderCellDef>Claim Form</th>
-                        <td mat-cell *matCellDef="let element">
-                          <div class="dropdown show">
-                           
-                            <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Insurance Forms
-                            </a>
-                          
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                             <li>  <button class="btn btn-primary"  (click)="sanlamInsuranceClicked(element)">Sanlam</button></li> 
-                            <li> <button class="btn btn-primary" (click)="sedgrickInsuranceClicked(element)">Sedgrick</button></li>
-                            <li> <button class="btn btn-primary" (click)="apaInsuranceClicked(element)">APA Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="aarInsuranceClicked(selected=element)">AAR Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="coopInsuranceClicked(element)">CO-OP Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="medInsuranceClicked(element)">MED Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="uapInsuranceClicked(element)">UAP Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="mtnInsuranceClicked(element)">MTN Ins</button></li>
-                            
-                            <li> <button class="btn btn-primary" (click)="minetInsuranceClicked(element)">Minet Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="jubileeInsuranceClicked(element)">jubilee Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="cignaInsuranceClicked(element)">Cigna Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="heritageInsuranceClicked(element)">Heritage Ins</button></li>
-                            <li> <button class="btn btn-primary" (click)="cicInsuranceClicked(element)">CIC Group</button></li>
-                            <li> <button class="btn btn-primary" (click)="bupaInsuranceClicked(element)">BUPA Global</button></li>
 
-                            
-                             
-                            </div>
-                          </div>
-                        
-                        </td> 
-                      </ng-container>   -->
 
                   <tr mat-header-row *matHeaderRowDef="Columns"></tr>
                   <tr mat-row *matRowDef="let row; columns:Columns;"></tr>
