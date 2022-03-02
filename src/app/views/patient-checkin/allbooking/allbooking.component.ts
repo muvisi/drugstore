@@ -178,8 +178,8 @@ export class AllbookingComponent implements OnInit {
   
     this.router.navigate(['/dashboard/mtninsurance/',item.id])
     }
-  if (false) {
-    this.toastr.warning('Payment not Insurance!')
+ else {
+    this.toastr.warning('The Payment Mode May Not Be Insurance!')
     
   }
   }
