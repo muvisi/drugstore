@@ -8,8 +8,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve ",
-    "local-start": "ng serve --host 0.0.0.0",
+    "start": "ng serve  --port 4500",
+    "local-start": "ng serve ",
     "build": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
     "test": "ng test",
     "lint": "ng lint",
