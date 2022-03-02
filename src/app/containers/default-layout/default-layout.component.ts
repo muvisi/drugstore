@@ -84,10 +84,12 @@ export class DefaultLayoutComponent implements OnDestroy {
     }
     return gen_str;
   }
-  downloadInpatient() {   
+  downloadInpatient() {
+    this.router.navigateByUrl('dashboard')   
     this.navCtrl.navigate('dashboard/qrcode-download',{"data":{url:this.INPATIENT_QRCODE,type:"Inpatient"}})  
   }
   downloadOutpatient() {
+    this.router.navigateByUrl('dashboard')
     this.navCtrl.navigate('dashboard/qrcode-download',{"data":{url:this.OUTPATIENT_QRCODE,type:"Outpatient"}})
   }
     

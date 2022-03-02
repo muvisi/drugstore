@@ -189,7 +189,17 @@
                                     <div class="row">
                                       <div class="col-sm-12">
                                         <div class="row">
-                        
+                                          <div class="col-sm-3">
+                                            <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                                                <mat-label>Period</mat-label>
+                                                <mat-select  [(ngModel)]="period"  (selectionChange)="periodChanged()">
+                                                  <mat-option value="ALL">Daily</mat-option>
+                                                  <mat-option value="OUTPATIENT">Weakly </mat-option>
+                                                  <mat-option value="INPATIENT">Monthly </mat-option>
+                                                  <mat-option value="INPATIENT">Yearly </mat-option>
+                                                </mat-select>  
+                                              </mat-form-field>
+                                          </div>
 
                                           <div class="col-sm-3">
                                 
@@ -211,7 +221,7 @@
                                             </mat-form-field>
                                         </div>
                             
-                                              <div class="col-sm-6" style="padding-top: 20px;">
+                                              <div class="col-sm-3" style="padding-top: 20px;">
                                                 <button   (click)="downloadAverage()" class="btn btn-success pull-right">Download  xls</button>
                                               </div>
                                         </div>

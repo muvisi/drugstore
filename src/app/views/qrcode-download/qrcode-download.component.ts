@@ -14,6 +14,7 @@ export class QrcodeDownloadComponent implements OnInit {
   constructor(public navCtrl: NgxNavigationWithDataComponent,public router: Router) { }
 
   ngOnInit() {
+    console.log(this.navCtrl.get('data'));
     this.width=900;
     this.QRCODE_DATA=" "
     if(this.navCtrl.get('data') !=undefined){
