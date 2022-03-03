@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse, HttpBackend }
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8888/';
-// export const endpoint='http://134.209.199.123:8787/';
+export const endpoint='http://134.209.199.123:5555/';
 // export const endpoint='https://booking.healthixsolutions.com/';
-export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
@@ -820,6 +820,11 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+  resetUser(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/reset-user/', data ).pipe(
+      map(this.extractData
+      ));
+  }
   getUsers(): Observable<[]> {
     return this.http.get(endpoint + 'users/',  ).pipe(
       map(this.extractData
@@ -1189,6 +1194,11 @@ filtercalendar(specialist) {
       return this.http.post(endpoint + 'api/specialtyfilter/',specialist).pipe(
         map(this.extractData));
       }
+    getAllUsers(){
+      return this.http.get(endpoint + 'users/staffs/').pipe(
+        map(this.extractData));
+
+    }
   getRevenues() {
     return this.http.get(endpoint + 'payment/payments/').pipe(
       map(this.extractData));
@@ -1213,5 +1223,19 @@ getSinglePatientData_Hospserver(id): Observable<any> {
   return this.http.get(HEALTHIX_BACKEND_URL_AAR+ 'claims/patientexperience_personaldata/'+id+'/').pipe(
     map(this.extractData));
 }
+updateuser(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/update_user/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  deleteUSER(id) {
+    return this.http.delete(endpoint + 'users/staffs/'+id+'/').pipe(
+      map(this.extractData));
 
+}
+// deactivateUser(data,id): Observable<{}> {
+//   return this.http.put(endpoint + 'users/user/'+id+'/', data ).pipe(
+//     map(this.extractData
+//     ));
+// }
 }
