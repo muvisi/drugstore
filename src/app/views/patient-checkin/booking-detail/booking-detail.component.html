@@ -79,17 +79,10 @@
                                             </mat-form-field>
                                       </div>
                                        <div class="col-sm-4">
-                                        <mat-radio-group  formControlName="gender">
-                                          <label>Gender</label>
-                                          <div class="row" >
-                                             <div class="col-sm-4">
-                                                 <mat-radio-button  value="Male"  style="font-family: lato light" ><b>Male</b></mat-radio-button>
-                                               </div>
-                                               <div class="col-sm-4">
-                                                   <mat-radio-button value="Female"  style="font-family: lato light"><b>Female</b></mat-radio-button>
-                                                 </div>
-                                          </div>
-                                         </mat-radio-group>
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Middle</mat-label>
+                                          <input matInput placeholder="Middle Name" formControlName="gender">
+                                        </mat-form-field>
                                        </div>
                                        <div class="col-sm-4">
                                         <mat-form-field  appearance="outline">
@@ -102,10 +95,8 @@
                                        <div class="col-sm-4">
                                         <mat-form-field appearance="outline">
                                           <mat-label>D.O.B</mat-label>
-                                            <input matInput placeholder="Date of Birth"  formControlName="dob" [matDatepicker]="picker">
-                                            <mat-error *ngIf="c.dob.errors && submitted">Date of birth <strong>required</strong></mat-error>
-                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker></mat-datepicker>
+                                            <input matInput placeholder="Date of Birth"  formControlName="dob" >
+                                         
                                           </mat-form-field>
                                       </div>
                                       <div class="col-sm-4">
@@ -130,12 +121,26 @@
                                       </div>
                                       <div class="col-sm-4">
                                         <mat-form-field appearance="outline">
+                                            <mat-label>Marital status</mat-label>
+                                        
+                                              <input matInput placeholder="Residence" formControlName="marital_status">
+                                          </mat-form-field>
+                                      </div>
+                                      
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
                                           <mat-label>Residence</mat-label>
                                             <input matInput placeholder="Residence" formControlName="residence">
                                           </mat-form-field>
                                     </div>
+                                    <div class="col-sm-4">
+                                      <mat-form-field appearance="outline">
+                                          <mat-label>Nationality</mat-label>
+                                          <input matInput placeholder="Residence" formControlName="nationality">
+                                        </mat-form-field>
+                                  </div>
                                     <div class="col-sm-8" *ngIf="clientForm.dirty">
-                                    <button class="btn btn-success pull-right">Update</button>
+                                    <!-- <button class="btn btn-success pull-right">Update</button> -->
                                     </div>
                                         </div>
                                       </form>
@@ -217,23 +222,30 @@
                                     <div class="col-sm-12">
                                       <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">How will you make payment for hospital bill?</span></h2></div>
                    
-                                    <mat-radio-group  formControlName="payment" [(ngModel)]="payment_mode">
+                                    <!-- <mat-radio-group  formControlName="payment" [(ngModel)]="payment_mode"> -->
                                       <div class="row"  style="justify-content: center;display: flex;">
                                         <div class="col-sm-3">
-                                             <mat-radio-button    value="Cash"  style="font-family: lato light;margin-right: 30px;"><h3>Cash</h3></mat-radio-button>
+                                          <mat-checkbox formControlName="cash"  [checked]="payment_mode=='Cash'">Cash</mat-checkbox>
+                                         
+                                          <!-- <mat-radio-button    value="Cash"  [checked]="true" style="font-family: lato light;margin-right: 30px;"><h3>Cash</h3></mat-radio-button> -->
                                          </div>
                                          <div class="col-sm-3">
-                                          <mat-radio-button    value="Mpesa"   [checked]="payment_type.payment=='Mpesa'"   style="font-family: lato light;margin-right: 30px;"><h3>Mpesa</h3></mat-radio-button>
+                                          <mat-checkbox formControlName="mpesa"  [checked]="payment_mode=='Mpesa'" >Mpesa</mat-checkbox>
+                                          <!-- <mat-radio-button    value="Mpesa"   [checked]="payment_type.payment=='jMpesa'"   style="font-family: lato light;margin-right: 30px;"><h3>Mpesa</h3></mat-radio-button> -->
                                       </div>
                                          <div class="col-sm-3">
-                                               <mat-radio-button value="credit Card" [checked]="payment_type.payment=='credit Card'"   style="font-family: lato light; margin-right: 30px;" ><h3>Credit Card</h3></mat-radio-button>
+                                          <mat-checkbox formControlName="creditcard" [checked]="payment_mode=='credit Card' || payment_mode=='Credit Card'">Credit Card</mat-checkbox>
+                                          <!-- <mat-checkbox [aria-label]="Credit Card"> </mat-checkbox> -->
+                                               <!-- <mat-radio-button value="credit Card" [checked]="payment_type.payment=='lcredit Card'"   style="font-family: lato light; margin-right: 30px;" ><h3>Credit Card</h3></mat-radio-button> -->
                                           </div>
                                           <div class="col-sm-3">
-                                               <mat-radio-button value="Insurance"   [checked]="payment_type.payment=='Insurance'"  style="font-family: lato light;margin-right: 30px;" ><h3>Insurance</h3></mat-radio-button>
+                                            <mat-checkbox formControlName="insurance"  [checked]="payment_mode=='Insurance'">Insurance</mat-checkbox>
+                                            <!-- <mat-checkbox [aria-label]="Insurance"> </mat-checkbox> -->
+                                               <!-- <mat-radio-button value="Insurance"   [checked]="payment_type.payment=='Ijnsurance'"  style="font-family: lato light;margin-right: 30px;" ><h3>Insurance</h3></mat-radio-button> -->
                                           </div>                       
                                       </div>
                       
-                                     </mat-radio-group>
+                                     <!-- </mat-radio-group> -->
                                   </div> 
                                 <div class="card" *ngIf="show_insurance">
                                         <div class="card-header bg-default">

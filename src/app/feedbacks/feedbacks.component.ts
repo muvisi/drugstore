@@ -15,14 +15,21 @@ export class FeedbacksComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
 
   positive_dataSource;
-  negative_dataSource
-  average_dataSource
+  negative_dataSource;
+  average_dataSource;
+  all_dataSource
   date_positive;
   date_negative;
   date_average;
+  date_all;
   visit_type_positive;
   visit_type_negative;
   visit_type_average;
+  visit_type_all;
+  period;
+  period2;
+  period3;
+  period4;
   
   loading;
   // idnumber;
@@ -31,6 +38,7 @@ export class FeedbacksComponent implements OnInit {
   PositiveColumns: string[] = ['sn','date','patient','service','rating','compliments','comments',"visit_type"]
   NegativeColumns: string[] = ['sn','date','patient','service','rating','issues','comments',"visit_type"]
   AverageColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
+  AllColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
   constructor(public service:ServiceService,private toastr:ToastrService,private datePipe: DatePipe) { }
  
  ngOnInit() {
@@ -39,6 +47,7 @@ export class FeedbacksComponent implements OnInit {
     this.getFeedbacksPositive();
     this.getFeedbacksNegative();
     this.getFeedbacksAverage();
+    this.getFeedbacksAll();
     // this.loading=true
   }
   ngAfterViewInit(){
@@ -46,7 +55,7 @@ export class FeedbacksComponent implements OnInit {
 this.date_positive="";
   }
   getFeedbacksPositive() {
-    this.service.feedbacks("?category=POSITIVE").subscribe(
+    this.service.feedbacks("?category=POSITIVE"+"&period="+this.period).subscribe(
       data => {
         this.positive_dataSource = new MatTableDataSource <[]>(data);
         this.positive_dataSource.paginator = this.paginator;
@@ -62,11 +71,11 @@ this.date_positive="";
     );
   }
   downloadPositive(){
-    window.open(this.service.getendpoint()+"api/feedbacks_download/?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive, "_blank");
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period, "_blank");
   }
   positiveDateSelection(){
     
-    this.service.feedbacks("?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive).subscribe(
+    this.service.feedbacks("?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period).subscribe(
       data => {
         this.positive_dataSource = new MatTableDataSource <[]>(data);
         this.positive_dataSource.paginator = this.paginator;
@@ -81,8 +90,24 @@ this.date_positive="";
       () => console.log('There is an error')
     );
   }
+  periodChangedPositive(){
+    this.service.feedbacks("?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period).subscribe(
+      data => {
+        this.positive_dataSource = new MatTableDataSource <[]>(data);
+        this.positive_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    ); 
+  }
   positiveVisitTypeChange(){
-    this.service.feedbacks("?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive).subscribe(
+    this.service.feedbacks("?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period).subscribe(
       data => {
         this.positive_dataSource = new MatTableDataSource <[]>(data);
         this.positive_dataSource.paginator = this.paginator;
@@ -98,7 +123,7 @@ this.date_positive="";
     );    
   }
   getFeedbacksNegative() {
-    this.service.feedbacks("?category=NEGATIVE").subscribe(
+    this.service.feedbacks("?category=NEGATIVE"+"&period="+this.period2).subscribe(
       data => {
         this.negative_dataSource = new MatTableDataSource <[]>(data);
         this.negative_dataSource.paginator = this.paginator;
@@ -114,11 +139,11 @@ this.date_positive="";
     );
   }
   downloadNegative(){
-    window.open(this.service.getendpoint()+"api/feedbacks_download/?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative, "_blank");
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative+"&period="+this.period2, "_blank");
   }
   negativeDateSelection(){
     
-    this.service.feedbacks("?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative).subscribe(
+    this.service.feedbacks("?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative+"&period="+this.period2).subscribe(
       data => {
         this.negative_dataSource = new MatTableDataSource <[]>(data);
         this.negative_dataSource.paginator = this.paginator;
@@ -133,8 +158,24 @@ this.date_positive="";
       () => console.log('There is an error')
     );
   }
+  periodChangedNegative(){
+    this.service.feedbacks("?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative+"&period="+this.period2).subscribe(
+      data => {
+        this.negative_dataSource = new MatTableDataSource <[]>(data);
+        this.negative_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    ); 
+  }
   negativeVisitTypeChange(){
-    this.service.feedbacks("?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative).subscribe(
+    this.service.feedbacks("?category=NEGATIVE&date="+this.datePipe.transform(this.date_negative,"mediumDate")+"&visit_type="+this.visit_type_negative+"&period="+this.period2).subscribe(
       data => {
         this.negative_dataSource = new MatTableDataSource <[]>(data);
         this.negative_dataSource.paginator = this.paginator;
@@ -151,7 +192,7 @@ this.date_positive="";
   }
 
   getFeedbacksAverage() {
-    this.service.feedbacks("?category=AVERAGE").subscribe(
+    this.service.feedbacks("?category=AVERAGE"+"&period="+this.period3).subscribe(
       data => {
         this.average_dataSource = new MatTableDataSource <[]>(data);
         this.average_dataSource.paginator = this.paginator;
@@ -167,11 +208,11 @@ this.date_positive="";
     );
   }
   downloadAverage(){
-    window.open(this.service.getendpoint()+"api/feedbacks_download/?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average, "_blank");
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average+"&period="+this.period3, "_blank");
   }
   averageDateSelection(){
     
-    this.service.feedbacks("?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average).subscribe(
+    this.service.feedbacks("?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average+"&period="+this.period3).subscribe(
       data => {
         this.average_dataSource = new MatTableDataSource <[]>(data);
         this.average_dataSource.paginator = this.paginator;
@@ -188,7 +229,7 @@ this.date_positive="";
   }
 
   averageVisitTypeChange(){
-    this.service.feedbacks("?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average).subscribe(
+    this.service.feedbacks("?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average+"&period="+this.period3).subscribe(
       data => {
         this.average_dataSource = new MatTableDataSource <[]>(data);
         this.average_dataSource.paginator = this.paginator;
@@ -203,6 +244,93 @@ this.date_positive="";
       () => console.log('There is an error')
     );
   }
+  periodChangedAverage(){
+    this.service.feedbacks("?category=AVERAGE&date="+this.datePipe.transform(this.date_average,"mediumDate")+"&visit_type="+this.visit_type_average+"&period="+this.period3).subscribe(
+      data => {
+        this.average_dataSource = new MatTableDataSource <[]>(data);
+        this.average_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  getFeedbacksAll() {
+    this.service.feedbacks("?period="+this.period4).subscribe(
+      data => {
+        this.all_dataSource = new MatTableDataSource <[]>(data);
+        this.all_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  downloadAll(){
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4, "_blank");
+  }
+  allDateSelection(){
+    
+    this.service.feedbacks("?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4).subscribe(
+      data => {
+        this.all_dataSource = new MatTableDataSource <[]>(data);
+        this.all_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  allVisitTypeChange(){
+    this.service.feedbacks("?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4).subscribe(
+      data => {
+        this.all_dataSource = new MatTableDataSource <[]>(data);
+        this.all_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  periodChangedAll(){
+    this.service.feedbacks("?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4).subscribe(
+      data => {
+        this.all_dataSource = new MatTableDataSource <[]>(data);
+        this.all_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+
   applyFilter(filterValue: string) {
     this.service.searchFor(filterValue).subscribe((data)=>{
       console.log("RESP",data);

@@ -21,7 +21,10 @@
                <i class="fa fa-cogs" aria-hidden="true"></i> configure
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item" (click)="qrcodeModal.show()">Qrcode </a>
+        <a class="dropdown-item" (click)="qrcodeModal.show()"> Signature Qrcode </a>
+        <a class="dropdown-item" (click)="downloadInpatient()"> Inpatient Qrcode </a>
+        <a class="dropdown-item" (click)="downloadOutpatient()"> Outpatient Qrcode </a>
+
         <a class="dropdown-item" routerLink="/dashboard/payments" > <i class="icon-wallet"></i>  Payments</a>
         <a class="dropdown-item" routerLink="/dashboard/vaccine-setup" > <i class="fas fa-syringe"></i>Vaccine Setup</a>
         <a class="dropdown-item" routerLink="/dashboard/timeslot" > <i class="fas fa-address-book"></i>Time Slot Setup</a>
@@ -112,6 +115,38 @@
       </div>
       <div class="modal-body">
         <qrcode [qrdata]="QRCODE_DATA" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #inpatient="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="inpatient.hide()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <qrcode [qrdata]="INPATIENT_QRCODE" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button class="btn btn-success pull-right"   data-dismiss="modal" >download</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #outpatient="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="outpatient.hide()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <qrcode [qrdata]="OUTPATIENT_QRCODE" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+      <div class="modal-footer">
+        <button mat-raised-button class="btn btn-success pull-right"  data-dismiss="modal">download</button>
       </div>
     </div>
   </div>

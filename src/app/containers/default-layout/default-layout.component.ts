@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../service.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,9 @@ export class DefaultLayoutComponent implements OnDestroy {
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('qrcodeModal', { static: false }) qrcodeModal: ModalDirective;
   QRCODE_DATA;
-  constructor(private router: Router,public service:ServiceService,public toastr: ToastrService,@Inject(DOCUMENT) _document?: any) {
+  INPATIENT_QRCODE="https://bookings.aarhospital.com/#/feedback-2";
+  OUTPATIENT_QRCODE="https://bookings.aarhospital.com/#/feedback";
+  constructor(public navCtrl: NgxNavigationWithDataComponent,private router: Router,public service:ServiceService,public toastr: ToastrService,@Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
@@ -81,4 +84,13 @@ export class DefaultLayoutComponent implements OnDestroy {
     }
     return gen_str;
   }
+  downloadInpatient() {
+    this.router.navigateByUrl('dashboard')   
+    this.navCtrl.navigate('dashboard/qrcode-download',{"data":{url:this.INPATIENT_QRCODE,type:"Inpatient"}})  
+  }
+  downloadOutpatient() {
+    this.router.navigateByUrl('dashboard')
+    this.navCtrl.navigate('dashboard/qrcode-download',{"data":{url:this.OUTPATIENT_QRCODE,type:"Outpatient"}})
+  }
+    
 }

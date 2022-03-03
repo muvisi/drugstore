@@ -97,11 +97,11 @@ export const navItems: NavData[] = [
   //   icon: 'fas fa-syringe',
   // },
 
-  //  {
-  //   name: 'Feedbacks',
-  //   url: '/dashboard/feedbacks',
-  //   icon: 'fas fa-comment',
-  // },
+   {
+    name: 'Feedbacks',
+    url: '/dashboard/feedbacks',
+    icon: 'fas fa-comment',
+  },
   
   // {
   //   name: 'Time Slot Setup',
