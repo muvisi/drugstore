@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-body" id="print-section">
+<div class="card" class="myDivToPrint" style="background-color: white;">
+    <div class="card-body" >
         <div class="row">
             <div class="col-sm-12">
                 <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
@@ -35,7 +35,7 @@
            
            
            
-            <div class="col-sm-12" style="margin-left: 320px; font-size: 10px;">
+            <div class="col-sm-12" style="margin-left: 320px; font-size: 14px;">
                 
               <h4 style="color: black;">OUTPATIENT MEDICAL CLAIM FORM</h4>
              
@@ -99,7 +99,7 @@
                
                 
             </div>
-            <div class="col-sm-12" style="font-size: 12px;">
+            <div class="col-sm-12" style="font-size: 14px;">
                
                   
                 <div style="background-color: black;">  
@@ -123,7 +123,7 @@
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-4">Date when the condition was first diagnosed?</div>
                     <div class="col-sm-4">
                     <input type="text"  >
@@ -131,7 +131,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-4">Date of Preveous treatment for this illness/injury</div>
                     <div class="col-sm-4">
                     <input type="text">
@@ -139,7 +139,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-4">Date of current treatment?</div>
                     <div class="col-sm-4">
                     <input type="text" >
@@ -147,7 +147,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-8">Any Underlying conditions which could result to this illness/injury</div>
                     <div class="col-sm-4">
                     <input type="text" >
@@ -155,7 +155,7 @@
                    
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-4">was patient referred to a specialist? </div>
                     
                           <div class="col-sm-2">
@@ -166,7 +166,7 @@
                         </div>
                       </div>
                       <div class="clearfix"></div>
-                      <div class="row" style="font-size: 12px;">
+                      <div class="row" style="font-size: 14px;">
                           <div class="col-sm-12">Indicate specialist services & specialist name </div>
                           <div class="col-sm-12">
                           <input type="text" value="{{patient.insuranceVisit.doctor}}" >
@@ -174,7 +174,7 @@
                           </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <p style="font-size: 12px;">
+                                <p style="font-size: 14px;">
                                     (Please attach all receipts/invoices and copies of prescriptions relating to this claim including chemist bills-otherwise the <br>
                                     bill will not be settled).
                                 </p>
@@ -184,7 +184,7 @@
 
                         </div>
                         <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-2">Treatment given</div>
                     
                    
@@ -229,7 +229,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div style="background-color: black; font-size: 12px;" >  
+                            <div style="background-color: black; font-size: 14px;" >  
                                 <p style="color: white;">
                                    MEMBER'S DECLARATION & CONSENT
                                   </p>
@@ -256,7 +256,7 @@
                          <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
                      <div class="row">___________________________</div>
                  </div> -->
-                    <div class="row" style=" font-size: 12px;">
+                    <div class="row" style=" font-size: 14px;">
                         <div class="col-sm-2" (click)="activateMemberSignature()">
                             Signed
                         </div>
@@ -276,7 +276,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div style="background-color: black; font-size: 12px;">  
+                            <div style="background-color: black; font-size: 14px;">  
                                 <p style="color: white;">
                                   DOCTOR'S CERTIFICATE
                                   </p>
@@ -287,7 +287,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p style="font-size: 12px;">
+                            <p style="font-size: 14px;">
                                 I certify that the above amounts are in accordance with my specified treatment and to nthe best of my knowlendge and<br>
                                 belief the claim is approved for payment/reimbursement
                               </p>
@@ -322,7 +322,7 @@
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row" style=" font-size: 12px;">
+                    <div class="row" style=" font-size: 14px;">
                         <div class="col-sm-2">
                             Stamped
                         </div>
@@ -342,7 +342,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div style="background-color: black; font-size: 12px;">  
+                            <div style="background-color: black; font-size: 14px;">  
                                 <p style="color: white;">
                                  FOR OFFICIAL USE ONLY
                                   </p>
@@ -352,7 +352,7 @@
                         </div>
 
                     </div>
-                    <div class="row" style="font-size: 12px;">
+                    <div class="row" style="font-size: 14px;">
                         <div class="col-sm-4">Amount payable Ksh</div>
                         <div class="col-sm-8">
                         <input type="text" value="{{patient.insuranceVisit.claimed_amount}}">
@@ -361,7 +361,7 @@
                     </div>
                <div class="row">
                    <div class="col-sm-12">
-                    <div style="background-color: red;font-size: 12px;">  
+                    <div style="background-color: red;font-size: 14px;">  
                         <p style="color: white;">
                           Minet Kenya insurance Brokers Ltd,    Minet House,   Off Nyerere road |    P.O Box 48279-00100 Nairobi, Kenya<br>
                           (t) +254(0)204974444/0719044444    (f)2721825 |   (e)casemanagement@minet.co.ke www.minet.co.ke

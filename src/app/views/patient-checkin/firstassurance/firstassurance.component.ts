@@ -143,6 +143,7 @@ export class FirstassuranceComponent implements OnInit {
       description:[''],
       employer:[''],
       id:[''],
+      date:[''],
       address:['']
     });
 

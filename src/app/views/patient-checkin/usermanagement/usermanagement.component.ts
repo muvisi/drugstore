@@ -109,12 +109,19 @@ export class UsermanagementComponent implements OnInit {
     );
     }
   }
-  reset(){
-    console.log("RESETDATA",this.selected.email)
+  // reset(){
+  //   console.log("RESETDATA",this.selected.email)
    
-    this.resetModal.show()
+  //   this.resetModal.show()
+  // }
+  reset(element){
+    this.service.reset(element).subscribe((res)=>{
+     
+      this.toastr.success('Successfully reset password');
+    },(err)=>{
+      this.toastr.error('Password reset failed','Failed');
+    })
   }
-
 resetUser(){
   this.service.resetUser(this.resetForm.value).subscribe((res) => {
       
@@ -130,7 +137,7 @@ resetUser(){
   );
 }
 delete(){
-  console.log(this.selected);
+ 
   this.service.deleteUSER(this.selected.id).subscribe((res)=>{
   this.ngOnInit();
   this.toastr.success('Successfully deleted','Success');

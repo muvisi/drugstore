@@ -1,625 +1,628 @@
-<div class="card">
-    <div class="card-body" id="print-section">
-        <div class="row">
-            <div class="col-sm-12">
-                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
-
-                <div class="clearfix"></div>
+<div id="print-section">
+    <div class="card">
+        <div class="card-body" >
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" style="float: right; "  printSectionId="print-section" ngxPrint>Print Claim Form</button>
     
-            </div>
-            <div class="clearfix"></div>
-            <div class="clearfix"></div>
-            <div class="col-sm-12">
-                <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
-
-                
+                    <div class="clearfix"></div>
+        
+                </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    <button class="btn btn-success" style="float: right; margin-top: 20px;"  printSectionId="print-section" ngxPrint>Edit Form</button>
     
+                    
+        
+                </div>
+               
             </div>
-           
-        </div>
-        <div class="row" >
-            <div class="row" style="font-size: 8px; color: darkblue;">
-                <div class="col-sm-2">
-                    <img src="../../../../assets/img/avatars/apa.png" alt="" width="250px" height="100px">
-                    </div>
-                <div class="col-sm-2">
-                    <strong>HEAD OFFICE</strong><br>
-                    APA Insurance(Kenya) Limited,<br> 
-                    Apollo centre,Ring Road,<br>
-                    Parklands<br>
-                    P.O Box 30065-00100 Nairobi,Kenya<br>
-                    Tel: +254(0)202862000<br>
+            <div class="row" >
+                <div class="row" style="font-size: 8px; color: darkblue;">
+                    <div class="col-sm-2">
+                        <img src="../../../../assets/img/avatars/apa.png" alt="" width="250px" height="100px">
+                        </div>
+                    <div class="col-sm-2">
+                        <strong>HEAD OFFICE</strong><br>
+                        APA Insurance(Kenya) Limited,<br> 
+                        Apollo centre,Ring Road,<br>
+                        Parklands<br>
+                        P.O Box 30065-00100 Nairobi,Kenya<br>
+                        Tel: +254(0)202862000<br>
+                        
+                        <span style="margin-left:9px;">+254(0)203641000</span><br>
+    
+                        Email: info@apainsurance.org<br></div>
                     
-                    <span style="margin-left:9px;">+254(0)203641000</span><br>
-
-                    Email: info@apainsurance.org<br></div>
+                    <div class="col-sm-2">
+                        <strong>CITY SQUARE</strong><br>
+                        3rf Floor ABSA Plaza,<br> 
+                        Loita Street.<br>
+    
+                        Tel: +254(0)202862000<br>
+                        
+                        <span style="margin-left:9px;">+254(0)203641000</span><br><br>
+                     
+                        <strong>MOMBASA</strong><br>
+                        Ground Floor,appolo House,Moi Avenue<br>
+                        Tel: +254(0)202862400<br>
+                        Email: apa.mombasa@apainsurance.org<br>
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>NAKURU</strong><br>
+                        Ground Floor,Giddo Plaza<br>
+                        George Moraa<br>
+                        Tel: +254(0)202862340<br>
+                        Email: apa.nakuru@apainsurance.org<br><br>
+                        <strong>KISUMU</strong><br>
+                        Ground Floor,Tuff Foam Mall<br>
+                        Jommo Kenyatta Highway<br>
+                        Tel: +254(0)202162908<br>
+                        Email: apa.kisumu@apainsurance.org<br>
+                    </div>
+                        
+                       
+                    
+                    <div class="col-sm-2">
+                        <strong>NAIVASHA</strong><br>
+                        1st Floor,Eangle Centre<br>
+                        Mbaria Kaniu Road<br>
+                        Tel: +254(0)202862331<br>
+                        Email: apa.naivasha@apainsurance.org<br><br>
+                        <strong>ELDORET</strong><br>
+                        1st Floor,Zion Mall,Ungada Road<br>
+                        Jommo Kenyatta Highway<br>
+                        Tel: +254(0)202862334<br>
+                        Email: apa.eldoret@apainsurance.org<br>
+                    </div>
+                    <div class="col-sm-2">
+                        <strong>THIKA</strong><br>
+                        5st Floor,Zuri Centre<br>
+                        Kenyatta Highway<br>
+                        Tel: +254(0)202862300<br>
+                        Email: apa.thika@apainsurance.org<br><br>
+                        <strong>MERU</strong><br>
+                        2nd Floor,Hart Towers Off Meru Highway<br>
+                        Tel: +254(0)202862313<br>
+                        Email: apa.meru@apainsurance.org<br>
+                    </div>
+                    
+                </div>
+               
                 
-                <div class="col-sm-2">
-                    <strong>CITY SQUARE</strong><br>
-                    3rf Floor ABSA Plaza,<br> 
-                    Loita Street.<br>
-
-                    Tel: +254(0)202862000<br>
-                    
-                    <span style="margin-left:9px;">+254(0)203641000</span><br><br>
-                 
-                    <strong>MOMBASA</strong><br>
-                    Ground Floor,appolo House,Moi Avenue<br>
-                    Tel: +254(0)202862400<br>
-                    Email: apa.mombasa@apainsurance.org<br>
-                </div>
-                <div class="col-sm-2">
-                    <strong>NAKURU</strong><br>
-                    Ground Floor,Giddo Plaza<br>
-                    George Moraa<br>
-                    Tel: +254(0)202862340<br>
-                    Email: apa.nakuru@apainsurance.org<br><br>
-                    <strong>KISUMU</strong><br>
-                    Ground Floor,Tuff Foam Mall<br>
-                    Jommo Kenyatta Highway<br>
-                    Tel: +254(0)202162908<br>
-                    Email: apa.kisumu@apainsurance.org<br>
-                </div>
-                    
-                   
                 
-                <div class="col-sm-2">
-                    <strong>NAIVASHA</strong><br>
-                    1st Floor,Eangle Centre<br>
-                    Mbaria Kaniu Road<br>
-                    Tel: +254(0)202862331<br>
-                    Email: apa.naivasha@apainsurance.org<br><br>
-                    <strong>ELDORET</strong><br>
-                    1st Floor,Zion Mall,Ungada Road<br>
-                    Jommo Kenyatta Highway<br>
-                    Tel: +254(0)202862334<br>
-                    Email: apa.eldoret@apainsurance.org<br>
-                </div>
-                <div class="col-sm-2">
-                    <strong>THIKA</strong><br>
-                    5st Floor,Zuri Centre<br>
-                    Kenyatta Highway<br>
-                    Tel: +254(0)202862300<br>
-                    Email: apa.thika@apainsurance.org<br><br>
-                    <strong>MERU</strong><br>
-                    2nd Floor,Hart Towers Off Meru Highway<br>
-                    Tel: +254(0)202862313<br>
-                    Email: apa.meru@apainsurance.org<br>
-                </div>
                 
-            </div>
-           
-            
-            
-            
-           
-            <div class="col-sm-12" >
-                <hr>
-                <div  >
-                    <h3 style="color:darkblue;margin-left: 210px;"><strong>MEDICAL INSURANCE CLAIM FORM</strong></h3>
-                </div>
-                <div class="col-sm-12" style="color: darkblue;">
-                    <p style="margin: 30px;">
-                        (N.B.
-                    </p>
-                   <span style="margin-left: 140px;">
-                        1.This form shall not be accepted unless fully completed and signed by both the doctor and the insured.<br></span>
-                        <span style="margin-left: 140px;">  2.No addmissio of liability is made by insurer by the issue of this form<br></span>
-                            <span style="margin-left: 140px;"> 3.To make a false claim is a criminal offence.<br>
+               
+                <div class="col-sm-12" >
+                    <hr>
+                    <div  >
+                        <h3 style="color:darkblue;margin-left: 210px;"><strong>MEDICAL INSURANCE CLAIM FORM</strong></h3>
+                    </div>
+                    <div class="col-sm-12" style="color: darkblue;">
+                        <p style="margin: 30px;">
+                            (N.B.
+                        </p>
+                       <span style="margin-left: 140px;">
+                            1.This form shall not be accepted unless fully completed and signed by both the doctor and the insured.<br></span>
+                            <span style="margin-left: 140px;">  2.No addmissio of liability is made by insurer by the issue of this form<br></span>
+                                <span style="margin-left: 140px;"> 3.To make a false claim is a criminal offence.<br>
+                           
+    
+    
+                      
                        
-
-
-                  
-                   
-                   </span>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Name of Hospital/Provider:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{hospital}}</strong>
-                            </div>
-                            <div class="row">
-                            __________________________________________________________
-                            
-                        </div>
-                        </div>
-                        
-                        <div class="col-sm-2">Tel &Fax No:</div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text" value="{{Aartelephone}}">
-                        </div> -->
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{Aartelephone}}</strong>
-                            </div>
-                            <div class="row">
-                     ______________________________________________
-                            
-                        </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                    <div class="col-sm-2">Name of the Employer</div>
-                    
-                    <div class="col-sm-10">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.employer}}</strong>
-                        </div>
-                        <div class="row">
-                            _________________________________________________________________________________________________________________________________________
-                        
-                    </div>
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                    <div class="col-sm-2">Policy/Membership No</div>
-                    <!-- <div class="col-sm-10">
-                    <input type="text" value="{{patient[0].member_number}}">
-                    </div> -->
-                    
-                    <div class="col-sm-10">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.member_number}}</strong>
-                        </div>
-                        <div class="row">
-                       _________________________________________________________________________________________________________________________________________
-                        
-                    </div>
-                    </div>
-                    
-                </div>
-                <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Employee's Name</div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text" value="{{employee}}">
-                        </div> -->
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.employee}}</strong>
-                            </div>
-                            <div class="row">
-                     ______________________________________________
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2">Mobile No</div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text" >
-                        </div> -->
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.patient.phone}}</strong>
-                            </div>
-                            <div class="row">
-                     ______________________________________________
-                            
-                        </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Patient Name</div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text" value="{{patient[0].member}}">
-                        </div> -->
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.patient.first_name}}{{patient.patient.last_name}}</strong>
-                            </div>
-                            <div class="row">
-                     ______________________________________________
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2">Date of Birth/Age:</div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text" value="{{patient[0].dob}}" >
-                        </div> -->
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.patient.age}}</strong>
-                            </div>
-                            <div class="row">
-                     ______________________________________________
-                            
-                        </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Relationship to Employee:</div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text" >
-                        </div> -->
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.relation}}</strong>
-                            </div>
-                            <div class="row">
-                     ______________________________________________
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2">ID No:</div>
-                        <!-- <div class="col-sm-4">
-                        <input type="text" >
-                        </div> -->
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.patient.national_id}}</strong>
-                            </div>
-                            <div class="row">
-                     ______________________________________________
-                            
-                        </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                   <div class="row"  style=" font-size: 12px; margin-left: 40px;">
-                    <!-- <p style="margin-left: 40px;"> -->
-                        Are you insured under any other medical expense scheme e.g NHIF, Workmen's Compesation, Personal Accident included?<br>
-                        If so, please give particulars_____________________________________________________________________________________<br>
-                    <!-- </p> -->
-                   </div>
-                   <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 40px; font-size: 12px;">
-                        <div class="col-sm-12">
-                       
-                       
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                <span style="margin-left: 50px;"> <strong>   {{patient.patient.first_name}}     {{patient.patient.last_name}}</strong></span>
-                            </div>
-                            <div class="row">
-                                I   {{space}}      _________________________________________________________
-                                do hereby authorize 
-                                any doctor,hospital,clinic or medical provider,insurance company,institution or person who has any record or information about me  and/or
-                                family members to provide my insurer with complete information including copies of records with reference to my illness or accident, any
-                                treatment, examination,advice, or hospitalization. I have also been advised by<br> APA INSURANCE LTD. and have understood the various 
-                                exclussions.Any photocopy of this authorisation shall be taken as the original copy.
-                                
-                            
-                        </div>
-                        
-                       
-                        </div>
-                        
-                    </div>
-                    <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-8" (click)="activateMemberSignature()">
-                            <div class="row">
-                                <div class="col-sm-4">Signature of  Member:</div>
-                                <div class="col-sm-8">
-                                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="100px" height="50px"/></div>
-                                <div class="row">_______________________________________________________________ </div>
+                       </span>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Name of Hospital/Provider:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{hospital}}</strong>
                                 </div>
-                             </div>
+                                <div class="row">
+                                __________________________________________________________
+                                
+                            </div>
+                            </div>
+                            
+                            <div class="col-sm-2">Tel &Fax No:</div>
+                            <!-- <div class="col-sm-4">
+                            <input type="text" value="{{Aartelephone}}">
+                            </div> -->
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{Aartelephone}}</strong>
+                                </div>
+                                <div class="row">
+                         ______________________________________________
+                                
+                            </div>
+                            </div>
                         </div>
-                        <!-- <div class="col-sm-8" (click)="activateMemberSignature()">
-                           Signature of  Member______________________________________________________________
-                        </div> -->
-                        <div class="col-sm-4">
-                            Date_______________________________________
-                        </div>
+                        <div class="clearfix"></div>
+                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="col-sm-2">Name of the Employer</div>
                         
-                    </div>
-
-
-                </div>
-               
-                 <div  class="col-sm-6" style="color: darkblue; font-size: 12px;">
-                    <div style="background-color:white;margin-left: 40px; " >
-                        <h6 style="color: darkblue">TO BE FILLED BY DOCTOR</h6>
-                    </div>
-                </div>
-                <div class="col-sm-12"  style="color: darkblue;" >
-               
-               
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">Final Diagnosis of condition treated:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.insuranceVisit.diagnoses}}{{patient.insuranceVisit.description}}</strong>
-                            </div>
-                            <div class="row">
-                    __________________________________________________________________________________________
-                            
-                        </div>
-                        </div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">When was the condition first diagnosed:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ___________________________________________________________________________________________
-                            
-                        </div>
-                        </div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">Details of Preveous treatment for this ill;ness/injury:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    __________________________________________________________________________________________
-                            
-                        </div>
-                        </div>
-                        
-                    </div>
-                   
-    
-    
-                   
-                   
-                    
-                </div>
-                <div  class="col-sm-6" style="font-size: 12px;">
-                    <div style="background-color:white;margin-left: 40px; ">
-                        <h6 style="color: darkblue"><u>SICKNESS</u></h6>
-                    </div>
-                </div>
-                <div class="col-sm-12"  style="color: darkblue;" >
-               
-               
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">Cause of illness/es:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                   __________________________________________________________________________________________
-                            
-                        </div>
-                        </div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">Is the condition Recurrent, Chronic or Congenital:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                     ____________________________________________________________________________________________
-                            
-                        </div>
-                        </div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">Nature of treatment and given recommendations:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ______________________________________________________________________________
-                            
-                        </div>
-                        </div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-
-                   <!-- <div class="row" style="margin-left: 30px; font-size: 8px;"> -->
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-12">Does the patient require referral to a specialist? Yes/No.</div>
-                       
-                       
-                    </div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Name of cunsultant</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.insuranceVisit.doctor}}</strong>
-                            </div>
-                            <div class="row">
-                    ______________________________________________
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2">Specialty</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.doctor_specialty}}</strong>
-                            </div>
-                            <div class="row">
-                    ______________________________________________
-                            
-                        </div>
-                        </div>
-                    </div>
-                   
-    
-                   
-                   
-                    
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-sm-12"  style="color: darkblue;" >
-                   
-                   
-           
-
-
-            
-
-           
-            <div  class="col-sm-6">
-                <div style="background-color:white; margin-left: 30px;" >
-                    <h6 style="color: darkblue;"><u>ACCIDENTS</u></h6>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2"> i. Date of accident:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ______________________________________________
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2"> Cause of accident:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ______________________________________________
-                            
-                        </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2"> ii. Name of Injuries:</div>
                         <div class="col-sm-10">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                 <strong>   {{patient.employer}}</strong>
                             </div>
                             <div class="row">
-                    ______________________________________________
+                                _________________________________________________________________________________________________________________________________________
                             
                         </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Private doctors Fees:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ______________________________________________=
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2">Kshs:</div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Prescribed Drugs:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ______________________________________________=
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2"></div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">Specialist,Pathologist.X-ray & Physiotheraphy fees:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ______________________________________________=
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2"></div>
-                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row" style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-5">Total claims:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
-                            </div>
-                            <div class="row">
-                    ______________________________________________=
-                            
-                        </div>
-                        </div>
-                        <div class="col-sm-2"></div>
-                        
-                    </div>
-                    <div class="row" style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-12">
-                        I hereby confirm that the information provided above is correct and true to the best of my knowledge
                         </div>
                         
                     </div>
                     <div class="clearfix"></div>
                     <div class="row"  style="margin-left: 30px; font-size: 12px;">
-                        <div class="col-sm-2">Name of Doctor</div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">Policy/Membership No</div>
+                        <!-- <div class="col-sm-10">
+                        <input type="text" value="{{patient[0].member_number}}">
+                        </div> -->
+                        
+                        <div class="col-sm-10">
                             <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{patient.insuranceVisit.doctor}}</strong>
+                                 <strong>   {{patient.member_number}}</strong>
                             </div>
                             <div class="row">
-                    ______________________________________________
+                           _________________________________________________________________________________________________________________________________________
                             
                         </div>
                         </div>
-                        <div class="col-sm-2">Telephone No:</div>
-                        <div class="col-sm-4">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Employee's Name</div>
+                            <!-- <div class="col-sm-4">
+                            <input type="text" value="{{employee}}">
+                            </div> -->
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.employee}}</strong>
+                                </div>
+                                <div class="row">
+                         ______________________________________________
+                                
                             </div>
-                            <div class="row">
-                    ______________________________________________
+                            </div>
+                            <div class="col-sm-2">Mobile No</div>
+                            <!-- <div class="col-sm-4">
+                            <input type="text" >
+                            </div> -->
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.patient.phone}}</strong>
+                                </div>
+                                <div class="row">
+                         ______________________________________________
+                                
+                            </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Patient Name</div>
+                            <!-- <div class="col-sm-4">
+                            <input type="text" value="{{patient[0].member}}">
+                            </div> -->
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.patient.first_name}}{{patient.patient.last_name}}</strong>
+                                </div>
+                                <div class="row">
+                         ______________________________________________
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2">Date of Birth/Age:</div>
+                            <!-- <div class="col-sm-4">
+                            <input type="text" value="{{patient[0].dob}}" >
+                            </div> -->
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.patient.age}}</strong>
+                                </div>
+                                <div class="row">
+                         ______________________________________________
+                                
+                            </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Relationship to Employee:</div>
+                            <!-- <div class="col-sm-4">
+                            <input type="text" >
+                            </div> -->
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.relation}}</strong>
+                                </div>
+                                <div class="row">
+                         ______________________________________________
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2">ID No:</div>
+                            <!-- <div class="col-sm-4">
+                            <input type="text" >
+                            </div> -->
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.patient.national_id}}</strong>
+                                </div>
+                                <div class="row">
+                         ______________________________________________
+                                
+                            </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                       <div class="row"  style=" font-size: 12px; margin-left: 40px;">
+                        <!-- <p style="margin-left: 40px;"> -->
+                            Are you insured under any other medical expense scheme e.g NHIF, Workmen's Compesation, Personal Accident included?<br>
+                            If so, please give particulars_____________________________________________________________________________________<br>
+                        <!-- </p> -->
+                       </div>
+                       <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 40px; font-size: 12px;">
+                            <div class="col-sm-12">
+                           
+                           
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                    <span style="margin-left: 50px;"> <strong>   {{patient.patient.first_name}}     {{patient.patient.last_name}}</strong></span>
+                                </div>
+                                <div class="row">
+                                    I   {{space}}      _________________________________________________________
+                                    do hereby authorize 
+                                    any doctor,hospital,clinic or medical provider,insurance company,institution or person who has any record or information about me  and/or
+                                    family members to provide my insurer with complete information including copies of records with reference to my illness or accident, any
+                                    treatment, examination,advice, or hospitalization. I have also been advised by<br> APA INSURANCE LTD. and have understood the various 
+                                    exclussions.Any photocopy of this authorisation shall be taken as the original copy.
+                                    
+                                
+                            </div>
+                            
+                           
+                            </div>
                             
                         </div>
+                        <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-8" (click)="activateMemberSignature()">
+                                <div class="row">
+                                    <div class="col-sm-4">Signature of  Member:</div>
+                                    <div class="col-sm-8">
+                                        <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="100px" height="50px"/></div>
+                                    <div class="row">_______________________________________________________________ </div>
+                                    </div>
+                                 </div>
+                            </div>
+                            <!-- <div class="col-sm-8" (click)="activateMemberSignature()">
+                               Signature of  Member______________________________________________________________
+                            </div> -->
+                            <div class="col-sm-4">
+                                Date_______________________________________
+                            </div>
+                            
+                        </div>
+    
+    
+                    </div>
+                   
+                     <div  class="col-sm-6" style="color: darkblue; font-size: 12px;">
+                        <div style="background-color:white;margin-left: 40px; " >
+                            <h6 style="color: darkblue">TO BE FILLED BY DOCTOR</h6>
                         </div>
                     </div>
-           
-            
-            <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
-                <div class="col-sm-4"  (click)="activateStaffSignature()">
-                    Doctor's Signature & stamp
-                 </div>
-                 <div class="col-sm-4">
-                     <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
-                 <div class="row">___________________________</div>
-             </div>
-                <!-- <div class="col-sm-8">
-                    ______________________________________________________________
-                </div> -->
-                <div class="col-sm-4">
-                    Date_______________________________________
+                    <div class="col-sm-12"  style="color: darkblue;" >
+                   
+                   
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">Final Diagnosis of condition treated:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.insuranceVisit.diagnoses}}{{patient.insuranceVisit.description}}</strong>
+                                </div>
+                                <div class="row">
+                        __________________________________________________________________________________________
+                                
+                            </div>
+                            </div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">When was the condition first diagnosed:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ___________________________________________________________________________________________
+                                
+                            </div>
+                            </div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">Details of Preveous treatment for this ill;ness/injury:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        __________________________________________________________________________________________
+                                
+                            </div>
+                            </div>
+                            
+                        </div>
+                       
+        
+        
+                       
+                       
+                        
+                    </div>
+                    <div  class="col-sm-6" style="font-size: 12px;">
+                        <div style="background-color:white;margin-left: 40px; ">
+                            <h6 style="color: darkblue"><u>SICKNESS</u></h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12"  style="color: darkblue;" >
+                   
+                   
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">Cause of illness/es:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                       __________________________________________________________________________________________
+                                
+                            </div>
+                            </div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">Is the condition Recurrent, Chronic or Congenital:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                         ____________________________________________________________________________________________
+                                
+                            </div>
+                            </div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">Nature of treatment and given recommendations:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________________________________________
+                                
+                            </div>
+                            </div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+    
+                       <!-- <div class="row" style="margin-left: 30px; font-size: 8px;"> -->
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-12">Does the patient require referral to a specialist? Yes/No.</div>
+                           
+                           
+                        </div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Name of cunsultant</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.insuranceVisit.doctor}}</strong>
+                                </div>
+                                <div class="row">
+                        ______________________________________________
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2">Specialty</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.doctor_specialty}}</strong>
+                                </div>
+                                <div class="row">
+                        ______________________________________________
+                                
+                            </div>
+                            </div>
+                        </div>
+                       
+        
+                       
+                       
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12"  style="color: darkblue;" >
+                       
+                       
+               
+    
+    
+                
+    
+               
+                <div  class="col-sm-6">
+                    <div style="background-color:white; margin-left: 30px;" >
+                        <h6 style="color: darkblue;"><u>ACCIDENTS</u></h6>
+                    </div>
                 </div>
+                <div class="clearfix"></div>
+                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2"> i. Date of accident:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2"> Cause of accident:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________
+                                
+                            </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2"> ii. Name of Injuries:</div>
+                            <div class="col-sm-10">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________
+                                
+                            </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Private doctors Fees:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________=
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2">Kshs:</div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Prescribed Drugs:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________=
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">Specialist,Pathologist.X-ray & Physiotheraphy fees:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________=
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-5">Total claims:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________=
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                            
+                        </div>
+                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-12">
+                            I hereby confirm that the information provided above is correct and true to the best of my knowledge
+                            </div>
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                            <div class="col-sm-2">Name of Doctor</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <strong>   {{patient.insuranceVisit.doctor}}</strong>
+                                </div>
+                                <div class="row">
+                        ______________________________________________
+                                
+                            </div>
+                            </div>
+                            <div class="col-sm-2">Telephone No:</div>
+                            <div class="col-sm-4">
+                                <div class="row" style="position: absolute;bottom: 1;">
+                                     <!-- <strong>   {{patient.insuranceVisit.doctor}}</strong> -->
+                                </div>
+                                <div class="row">
+                        ______________________________________________
+                                
+                            </div>
+                            </div>
+                        </div>
+               
+                
+                <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
+                    <div class="col-sm-4"  (click)="activateStaffSignature()">
+                        Doctor's Signature & stamp
+                     </div>
+                     <div class="col-sm-4">
+                         <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                     <div class="row">___________________________</div>
+                 </div>
+                    <!-- <div class="col-sm-8">
+                        ______________________________________________________________
+                    </div> -->
+                    <div class="col-sm-4">
+                        Date_______________________________________
+                    </div>
+                    
+                </div>
+               
+               
+                
+                
                 
             </div>
-           
-           
-            
-            
-            
         </div>
-       
-      
     </div>
-  </div>
+          
+        </div>
+      </div>
+</div>
   <div class="modal fade" bsModal #clientModal="bs-modal" 
   tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-dialog modal-lg">

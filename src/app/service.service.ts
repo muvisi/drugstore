@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse, HttpBackend }
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8888/';
-export const endpoint='http://134.209.199.123:5555/';
+export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
@@ -51,6 +51,12 @@ export class ServiceService {
       map(this.extractData));
 
   }
+  reset(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/reset/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  
 
 
   getPayments() {
