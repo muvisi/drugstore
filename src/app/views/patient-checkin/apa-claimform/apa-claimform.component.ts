@@ -104,7 +104,7 @@ export class ApaClaimformComponent implements OnInit {
     "doctoraddress": "",
   
     }
-  hospital='AAR HOSPITAL'
+  hospital='AAR HOSPITAL KENYA LTD'
   maxDate
   specialist='Yes'
   employer='Employer Name'
