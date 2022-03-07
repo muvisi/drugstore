@@ -299,7 +299,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.patient.national_id}}</strong>
+                                    <strong>   {{patient.date | date:"MMM d, y"}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -669,8 +669,15 @@
   </div>
   <div class="modal-body">
   <form [formGroup]="clientForm"   >
+    <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
+        <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+          PATIENT INFORMATION
+   
+        </div>
+   
+      </div>
   
-  <div class="row">
+  <div class="row" style="margin-top: 10px;">
       <div class="col-sm-4">
       <mat-form-field appearance="outline">
           <mat-label>Surname</mat-label>
@@ -699,14 +706,14 @@
 
       </mat-form-field>
   </div>
-  <!-- <div class="col-sm-4">
+  <div class="col-sm-4">
   <mat-form-field appearance="outline">
-      <mat-label>D.O.B</mat-label>
-      <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.date"  formControlName="date" >
+      <mat-label>Member signature Date</mat-label>
+      <input matInput placeholder="Member signature Date" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.date"  formControlName="date" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-  </div> -->
+  </div>
   <div class="col-sm-4">
   <mat-form-field appearance="outline">
       <mat-label>Membership No</mat-label>
@@ -719,28 +726,9 @@
           <input matInput placeholder="Email" [(ngModel)]="patient.patient.email"  formControlName="email">
   </mat-form-field>
   </div>
-  <!-- <div class="col-sm-4">
-      <mat-form-field appearance="outline">
-      <mat-label>Date of Onset</mat-label>
-          <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker1"  formControlName="date">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-  </div> -->
-  <div class="col-sm-4">
-      <mat-form-field  appearance="outline">
-      <mat-label>Doctor's Name</mat-label>
-          <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
-
-      </mat-form-field>
-  </div>
-  <div class="col-sm-4">
-      <mat-form-field appearance="outline" >
-      <mat-label>Doctor's specialty</mat-label>
-          <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
-
-      </mat-form-field>
-  </div>
+ 
+  
+ 
   <div class="col-sm-4">
       <mat-form-field appearance="outline" >
       <mat-label>Member Name</mat-label>
@@ -770,12 +758,41 @@
       </mat-form-field>
   </div>
   <div class="col-sm-4">
-      <mat-form-field appearance="outline" >
-      <mat-label>Adress of Doctor</mat-label>
-          <input matInput placeholder="doctor address" [(ngModel)]="patient.doctoraddress" formControlName="address" >
+    <mat-form-field appearance="outline" >
+    <mat-label>Employee Name</mat-label>
+        <input matInput placeholder="Passport" [(ngModel)]="patient.employee" formControlName="employee" >
 
-      </mat-form-field>
+    </mat-form-field>
+</div>
+ 
+  <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
+    <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+      DOCTOR INFORMATION
+
+    </div>
+
   </div>
+  <div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label>Adress of Doctor</mat-label>
+        <input matInput placeholder="doctor address" [(ngModel)]="patient.doctoraddress" formControlName="address" >
+
+    </mat-form-field>
+</div>
+<div class="col-sm-4">
+    <mat-form-field  appearance="outline">
+    <mat-label>Doctor's Name</mat-label>
+        <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+
+    </mat-form-field>
+</div>
+<div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label>Doctor's specialty</mat-label>
+        <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
+
+    </mat-form-field>
+</div>
   
   
   

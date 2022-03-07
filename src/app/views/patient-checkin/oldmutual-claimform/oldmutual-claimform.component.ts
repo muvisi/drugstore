@@ -154,7 +154,7 @@ export class OldmutualClaimformComponent implements OnInit {
       member_sigdate:[''],
       doctor_sigdate:[''],
       name:['']
-      // specialty:['']
+      // prescription:['']
     });
     this.signatureService.connect();
     

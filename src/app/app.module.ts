@@ -52,7 +52,7 @@ import { from } from 'rxjs';
 import {NgxPrintModule} from 'ngx-print';
 import { TokenInterceptor } from './interceptor';
 import { SignatureService } from './signature.service';
-import { NgxPrintElementModule } from 'ngx-print-element';
+// import { NgxPrintElementModule } from 'ngx-print-element';
 // import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 import { QRCodeModule } from 'angularx-qrcode';
@@ -90,7 +90,7 @@ export function tokenGetter() {
     NgxLoadingModule.forRoot({}),
     ModalModule.forRoot(),
     MatFormFieldModule,
-    NgxPrintElementModule,
+    // NgxPrintElementModule,
     MatInputModule,
     NgxMaterialTimepickerModule,
     NgxLoadingModule.forRoot({

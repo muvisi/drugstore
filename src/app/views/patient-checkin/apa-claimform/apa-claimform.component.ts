@@ -100,6 +100,7 @@ export class ApaClaimformComponent implements OnInit {
     "card_number": null,
     "idnumber": null,
     "employer":"",
+   "date":"",
     "doctor_specialty": null,
     "doctoraddress": "",
   
@@ -149,6 +150,8 @@ export class ApaClaimformComponent implements OnInit {
       employer:[''],
       id:[''],
       address:[''],
+      employee:[''],
+      date:['']
    
     });
 
