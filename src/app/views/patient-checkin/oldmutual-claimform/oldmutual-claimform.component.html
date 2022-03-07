@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-body" id="print-section">
+<div class="card" class="myDivToPrint" style="background-color: white;">
+    <div class="card-body" >
         <div class="row">
             <div class="col-sm-12">
                 <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
@@ -17,11 +17,11 @@
             </div>
            
         </div>
-        <div class="row" style="font-size: 8px;">
+        
            
             <div class="col-sm-2">
-                <h5 style=" margin-top: 0px;">
-                    <img src="../../../../assets/img/avatars/uap.png" alt="" height="100" width="100">
+                <h5 style="margin-left: 0;">
+                    <img src="./../../../assets/img/avatars/uaptop.png" alt="" height="300" width="950">
                    
                      
                    
@@ -29,92 +29,73 @@
                 
              
             </div> 
-            <div class="col-sm-10" >
-               
-                <h1 style="justify-content: center; margin-top: 30px; color: white;background-color: green; height: 100;" >OLDMUTUAL</h1>
-
-               
-              </div> 
             
-            <div class="col-sm-12" style="font-size: 13px;">
-               
-                <h1 style="  color: orangered;">OUT-PATIENT</h1>
-                <h1 style=" color: green;">CLAIM-FORM</h1>
-
-               
-              </div>
               
             
-              <div class="col-sm-12" style="font-size: 10px;">
+              <div class="col-sm-12" style="font-size: 14px; margin-top: 20px;">
                
                
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-2">Practitioners Name</div>
-                   
                     <div class="col-sm-6">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.insuranceVisit.doctor}}</strong>
-                        </div>
-                        <div class="row">
-                        _______________________________________________________________________________________
-                        
-                    </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.insuranceVisit.doctor}} </strong>
+                      </div> <hr>
+                  </div>
+                   
+                   
                     <div class="col-sm-4"><strong>Practitioner's Official Stamp</strong></div>
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-2">Postal Address</div>
-                  
                     <div class="col-sm-6">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.address}}</strong>
-                        </div>
-                        <div class="row">
-                        _______________________________________________________________________________________
-                        
-                    </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.address}} </strong>
+                      </div> <hr>
+                  </div>
+                  
+                    
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-2">Tel No</div>
                     <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.telno}}</strong>
-                        </div>
-                        <div class="row">
-                        _______________________________
-                        </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.telno}}</strong>
+                      </div> <hr>
+                  </div>
+                   
                    
                     <div class="col-sm-2">Mobile</div>
                     <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.doctorphone}}</strong>
-                        </div>
-                        <div class="row">
-                        ______________________
-                        </div>
-                    </div>
-                    <!-- <div class="col-sm-4">
-                    <input type="text" >
-                    </div> -->
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.doctorphone}}</strong>
+                      </div> <hr>
+                  </div>
+                   
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-2">Email</div>
+                   
                     <div class="col-sm-6">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.doctoremail}}</strong>
-                        </div>
-                        <div class="row">
-                        _______________________________________________________________________________________
-                        
-                    </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.doctoremail}}</strong>
+                      </div> <hr>
+                  </div>
                    
                 </div>
 
@@ -123,101 +104,92 @@
 
                 
                
-                    <p style="justify-content: center;  color: green; font-size: 20px; margin-left: 2px;">PATIENT'S PARTICULARS</p>
+                    <p style="justify-content: center;  color: green; font-size: 20px; margin-left: 2px; margin-top: 20px;">PATIENT'S PARTICULARS</p>
     
                    
                 
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
-                    <div class="col-sm-2">Full Name of Patient</div>
-                    <div class="col-sm-3">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.patient.first_name}} {{patient.patient.last_name}}</strong>
-                        </div>
-                        <div class="row">
-                        _______________________________
-                        </div>
-                    </div>
+                <div class="row" style="font-size: 14px;">
+                    <div class="col-sm-3">Full Name of Patient</div>
                     
-                    <div class="col-sm-2">Date of Birth</div>
                     <div class="col-sm-3">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>{{patient.patient.dob |date}}</strong>
-                        </div>
-                        <div class="row">
-                        ________________________________________________
-                        </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.patient.first_name}} {{patient.patient.last_name}}</strong>
+                      </div> <hr>
+                  </div>
+                    
+                    <div class="col-sm-3">Date of Birth</div>
+                    
+                    <div class="col-sm-3">
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.patient.dob |date}}</strong>
+                      </div> <hr>
+                  </div>
                 </div>
                 
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-4">Full Name of Member(if patient is a dependant)</div>
                     <div class="col-sm-8">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.member_name}}</strong>
-                        </div>
-                        <div class="row">
-                        ________________________________________________________________________________________________
-                        </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong> {{patient.member_name}}</strong>
+                      </div> <hr>
+                  </div>
+                    
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-3">Members's Tel No</div>
                     <div class="col-sm-3">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.patient.phone}}</strong>
-                        </div>
-                        <div class="row">
-                        __________________________________________________
-                        </div>
-                    </div>
-                    <!-- <div class="col-sm-3">
-                    <input type="text" value="{{patient[0].phone}}">
-                    </div> -->
-                    <div class="col-sm-2">Member No</div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong> {{patient.patient.phone}}</strong>
+                      </div> <hr>
+                  </div>
+                    
+                    <div class="col-sm-3">Member No</div>
                     <div class="col-sm-3">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.member_number}}</strong>
-                        </div>
-                        <div class="row">
-                        _______________________________
-                        </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.member_number}}</strong>
+                      </div> <hr>
+                  </div>
+                   
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-sm-3">Member's Employer Name</div>
+                   
                     <div class="col-sm-3">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.scheme_name}}</strong>
-                        </div>
-                        <div class="row">
-                            __________________________________________________
-
-                        </div>
-                    </div>
-                    <!-- <div class="col-sm-4">
-                    <input type="text" value="{{employer}}">
-                    </div> -->
-                    <div class="col-sm-2">Dept./Branch</div>
-                    <!-- <div class="col-sm-4">
-                    <input type="text" value="{{hospital}}" >
-                    </div> -->
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.scheme_name}}</strong>
+                      </div> <hr>
+                  </div>
+                   
+                    <div class="col-sm-3">Dept./Branch</div>
+                    
                     <div class="col-sm-3">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <!-- <strong>   {{}}</strong> -->
-                        </div>
-                        <div class="row">
-                        _______________________________
-                        </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.scheme_names}}</strong>
+                      </div> <hr>
+                  </div>
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="position: relative;" style="font-size: 12px;">
+                <div class="row" style="position: relative;" style="font-size: 14px;">
                     <div class="col-sm-4">Have you suffered from this sickness in the past?</div>
                     
                     <div class="col-sm-2">
@@ -230,8 +202,15 @@
                   </div>
                     
                 </div>
-                <div class="row" style="position: relative; font-size: 12px;">
-                    <div class="col-sm-12">If YES, when did it start and how frequent is it?_______________________________________________</div>
+                <div class="row" style="position: relative; font-size: 14px;">
+                    <div class="col-sm-4">If YES, when did it start and how frequent is it?</div>
+                    <div class="col-sm-8">
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.onset }}</strong>
+                      </div> <hr>
+                  </div>
                     
                    
                     
@@ -243,14 +222,14 @@
             <div class="clearfix"></div>
            
 
-            <div class="col-sm-12" style="font-size: 12px;">
+            <div class="col-sm-12" style="font-size: 14px; margin-top: 20px;">
                
                 <h6 style="justify-content: center;  color: green;">CONSULTATION/REFERRALS<br>DIAGNOSIS:</h6>
 
                
               </div> 
               <div class="clearfix"></div>
-              <div class="col-sm-8" style="font-size: 8px;">
+              <div class="col-sm-8" style="font-size: 14px;">
                
                 <h6 style="justify-content: center;  color: black;">TREATMENT PRESCRIBED</h6>
 
@@ -258,8 +237,8 @@
               </div> 
               <div class="clearfix"></div>
               <div class="col-sm-12">
-                <div class="row" style="font-size: 12px;">
-                    <div class="col-sm-2">MEDICINES</div>
+                <div class="row" style="font-size: 14px;">
+                    <strong><div class="col-sm-2">MEDICINES</div></strong>
                     <div class="col-sm-3">
                         Prescription
                         <mat-checkbox class="example-margin" ></mat-checkbox>
@@ -287,8 +266,8 @@
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 10px;">
-                    <div class="col-sm-2">RADIOLOGY</div>
+                <div class="row" style="font-size: 14px;">
+                    <strong><div class="col-sm-2">RADIOLOGY</div></strong>
                     
                    
                     <div class="col-sm-3">
@@ -317,23 +296,23 @@
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style=" font-size: 10px;">
-                    <div class="col-sm-2">PATHOLOGY</div>
+                <div class="row" style=" font-size: 14px;">
+                    <strong><div class="col-sm-2">PATHOLOGY</div></strong>
                     
                   
                     <div class="col-sm-3">
-                        Haematology
+                      Haematology
                         <mat-checkbox class="example-margin" ></mat-checkbox>
                         
                     </div>
                     <div class="col-sm-3">
-                        Microbiology
+                      Microbiology
                         <mat-checkbox class="example-margin" ></mat-checkbox>
                         
                     </div>
                    
                     <div class="col-sm-2">
-                        Biochemstry
+                       Biochemstry
                         <mat-checkbox class="example-margin" ></mat-checkbox>
                         
                     </div>
@@ -347,88 +326,96 @@
                 </div>
                 <div class="clearfix"></div>
  
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px; margin-top: 20px;">
                     <div class="col-sm-2">
                         Hospital Name:</div>
                         <div class="col-sm-2">
-                            <div class="row" style="position: absolute;bottom: 1;">
-                                 <strong>   {{hospital}}</strong>
-                            </div>
-                            <div class="row">
-                            _______________________________
-                            </div>
-                        </div>
+                                
+                                
+                          <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                              <strong> {{hospital}}</strong>
+                          </div> <hr>
+                      </div>
+                        
                        
                     <div class="col-sm-2">
                       Consultant Referred To:
                     </div>
-                    <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <strong>   {{patient.insuranceVisit.doctor}}</strong>
-                        </div>
-                        <div class="row">
-                        _______________________________
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                          <strong style="font-size: 8px;">{{patient.insuranceVisit.doctor}}</strong>
+                      </div> <hr>
+                  </div>
+                    
+                    <div class="col-sm-1">
                         Specialty
                      </div>
                      <div class="col-sm-2">
-                        <div class="row" style="position: absolute;bottom: 1;">
-                             <!-- <strong>   {{hospital}}</strong> -->
-                        </div>
-                        <div class="row">
-                        _____________________
-                        </div>
-                    </div>
+                                
+                                
+                      <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                          <strong>{{patient.specialty}}</strong>
+                      </div> <hr>
+                  </div>
+                    
                     
                 </div> 
             </div>
               
             <div class="clearfix"></div>
-            <div class="clearfix"></div>
-            <div class="clearfix"></div>
+            
            
           
 
-            <div class="col-sm-12" >
+            <div class="col-sm-12" style="margin-top: 20px;" >
                
                 <h6 style="justify-content: center;  color: black;">MEDICATION PRESCRIBED:</h6>
-                <div class="col-sm-8">
-                    <div class="row" style="position: absolute;bottom: 0; font-size: 12px;">
-                        <span *ngFor="let item of patient.insuranceVisit.services.procedure"> <strong> <span>{{item.name}} {{item.amount}} </span> </strong>       </span>
-                    </div>
-                    <div class="row">
-                        ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>         <div class="clearfix"></div>
-                         __________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>         <div class="clearfix"></div>
-                         ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________<br>                        
-                            
-                            
-                        </div>
-                </div>
                
-                <div class="clearfix"></div>
+                
+               
+              
               </div>
+             
+              <div class="col-sm-12">
+                          
+                          
+                <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                  <span *ngFor="let item of patient.insuranceVisit.services.procedure"> <strong> <span>{{item.name}} {{item.amount}} </span> </strong>       </span>
+                </div> <hr> <hr><hr>
+            </div>
               <div class="clearfix"></div>
-              <div class="col-sm-2" (click)="activateStaffSignature()">
+            <div class="row" style="margin-left: 5px; margin-top: 20px;">
+              <div class="col-sm-2" (click)="activateStaffSignature()" style="font-size: 14px;">
                 Dr's Signature:
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5" >
                 <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
-            <div class="row" >___________________________</div>
+            <hr>
         </div>
                
-                <div class="col-sm-6" style="font-size: 12px;"><strong>
-                    Date____________________________
+                <div class="col-sm-2" style="font-size: 14px;"><strong>
+                    Date
 
                 </strong>
+
                 </div>
+                <div class="col-sm-2">
+                                
+                                
+                  <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                      <strong>{{patient.doctor_sigdate |date:"MMM d, y"}}</strong>
+                  </div> <hr>
+              </div>
+
+            </div>
                 <div class="clearfix"></div>
                 
            
 
-            <div class="row" style=" font-size: 12px;margin: 2px;">
-                <div class="col-sm-12">
+            <div class="row" style="  margin-left: 1px; margin-top: 20px;">
+                <div class="col-sm-12" style="font-size: 14px;">
                    <strong> Declaration:<br></strong>
                    I warrant the truth of the above statements. I have not withheld or misstated material information relating to this claim and have <br>no objection to yourselves communicating with 
                    my medical doctor with regards to this claim.
@@ -441,28 +428,35 @@
                 
                  <div class="col-sm-12">
                  <div class="row">
-                  <div class="col-sm-2" style="font-size: 12px;" (click)="activateMemberSignature()">
+                  <div class="col-sm-2" style="font-size: 14px;" (click)="activateMemberSignature()">
                     <strong>   Member's Signature</strong></div>
-                   <div class="col-sm-6">
+                   <div class="col-sm-4">
                      <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
-                 <div class="row">___________________________</div>
+                 <hr>
              </div>
-                   <div class="col-sm-4" style="font-size: 12px;">
-                      <strong> Date:</strong>____________________________
-                  
+                   <div class="col-sm-2" style="font-size: 14px;">
+                      <strong> Date:</strong>
 
                 </div>
+                <div class="col-sm-2">
+                                
+                                
+                  <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                      <strong>{{patient.member_sigdate | date:"MMM d, y"}}</strong>
+                  </div> <hr>
+              </div>
 
                  </div>
 
                  </div>
              
                 <div class="clearfix"></div>
+                <div class="clearfix"></div>
               
              
-                    <div class="col-sm-12" style="text-align: center; font-size: 14px; " >
+                    <div class="col-sm-12"  >
                         <div class="row"  >
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" style="justify-content: center; font-size: 14px; margin-top: 50px; align-items: center; ">
     
                             <strong>
                                     UAP Insurance Company Limited
@@ -473,17 +467,17 @@
     
                             </div>
                       </div>
-                      <div class="clearfix"></div>
+                     
                        </div>
 
-           
+                       <div class="clearfix"></div>
                 <div class="clearfix"></div>
                 <div class="clearfix"></div>
                 
                    
-                   <div class="col-sm-12" style="text-align: center; font-size: 14px; background-color: grey;" >
-                    <div class="row"  >
-                        <div class="col-sm-12">
+                   <div class="col-sm-12" style="text-align: center; font-size: 14px; background-color: rgb(199, 194, 194); margin-top: 70px; height: 100px;" >
+                    <div class="row">
+                        <div class="col-sm-12" >
 
                             ISO 9001 Certified | A Member of the Association of Kenya Insurers(AKI)<br>
                             <span style="margin-left:60px;"> Regulated by the Insurance Regulatory Authority </span>
@@ -494,9 +488,11 @@
                    </div>
 
        
-    </div> 
+    
    
 </div>  
+   
+</div>
 <div class="modal fade" bsModal #clientModal="bs-modal" 
 tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-dialog modal-lg">
@@ -509,16 +505,23 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
  </div>
  <div class="modal-body">
  <form [formGroup]="clientForm"   >
+   <div class="col-sm-12"  style="background-color: green; color: white; text-align: center; ">
+     <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+       PATIENT INFORMATION
+
+     </div>
+
+   </div>
    
-   <div class="col-sm-12">
+   <div class="col-sm-12" style="margin-top: 10px;">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <mat-form-field appearance="outline">
           <mat-label>Surname</mat-label>
             <input matInput placeholder="Surname" [(ngModel)]="patient.patient.last_name"  formControlName="surname" >
           </mat-form-field>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
             <input matInput placeholder="First Name" [(ngModel)]="patient.patient.first_name"  formControlName="firstname" >
@@ -527,76 +530,152 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     </div>
 
     </div>
-   <div class="col-sm-4">
-     <mat-form-field appearance="outline">
-       <mat-label>Other Name</mat-label>
-         <input matInput placeholder="Other Name" [(ngModel)]="patient.patient.other_names"  formControlName="lastname">
-        
-       </mat-form-field>
- </div>
-  
-  <div class="col-sm-4">
-   <mat-form-field appearance="outline" >
-     <mat-label>Telephone No</mat-label>
-       <input matInput placeholder="Phone" [(ngModel)]="patient.doctorphone" formControlName="phone" >
-
-     </mat-form-field>
+   <div class="row">
+    <div class="col-sm-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Other Name</mat-label>
+          <input matInput placeholder="Other Name" [(ngModel)]="patient.patient.other_names"  formControlName="lastname">
+         
+        </mat-form-field>
   </div>
-  <div class="col-sm-4">
-   <mat-form-field appearance="outline">
-     <mat-label>D.O.B</mat-label>
-       <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.patient.dob"  formControlName="dob" >
-       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-       <mat-datepicker #picker></mat-datepicker>
-     </mat-form-field>
- </div>
- <div class="col-sm-4">
-   <mat-form-field appearance="outline">
-     <mat-label>Membership No</mat-label>
-        <input matInput placeholder="National ID" [(ngModel)]="patient.member_number" formControlName="memberno" >
-      </mat-form-field>
- </div>
- <div class="col-sm-4">
-   <mat-form-field appearance="outline">
-     <mat-label>Doctor Email</mat-label>
-        <input matInput placeholder="Email" [(ngModel)]="patient.doctoremail"  formControlName="email">
-   </mat-form-field>
- </div>
- 
-  <div class="col-sm-4">
-    <mat-form-field  appearance="outline">
-      <mat-label>Doctor's Name</mat-label>
-        <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
-
-      </mat-form-field>
-   </div>
-   <div class="col-sm-4">
-    <mat-form-field  appearance="outline">
-      <mat-label>Doctor Physical Address</mat-label>
-        <input matInput placeholder="Phone" [(ngModel)]="patient.address" formControlName="doctoraddress" >
-
-      </mat-form-field>
-   </div>
-   <div class="col-sm-4">
+   
+   <div class="col-sm-6">
     <mat-form-field appearance="outline" >
-      <mat-label>Doctor's Tel No</mat-label>
-        <input matInput placeholder="Phone" [(ngModel)]="patient.telno" formControlName="specialty" >
-
+      <mat-label>Telephone No</mat-label>
+        <input matInput placeholder="Phone" [(ngModel)]="patient.doctorphone" formControlName="phone" >
+ 
       </mat-form-field>
    </div>
-   <div class="col-sm-4">
+
+   </div>
+ <div class="row">
+  <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+      <mat-label>D.O.B</mat-label>
+        <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.patient.dob"  formControlName="dob" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </div>
+  <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+      <mat-label>Membership No</mat-label>
+         <input matInput placeholder="National ID" [(ngModel)]="patient.member_number" formControlName="memberno" >
+       </mat-form-field>
+  </div>
+
+ </div> 
+ <div class="row">
+  <div class="col-sm-6">
     <mat-form-field appearance="outline" >
       <mat-label>Member Name</mat-label>
         <input matInput placeholder="Employee"  [(ngModel)]="patient.member_name" formControlName="member" >
 
       </mat-form-field>
    </div>
-   <div class="col-sm-4">
+   <div class="col-sm-6">
     <mat-form-field appearance="outline" >
       <mat-label>Medical Card No</mat-label>
         <input matInput placeholder="Medical Card No" [(ngModel)]="patient.card_number" formControlName="cardno" >
 
       </mat-form-field>
+   </div>
+
+ </div>
+ <div class="row">
+  <div class="col-sm-6">
+    <mat-form-field appearance="outline" >
+      <mat-label>Date of onset</mat-label>
+        <input matInput placeholder="Onset Date" [(ngModel)]="patient.onset" formControlName="onset" >
+
+      </mat-form-field>
+   </div>
+   
+   <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+      <mat-label>Member Signature Date</mat-label>
+        <input matInput placeholder="Member Signature Date" [maxDate]="maxDate"  [matDatepicker]="picker3" [(ngModel)]="patient.member_sigdate"  formControlName="member_sigdate" >
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+      </mat-form-field>
+  </div>
+
+ </div>
+ <div class="col-sm-12"  style="background-color: green; color: white; text-align: center; ">
+  <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+    DOCTOR INFORMATION
+
+  </div>
+
+</div>
+ <div class="row" style="margin-top: 10px;">
+  <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+      <mat-label>Doctor Email</mat-label>
+         <input matInput placeholder="Email" [(ngModel)]="patient.doctoremail"  formControlName="email">
+    </mat-form-field>
+  </div>
+  
+   <div class="col-sm-6">
+     <mat-form-field  appearance="outline">
+       <mat-label>Doctor's Name</mat-label>
+         <input matInput placeholder="Phone" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+ 
+       </mat-form-field>
+    </div>
+
+ </div>
+   <div class="row">
+    <div class="col-sm-6">
+      <mat-form-field  appearance="outline">
+        <mat-label>Doctor Physical Address</mat-label>
+          <input matInput placeholder="Phone" [(ngModel)]="patient.address" formControlName="doctoraddress" >
+  
+        </mat-form-field>
+     </div>
+     <div class="col-sm-6">
+      <mat-form-field appearance="outline" >
+        <mat-label>Doctor's Tel No</mat-label>
+          <input matInput placeholder="Phone" [(ngModel)]="patient.telno" formControlName="specialty" >
+  
+        </mat-form-field>
+     </div>
+
+   </div>
+   
+  
+   <div class="row">
+    
+     <div class="col-sm-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Doctor Signature Date</mat-label>
+          <input matInput placeholder="Doctor Signature Date" [maxDate]="maxDate"  [matDatepicker]="picker2" [(ngModel)]="patient.doctor_sigdate"  formControlName="doctor_sigdate" >
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </div>
+     <div class="col-sm-6">
+      <mat-form-field appearance="outline" >
+        <mat-label>Prescription</mat-label>
+          <input matInput placeholder="Prescription" formControlName="name" >
+  
+        </mat-form-field>
+     </div>
+
+    
+
+   </div>
+   <div class="row">
+    <div class="col-sm-6">
+      <mat-form-field appearance="outline" >
+        <mat-label>Specialty</mat-label>
+          <input matInput placeholder="Specialty"  [(ngModel)]="patient.specialty" formControlName="specialty" >
+  
+        </mat-form-field>
+     </div>
+     
+     
+
    </div>
   
   
@@ -609,8 +688,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
  </div>
 </div>
 </div>
-</div>    
-</div>
+</div> 
            
               
                

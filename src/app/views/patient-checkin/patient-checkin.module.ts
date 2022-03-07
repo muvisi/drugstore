@@ -91,6 +91,7 @@ import { RegistrationLinkComponent } from './registration-link/registration-link
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from './print-insurance-forms/print-insurance-forms.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
 import { QRCodeModule } from 'angularx-qrcode';
 
@@ -160,6 +161,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BookingDetailComponent,
     PrintInsuranceFormsComponent,
     PaymentsComponent,
+    UsermanagementComponent,
     QrcodeDownloadComponent
 
     

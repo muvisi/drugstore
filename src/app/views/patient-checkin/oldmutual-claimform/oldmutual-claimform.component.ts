@@ -98,12 +98,16 @@ export class OldmutualClaimformComponent implements OnInit {
     "member_number": "",
     "member_name": null,
     "relation": null,
+    "specialty": null,
+    "onset": null,
+    "member_sigdate": "",
+    "doctor_sigdate":"",
     "card_number": null,
     "id_number": null,
     "nhif_number": null,
     "created": ""
     }
-  hospital='AAR HOSPITAL'
+  hospital='AAR HOSPITAL LTD'
   specialist='Yes'
   employer='AAR Hospital Ltd'
   condition='No Underlying Condition'
@@ -146,6 +150,11 @@ export class OldmutualClaimformComponent implements OnInit {
       specialty: [''],
       member: [''],
       cardno: [''],
+      onset:[''],
+      member_sigdate:[''],
+      doctor_sigdate:[''],
+      name:['']
+      // prescription:['']
     });
     this.signatureService.connect();
     

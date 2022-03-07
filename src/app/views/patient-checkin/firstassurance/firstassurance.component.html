@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-body" id="print-section">
+<div class="card" class="myDivToPrint" style="background-color: white">
+    <div class="card-body"  >
        
 
 
@@ -27,8 +27,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <p style="white-space:nowrap; margin-top: 0px;">
-                    <img src="../../../../assets/img/avatars/med004.png" alt="" width="900" height="100" >
+                <p style="white-space:nowrap;">
+                    <img src="./../../../assets/img/avatars/med004.png" alt="" width="900" height="180" >
                    
                      
                    
@@ -45,16 +45,16 @@
             
             
             
-            <div class="row" style="position: relative; margin: 0px; font-size: 12px;">
+            <div class="row" style="position: relative; margin: 0px; font-size: 14px;">
                
                
                 
                 
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="margin-left: -2px;">
                     <div class="row">
                         <div class="col-sm-12">
                             <p style="white-space:nowrap;">
-                                <img src="../../../../assets/img/avatars/medoo2.png" alt="" width="900">
+                                <img src="./../../../assets/img/avatars/medoo2.png" alt="" width="900">
                                
                                  
                                
@@ -65,13 +65,9 @@
             
                     </div>
                    
-                    <!-- <div style="display: flex !important; font-size: 10px;  background-color: #FFF2ED;" class="row">
-                        <p >PATIENT PARTICULARS </p>
-                    
-                    </div> -->
-                  <!-- <strong>  <hr></strong> -->
+                   
                 </div>
-                <div class="col-sm-12" style="position: relative;  font-size: 10px; margin: 8px;">
+                <div class="col-sm-12" style="  font-size: 14px; ">
                     <div class="row" >
                        
                         <div class="col-sm-1">Surname</div>
@@ -80,7 +76,7 @@
                             <div class="col-sm-2">
                                 
                                 
-                                <div class="row" style="position: absolute;bottom: -1;">
+                                <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                                    <span style="margin-left: 30px;"> <strong>{{patient.patient.first_name}} </strong></span>
                                 </div> <hr>
                             </div>
@@ -91,7 +87,7 @@
                         <div class="col-sm-2">
                                 
                                 
-                            <div class="row" style="position: absolute;bottom: -1;">
+                            <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                                 <strong>{{patient.patient.last_name}} </strong>
                             </div> <hr>
                         </div>
@@ -101,7 +97,7 @@
                         <div class="col-sm-2">
                                 
                                 
-                            <div class="row" style="position: absolute;bottom: -1;">
+                            <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                                 <strong>{{patient.patient.age}} </strong>
                             </div> <hr>
                         </div>
@@ -110,7 +106,7 @@
                         <div class="col-sm-2">
                                 
                                 
-                            <div class="row" style="position: absolute;bottom: -1;">
+                            <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                                 <strong>{{patient.member_number}} </strong>
                             </div> <hr>
                         </div>
@@ -124,7 +120,7 @@
                         <div class="col-sm-2">
                                 
                                 
-                            <div class="row" style="position: absolute;bottom: -1;">
+                            <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                                 <strong>{{patient.employer}} </strong>
                             </div> <hr>
                         </div>
@@ -132,7 +128,7 @@
                         <div class="col-sm-2">
                                 
                                 
-                            <div class="row" style="position: absolute;bottom: -1;">
+                            <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                                 <strong>{{patient.patient.phone}} </strong>
                             </div> <hr>
                         </div>
@@ -145,7 +141,7 @@
                      <div class="col-sm-2">
                                 
                                 
-                        <div class="row" style="position: absolute;bottom: -1;">
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                             <strong>{{patient.member_name}} </strong>
                         </div> <hr>
                     </div>
@@ -153,7 +149,7 @@
                     <div class="col-sm-2">
                                 
                                 
-                        <div class="row" style="position: absolute;bottom: -1;">
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                             <strong>{{patient.idnumber}} </strong>
                         </div> <hr>
                     </div>
@@ -165,7 +161,7 @@
                     <div class="col-sm-2">
                                 
                                 
-                        <div class="row" style="position: absolute;bottom: -1;">
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
                             <strong>{{patient.relation}} </strong>
                         </div> <hr>
                     </div>
@@ -174,14 +170,14 @@
                 </div>
                 <div class="clearfix"></div>
 
-                <div class="row" style="position: relation;">
-                    <div class="col-sm-6">Are you insured under any medical expense scheme/Work compesation/personal Accident:</div>
+                <div class="row" style="position: relation; font-size: 14px;">
+                    <div class="col-sm-8">Are you insured under any medical expense scheme/Work compesation/personal Accident:</div>
                     
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <mat-checkbox class="example-margin" ></mat-checkbox>
                         Yes
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                      <mat-checkbox class="example-margin" ></mat-checkbox>
                     No
                   </div>
@@ -190,8 +186,15 @@
                 <div class="clearfix"></div>
                 <div class="row" style="position: relative;">
                     <div class="col-sm-4">(If so give Details):</div>
-                    <div class="col-sm-8"> <hr>
+                    <!-- <div class="col-sm-8"> <hr>
                       
+                    </div> -->
+                    <div class="col-sm-8">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                            <strong>{{patient.details}} </strong>
+                        </div> <hr>
                     </div>
                     
                     
@@ -200,19 +203,25 @@
             </div>
                
                 <div class="clearfix"></div>
-                <div class="row" style="position: relative;  margin: 8px;">
-                    <div class="col-sm-6">Are you a member of Natinal  Hospital Insurace fund?:</div>
-                    
-                    <div class="col-sm-3">
-                        <mat-checkbox class="example-margin" ></mat-checkbox>
-                        Yes
+                <div class="col-sm-12" style="font-size: 14px;">
+                    <div class="row" style="position: relative;">
+                        <div class="col-sm-6">Are you a member of National  Hospital Insurace fund?:</div>
+                        
+                        <div class="col-sm-3">
+                            <mat-checkbox class="example-margin" ></mat-checkbox>
+                            Yes
+                        </div>
+                        <div class="col-sm-3">
+                         <mat-checkbox class="example-margin" ></mat-checkbox>
+                        No
+                      </div>
+                        
                     </div>
-                    <div class="col-sm-3">
-                     <mat-checkbox class="example-margin" ></mat-checkbox>
-                    No
-                  </div>
-                    
+                   
+
                 </div>
+ 
+               
 
                
                 
@@ -221,16 +230,16 @@
                
                
 
-        </div>
+       
        
     
                 
             </div> 
-            <div class="col-sm-12" style="font-size: 12px;">
+            <div class="col-sm-12" style="font-size: 14px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <p style="white-space:nowrap;">
-                            <img src="../../../../assets/img/avatars/med003.png" alt="" width="900" >
+                            <img src="./../../../assets/img/avatars/med003.png" alt="" width="900" >
                            
                              
                            
@@ -241,53 +250,91 @@
         
                 </div>
              
-              
-                    <strong><P style="margin: 8px;">(SICKNESS TO BE COMPLETED BY ATTENDING DOCTOR)</P></strong>
+              <div class="col-sm-12">
+               <strong>(SICKNESS TO BE COMPLETED BY ATTENDING DOCTOR)</strong> 
+
+              </div>
+                 
+                  
+                
                     <div class="clearfix"></div>
-                <div class="row" style="position: relative; margin: 8px;">
+                <div class="row" style="position: relative; margin-left: 2px;">
                     <div class="col-sm-4">NATURE OF SICKNESS/AILMENT:</div>
-                    <div class="col-sm-8"> <hr>
-                      
+                    <div class="col-sm-8">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                            <strong>{{patient.sickness}} </strong>
+                        </div> <hr>
                     </div>
+                   
                     
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="margin: 8px;">
+                <div class="row" style="margin-left: 2px;">
                     <div class="col-sm-4">WHEN DID IT FIRST OCCUR:</div>
-                    <div class="col-sm-8"> <hr>
-                      
+                    <div class="col-sm-8">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                            <strong>{{patient.dateofsickness}} </strong>
+                        </div> <hr>
                     </div>
+                    <!-- 
+                        
+                     -->
                     
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row"  style="margin: 8px;">
+                <div class="row" style="margin-left: 2px;">
                     <div class="col-sm-4">NATURE OF TREATMENT:</div>
-                    <div class="col-sm-8"> <hr>
+                    <!-- <div class="col-sm-8"> <hr>
                       
+                    </div> -->
+                    <div class="col-sm-8">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                            <strong>{{patient.treatment}} </strong>
+                        </div> <hr>
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="row"  style="margin: 8px;">
+                <div class="row" style="margin-left: 2px;">
                     <div class="col-sm-8">IN YOUR OPINION, WHAT IS THE CAUSE OF AILMENT:</div>
-                    <div class="col-sm-4"> <hr>
+                    <!-- <div class="col-sm-4"> <hr>
                       
+                    </div> -->
+                    <div class="col-sm-4">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                            <strong>{{patient.causeofsickness}} </strong>
+                        </div> <hr>
                     </div>
                     
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row"  style="margin: 8px;">
+                <div class="row" style="margin-left: 2px;">
                     <div class="col-sm-6">IN YOUR OPINION, IS THIS AILMENT CHRONIC/RECURRING:</div>
-                    <div class="col-sm-6"> <hr>
+                    <!-- <div class="col-sm-6"> <hr>
                       
+                    </div> -->
+                    <div class="col-sm-6">
+                                
+                                
+                        <div class="row" style="position: absolute;bottom: -1; margin-left: 15px;">
+                            <strong>{{patient.natureofailment}} </strong>
+                        </div> <hr>
                     </div>
                     
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row"  style="margin: 8px;">
+                <div class="row" style="margin-left: 2px;">
                     <div class="col-sm-6">SPECIALIST REFFERED TO:</div>
                     <div class="col-sm-2">
                                 
@@ -305,7 +352,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <p style="white-space:nowrap;">
-                            <img src="../../../../assets/img/avatars/payment.png" alt="" width="900" height="200" >
+                            <img src="./../../../assets/img/avatars/payment.png" alt="" width="900" height="350" >
                            
                              
                            
@@ -316,8 +363,8 @@
         
                 </div>
                 <div class="clearfix"></div>
-               <div class="col-sm-12">
-                <div class="row" style="position: relative; margin: 8px;">
+               <div class="col-sm-12" >
+                <div class="row" style="position: relative; font-size: 14px;">
                     <div class="col-sm-4">Name of Attending Doctor:</div>
                     <div class="col-sm-2">
                                 
@@ -328,7 +375,7 @@
                     </div>
                   
                 </div>
-                <div class="row" style="position: relative; margin: 8px; font-size: 12px;">
+                <div class="row" style="position: relative; font-size: 14px;">
                     <div class="col-sm-2">
                         ADDRESS OF PRACTICE
                     </div>
@@ -343,21 +390,21 @@
                        DR SIGNATURE
                     </div>
                     <div class="col-sm-4">
-                        <div class="row" style="position: absolute;bottom: 0;margin-bottom: 5px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
-                    <div class="row" style="color: orangered;">___________________________</div>
+                        <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                    <hr>
                 </div>
-
+                
                     
                 </div>
-                <div class="row" style="position: relative; margin: 40px; font-size: 12px;">
+                <div class="row" style="position: relative; font-size: 14px; margin-top: 15px;">
                     <div class="col-sm-2">
                        Date
                     </div>
                     <div class="col-sm-2">
                                 
                                 
-                        <div class="row" style="position: absolute;bottom: -1;">
-                            <strong>{{patient.date}} </strong>
+                        <div class="row" style="position: absolute;bottom: -1;  margin-left: 15px;">
+                            <strong>{{patient.doctor_sigdate | date:"MMM d, y"}} </strong>
                         </div> <hr>
                     </div>
                     <div class="col-sm-2">
@@ -368,33 +415,44 @@
                     </div>
                     
                 </div>
-                <div class="col-sm-12">
-                    <p>
-                        Declaration:I warrant the truth of the above statement. I have not withheld/misstated any material information relating to this claim and have no objection
-                    to First Assurance and/or their representatives communicating with my medical Doctor/Physician or Hospital i have consulted or visted. I guarantee to pay
-                    any expenses no9t covered by my insurance plan or in excess of Limit provided under my plan or any deductable or co-pay determined by this plan.
-                    </p>
-                </div>
-                <div class="row">
-                    <div class="col-sm-2" (click)="activateMemberSignature()">
-                        Member Signature:
+                <div class="row" style="background-color: rgb(241, 159, 81); margin-top: 20px;">
+                   <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <p>
+                            <strong>Declaration:</strong>I warrant the truth of the above statement. I have not withheld/misstated any material information relating to this claim and have no objection
+                        to First Assurance and/or their representatives communicating with my medical Doctor/Physician or Hospital I have consulted or visted. I guarantee to pay
+                        any expenses not covered by my insurance plan or in excess of Limit provided under my plan or any deductable or co-pay determined by this plan.
+                        </p>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="row" style="position: absolute;bottom: 0;margin-bottom: 6px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
-                    <div class="row" style="color: orangered;">___________________________</div>
-                </div>
 
-                    <!-- <div class="col-sm-4"  (click)="activateMemberSignature()"> <hr>
-                      
-                    </div> -->
-                    <div class="col-sm-2">
-                       Date
-                    </div>
-                    <div class="col-sm-4"> <hr>
-                      
-                    </div>
-    
                    </div>
+                   <div class="col-sm-12" style="margin-top: 20px;">
+                    <div class="row" style="margin-left: 30px;">
+                        <div class="col-sm-2" (click)="activateMemberSignature()">
+                            Member Signature:
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
+                        <hr>
+                    </div>
+                        
+                        <div class="col-sm-2">
+                           Date
+                        </div>
+                        
+                        <div class="col-sm-4">
+                                
+                                
+                            <div class="row" style="position: absolute;bottom: -1;  margin-left: 15px;">
+                                <strong>{{patient.member_sigdate | date:"MMM d, y"}} </strong>
+                            </div> <hr>
+                        </div>
+        
+                       </div>
+
+                   </div>
+
+                </div>
 
                </div>
                
@@ -423,8 +481,15 @@
         </div>
         <div class="modal-body">
         <form [formGroup]="clientForm"   >
+            <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
+                <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+                  PATIENT INFORMATION
+           
+                </div>
+           
+              </div>
         
-        <div class="row">
+        <div class="row" style="margin-top: 10px;">
             <div class="col-sm-4">
             <mat-form-field appearance="outline">
                 <mat-label>Surname</mat-label>
@@ -476,25 +541,12 @@
         <div class="col-sm-4">
             <mat-form-field appearance="outline">
             <mat-label>Date of Onset</mat-label>
-                <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker1"  formControlName="date">
+                <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker1" [(ngModel)]="patient.date"  formControlName="date">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
         </div>
-        <div class="col-sm-4">
-            <mat-form-field  appearance="outline">
-            <mat-label>Doctor's Name</mat-label>
-                <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
-
-            </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-            <mat-form-field appearance="outline" >
-            <mat-label>Doctor's specialty</mat-label>
-                <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
-
-            </mat-form-field>
-        </div>
+       
         <div class="col-sm-4">
             <mat-form-field appearance="outline" >
             <mat-label>Member Name</mat-label>
@@ -525,12 +577,94 @@
         </div>
         <div class="col-sm-4">
             <mat-form-field appearance="outline" >
+            <mat-label>Nature of sickness</mat-label>
+                <input matInput placeholder="Nature of sickness" [(ngModel)]="patient.sickness" formControlName="sickness" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>When did it Occur</mat-label>
+                <input matInput placeholder="When did it Occur" [(ngModel)]="patient.dateofsickness" formControlName="dateofsickness" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Nature of Treatment</mat-label>
+                <input matInput placeholder="Nature of Treatment" [(ngModel)]="patient.treatment" formControlName="treatment" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Cause of Ailment</mat-label>
+                <input matInput placeholder="Cause of Ailment" [(ngModel)]="patient.causeofsickness" formControlName="causeofsickness" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Nature of Ailment</mat-label>
+                <input matInput placeholder="Nature of Ailment" [(ngModel)]="patient.natureofailment" formControlName="natureofailment" >
+
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+            <mat-label>Member Signature Date</mat-label>
+                <input matInput placeholder="Member Signature Date" [maxDate]="maxDate"  [matDatepicker]="picker002" [(ngModel)]="patient.member_sigdate" formControlName="member_sigdate">
+                <mat-datepicker-toggle matSuffix [for]="picker002"></mat-datepicker-toggle>
+                <mat-datepicker #picker002></mat-datepicker>
+            </mat-form-field>
+        </div>
+        
+        
+       
+        <div class="col-sm-12"  style="background-color: green; color: white; text-align: center; margin-top: 10px; ">
+            <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+              DOCTOR INFORMATION
+       
+            </div>
+       
+          </div>
+          <div class="col-sm-4" style="margin-top: 10px;">
+            <mat-form-field  appearance="outline">
+            <mat-label>Doctor's Name</mat-label>
+                <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+
+            </mat-form-field>
+        </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Doctor's specialty</mat-label>
+                <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
+
+            </mat-form-field>
+        </div>
+         
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
             <mat-label>Adress of Doctor</mat-label>
                 <input matInput placeholder="doctor address" [(ngModel)]="patient.doctoraddress" formControlName="address" >
 
             </mat-form-field>
         </div>
-        
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+            <mat-label>Doctor Signature Date</mat-label>
+                <input matInput placeholder="Doctor Signature Date" [maxDate]="maxDate"  [matDatepicker]="picker001" [(ngModel)]="patient.doctor_sigdate" formControlName="doctor_sigdate">
+                <mat-datepicker-toggle matSuffix [for]="picker001"></mat-datepicker-toggle>
+                <mat-datepicker #picker001></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+            <mat-form-field appearance="outline" >
+            <mat-label>Details</mat-label>
+                <input matInput placeholder="Details " [(ngModel)]="patient.details" formControlName="details" >
+
+            </mat-form-field>
+        </div>
         
         
     <div class="col-sm-8" >

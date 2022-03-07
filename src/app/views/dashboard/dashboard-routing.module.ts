@@ -65,6 +65,8 @@ import { RegistrationLinkComponent } from '../patient-checkin/registration-link/
 import { BookingDetailComponent } from '../patient-checkin/booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from '../patient-checkin/print-insurance-forms/print-insurance-forms.component';
 import { PaymentsComponent } from '../patient-checkin/payments/payments.component';
+import { UsermanagementComponent } from '../patient-checkin/usermanagement/usermanagement.component';
+// import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
 import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
 const routes: Routes = [
   {
@@ -141,6 +143,11 @@ const routes: Routes = [
   {
     path: 'specialty',
     component: SpecialtyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'Users',
+    component: UsermanagementComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -24,7 +24,7 @@ export class PrintInsuranceFormsComponent implements OnInit {
   ngOnInit() {
     this.idnumber="";
     this.phonenumber="";
-    this.getbooking();
+    // this.getbooking();
     // this.loading=true
     this.getPatientData();
 

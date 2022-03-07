@@ -81,9 +81,9 @@ export const navItems: NavData[] = [
   },
   
   // {
-  //   name: 'Clinic-Setup',
-  //   url: '/dashboard/clinic-setup',
-  //   icon: 'fa fa-thermometer-half',
+  //   name: 'Users',
+  //   url: '/dashboard/Users',
+  //   icon: 'fa fa-user',
   // },
   // {
   //   name: 'Bookings Report',

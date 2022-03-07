@@ -64,6 +64,12 @@ export class ServiceService {
  
  
  
+  reset(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/reset/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  
 
 
   getPayments() {
@@ -837,6 +843,11 @@ searchBills(data): Observable<any>{
       map(this.extractData
       ));
   }
+  resetUser(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/reset-user/', data ).pipe(
+      map(this.extractData
+      ));
+  }
   getUsers(): Observable<[]> {
     return this.http.get(endpoint + 'users/',  ).pipe(
       map(this.extractData
@@ -1206,6 +1217,11 @@ filtercalendar(specialist) {
       return this.http.post(endpoint + 'api/specialtyfilter/',specialist).pipe(
         map(this.extractData));
       }
+    getAllUsers(){
+      return this.http.get(endpoint + 'users/staffs/').pipe(
+        map(this.extractData));
+
+    }
   getRevenues() {
     return this.http.get(endpoint + 'payment/payments/').pipe(
       map(this.extractData));
@@ -1230,5 +1246,19 @@ getSinglePatientData_Hospserver(id): Observable<any> {
   return this.http.get(HEALTHIX_BACKEND_URL_AAR+ 'claims/patientexperience_personaldata/'+id+'/').pipe(
     map(this.extractData));
 }
+updateuser(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'users/update_user/', data ).pipe(
+      map(this.extractData
+      ));
+  }
+  deleteUSER(id) {
+    return this.http.delete(endpoint + 'users/staffs/'+id+'/').pipe(
+      map(this.extractData));
 
+}
+// deactivateUser(data,id): Observable<{}> {
+//   return this.http.put(endpoint + 'users/user/'+id+'/', data ).pipe(
+//     map(this.extractData
+//     ));
+// }
 }

@@ -49,8 +49,10 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { from } from 'rxjs';
+import {NgxPrintModule} from 'ngx-print';
 import { TokenInterceptor } from './interceptor';
 import { SignatureService } from './signature.service';
+// import { NgxPrintElementModule } from 'ngx-print-element';
 // import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 import { QRCodeModule } from 'angularx-qrcode';
@@ -82,11 +84,13 @@ export function tokenGetter() {
     CarouselModule.forRoot(),
     FormsModule,
     HideableHeaderModule,
+    NgxPrintModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({}),
     ModalModule.forRoot(),
     MatFormFieldModule,
+    // NgxPrintElementModule,
     MatInputModule,
     NgxMaterialTimepickerModule,
     NgxLoadingModule.forRoot({

@@ -6,15 +6,15 @@
     padding: 10px;
     margin: 10px;
   }
-  i.fa {
-    display: inline-block;
-    border-radius: 50px;
-    border:2px solid white;
-    padding: 0.5em 0.6em;
-    background-color:#0075c9;
+  // i.fa {
+  //   display: inline-block;
+  //   border-radius: 50px;
+  //   border:2px solid white;
+  //   padding: 0.5em 0.6em;
+  //   background-color:#0075c9;
 
   
-  }
+  // }
   h3{
     margin-left: 5px;
   }
@@ -50,19 +50,28 @@
           background-color:black;
       }
       .clearfix{
-          margin-top:20px;
+          margin: top 30px;
       }
       hr{
-        background-color:green;
+        background-color:black;
       }
 
       @media print {
-        button {
-          display: none;
-        }
-        body {
-          -webkit-print-color-adjust: exact !important;
-        }
-        
-      }
-      
+        .myDivToPrint {
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            max-width: 100%; 
+            min-height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 15px;
+            font-size: 16px;
+            line-height: 18px;
+          }}
+          @media print {
+            button {
+              display: none;
+              }}

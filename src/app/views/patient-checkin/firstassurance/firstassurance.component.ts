@@ -96,6 +96,14 @@ export class FirstassuranceComponent implements OnInit {
     "card_number": null,
     "idnumber": null,
     "employer":"",
+    "sickness":"",
+    "dateofsickness":"",
+    "treatment":"",
+    "causeofsickness":"",
+    "natureofailment":"",
+    "doctor_sigdate":"",
+    "member_sigdate":"",
+    "details":"",
     "doctor_specialty": null,
     "doctoraddress": "",
     "date": ""
@@ -143,7 +151,18 @@ export class FirstassuranceComponent implements OnInit {
       description:[''],
       employer:[''],
       id:[''],
-      address:['']
+      date:[''],
+      address:[''],
+      natureofailment:[''],
+      sickness:[''],
+      causeofsickness:[''],
+      treatment:[''],
+      dateofsickness:[''],
+      doctor_sigdate:[''],
+      member_sigdate:[''],
+      details:[''],
+
+
     });
 
     
