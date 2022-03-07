@@ -35,9 +35,9 @@
       border:none;
       text-transform: capitalize;
   }
-  textarea{
-    border:2px solid #0075c9;
-  }
+  // textarea{
+    // border:2px solid #0075c9;
+  // }
 
   fieldset 
   {
@@ -83,3 +83,57 @@
         }
       }
       
+    #s3{
+     font-size: 14px
+    }
+
+    #triangle-topright {
+      width: 0;
+      height: 0;
+      border-top: 200px solid #FF8640;
+      border-left: 200px solid transparent;
+    }
+  .myDivToPrint{
+    max-width: 793px; 
+    min-height: 1122px;
+  }
+
+  #header_img{
+     width:780px;
+     height:300px;
+     
+  }
+   
+
+      @media print {
+        .myDivToPrint {
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            max-width: 100%; 
+            min-height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 18px;
+        }
+        #header_img {
+          background-color: white;
+          height: 300px;
+          width: 100%;      
+       
+             
+      }  
+      #s3{
+        font-size: 16px
+       }
+      #triangle-topright {
+        width: 0;
+        height: 0;
+        border-top: 200px solid #FF8640;
+        border-left: 200px solid transparent;
+      }  
+    }

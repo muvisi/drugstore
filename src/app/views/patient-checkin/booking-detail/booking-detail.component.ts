@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../../service.service';
 import dateFormat, { masks } from "dateformat";
+import { Observable, OperatorFunction } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 // import { ServiceService } from '../../../service.service';
 
 @Component({
@@ -30,6 +32,7 @@ export class BookingDetailComponent implements OnInit {
   
   }
   customer= {
+    id:'',
     gender:'male',
     phone :'',
     email:'',
@@ -38,8 +41,19 @@ export class BookingDetailComponent implements OnInit {
     other_names:''
 
   };
+  insurance_company_suggestions=[];
   show_insurance;
   loading: boolean;
+
+
+  formatter = (result: string) => result.toUpperCase();
+search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+  text$.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    map(term => term === '' ? []
+      : this.insurance_company_suggestions.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+  )
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
 
   ngOnInit() {
@@ -54,6 +68,7 @@ export class BookingDetailComponent implements OnInit {
       gender: ['', Validators.required],
       religion: ['', Validators.required],
       marital_status:[''],
+      patient_number:[''],
       occupation:[''],
       nationality:[''],
       national_id: [''],
@@ -93,7 +108,13 @@ export class BookingDetailComponent implements OnInit {
           'phone':res.patient.phone != null ? res.patient.phone : '',
           'residence': res.patient.residence != null ? res.patient.residence : '',
           'other_names': res.patient.other_names != null ? res.patient.other_names : '',
-          'occupation': res.patient.occupation !=null ? res.patient.occupation : ''
+          'occupation': res.patient.occupation !=null ? res.patient.occupation : '',
+          'marital_status': res.patient.marital_status !=null ? res.patient.marital_status : '',
+          'nationality': res.patient.nationality !=null ? res.patient.nationality : '',
+          'religion': res.patient.religion !=null ? res.patient.religion : '',
+          'patient_number': res.patient.patient_number !=null ? res.patient.patient_number : ''
+          
+          
       }
       this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:''}
       this.speciality=res.specialist.split(",")
@@ -143,6 +164,42 @@ export class BookingDetailComponent implements OnInit {
     })
    
 
+    this.service.getInsuranceCompany().subscribe((res)=>{
+      console.log("company", res.results[0]);
+      for(var i=0;i < res.results.length;i++){
+        if (res.results[i].type=="Insurance"){
+         this.insurance_company_suggestions.push(res.results[i].name);
+        }   
+    
+    }});
+  }
+
+  updateClientData(){
+    this.loading=true;
+    var client_data=this.clientForm.getRawValue();
+    var dob_data=client_data.dob.split("/")
+    client_data.dob=dob_data[2]+"-"+dob_data[1]+"-"+dob_data[0]
+    let data=Object.assign(client_data,{id:this.customer.id})
+    this.service.updateClient(data).subscribe((res)=>{
+      this.toast.success("Update was Successful")
+      this.loading=false;
+
+    },(err)=>{
+      this.toast.error("Update Failed")
+      this.loading=false;
+    });
+
+  }
+
+  updateNextOfKinData(){
+    let data=Object.assign(this.nextofKin,{id:this.customer.id})
+    this.service.updateNextofKinData(data).subscribe((res)=>{
+      this.loading=false
+      this.toast.success("Update was Successful")
+    },(error)=>{
+      this.loading=false;
+      this.toast.error("Update Failed");
+    });
   }
   feedbackClicked(){
     this.loading=true;
@@ -154,12 +211,59 @@ export class BookingDetailComponent implements OnInit {
       this.loading=false
     });
   }
+  cashClicked(event){
+    this.show_insurance=false;
+    if(event.checked){
+    this.payment_mode="Cash";
+    }else{
+      this.payment_mode="";
+    }
+  }
+  mpesaClicked(event){
+    this.show_insurance=false;
+    if(event.checked){
+      this.payment_mode="Mpesa";
+      }else{
+        this.payment_mode="";
+      }
+  }
+  creditCardClicked(event){
+    this.show_insurance=false;
+    if(event.checked){
+          
+      this.payment_mode="Credit Card";
+      }else{
+        this.payment_mode="";
+      }
+  }
+  insuranceClicked(event){
+    if(event.checked){
+      this.show_insurance=true;
+      this.payment_mode="Insurance";
+      }else{
+        this.show_insurance=false;
+        this.payment_mode="";
+      }
+  }
   ngAfterViewInit(){
     if(this.clientForm!=null){
       this.clientForm.patchValue(this.patient_info);
+      
       this.paymentForm.patchValue(this.payment_type);
     }
   }
   get c() { return this.clientForm.controls; }
   get p() { return this.paymentForm.controls; }
+
+
+  updatePaymentDetails(){
+    let data=Object.assign(this.paymentForm.getRawValue(),{payment:this.payment_mode})
+    this.service.updatePaymentDetails(this.route.snapshot.params.id,'').subscribe((res)=>{
+      this.loading=false;
+      this.toast.success("Update was successful")
+    },(err)=>{
+      this.loading=false;
+      this.toast.error("Update Failed")
+    })
+  }
 }
