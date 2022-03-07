@@ -334,6 +334,10 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
       'status':'activate',
       'type':'staff'
     }
+    if(this.patient_data.visit_number=='' || this.patient_data.visit_number==null ){
+      this.toast.warning(" Diagnosis is Empty")
+      return;
+    }
     this.signatureService.send(JSON.stringify(data))
   }
   edit(){

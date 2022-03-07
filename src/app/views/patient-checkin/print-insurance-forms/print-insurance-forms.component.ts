@@ -94,6 +94,7 @@ export class PrintInsuranceFormsComponent implements OnInit {
 
 
 clickRow(item){
+  console.log(item)
   console.log("Insurance",this.selected.insurance_company)
   
   if (this.selected.insurance_company=='CIGNA INTERNATIONAL') 
