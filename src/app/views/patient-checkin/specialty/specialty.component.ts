@@ -26,7 +26,9 @@ export class SpecialtyComponent implements OnInit {
   loading;
   // idnumber;
   phonenumber;
-  Columns: string[] = ['sn','department','specialist','calendar',]
+  calendar=''
+  events: any[];
+  Columns: string[] = ['sn','department','specialist','count','calendar',]
 
   constructor(public service:ServiceService,private toastr:ToastrService, public router:Router,public http:HttpClient) { }
  
@@ -79,6 +81,28 @@ export class SpecialtyComponent implements OnInit {
       this.router.navigate(['/dashboard/calendar/',this.selected.specialist])
      
     }
+    ViewAll(){
+      // console.log("tumeanza")
+  
+     
+      //   this.service.filtercalendarr().subscribe(events => { this.events = events.map((event) => {
+      //     console.log("Event comes here",event.Description)
+      //     event['backgroundColor'] = event.Description = 'Covid testing'? 'blue': 
+      //   //  console.log("Event comes here",event)
+      //     this.router.navigate(['/dashboard/calendar/',this.calendar])
+      //   })});
+      
+       this.service.filtercalendarr().subscribe((res)=>{
+
+        
+         console.log("RESP",res)
+        
+         })
+         console.log("tumeanza sasa")
+
+         this.router.navigate(['/dashboard/calendar/',this.calendar])
+        
+       }
 
   }
    
