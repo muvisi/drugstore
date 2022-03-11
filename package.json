@@ -33,13 +33,11 @@
     "@coreui/coreui": "^2.1.12",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.3.1",
     "@coreui/icons": "0.3.0",
-    "@fullcalendar/angular": "^4.3.1",
-    "@fullcalendar/core": "^4.3.1",
+   
+   
     "@fullcalendar/daygrid": "^4.3.0",
     "@mobiscroll/angular-lite": "^4.10.9",
-    "@syncfusion/ej2-angular-calendars": "^19.4.50",
-    "@syncfusion/ej2-angular-dropdowns": "^19.4.50",
-    "@syncfusion/ej2-angular-schedule": "^17.3.17",
+   
     "angular-calendar-scheduler": "^11.0.1",
     "angular-fusioncharts": "^3.0.3",
     "angularx-qrcode": "^2.1.4",

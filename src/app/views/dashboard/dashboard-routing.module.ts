@@ -433,7 +433,7 @@ const routes: Routes = [
 
 {
 path : 'calendar/:speciality',
-component : CalendarComponent,
+component : CalendarComponent
 },
 {
   path : 'reports',

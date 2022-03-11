@@ -67,7 +67,7 @@ export class UsermanagementComponent implements OnInit {
     this.service.getAllUsers().subscribe((res) => {
       this.dataSource = new MatTableDataSource<[]>(res)
       console.log("RESP DATA",this.dataSource)
-     
+      
       this.dataSource.paginator = this.paginator;
     
       });

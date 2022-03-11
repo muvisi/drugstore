@@ -1,7 +1,10 @@
+import { style } from "@angular/animations";
 
 
 export let scheduleData: Object[] = [
+    
     {
+        
         Subject: "Apointment",
         Id: 1,
         StartTime: "2019-10-21T08:49:46",

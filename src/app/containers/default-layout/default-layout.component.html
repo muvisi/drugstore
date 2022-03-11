@@ -10,6 +10,42 @@
 
     </li>
   </ul>
+  <!-- <style>
+    .dropbtn {
+      background-color: grey;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: flex;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    </style> -->
   
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
@@ -17,23 +53,38 @@
 
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-               <!-- <b class="text-primary">{{user.username}}</b> -->
                <i class="fa fa-cogs" aria-hidden="true"></i> configure
+               
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item" (click)="qrcodeModal.show()"> Signature Qrcode </a>
-        <a class="dropdown-item" (click)="downloadInpatient()"> Inpatient Qrcode </a>
-        <a class="dropdown-item" (click)="downloadOutpatient()"> Outpatient Qrcode </a>
+        <!-- <div class="dropdown">setups
+          <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+            <a class="dropdown-item" routerLink="/dashboard/timeslot" > <i class="fas fa-address-book"></i>Time Slot Setup</a>
+            <a class="dropdown-item" routerLink="/dashboard/clinic-setup" > <i class="fa fa-thermometer-half"></i>Clinic Setup</a>
+            <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="icon-wrench"></i>Set up</a>
 
-        <a class="dropdown-item" routerLink="/dashboard/payments" > <i class="icon-wallet"></i>  Payments</a>
+        </div>
+      </div> -->
+
+        
+       
         <a class="dropdown-item" routerLink="/dashboard/vaccine-setup" > <i class="fas fa-syringe"></i>Vaccine Setup</a>
         <a class="dropdown-item" routerLink="/dashboard/timeslot" > <i class="fas fa-address-book"></i>Time Slot Setup</a>
         <a class="dropdown-item" routerLink="/dashboard/clinic-setup" > <i class="fa fa-thermometer-half"></i>Clinic Setup</a>
         <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="icon-wrench"></i>Set up</a>
+
+            
+        <a class="dropdown-item" routerLink="/dashboard/payments" > <i class="icon-wallet"></i>  Payments</a>
+ 
         <a class="dropdown-item" routerLink="/dashboard/Users" *ngIf="user.role =='admin'" ><i class="icon-wrench"></i>Manage Users</a>
 
         <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-lock"></i>Change password </a>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
+        <a class="dropdown-item" (click)="qrcodeModal.show()"> Signature Qrcode </a>
+            <a class="dropdown-item" (click)="downloadInpatient()"> Inpatient Qrcode </a>
+            <a class="dropdown-item" (click)="downloadOutpatient()"> Outpatient Qrcode </a>
+           
+      
        
       </div>
     </li>
@@ -48,15 +99,7 @@
   <!-- Main content -->
   <main class="main">
     <br />
-    <!-- <ol class="breadcrumb">
-      <app-breadcrumb></app-breadcrumb>
-
-      <li class="breadcrumb-menu d-md-down-none">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-
-        </div>
-      </li>
-    </ol> -->
+    
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div><!-- /.container-fluid -->
@@ -64,7 +107,7 @@
 
 </div>
 <app-footer>
-  <span><a>HealthixSolutions</a> &copy; 2020.</span>
+  <span><a>HealthixSolutions</a> &copy; 2022.</span>
 </app-footer>
 
 

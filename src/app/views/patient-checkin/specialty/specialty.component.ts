@@ -20,15 +20,18 @@ export class SpecialtyComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
 
   dataSource;
+  dataSourcetoday;
   selected;
   event;
   filter_data;
   loading;
+  appointment_count
+  cal_data
   // idnumber;
   phonenumber;
   calendar=''
   events: any[];
-  Columns: string[] = ['sn','department','specialist','count','calendar',]
+  Columns: string[] = ['specialist','count','calendar',]
 
   constructor(public service:ServiceService,private toastr:ToastrService, public router:Router,public http:HttpClient) { }
  
@@ -36,13 +39,32 @@ export class SpecialtyComponent implements OnInit {
  
  
     this.getdepartments();
+    this.getdepartmentstoday()
    
   }
   getdepartments() {
     this.service.getdepartment().subscribe(
       data => {
-        this.dataSource = new MatTableDataSource <[]>(data);
+        this.appointment_count=data.total
+        console.log("TOTALS HERE",this.appointment_count)
+        console.log("ALL DATA",this.dataSource)
+        this.dataSource = new MatTableDataSource <[]>(data.data);
         this.dataSource.paginator = this.paginator;
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  getdepartmentstoday() {
+    this.service.getdepartment().subscribe(
+      data => {
+        console.log("TODAY DATA",this.dataSourcetoday)
+        this.dataSourcetoday = new MatTableDataSource <[]>(data.today);
+        this.dataSourcetoday.paginator = this.paginator;
         
       
       },
@@ -82,20 +104,17 @@ export class SpecialtyComponent implements OnInit {
      
     }
     ViewAll(){
-      // console.log("tumeanza")
-  
      
-      //   this.service.filtercalendarr().subscribe(events => { this.events = events.map((event) => {
-      //     console.log("Event comes here",event.Description)
-      //     event['backgroundColor'] = event.Description = 'Covid testing'? 'blue': 
-      //   //  console.log("Event comes here",event)
-      //     this.router.navigate(['/dashboard/calendar/',this.calendar])
-      //   })});
       
        this.service.filtercalendarr().subscribe((res)=>{
+        // if(res[0].Description=='Vaccination Second Dose')
+        // {
+        //   ('background-color', '#000');
+        // }
+
 
         
-         console.log("RESP",res)
+         console.log("OUR DESCRIPTION",res[0].Description)
         
          })
          console.log("tumeanza sasa")
