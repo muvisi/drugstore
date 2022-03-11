@@ -219,26 +219,42 @@ export class AarClaimformComponent implements OnInit {
     console.log("HEALTHIX",res);
     this.patient =res;
     this.patient_data.visit_number=res.insuranceVisit.visit_number;
-    if(res.insuranceVisit.visit_number!="" && res.insuranceVisit.visit_number!=null){
-      this.getInsuranceForm(res.insuranceVisit.visit_number);
-    }
+   
+   
+   
     this.patient_data.member=res.patient.first_name+" "+res.patient.last_name+" "+res.patient.other_names;
     this.patient_data.dob=res.patient.dob;
     this.patient_data.member_number=res.member_number;
     this.patient_data.employer=res.scheme_name;
     this.patient_data.phone=res.patient.phone;
     this.patient_data.email=res.patient.email;
-    this.clinics_data.diagnosis= res.insuranceVisit.diagnoses != null? res.insuranceVisit.diagnoses : " " +" "+ res.insuranceVisit.description
+    var diagnosis= res.insuranceVisit.diagnoses != null? res.insuranceVisit.diagnoses : " " 
+    diagnosis=diagnosis.concat(" ").concat(res.insuranceVisit.description)
+    this.clinics_data.diagnosis=diagnosis
     this.speciality_data.practitioner= res.insuranceVisit.doctor!=null ? res.insuranceVisit.doctor  : ""
-    this.clinics_data.management_plan=" "
-    for (var i=0;i<res.insuranceVisit.procedure;i++){
-      this.clinics_data.management_plan+=res.insuranceVisit.procedure[i].name+"("+ res.insuranceVisit.procedure[i].amount+")" +" "
+    var costs=""
+    for (var i=0;i<res.insuranceVisit.services.procedure.length;i++){
+      try{
+      costs=costs.concat(res.insuranceVisit.services.procedure[i].name+"("+ res.insuranceVisit.services.procedure[i].amount+")").concat(" ")
+      }catch(error){}
     }
+    for (var i=0;i<res.insuranceVisit.services.pharmacy.length;i++){
+      try{
+      costs=costs.concat(res.insuranceVisit.services.pharmacy[i].name+"("+ res.insuranceVisit.services.pharmacy[i].amount+")").concat(" ")
+      }catch(error){}
+    }
+    console.log(costs)
+    this.clinics_data.management_plan=costs;
     
 
     this.claimformService.getAARForm(this.patient_data.visit_number).subscribe((res)=>{
 
     },(err)=>{});
+
+
+    if(res.insuranceVisit.visit_number!="" && res.insuranceVisit.visit_number!=null){
+      this.getInsuranceForm(res.insuranceVisit.visit_number);
+    }
 
   })
   
@@ -254,18 +270,32 @@ first_visit_change(event,ty){
   }else{
     this.clinics_data.first_visit=false;
   }
+  this.Update()
 }
 
 getInsuranceForm(no){
   this.claimformService.getAARForm(no).subscribe((res: any)=>{
 
     console.log(">>",res.laboratory_radiology_findings);
-    this.clinics_data.first_visit=res.first_visit;
+    if(res.phone!=null&&res.phone!='')
+    {
+      this.clinics_data.first_visit=res.first_visit;
     this.clinics_data.complaints=res.complaints;
     this.clinics_data.physical_findings=res.physical_findings;
     this.clinics_data.laboratory_radiology_findings=res.laboratory_radiology_findings;
     this.clinics_data.diagnosis=res.diagnosis;
     this.clinics_data.management_plan=res.management_plan;
+    this.speciality_data.practitioner=res.practitioner;
+    this.speciality_data.speciality=res.speciality;        
+    this.patient_data.visit_number=res.visit_number
+    this.patient_data.member=res.member
+    this.patient_data.dob=res.dob
+    this.patient_data.member_number=res.member_number
+    this.patient_data.employer=res.employer
+    this.patient_data.phone=res.phone
+    this.patient_data.email=res.email
+  }
+    
     if(res.member_signature!=null){
       this.signature1_src=res.member_signature;
       this.today1=res.member_signature_date;
@@ -277,17 +307,15 @@ getInsuranceForm(no){
       this.signature2_show=true;
     }
 
-    this.speciality_data.practitioner=res.practitioner;
-    this.speciality_data.speciality=res.speciality;
+    
+    
   
     
-    this.patient_data.visit_number=res.visit_number
-    this.patient_data.member=res.member
-    this.patient_data.dob=res.dob
-    this.patient_data.member_number=res.member_number
-    this.patient_data.employer=res.employer
-    this.patient_data.phone=res.phone
-    this.patient_data.email=res.email
+    
+    
+    
+    
+    
     
   
   },(err)=>{

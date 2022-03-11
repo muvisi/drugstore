@@ -11,6 +11,51 @@ import { SignatureService } from '../../../signature.service';
   styleUrls: ['./firstassurance.component.scss']
 })
 export class FirstassuranceComponent implements OnInit {
+  form_data={
+    visit_number:"",
+    first_names:"",
+    surname:"",
+    member:"",
+    age:"",
+    member_number:"",
+    employer:"",
+    phone:"",
+    idno:"",
+    relationship:"",
+    if_insured_scheme:false,
+    insured_scheme:"",
+    nhif:false,
+    nature_of_sickness:"",
+    first_occurred:"",
+    nature_treatment:"",
+    cause_of_ailment:"",
+    chronic_recurrent:"",
+    specialist_referral:"",    
+    number_consultations:"",
+    consultant_cost:"",
+    drugs_cost:"",
+    procedure_cost:"",
+    other_cost:"",
+    total_outpatient:"",
+    check_in:"",
+    check_out:"",
+    days:"",
+    accommodation_charges:"",
+    operation_charges:"",
+    anaesthetist_fee:"",
+    prescribed_drugs:"",
+    other_expenses:"",
+    total_inpatient:"",
+    member_signature:"",
+    member_signature_date:"",
+    practitioner:"",
+    practice_address:"",
+    practitioner_signature:"",
+    practitioner_signature_date:"",
+    official_stamp:"",
+  }
+
+
   patient:any={
     "id": "",
     "patient": {
@@ -210,10 +255,27 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
  
 }
 
+insuredCheckboxChange(event){
+  this.form_data.if_insured_scheme=event.checked;
+}
 
 
+insuredCheckboxChange2(event){
+  if(event.checked)
+  this.form_data.if_insured_scheme=false;
+  else
+  this.form_data.if_insured_scheme=true;
+}
 
-
+nhifCheckboxChange(event){
+  this.form_data.nhif=event.checked;
+}
+nhifCheckboxChange2(event){
+  if(event.checked)
+  this.form_data.nhif=false;
+  else
+  this.form_data.nhif=true;
+}
   activateMemberSignature(){
     this.signature_type="member"
     this.signature1_show=false;

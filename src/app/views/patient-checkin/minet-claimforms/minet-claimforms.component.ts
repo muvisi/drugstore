@@ -1,7 +1,10 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { ClaimformService } from '../../../claimform.service';
 import { ServiceService } from '../../../service.service';
 import { SignatureService } from '../../../signature.service';
 
@@ -11,6 +14,41 @@ import { SignatureService } from '../../../signature.service';
   styleUrls: ['./minet-claimforms.component.scss']
 })
 export class MinetClaimformsComponent implements OnInit {
+loading;
+
+  form_data={
+    visit_number:"",
+    patient:"",
+    member:"",
+    dob:"",
+    member_number:"",
+    employer:"",
+    phone:"",
+    nature_of_illness:"",
+    congenital:false,
+    chronic:false,
+    recurrent:false,
+    work_occupation_related:"",
+    first_diagnosed_date:"",
+    previous_treatment_date:"",
+    current_treatment_date:"",
+    underlying_condition :"",
+    specialist_referral:false,
+    specialist_services_name:"",
+    consultation:false,
+    laboratory:false,
+    dental_optical:false,
+    drugs:false,
+    total_treatment:"",
+    member_signature:"",
+    member_signature_date :"",
+    practitioner:"",
+    practitioner_qualification:"",
+    practitioner_signature :"",
+    practitioner_signature_date:"", 
+    official_stamp:"",
+    amount_payable:""
+  }
 
   patient:any={
     "id": "",
@@ -122,7 +160,7 @@ export class MinetClaimformsComponent implements OnInit {
   clientForm: FormGroup;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('clientModal', { static: false }) clientModal: ModalDirective;
-  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,private signatureService:SignatureService) { }
+  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,private signatureService:SignatureService,private datePipe: DatePipe,private toast: ToastrService,private claimformService: ClaimformService) { }
 
   ngOnInit() {
     this.clientForm = this.formBuilder.group({
@@ -151,30 +189,143 @@ export class MinetClaimformsComponent implements OnInit {
      
         this.signature2_src=this.service.getSignatureUrl()+res;
         if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
-          this.signature2_show=true;
+         
+          this.signature2_show=false;
+              
+          this.loading=true;
+          this.claimformService.signatureMinetOutpatient({visit_number:this.form_data.visit_number,signature:this.signature2_src,type:"PRACTITIONER"}).subscribe((res)=>{
+            this.loading=false;
+            this.signature2_show=true;
+            this.form_data.practitioner_signature_date=this.datePipe.transform(new Date(),'medium')
+          },(err)=>{
+            this.loading=false;
+            this.toast.error("Failed")
+          })
          
         }
       }else if(this.signature_type=="member"){
         this.signature1_src=this.service.getSignatureUrl()+res;
         if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
-        this.signature1_show=true;
-        this.today1=new Date();
+       
+          
+          this.signature1_show=false;       
+          this.loading=true;
+          this.claimformService.signatureMinetOutpatient({visit_number:this.form_data.visit_number,signature:this.signature1_src,type:"MEMBER"}).subscribe((res)=>{
+            this.loading=false;
+            this.signature1_show=true;
+            this.form_data.member_signature_date=this.datePipe.transform(new Date(),'medium')
+          },(err)=>{
+            this.loading=false;
+            this.toast.error("Failed")
+          })
         }
      
       }
   });
-  this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
+  this.service.getInsurance(this.route.snapshot.params.id).subscribe((res: any)=>{
     console.log("HEALTHIX",res);
     this.patient = res;
+    this.form_data.visit_number=res.insuranceVisit.visit_number;
+    this.form_data.patient=res.patient.first_name + " " +res.patient.last_name + " "+res.patient.other_names;
+    this.form_data.member =res.patient.first_name + " " +res.patient.last_name + " "+res.patient.other_names;
+    this.form_data.dob=res.patient.dob;
+    this.form_data.employer=res.scheme_name;
+    this.form_data.member_number=res.member_number;
+    this.form_data.practitioner=res.insuranceVisit.doctor;
+    this.form_data.phone=res.patient.phone;
+    this.form_data.current_treatment_date=this.datePipe.transform(new Date(),"MM/dd/yyyy")
+    this.form_data.underlying_condition=res.insuranceVisit.diagnoses+" "+res.insuranceVisit.description
     
+    try{
+    this.form_data.drugs=res.insuranceVisit.services.pharmacy.length >0 ? true : false; 
+    }catch(error){}
+    var total=0;
+    try{
+      
+      for( var i=0;i<res.insuranceVisit.services.procedure.length;i++){
+        total+=Number(res.insuranceVisit.services.procedure[i].amount)
+        if (res.insuranceVisit.services.procedure[i].name.includes("Consultation") || res.insuranceVisit.services.procedure[i].name.includes("consultation")){
+            this.form_data.consultation=true;
+        }else{
+          this.form_data.laboratory=true;
+        }
+
+      } 
+    }catch(error){}
+    try{
+      for( var i=0;i<res.insuranceVisit.services.pharmacy.length;i++){
+        total+=Number(res.insuranceVisit.services.pharmacy[i].amount)
+      }
+    }catch(error){}
+    try{
+      for( var i=0;i<res.insuranceVisit.services.others.length;i++){
+        total+=Number(res.insuranceVisit.services.others[i].amount)
+      }
+    }catch(error){}
+    this.form_data.total_treatment=total.toString()
+    this.form_data.amount_payable=total.toString()
+
+
+    if(res.insuranceVisit.visit_number!="" && res.insuranceVisit.visit_number!=null){
+      this.getInsuranceForm(res.insuranceVisit.visit_number);
+    }
+
   })
-  
+
+
+
 
 
 
 
 }  
- 
+getInsuranceForm(no){
+  this.claimformService.getMinetOutpatient(no).subscribe(
+    (res: any)=>{
+      if(res.phone!=null && res.phone!=''){
+        this.form_data=res;
+        }
+        if(res.member_signature!=null){
+          this.signature1_src=res.member_signature;
+          this.signature1_show=true;
+        }
+        if(res.practitioner_signature!=null){
+          this.signature2_src=res.practitioner_signature;  
+          this.signature2_show=true;
+        }
+    },
+    (err)=>{}
+  )
+}
+
+consultationCheckboxChange(event){
+  this.form_data.consultation=event.checked
+
+}
+labCheckboxChange(event){
+  this.form_data.laboratory=event.checked
+}
+dentalCheckboxChange(event){
+  this.form_data.dental_optical=event.checked
+}
+
+drugsCheckboxChange(event){
+  this.form_data.drugs=event.checked
+}
+
+referralCheckboxChange(event,type){
+  if(type=='yes'){
+    this.form_data.specialist_referral=event.checked;
+
+  }
+  if(type=="no")if(event.checked){
+    this.form_data.specialist_referral=false;
+    
+  }else{
+    this.form_data.specialist_referral=true;
+    
+  }
+}
  printPage() {
 console.log("Resp", this.patient)
 
@@ -214,9 +365,16 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
     this.clientModal.show();
   }
   Update(){
+    this.loading=true;
     console.log("DATA",this.clientForm.value)
-    
-    this.clientModal.hide();
+    this.claimformService.updateMinetOutpatient(this.form_data).subscribe((res)=>{
+      this.loading=false;
+      this.toast.success("Update was Successful")
+    },(err)=>{
+      this.loading=false;
+      this.toast.error("Failed")
+    });
+   
     
   }
 }
