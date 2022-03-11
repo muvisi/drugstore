@@ -1,9 +1,13 @@
 import { DataSource } from '@angular/cdk/collections';
+import { DatePipe } from '@angular/common';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { loadavg } from 'os';
+import { ClaimformService } from '../../../claimform.service';
 import { ServiceService } from '../../../service.service';
 import { SignatureService } from '../../../signature.service';
 
@@ -13,6 +17,44 @@ import { SignatureService } from '../../../signature.service';
   styleUrls: ['./apa-claimform.component.scss']
 })
 export class ApaClaimformComponent implements OnInit {
+
+  form_data={
+    visit_number:"",
+    hospital:"",
+    hospital_tel_no:"",
+    employer:"",
+    member_number:"",
+    member:"",
+    phone:"",
+    patient:"",
+    dob:"",
+    relationship:"",
+    idno:"",
+    insured_scheme:"",
+    final_diagnosis:"",
+    when_first_diagnosis:"",
+    previous_treatment:"",
+    cause_of_illness:"",
+    condition_type:"",
+    nature_treatment:"",
+    is_referral:false,
+    consultant:"",
+    specialist :"",
+    date_accident:"",
+    cause_accident:"",
+    nature_injuries :"",
+    doctors_fees:"",
+    drugs_cost:"",
+    specialist_cost:"",
+    total_claims:"",
+    member_signature:"",
+    member_signature_date:"",
+    practitioner:"",
+    practice_phone:"",
+    practitioner_signature:"",  
+    practitioner_signature_date:"",
+
+  }
 
   patient:any={
     "id": "",
@@ -130,7 +172,8 @@ export class ApaClaimformComponent implements OnInit {
    signature2_src;
    signature_type;
    clientForm: FormGroup;
-  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,private signatureService:SignatureService) { }
+  loading: boolean;
+  constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,private signatureService:SignatureService,private toast: ToastrService,private  claimFormService: ClaimformService,private datePipe:DatePipe) { }
 
   ngOnInit() {
     this.clientForm = this.formBuilder.group({
@@ -166,21 +209,91 @@ export class ApaClaimformComponent implements OnInit {
      
         this.signature2_src=this.service.getSignatureUrl()+res;
         if(this.signature_type=="staff" && this.signature2_src.search("png")>-1){
-          this.signature2_show=true;
-          this.today2=new Date();
+          this.signature2_show=false;
+    
+            this.loading=true;
+            this.claimFormService.signatureApaInsurance({visit_number:this.form_data.visit_number,signature:this.signature2_src,type:"PRACTITIONER"}).subscribe((res)=>{
+              this.loading=false;
+              this.signature2_show=true;
+              this.form_data.practitioner_signature_date=this.datePipe.transform(new Date(),'medium')
+            },(err)=>{
+              this.loading=false;
+              this.toast.error("Failed")
+            })
+          
         }
       }else if(this.signature_type=="member"){
         this.signature1_src=this.service.getSignatureUrl()+res;
         if(this.signature_type=="member" && this.signature1_src.search("png")>-1){
-        this.signature1_show=true;
-        this.today1=new Date();
+              this.signature1_show=false;       
+              this.loading=true;
+              this.claimFormService.signatureApaInsurance({visit_number:this.form_data.visit_number,signature:this.signature1_src,type:"MEMBER"}).subscribe((res)=>{
+                this.loading=false;
+                this.signature1_show=true;
+                this.form_data.member_signature_date=this.datePipe.transform(new Date(),'medium')
+              },(err)=>{
+                this.loading=false;
+                this.toast.error("Failed")
+              })
+   
         }
      
       }
   });
   this.service.getInsurance(this.route.snapshot.params.id).subscribe((res)=>{
-    console.log("HEALTHIX",res);
+    
+   
     this.patient = res;
+    this.form_data.hospital="AAR HOSPITAL"
+    this.form_data.hospital_tel_no="0111049900"
+    this.form_data.visit_number=res.insuranceVisit.visit_number;
+    this.form_data.patient=res.patient.first_name + " " +res.patient.last_name + " "+res.patient.other_names;
+    this.form_data.member =res.patient.first_name + " " +res.patient.last_name + " "+res.patient.other_names;
+    this.form_data.dob=res.patient.dob;
+    this.form_data.employer=res.scheme_name;
+    this.form_data.member_number=res.member_number;
+    this.form_data.practitioner=res.insuranceVisit.doctor;
+    this.form_data.phone=res.patient.phone;
+    this.form_data.final_diagnosis=res.insuranceVisit.diagnoses+" "+res.insuranceVisit.description
+    
+    try{
+      var total_drugs=0;
+      for( var i=0;i<res.insuranceVisit.services.pharmacy.length;i++){
+        total_drugs+=Number(res.insuranceVisit.services.pharmacy[i].amount)
+      }
+      this.form_data.drugs_cost=total_drugs.toString();
+    }catch(error){}
+    try{
+      var total_specialist=0;
+      for( var i=0;i<res.insuranceVisit.services.procedure.length;i++){
+        total_specialist+=Number(res.insuranceVisit.services.procedure[i].amount)
+      }
+      this.form_data.specialist_cost=total_specialist.toString();
+    }catch(error){}
+    var total=0;
+    try{
+      
+      for( var i=0;i<res.insuranceVisit.services.procedure.length;i++){
+        total+=Number(res.insuranceVisit.services.procedure[i].amount)
+             
+       
+      } 
+    }catch(error){}
+    try{
+      for( var i=0;i<res.insuranceVisit.services.pharmacy.length;i++){
+        total+=Number(res.insuranceVisit.services.pharmacy[i].amount)
+      }
+    }catch(error){}
+    try{
+      for( var i=0;i<res.insuranceVisit.services.others.length;i++){
+        total+=Number(res.insuranceVisit.services.others[i].amount)
+      }
+    }catch(error){}
+    this.form_data.total_claims=total.toString()
+  
+    if(res.insuranceVisit.visit_number!="" && res.insuranceVisit.visit_number!=null){
+      this.getInsuranceForm(res.insuranceVisit.visit_number);
+    }
     
   })
   
@@ -189,6 +302,24 @@ export class ApaClaimformComponent implements OnInit {
 
 
 }  
+getInsuranceForm(no){
+  this.claimFormService.getApaInsurance(no).subscribe(
+    (res: any)=>{
+      if(res.phone!=null && res.phone!=''){
+        this.form_data=res;
+        }
+        if(res.member_signature!=null){
+          this.signature1_src=res.member_signature;
+          this.signature1_show=true;
+        }
+        if(res.practitioner_signature!=null){
+          this.signature2_src=res.practitioner_signature;  
+          this.signature2_show=true;
+        }
+    },
+    (err)=>{}
+  )
+}
  
  printPage() {
 console.log("Resp", this.patient)
@@ -229,9 +360,19 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
     this.clientModal.show();
   }
   Update(){
-    console.log("DATA",this.clientForm.value)
-    
-    this.clientModal.hide();
+    this.loading=true;
+    console.log("DATA",this.clientForm.value)    
+    this.claimFormService.updateApaInsurance(this.form_data).subscribe(
+      (res)=>{
+        this.loading=false;
+        this.toast.success("Update Successfully")
+      },
+      (err)=>{
+        this.toast.error("Update Failed")
+        this.loading=false;
+
+      }
+    )
     
   }
 }

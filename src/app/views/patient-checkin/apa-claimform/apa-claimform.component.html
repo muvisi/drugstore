@@ -121,7 +121,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong> {{hospital}} </strong>
+                                    <strong> {{form_data.hospital}} </strong>
                                 </div> <hr>
                             </div>
                             
@@ -131,7 +131,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong> {{Aartelephone}} </strong>
+                                    <strong> {{form_data.hospital_tel_no}} </strong>
                                 </div> <hr>
                             </div>
                            
@@ -144,7 +144,7 @@
                                 
                                 
                             <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                <strong>   {{patient.employer}}</strong>
+                                <strong>   {{form_data.employer}}</strong>
                             </div> <hr>
                         </div>
                         
@@ -158,7 +158,7 @@
                                 
                                 
                             <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                <strong>   {{patient.member_number}}</strong>
+                                <strong>   {{form_data.member_number}}</strong>
                             </div> <hr>
                         </div>
                        
@@ -173,7 +173,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.employee}}</strong>
+                                    <strong>   {{form_data.member}}</strong>
                                 </div> <hr>
                             </div>
                             <div class="col-sm-2">Mobile No</div>
@@ -182,7 +182,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.patient.phone}}</strong>
+                                    <strong>   {{form_data.phone}}</strong>
                                 </div> <hr>
                             </div>
                         </div>
@@ -193,7 +193,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.patient.first_name}}{{patient.patient.last_name}}</strong>
+                                    <strong>   {{form_data.patient}}</strong>
                                 </div> <hr>
                             </div>
                             
@@ -203,7 +203,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.patient.age}}</strong>
+                                    <strong>   {{form_data.dob| date}}</strong>
                                 </div> <hr>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.relation}}</strong>
+                                    <strong>   {{form_data.relationship}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -225,7 +225,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.patient.national_id}}</strong>
+                                    <strong>   {{form_data.idno}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -260,7 +260,7 @@
                            
                            
                                 <div class="row" style="position: absolute;bottom: 1;">
-                                    <span style="margin-left: 50px;"> <strong>   {{patient.patient.first_name}}     {{patient.patient.last_name}}</strong></span>
+                                    <span style="margin-left: 50px;"> <strong>   {{form_data.patient}}</strong></span>
                                 </div>
                                 <div class="row">
                                     I   {{space}}      _________________________________________________________
@@ -299,7 +299,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.date | date:"MMM d, y"}}</strong>
+                                    <strong>   {{form_data.member_signature_date | date:"MMM d, y"}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -335,7 +335,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.insuranceVisit.diagnoses}}{{patient.insuranceVisit.description}}</strong>
+                                    <strong>   {{form_data.final_diagnosis}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -358,7 +358,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.first_diagnosis}}</strong>
+                                    <strong>   {{form_data.when_first_diagnosis}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -372,7 +372,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.preveous_treatment}}</strong>
+                                    <strong>   {{form_data.previous_treatment}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -399,7 +399,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.cause_illness}}</strong>
+                                    <strong>   {{form_data.cause_of_illness}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -414,7 +414,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.condition}}</strong>
+                                    <strong>   {{form_data.condition_type}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -428,7 +428,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.preveous_treatment}}</strong>
+                                    <strong>   {{form_data.nature_treatment}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -448,7 +448,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.insuranceVisit.doctor}}</strong>
+                                    <strong>   {{form_data.consultant}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -458,7 +458,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.specialty}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -492,7 +492,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.date_accident | date}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -503,7 +503,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.cause_accident}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -516,7 +516,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.nature_injuries}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -529,7 +529,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.doctors_fees}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -551,7 +551,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.drugs_cost}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -567,7 +567,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.specialist_cost}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -581,7 +581,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.doctor_specialty}}</strong>
+                                    <strong>   {{form_data.total_claims}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -602,7 +602,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.insuranceVisit.doctor}}</strong>
+                                    <strong>   {{form_data.practitioner}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -612,7 +612,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{patient.docto_phone}}</strong>
+                                    <strong>   {{form_data.practice_phone}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -638,7 +638,7 @@
                                 
                                 
                         <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                            <strong>   {{patient.docto_phone}}</strong>
+                            <strong>   {{form_data.practitioner_signature_date| date}}</strong>
 
                         </div> <hr>
                     </div>
@@ -659,7 +659,7 @@
 
   <div class="modal fade" bsModal #clientModal="bs-modal" 
   tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog modal-xl">
 <div class="modal-content">
   <div class="modal-header">
   <h4 id="dialog-static-name" class="modal-title pull-left">Edit Form</h4>
@@ -668,7 +668,30 @@
   </button>
   </div>
   <div class="modal-body">
-  <form [formGroup]="clientForm"   >
+  <form>
+    <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
+        <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+          HOSPITAL INFORMATION
+      
+        </div>
+      
+      </div>
+   <div class="row" style="margin-top: 10px;">
+      <div class="col-sm-4">
+      <mat-form-field appearance="outline">
+          <mat-label>Name of Hospital/Provider</mat-label>
+          <input matInput placeholder="Name of Hospital/Provider" [(ngModel)]="form_data.hospital"  name="hospital" >
+          </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+      <mat-form-field appearance="outline">
+          <mat-label>Tel & Fax No</mat-label>
+          <input matInput placeholder="Tel & Fax No" [(ngModel)]="form_data.hospital_tel_no"  name="hospital_tel_no" >
+          
+          </mat-form-field>
+        </div>
+    </div>
+    
     <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
         <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
           PATIENT INFORMATION
@@ -678,124 +701,168 @@
       </div>
   
   <div class="row" style="margin-top: 10px;">
-      <div class="col-sm-4">
+      <div class="col-sm-12">
       <mat-form-field appearance="outline">
-          <mat-label>Surname</mat-label>
-          <input matInput placeholder="Surname" [(ngModel)]="patient.patient.last_name"  formControlName="surname" >
+          <mat-label>Name of Employer</mat-label>
+          <input matInput placeholder="Name of Employer" [(ngModel)]="form_data.employer"  name="employer" >
           </mat-form-field>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-12">
       <mat-form-field appearance="outline">
-          <mat-label>First Name</mat-label>
-          <input matInput placeholder="First Name" [(ngModel)]="patient.patient.first_name"  formControlName="firstname" >
+          <mat-label>Policy /Membership No</mat-label>
+          <input matInput placeholder="Policy /Membership No" [(ngModel)]="form_data.member_number"  name="member_number" >
           
           </mat-form-field>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+        <mat-label>Employee's Name</mat-label>
+        <input matInput placeholder="Employee's Name" [(ngModel)]="form_data.member"  name="member" >
+        </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+        <mat-label>Mobile No</mat-label>
+        <input matInput placeholder="Mobile No" [(ngModel)]="form_data.phone"  name="phone" >
+        
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Patient's Name</mat-label>
+            <input matInput placeholder="Patient's Name" [(ngModel)]="form_data.patient"  name="patient" >
+            
+            </mat-form-field>
+        </div>
+  <div class="col-sm-6">
       <mat-form-field appearance="outline">
-      <mat-label>age</mat-label>
-          <input matInput placeholder="age" [(ngModel)]="patient.patient.age"  formControlName="age">
-          
+      <mat-label>Date of Birth</mat-label>
+          <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="form_data.dob"  name="dob" >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
   </div>
   
   <div class="col-sm-4">
   <mat-form-field appearance="outline" >
-      <mat-label>Telephone No</mat-label>
-      <input matInput placeholder="Telephone No" [(ngModel)]="patient.patient.phone" formControlName="phone" >
+      <mat-label>Relationship to Employee</mat-label>
+      <input matInput placeholder="Relationship to Employee" [(ngModel)]="form_data.relationship" name="relationship" >
 
       </mat-form-field>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-12">
   <mat-form-field appearance="outline">
-      <mat-label>Member signature Date</mat-label>
-      <input matInput placeholder="Member signature Date" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient.date"  formControlName="date" >
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-label>Are you insured  under any other medical expense scheme</mat-label>
+          <input matInput placeholder="Are you insured  under any other medical expense schem" [(ngModel)]="form_data.insured_scheme" name="insured_scheme" >
       </mat-form-field>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-12">
   <mat-form-field appearance="outline">
-      <mat-label>Membership No</mat-label>
-          <input matInput placeholder="Membership No" [(ngModel)]="patient.member_number" formControlName="memberno" >
-      </mat-form-field>
-  </div>
-  <div class="col-sm-4">
-  <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" [(ngModel)]="patient.patient.email"  formControlName="email">
+      <mat-label>Final Diagnosis of condition treated</mat-label>
+          <textarea matInput placeholder="Final Diagnosis of condition treated" [(ngModel)]="form_data.final_diagnosis"   rows= "3" name="final_diagnosis"></textarea>
   </mat-form-field>
   </div>
  
-  
- 
-  <div class="col-sm-4">
-      <mat-form-field appearance="outline" >
-      <mat-label>Member Name</mat-label>
-          <input matInput placeholder="member_name" [(ngModel)]="patient.member_name" formControlName="diagnosis" >
-
-      </mat-form-field>
-  </div>
-  <div class="col-sm-4">
-      <mat-form-field appearance="outline" >
-      <mat-label>Relationship</mat-label>
-          <input matInput placeholder="Relation" [(ngModel)]="patient.relation" formControlName="description" >
-
-      </mat-form-field>
-  </div>
-  <div class="col-sm-4">
-      <mat-form-field appearance="outline" >
-      <mat-label>Employer</mat-label>
-          <input matInput placeholder="Employer" [(ngModel)]="patient.employer" formControlName="employer" >
-
-      </mat-form-field>
-  </div>
-  <div class="col-sm-4">
-      <mat-form-field appearance="outline" >
-      <mat-label>ID/Passport</mat-label>
-          <input matInput placeholder="Passport" [(ngModel)]="patient.patient.national_id" formControlName="id" >
-
-      </mat-form-field>
-  </div>
-  <div class="col-sm-4">
-    <mat-form-field appearance="outline" >
-    <mat-label>Employee Name</mat-label>
-        <input matInput placeholder="Passport" [(ngModel)]="patient.employee" formControlName="employee" >
-
+  <div class="col-sm-12">
+    <mat-form-field appearance="outline">
+        <mat-label>When was the condition first diagnosed</mat-label>
+            <textarea matInput placeholder="When was the condition first diagnosed" [(ngModel)]="form_data.when_first_diagnosis"   rows= "3" name="when_first_diagnosis"></textarea>
+     
     </mat-form-field>
-</div>
- 
-  <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
-    <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
-      DOCTOR INFORMATION
-
+    </div>          
+    <div class="col-sm-12">
+    <mat-form-field appearance="outline">
+        <mat-label>Cause of illness/es </mat-label>
+        <textarea matInput placeholder="Cause of illness/es" [(ngModel)]="form_data.cause_of_illness"   rows= "3" name="cause_of_illness">
+    </textarea>
+    </mat-form-field>
     </div>
+    <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+            <mat-label>Nature of treatment and given recommendations</mat-label>
+                <textarea matInput placeholder="Nature of treatment and given recommendations" [(ngModel)]="form_data.nature_treatment"   rows= "3" name="nature_treatment"></textarea>
+            </mat-form-field>
+            </div>
+    <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>Name of consultant</mat-label>
+          <input matInput placeholder="Name of consultant" [(ngModel)]="form_data.consultant" name="consultant" >
 
-  </div>
+      </mat-form-field>
+    </div>
   <div class="col-sm-4">
+      <mat-form-field appearance="outline" >
+      <mat-label>Specialty</mat-label>
+          <input matInput placeholder="specialist" [(ngModel)]="form_data.specialist" name="specialist" >
+
+      </mat-form-field>
+  </div>
+  <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+    <mat-label>Date of Accident</mat-label>
+        <input matInput placeholder="Date of Accident" [maxDate]="maxDate"  [matDatepicker]="picker2" [(ngModel)]="form_data.date_accident"  name="date_accident" >
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+</div>
+  <div class="col-sm-12">
+    <mat-form-field appearance="outline">
+        <mat-label>Cause of Accident</mat-label>
+            <textarea matInput placeholder="Cause of Accident" [(ngModel)]="form_data.cause_accident"   rows= "3" name="cause_accident"></textarea>
+        </mat-form-field>
+        </div>
+
+        <div class="col-sm-12">
+            <mat-form-field appearance="outline">
+                <mat-label>Nature of injuries</mat-label>
+                    <textarea matInput placeholder="Nature of injuries" [(ngModel)]="form_data.nature_injuries"   rows= "3" name="nature_injuries"></textarea>
+                </mat-form-field>
+                </div>
+  <div class="col-sm-12">
     <mat-form-field appearance="outline" >
-    <mat-label>Adress of Doctor</mat-label>
-        <input matInput placeholder="doctor address" [(ngModel)]="patient.doctoraddress" formControlName="address" >
+    <mat-label>Private Doctors Fees</mat-label>
+        <input matInput placeholder="Private Doctors Fees" [(ngModel)]="form_data.doctors_fees" name="doctors_fees" >
 
     </mat-form-field>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-12">
     <mat-form-field  appearance="outline">
-    <mat-label>Doctor's Name</mat-label>
-        <input matInput placeholder="Doctor's Name" [(ngModel)]="patient.insuranceVisit.doctor" formControlName="doctor" >
+    <mat-label>Prescribed Drugs</mat-label>
+        <input matInput placeholder="Prescribed Drugs" [(ngModel)]="form_data.drugs_cost" name="drugs_cost" >
 
     </mat-form-field>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-12">
     <mat-form-field appearance="outline" >
-    <mat-label>Doctor's specialty</mat-label>
-        <input matInput placeholder="Doctor's specialty" [(ngModel)]="patient.doctor_specialty" formControlName="specialty" >
+    <mat-label>Specialist, Pathologists, X-ray & Physiotherapy fees</mat-label>
+        <input matInput placeholder="Specialist,Pathologists, X-ray & Physiotherapy fees" [(ngModel)]="form_data.specialist_cost" name="specialist_cost" >
 
     </mat-form-field>
 </div>
   
+<div class="col-sm-12">
+    <mat-form-field appearance="outline" >
+    <mat-label>Total Claims</mat-label>
+        <input matInput placeholder="Total Claims" [(ngModel)]="form_data.total_claims" name="total_claims" >
+
+    </mat-form-field>
+</div>
   
-  
+<div class="col-sm-12">
+    <mat-form-field appearance="outline" >
+    <mat-label>Name of Doctor</mat-label>
+        <input matInput placeholder="Name of Doctor" [(ngModel)]="form_data.practitioner" name="practitioner" >
+
+    </mat-form-field>
+</div> 
+<div class="col-sm-12">
+    <mat-form-field appearance="outline" >
+    <mat-label>Telephone Number</mat-label>
+        <input matInput placeholder="Telephone Number" [(ngModel)]="form_data.practice_phone" name="practice_phone" >
+
+    </mat-form-field>
+</div> 
 <div class="col-sm-8" >
 <button class="btn btn-success pull-right"  (click)="Update()">Update</button>
 </div>

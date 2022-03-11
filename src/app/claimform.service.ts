@@ -20,4 +20,44 @@ export class ClaimformService {
     return this.http.post(endpoint+"api/aarform-signature/",data).pipe(map((res)=>{return res}))
   }
 
+  updateUapOutpatient(data){
+    return this.http.post(endpoint+"api/uapoutpatientform/",data).pipe(map((res)=>{return res}))
+  }
+  getUapOutpatient(no){
+    return this.http.get(endpoint+"api/uapoutpatientform-details/"+no+"/").pipe(map((res)=>{return res}))
+  }
+  signatureUapOutpatient(data){
+    return this.http.post(endpoint+"api/uapoutpatientform-signature/",data).pipe(map((res)=>{return res}))
+  }
+ 
+  updateMinetOutpatient(data){
+    return this.http.post(endpoint+"api/minetoutpatientform/",data).pipe(map((res)=>{return res}))
+  }
+  getMinetOutpatient(no){
+    return this.http.get(endpoint+"api/minetoutpatientform-details/"+no+"/").pipe(map((res)=>{return res}))
+  }
+  signatureMinetOutpatient(data){
+    return this.http.post(endpoint+"api/minetoutpatientform-signature/",data).pipe(map((res)=>{return res}))
+  }
+
+  updateFirstInsurance(data){
+    return this.http.post(endpoint+"api/firstassurancepatientform/",data).pipe(map((res)=>{return res}))
+  }
+  getFirstInsurance(no){
+    return this.http.get(endpoint+"api/firstassurancepatientform-details/"+no+"/").pipe(map((res)=>{return res}))
+  }
+  signatureFirstInsurance(data){
+    return this.http.post(endpoint+"api/firstassurancepatientform-signature/",data).pipe(map((res)=>{return res}))
+  }
+
+
+  updateApaInsurance(data){
+    return this.http.post(endpoint+"api/apaform/",data).pipe(map((res)=>{return res}))
+  }
+  getApaInsurance(no){
+    return this.http.get(endpoint+"api/apaform-details/"+no+"/").pipe(map((res)=>{return res}))
+  }
+  signatureApaInsurance(data){
+    return this.http.post(endpoint+"api/apaform-signature/",data).pipe(map((res)=>{return res}))
+  }
 }

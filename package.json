@@ -70,6 +70,7 @@
     "ngx-print-element": "^2.0.12",
     "ngx-toastr": "^10.1.0",
     "popper.js": "^1.16.0",
+    "qrcode-with-logos": "^1.0.3",
     "rxjs": "6.5.2",
     "rxjs-compat": "^6.5.2",
     "simple-line-icons": "^2.4.1",

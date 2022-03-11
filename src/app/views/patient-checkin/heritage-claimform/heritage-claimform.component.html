@@ -19,7 +19,7 @@
            
             <div class="col-sm-8">
                 <h5 style="white-space:nowrap; margin-top: 35px;">
-                    <img src="../../../../assets/img/avatars/heritage.png" alt="" height="100" width="200">
+                    <img src="./assets/img/avatars/heritage.png" alt="" height="100" width="200">
                    
                      
                    
@@ -33,7 +33,7 @@
             </div>  -->
             <div class="col-sm-4">
                 <div class="row" style="justify-content: right; margin-top: 35px;">
-                    <h1 ><img  src="../../../../assets/img/avatars/blue.png" alt=""  height="100" width="300">
+                    <h1 ><img  src="./assets/img/avatars/blue.png" alt=""  height="100" width="300">
                    </h1>
                 </div>
             </div>
@@ -569,138 +569,138 @@
                         </p>
                     </div>
                 </div>
-                <div class="modal fade" bsModal #clientModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-                    <div class="modal-dialog  modal-xl">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 id="dialog-static-name" class="modal-title pull-left">Edit Form</h4>
-                          <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                       
-                       
-                        <form   >
-                         <fieldset>
-                           <legend>PATIENT INFORMATION</legend>
-                          <div class="row">
-                            <div class="col-sm-4">
-                              <mat-form-field appearance="outline">
-                                <mat-label>Name</mat-label>
-                                  <input matInput placeholder="Name" [(ngModel)]="patient_data.member"  name="member"  >
-                                  
-                                </mat-form-field>
-                          </div>          
-                         <div class="col-sm-4">
-                          <mat-form-field appearance="outline" >
-                            <mat-label>Telephone No</mat-label>
-                              <input matInput placeholder="Telephone No" [(ngModel)]="patient_data.phone"  name="phone">
-                  
-                            </mat-form-field>
-                         </div>
-                         <div class="col-sm-4">
-                          <mat-form-field appearance="outline">
-                            <mat-label>D.O.B</mat-label>
-                              <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="patient_data.dob" name="dob" >
-                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                              <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm-4">
-                          <mat-form-field appearance="outline">
-                            <mat-label>Membership No</mat-label>
-                               <input matInput placeholder="Membership No" [(ngModel)]="patient_data.member_number" name="member_number">
-                             </mat-form-field>
-                        </div>
-                        <div class="col-sm-4">
-                         <mat-form-field appearance="outline">
-                           <mat-label>Employer/Company</mat-label>
-                              <input matInput placeholder="Employer/Company" [(ngModel)]="patient_data.employer" name="emloyer">
-                            </mat-form-field>
-                       </div>
-                        <div class="col-sm-4">
-                          <mat-form-field appearance="outline">
-                            <mat-label>Email</mat-label>
-                               <input matInput placeholder="Email" [(ngModel)]="patient_data.email" name="email">
-                          </mat-form-field>
-                        </div>
-                          </div>
-                       </fieldset>
-                       <fieldset>
-                         <legend>CLINICAL INFORMATION</legend>
-                        <div class="row">
-                        <div class="col-sm-6">
-                           <mat-form-field appearance="outline">
-                            
-                                <mat-label>Complaints including date of onset:</mat-label>
-                                <textarea  [(ngModel)]="clinics_data.complaints"  matInput placeholder="Complaints including date of onset" name="complaints"></textarea>
-                            
-                             </mat-form-field>
-                         </div>
-                         <div class="col-sm-6">
-                           <mat-form-field appearance="outline">
-                            
-                                <mat-label>Physical findings:</mat-label>
-                                <textarea  [(ngModel)]="clinics_data.physical_finding"  name="physical_finding" matInput placeholder="Physical findings"></textarea>
-                            
-                             </mat-form-field>
-                         </div>
-                         <div class="col-sm-6">
-                           <mat-form-field appearance="outline">
-                            
-                                <mat-label>Laboratory & Radiology findings:</mat-label>
-                                <textarea  [(ngModel)]="clinics_data.laboratory_radiology_findings" name="laboratory_radiology" matInput placeholder="Laboratory & Radiology findings"></textarea>
-                            
-                             </mat-form-field>
-                         </div>
-                         <div class="col-sm-6">
-                           <mat-form-field appearance="outline">
-                            
-                                <mat-label>Diagnosis:</mat-label>
-                                <textarea  [(ngModel)]="clinics_data.diagnosis"  name="diagnosis" matInput placeholder="Diagnosis"></textarea>
-                            
-                             </mat-form-field>
-                         </div>
-                         <div class="col-sm-6">
-                           <mat-form-field appearance="outline">
-                            
-                                <mat-label>Management Plan:(Including estimated costs for procedures)</mat-label>
-                                <textarea  [(ngModel)]="clinics_data.management_plan"  name="management_plan" matInput placeholder="Management Plan:(Including estimated costs for procedures)"></textarea>
-                            
-                             </mat-form-field>
-                         </div>
-                         <div class="col-sm-6">
-                           <mat-form-field  appearance="outline">
-                             <mat-label>Attending Practitioner</mat-label>
-                               <input matInput placeholder="Attending Practitioner" [(ngModel)]="speciality_data.practitioner" name="practitioner"  >
-                   
-                             </mat-form-field>
-                          </div>
-                          <div class="col-sm-6">
-                           <mat-form-field appearance="outline" >
-                             <mat-label>Speciality</mat-label>
-                               <input matInput placeholder="Speciality" [(ngModel)]="speciality_data.speciality" name="speciality">
-                   
-                             </mat-form-field>
-                          </div>                  
-                          </div>
-                          </fieldset>
-                          <div class="row"  style="justify-content: end;">
-                         
-                         
-                         
-                                 <div class="col-sm-8" >
-                                 <button class="btn btn-success pull-right"  style="width: 220px; font-size: x-large;" (click)="Update()">Update</button>
-                               </div>
-                          </div>
-                        </form>
-                   
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                     
-                </div>
+                <!-- <div class="modal fade" bsModal #clientModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name"> -->
+                    <!-- <div class="modal-dialog  modal-xl"> -->
+                      <!-- <div class="modal-content"> -->
+                        <!-- <div class="modal-header"> -->
+                          <!-- <h4 id="dialog-static-name" class="modal-title pull-left">Edit Form</h4> -->
+                          <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="clientModal.hide()"> -->
+                            <!-- <span aria-hidden="true">&times;</span> -->
+                          <!-- </button> -->
+                        <!-- </div> -->
+                        <!-- <div class="modal-body"> -->
+<!--                         -->
+<!--                         -->
+                        <!-- <form   > -->
+                         <!-- <fieldset> -->
+                           <!-- <legend>PATIENT INFORMATION</legend> -->
+                          <!-- <div class="row"> -->
+                            <!-- <div class="col-sm-4"> -->
+                              <!-- <mat-form-field appearance="outline"> -->
+                                <!-- <mat-label>Name</mat-label> -->
+                                  <!-- <input matInput placeholder="Name" [(ngModel)]="form_data.member"  name="member"  > -->
+<!--                                    -->
+                                <!-- </mat-form-field> -->
+                          <!-- </div>           -->
+                         <!-- <div class="col-sm-4"> -->
+                          <!-- <mat-form-field appearance="outline" > -->
+                            <!-- <mat-label>Telephone No</mat-label> -->
+                              <!-- <input matInput placeholder="Telephone No" [(ngModel)]="form_data.phone"  name="phone"> -->
+<!--                    -->
+                            <!-- </mat-form-field> -->
+                         <!-- </div> -->
+                         <!-- <div class="col-sm-4"> -->
+                          <!-- <mat-form-field appearance="outline"> -->
+                            <!-- <mat-label>D.O.B</mat-label> -->
+                              <!-- <input matInput placeholder="Date of Birth" [maxDate]="maxDate"  [matDatepicker]="picker" [(ngModel)]="form_data.dob" name="dob" > -->
+                              <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+                              <!-- <mat-datepicker #picker></mat-datepicker> -->
+                            <!-- </mat-form-field> -->
+                        <!-- </div> -->
+                        <!-- <div class="col-sm-4"> -->
+                          <!-- <mat-form-field appearance="outline"> -->
+                            <!-- <mat-label>Membership No</mat-label> -->
+                               <!-- <input matInput placeholder="Membership No" [(ngModel)]="form_data.member_number" name="member_number"> -->
+                             <!-- </mat-form-field> -->
+                        <!-- </div> -->
+                        <!-- <div class="col-sm-4"> -->
+                         <!-- <mat-form-field appearance="outline"> -->
+                           <!-- <mat-label>Employer/Company</mat-label> -->
+                              <!-- <input matInput placeholder="Employer/Company" [(ngModel)]="form_data.employer" name="emloyer"> -->
+                            <!-- </mat-form-field> -->
+                       <!-- </div> -->
+                        <!-- <div class="col-sm-4"> -->
+                          <!-- <mat-form-field appearance="outline"> -->
+                            <!-- <mat-label>Email</mat-label> -->
+                               <!-- <input matInput placeholder="Email" [(ngModel)]="form_data.email" name="email"> -->
+                          <!-- </mat-form-field> -->
+                        <!-- </div> -->
+                          <!-- </div> -->
+                       <!-- </fieldset> -->
+                       <!-- <fieldset> -->
+                         <!-- <legend>CLINICAL INFORMATION</legend> -->
+                        <!-- <div class="row"> -->
+                        <!-- <div class="col-sm-6"> -->
+                           <!-- <mat-form-field appearance="outline"> -->
+<!--                              -->
+                                <!-- <mat-label>Complaints including date of onset:</mat-label> -->
+                                <!-- <textarea  [(ngModel)]="form_data.complaints"  matInput placeholder="Complaints including date of onset" name="complaints"></textarea> -->
+<!--                              -->
+                             <!-- </mat-form-field> -->
+                         <!-- </div> -->
+                         <!-- <div class="col-sm-6"> -->
+                           <!-- <mat-form-field appearance="outline"> -->
+<!--                              -->
+                                <!-- <mat-label>Physical findings:</mat-label> -->
+                                <!-- <textarea  [(ngModel)]="form_data.physical_finding"  name="physical_finding" matInput placeholder="Physical findings"></textarea> -->
+<!--                              -->
+                             <!-- </mat-form-field> -->
+                         <!-- </div> -->
+                         <!-- <div class="col-sm-6"> -->
+                           <!-- <mat-form-field appearance="outline"> -->
+<!--                              -->
+                                <!-- <mat-label>Laboratory & Radiology findings:</mat-label> -->
+                                <!-- <textarea  [(ngModel)]="form_data.laboratory_radiology_findings" name="laboratory_radiology" matInput placeholder="Laboratory & Radiology findings"></textarea> -->
+<!--                              -->
+                             <!-- </mat-form-field> -->
+                         <!-- </div> -->
+                         <!-- <div class="col-sm-6"> -->
+                           <!-- <mat-form-field appearance="outline"> -->
+<!--                              -->
+                                <!-- <mat-label>Diagnosis:</mat-label> -->
+                                <!-- <textarea  [(ngModel)]="form_data.diagnosis"  name="diagnosis" matInput placeholder="Diagnosis"></textarea> -->
+<!--                              -->
+                             <!-- </mat-form-field> -->
+                         <!-- </div> -->
+                         <!-- <div class="col-sm-6"> -->
+                           <!-- <mat-form-field appearance="outline"> -->
+<!--                              -->
+                                <!-- <mat-label>Management Plan:(Including estimated costs for procedures)</mat-label> -->
+                                <!-- <textarea  [(ngModel)]="form_data.management_plan"  name="management_plan" matInput placeholder="Management Plan:(Including estimated costs for procedures)"></textarea> -->
+<!--                              -->
+                             <!-- </mat-form-field> -->
+                         <!-- </div> -->
+                         <!-- <div class="col-sm-6"> -->
+                           <!-- <mat-form-field  appearance="outline"> -->
+                             <!-- <mat-label>Attending Practitioner</mat-label> -->
+                               <!-- <input matInput placeholder="Attending Practitioner" [(ngModel)]="speciality_data.practitioner" name="practitioner"  > -->
+<!--                     -->
+                             <!-- </mat-form-field> -->
+                          <!-- </div> -->
+                          <!-- <div class="col-sm-6"> -->
+                           <!-- <mat-form-field appearance="outline" > -->
+                             <!-- <mat-label>Speciality</mat-label> -->
+                               <!-- <input matInput placeholder="Speciality" [(ngModel)]="speciality_data.speciality" name="speciality"> -->
+<!--                     -->
+                             <!-- </mat-form-field> -->
+                          <!-- </div>                   -->
+                          <!-- </div> -->
+                          <!-- </fieldset> -->
+                          <!-- <div class="row"  style="justify-content: end;"> -->
+<!--                           -->
+<!--                           -->
+<!--                           -->
+                                 <!-- <div class="col-sm-8" > -->
+                                 <!-- <button class="btn btn-success pull-right"  style="width: 220px; font-size: x-large;" (click)="Update()">Update</button> -->
+                               <!-- </div> -->
+                          <!-- </div> -->
+                        <!-- </form> -->
+<!--                     -->
+                        <!-- </div> -->
+                      <!-- </div> -->
+                    <!-- </div> -->
+                  <!-- </div> -->
+<!--                       -->
+                <!-- </div> -->
                 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
                     
