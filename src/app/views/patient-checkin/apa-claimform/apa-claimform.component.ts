@@ -133,18 +133,32 @@ export class ApaClaimformComponent implements OnInit {
     "insurance_company": "",
     "scheme_name": "",
     "scheme_number": "",
-    "employee": null,
-    "employee_number": null,
-    "department": null,
+    "employee": "",
+    "employee_number":"",
+    "department":"",
     "member_number": "",
-    "member_name": null,
-    "relation": null,
-    "card_number": null,
-    "idnumber": null,
+    "member_name": "",
+    "relation": "",
+    "card_number": "",
+    "idnumber": "",
     "employer":"",
    "date":"",
-    "doctor_specialty": null,
+    "specialty": "",
     "doctoraddress": "",
+    "first_diagnostic_date":"",
+    "paticulars":"",
+    "illnesscause":"",
+    "condition":"",
+    "treatment":"",
+    "preveous_treatment":"",
+    "causeofaccident":"",
+    "dateofaccident":"",
+    "doctorfees":"",
+    "nameofinjuries":"",
+    "doctor_phone":"",
+    "specialist":"",
+    "totalclaims":"",
+
   
     }
   hospital='AAR HOSPITAL KENYA LTD'
@@ -194,7 +208,21 @@ export class ApaClaimformComponent implements OnInit {
       id:[''],
       address:[''],
       employee:[''],
-      date:['']
+      date:[''],
+      first_diagnostic_date:[''],
+      preveous_treatment:[''],
+      particulars:[''],
+      illnesscause:[''],
+      condition:[''],
+      treatment:[''],
+      causeofaccident:[''],
+      dateofaccident:[''],
+      doctorfees:[''],
+      nameofinjuries:[''],
+      totalclaims:[''],
+      specialist:[''],
+      doctor_phone:['']
+
    
     });
 

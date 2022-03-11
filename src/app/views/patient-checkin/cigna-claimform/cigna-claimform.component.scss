@@ -40,8 +40,9 @@
   input{
       width: 100%;
       float: right;
-      border:none;
-      background-color: #FFF2ED;
+      border:2px solid gray;
+      // background-color:gray;
+      
       text-transform: capitalize;
   }
   textarea{

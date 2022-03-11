@@ -88,7 +88,7 @@ export class UsermanagementComponent implements OnInit {
       this.edit = true;
     },
     (error)=>{
-      this.toastr.error('Update request failed');
+      this.toastr.error('User with the Phone Number Already Exist, Please Use a diffrent one');
     }
     );
   }

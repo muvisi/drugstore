@@ -9,7 +9,11 @@ import { ServiceService } from '../../../service.service';
 })
 export class HeritageClaimformComponent implements OnInit {
 
- 
+  patient_data:any={}
+  clinics_data:any={}
+  speciality_data:any={}
+  maxDate
+  loading
   patient:any={}
   hospital='AAR HOSPITAL'
   specialist='Yes'
@@ -40,6 +44,13 @@ document.title=this.patient[0].visit_number.concat("-01")
   window.print();
  
 }
+edit(){
+
+}
+Update(){
+
+}
+
 
 }
 

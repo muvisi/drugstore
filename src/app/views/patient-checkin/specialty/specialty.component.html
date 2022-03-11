@@ -5,16 +5,24 @@
         <div class="card-header">
           <h5>Specialty Calender</h5>
         </div>
+        <div class="row" style="width:100%;justify-content: right; margin-top: 10px;">
+          
+       
+            <div class="col-sm-4">
+                <button class="btn btn-success" style="float: right; " (click)="ViewAll()">All Calendar Bookings</button>        
+    
+            </div>
+                   
+                      </div>
+       
         <div class="row">
           
         <div class="card-body">
           
-          <div class="row">
-            <div class="col-sm-12">
-                <div class="row">
+          <!-- <div class="row">
             
-                </div>
-              </div>
+                
+              </div> -->
               
             <div class="col-sm-12">
               <div class="mat-elevation-z8 table-responsive">
@@ -30,6 +38,10 @@
                     <ng-container matColumnDef="specialist">
                         <th mat-header-cell *matHeaderCellDef>Specialist</th>
                         <td mat-cell *matCellDef="let element"> {{element.specialist}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="count">
+                        <th mat-header-cell *matHeaderCellDef>Total Count</th>
+                        <td mat-cell *matCellDef="let element"> {{element.total}} </td>
                       </ng-container>
                      
                       <ng-container matColumnDef="calendar">

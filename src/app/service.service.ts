@@ -1217,6 +1217,10 @@ filtercalendar(specialist) {
       return this.http.post(endpoint + 'api/specialtyfilter/',specialist).pipe(
         map(this.extractData));
       }
+filtercalendarr() {
+        return this.http.get(endpoint + 'api/calendar/').pipe(
+          map(this.extractData));
+        }
     getAllUsers(){
       return this.http.get(endpoint + 'users/staffs/').pipe(
         map(this.extractData));

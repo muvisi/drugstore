@@ -1,25 +1,33 @@
 
     <div class="card" class="myDivToPrint" style="background-color: white;">
         <div class="card-body" >
-            <div class="row">
-                <div class="col-sm-12">
-                    <button class="btn btn-success" style="float: right; "  (click)="printPage()">Print Claim Form</button>
-    
-                    <div class="clearfix"></div>
-        
-                </div>
-                <div class="clearfix"></div>
-                <div class="clearfix"></div>
-                <div class="col-sm-12">
-                    <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="edit()" >Edit Form</button>
-    
-                    
-        
-                </div>
-               
-            </div>
+            <div class="row" style="width:100%;justify-content: right;">
+                <div class="col-sm-2">
+                  <button class="btn btn-success" style="float: right;" (click)="edit()">Edit Form</button>     
+              </div>
+             
+                  <div class="col-sm-3">
+                      <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>        
+          
+                  </div>
+                         
+                            </div>
+           
             <div class="row" >
-                <div class="row" style="font-size: 8px; color: darkblue;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p style="white-space:nowrap; margin-top: 0px;">
+                            <img src="./../../../assets/img/avatars/apaimage.png" alt="" width="950" height="200" >
+                           
+                             
+                           
+                        </p>
+        
+        
+                    </div>
+        
+                </div>
+                <!-- <div class="row" style="font-size: 8px; color: darkblue;">
                     <div class="col-sm-2">
                         <img src="./../../../assets/img/avatars/apa.png" alt="" width="250px" height="100px">
                         </div>
@@ -88,7 +96,7 @@
                         Email: apa.meru@apainsurance.org<br>
                     </div>
                     
-                </div>
+                </div> -->
                
                 
                 
@@ -96,14 +104,14 @@
                
                 <div class="col-sm-12" >
   
-                    <div  >
+                    <!-- <div  >
                         <h3 style="color:darkblue;margin-left: 210px;"><strong>MEDICAL INSURANCE CLAIM FORM</strong></h3>
-                    </div>
+                    </div> -->
                     <div class="col-sm-12" style="color: darkblue;">
-                        <p style="margin: 30px;">
+                        <!-- <p style="margin: 30px;">
                             (N.B.
-                        </p>
-                       <span style="margin-left: 140px;">
+                        </p> -->
+                       <!-- <span style="margin-left: 140px;">
                             1.This form shall not be accepted unless fully completed and signed by both the doctor and the insured.<br></span>
                             <span style="margin-left: 140px;">  2.No addmissio of liability is made by insurer by the issue of this form<br></span>
                                 <span style="margin-left: 140px;"> 3.To make a false claim is a criminal offence.<br>
@@ -112,10 +120,10 @@
     
                       
                        
-                       </span>
+                       </span> -->
                         <div class="clearfix"></div>
                        <div class="col-sm-12">
-                        <div class="row"  style="margin-left: 30px; font-size: 14px;">
+                        <div class="row"  style="font-size: 14px;">
                             <div class="col-sm-2">Name of Hospital/Provider:</div>
                             <div class="col-sm-4">
                                 
@@ -138,7 +146,7 @@
                             
                         </div>
                         <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 14px;">
+                    <div class="row"  style=" font-size: 14px;">
                         <div class="col-sm-2">Name of the Employer</div>
                         <div class="col-sm-10">
                                 
@@ -152,7 +160,7 @@
                         
                     </div>
                     <div class="clearfix"></div>
-                    <div class="row"  style="margin-left: 30px; font-size: 14px;">
+                    <div class="row"  style=" font-size: 14px;">
                         <div class="col-sm-2">Policy/Membership No</div>
                         <div class="col-sm-10">
                                 
@@ -166,7 +174,7 @@
                         
                     </div>
                     <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 14px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Employee's Name</div>
                            
                             <div class="col-sm-4">
@@ -187,7 +195,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 14px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Patient Name</div>
                             <div class="col-sm-4">
                                 
@@ -208,7 +216,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 14px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Relationship to Employee:</div>
                             <div class="col-sm-4">
                                 
@@ -233,13 +241,13 @@
                         </div>
                         <div class="row">
                             <div class="clearfix"></div>
-                            <div class="col-sm-12"  style=" font-size: 14px; margin-left: 47px;">
+                            <div class="col-sm-12"  style=" font-size: 14px;">
                              
                                  Are you insured under any other medical expense scheme e.g NHIF, Workmen's Compesation, Personal Accident included?<br>
                                 
                      
                             </div>
-                            <div class="col-sm-4"  style=" font-size: 14px; margin-left:47px;">
+                            <div class="col-sm-4"  style=" font-size: 14px; ">
                              
                                 If so, please give particulars
                     
@@ -248,19 +256,24 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <!-- <strong>   {{patient.patient.national_id}}</strong> -->
+                                    <strong>   {{patient.particulars}}</strong>
 
                                 </div> <hr>
                             </div>
 
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 47px; font-size: 12px;">
-                            <div class="col-sm-12">
+                        <div class="row"  style=" font-size: 14px; margin-left: 2px;">
+                            <div class="col-sm-12" >
                            
                            
+<<<<<<< HEAD
                                 <div class="row" style="position: absolute;bottom: 1;">
                                     <span style="margin-left: 50px;"> <strong>   {{form_data.patient}}</strong></span>
+=======
+                                <div class="row" style="position: absolute;bottom: 1; margin-left: 2px;">
+                                    <span > <strong>   {{patient.patient.first_name}}     {{patient.patient.last_name}}</strong></span>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
                                 </div>
                                 <div class="row">
                                     I   {{space}}      _________________________________________________________
@@ -277,7 +290,7 @@
                             </div>
                             
                         </div>
-                        <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
+                        <div class="row" style="margin-top: 12px; font-size: 14px;">
                             <div class="col-sm-8" (click)="activateMemberSignature()">
                                 <div class="row">
                                     <div class="col-sm-4">Signature of  Member:</div>
@@ -321,15 +334,15 @@
     
                    
                    
-                     <div  class="col-sm-6" style="color: darkblue; font-size: 12px;">
-                        <div style="background-color:white;margin-left: 40px; " >
+                     <div  class="col-sm-6" style="color: darkblue; font-size: 14px;">
+                        <div style="background-color:white;" >
                             <h6 style="color: darkblue">TO BE FILLED BY DOCTOR</h6>
                         </div>
                     </div>
                     <div class="col-sm-12"  style="color: darkblue;" >
                    
                    
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-5">Final Diagnosis of condition treated:</div>
                             <div class="col-sm-7">
                                 
@@ -339,33 +352,29 @@
 
                                 </div> <hr>
                             </div>
-                            <!-- <div class="col-sm-4">
-                                <div class="row" style="position: absolute;bottom: 1;">
-                                     <strong>   {{patient.insuranceVisit.diagnoses}}{{patient.insuranceVisit.description}}</strong>
-                                </div>
-                                <div class="row">
-                        __________________________________________________________________________________________
-                                
-                            </div>
-                            </div> -->
+                            
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-5">When was the condition first diagnosed:</div>
                             
                             <div class="col-sm-7">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.when_first_diagnosis}}</strong>
+=======
+                                    <strong>   {{patient.first_diagnostic_date | date:"MMM d, y"}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style="font-size: 14px;">
                             <div class="col-sm-5">Details of Preveous treatment for this ill;ness/injury:</div>
                             
                             <div class="col-sm-7">
@@ -385,21 +394,25 @@
                        
                         
                     </div>
-                    <div  class="col-sm-6" style="font-size: 12px;">
-                        <div style="background-color:white;margin-left: 40px; ">
+                    <div  class="col-sm-6" style="font-size: 14px;">
+                        <div style="background-color:white; ">
                             <h6 style="color: darkblue"><u>SICKNESS</u></h6>
                         </div>
                     </div>
                     <div class="col-sm-12"  style="color: darkblue;" >
                    
                    
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-5">Cause of illness/es:</div>
                             <div class="col-sm-7">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.cause_of_illness}}</strong>
+=======
+                                    <strong>   {{patient.illnesscause}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -407,7 +420,7 @@
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-5">Is the condition Recurrent, Chronic or Congenital:</div>
                             
                             <div class="col-sm-7">
@@ -421,14 +434,18 @@
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-5">Nature of treatment and given recommendations:</div>
                             
                             <div class="col-sm-7">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.nature_treatment}}</strong>
+=======
+                                    <strong>   {{patient.treatment}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -437,12 +454,12 @@
                         <div class="clearfix"></div>
     
                        <!-- <div class="row" style="margin-left: 30px; font-size: 8px;"> -->
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-12">Does the patient require referral to a specialist? Yes/No.</div>
                            
                            
                         </div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Name of cunsultant</div>
                             <div class="col-sm-4">
                                 
@@ -481,18 +498,22 @@
     
                
                 <div  class="col-sm-6">
-                    <div style="background-color:white; margin-left: 30px;" >
+                    <div style="background-color:white; " >
                         <h6 style="color: darkblue;"><u>ACCIDENTS</u></h6>
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                        <div class="row" style=" font-size: 14px;">
                             <div class="col-sm-2"> i. Date of accident:</div>
                             <div class="col-sm-4">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.date_accident | date}}</strong>
+=======
+                                    <strong>   {{patient.dateofaccident | date:"MMM d, y"}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -503,71 +524,90 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.cause_accident}}</strong>
+=======
+                                    <strong>   {{patient.causeofaccident}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
                            
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                        <div class="row" style="font-size: 14px;">
                             <div class="col-sm-2"> ii. Name of Injuries:</div>
                             <div class="col-sm-12">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.nature_injuries}}</strong>
+=======
+                                    <strong>   {{patient.nameofinjuries}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
                            
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Private doctors Fees:</div>
                             <div class="col-sm-4">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.doctors_fees}}</strong>
+=======
+                                    <strong>   {{patient.doctorfees}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
-                            <!-- <div class="col-sm-4">
-                                <div class="row" style="position: absolute;bottom: 1;">
-                                </div>
-                                <div class="row">
-                        ______________________________________________=
-                                
-                            </div>
-                            </div> -->
+                            
                             <div class="col-sm-2">Kshs:</div>
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Prescribed Drugs:</div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-12">
+                          
+                          
+                                <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                                  <span *ngFor="let item of patient.insuranceVisit.services.pharmacy"> <strong> <span>{{item.name}} {{item.amount}} </span> </strong>       </span>
+                                </div> <hr> <hr>
+                            </div>
+                            <!-- <div class="col-sm-4">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.drugs_cost}}</strong>
+=======
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
-                            
+                             -->
                             <div class="col-sm-2"></div>
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                        <div class="row" style=" font-size: 14px;">
                             <div class="col-sm-4">Specialist,Pathologist.X-ray & Physiotheraphy fees:</div>
                            
                             <div class="col-sm-2">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.specialist_cost}}</strong>
+=======
+                                    <strong>   {{patient.specialist}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -575,13 +615,17 @@
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                        <div class="row" style=" font-size: 14px;">
                             <div class="col-sm-2">Total claims:</div>
                             <div class="col-sm-4">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.total_claims}}</strong>
+=======
+                                    <strong>   {{patient.totalclaims}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -589,14 +633,14 @@
                             <div class="col-sm-2"></div>
                             
                         </div>
-                        <div class="row" style="margin-left: 30px; font-size: 12px;">
+                        <div class="row" style=" font-size: 14px;">
                             <div class="col-sm-12">
                             I hereby confirm that the information provided above is correct and true to the best of my knowledge
                             </div>
                             
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row"  style="margin-left: 30px; font-size: 12px;">
+                        <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Name of Doctor</div>
                             <div class="col-sm-10">
                                 
@@ -612,7 +656,11 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
+<<<<<<< HEAD
                                     <strong>   {{form_data.practice_phone}}</strong>
+=======
+                                    <strong>   {{patient.doctor_phone}}</strong>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -621,7 +669,7 @@
                         </div>
                
                 
-                <div class="row" style="margin-top: 12px; margin-left: 30px; font-size: 12px;">
+                <div class="row" style="margin-top: 12px;  font-size: 14px;">
                     <div class="col-sm-4"  (click)="activateStaffSignature()">
                         Doctor's Signature & stamp
                      </div>
@@ -806,12 +854,58 @@
         <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 </div>
+<<<<<<< HEAD
   <div class="col-sm-12">
     <mat-form-field appearance="outline">
         <mat-label>Cause of Accident</mat-label>
             <textarea matInput placeholder="Cause of Accident" [(ngModel)]="form_data.cause_accident"   rows= "3" name="cause_accident"></textarea>
         </mat-form-field>
         </div>
+=======
+<div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label>Preveous Treatment</mat-label>
+        <input matInput placeholder="preveous_treatment" [(ngModel)]="patient.preveous_treatment" formControlName="preveous_treatment" >
+
+    </mat-form-field>
+</div>
+<div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label>Cause of Illness</mat-label>
+        <input matInput placeholder="Cause of Illness" [(ngModel)]="patient.illnesscause" formControlName="illnesscause" >
+
+    </mat-form-field>
+</div>
+<div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label>Illness Condition</mat-label>
+        <input matInput placeholder="Illness Condition" [(ngModel)]="patient.condition" formControlName="condition" >
+
+    </mat-form-field>
+</div>
+<div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label>Treatment and Recommendation</mat-label>
+        <input matInput placeholder="Treatment and Recommendation" [(ngModel)]="patient.treatment" formControlName="treatment" >
+
+    </mat-form-field>
+</div>
+<div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label> NHIF and Other Details </mat-label>
+        <input matInput placeholder="NHIF and Other Details" [(ngModel)]="patient.particulars" formControlName="particulars" >
+
+    </mat-form-field>
+</div>
+
+
+ 
+  <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
+    <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
+      DOCTOR INFORMATION
+
+    </div>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
         <div class="col-sm-12">
             <mat-form-field appearance="outline">
@@ -826,7 +920,18 @@
 
     </mat-form-field>
 </div>
+<<<<<<< HEAD
 <div class="col-sm-12">
+=======
+<div class="col-sm-4">
+    <mat-form-field appearance="outline" >
+    <mat-label>Adress of Doctor</mat-label>
+        <input matInput placeholder="doctor Specialty" [(ngModel)]="patient.specialty" formControlName="specialty" >
+
+    </mat-form-field>
+</div>
+<div class="col-sm-4">
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
     <mat-form-field  appearance="outline">
     <mat-label>Prescribed Drugs</mat-label>
         <input matInput placeholder="Prescribed Drugs" [(ngModel)]="form_data.drugs_cost" name="drugs_cost" >
@@ -840,6 +945,7 @@
 
     </mat-form-field>
 </div>
+<<<<<<< HEAD
   
 <div class="col-sm-12">
     <mat-form-field appearance="outline" >
@@ -848,6 +954,58 @@
 
     </mat-form-field>
 </div>
+=======
+<div class="col-sm-4">
+    <mat-form-field appearance="outline">
+        <mat-label>Date of Accident</mat-label>
+        <input matInput placeholder="Date of Acciden" [maxDate]="maxDate"  [matDatepicker]="picker11" [(ngModel)]="patient.dateofaccident"  formControlName="dateofaccident" >
+        <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+        <mat-datepicker #picker11></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+        <mat-form-field appearance="outline" >
+        <mat-label> Cause of Accident</mat-label>
+            <input matInput placeholder=" Cause of Accident" [(ngModel)]="patient.causeofaccident" formControlName="causeofaccident" >
+    
+        </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+        <mat-form-field appearance="outline" >
+        <mat-label>Name of injuries</mat-label>
+            <input matInput placeholder="Name of injuries" [(ngModel)]="patient.nameofinjuries" formControlName="nameofinjuries" >
+    
+        </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+        <mat-form-field appearance="outline" >
+        <mat-label>Doctor Fees</mat-label>
+            <input matInput placeholder="Doctor Fees" [(ngModel)]="patient.doctorfees" formControlName="doctorfees" >
+    
+        </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+        <mat-form-field appearance="outline" >
+        <mat-label>specialist Fees</mat-label>
+            <input matInput placeholder="specialist Fees" [(ngModel)]="patient.specialist" formControlName="specialist" >
+    
+        </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+        <mat-form-field appearance="outline" >
+        <mat-label>Doctor phone</mat-label>
+            <input matInput placeholder="Doctor Phone" [(ngModel)]="patient.doctor_phone" formControlName="doctor_phone" >
+    
+        </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+        <mat-form-field appearance="outline" >
+        <mat-label>Total claims</mat-label>
+            <input matInput placeholder="Doctor Fees" [(ngModel)]="patient.totalclaims" formControlName="totalclaims" >
+    
+        </mat-form-field>
+    </div>
+>>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
   
 <div class="col-sm-12">
     <mat-form-field appearance="outline" >
