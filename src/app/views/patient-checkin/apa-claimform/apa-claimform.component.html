@@ -475,7 +475,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-                                    <strong>   {{form_data.specialty}}</strong>
+                                    <strong>   {{form_data.specialist}}</strong>
 
                                 </div> <hr>
                             </div>
@@ -854,58 +854,12 @@
         <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 </div>
-<<<<<<< HEAD
   <div class="col-sm-12">
     <mat-form-field appearance="outline">
         <mat-label>Cause of Accident</mat-label>
             <textarea matInput placeholder="Cause of Accident" [(ngModel)]="form_data.cause_accident"   rows= "3" name="cause_accident"></textarea>
         </mat-form-field>
         </div>
-=======
-<div class="col-sm-4">
-    <mat-form-field appearance="outline" >
-    <mat-label>Preveous Treatment</mat-label>
-        <input matInput placeholder="preveous_treatment" [(ngModel)]="patient.preveous_treatment" formControlName="preveous_treatment" >
-
-    </mat-form-field>
-</div>
-<div class="col-sm-4">
-    <mat-form-field appearance="outline" >
-    <mat-label>Cause of Illness</mat-label>
-        <input matInput placeholder="Cause of Illness" [(ngModel)]="patient.illnesscause" formControlName="illnesscause" >
-
-    </mat-form-field>
-</div>
-<div class="col-sm-4">
-    <mat-form-field appearance="outline" >
-    <mat-label>Illness Condition</mat-label>
-        <input matInput placeholder="Illness Condition" [(ngModel)]="patient.condition" formControlName="condition" >
-
-    </mat-form-field>
-</div>
-<div class="col-sm-4">
-    <mat-form-field appearance="outline" >
-    <mat-label>Treatment and Recommendation</mat-label>
-        <input matInput placeholder="Treatment and Recommendation" [(ngModel)]="patient.treatment" formControlName="treatment" >
-
-    </mat-form-field>
-</div>
-<div class="col-sm-4">
-    <mat-form-field appearance="outline" >
-    <mat-label> NHIF and Other Details </mat-label>
-        <input matInput placeholder="NHIF and Other Details" [(ngModel)]="patient.particulars" formControlName="particulars" >
-
-    </mat-form-field>
-</div>
-
-
- 
-  <div class="col-sm-12"  style="background-color:green; color: white; text-align: center; ">
-    <div class="row" style="justify-content: center ; height: 30px; align-items: center;">
-      DOCTOR INFORMATION
-
-    </div>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
         <div class="col-sm-12">
             <mat-form-field appearance="outline">
@@ -920,18 +874,7 @@
 
     </mat-form-field>
 </div>
-<<<<<<< HEAD
 <div class="col-sm-12">
-=======
-<div class="col-sm-4">
-    <mat-form-field appearance="outline" >
-    <mat-label>Adress of Doctor</mat-label>
-        <input matInput placeholder="doctor Specialty" [(ngModel)]="patient.specialty" formControlName="specialty" >
-
-    </mat-form-field>
-</div>
-<div class="col-sm-4">
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
     <mat-form-field  appearance="outline">
     <mat-label>Prescribed Drugs</mat-label>
         <input matInput placeholder="Prescribed Drugs" [(ngModel)]="form_data.drugs_cost" name="drugs_cost" >
@@ -945,7 +888,6 @@
 
     </mat-form-field>
 </div>
-<<<<<<< HEAD
   
 <div class="col-sm-12">
     <mat-form-field appearance="outline" >
@@ -954,58 +896,6 @@
 
     </mat-form-field>
 </div>
-=======
-<div class="col-sm-4">
-    <mat-form-field appearance="outline">
-        <mat-label>Date of Accident</mat-label>
-        <input matInput placeholder="Date of Acciden" [maxDate]="maxDate"  [matDatepicker]="picker11" [(ngModel)]="patient.dateofaccident"  formControlName="dateofaccident" >
-        <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
-        <mat-datepicker #picker11></mat-datepicker>
-        </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-        <mat-form-field appearance="outline" >
-        <mat-label> Cause of Accident</mat-label>
-            <input matInput placeholder=" Cause of Accident" [(ngModel)]="patient.causeofaccident" formControlName="causeofaccident" >
-    
-        </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-        <mat-form-field appearance="outline" >
-        <mat-label>Name of injuries</mat-label>
-            <input matInput placeholder="Name of injuries" [(ngModel)]="patient.nameofinjuries" formControlName="nameofinjuries" >
-    
-        </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-        <mat-form-field appearance="outline" >
-        <mat-label>Doctor Fees</mat-label>
-            <input matInput placeholder="Doctor Fees" [(ngModel)]="patient.doctorfees" formControlName="doctorfees" >
-    
-        </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-        <mat-form-field appearance="outline" >
-        <mat-label>specialist Fees</mat-label>
-            <input matInput placeholder="specialist Fees" [(ngModel)]="patient.specialist" formControlName="specialist" >
-    
-        </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-        <mat-form-field appearance="outline" >
-        <mat-label>Doctor phone</mat-label>
-            <input matInput placeholder="Doctor Phone" [(ngModel)]="patient.doctor_phone" formControlName="doctor_phone" >
-    
-        </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-        <mat-form-field appearance="outline" >
-        <mat-label>Total claims</mat-label>
-            <input matInput placeholder="Doctor Fees" [(ngModel)]="patient.totalclaims" formControlName="totalclaims" >
-    
-        </mat-form-field>
-    </div>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
   
 <div class="col-sm-12">
     <mat-form-field appearance="outline" >
