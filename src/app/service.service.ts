@@ -3,9 +3,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse, HttpBackend }
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8888/';
-// export const endpoint='http://134.209.199.123:8080/';
+// export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
-export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint='http://134.209.199.123:8080/';
+// export const endpoint='http://localhost:8888/';
+// export const endpoint='http://134.209.199.123:8080/';
+export const endpoint='https://booking.healthixsolutions.com/';
+// export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
@@ -1260,9 +1265,8 @@ updateuser(data): Observable<{}> {
       map(this.extractData));
 
 }
-// deactivateUser(data,id): Observable<{}> {
-//   return this.http.put(endpoint + 'users/user/'+id+'/', data ).pipe(
-//     map(this.extractData
-//     ));
-// }
+CalendarData(specialty): Observable<any> {
+  return this.http.get(endpoint + 'api/calendar/',specialty).pipe(
+    map(this.extractData));
+}
 }

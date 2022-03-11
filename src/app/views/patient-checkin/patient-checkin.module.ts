@@ -35,7 +35,7 @@ import { TriageComponent } from './triage/triage.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HospitalComponent } from './hospital/hospital.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
-import { CalendarComponent } from './calendar/calendar.component';
+// import { CalendarComponent } from './calendar/calendar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { RecordsComponent } from './records/records.component';
@@ -96,6 +96,7 @@ import { QrcodeDownloadComponent } from '../qrcodes/qrcode-download/qrcode-downl
 import { QRCodeModule } from 'angularx-qrcode';
 import { FeedbackInpatientQrcodesComponent } from '../qrcodes/feedback-inpatient-qrcodes/feedback-inpatient-qrcodes.component';
 import { FeedbackOutpatientQrcodesComponent } from '../qrcodes/feedback-outpatient-qrcodes/feedback-outpatient-qrcodes.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -224,4 +225,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 
 
 })
-export class PatientCheckinModule { }
+export class PatientCheckinModule { 
+
+}

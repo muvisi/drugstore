@@ -24,54 +24,54 @@
                       <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                       <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
                       </ng-container>
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
-                        <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.first_name}} {{element.last_name}} </td>
+                    <ng-container matColumnDef="name" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;"> NAME </th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 12px; margin-left:10px"> {{element.first_name | uppercase}} {{element.last_name | uppercase}} </td>
                         </ng-container>
                   
                         <ng-container matColumnDef="phone">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
-                        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;">PHONE</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 12px; margin-left:10px"> {{element.phone}} </td>
                         </ng-container>
                         <ng-container matColumnDef="email">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL </th>
-                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;"> EMAIL </th>
+                        <td mat-cell *matCellDef="let element"style="font-size: 12px; margin-left:10px"> {{element.email | uppercase }} </td>
                         </ng-container>
                         <ng-container matColumnDef="role">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ROLE</th>
-                        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;">ROLE</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 12px; margin-left:10px"> {{element.role | uppercase}} </td>
                         </ng-container>
                         <ng-container matColumnDef="department">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>DEPARTMENT</th>
-                          <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;">DEPARTMENT</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 12px; margin-left:10px"> {{element.department | uppercase}} </td>
                           </ng-container>
                           <ng-container matColumnDef="edit">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>EDIT</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;">EDIT</th>
                             <td mat-cell *matCellDef="let element"  (click)="employeeEdit(element)">
                               <mat-icon color="primary">create</mat-icon>
                                </td>
                           </ng-container>
                           <ng-container matColumnDef="deactivate">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DEACTIVATE</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;">DEACTIVATE</th>
                             <td mat-cell *matCellDef="let element">
-                              <button class="btn btn-danger btn-sm" [disabled]="!element.is_active" (click)="deactivate(element)">Deactivate</button>
+                              <button class="btn btn-danger btn-sm" [disabled]="!element.is_active" (click)="deactivate(element)" style="font-size: 12px; margin-left:10px">DEACTIVATE</button>
                                </td>
                           </ng-container>
                     
                           <ng-container matColumnDef="activate">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ACTIVATE</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px; ">ACTIVATE</th>
                             <td mat-cell *matCellDef="let element">
-                              <a class="btn btn-success btn-sm" (click)="deactivate(element)" [disabled]="element.is_active">Activate</a>
+                              <a class="btn btn-success btn-sm" (click)="deactivate(element)" [disabled]="element.is_active" style="font-size: 12px; margin-left:10px">ACTIVATE</a>
                                </td>
                           </ng-container>
                           <ng-container matColumnDef="reset">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>PASSWORD RESET</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 12px;">PASSWORD RESET</th>
                             <td mat-cell *matCellDef="let element">
-                              <button class="btn btn-success btn-sm" (click)="reset(element)">Reset</button>
+                              <button class="btn btn-success btn-sm" (click)="reset(element)" style="font-size: 12px; margin-left:10px">RESET</button>
                                </td>
                           </ng-container>
                           <ng-container matColumnDef="delete">
-                            <th mat-header-cell *matHeaderCellDef>Delete</th>
+                            <th mat-header-cell *matHeaderCellDef style="font-size: 12px;">DELETE</th>
                             <td mat-cell *matCellDef="let element"><mat-icon color="warn" (click)="selected=element;staticModal.show()">delete_sweep</mat-icon></td>
                           </ng-container>
                     
@@ -414,10 +414,10 @@
                              <h4 style="font-family: lato"><u>User Details</u></h4>
                              <div class="row" style="font-weight: bolder;font-family:lato light">
                                <div class="col-sm-12">
-                                 Department : {{selectedUser.department}}
+                                 Department : {{selectedUser.department  | uppercase}}
                                </div>
                                <div class="col-sm-12">
-                                 Email : {{selectedUser.email}}
+                                 Email : {{selectedUser.email  | uppercase}}
                                  </div>
                                  <div class="col-sm-12">Phone : {{selectedUser.phone}}</div>
    
