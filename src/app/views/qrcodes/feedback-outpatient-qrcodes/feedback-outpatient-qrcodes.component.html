@@ -1,0 +1,71 @@
+<style>
+ 
+    #qrcode_id{
+      min-height: 793px; 
+      max-height: 793px;
+     min-width: 1122px;
+   }
+    
+       @media print {
+       #download {
+         display: none;
+       }
+       @page {size: landscape}
+       #qrcode_id {
+         background-color: white;
+         height: 100%;
+         width: 100%;
+         max-width: 100%; 
+         max-height: 100%;
+         position: fixed;
+         top: 0;
+         left: 0;
+         margin: 0;
+         padding: 15px;
+         font-size: 14px;
+         line-height: 18px;
+        
+        
+       } 
+       .txt{
+         margin-top: 80px;
+       }
+       .space-btn-row {
+        margin-bottom:60px;
+     }
+     }
+   
+   
+   </style>
+   
+    
+   
+   <div class="container" id="qrcode_id" style="background-color: white;" >
+       <div class="row" style="padding-top: 20px; width: 100%; justify-content: end;">
+           <button class="btn btn-success"  id="download" style="float: right;" (click)="printPage()">download</button>
+   
+       </div>
+   <div class="row" style="justify-content: center;">
+     <div class="col-sm-6" style="margin-top:100px" > 
+       <div   class="txt"  style="margin-left:60px">
+         <div class="row space-btn-row" ><strong style="font-size: 50px;color: tomato; font-family: monospace">OUTPATIENT</strong></div>
+   
+         <div class="clearfix"></div>
+         <div class="row space-btn-row" ><strong style="font-size: 50px;color: tomato; font-family: monospace">FEEDBACK</strong></div>
+       </div>
+       <div class="row">
+       <div style="margin-left:60px"><span style="font-size: 20px; font-family: monospace;">Please scan this QR-code to give feedback</span></div>
+     </div>
+       <br>
+       <img width="200px" src="./assets/img/avatars/cropped-Hospital-expand-33.png" alt="">
+     </div>
+     <div class="col-sm-6" style="margin-top: 80px;">
+       <img id="image"  width="500px" height="500px" alt="">
+     </div>
+   </div>
+   <!-- <qrcode [qrdata]="QRCODE_DATA" [width]="width" [errorCorrectionLevel]="'M'"></qrcode> -->
+   
+   
+   
+   </div>
+   

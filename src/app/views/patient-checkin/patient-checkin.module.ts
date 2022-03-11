@@ -92,8 +92,10 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
 import { PrintInsuranceFormsComponent } from './print-insurance-forms/print-insurance-forms.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
-import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
+import { QrcodeDownloadComponent } from '../qrcodes/qrcode-download/qrcode-download.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { FeedbackInpatientQrcodesComponent } from '../qrcodes/feedback-inpatient-qrcodes/feedback-inpatient-qrcodes.component';
+import { FeedbackOutpatientQrcodesComponent } from '../qrcodes/feedback-outpatient-qrcodes/feedback-outpatient-qrcodes.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -162,7 +164,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     PrintInsuranceFormsComponent,
     PaymentsComponent,
     UsermanagementComponent,
-    QrcodeDownloadComponent
+    QrcodeDownloadComponent,
+    FeedbackInpatientQrcodesComponent,
+    FeedbackOutpatientQrcodesComponent
 
     
 

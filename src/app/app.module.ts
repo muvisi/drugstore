@@ -57,7 +57,9 @@ import { SignatureService } from './signature.service';
 
 import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
-import { QrcodeDownloadComponent } from './views/qrcode-download/qrcode-download.component';
+
+
+
 
 
 
@@ -110,6 +112,8 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+  
+  
     
   
    
