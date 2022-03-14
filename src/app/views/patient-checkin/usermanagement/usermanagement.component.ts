@@ -20,6 +20,7 @@ export class UsermanagementComponent implements OnInit {
   departments =[];
   displayedColumns: string[] = ['sn','name', 'phone','department', 'email','role','edit','deactivate','activate','reset','delete'];
   employee: any={};
+  @ViewChild('decisionModal', { static: false }) decisionModal: ModalDirective;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('resetModal', { static: false }) resetModal: ModalDirective;
   @ViewChild('userModal', { static: false }) userModal: ModalDirective;
@@ -32,6 +33,9 @@ export class UsermanagementComponent implements OnInit {
   user: any;
   loading = false;
   selected;
+  element;
+  resett='RESET';
+  selected2;
   registerForm: FormGroup;
   resetForm: FormGroup;
   constructor(public  service:ServiceService,public toastr:ToastrService,public router:Router,public formBuilder:FormBuilder) { }
@@ -115,12 +119,16 @@ export class UsermanagementComponent implements OnInit {
   //   this.resetModal.show()
   // }
   reset(element){
-    this.service.reset(element).subscribe((res)=>{
+    // this.selected2=this.element
+    console.log("MY DATA",this.selected2,this.resett)
+    this.decisionModal.show()
+   
+    // this.service.reset(element).subscribe((res)=>{
      
-      this.toastr.success('Successfully reset password');
-    },(err)=>{
-      this.toastr.error('Password reset failed','Failed');
-    })
+    //   this.toastr.success('Successfully reset password');
+    // },(err)=>{
+    //   this.toastr.error('Password reset failed','Failed');
+    // })
   }
 resetUser(){
   this.service.resetUser(this.resetForm.value).subscribe((res) => {
@@ -170,6 +178,16 @@ deactivate(item){
 }
 searchUser(filterValue){
   this.dataSource.filter = filterValue.trim().toLowerCase();
+}
+ByEmail(data){
+  // console.log("DATA ENCODED",selected2)
+  this.decisionModal.show()
+  this.service.reset({selected2:this.selected2,resett:this.resett}).subscribe((res)=>{
+   
+    this.toastr.success('Successfully reset password');
+  },(err)=>{
+    this.toastr.error('Password reset failed','Failed');
+  })
 }
 
 
