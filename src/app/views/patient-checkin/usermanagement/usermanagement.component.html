@@ -383,9 +383,9 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-content">
  <div class="modal-header bg-success">
    <h6 id="dialog-static-name" class="modal-title pull-left">Confirmation For Notification Message</h6>
-   <!-- <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="staticModal.hide()">
+   <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="decisionModal.hide()">
      <span aria-hidden="true" class="visually-hidden">&times;</span>
-   </button> -->
+   </button>
  </div>
  <div class="modal-body">
    
@@ -394,9 +394,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
      Please confirm how you want to receive your Password.
      </div>
      <div class="col-sm-12" style="text-align: right;">
-      <button (click)="ByEmail()" class="btn btn-success btn-sm">Email</button> 
-       <button (click)="BySms()" class="btn btn-success btn-sm">SMS</button>
-     </div>
+      <button (click)="ByEmail()" class="btn btn-success btn-sm">SMS</button> 
+`     </div>
    </div>
  </div>
 </div>

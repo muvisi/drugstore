@@ -1218,8 +1218,8 @@ getdepartment() {
     return this.http.get(endpoint + 'api/specialty/').pipe(
       map(this.extractData));
     }
-filtercalendar(specialist) {
-      return this.http.post(endpoint + 'api/specialtyfilter/',specialist).pipe(
+filtercalendar(speciality) {
+      return this.http.post(endpoint + 'api/specialtyfilter/',speciality).pipe(
         map(this.extractData));
       }
 filtercalendarr() {

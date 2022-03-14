@@ -179,12 +179,13 @@ deactivate(item){
 searchUser(filterValue){
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
-ByEmail(data){
+ByEmail(){
   // console.log("DATA ENCODED",selected2)
-  this.decisionModal.show()
+  // this.decisionModal.show()
   this.service.reset({selected2:this.selected2,resett:this.resett}).subscribe((res)=>{
    
     this.toastr.success('Successfully reset password');
+    this.decisionModal.hide()
   },(err)=>{
     this.toastr.error('Password reset failed','Failed');
   })
