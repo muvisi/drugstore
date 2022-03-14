@@ -10,45 +10,21 @@
 
     </li>
   </ul>
-  <!-- <style>
-    .dropbtn {
-      background-color: grey;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-    }
-    
-    .dropdown {
-      position: relative;
-      display: flex;
-    }
-    
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-    
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-    
-    .dropdown-content a:hover {background-color: #ddd;}
-    
-    .dropdown:hover .dropdown-content {display: block;}
-    
-    .dropdown:hover .dropbtn {background-color: #3e8e41;}
-    </style> -->
-  
+ 
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
+      <!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </button>
+        <div class="dropdown-menu"  aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button">Action</button>
+          <button class="dropdown-item" type="button">Another action</button>
+          <button class="dropdown-item" type="button">Something else here</button>
+        </div>
+      </div> -->
+     
+     
     </li>
 
     <li class="nav-item dropdown" dropdown placement="bottom right">
@@ -66,7 +42,6 @@
      
 
         
-       
         <a class="dropdown-item" routerLink="/dashboard/vaccine-setup" > <i class="fas fa-syringe"></i>Vaccine Setup</a>
         <a class="dropdown-item" routerLink="/dashboard/timeslot" > <i class="fas fa-address-book"></i>Time Slot Setup</a>
         <a class="dropdown-item" routerLink="/dashboard/clinic-setup" > <i class="fa fa-thermometer-half"></i>Clinic Setup</a>
@@ -84,18 +59,28 @@
      
      
       
-       
+            
       </div>
+     
+      <!--  -->
+      
     </li>
   </ul>
 </app-header>
 <div class="app-body">
   <app-sidebar [fixed]="true" [display]="'lg'">
-    <app-sidebar-nav  [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+   
+    <app-sidebar-nav  [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized">
 
-    <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar-nav>
+
+    <app-sidebar-minimizer>
+      <!-- THIS IS THE ADD -->
+      
+    </app-sidebar-minimizer>
+   
   </app-sidebar>
-  <!-- Main content -->
+
   <main class="main">
     <br />
     
@@ -125,9 +110,7 @@
        </div>
       <div class="modal-body">
         <div class="row">
-          <!-- <div class="col-sm-12">
-            <h5>Change password</h5>
-          </div> -->
+         
           <div class="col-sm-12">
             <mat-form-field>
                 <input type="password" [(ngModel)]="data.current" placeholder="Current Password" matInput>

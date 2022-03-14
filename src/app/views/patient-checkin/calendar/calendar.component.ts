@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { EventSettingsModel, WeekService, TimelineViewsService, MonthService,PopupOpenEventArgs,TimelineMonthService, View, WorkHoursModel, GroupModel, DayService } from '@syncfusion/ej2-angular-schedule';
+// import { EventSettingsModel, WeekService, TimelineViewsService, MonthService,PopupOpenEventArgs,TimelineMonthService, View, WorkHoursModel, GroupModel, DayService } from '@syncfusion/ej2-angular-schedule';
 import { DataManager, WebApiAdaptor, ODataV4Adaptor, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 import { ServiceService,endpoint } from '../../../service.service';
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import { createElement } from '@syncfusion/ej2-base';
-import { DateTimePicker } from '@syncfusion/ej2-calendars';
+// import { DropDownList } from '@syncfusion/ej2-dropdowns';
+// import { createElement } from '@syncfusion/ej2-base';
+// import { DateTimePicker } from '@syncfusion/ej2-calendars';
 import { ActivatedRoute } from '@angular/router';
-import { DataSource } from '@angular/cdk/collections';
+// import { DataSource } from '@angular/cdk/collections';
+import {
+    ScheduleComponent, ActionEventArgs, PopupOpenEventArgs, EventRenderedArgs, RenderCellEventArgs, DragAndDropService,
+    TimelineViewsService, GroupModel, EventSettingsModel, ResizeService, TimeScaleModel, WorkHoursModel, View, WeekService, DayService, MonthService, TimelineMonthService
+  } from '@syncfusion/ej2-angular-schedule';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',

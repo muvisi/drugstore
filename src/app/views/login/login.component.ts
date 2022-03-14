@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit  {
       console.log(err);
       this.loading = false;
       sessionStorage.removeItem('Token');
-      
       this.cookieService.deleteAll();
 
       this.toastr.error('Wrong Credentials');

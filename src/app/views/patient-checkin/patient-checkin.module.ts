@@ -44,7 +44,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
-import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+// import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { ReappointmentComponent } from './reappointment/reappointment.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
@@ -209,7 +209,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     ScheduleModule,
     DateTimePickerModule,
     MatBadgeModule,
-    DropDownListModule,
+    // DropDownListModule,
     FullCalendarModule,
     NgxMaterialTimepickerModule,
     TimePickerModule,
