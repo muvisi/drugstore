@@ -57,6 +57,7 @@ import { SignatureService } from './signature.service';
 
 import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -127,6 +128,7 @@ export function tokenGetter() {
     useClass: HashLocationStrategy
   },
   DatePipe,
+  CookieService,
   AuthGuard,
   NgxNavigationWithDataComponent,
   {
