@@ -172,11 +172,11 @@ if (this.selected.insurance_company=='First Assurance')
 
 this.router.navigate(['/dashboard/FirstAssurance/',item.id])
 }
-// if (this.selected.insurance_company=='HERITAGE INSURANCE') 
-//  {
+if (this.selected.insurance_company=='HERITAGE INSURANCE') 
+ {
 
-// this.router.navigate(['/dashboard/heritageinsurance/',item.id])
-// }
+this.router.navigate(['/dashboard/heritageinsurance/',item.id])
+}
 // if (this.selected.insurance_company=='Heritage Insurance') 
 //  {
 

@@ -43,7 +43,7 @@
                     
                     <div class="col-sm-3">BLUE  INVOICE NUMBER</div>
                     <div class="col-sm-6">
-                    <input type="text" value="{{patient[0].invoice_number}}">
+                    <input type="text" [(ngModel)]="form_data.invoice_number">
                     </div>
                     
                     
@@ -77,33 +77,34 @@
                 <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">FIRST NAME</div>
                     <div class="col-sm-4">
-                        <div class="grid-layout"><div class="grid-cell">f</div></div>
+                        <input type="text" [(ngModel)]="form_data.first_name">
+                        <!-- <div class="grid-layout"><div class="grid-cell">f</div></div> -->
                     </div>
                     <div class="col-sm-2">SURNAME</div>
                     <div class="col-sm-4">
-                    <input type="text"  value="{{patient[0].member}}">
+                    <input type="text"   [(ngModel)]="form_data.surname">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">MEMBER NO.</div>
                     <div class="col-sm-4">
-                    <input type="text" value="{{patient[0].member_number}}">
+                    <input type="text"  [(ngModel)]="form_data.member_number">
                     </div>
                     <div class="col-sm-2">DEP CODE.</div>
                     <div class="col-sm-4">
-                    <input type="text"  value="{{patient[0].scheme_code}}">
+                    <input type="text"   [(ngModel)]="form_data.dep_code">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">GENDER.</div>
                     <div class="col-sm-4">
-                    <input type="text" value="{{patient[0].gender}}">
+                    <input type="text" [(ngModel)]="form_data.gender">
                     </div>
                     <div class="col-sm-2">DOB</div>
                     <div class="col-sm-4">
-                    <input type="text"  value="{{patient[0].dob}}">
+                    <input type="text" [(ngModel)]="form_data.dob">
                     </div>
                 </div>
               </div>
@@ -123,11 +124,11 @@
                 <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">FIRST NAME</div>
                     <div class="col-sm-4">
-                    <input type="text" >
+                    <input type="text"   [(ngModel)]="form_data.member_first_name">
                     </div>
                     <div class="col-sm-2">SURNAME</div>
                     <div class="col-sm-4">
-                    <input type="text" >
+                    <input type="text"   [(ngModel)]="form_data.member_surname">
                     </div>
                 </div>
               
@@ -136,7 +137,7 @@
                 <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-4">EMPLOYER</div>
                     <div class="col-sm-8">
-                    <input type="text" value="{{employer}}">
+                    <input type="text"   [(ngModel)]="form_data.employer">
                     </div>
                    
                     
@@ -152,22 +153,22 @@
                 <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">NAME OF PROVIDER</div>
                     <div class="col-sm-4">
-                    <input type="text" value="{{hospital}}">
+                    <input type="text"   [(ngModel)]="form_data.hospital">
                     </div>
                     <div class="col-sm-2">CONSULTING PHYSICIAN</div>
                     <div class="col-sm-4">
-                    <input type="text"  value="{{patient[0].doctor_name}}">
+                    <input type="text"   [(ngModel)]="form_data.practitioner">
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row"  style="margin-left: 30px; font-size: 8px;">
                     <div class="col-sm-2">HERITAGE PROVIDER NO</div>
                     <div class="col-sm-4">
-                    <input type="text" value="{{patient[0].member_number}}">
+                    <input type="text"  [(ngModel)]="form_data.heritage_provider_number">
                     </div>
                     <div class="col-sm-2">TREATEMENT DATE</div>
                     <div class="col-sm-4">
-                    <input type="text"  value="{{patient[0].check_in| date: 'dd/MM/yyyy'}}">
+                    <input type="text"  [(ngModel)]="form_data.treatment_date">
                     </div>
                 </div>
               
@@ -282,11 +283,21 @@
             
             <div class="col-sm-12" >
           
-          <p style="font-size: 8px; ">
-              <strong>
-                  OTHER (SPECIFY DIAGNOSIS)
-              </strong>
-            </p>
+          <div style="font-size: 8px; ">
+            <div class="row"> 
+                <div class="col-sm-4">
+                <strong>
+                    OTHER (SPECIFY DIAGNOSIS)
+                </strong>
+            </div>
+            <div class="col-sm-8">
+                <input type="text"  [(ngModel)]="form_data.diagnosis">
+            </div>
+        </div>
+            
+            
+    </div>
+            
             <div class="row" style="font-size: 8px; color: black;">
                 
                 <div class="col-sm-2">
@@ -324,8 +335,8 @@
                      
                  </div>
                  <div class="col-sm-2">
-                    <strong style="font-size: 8px;">COST</strong><br>
-                 
+                    <strong style="font-size: 8px;">COST</strong>  <strong style="font-size: 8px;"> {{form_data.consutation_cost}}</strong><br>
+                   
                    
                      
                  </div>
@@ -334,11 +345,11 @@
                     <div class="col-sm-6">IS THIS A MATERNITY RELATED CLAIM?</div>
                    
                         <div class="col-sm-3">
-                            <mat-checkbox class="example-margin" ></mat-checkbox>
+                            <mat-checkbox class="example-margin"  [checked]="form_data.is_maternity" (change)="maternityClicked($event)"></mat-checkbox>
                             Yes
                         </div>
                         <div class="col-sm-3">
-                         <mat-checkbox class="example-margin" ></mat-checkbox>
+                         <mat-checkbox class="example-margin"   [checked]="!form_data.is_maternity" (change)="maternityUnClicked($event)" ></mat-checkbox>
                         No
                       </div>
                 </div>
@@ -374,15 +385,14 @@
                
                 <div class="col-sm-12">
                     <div class="row" style="position: relative; font-size: 8PX;">
-                        <div class="col-sm-3">LABORATORY TESTS:</div>
-                        <div class="col-sm-3">
-                        <input type="text" >
-                        </div>
-                        <div class="col-sm-3">
-                            <input type="text" >
+                        <div class="col-sm-2">LABORATORY TESTS:</div>
+                        <div class="col-sm-7">
+                                          
+                      
+                            <input type="text"  [(ngModel)]="form_data.laboratory" >
                             </div>
                             <div class="col-sm-3">
-                                <input type="text">
+                                <input type="text"  [(ngModel)]="form_data.laboratory_cost">
                                 </div>
                     </div>
                 </div>
@@ -391,15 +401,15 @@
                 <div class="clearfix"></div>
                <div class="col-sm-12">
                 <div class="row" style="position: relative; font-size: 8PX;">
-                    <div class="col-sm-3">OTHER DIAGNOSTIC PROCEDURES/TESTS:</div>
-                    <div class="col-sm-3">
-                    <input type="text" >
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="text" >
+                    <div class="col-sm-2">OTHER DIAGNOSTIC PROCEDURES/TESTS:</div>
+                    <div class="col-sm-7">
+                    <input type="text"  [(ngModel)]="form_data.procedures" >
+                  
+                  
+                  
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" >
+                            <input type="text"  [(ngModel)]="form_data.procedures_cost" >
                             </div>
                     
                    
@@ -411,15 +421,15 @@
                <!-- <div class="clearfix"></div> -->
                 <div class="col-sm-12">
                     <div class="row" style="position: relative; font-size: 8PX;">
-                        <div class="col-sm-3">OPTICAL:</div>
-                        <div class="col-sm-3">
-                        <input type="text">
-                        </div>
-                        <div class="col-sm-3">
-                            <input type="text" >
+                        <div class="col-sm-2">OPTICAL:</div>
+                        <div class="col-sm-7">
+                        <input type="text" [(ngModel)]="form_data.optical">
+                      
+                      
+                      
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" >
+                                <input type="text" [(ngModel)]="form_data.optical_cost" >
                                 </div>
                         
                        
@@ -429,15 +439,15 @@
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
                     <div class="row" style="position: relative; font-size: 8PX;">
-                        <div class="col-sm-3">DENTAL</div>
-                        <div class="col-sm-3">
-                        <input type="text" >
-                        </div>
-                        <div class="col-sm-3">
-                            <input type="text" >
+                        <div class="col-sm-2">DENTAL</div>
+                        <div class="col-sm-7">
+                        <input type="text"  [(ngModel)]="form_data.dental">
+                       
+                       
+                       
                             </div>
                             <div class="col-sm-3">
-                                <input type="text">
+                                <input type="text" [(ngModel)]="form_data.dental_cost">
                                 </div>
                         
                        
@@ -470,10 +480,13 @@
                     <div class="clearfix"></div>
                     <div class="clearfix"></div>
                 <div class="row" style="position: relative; margin-left: 20px; font-size: 10px;">
-                    <div class="col-sm-4">PPRESCRIPTION DRUGS ATTACH COPY OF PRESCRIPTION</div>
-                    <div class="col-sm-8">
-                    <input type="text"value="{{patient[0].diagnoses}} {{patient[0].description}}">
+                    <div class="col-sm-2">PPRESCRIPTION DRUGS ATTACH COPY OF PRESCRIPTION</div>
+                    <div class="col-sm-7">
+                    <input type="text" [(ngModel)]="form_data.drugs">
                     </div>
+                    <div class="col-sm-3">
+                        <input type="text" [(ngModel)]="form_data.drugs_cost">
+                        </div>
                     
                     
                 </div>
@@ -501,7 +514,7 @@
                         SIGNED___________________________________________
                     </div>
                     <div class="col-sm-4">
-                    DATE____________________________
+                    DATE:<strong>{{practitioner_signature_date | date:"MMM d, y"}}</strong>
                     </div>
                     <div class="col-sm-4">
                         PROVIDER STAMP____________________________
@@ -541,7 +554,7 @@
                     CELL PHONE NO.____________________________
                     </div>
                     <div class="col-sm-6">
-                        DATE____________________________
+                        DATE<strong>{{ member_signature_date | date:"MMM d, y" }}</strong>
                         </div>
                     
                 </div>
