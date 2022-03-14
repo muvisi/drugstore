@@ -27,6 +27,7 @@ export class DefaultLayoutComponent implements OnDestroy {
   QRCODE_DATA;
   INPATIENT_QRCODE="https://bookings.aarhospital.com/#/feedback-2";
   OUTPATIENT_QRCODE="https://bookings.aarhospital.com/#/feedback";
+  REGISTER_QRCODE="https://bookings.aarhospital.com/#/register/patient"
   constructor(public navCtrl: NgxNavigationWithDataComponent,private router: Router,public service:ServiceService,public toastr: ToastrService,@Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
@@ -86,11 +87,14 @@ export class DefaultLayoutComponent implements OnDestroy {
   }
   downloadInpatient() {
     this.router.navigateByUrl('dashboard')   
-    this.navCtrl.navigate('dashboard/qrcode-download',{"data":{url:this.INPATIENT_QRCODE,type:"Inpatient"}})  
+    this.navCtrl.navigate('dashboard/feedback-inpatient-qrcode-download',{"data":{url:this.INPATIENT_QRCODE,type:"Inpatient"}})  
   }
   downloadOutpatient() {
     this.router.navigateByUrl('dashboard')
-    this.navCtrl.navigate('dashboard/qrcode-download',{"data":{url:this.OUTPATIENT_QRCODE,type:"Outpatient"}})
+    this.navCtrl.navigate('dashboard/feedback-outpatient-qrcode-download',{"data":{url:this.OUTPATIENT_QRCODE,type:"Outpatient"}})
   }
-    
+  downloadRegister(){
+    this.router.navigateByUrl('dashboard')
+      this.navCtrl.navigate('dashboard/register-qrcode-download',{"data":{url:this.REGISTER_QRCODE,type:"Register"}})
+  }
 }

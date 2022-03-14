@@ -67,7 +67,9 @@ import { PrintInsuranceFormsComponent } from '../patient-checkin/print-insurance
 import { PaymentsComponent } from '../patient-checkin/payments/payments.component';
 import { UsermanagementComponent } from '../patient-checkin/usermanagement/usermanagement.component';
 // import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
-import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
+import { QrcodeDownloadComponent } from '../qrcodes/qrcode-download/qrcode-download.component';
+import { FeedbackOutpatientQrcodesComponent } from '../qrcodes/feedback-outpatient-qrcodes/feedback-outpatient-qrcodes.component';
+import { FeedbackInpatientQrcodesComponent } from '../qrcodes/feedback-inpatient-qrcodes/feedback-inpatient-qrcodes.component';
 const routes: Routes = [
   {
     path: '',
@@ -87,8 +89,16 @@ const routes: Routes = [
     }
   },
   {
-    path: 'qrcode-download',
+    path: 'register-qrcode-download',
     component: QrcodeDownloadComponent,
+  },
+  {
+    path: 'feedback-outpatient-qrcode-download',
+    component: FeedbackOutpatientQrcodesComponent,
+  },
+  {
+    path: 'feedback-inpatient-qrcode-download',
+    component: FeedbackInpatientQrcodesComponent,
   },
   {
     path: 'appointments',

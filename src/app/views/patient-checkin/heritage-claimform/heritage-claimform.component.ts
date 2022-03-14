@@ -8,12 +8,8 @@ import { ServiceService } from '../../../service.service';
   styleUrls: ['./heritage-claimform.component.scss']
 })
 export class HeritageClaimformComponent implements OnInit {
-
-  patient_data:any={}
-  clinics_data:any={}
-  speciality_data:any={}
-  maxDate
-  loading
+  loading;
+  patient_data
   patient:any={}
   hospital='AAR HOSPITAL'
   specialist='Yes'
@@ -35,6 +31,7 @@ export class HeritageClaimformComponent implements OnInit {
     })
    
   }  
+  edit(){}
  
  printPage() {
 console.log("Resp", this.patient)
@@ -44,13 +41,5 @@ document.title=this.patient[0].visit_number.concat("-01")
   window.print();
  
 }
-edit(){
-
-}
-Update(){
-
-}
-
-
 }
 
