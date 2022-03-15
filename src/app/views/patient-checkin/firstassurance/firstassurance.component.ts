@@ -11,6 +11,7 @@ import { SignatureService } from '../../../signature.service';
   styleUrls: ['./firstassurance.component.scss']
 })
 export class FirstassuranceComponent implements OnInit {
+  editable;
   form_data={
     visit_number:"",
     first_names:"",

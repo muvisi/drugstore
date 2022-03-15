@@ -3,7 +3,7 @@
         <div class="card-body" >
             <div class="row" style="width:100%;justify-content: right;">
                 <div class="col-sm-2">
-                  <button class="btn btn-success" style="float: right;" (click)="edit()">Edit Form</button>     
+                  <button class="btn btn-success" style="float: right;"  [disabled]="editable=='COMPLETED'" (click)="edit()">Edit Form</button>     
               </div>
              
                   <div class="col-sm-3">
@@ -267,13 +267,8 @@
                             <div class="col-sm-12" >
                            
                            
-<<<<<<< HEAD
                                 <div class="row" style="position: absolute;bottom: 1;">
                                     <span style="margin-left: 50px;"> <strong>   {{form_data.patient}}</strong></span>
-=======
-                                <div class="row" style="position: absolute;bottom: 1; margin-left: 2px;">
-                                    <span > <strong>   {{patient.patient.first_name}}     {{patient.patient.last_name}}</strong></span>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
                                 </div>
                                 <div class="row">
                                     I   {{space}}      _________________________________________________________
@@ -363,11 +358,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.when_first_diagnosis}}</strong>
-=======
-                                    <strong>   {{patient.first_diagnostic_date | date:"MMM d, y"}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -408,11 +399,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.cause_of_illness}}</strong>
-=======
-                                    <strong>   {{patient.illnesscause}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -441,11 +428,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.nature_treatment}}</strong>
-=======
-                                    <strong>   {{patient.treatment}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -509,11 +492,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.date_accident | date}}</strong>
-=======
-                                    <strong>   {{patient.dateofaccident | date:"MMM d, y"}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -524,11 +503,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.cause_accident}}</strong>
-=======
-                                    <strong>   {{patient.causeofaccident}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -541,11 +516,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.nature_injuries}}</strong>
-=======
-                                    <strong>   {{patient.nameofinjuries}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -558,11 +529,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.doctors_fees}}</strong>
-=======
-                                    <strong>   {{patient.doctorfees}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -584,10 +551,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.drugs_cost}}</strong>
-=======
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -603,11 +567,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.specialist_cost}}</strong>
-=======
-                                    <strong>   {{patient.specialist}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -621,11 +581,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.total_claims}}</strong>
-=======
-                                    <strong>   {{patient.totalclaims}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>
@@ -656,11 +612,7 @@
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
-<<<<<<< HEAD
                                     <strong>   {{form_data.practice_phone}}</strong>
-=======
-                                    <strong>   {{patient.doctor_phone}}</strong>
->>>>>>> 6e12fcbfab4a2e616142b7ed86e6114cb44b7e00
 
                                 </div> <hr>
                             </div>

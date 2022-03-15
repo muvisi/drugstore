@@ -16,7 +16,7 @@ import { SignatureService } from '../../../signature.service';
   styleUrls: ['./oldmutual-claimform.component.scss']
 })
 export class OldmutualClaimformComponent implements OnInit {
-
+  editable;
   form_data={
     visit_number:"",
     patient:"",
@@ -291,6 +291,7 @@ getInsuranceForm(no){
     if(res.phone!=null && res.phone!=''){
     this.form_data=res;
     }
+    this.editable=res.status;
     if(res.member_signature!=null){
       this.signature1_src=res.member_signature;
       this.signature1_show=true;

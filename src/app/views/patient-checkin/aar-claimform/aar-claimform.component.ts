@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./aar-claimform.component.scss']
 })
 export class AarClaimformComponent implements OnInit {
+  editable;
   clinics_data={
     first_visit:false,
     complaints:"",
@@ -308,6 +309,8 @@ getInsuranceForm(no){
       this.today2=res.practitioner_signature_date;
       this.signature2_show=true;
     }
+
+    this.editable=res.status
 
     
     
