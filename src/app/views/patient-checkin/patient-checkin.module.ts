@@ -10,7 +10,7 @@ MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatChipsMo
 MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule, MatButtonModule, MatSliderModule,
 MatBadgeModule
 } from '@angular/material';
-import { FullCalendarModule } from '@fullcalendar/angular';
+// import { FullCalendarModule } from '@fullcalendar/angular';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
@@ -210,7 +210,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     DateTimePickerModule,
     MatBadgeModule,
     // DropDownListModule,
-    FullCalendarModule,
+    // FullCalendarModule,
     NgxMaterialTimepickerModule,
     TimePickerModule,
     QRCodeModule,

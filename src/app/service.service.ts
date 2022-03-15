@@ -136,6 +136,10 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/insurance_details/?search='+s).pipe(
       map(this.extractData));
   }
+  getRequestEncounter(no): Observable<any> {
+    return this.http.get(endpoint + 'api/individual-form/'+no+'/').pipe(
+      map(this.extractData));
+  }
   getInsurancePatientData(id): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_patientdetails/'+id+'/').pipe(
       map(this.extractData));

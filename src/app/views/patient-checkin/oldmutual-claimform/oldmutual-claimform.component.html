@@ -2,7 +2,7 @@
     <div class="card-body" >
       <div class="row" style="width:100%;justify-content: right;">
         <div class="col-sm-2">
-          <button class="btn btn-success" style="float: right;" (click)="edit()">Edit Form</button>     
+          <button class="btn btn-success" style="float: right;"  [disabled]="editable=='COMPLETED'"  (click)="edit()">Edit Form</button>     
       </div>
      
           <div class="col-sm-3">

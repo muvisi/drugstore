@@ -15,7 +15,7 @@ import { SignatureService } from '../../../signature.service';
 })
 export class MinetClaimformsComponent implements OnInit {
 loading;
-
+editable;
   form_data={
     visit_number:"",
     patient:"",
@@ -285,6 +285,7 @@ getInsuranceForm(no){
       if(res.phone!=null && res.phone!=''){
         this.form_data=res;
         }
+        this.editable=res.status;
         if(res.member_signature!=null){
           this.signature1_src=res.member_signature;
           this.signature1_show=true;

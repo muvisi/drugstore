@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RSA_NO_PADDING } from 'constants';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { execPath } from 'process';
 import { ClaimformService } from '../../../claimform.service';
 import { ServiceService } from '../../../service.service';
 import { SignatureService } from '../../../signature.service';
@@ -15,7 +16,7 @@ import { SignatureService } from '../../../signature.service';
   styleUrls: ['./oldmutual-claimform.component.scss']
 })
 export class OldmutualClaimformComponent implements OnInit {
-
+  editable;
   form_data={
     visit_number:"",
     patient:"",
@@ -243,26 +244,26 @@ export class OldmutualClaimformComponent implements OnInit {
   
     var str_serv=""
    
-   
+   try{
    
       for(var i=0;i<res.insuranceVisit.services.pharmacy.length;i++){
         try{
         str_serv=str_serv.concat(res.insuranceVisit.services.pharmacy[i].name).concat("  ")
       }catch(error){
       }
-      }
-     
-    
+      }    
+   }catch(error){}
     
   
   
- 
+   try{ 
       for(var i=0;i<res.insuranceVisit.services.procedure.length;i++){
         try{
         str_serv=str_serv.concat(res.insuranceVisit.services.procedure[i].name).concat("   ")
       }catch(error){
       }
       }
+    }catch(error){}
        
   
   
@@ -290,6 +291,7 @@ getInsuranceForm(no){
     if(res.phone!=null && res.phone!=''){
     this.form_data=res;
     }
+    this.editable=res.status;
     if(res.member_signature!=null){
       this.signature1_src=res.member_signature;
       this.signature1_show=true;

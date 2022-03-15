@@ -16,9 +16,10 @@ export class PrintInsuranceFormsComponent implements OnInit {
   selected;
   idnumber;
   searchText;
+  encounterText;
   phonenumber;
   Claims_DATA;
-  Columns: string[] = ['sn','visit_no','First','memberno','phone','insurancecompany','print']
+  Columns: string[] = ['sn','visit_no','First','memberno','phone','insurancecompany','member_sign','doctor_sign','print']
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {
@@ -57,6 +58,18 @@ export class PrintInsuranceFormsComponent implements OnInit {
       },(err)=>{
         this.loading=false;
 
+      })
+      
+    }
+    clickRequest(){
+      this.loading=true;
+      this.service.getRequestEncounter(this.encounterText).subscribe((res)=>{
+      this.loading=false;
+      this.Claims_DATA = new MatTableDataSource <[]>(res);
+          
+      this.Claims_DATA.paginator = this.paginator;
+      },(err)=>{
+        this.loading=false;
       })
       
     }
@@ -172,11 +185,11 @@ if (this.selected.insurance_company=='First Assurance')
 
 this.router.navigate(['/dashboard/FirstAssurance/',item.id])
 }
-// if (this.selected.insurance_company=='HERITAGE INSURANCE') 
-//  {
+if (this.selected.insurance_company=='HERITAGE INSURANCE') 
+ {
 
-// this.router.navigate(['/dashboard/heritageinsurance/',item.id])
-// }
+this.router.navigate(['/dashboard/heritageinsurance/',item.id])
+}
 // if (this.selected.insurance_company=='Heritage Insurance') 
 //  {
 

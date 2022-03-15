@@ -18,7 +18,7 @@
             <div class="clearfix"></div>
             <div class="clearfix"></div>
             <div class="col-sm-12">
-                <button class="btn btn-success" style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
+                <button class="btn btn-success" style="float: right; margin-top: 20px;"  [disabled]="editable=='COMPLETED'"  (click)="edit()">Edit Form</button>
 
                 
     

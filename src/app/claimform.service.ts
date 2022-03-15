@@ -20,6 +20,8 @@ export class ClaimformService {
     return this.http.post(endpoint+"api/aarform-signature/",data).pipe(map((res)=>{return res}))
   }
 
+
+
   updateUapOutpatient(data){
     return this.http.post(endpoint+"api/uapoutpatientform/",data).pipe(map((res)=>{return res}))
   }
@@ -29,6 +31,9 @@ export class ClaimformService {
   signatureUapOutpatient(data){
     return this.http.post(endpoint+"api/uapoutpatientform-signature/",data).pipe(map((res)=>{return res}))
   }
+
+
+
  
   updateMinetOutpatient(data){
     return this.http.post(endpoint+"api/minetoutpatientform/",data).pipe(map((res)=>{return res}))
@@ -39,6 +44,8 @@ export class ClaimformService {
   signatureMinetOutpatient(data){
     return this.http.post(endpoint+"api/minetoutpatientform-signature/",data).pipe(map((res)=>{return res}))
   }
+
+
 
   updateFirstInsurance(data){
     return this.http.post(endpoint+"api/firstassurancepatientform/",data).pipe(map((res)=>{return res}))
@@ -59,5 +66,17 @@ export class ClaimformService {
   }
   signatureApaInsurance(data){
     return this.http.post(endpoint+"api/apaform-signature/",data).pipe(map((res)=>{return res}))
+  }
+
+
+
+  updateHeritageInsurance(data){
+    return this.http.post(endpoint+"api/heritage/",data).pipe(map((res)=>{return res}))
+  }
+  getHeritageInsurance(no){
+    return this.http.get(endpoint+"api/heritage-details/"+no+"/").pipe(map((res)=>{return res}))
+  }
+  signatureHeritageInsurance(data){
+    return this.http.post(endpoint+"api/heritage-signature/",data).pipe(map((res)=>{return res}))
   }
 }

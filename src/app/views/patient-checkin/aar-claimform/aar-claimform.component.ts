@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./aar-claimform.component.scss']
 })
 export class AarClaimformComponent implements OnInit {
+  editable;
   clinics_data={
     first_visit:false,
     complaints:"",
@@ -233,16 +234,18 @@ export class AarClaimformComponent implements OnInit {
     this.clinics_data.diagnosis=diagnosis
     this.speciality_data.practitioner= res.insuranceVisit.doctor!=null ? res.insuranceVisit.doctor  : ""
     var costs=""
+    try{
     for (var i=0;i<res.insuranceVisit.services.procedure.length;i++){
       try{
       costs=costs.concat(res.insuranceVisit.services.procedure[i].name+"("+ res.insuranceVisit.services.procedure[i].amount+")").concat(" ")
       }catch(error){}
-    }
+    }}catch(error){}
+    try{
     for (var i=0;i<res.insuranceVisit.services.pharmacy.length;i++){
       try{
       costs=costs.concat(res.insuranceVisit.services.pharmacy[i].name+"("+ res.insuranceVisit.services.pharmacy[i].amount+")").concat(" ")
       }catch(error){}
-    }
+    }}catch(error){}
     console.log(costs)
     this.clinics_data.management_plan=costs;
     
@@ -306,6 +309,8 @@ getInsuranceForm(no){
       this.today2=res.practitioner_signature_date;
       this.signature2_show=true;
     }
+
+    this.editable=res.status
 
     
     

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { CookieService } from  'ngx-cookie-service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'login.component.html'
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit  {
   resetData:any={};
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   constructor(private router: Router, private User: ServiceService,
-  private toastr: ToastrService) {
+  private toastr: ToastrService,private cookieService:CookieService) {
   }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit  {
   login() {
       this.loading = true;
       localStorage.clear();
+      this.cookieService.deleteAll();
       this.User.logIn(this.data).subscribe((res) => {
       sessionStorage.setItem('Token', res.token);
       sessionStorage.setItem('user', JSON.stringify(res));
@@ -32,7 +34,8 @@ export class LoginComponent implements OnInit  {
       }, (err) => {
       console.log(err);
       this.loading = false;
-      sessionStorage.removeItem('Token');
+      sessionStorage.removeItem('Token');     
+      
       this.toastr.error('Wrong Credentials');
       });
   }
