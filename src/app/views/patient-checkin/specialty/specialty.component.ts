@@ -77,9 +77,9 @@ export class SpecialtyComponent implements OnInit {
   
   clickRow(){
     console.log(this.selected.specialist);
-    this.service.filtercalendar({specialist:this.selected.specialist}).subscribe((res)=>{
+    this.service.filtercalendar(this.selected.specialist).subscribe((res)=>{
    
-      console.log("RESP",res)
+      console.log("THIS IS RESPOSE",this.selected.specialist)
       
       // this.toastr.success('Successfully selected','Success');
      
