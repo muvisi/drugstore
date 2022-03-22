@@ -7,15 +7,15 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
-// export const endpoint='http://localhost:8888/';
+export const endpoint='http://localhost:8888/';
+// export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
+// export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
-// export const endpoint='http://197.248.31.237:8548/';
-export const endpoint='https://bookings.aarhospital.com/';
 export const payment_url='https://payments.healthixsolutions.com/payments/';
 
 // export const HEALTHIX_BACKEND_URL_AAR ='http://134.209.199.123:7777/'
@@ -77,16 +77,72 @@ export class ServiceService {
   
 
 
+
+  getVisitNumbers() {
+    return this.http.get(endpoint + 'api/visit_numbers/').pipe(
+      map(this.extractData));
+  }
+
   getPayments() {
-    this.customHttpClient = new HttpClient(this.backend);
-    return this.customHttpClient.get(payment_url).pipe(
+    return this.http.get(endpoint + 'api/mpesa-payments/').pipe(
+      map(this.extractData));
+  }
+  getUtilizePayments() {
+    return this.http.get(endpoint + 'api/utilized-payments/').pipe(
+      map(this.extractData));
+  }
+  getUtilizePaymentsDownloadUrl() {
+    return  endpoint + 'api/utilized-payments-download/';
+  }
+  getNotUtilizePaymentsDownloadUrl() {
+    return  endpoint + 'api/not-utilized-payments-download/';
+  }
+  getNotUtilizePayments() {
+    return this.http.get(endpoint + 'api/not-utilized-payments/').pipe(
+      map(this.extractData));
+  }
+  paymentsDateFilter(data) {
+    return this.http.post(endpoint + 'api/mpesa-payments-date/',data).pipe(
+      map(this.extractData));
+  }
+  paymentsDateFilterUtilized(data) {
+    return this.http.post(endpoint + 'api/utilized-date/',data).pipe(
+      map(this.extractData));
+  }
+  paymentsDateFilterNotUtilized(data) {
+    return this.http.post(endpoint + 'api/not-utilized-date/',data).pipe(
+      map(this.extractData));
+  }
+  utilizePayment(data) {
+    return this.http.post(endpoint + 'api/patient-utilize/',data).pipe(
       map(this.extractData));
   }
   searchPayments(text) {
-    this.customHttpClient = new HttpClient(this.backend);
-    return this.customHttpClient.get(payment_url+'?search='+text).pipe(
+    return this.http.get(endpoint + 'api/mpesa-payments/?search='+text).pipe(
       map(this.extractData));
+    
   }
+  searchPaymentsUtilized(text) {
+    return this.http.get(endpoint + 'api/utilized-payments/?search='+text).pipe(
+      map(this.extractData));
+    
+  }
+  searchPaymentsNotUtilized(text) {
+    return this.http.get(endpoint + 'api/not-utilized-payments/?search='+text).pipe(
+      map(this.extractData));
+    
+  }
+
+  // getPayments() {
+  //   this.customHttpClient = new HttpClient(this.backend);
+  //   return this.customHttpClient.get(payment_url).pipe(
+  //     map(this.extractData));
+  // }
+  // searchPayments(text) {
+  //   this.customHttpClient = new HttpClient(this.backend);
+  //   return this.customHttpClient.get(payment_url+'?search='+text).pipe(
+  //     map(this.extractData));
+  // }
   getTriage(data): Observable<any> {
     return this.http.post(endpoint + 'triage/get_triage/',data).pipe(
       map(this.extractData));

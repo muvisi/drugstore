@@ -15,8 +15,7 @@
 @import '../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
 // @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
-
-
+@import "~bootstrap/scss/bootstrap";
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 9999!important;
 }
