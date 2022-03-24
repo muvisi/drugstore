@@ -9,9 +9,9 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8080/';
-export const endpoint='https://booking.healthixsolutions.com/';
+// export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
-// export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://134.209.199.123:6060/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
 // export const endpoint='http://197.248.31.237:8548/';
@@ -868,7 +868,7 @@ searchBills(data): Observable<any>{
       ));
   }
   userReset(data): Observable<{}> {
-    return this.http.post<{}>(endpoint + 'users/user/reset/', data ).pipe(
+    return this.http.post<{}>(endpoint + 'users/reset_password/', data ).pipe(
       map(this.extractData
       ));
   }
@@ -1235,6 +1235,11 @@ filtercalendarr() {
         map(this.extractData));
 
     }
+    getAllArchivedUsers(){
+      return this.http.get(endpoint + 'users/archived/').pipe(
+        map(this.extractData));
+
+    }
   getRevenues() {
     return this.http.get(endpoint + 'payment/payments/').pipe(
       map(this.extractData));
@@ -1264,8 +1269,8 @@ updateuser(data): Observable<{}> {
       map(this.extractData
       ));
   }
-  deleteUSER(id) {
-    return this.http.delete(endpoint + 'users/staffs/'+id+'/').pipe(
+  deleteUSER(data) {
+    return this.http.post(endpoint + 'users/archiveuser/',data).pipe(
       map(this.extractData));
 
 }
