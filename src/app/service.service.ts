@@ -5,10 +5,10 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
-// export const endpoint = 'https://booking.healthixsolutions.com/';
+export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
-export const endpoint='https://bookings.aarhospital.com/';
+// export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
@@ -122,6 +122,11 @@ export class ServiceService {
       map(this.extractData));
     
   }
+  refreshPayments() {
+    return this.http.get(endpoint + 'api/mpesa-payments-refresh/').pipe(
+      map(this.extractData));
+    
+  }
   searchPaymentsUtilized(text) {
     return this.http.get(endpoint + 'api/utilized-payments/?search='+text).pipe(
       map(this.extractData));
@@ -132,6 +137,26 @@ export class ServiceService {
       map(this.extractData));
     
   }
+  geMaternityDownloadUrl() {
+    return  endpoint + 'api/maternity-download/';
+  }
+  getMaternityBookingList() {
+    return this.http.get(endpoint + 'api/maternity/').pipe(
+      map(this.extractData));
+    
+  }
+  getMaternityBookingDetail(id) {
+    return this.http.get(endpoint + 'api/maternity-details/'+id+'/').pipe(
+      map(this.extractData));
+    
+  }
+  searchMaternityBooking(text) {
+    return this.http.get(endpoint + 'api/maternity/?search='+text).pipe(
+      map(this.extractData));
+    
+  }
+
+
 
   // getPayments() {
   //   this.customHttpClient = new HttpClient(this.backend);
@@ -186,6 +211,10 @@ export class ServiceService {
   }
   getBookingInsuranceDetails(id): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_detail_booking/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  getMaternityInsuranceDetails(id): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_detail_maternity/'+id+'/').pipe(
       map(this.extractData));
   }
   getInsuranceVisitSearch(s): Observable<any> {

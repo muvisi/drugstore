@@ -72,6 +72,8 @@ import { FeedbackOutpatientQrcodesComponent } from '../qrcodes/feedback-outpatie
 import { FeedbackInpatientQrcodesComponent } from '../qrcodes/feedback-inpatient-qrcodes/feedback-inpatient-qrcodes.component';
 import { MpesaPaymentReportComponent } from '../payments/mpesa-payment-report/mpesa-payment-report.component';
 import { MpesaPaymentsComponent } from '../payments/mpesa-payments/mpesa-payments.component';
+import { MaternityListComponent } from '../patient-checkin/maternity-list/maternity-list.component';
+import { MaternityDetailsComponent } from '../patient-checkin/maternity-details/maternity-details.component';
 const routes: Routes = [
   {
     path: '',
@@ -360,6 +362,16 @@ const routes: Routes = [
   {
     path: 'payments',
     component:PaymentsComponent,
+    
+  },
+  {
+    path: 'maternity',
+    component:MaternityListComponent,
+    
+  },
+  {
+    path: 'maternity-details/:id',
+    component:MaternityDetailsComponent,
     
   },
   {

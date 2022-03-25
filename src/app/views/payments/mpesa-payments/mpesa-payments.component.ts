@@ -18,6 +18,7 @@ export class MpesaPaymentsComponent implements OnInit {
     data:any={};
     max = new Date()
     @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
+  loading: boolean;
     constructor(public service:ServiceService,public datePipe:DatePipe,private modalService: NgbModal) { }
     ngOnInit() {
       this.getPayments();
@@ -26,19 +27,25 @@ export class MpesaPaymentsComponent implements OnInit {
 
 
    getPayments(){
+    this.loading=true;
      this.service.getPayments().subscribe((res)=>{
+      this.loading=false;
        this.dataSource = new MatTableDataSource(res);
        this.dataSource.paginator = this.paginator;
+     },(err)=>{
+      this.loading=false;
      })
    }
    dateFilter(){
      this.data.start_date=this.datePipe.transform(this.data.start_date,'yyyy-MM-dd');
      this.data.end_date=this.datePipe.transform(this.data.end_date,'yyyy-MM-dd');
      console.log(this.data);
+     this.loading=true;
      this.service.paymentsDateFilter(this.data).subscribe((res)=>{
+      this.loading=false;
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
-     })
+     },(err)=>{  this.loading=false;})
    }
    applyFilter(text){
      console.log(text);
@@ -57,6 +64,15 @@ export class MpesaPaymentsComponent implements OnInit {
       })
    }
   
-  
+  refreshPayments(){
+    this.loading=true;
+    this.service.refreshPayments().subscribe((res)=>{
+      this.loading=false;
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+    },(err)=>{
+      this.loading=false;
+    })
+  }
   }
   

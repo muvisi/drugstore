@@ -28,6 +28,11 @@
             <div class="col-sm-2">
                 <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="dateFilter()" [disabled]="!data.start_date || !data.end_date">Search</button>
             </div>
+            <div class="col-sm-2" style="float: right;">
+              <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="refreshPayments()"><i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px; color:white;"></i>refresh</button>
+          </div>
+
+            
         </div>
         <div class="mat-elevation-z8 table-responsive">
             <table mat-table [dataSource]="dataSource">
@@ -82,3 +87,4 @@
           </div>
   </div>
   </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

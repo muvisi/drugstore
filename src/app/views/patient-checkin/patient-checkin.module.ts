@@ -110,6 +110,8 @@ import {
   MatHeaderRow, MatHeaderCell, MatHeaderCellDef,
   MatSortHeader, MatRow,   MatCell, MatCellDef
 } from '@angular/material';
+import { MaternityListComponent } from './maternity-list/maternity-list.component';
+import { MaternityDetailsComponent } from './maternity-details/maternity-details.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
@@ -182,7 +184,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FeedbackOutpatientQrcodesComponent,
     MpesaPaymentsComponent,
     MpesaPaymentReportComponent,   
-    UtilizePaymentModal
+    UtilizePaymentModal, MaternityListComponent, MaternityDetailsComponent
 
     
 
