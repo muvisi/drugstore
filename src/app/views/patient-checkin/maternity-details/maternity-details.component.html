@@ -406,7 +406,7 @@
                                                 <div class="col-sm-4">
                                                   <mat-form-field appearance="outline">
                                                       <mat-label>Expected Date of Birth</mat-label>
-                                                      <input matInput placeholder="E.D.D" [readonly]="outfilled" formControlName="edd" [matDatepicker]="picker7" [min]="maxDate">
+                                                      <input matInput placeholder="E.D.D" formControlName="edd" [matDatepicker]="picker7" >
                                                       <mat-error *ngIf="m.edd.errors?.required">EDD is required</mat-error>
                                                       <mat-datepicker-toggle matSuffix [for]="picker7" ></mat-datepicker-toggle>
                                                         <mat-datepicker #picker7></mat-datepicker>
@@ -440,7 +440,7 @@
       
                                                         <mat-form-field appearance="outline" class="example-full-width" style="max-width: 400px;">
                                                           <mat-label>Date</mat-label>
-                                                          <input matInput placeholder="Date" formControlName="date" [min]="maxDate" [matDatepicker]="picker3"   >
+                                                          <input matInput placeholder="Date" formControlName="date" [matDatepicker]="picker3"   >
                                                           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                                             <mat-datepicker #picker3></mat-datepicker>
                                                         </mat-form-field> 
