@@ -953,7 +953,7 @@ searchBills(data): Observable<any>{
       ));
   }
   userReset(data): Observable<{}> {
-    return this.http.post<{}>(endpoint + 'users/user/reset/', data ).pipe(
+    return this.http.post<{}>(endpoint + 'users/reset_password/', data ).pipe(
       map(this.extractData
       ));
   }
@@ -1320,6 +1320,11 @@ filtercalendarr() {
         map(this.extractData));
 
     }
+    getAllArchivedUsers(){
+      return this.http.get(endpoint + 'users/archived/').pipe(
+        map(this.extractData));
+
+    }
   getRevenues() {
     return this.http.get(endpoint + 'payment/payments/').pipe(
       map(this.extractData));
@@ -1349,8 +1354,8 @@ updateuser(data): Observable<{}> {
       map(this.extractData
       ));
   }
-  deleteUSER(id) {
-    return this.http.delete(endpoint + 'users/staffs/'+id+'/').pipe(
+  deleteUSER(data) {
+    return this.http.post(endpoint + 'users/archiveuser/',data).pipe(
       map(this.extractData));
 
 }

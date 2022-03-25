@@ -40,12 +40,21 @@ export class LoginComponent implements OnInit  {
       });
   }
   reset(){
-    if(this.resetData.pass1!= this.resetData.pass2){
-      this.toastr.error('Non matching password');
-    }
+    this.loading = true;
+    // if(this.resetData.pass1!= this.resetData.pass2){
+    //   this.toastr.error('Non matching password');
+    // }
     this.User.userReset(this.resetData).subscribe((res)=>{
-      this.toastr.success('Password Change Success');
+      this.loading = false;
+      this.toastr.success('Password Reset Success,Kindly check Your Email');
+      
       this.staticModal.hide();
+    }, (err) => {
+      console.log(err);
+      this.loading = false;
+         
+      
+      this.toastr.error('Wrong Email Address');
     })
   }
  }

@@ -17,7 +17,10 @@ import { Console } from 'console';
 export class UsermanagementComponent implements OnInit {
   selectedUser:any={};
   dataSource;
+  archivedataSource;
   departments =[];
+  displayedColumns1: string[] = ['sn','name','department', 'email','deletedby','deleteddate','status'];
+
   displayedColumns: string[] = ['sn','name', 'phone','department', 'email','role','edit','deactivate','activate','reset','delete'];
   employee: any={};
   @ViewChild('decisionModal', { static: false }) decisionModal: ModalDirective;
@@ -35,12 +38,14 @@ export class UsermanagementComponent implements OnInit {
   selected;
   element;
   resett='RESET';
+  mail='EMAIL';
   selected2;
   registerForm: FormGroup;
   resetForm: FormGroup;
   constructor(public  service:ServiceService,public toastr:ToastrService,public router:Router,public formBuilder:FormBuilder) { }
   ngOnInit() {
     this.AccountUsers();
+    this.ArchivedAccountUsers();
     
     this.registerForm = this.formBuilder.group({
       first_name: ['', Validators.required],
@@ -71,6 +76,15 @@ export class UsermanagementComponent implements OnInit {
     this.service.getAllUsers().subscribe((res) => {
       this.dataSource = new MatTableDataSource<[]>(res)
       console.log("RESP DATA",this.dataSource)
+      
+      this.dataSource.paginator = this.paginator;
+    
+      });
+  }
+  ArchivedAccountUsers(){
+    this.service.getAllArchivedUsers().subscribe((res) => {
+      this.archivedataSource = new MatTableDataSource<[]>(res)
+      // console.log("RESP DATA",this.archiveddataSource)
       
       this.dataSource.paginator = this.paginator;
     
@@ -146,7 +160,7 @@ resetUser(){
 }
 delete(){
  
-  this.service.deleteUSER(this.selected.id).subscribe((res)=>{
+  this.service.deleteUSER(this.selected).subscribe((res)=>{
   this.ngOnInit();
   this.toastr.success('Successfully deleted','Success');
   this.staticModal.hide();
@@ -176,22 +190,30 @@ deactivate(item){
   }
  
 }
+
 searchUser(filterValue){
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 ByEmail(){
-  // console.log("DATA ENCODED",selected2)
+  console.log("DATA ENCODED",this.selected2)
   // this.decisionModal.show()
-  this.service.reset({selected2:this.selected2,resett:this.resett}).subscribe((res)=>{
+  this.service.reset({selected2:this.selected2,email:this.mail}).subscribe((res)=>{
    
-    this.toastr.success('Successfully reset password');
+    this.toastr.success('Successfully reset password,check for an Email');
     this.decisionModal.hide()
   },(err)=>{
     this.toastr.error('Password reset failed','Failed');
   })
 }
 
-BySms(){
+BySMS(){
+  this.service.reset({selected2:this.selected2,resett:this.resett}).subscribe((res)=>{
+   
+    this.toastr.success('Successfully reset password, Check for an SMS');
+    this.decisionModal.hide()
+  },(err)=>{
+    this.toastr.error('Password reset failed','Failed');
+  })
 
 }
 
