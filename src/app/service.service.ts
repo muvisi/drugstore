@@ -9,9 +9,9 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8080/';
-// export const endpoint='https://booking.healthixsolutions.com/';
+export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
-export const endpoint='http://134.209.199.123:6060/';
+// export const endpoint='http://134.209.199.123:6060/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
 // export const endpoint='http://197.248.31.237:8548/';
@@ -1272,6 +1272,11 @@ updateuser(data): Observable<{}> {
   deleteUSER(data) {
     return this.http.post(endpoint + 'users/archiveuser/',data).pipe(
       map(this.extractData));
+
+}
+restoreUSER(data) {
+  return this.http.post(endpoint + 'users/restoreuser/',data).pipe(
+    map(this.extractData));
 
 }
 CalendarData(specialty): Observable<any> {
