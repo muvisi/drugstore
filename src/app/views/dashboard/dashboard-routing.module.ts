@@ -64,12 +64,16 @@ import { BupaclobalClaimformComponent } from '../patient-checkin/bupaclobal-clai
 import { RegistrationLinkComponent } from '../patient-checkin/registration-link/registration-link.component';
 import { BookingDetailComponent } from '../patient-checkin/booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from '../patient-checkin/print-insurance-forms/print-insurance-forms.component';
-import { PaymentsComponent } from '../patient-checkin/payments/payments.component';
+import { PaymentsComponent } from '../payments/payments/payments.component';
 import { UsermanagementComponent } from '../patient-checkin/usermanagement/usermanagement.component';
 // import { QrcodeDownloadComponent } from '../qrcode-download/qrcode-download.component';
 import { QrcodeDownloadComponent } from '../qrcodes/qrcode-download/qrcode-download.component';
 import { FeedbackOutpatientQrcodesComponent } from '../qrcodes/feedback-outpatient-qrcodes/feedback-outpatient-qrcodes.component';
 import { FeedbackInpatientQrcodesComponent } from '../qrcodes/feedback-inpatient-qrcodes/feedback-inpatient-qrcodes.component';
+import { MpesaPaymentReportComponent } from '../payments/mpesa-payment-report/mpesa-payment-report.component';
+import { MpesaPaymentsComponent } from '../payments/mpesa-payments/mpesa-payments.component';
+import { MaternityListComponent } from '../patient-checkin/maternity-list/maternity-list.component';
+import { MaternityDetailsComponent } from '../patient-checkin/maternity-details/maternity-details.component';
 const routes: Routes = [
   {
     path: '',
@@ -361,6 +365,32 @@ const routes: Routes = [
     
   },
   {
+    path: 'maternity',
+    component:MaternityListComponent,
+    
+  },
+  {
+    path: 'maternity-details/:id',
+    component:MaternityDetailsComponent,
+    
+  },
+  {
+    path: 'mpesa-payments',
+    component: MpesaPaymentsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Mpesa Payments'
+    }
+  },
+  {
+    path: 'mpesa-payments-reports',
+    component: MpesaPaymentReportComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Mpesa Payments Reports'
+    }
+  },
+  {
     path: 'eclaims-dashboard/claims',
     component: ClaimsComponent,
     canActivate: [AuthGuard],
@@ -452,6 +482,7 @@ component : CalendarComponent
     title: 'Tags'
   }
   } 
+  
 ];
 
 @NgModule({

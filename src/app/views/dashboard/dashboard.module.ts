@@ -6,7 +6,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PatientCheckinModule } from '../patient-checkin/patient-checkin.module';
-
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -14,7 +14,9 @@ import { PatientCheckinModule } from '../patient-checkin/patient-checkin.module'
     DashboardRoutingModule,
     // ChartsModule,
     ButtonsModule.forRoot(),
-    PatientCheckinModule
+    PatientCheckinModule,
+    CommonModule
+
   ],
   declarations: [ DashboardComponent ]
 })

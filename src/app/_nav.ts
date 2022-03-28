@@ -102,6 +102,11 @@ export const navItems: NavData[] = [
     url: '/dashboard/feedbacks',
     icon: 'fas fa-comment',
   },
+  {
+    name: 'Mpesa Payments',
+    url: '/dashboard/payments',
+    icon: 'fas fa-credit-card',
+  },
   
   // {
   //   name: 'Time Slot Setup',

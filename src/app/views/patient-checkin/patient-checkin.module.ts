@@ -8,7 +8,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MatStepperModule, MatIconModule, MatTableModule, MatPaginatorModule,
 MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatChipsModule,
 MatCheckboxModule, MatRadioModule, MatTabsModule, MatCardModule, MatSortModule, MatDatepickerModule, MatNativeDateModule,MatExpansionModule, MatButtonModule, MatSliderModule,
-MatBadgeModule
+MatBadgeModule,
+MatHeaderRowDef,
+MatRowDef
 } from '@angular/material';
 // import { FullCalendarModule } from '@fullcalendar/angular';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
@@ -90,14 +92,26 @@ import { BupaclobalClaimformComponent } from './bupaclobal-claimform/bupaclobal-
 import { RegistrationLinkComponent } from './registration-link/registration-link.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { PrintInsuranceFormsComponent } from './print-insurance-forms/print-insurance-forms.component';
-import { PaymentsComponent } from './payments/payments.component';
+import { PaymentsComponent } from '../payments/payments/payments.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
 import { QrcodeDownloadComponent } from '../qrcodes/qrcode-download/qrcode-download.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FeedbackInpatientQrcodesComponent } from '../qrcodes/feedback-inpatient-qrcodes/feedback-inpatient-qrcodes.component';
 import { FeedbackOutpatientQrcodesComponent } from '../qrcodes/feedback-outpatient-qrcodes/feedback-outpatient-qrcodes.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { MpesaPaymentsComponent } from '../payments/mpesa-payments/mpesa-payments.component';
+import { MpesaPaymentReportComponent } from '../payments/mpesa-payment-report/mpesa-payment-report.component';
+import { UtilizePaymentModal } from '../payments/mpesa-payments/utilize.payment.modal';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
+import {
+  MatPaginator, MatSort, MatTable, MatTabHeader,
+  MatHeaderRow, MatHeaderCell, MatHeaderCellDef,
+  MatSortHeader, MatRow,   MatCell, MatCellDef
+} from '@angular/material';
+import { MaternityListComponent } from './maternity-list/maternity-list.component';
+import { MaternityDetailsComponent } from './maternity-details/maternity-details.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
@@ -167,7 +181,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     UsermanagementComponent,
     QrcodeDownloadComponent,
     FeedbackInpatientQrcodesComponent,
-    FeedbackOutpatientQrcodesComponent
+    FeedbackOutpatientQrcodesComponent,
+    MpesaPaymentsComponent,
+    MpesaPaymentReportComponent,   
+    UtilizePaymentModal, MaternityListComponent, MaternityDetailsComponent
 
     
 
@@ -214,6 +231,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     NgxMaterialTimepickerModule,
     TimePickerModule,
     QRCodeModule,
+    CommonModule,
+    NgbModule,  
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [DayService, 
@@ -221,7 +240,11 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     WorkWeekService, 
     MonthService,
     AgendaService,
-    MonthAgendaService]
+    MonthAgendaService],
+  entryComponents: [
+      UtilizePaymentModal
+    ]
+  
 
 
 })

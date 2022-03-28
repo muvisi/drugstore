@@ -1,0 +1,90 @@
+<div class="card">
+    <div class="card-header">
+    <h5>Payments</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="new-mobile"   placeholder="Search by mobile,reference" >
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <mat-form-field >
+                    <mat-label>Start date</mat-label>
+                    <input matInput [matDatepicker]="picker" [max]="max" [(ngModel)]="data.start_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <mat-form-field >
+                    <mat-label>End date</mat-label>
+                    <input matInput [matDatepicker]="picker1" [max]="max" [(ngModel)]="data.end_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="dateFilter()" [disabled]="!data.start_date || !data.end_date">Search</button>
+            </div>
+            <div class="col-sm-2" style="float: right;">
+              <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="refreshPayments()"><i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px; color:white;"></i>refresh</button>
+          </div>
+
+            
+        </div>
+        <div class="mat-elevation-z8 table-responsive">
+            <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="sn">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+              </ng-container>
+              <ng-container matColumnDef="TransactionDate">
+                <th mat-header-cell *matHeaderCellDef>Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.TransactionDate}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="PhoneNumber">
+                <th mat-header-cell *matHeaderCellDef>Phone Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.PhoneNumber}} </td>
+              </ng-container>
+              <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="MpesaReceiptNumber">
+                <th mat-header-cell *matHeaderCellDef>MpesaReceiptNumber</th>
+                <td mat-cell *matCellDef="let element"> {{element.MpesaReceiptNumber}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="Amount">
+                <th mat-header-cell *matHeaderCellDef>Amount</th>
+                <td mat-cell *matCellDef="let element"> {{element.Amount }} </td>
+              </ng-container>
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>Type</th>
+                <td mat-cell *matCellDef="let element"> {{element.type || 'Stk Push' }} </td>
+              </ng-container>
+              <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="btn btn-success btn-sm" [hidden]="element.status" >Utilized</button>
+                    <button class="btn btn-danger btn-sm" [hidden]="!element.status"  (click)="utilizePayment(element)">Not Utilized</button>
+
+                </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[15,50]"
+                           showFirstLastButtons 
+                           aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div>
+  </div>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
