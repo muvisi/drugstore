@@ -29,18 +29,11 @@
                           <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                   </ng-container>
                         <ng-container matColumnDef="name">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>FIRST NAME</th>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>NAME</th>
                                 <td mat-cell *matCellDef="let element"> {{element.first_name | uppercase}} {{element.last_name | uppercase}} </td>
                         </ng-container>
                    
-                    <ng-container matColumnDef="national_id">
-                      <th mat-header-cell *matHeaderCellDef  mat-sort-header>NATIONAL ID</th>
-                      <td mat-cell *matCellDef="let element"> {{element.national_id}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="gender">
-                      <th mat-header-cell *matHeaderCellDef  mat-sort-header>GENDER</th>
-                      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
-                    </ng-container>
+
                     <ng-container matColumnDef="phone">
                       <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
                       <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
@@ -51,9 +44,10 @@
                     </ng-container>
                   
                     <ng-container matColumnDef="create">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>CREATE</th>
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>CREATE APPOINTMENT</th>
                       <td mat-cell *matCellDef="let element"> 
-                        <button class="btn btn-success btn-sm" (click)="rowClick(element)">Appointment</button>
+                        <!-- <button class="btn btn-success btn-sm" (click)="rowClick(element)">Appointment</button> -->
+                        <mat-icon color="primary" (click)="rowClick(element)">add</mat-icon>
                          </td>
                     </ng-container>
                     <ng-container matColumnDef="edit">

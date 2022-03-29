@@ -19,7 +19,7 @@ export class PrintInsuranceFormsComponent implements OnInit {
   encounterText;
   phonenumber;
   Claims_DATA;
-  Columns: string[] = ['sn','visit_no','First','memberno','phone','insurancecompany','member_sign','doctor_sign','print']
+  Columns: string[] = ['sn','visit_no','name','insurancecompany','member_sign','doctor_sign','print']
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
 
   ngOnInit() {

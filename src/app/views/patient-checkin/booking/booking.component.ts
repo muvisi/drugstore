@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ServiceService } from '../../../service.service';
 
 @Component({
   selector: 'app-booking',
@@ -6,10 +10,191 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent implements OnInit {
-  user = JSON.parse(sessionStorage.getItem('user'));
-  constructor() { }
+  @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
+  loading;
+  dataSourceMaternity;
+  MaternityColumns: string[] = ['sn','created','client','phone','payment','date','time','action']
+  maternity_mobile;
 
+  TestingColumns: string[] = ['sn','created','date','time','Client','phone','national_id','status','action']
+  dataSourceTesting;
+  mobile_testing;
+
+
+  VaccinationColumns: string[] = ['sn','created','date','time','Client','phone','national_id','dose','vaccine','status','action']
+  dataSourceVaccination;
+  mobile_vaccination;
+
+
+
+  BookingColumns: string[] = ['sn','created','First','payment','phone','action']
+  dataSourceBooking;
+  mobile_booking;
+
+
+  RegistrationColumns: string[] = ['sn','created','First','payment','phone','action']
+  dataSourceRegistration;
+  mobile_registrations;
+  user = JSON.parse(sessionStorage.getItem('user'));
+  constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
   ngOnInit() {
+
+    this.getMaternitybooking();
+    this.getTestingRecords();
+    this.getVaccinationRecords();
+    this.getBookingRecords();
+    this.applyFilterRegistrations();
+    this.getRegistartionRecords();
   }
+
+  getMaternitybooking() {
+    this.loading=true;
+   
+    this.service.getMaternityBookingList().subscribe(
+      data => {
+        this.dataSourceMaternity = new MatTableDataSource <[]>(data);
+        this.dataSourceMaternity.paginator = this.paginator;
+        this.dataSourceMaternity = false;
+ 
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  
+  applyMaternityFilter() {
+    this.service.searchMaternityBooking(this.maternity_mobile).subscribe((data)=>{
+      console.log("RESP",data);
+      this.dataSourceMaternity = new MatTableDataSource(data);
+    
+      this.dataSourceMaternity.paginator = this.paginator;
+    })
+  }
+  
+  rowMaternitySelectedView(item){
+    this.router.navigate(['/dashboard/maternity-details/',item.id])
+  }
+
+  downloadMaternityExcel(){
+    window.open(this.service.geMaternityDownloadUrl(), "_blank")
+  }
+
+
+
+  getTestingRecords(){
+    // this.loading=true;
+    this.service.getAlltesting().subscribe((res)=>{
+      this.loading=false;
+ 
+      this.dataSourceTesting = new MatTableDataSource(res);
+      this.dataSourceTesting.paginator = this.paginator;
+    })
+  }
+
+  applyFilterTesting(filterValue: string) {
+    this.service.searchtest(filterValue).subscribe((res)=>{
+      console.log("RESP",res);
+      this.dataSourceTesting = new MatTableDataSource(res);
+      this.dataSourceTesting=res.results
+      this.dataSourceTesting.paginator = this.paginator;
+    })
+  }
+  rowClickTesting(item){
+    this.router.navigate(['/dashboard/testing-details/',item.id])
+  }
+
+
+  getVaccinationRecords(){
+    this.loading=true;
+    this.service.getAppointments().subscribe((res)=>{
+      this.loading=false;
+      this.dataSourceVaccination = new MatTableDataSource(res);
+      this.dataSourceVaccination.paginator = this.paginator;
+    },(err)=>{
+      this.loading=false;
+    })
+  }
+  applyFilterVaccination(filterValue: string) {
+    this.service.searchAppointments(filterValue).subscribe((res)=>{
+      console.log("RESP",res);
+      this.dataSourceVaccination = new MatTableDataSource(res);
+
+      this.dataSourceVaccination.paginator = this.paginator;
+    })
+  }
+  rowClickVaccination(item){
+    this.router.navigate(['/dashboard/appointment-details/',item.id])
+  }
+
+
+  getBookingRecords() {
+   
+    this.service.list().subscribe(
+      data => {
+        this.dataSourceBooking = new MatTableDataSource <[]>(data.booking);
+        this.dataSourceBooking.paginator = this.paginator;
+        this.loading = false;
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  
+  applyFilterBooking() {
+    this.service.searchbooking(this.mobile_booking).subscribe((data)=>{
+      console.log("RESP",data);
+      this.dataSourceBooking = new MatTableDataSource(data);
+    
+      this.dataSourceBooking.paginator = this.paginator;
+    })
+  }
+  
+  rowSelectedBookingView(item){
+    this.router.navigate(['/dashboard/booking-details/',item.id])
+  }
+
+  getRegistartionRecords() {
+   
+    this.service.list().subscribe(
+      data => {
+        this.dataSourceRegistration = new MatTableDataSource <[]>(data.booking);
+        this.dataSourceRegistration.paginator = this.paginator;
+        this.loading = false;
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+
+  applyFilterRegistrations() {
+    this.service.searchbooking(this.mobile_registrations).subscribe((data)=>{
+      console.log("RESP",data);
+      this.dataSourceRegistration = new MatTableDataSource(data);
+    
+      this.dataSourceRegistration.paginator = this.paginator;
+    })
+  }
+
+  rowSelectedViewRegistrations(item){
+    this.router.navigate(['/dashboard/booking-details/',item.id])
+  }
+
+
 
 }
