@@ -52,13 +52,16 @@
                     <td mat-cell *matCellDef="let element"> {{element.insuranceVisit.visit_number}} </td>
                   </ng-container><br>
  
-             
+                  <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef>Phone</th>
+                    <td mat-cell *matCellDef="let element"> {{element.patient.phone }} </td>
+                  </ng-container>
                       <ng-container matColumnDef="insurancecompany">
                         <th mat-header-cell *matHeaderCellDef>Company</th>
                         <td mat-cell *matCellDef="let element"> {{element.insurance_company | uppercase }} </td>
                       </ng-container>
                       <ng-container matColumnDef="member_sign">
-                        <th mat-header-cell *matHeaderCellDef>Member Signature</th>
+                        <th mat-header-cell *matHeaderCellDef>Member<br> Signature</th>
                         <td mat-cell *matCellDef="let element"> 
                           <!-- <button class="btn btn-success btn-sm" *ngIf="element.member_signed" >Signed</button> -->
                           <mat-icon  *ngIf="element.member_signed"  color="primary">done</mat-icon>
@@ -67,7 +70,7 @@
                            </td>
                       </ng-container>
                       <ng-container matColumnDef="doctor_sign">
-                        <th mat-header-cell *matHeaderCellDef>Practitioner/Doctor Signature</th>
+                        <th mat-header-cell *matHeaderCellDef>Doctor <br>Signature</th>
                         <td mat-cell *matCellDef="let element"> 
                           <!-- <button class="btn btn-success btn-sm" *ngIf="element.practitioner_signed">Signed</button>
                           <button class="btn btn-warning btn-sm" *ngIf="!element.practitioner_signed">Not Signed</button> -->
