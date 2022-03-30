@@ -19,10 +19,11 @@ export class UsermanagementComponent implements OnInit {
   dataSource;
   archivedataSource;
   departments =[];
-  displayedColumns1: string[] = ['sn','name','department', 'email','deletedby','deleteddate','status'];
+  displayedColumns1: string[] = ['sn','name','department', 'email','deletedby','deleteddate','status','restore'];
 
   displayedColumns: string[] = ['sn','name', 'phone','department', 'email','role','edit','deactivate','activate','reset','delete'];
   employee: any={};
+  @ViewChild('restoreModal', { static: false }) restoreModal: ModalDirective;
   @ViewChild('decisionModal', { static: false }) decisionModal: ModalDirective;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   @ViewChild('resetModal', { static: false }) resetModal: ModalDirective;
@@ -36,6 +37,7 @@ export class UsermanagementComponent implements OnInit {
   user: any;
   loading = false;
   selected;
+  selectedd;
   element;
   resett='RESET';
   mail='EMAIL';
@@ -50,7 +52,6 @@ export class UsermanagementComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      // password: ['', Validators.required],
       email: ['', Validators.required],
       department:['',Validators.required],
       phone:['',Validators.required],
@@ -84,7 +85,7 @@ export class UsermanagementComponent implements OnInit {
   ArchivedAccountUsers(){
     this.service.getAllArchivedUsers().subscribe((res) => {
       this.archivedataSource = new MatTableDataSource<[]>(res)
-      // console.log("RESP DATA",this.archiveddataSource)
+      
       
       this.dataSource.paginator = this.paginator;
     
@@ -127,22 +128,11 @@ export class UsermanagementComponent implements OnInit {
     );
     }
   }
-  // reset(){
-  //   console.log("RESETDATA",this.selected.email)
-   
-  //   this.resetModal.show()
-  // }
+ 
   reset(element){
-    // this.selected2=this.element
+    
     console.log("MY DATA",this.selected2,this.resett)
     this.decisionModal.show()
-   
-    // this.service.reset(element).subscribe((res)=>{
-     
-    //   this.toastr.success('Successfully reset password');
-    // },(err)=>{
-    //   this.toastr.error('Password reset failed','Failed');
-    // })
   }
 resetUser(){
   this.service.resetUser(this.resetForm.value).subscribe((res) => {
@@ -165,6 +155,23 @@ delete(){
   this.toastr.success('Successfully deleted','Success');
   this.staticModal.hide();
   })
+}
+restored(){
+  console.log(this .selectedd)
+  this.restoreModal.show()
+
+}
+restore(){
+  // this.restoreModal.show()
+  this.service.restoreUSER(this.selectedd).subscribe((res)=>{
+    this.ngOnInit();
+    this.toastr.success('Successfully Restored','Success');
+    this.restoreModal.hide();
+    })
+
+
+
+
 }
 deactivate(item){
   if(item.is_active){

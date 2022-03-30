@@ -1376,6 +1376,11 @@ updateuser(data): Observable<{}> {
       map(this.extractData));
 
 }
+restoreUSER(data) {
+  return this.http.post(endpoint + 'users/restoreuser/',data).pipe(
+    map(this.extractData));
+
+}
 CalendarData(specialty): Observable<any> {
   return this.http.get(endpoint + 'api/calendar/',specialty).pipe(
     map(this.extractData));
