@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Observable, OperatorFunction } from 'rxjs';
 @Component({
   selector: 'app-print-insurance-forms',
   templateUrl: './print-insurance-forms.component.html',
@@ -12,23 +14,59 @@ import { Router } from '@angular/router';
 export class PrintInsuranceFormsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   dataSource;
+
+  todays_DATA;
   loading;
   selected;
   idnumber;
   searchText;
+  searchTextToday;
   encounterText;
   phonenumber;
   Claims_DATA;
   Columns: string[] = ['sn','visit_no','phone','name','insurancecompany','member_sign','doctor_sign','print']
+  
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
+  doctors=[];
+  doctors_search
+  doctors_search_today;
+  public insurance_s: any;
 
+  formatter = (result: string) => result.toUpperCase();
+
+  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term === '' ? []
+        : this.doctors.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
+
+  
   ngOnInit() {
     this.idnumber="";
     this.phonenumber="";
-    // this.getbooking();
-    // this.loading=true
+    this.getTodays_data();
     this.getPatientData();
+    this.getInsuranceDoctor();
 
+  }
+
+  getInsuranceDoctor(){
+    this.service.getInsuranceDoctors().subscribe(
+      data=>{
+          
+          for (var i=0;i<data.length;i++){
+            this.doctors.push(data[i]['doctor']);
+          }
+          console.log('doctors',this.doctors);
+          
+
+      },
+      err=>{
+
+      }
+    )
   }
   getPatientData(){
     this.loading=true;
@@ -48,58 +86,67 @@ export class PrintInsuranceFormsComponent implements OnInit {
 
     })}
 
-    clickSearch(){
+
+    getTodays_data(){
       this.loading=true;
-      this.service.getInsuranceVisitSearch(this.searchText).subscribe((res)=>{
-      this.loading=false;
-      this.Claims_DATA = new MatTableDataSource <[]>(res);
+      this.service.getTodaysInsuranceDetails().subscribe(
+        
+          data => {
+            this.loading=false;
+            this.todays_DATA = new MatTableDataSource <[]>(data);
+            
+            this.todays_DATA.paginator = this.paginator;
           
-      this.Claims_DATA.paginator = this.paginator;
+           
+            
+       
+      },(err)=>{
+        this.loading=false;
+  
+      })}
+  
+    
+    clickSearch(){
+      
+      
+    }
+
+
+    clickSearchTodays(){
+      this.loading=true;
+      console.log(this.searchTextToday);
+      var query="?search="
+      if(this.searchTextToday!='' && this.searchTextToday!=null && this.searchTextToday!=undefined){
+        query+=this.searchTextToday;
+      }
+
+      if(this.doctors_search_today!=''&& this.doctors_search_today!=null && this.doctors_search_today!=undefined){
+        query+="&insuranceVisit__doctor="+this.doctors_search_today
+      }
+      this.service.getTodayInsuranceVisitSearch(query).subscribe((res)=>{
+      this.loading=false;
+      this.todays_DATA = new MatTableDataSource <[]>(res);
+          
+      this.todays_DATA.paginator = this.paginator;
       },(err)=>{
         this.loading=false;
 
       })
-      
     }
     clickRequest(){
       this.loading=true;
       this.service.getRequestEncounter(this.encounterText).subscribe((res)=>{
       this.loading=false;
-      this.Claims_DATA = new MatTableDataSource <[]>(res);
+      this.todays_DATA = new MatTableDataSource <[]>(res);
           
-      this.Claims_DATA.paginator = this.paginator;
+      this.todays_DATA.paginator = this.paginator;
       },(err)=>{
         this.loading=false;
       })
       
     }
-  getbooking() {
-   
-    this.service.list().subscribe(
-      data => {
-        this.dataSource = new MatTableDataSource <[]>(data.booking);
-        this.dataSource.paginator = this.paginator;
-        this.loading = false;
-     
-       
-        
-      
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-  }
-  
-  applyFilter(filterValue: string) {
-    this.service.searchbooking(filterValue).subscribe((data)=>{
-      console.log("RESP",data);
-      this.dataSource = new MatTableDataSource(data);
-    
-      this.dataSource.paginator = this.paginator;
-    })
-  }
+
+
   
   rowSelectedView(item){
     this.router.navigate(['/dashboard/booking-details/',item.id])

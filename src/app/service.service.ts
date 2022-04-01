@@ -13,13 +13,13 @@ const httpOptions_payments = {
 };
 
 
-export const endpoint='http://localhost:8888/';
+// export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
-// export const endpoint='https://bookings.aarhospital.com/';
+export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
@@ -103,6 +103,12 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/mpesa-payments/').pipe(
       map(this.extractData));
   }
+  
+  getInsuranceDoctors() {
+    return this.http.get(endpoint + 'api/get-insurance-visit-doctor/').pipe(
+      map(this.extractData));
+  }
+
   getUtilizePayments() {
     return this.http.get(endpoint + 'api/utilized-payments/').pipe(
       map(this.extractData));
@@ -221,6 +227,10 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/insurance_details/').pipe(
       map(this.extractData));
   }
+  getTodaysInsuranceDetails(): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details-todays/').pipe(
+      map(this.extractData));
+  }
   getInsurance(id): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
       map(this.extractData));
@@ -234,7 +244,11 @@ export class ServiceService {
       map(this.extractData));
   }
   getInsuranceVisitSearch(s): Observable<any> {
-    return this.http.get(endpoint + 'api/insurance_details/?search='+s).pipe(
+    return this.http.get(endpoint + 'api/insurance_details/'+s).pipe(
+      map(this.extractData));
+  }
+  getTodayInsuranceVisitSearch(s): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details-todays/'+s).pipe(
       map(this.extractData));
   }
   getRequestEncounter(no): Observable<any> {

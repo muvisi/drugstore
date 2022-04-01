@@ -52,9 +52,10 @@ export class BookingComponent implements OnInit {
    
     this.service.getMaternityBookingList().subscribe(
       data => {
-        this.dataSourceMaternity = new MatTableDataSource <[]>(data);
+        console.log("maternity",data)
+        this.dataSourceMaternity = new MatTableDataSource(data);
         this.dataSourceMaternity.paginator = this.paginator;
-        this.dataSourceMaternity = false;
+        this.loading = false;
  
 
         
@@ -69,7 +70,7 @@ export class BookingComponent implements OnInit {
   
   applyMaternityFilter() {
     this.service.searchMaternityBooking(this.maternity_mobile).subscribe((data)=>{
-      console.log("RESP",data);
+      console.log("tyrtyr",data);
       this.dataSourceMaternity = new MatTableDataSource(data);
     
       this.dataSourceMaternity.paginator = this.paginator;
@@ -136,7 +137,7 @@ export class BookingComponent implements OnInit {
    
     this.service.list().subscribe(
       data => {
-        this.dataSourceBooking = new MatTableDataSource <[]>(data.booking);
+        this.dataSourceBooking = new MatTableDataSource(data.booking);
         this.dataSourceBooking.paginator = this.paginator;
         this.loading = false;
 
