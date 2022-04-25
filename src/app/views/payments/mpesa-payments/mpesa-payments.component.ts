@@ -15,6 +15,7 @@ export class MpesaPaymentsComponent implements OnInit {
 
     displayedColumns: string[] = ['sn','TransactionDate','PhoneNumber','Name', 'MpesaReceiptNumber', 'Amount','type','Status'];
     dataSource;
+    endpoint;
     data:any={};
     max = new Date()
     @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
@@ -22,6 +23,7 @@ export class MpesaPaymentsComponent implements OnInit {
     constructor(public service:ServiceService,public datePipe:DatePipe,private modalService: NgbModal) { }
     ngOnInit() {
       this.getPayments();
+      this. getEdpoint()
    
     }
 
@@ -73,6 +75,10 @@ export class MpesaPaymentsComponent implements OnInit {
     },(err)=>{
       this.loading=false;
     })
+  }
+  getEdpoint(){
+    this.endpoint= this.service.getendpoint()
+  console.log("URL IS",this.endpoint)
   }
   }
   

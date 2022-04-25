@@ -31,6 +31,20 @@ export class FeedbacksComponent implements OnInit {
   period3;
   period4;
   
+
+
+
+
+  period_outpatient;
+  date_outpatient;
+  outpatient_dataSource;
+
+
+
+  period_inpatient;
+  date_inpatient;
+  inpatient_dataSource;
+
   loading;
   // idnumber;
   phonenumber;
@@ -48,6 +62,8 @@ export class FeedbacksComponent implements OnInit {
     this.getFeedbacksNegative();
     this.getFeedbacksAverage();
     this.getFeedbacksAll();
+    this.getFeedbacksOutpatient();
+    this.getFeedbacksInpatient();
     // this.loading=true
   }
   ngAfterViewInit(){
@@ -280,6 +296,7 @@ this.date_positive="";
   downloadAll(){
     window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4, "_blank");
   }
+
   allDateSelection(){
     
     this.service.feedbacks("?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4).subscribe(
@@ -340,4 +357,116 @@ this.date_positive="";
     })
   }
 
+  getFeedbacksOutpatient() {
+    this.service.feedbacks("?period="+this.period_outpatient+"&visit_type=OUTPATIENT").subscribe(
+      data => {
+        this.outpatient_dataSource = new MatTableDataSource <[]>(data);
+        this.outpatient_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  periodChangedOutpatient(){
+    this.service.feedbacks("?date="+this.datePipe.transform(this.date_outpatient,"mediumDate")+"&visit_type=OUTPATIENT&period="+this.period_outpatient).subscribe(
+      data => {
+        this.outpatient_dataSource = new MatTableDataSource <[]>(data);
+        this.outpatient_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  outPatientDateSelection(){
+    this.service.feedbacks("?date="+this.datePipe.transform(this.date_outpatient,"mediumDate")+"&visit_type=OUTPATIENT&period="+this.period_outpatient).subscribe(
+      data => {
+        this.outpatient_dataSource = new MatTableDataSource <[]>(data);
+        this.outpatient_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  downloadOutpatient(){
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_outpatient,"mediumDate")+"&visit_type=OUTPATIENT&period="+this.period_outpatient, "_blank");
+  }
+
+
+
+  getFeedbacksInpatient() {
+    this.service.feedbacks("?period="+this.period_inpatient+"&visit_type=INPATIENT").subscribe(
+      data => {
+        this.inpatient_dataSource = new MatTableDataSource <[]>(data);
+        this.inpatient_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  periodChangedInpatient(){
+    this.service.feedbacks("?date="+this.datePipe.transform(this.date_inpatient,"mediumDate")+"&visit_type=INPATIENT&period="+this.period_inpatient).subscribe(
+      data => {
+        this.inpatient_dataSource = new MatTableDataSource <[]>(data);
+        this.inpatient_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  inPatientDateSelection(){
+    this.service.feedbacks("?date="+this.datePipe.transform(this.date_inpatient,"mediumDate")+"&visit_type=INPATIENT&period="+this.period_inpatient).subscribe(
+      data => {
+        this.inpatient_dataSource = new MatTableDataSource <[]>(data);
+        this.inpatient_dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  downloadInpatient(){
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_inpatient,"mediumDate")+"&visit_type=INPATIENT&period="+this.period_inpatient, "_blank");
+  }
+ 
 }

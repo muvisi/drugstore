@@ -8,6 +8,7 @@ import { dataReady } from '@syncfusion/ej2-schedule';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ClaimformService {
   constructor(private http: HttpClient,public backend: HttpBackend) {}
   updateAARForm(data){

@@ -29,8 +29,12 @@
                 <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="dateFilter()" [disabled]="!data.start_date || !data.end_date">Search</button>
             </div>
             <div class="col-sm-2" style="float: right;">
-              <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="refreshPayments()"><i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px; color:white;"></i>refresh</button>
+              <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="refreshPayments()"><i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px; color:white;"></i>Refresh</button>
           </div>
+          <div class="col-sm-2">
+            <a type="button" style="font-size: 20px"   href="{{endpoint}}api/all-payments-download/" download class="btn btn-success btn-xs" style="float: right;"><i class="fa fa-download" aria-hidden="true"></i>
+             All Payments</a>
+        </div>
 
             
         </div>

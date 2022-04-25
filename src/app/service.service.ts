@@ -2,14 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse, HttpBackend } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-export const endpoint='http://localhost:8888/';
+
+
+
+const httpOptions_payments = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'Basic ' + btoa('technical@healthix.co.ke:Hr9j4cX7dK5mof')
+  })
+};
+
+
+// export const endpoint='http://localhost:8000/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
-// export const endpoint='http://134.209.199.123:8080/';
+export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
@@ -27,6 +38,11 @@ export const HEALTHIX_BACKEND_URL_AAR ='https://aarclaims.healthixsolutions.com/
 
 export class ServiceService {
   private customHttpClient: HttpClient;
+
+
+
+
+
   constructor(private http: HttpClient,public backend: HttpBackend) {
   }
   getendpoint(){
@@ -96,6 +112,9 @@ export class ServiceService {
   }
   getNotUtilizePaymentsDownloadUrl() {
     return  endpoint + 'api/not-utilized-payments-download/';
+  }
+  getdatedNotUtilizePaymentsDownloadUrl(data) {
+    return  endpoint + 'api/datednot-utilized-payments-download/?start={{this.data2.start_date}}&&end={{data2.end_date}}';
   }
   getNotUtilizePayments() {
     return this.http.get(endpoint + 'api/not-utilized-payments/').pipe(
@@ -342,8 +361,9 @@ export class ServiceService {
     return this.http.post(endpoint + 'payments/reverse_bills/', data ).pipe(
       map(this.extractData));
   }
-  pay(data): Observable<any> {
-    return this.http.post(endpoint + 'payments/pay/', data ).pipe(
+  mpesapay(data): Observable<any> {
+    console.log(httpOptions_payments)
+    return this.http.post(payment_url + 'pay/', data,httpOptions_payments).pipe(
       map(this.extractData));
 
   }

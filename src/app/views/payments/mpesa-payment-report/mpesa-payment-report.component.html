@@ -37,9 +37,13 @@
                         <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="dateFilter()" [disabled]="!data.start_date || !data.end_date">Search</button>
                     </div>
 
-                    <div class="col-sm-2">
+                    <!-- <div class="col-sm-2">
                         <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="downloadUtilized()">Download</button>
-                    </div>
+                    </div> -->
+                    <div class="col-sm-2">
+                      <a type="button"   href="{{endpoint}}api/datedutilized-payments-download/?start={{data.start_date | date:'M/d/yy'}}&&end={{data.end_date | date:'M/d/yy'}}"   download class="btn btn-success btn-xs" style="float: right;"><i class="fa fa-download" aria-hidden="true"></i>
+                       Download</a>
+                  </div>
   
                   </div>
                 </div>
@@ -125,9 +129,14 @@
                     <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="dateFilter2()" [disabled]="!data2.start_date || !data2.end_date">Search</button>
                 </div>
 
+               
                 <div class="col-sm-2">
-                    <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="downloadNotUtilized()">Download</button>
-                </div>
+                  <!-- <a href="http://localhost:8000/api/datednot-utilized-payments-download/?start={{data2.start_date | date:'M/d/yy'}}&&end={{data2.end_date | date:'M/d/yy'}}" [disabled]="!data2.end_date ||!data2.start_date" >Dated Download</a> -->
+                  <a type="button"   href="{{endpoint}}api/datednot-utilized-payments-download/?start={{data2.start_date | date:'M/d/yy'}}&&end={{data2.end_date | date:'M/d/yy'}}" [disabled]="!data.start_date || !data.end_date" download class="btn btn-success btn-xs" style="float: right;"><i class="fa fa-download" aria-hidden="true"></i>
+                    Download</a>
+               </div>
+              </div>
+                
                   
               
                   <div class="col-sm-12">
@@ -175,7 +184,7 @@
                         </mat-paginator>
                       </div>
                     </div>
-              </div>
+              <!-- </div> -->
               <br>
               <br>
             </mat-tab>

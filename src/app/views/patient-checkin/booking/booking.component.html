@@ -1,4 +1,451 @@
-<style>
+
+
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <h5 class="card-header">Bookings</h5>
+      <div class="card-body">
+
+        <mat-tab-group>
+          <mat-tab label="Registrations"> 
+           
+
+          <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-2">
+                          <mat-form-field>
+                          <input matInput [(ngModel)]="mobile_registrations"  autocomplete="off"    placeholder="Mobile, ID, Name" type="search">
+                        </mat-form-field>
+                  </div>
+                  <div class="col-sm-2">
+                  
+
+                </div>
+                <div class="col-sm-2">
+                  <button  (click)="applyFilterRegistrations()"  class="btn btn-success pull-right">search</button> 
+              </div>
+                
+                </div>
+              </div>
+            <div class="col-sm-12">
+              <div class="mat-elevation-z8 table-responsive">
+                <table mat-table [dataSource]="dataSourceRegistration">
+                    <ng-container matColumnDef="sn">
+                        <th mat-header-cell *matHeaderCellDef>S/N</th>
+                        <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="created" >
+                  <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Created Date</th>
+                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;">  {{element.createdon | date:'dd/MM/yyyy h:mm a'}}  </td>
+                </ng-container>
+                <ng-container matColumnDef="First">
+                  <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Patient Name</th>
+                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
+                </ng-container>
+              
+                    <ng-container matColumnDef="payment">
+                      <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">payment</th>
+                      <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.payment}} </td>
+                    </ng-container>  
+                    <ng-container matColumnDef="phone" style="font-size: 11px;">
+                        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">phone</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.patient.phone}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="insurancecompany">
+                        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Company</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.insurance_company  | uppercase}} </td>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
+                        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
+                          <button class="btn btn-success btn-sm" (click)="rowSelectedViewRegistrations(element)" style="font-size: 11px;">View </button>
+                           </td>
+                      </ng-container>
+
+
+                  <tr mat-header-row *matHeaderRowDef="RegistrationColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns:RegistrationColumns;"></tr>
+                </table>
+          
+                <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+              </div>
+            </div>
+            
+          </div>
+
+  
+          </mat-tab>
+          <mat-tab label="Bookings"> 
+     
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <div class="row">
+                            <div class="col-sm-2">
+                                    <mat-form-field>
+                                    <input matInput [(ngModel)]="mobile_booking"  autocomplete="off"    placeholder="Mobile, ID, Name" type="search">
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-sm-2">
+                            
+          
+                          </div>
+                          <div class="col-sm-2">
+                            <button  (click)="applyFilterBooking()"  class="btn btn-success pull-right">search</button> 
+                        </div>
+                          
+                          </div>
+                        </div>
+                      <div class="col-sm-12">
+                        <div class="mat-elevation-z8 table-responsive">
+                          <table mat-table [dataSource]="dataSourceBooking">
+                              <ng-container matColumnDef="sn">
+                                  <th mat-header-cell *matHeaderCellDef>S/N</th>
+                                  <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                          </ng-container>
+                          <ng-container matColumnDef="created" >
+                            <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Created Date</th>
+                            <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;">  {{element.createdon | date:'dd/MM/yyyy h:mm a'}}  </td>
+                          </ng-container>
+                          <ng-container matColumnDef="First">
+                            <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Patient Name</th>
+                            <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
+                          </ng-container>
+                        
+                              <ng-container matColumnDef="payment">
+                                <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">payment</th>
+                                <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.payment}} </td>
+                              </ng-container>  
+                              <ng-container matColumnDef="phone" style="font-size: 11px;">
+                                  <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">phone</th>
+                                  <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.patient.phone}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="action">
+                                  <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
+                                  <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
+                                    <button class="btn btn-success btn-sm" (click)="rowSelectedBookingView(element)" style="font-size: 11px;">View </button>
+                                     </td>
+                                </ng-container>
+          
+          
+                            <tr mat-header-row *matHeaderRowDef="BookingColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns:BookingColumns;"></tr>
+                          </table>
+                    
+                          <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                        </div>
+                      </div>
+                      
+                    </div>
+        
+          
+            
+          </mat-tab>
+      
+          <mat-tab label="Covid Vaccination"> 
+
+
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-sm-2">
+                              <mat-form-field>
+                                  <input matInput [(ngModel)]="mobile_vaccination" (keyup)="applyFilterVaccination($event.target.value)" autocomplete="new-mobile"   placeholder="Mobile" type="search">
+                                </mat-form-field>
+                          </div>
+                          <div class="col-sm-2">
+                            <mat-form-field>
+                                <input matInput (keyup)="applyFilterVaccination($event.target.value)" autocomplete="new-mobile"   placeholder="National id" type="search">
+                              </mat-form-field>
+                        </div>
+                      </div>
+                      </div>
+                  
+                        <div class="col-sm-12">
+            
+                            <div class="mat-elevation-z8 table-responsive">
+                              <table mat-table [dataSource]="dataSourceVaccination" matSort>
+                                  <ng-container matColumnDef="sn">
+                                      <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                                      <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="created">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
+                                <td mat-cell *matCellDef="let element"> {{element.created | date:'dd/MM/yyyy h:mm a'}} </td>
+                        </ng-container>
+                                    <ng-container matColumnDef="date">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
+                                    </ng-container>
+                                <ng-container matColumnDef="time">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.time}}</td>
+                                </ng-container>
+                          
+                                <ng-container matColumnDef="Client">
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header>Client</th>
+                                  <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.patient.first_name}} {{element.patient.last_name}}</td>
+                                </ng-container>
+                              
+                                <ng-container matColumnDef="phone">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.patient.phone}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="national_id">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>National ID</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.patient.national_id }} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="dose">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Dose</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="vaccine">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Vaccine</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.vaccine}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="status">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+                                </ng-container>
+                                
+                                <ng-container matColumnDef="action">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                  <td mat-cell *matCellDef="let element" (click)="rowClickVaccination(element)"> 
+                                    <mat-icon color="primary">create</mat-icon>
+                                    </td>
+                                </ng-container>
+                                
+                                <tr mat-header-row *matHeaderRowDef="VaccinationColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns:VaccinationColumns;" ></tr>
+                              </table>
+                          
+                              <mat-paginator [pageSizeOptions]="[100,200,500]" showFirstLastButtons></mat-paginator>
+                            </div>
+                          </div>
+                    </div>
+                
+          </mat-tab>
+
+          <mat-tab label="Covid Test"> 
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-2">
+                      <mat-form-field>
+                          <input matInput [(ngModel)]="mobile_testing" (keyup)="applyFilterTesting($event.target.value)"   placeholder="Mobile" type="search">
+                        </mat-form-field>
+                  </div>
+                  <!-- <div class="col-sm-2">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="idnumber" (keyup)="applyFilter($event.target.value)"  placeholder="National id" type="input">
+                      </mat-form-field>
+                </div> -->
+                </div>
+              </div>
+                <div class="col-sm-12">
+    
+                    <div class="mat-elevation-z8 table-responsive">
+                      <table mat-table  [dataSource]="dataSourceTesting" matSort>
+                          <ng-container matColumnDef="sn">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="created">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
+                              <td mat-cell *matCellDef="let element"> {{element.created | date:'dd/MM/yyyy  h:mm a'}} </td>
+                      </ng-container>
+                            <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                        <ng-container matColumnDef="time">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                          <td mat-cell *matCellDef="let element"> {{element.time}}</td>
+                        </ng-container>
+                  
+                        <ng-container matColumnDef="Client">
+                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Client</th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.patient.first_name}} {{element.patient.last_name}}</td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="phone">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
+                          <td mat-cell *matCellDef="let element"> {{element.patient.phone}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="national_id">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>National ID</th>
+                          <td mat-cell *matCellDef="let element"> {{element.patient.national_id }} </td>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="dose">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Dose</th>
+                          <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="vaccine">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Vaccine</th>
+                          <td mat-cell *matCellDef="let element"> {{element.vaccine}} </td>
+                        </ng-container> -->
+                        <ng-container matColumnDef="status">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                          <td mat-cell *matCellDef="let element"> <p *ngIf="element.status=='COMPLETED'">Completed</p><p *ngIf="element.status=='NEW'">Pending</p><p *ngIf="element.status=='NOSHOW'">No Show</p></td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="action">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                          <td mat-cell *matCellDef="let element" (click)="rowClickTesting(element)"> 
+                            <mat-icon color="primary">create</mat-icon>
+                            </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="TestingColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns:TestingColumns;" ></tr>
+                      </table>
+                  
+                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                    </div>
+                  </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Maternity"> 
+            <div class="row">
+              <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-2">
+                            <mat-form-field>
+                            <input matInput [(ngModel)]="maternity_mobile"  autocomplete="off"    placeholder="Mobile, ID, Name" type="search">
+                          </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                    
+  
+                  </div>
+                  <div class="col-sm-2">
+                    <button  (click)="applyMaternityFilter()"  class="btn btn-success pull-right">search</button> 
+                </div>
+                <div class="col-sm-2" style="float: right;">
+                  <button  (click)="getMaternitybooking()"  class="btn btn-success pull-right">  <i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>refresh</button> 
+              </div>
+              <div class="col-sm-2" style="float: right;">
+                  <button  (click)="downloadMaternityExcel()"  class="btn btn-success pull-right">  <i class="fa fa-download" aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>Download</button> 
+              </div>
+                  
+                  </div>
+                </div>
+              <div class="col-sm-12">
+                <div class="mat-elevation-z8 table-responsive">
+                  <table mat-table [dataSource]="dataSourceMaternity">
+                      <ng-container matColumnDef="sn">
+                          <th mat-header-cell *matHeaderCellDef>S/N</th>
+                          <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="created" >
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Created Date</th>
+                    <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;">  {{element.created | date:'dd/MM/yyyy h:mm a'}}  </td>
+                  </ng-container>
+                  <ng-container matColumnDef="client">
+                    <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Patient Name</th>
+                    <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
+                  </ng-container>
+                
+                        
+                      <ng-container matColumnDef="phone" style="font-size: 11px;">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">phone</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.patient.phone}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="payment">
+                          <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">payment</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.payment}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="date">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Booking Date</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.date  | date:'dd/MM/yyyy'}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="time">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Booking Time</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.time}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
+                            <button class="btn btn-success btn-sm" (click)="rowMaternitySelectedView(element)" style="font-size: 11px;">View </button>
+                             </td>
+                        </ng-container>
+  
+  
+                    <tr mat-header-row *matHeaderRowDef="MaternityColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns:MaternityColumns;"></tr>
+                  </table>
+            
+                  <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                </div>
+              </div>
+              
+            </div>
+          </mat-tab>
+                     
+        </mat-tab-group>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <style>
     .item{
       font-weight: bold;
     }
@@ -149,4 +596,4 @@
 
     </div>
   </div>
-  
+   -->
