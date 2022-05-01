@@ -287,13 +287,8 @@ ckeditor4-angular
 Software License Agreement
 ==========================
 
-<<<<<<< HEAD
 **CKEditor 4 component for Angular** – https://github.com/ckeditor/ckeditor4-angular <br>
 Copyright (c) 2003-2019, [CKSource](http://cksource.com) Frederico Knabben. All rights reserved.
-=======
-**CKEditor 4 WYSIWYG editor Angular component** – https://github.com/ckeditor/ckeditor4-angular <br>
-Copyright (c) 2003-2020, [CKSource](https://cksource.com/) Frederico Knabben. All rights reserved.
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 
 Licensed under the terms of any of the following licenses at your
 choice:
@@ -314,35 +309,22 @@ Where not otherwise indicated, all CKEditor content is authored by CKSource engi
 
 The following libraries are included in CKEditor 4 component for Angular under the following licenses:
 
-<<<<<<< HEAD
 - Angular Copyright (c) 2010-2019 Google LLC. [MIT](http://angular.io/license)
 - core-js Copyright (c) 2014-2019 Denis Pushkarev [MIT](https://github.com/zloirock/core-js/blob/master/LICENSE)
 - load-script [MIT](https://github.com/eldargab/load-script#license)
 - RxJS: Reactive Extensions For JavaScript [Apache-2.0](https://github.com/ReactiveX/rxjs/blob/master/LICENSE.txt)
 - tslib Copyright (c) 2012-2019 Microsoft [Apache-2.0](https://github.com/Microsoft/tslib/blob/master/LICENSE.txt)
 - Zone.js Copyright (c) 2016-2018 Google, Inc. [MIT](https://github.com/angular/zone.js/blob/master/LICENSE)
-=======
-- load-script [MIT](https://github.com/eldargab/load-script#license)
-- tslib Copyright (c) 2012-2020 Microsoft [Apache-2.0](https://github.com/Microsoft/tslib/blob/master/LICENSE.txt)
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 
 Trademarks
 ----------
 
-<<<<<<< HEAD
 **CKEditor** is a trademark of [CKSource](http://cksource.com) Frederico Knabben. All other brand and product names are trademarks, registered trademarks or service marks of their respective holders.
-=======
-**CKEditor** is a trademark of [CKSource](https://cksource.com/) Frederico Knabben. All other brand and product names are trademarks, registered trademarks or service marks of their respective holders.
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 
 
 core-js
 MIT
-<<<<<<< HEAD
 Copyright (c) 2014-2019 Denis Pushkarev
-=======
-Copyright (c) 2014-2020 Denis Pushkarev
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -460,11 +442,7 @@ font-awesome
 
 fusioncharts
 http://www.fusioncharts.com/buy/
-<<<<<<< HEAD
 https://www.fusioncharts.com/buy/
-=======
-All use of the FusionCharts, Inc. software product is subject to the license terms contained in the license agreement located at https://www.ideracorp.com/Legal/FusionCharts/MasterISVSoftwareSubscriptionAgreement and by proceeding to download, install or use the software in which this agreement is electronically embedded or by obtaining the license key for this software, you agree to be bound to the terms of such license agreement. IF YOU DO NOT AGREE WITH THESE TERMS AND CONDITIONS, THEN DO NOT INSTALL/DOWNLOAD OR USE THE SOFTWARE AND DELETE THE SOFTWARE FROM YOUR COMPUTER SYSTEM.
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 
 hammerjs
 MIT
@@ -519,11 +497,7 @@ SOFTWARE.
 load-script
 MIT
 
-<<<<<<< HEAD
 lodash
-=======
-lodash-es
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 MIT
 Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
 
@@ -822,13 +796,7 @@ SOFTWARE.
 
 perfect-scrollbar
 MIT
-<<<<<<< HEAD
 The MIT License (MIT) Copyright (c) 2012-2017 Hyunje Jun and other contributors
-=======
-The MIT License (MIT)
-
-Copyright (c) 2012-2019 Hyunje Jun, MDBootstrap.com and other contributors
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -1363,7 +1331,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 tslib
-<<<<<<< HEAD
 Apache-2.0
 Apache License
 
@@ -1421,21 +1388,6 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
-=======
-0BSD
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
->>>>>>> 5050cb9e70e9e89a7e24dec90ec0412776a3a713
 
 web-animations-js
 Apache-2.0
