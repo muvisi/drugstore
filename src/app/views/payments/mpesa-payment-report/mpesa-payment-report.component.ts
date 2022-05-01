@@ -14,6 +14,7 @@ export class MpesaPaymentReportComponent implements OnInit {
     displayedColumns1: string[] = ['sn','TransactionDate','PhoneNumber','Name', 'MpesaReceiptNumber', 'Amount','type'];
     dataSource;
     dataSource2;
+    endpoint;
     data:any={};
     data2:any={};
     max = new Date()
@@ -22,6 +23,7 @@ export class MpesaPaymentReportComponent implements OnInit {
     ngOnInit() {
       this.getPayments();
       this.getPayments2();
+      this.getEdpoint()
     }
    getPayments(){
      this.service.getUtilizePayments().subscribe((res)=>{
@@ -72,6 +74,16 @@ export class MpesaPaymentReportComponent implements OnInit {
     }
     downloadNotUtilized(){
       window.open(this.service.getNotUtilizePaymentsDownloadUrl())
+    }
+    dateddownloaddatedNotUtilized(){
+      console.log("the end date",this.data2.end_date)
+      console.log("start time",this.data2.start_date)
+      
+      // window.open(this.service.getdatedNotUtilizePaymentsDownloadUrl())
+    }
+    getEdpoint(){
+      this.endpoint= this.service.getendpoint()
+    console.log("URL IS",this.endpoint)
     }
     
   }

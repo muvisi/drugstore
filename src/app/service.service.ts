@@ -20,7 +20,6 @@ export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
-// export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
@@ -118,6 +117,9 @@ export class ServiceService {
   }
   getNotUtilizePaymentsDownloadUrl() {
     return  endpoint + 'api/not-utilized-payments-download/';
+  }
+  getdatedNotUtilizePaymentsDownloadUrl(data) {
+    return  endpoint + 'api/datednot-utilized-payments-download/?start={{this.data2.start_date}}&&end={{data2.end_date}}';
   }
   getNotUtilizePayments() {
     return this.http.get(endpoint + 'api/not-utilized-payments/').pipe(
