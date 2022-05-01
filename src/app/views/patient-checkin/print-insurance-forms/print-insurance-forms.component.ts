@@ -107,7 +107,26 @@ export class PrintInsuranceFormsComponent implements OnInit {
   
     
     clickSearch(){
-      
+      this.loading=true;
+      console.log(this.searchText);
+      var query="?search="
+      if(this.searchText!='' && this.searchText!=null && this.searchText!=undefined){
+        query+=this.searchText;
+      }
+
+      if(this.doctors_search!=''&& this.doctors_search!=null && this.doctors_search!=undefined){
+        query+="&insuranceVisit__doctor="+this.doctors_search
+      }
+      this.service.getInsuranceVisitSearch(query).subscribe((res)=>{
+      this.loading=false;
+      this.Claims_DATA = new MatTableDataSource <[]>(res);
+          
+      this.Claims_DATA.paginator = this.paginator;
+      },(err)=>{
+        this.loading=false;
+
+      })
+    
       
     }
 

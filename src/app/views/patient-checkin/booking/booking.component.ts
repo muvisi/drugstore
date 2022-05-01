@@ -166,7 +166,7 @@ export class BookingComponent implements OnInit {
 
   getRegistartionRecords() {
    
-    this.service.list().subscribe(
+    this.service.registrations().subscribe(
       data => {
         this.dataSourceRegistration = new MatTableDataSource <[]>(data.booking);
         this.dataSourceRegistration.paginator = this.paginator;
@@ -184,7 +184,7 @@ export class BookingComponent implements OnInit {
 
 
   applyFilterRegistrations() {
-    this.service.searchbooking(this.mobile_registrations).subscribe((data)=>{
+    this.service.searchregistrations(this.mobile_registrations).subscribe((data)=>{
       console.log("RESP",data);
       this.dataSourceRegistration = new MatTableDataSource(data);
     
