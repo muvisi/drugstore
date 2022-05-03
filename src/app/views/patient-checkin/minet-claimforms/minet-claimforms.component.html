@@ -1,8 +1,14 @@
-<div class="card" class="myDivToPrint" style="background-color: white;">
-    <div class="card-body" >
+<div class="card" class="myDivToPrint"  style="background-color: white;">
+    <div class="card-body"  id="myDivToPrint">
         <div class="row">
+          <div class="col-sm-12">
+            <button class="btn btn-success" style="float: left;" data-html2canvas-ignore="true" (click)="SavePage()">Save Claim Form</button>
+
+            <div class="clearfix"></div>
+
+        </div>
             <div class="col-sm-12">
-                <button class="btn btn-success" style="float: right;" (click)="printPage()">Print Claim Form</button>
+                <button class="btn btn-success" style="float: right;"  data-html2canvas-ignore="true"(click)="printPage()">Print Claim Form</button>
 
                 <div class="clearfix"></div>
     
@@ -10,7 +16,7 @@
             <div class="clearfix"></div>
             <div class="clearfix"></div>
              <div class="col-sm-12">
-                <button class="btn btn-success"  [disabled]="editable=='COMPLETED'"  style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
+                <button class="btn btn-success"  [disabled]="editable=='COMPLETED'" data-html2canvas-ignore="true"  style="float: right; margin-top: 20px;" (click)="edit()">Edit Form</button>
 
                 
     

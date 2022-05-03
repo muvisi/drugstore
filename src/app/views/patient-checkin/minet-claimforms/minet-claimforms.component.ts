@@ -1,12 +1,17 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap';
+import { jsPDF } from "jspdf";
+import html2PDF from 'jspdf-html2canvas';
 import { ToastrService } from 'ngx-toastr';
 import { ClaimformService } from '../../../claimform.service';
 import { ServiceService } from '../../../service.service';
 import { SignatureService } from '../../../signature.service';
+// import * as html2canvas from "html2canvas";
+import html2canvas from 'html2canvas';
+import { post } from 'jquery';
 
 @Component({
   selector: 'app-minet-claimforms',
@@ -147,11 +152,13 @@ editable;
   scheme;
   maxDate;
   diagnoses;
+  endpoint;
   email;
   doctor;
   membernumber;
   description;
   visit;
+   files = [];
   signature1_src;
    signature1_show;
    signature2_show;
@@ -163,6 +170,7 @@ editable;
   constructor(private route: ActivatedRoute,public service:ServiceService,private formBuilder: FormBuilder,private signatureService:SignatureService,private datePipe: DatePipe,private toast: ToastrService,private claimformService: ClaimformService) { }
 
   ngOnInit() {
+  //  this.service.getendpoint()
     this.clientForm = this.formBuilder.group({
       surname: [''],
       lastname: [''],
@@ -182,6 +190,8 @@ editable;
     this.signatureService.connect();
     
     this.today1=new Date();
+    this.endpoint=this.service.getendpoint();
+    console.log('endpoint is',this.endpoint)
 
     this.signatureService.socket().subscribe((res)=>{
       console.log("images",res);
@@ -328,16 +338,94 @@ referralCheckboxChange(event,type){
   }
 }
  printPage() {
+
 console.log("Resp", this.patient)
+
 
 document.title=this.patient.insuranceVisit.visit_number.concat("-01")
 
 
   window.print();
  
+
+}
+  async SavePage(){
+//   let pg=document.getElementById('myDivToPrint')
+//   let title=document.title=this.patient.insuranceVisit.visit_number.concat("-01")
+// console.log("data",title)
+// var formData = new FormData();
+// let sam=html2PDF(pg, {
+//   jsPDF: {
+//     format: 'a4',
+//   },
+ 
+
+
+
+//   imageType: 'image/jpeg',
+//   output:document.title=this.patient.insuranceVisit.visit_number
+ 
+ 
+// }
+// )
+// let formdata=formData.append('file',sam)
+
+// console.log("this is data",formdata)
+//  SavePage() {
+
+  const pdfElement = document.getElementById('myDivToPrint') as /* What element is it? */ | null;
+  if( !pdfElement ) throw new Error( "Couldn't find 'pdf' element." );
+ let title=document.title=this.patient.insuranceVisit.visit_number.concat('.pdf')
+
+  const canvas = await html2canvas(pdfElement);
+
+  let docWidth = 208;
+  let docHeight = canvas.height * docWidth / canvas.width;
+  
+  const doc = new jsPDF( 'p', 'mm', 'a4' );
+  
+  doc.addImage(canvas, 'PNG', /*x:*/ 0, /*y:*/ 0, docWidth,docHeight);
+  
+  const pdfBlob = doc.output( 'blob' );
+  console.log('data',pdfBlob)
+  var file = new File([pdfBlob], title,{ type: pdfBlob.type });
+  console.log('data file',file)
+  var formData = new FormData();
+  var blob = new Blob([pdfBlob],{type: 'application/pdf' });
+  //  doc.save('minet.pdf')
+
+  formData.append("file", pdfBlob, title); 
+  var reader = new FileReader();
+  let vm=this;
+  reader.readAsDataURL(blob); 
+  reader.onloadend = function() {
+  var base64data = reader.result;                
+  console.log(base64data);
+  console.log("console",blob)
+  const uploadResponse =  vm.service.savefile({'file':base64data,filename:title}).subscribe((res:any)=>{
+    console.log(res)
+  })
+
+  
 }
 
 
+
+ 
+ 
+//   console.log("console",blob)
+//   const uploadResponse =  this.service.savefile(formData).subscribe((res:any)=>{
+//     console.log(res)
+//   })
+//   console.log( uploadResponse );
+// }
+// this.service.savefile(pdfBlob).subscribe((res: any)=>{
+//   console.log("HEALTHIX",res);
+// })
+
+  
+
+}
 
 
 
@@ -378,5 +466,17 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
    
     
   }
+  // genPDF=(evt)=>{
+
+  //   evt.preventDefault();
+  //  html2PDF(document.getElementById("pdfid")).then(canvas=>{
+  //     //  let img=canvas.toDataURL('img/png');
+  //      let doc=new jsPDF();
+  //     //  let image=doc.addImage(img,'JPEG',30,30);
+  //      let formdata=new FormData();
+  //      formdata.append('file');
+
+  //      axios.post(`http://127.0.0.1:8000/chauffeur/pdf_upload/`,formdata);
+  //  });
 }
 
