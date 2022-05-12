@@ -158,7 +158,8 @@ editable;
   membernumber;
   description;
   visit;
-   files = [];
+  claimform_data=[];
+   files = {};
   signature1_src;
    signature1_show;
    signature2_show;
@@ -350,32 +351,16 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
 
 }
   async SavePage(){
-//   let pg=document.getElementById('myDivToPrint')
-//   let title=document.title=this.patient.insuranceVisit.visit_number.concat("-01")
-// console.log("data",title)
-// var formData = new FormData();
-// let sam=html2PDF(pg, {
-//   jsPDF: {
-//     format: 'a4',
-//   },
- 
 
-
-
-//   imageType: 'image/jpeg',
-//   output:document.title=this.patient.insuranceVisit.visit_number
- 
- 
-// }
-// )
-// let formdata=formData.append('file',sam)
-
-// console.log("this is data",formdata)
-//  SavePage() {
 
   const pdfElement = document.getElementById('myDivToPrint') as /* What element is it? */ | null;
   if( !pdfElement ) throw new Error( "Couldn't find 'pdf' element." );
  let title=document.title=this.patient.insuranceVisit.visit_number.concat('.pdf')
+
+   let encounter_no=this.patient.insuranceVisit.visit_number;
+   let phone_number=this.patient.patient.phone
+
+//  }
 
   const canvas = await html2canvas(pdfElement);
 
@@ -400,9 +385,12 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
   reader.readAsDataURL(blob); 
   reader.onloadend = function() {
   var base64data = reader.result;                
-  console.log(base64data);
-  console.log("console",blob)
-  const uploadResponse =  vm.service.savefile({'file':base64data,filename:title}).subscribe((res:any)=>{
+  // console.log(base64data);
+  // console.log("console",encounter_data)
+  console
+  const uploadResponse =  vm.service.savefile({'file':base64data,filename:title,visit_number:encounter_no,phone:phone_number}).subscribe((res:any)=>{
+    vm.toast.success('Successfully saved the form','Saved')
+
     console.log(res)
   })
 
