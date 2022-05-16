@@ -181,16 +181,16 @@ clickRow(item){
  
   this.router.navigate(['/dashboard/cignainsurance/',item.id])
    }
-  //  if (this.selected.insurance_company=='	SANLAM INSURANCE COMPANY LTD') 
+  //  if (this.selected.insurance_company==' SANLAM INSURANCE COMPANY LTD') 
   //    {
  
   // this.router.navigate(['/dashboard/insurance-forms/',item.id])
   //  }
-//    if (this.selected.insurance_company=='SANLAM INSURANCE COMPANY LTD') 
-//    {
+   if (this.selected.insurance_company=='SANLAM INSURANCE COMPANY LTD') 
+   {
 
-// this.router.navigate(['/dashboard/insurance-forms/',item.id])
-//  }
+this.router.navigate(['/dashboard/insurance-forms/',item.id])
+ }
    if (this.selected.insurance_company=='AAR INSURANCE') 
      {
   
@@ -201,11 +201,11 @@ clickRow(item){
   
   // this.router.navigate(['/dashboard/sedgrick/',item.id])
   //  }
-//    if (this.selected.insurance_company=='THE CO-OPERATIVE BANK OF KENYA') 
-//    {
+   if (this.selected.insurance_company=='THE CO-OPERATIVE BANK OF KENYA') 
+   {
 
-// this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
-//  }
+this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
+ }
  if (this.selected.insurance_company=='UAP OLD MUTUAL INSURANCE') 
  {
 
@@ -236,11 +236,11 @@ this.router.navigate(['/dashboard/APA/',item.id])
 
 // this.router.navigate(['/dashboard/cicinsurance/',item.id])
 // }
-// if (this.selected.insurance_company=='CO-PERATIVE KENYA LTD') 
-//  {
+if (this.selected.insurance_company=='CO-PERATIVE KENYA LTD') 
+ {
 
-// this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
-// }
+this.router.navigate(['/dashboard/cooperative-claimform/',item.id])
+}
 if (this.selected.insurance_company=='FIRST ASSURANCE') 
  {
 
@@ -276,11 +276,11 @@ if (this.selected.insurance_company=='MINET KENYA INSURANCE BROKERS LTD')
 
 this.router.navigate(['/dashboard/minetinsurance/',item.id])
 }
-// if (this.selected.insurance_company=='MTN INSURANCE') 
-// {
+if (this.selected.insurance_company=='MTN INSURANCE') 
+{
 
-//   this.router.navigate(['/dashboard/mtninsurance/',item.id])
-//   }
+  this.router.navigate(['/dashboard/mtninsurance/',item.id])
+  }
 if (false) {
   this.toastr.warning('Payment not Insurance!')
   

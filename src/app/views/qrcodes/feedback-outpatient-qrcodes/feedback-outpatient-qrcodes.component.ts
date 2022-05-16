@@ -29,7 +29,7 @@ export class FeedbackOutpatientQrcodesComponent implements OnInit {
 
     let qrcode = new QrCodeWithLogo({
     
-      content: "https://bookings.aarhospital.com/#/feedback",
+      content: "http://134.209.199.123:5800/#/feedback",
       width: 380,
       nodeQrCodeOptions:{
         color:{

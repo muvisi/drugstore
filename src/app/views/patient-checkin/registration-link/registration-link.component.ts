@@ -127,7 +127,7 @@ export class RegistrationLinkComponent implements OnInit {
     "amount":this.mpesa_amount,
     "visit_number":""
   }
-    this.service.mpesapay({post_data}).subscribe((res)=>{
+    this.service.mpesapay({mobile:new_phone,amount:this.mpesa_amount}).subscribe((res)=>{
       this.loading=false
       if(res.msg=="success"){
         this.toast.success("Successfully sent");

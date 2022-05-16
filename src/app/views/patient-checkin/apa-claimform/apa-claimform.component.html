@@ -14,9 +14,9 @@
                             </div>
            
             <div class="row" >
-                <div class="row">
+                <div class="row" style="margin-left:35px ;" >
                     <div class="col-sm-12">
-                        <p style="white-space:nowrap; margin-top: 0px;">
+                        <p style="white-space:nowrap;">
                             <img src="./../../../assets/img/avatars/apaimage.png" alt="" width="950" height="200" >
                            
                              
@@ -275,7 +275,7 @@
                                     do hereby authorize 
                                     any doctor,hospital,clinic or medical provider,insurance company,institution or person who has any record or information about me  and/or
                                     family members to provide my insurer with complete information including copies of records with reference to my illness or accident, any
-                                    treatment, examination,advice, or hospitalization. I have also been advised by<br> APA INSURANCE LTD. and have understood the various 
+                                    treatment, examination,advice, or hospitalization. I have also been advised by APA INSURANCE LTD. and have understood the various 
                                     exclussions.Any photocopy of this authorisation shall be taken as the original copy.
                                     
                                 
@@ -331,7 +331,7 @@
                    
                      <div  class="col-sm-6" style="color: darkblue; font-size: 14px;">
                         <div style="background-color:white;" >
-                            <h6 style="color: darkblue">TO BE FILLED BY DOCTOR</h6>
+                            <h6 style="color: darkblue; font-size: 16px;"><b>TO BE FILLED BY DOCTOR</b></h6>
                         </div>
                     </div>
                     <div class="col-sm-12"  style="color: darkblue;" >
@@ -387,7 +387,7 @@
                     </div>
                     <div  class="col-sm-6" style="font-size: 14px;">
                         <div style="background-color:white; ">
-                            <h6 style="color: darkblue"><u>SICKNESS</u></h6>
+                            <h6 style="color: darkblue; font-size: 16px"><u><b>SICKNESS</b></u></h6>
                         </div>
                     </div>
                     <div class="col-sm-12"  style="color: darkblue;" >
@@ -436,14 +436,13 @@
                         </div>
                         <div class="clearfix"></div>
     
-                       <!-- <div class="row" style="margin-left: 30px; font-size: 8px;"> -->
                         <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-12">Does the patient require referral to a specialist? Yes/No.</div>
                            
                            
                         </div>
                         <div class="row"  style=" font-size: 14px;">
-                            <div class="col-sm-2">Name of cunsultant</div>
+                            <div class="col-sm-2">If Yes,Name of cunsultant</div>
                             <div class="col-sm-4">
                                 
                                 
@@ -482,7 +481,7 @@
                
                 <div  class="col-sm-6">
                     <div style="background-color:white; " >
-                        <h6 style="color: darkblue;"><u>ACCIDENTS</u></h6>
+                        <h6 style="color: darkblue; font-size: 16px"><u><b>ACCIDENTS</b></u></h6>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -512,7 +511,7 @@
                         <div class="clearfix"></div>
                         <div class="row" style="font-size: 14px;">
                             <div class="col-sm-2"> ii. Name of Injuries:</div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-10">
                                 
                                 
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 5px;">
@@ -532,21 +531,21 @@
                                     <strong>   {{form_data.doctors_fees}}</strong>
 
                                 </div> <hr>
-                            </div>
+                            </div>=
                             
-                            <div class="col-sm-2">Kshs:</div>
+                           <span style="margin-left: 30px;"> <div class="col-sm-2">Kshs:</div></span>
                             
                         </div>
                         <div class="clearfix"></div>
                         <div class="row"  style=" font-size: 14px;">
                             <div class="col-sm-2">Prescribed Drugs:</div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-4">
                           
                           
                                 <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
                                   <span *ngFor="let item of patient.insuranceVisit.services.pharmacy"> <strong> <span>{{item.name}} {{item.amount}} </span> </strong>       </span>
-                                </div> <hr> <hr>
-                            </div>
+                                </div> <hr> 
+                            </div>=
                             <!-- <div class="col-sm-4">
                                 
                                 
@@ -570,7 +569,7 @@
                                     <strong>   {{form_data.specialist_cost}}</strong>
 
                                 </div> <hr>
-                            </div>
+                            </div>=
                             <div class="col-sm-2"></div>
                             
                         </div>
@@ -584,7 +583,7 @@
                                     <strong>   {{form_data.total_claims}}</strong>
 
                                 </div> <hr>
-                            </div>
+                            </div>=
                             
                             <div class="col-sm-2"></div>
                             

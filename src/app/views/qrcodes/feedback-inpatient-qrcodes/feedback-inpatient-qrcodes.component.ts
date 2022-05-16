@@ -19,15 +19,14 @@ export class FeedbackInpatientQrcodesComponent implements OnInit {
    this.QRCODE_DATA=" "
    if(this.navCtrl.get('data') !=undefined){
      this.QRCODE_DATA=this.navCtrl.get('data').url
-   this.TYPE=this.navCtrl.get('data').type
- 
+   this.TYPE=this.navCtrl.get('data').type 
   
    }else{
      // this.router.navigateByUrl("dashboard")
    }
    let qrcode = new QrCodeWithLogo({
    
-     content: "https://bookings.aarhospital.com/#/feedback-2",
+     content: "http://134.209.199.123:5800/#/feedback-2",
      width: 380,
      nodeQrCodeOptions:{
        color:{
