@@ -117,8 +117,8 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
           
       }
       this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:''}
-      this.speciality=res.specialist.split(",")
-      this.symptoms=res.symptoms.split(",")
+      this.speciality=res.specialist!= null ? res.specialist.split(",") : [];
+      this.symptoms=res.symptoms !=null ? res.symptoms.split(",") : [];
       this.department=res.department;
       this.payment_type={'payment':res.payment !=null ? res.payment : ''}
       this.payment_mode=res.payment;

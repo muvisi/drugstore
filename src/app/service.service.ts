@@ -103,6 +103,12 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/mpesa-payments/').pipe(
       map(this.extractData));
   }
+  
+  getInsuranceDoctors() {
+    return this.http.get(endpoint + 'api/get-insurance-visit-doctor/').pipe(
+      map(this.extractData));
+  }
+
   getUtilizePayments() {
     return this.http.get(endpoint + 'api/utilized-payments/').pipe(
       map(this.extractData));
@@ -224,6 +230,10 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/insurance_details/').pipe(
       map(this.extractData));
   }
+  getTodaysInsuranceDetails(): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details-todays/').pipe(
+      map(this.extractData));
+  }
   getInsurance(id): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_details/'+id+'/').pipe(
       map(this.extractData));
@@ -241,7 +251,11 @@ export class ServiceService {
       map(this.extractData));
   }
   getInsuranceVisitSearch(s): Observable<any> {
-    return this.http.get(endpoint + 'api/insurance_details/?search='+s).pipe(
+    return this.http.get(endpoint + 'api/insurance_details/'+s).pipe(
+      map(this.extractData));
+  }
+  getTodayInsuranceVisitSearch(s): Observable<any> {
+    return this.http.get(endpoint + 'api/insurance_details-todays/'+s).pipe(
       map(this.extractData));
   }
   getRequestEncounter(no): Observable<any> {
@@ -1259,6 +1273,9 @@ searchScheme(payer, searchTerm): Observable<any> {
 list():Observable<any>  {
   return this.http.get(endpoint+'api/bookings/');
 }
+registrations():Observable<any>  {
+  return this.http.get(endpoint+'api/registrations/');
+}
 transit():Observable<any>  {
   return this.http.get(endpoint+'api/transit/');
 }
@@ -1287,6 +1304,11 @@ searchbooking(phone): Observable<any> {
   return this.http.get(endpoint + 'api/searchbooking/?search='+ phone).pipe(
     map(this.extractData));
 }
+searchregistrations(phone): Observable<any> {
+  return this.http.get(endpoint + 'api/searchregistrations/?search='+ phone).pipe(
+    map(this.extractData));
+}
+
 searchpatient(phone): Observable<any> {
   return this.http.get(endpoint + 'api/searchpatient/?search='+ phone).pipe(
     map(this.extractData));
