@@ -27,7 +27,8 @@ export class DefaultLayoutComponent implements OnDestroy {
   QRCODE_DATA;
   INPATIENT_QRCODE="https://bookings.aarhospital.com/#/feedback-2";
   OUTPATIENT_QRCODE="https://bookings.aarhospital.com/#/feedback";
-  REGISTER_QRCODE="https://bookings.aarhospital.com/#/register/patient"
+  REGISTER_QRCODE="https://bookings.aarhospital.com/#/register/patient";
+  WHATAPP_QRCODE="https://wa.me/14155238886/?text=join nervous-fast";
   constructor(public navCtrl: NgxNavigationWithDataComponent,private router: Router,public service:ServiceService,public toastr: ToastrService,@Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
@@ -96,5 +97,9 @@ export class DefaultLayoutComponent implements OnDestroy {
   downloadRegister(){
     this.router.navigateByUrl('dashboard')
       this.navCtrl.navigate('dashboard/register-qrcode-download',{"data":{url:this.REGISTER_QRCODE,type:"Register"}})
+  }
+  downloadWhatapp(){
+    this.router.navigateByUrl('dashboard')
+    this.navCtrl.navigate('dashboard/whatapp-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Whatapp"}})
   }
 }

@@ -74,6 +74,7 @@ import { MpesaPaymentReportComponent } from '../payments/mpesa-payment-report/mp
 import { MpesaPaymentsComponent } from '../payments/mpesa-payments/mpesa-payments.component';
 import { MaternityListComponent } from '../patient-checkin/maternity-list/maternity-list.component';
 import { MaternityDetailsComponent } from '../patient-checkin/maternity-details/maternity-details.component';
+import { WhatappComponent } from '../qrcodes/whatapp/whatapp.component';
 const routes: Routes = [
   {
     path: '',
@@ -95,6 +96,10 @@ const routes: Routes = [
   {
     path: 'register-qrcode-download',
     component: QrcodeDownloadComponent,
+  },
+  {
+    path: 'whatapp-qrcode-download',
+    component: WhatappComponent,
   },
   {
     path: 'feedback-outpatient-qrcode-download',
