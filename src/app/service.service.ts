@@ -13,8 +13,8 @@ const httpOptions_payments = {
 };
 
 
-// export const endpoint='http://localhost:8000/';
-export const endpoint='http://134.209.199.123:7500/';
+export const endpoint='http://localhost:8000/';
+// export const endpoint='http://134.209.199.123:7500/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
