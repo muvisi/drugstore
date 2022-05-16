@@ -379,8 +379,8 @@ export class ServiceService {
       map(this.extractData));
   }
   mpesapay(data): Observable<any> {
-    console.log(httpOptions_payments)
-    return this.http.post(payment_url + 'pay/', data,httpOptions_payments).pipe(
+    // console.log(httpOptions_payments)
+    return this.http.post(payment_url + 'pay/', data).pipe(
       map(this.extractData));
 
   }
