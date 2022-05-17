@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../../service.service';
@@ -12,6 +12,8 @@ export class RegistrationLinkComponent implements OnInit {
   patientMobileForm: FormGroup;
   mpesa_amount;
   loading;
+
+  @ViewChild('stk', { static: false }) private stk;
   constructor(private formBuilder: FormBuilder,private service:ServiceService,private toast: ToastrService) {
   
    }
@@ -23,8 +25,13 @@ export class RegistrationLinkComponent implements OnInit {
   }
 
   submitPhoneMaternity(){
-    this.loading=true;
     var data=this.patientMobileForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
     data=Object.assign(data,{type:'maternity'});
     this.service.getRegistrationLink(data).subscribe((res)=>{
       this.loading=false
@@ -39,9 +46,22 @@ export class RegistrationLinkComponent implements OnInit {
     })
 
   }
-  submitPhoneRegister(){
-    this.loading=true;
+  showStk(){
     var data=this.patientMobileForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.stk.show()
+  }
+  submitPhoneRegister(){
+    var data=this.patientMobileForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
     data=Object.assign(data,{type:'register'});
     this.service.getRegistrationLink(data).subscribe((res)=>{
       this.loading=false
@@ -57,8 +77,13 @@ export class RegistrationLinkComponent implements OnInit {
 
   }
   submitPhoneVacinnation(){
-    this.loading=true;
     var data=this.patientMobileForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
     data=Object.assign(data,{type:'vaccination'});
     this.service.getRegistrationLink(data).subscribe((res)=>{
       this.loading=false
@@ -74,8 +99,13 @@ export class RegistrationLinkComponent implements OnInit {
 
   }
   submitPhoneTesting(){
-    this.loading=true;
     var data=this.patientMobileForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
     data=Object.assign(data,{type:'testing'});
     this.service.getRegistrationLink(data).subscribe((res)=>{
       this.loading=false
@@ -91,8 +121,14 @@ export class RegistrationLinkComponent implements OnInit {
 
   }
   submitPhoneFeedBack(){
-    this.loading=true;
     var data=this.patientMobileForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+  
+
     this.service.getFeedbackLink(data).subscribe((res)=>{
       this.toast.success("Successful")
       this.loading=false
@@ -125,12 +161,14 @@ export class RegistrationLinkComponent implements OnInit {
   let post_data={
     "mobile":new_phone,
     "amount":this.mpesa_amount,
-    "visit_number":""
+    "visit_number":new_phone
   }
-    this.service.mpesapay({mobile:new_phone,amount:this.mpesa_amount}).subscribe((res)=>{
+  this.loading=true;
+    this.service.mpesapay(post_data).subscribe((res)=>{
       this.loading=false
       if(res.msg=="success"){
         this.toast.success("Successfully sent");
+        this.stk.hide();
       }else{
         this.toast.warning(res.msg);
       }

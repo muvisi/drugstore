@@ -32,32 +32,32 @@
 
                             <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
                             
-                                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white;" class="btn btn-success"  (click)= "submitPhoneMaternity()">Maternity</button>
+                                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneMaternity()">Maternity</button>
                             
                             </div>
                             <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex" >
                             
-                                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white;" class="btn btn-success"  (click)= "submitPhoneRegister()">Outpatient/Inpatient Register</button>
+                                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneRegister()">Outpatient/Inpatient Register</button>
                         
                         </div>
                         <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
                             
-                            <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white;" class="btn btn-success"  (click)= "submitPhoneVacinnation()">Covid Vaccination</button>
+                            <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneVacinnation()">Covid Vaccination</button>
                     
                     </div>
                     <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
                             
-                        <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white;" class="btn btn-success"  (click)= "submitPhoneTesting()">Covid Testing</button>
+                        <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneTesting()">Covid Testing</button>
                 
                 </div>
                 <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
                             
-                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white;" class="btn btn-success"  (click)= "submitPhoneFeedBack()">Feedback</button>
+                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneFeedBack()">Feedback</button>
             
             </div>
             <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
                             
-                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white;" class="btn btn-success"  (click)= "staticModal.show()">STK Payment</button>
+                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "showStk()">STK Payment</button>
         
         </div>
                             </div>
@@ -75,7 +75,7 @@
 
 
 
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+<div class="modal fade" bsModal #stk="bs-modal" [config]="{backdrop: 'static'}"
 tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-dialog modal-md">
 <div class="modal-content">
@@ -83,7 +83,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
    <h5>
    <span>Enter Amount</span>
    </h5>
-    <button type="button" class="close" (click)="staticModal.hide()" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" (click)="stk.hide()" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
