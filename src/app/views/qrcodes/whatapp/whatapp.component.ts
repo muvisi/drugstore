@@ -26,33 +26,66 @@ export class WhatappComponent implements OnInit {
    }
    let qrcode = new QrCodeWithLogo({
    
-     content: "https://wa.me/14155238886/?text=join nervous-fast",
-     width: 380,
-     nodeQrCodeOptions:{
-       color:{
-         dark:"#CD0002",
-         light:"#FFFFFF"
-       }
-     },
-     image: document.getElementById("image") as HTMLImageElement,
-     logo: {
-       src: "./assets/img/avatars/cropped-logo-1-1.png"
-     }
-   });
-   qrcode.toCanvas().then(() => {
-     qrcode.toImage().then(() => {
-       setTimeout(() => {
-         // qrcode.downloadImage("hello world");
-       }, 2000);
-     });
-   });
- }
- printPage(){
-   // if(this.navCtrl.get('data') !=undefined){
-     window.print();
-  
-   // }
- }
- 
+    content: "https://wa.me/14155238886/?text=join nervous-fast",    width: 380,
+    nodeQrCodeOptions:{
+      color:{
+          dark:"#4dbd74",
+       //  dark:"#CD0002",#4dbd74
+       //  light:"#FFFFFF"
+       light:"#FFFFFF"
+      }
+    },
+    image: document.getElementById("image") as HTMLImageElement,
+   //  logo: {
+   //    src: "./assets/img/avatars/images.png"
+   //  }
+  });
+  qrcode.toCanvas().then(() => {
+    qrcode.toImage().then(() => {
+      setTimeout(() => {
+        // qrcode.downloadImage("hello world");
+      }, 2000);
+    });
+  });
 }
+printPage(){
+  // if(this.navCtrl.get('data') !=undefined){
+    window.print();
+ 
+  // }
+}
+
+}
+
+//    let qrcode = new QrCodeWithLogo({
+   
+//      content: "https://wa.me/14155238886/?text=join nervous-fast",
+//      width: 380,
+//      nodeQrCodeOptions:{
+//        color:{
+//          dark:"#CD0002",
+//          light:"#FFFFFF"
+//        }
+//      },
+//      image: document.getElementById("image") as HTMLImageElement,
+//      logo: {
+//        src: "./assets/img/avatars/cropped-logo-1-1.png"
+//      }
+//    });
+//    qrcode.toCanvas().then(() => {
+//      qrcode.toImage().then(() => {
+//        setTimeout(() => {
+//          // qrcode.downloadImage("hello world");
+//        }, 2000);
+//      });
+//    });
+//  }
+//  printPage(){
+//    // if(this.navCtrl.get('data') !=undefined){
+//      window.print();
+  
+//    // }
+//  }
+ 
+// }
  

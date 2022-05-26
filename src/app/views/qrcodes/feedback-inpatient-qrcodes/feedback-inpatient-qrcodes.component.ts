@@ -30,14 +30,16 @@ export class FeedbackInpatientQrcodesComponent implements OnInit {
      width: 380,
      nodeQrCodeOptions:{
        color:{
-         dark:"#CD0002",
-         light:"#FFFFFF"
+           dark:"#4dbd74",
+        //  dark:"#CD0002",#4dbd74
+        //  light:"#FFFFFF"
+        light:"#FFFFFF"
        }
      },
      image: document.getElementById("image") as HTMLImageElement,
-     logo: {
-       src: "./assets/img/avatars/cropped-logo-1-1.png"
-     }
+    //  logo: {
+    //    src: "./assets/img/avatars/images.png"
+    //  }
    });
    qrcode.toCanvas().then(() => {
      qrcode.toImage().then(() => {

@@ -54,11 +54,14 @@ import { TokenInterceptor } from './interceptor';
 import { SignatureService } from './signature.service';
 // import { NgxPrintElementModule } from 'ngx-print-element';
 // import { FeedbacksComponent } from './feedbacks/feedbacks.component';
-
+// Import angular-fusioncharts
+import { FusionChartsModule } from 'angular-fusioncharts';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
 import { CookieService } from 'ngx-cookie-service';
-
+import { MaternityfeedbackComponent } from './views/maternityfeedback/maternityfeedback.component';
+// import { MaternityQrcodeComponent } from './views/maternity-qrcode/maternity-qrcode.component';
+// import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -81,6 +84,7 @@ export function tokenGetter() {
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
+    // NgChartsModule ,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -97,6 +101,9 @@ export function tokenGetter() {
     // NgxPrintElementModule,
     MatInputModule,
     NgxMaterialTimepickerModule,
+        // Specify FusionChartsModule as import
+        FusionChartsModule,
+        ChartsModule,
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.rectangleBounce,
       backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
@@ -114,6 +121,8 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+    MaternityfeedbackComponent,
+    // MaternityQrcodeComponent,
 
   ],
   providers: [{

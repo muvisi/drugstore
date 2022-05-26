@@ -102,4 +102,8 @@ export class DefaultLayoutComponent implements OnDestroy {
     this.router.navigateByUrl('dashboard')
     this.navCtrl.navigate('dashboard/whatapp-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Whatapp"}})
   }
+  downloadMaternity(){
+    this.router.navigateByUrl('dashboard')
+    this.navCtrl.navigate('dashboard/maternity-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Maternity"}})
+}
 }

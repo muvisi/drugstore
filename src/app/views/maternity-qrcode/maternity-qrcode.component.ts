@@ -1,13 +1,14 @@
+// import { Component, OnInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import QrCodeWithLogo from "qrcode-with-logos";
 @Component({
-  selector: 'app-qrcode-download',
-  templateUrl: './qrcode-download.component.html',
-  styleUrls: ['./qrcode-download.component.scss']
+  selector: 'app-maternity-qrcode',
+  templateUrl: './maternity-qrcode.component.html',
+  styleUrls: ['./maternity-qrcode.component.scss']
 })
-export class QrcodeDownloadComponent implements OnInit {
+export class MaternityQrcodeComponent implements OnInit {
   QRCODE_DATA;
   width;
   TYPE;
@@ -26,9 +27,11 @@ export class QrcodeDownloadComponent implements OnInit {
       // this.router.navigateByUrl("dashboard")
     }
 
+
     let qrcode = new QrCodeWithLogo({
    
-      content: "https://bookings.aarhospital.com/#/register/patient",      width: 380,
+      content: "https://bookings.aarhospital.com/#/maternity",
+      width: 380,
       nodeQrCodeOptions:{
         color:{
             dark:"#4dbd74",
@@ -59,36 +62,3 @@ export class QrcodeDownloadComponent implements OnInit {
   
  }
   
-
-//     let qrcode = new QrCodeWithLogo({
-    
-//       content: "https://bookings.aarhospital.com/#/register/patient",
-//       width: 380,
-//       nodeQrCodeOptions:{
-//         color:{
-//           dark:"#CD0002",
-//           light:"#FFFFFF"
-//         }
-//       },
-//       image: document.getElementById("image") as HTMLImageElement,
-//       logo: {
-//         src: "./assets/img/avatars/cropped-logo-1-1.png"
-//       }
-//     });
-//     qrcode.toCanvas().then(() => {
-//       qrcode.toImage().then(() => {
-//         setTimeout(() => {
-//           // qrcode.downloadImage("hello world");
-//         }, 2000);
-//       });
-//     });
-//   }
-//   printPage(){
-//     // if(this.navCtrl.get('data') !=undefined){
-//       window.print();
-   
-//     // }
-
-//   }
-  
-// }

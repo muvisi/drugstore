@@ -6,6 +6,119 @@
       <div class="card-body">
 
         <mat-tab-group>
+          <mat-tab label="Graphical All">
+            <!-- <h5 style="margin-top: 10px;">
+              <span style="color:blue"> Total Bookings vs Feedbacks
+              </span>
+            </h5>
+            <fusioncharts
+            width="900"
+            height="450"
+            type="Column2D"
+            dataFormat="JSON"
+            [dataSource]="bookingvspatient"
+        ></fusioncharts> -->
+            
+            <h5 style="margin-top: 10px;">
+              <span style="color:blue"> Average Feedback Rating per Department
+              </span>
+            </h5>
+            <fusioncharts
+            width="900"
+            height="450"
+            type="Column2D"
+            dataFormat="JSON"
+            [dataSource]="averagegraphdata"
+        ></fusioncharts>
+        
+            <!-- <h1>
+              {{title}}
+            </h1> -->
+            <h5 style="margin-top: 10px;">
+              <span style="color:blue"> {{title}}
+              </span>
+            </h5>
+            <fusioncharts
+                width="1100"
+                height="400"
+                type="Column2D"
+                dataFormat="JSON"
+                [dataSource]="dataSource"
+            ></fusioncharts> 
+            
+          
+           </mat-tab> 
+          <mat-tab label="Graphical Outpatient">
+            <h1>
+              {{title2}}
+            </h1>
+            <fusioncharts
+            width="1000"
+            height="400"
+            type="Column2D"
+            dataFormat="JSON"
+            [dataSource]="dataSourceOutpatientpositive"
+        ></fusioncharts>
+        <h1>
+          {{title5}}
+        </h1>
+        <fusioncharts
+        width="1000"
+        height="400"
+        type="Column2D"
+        dataFormat="JSON"
+        [dataSource]="dataSourceOutpatientnegative"
+    ></fusioncharts>
+        <h1>
+          {{title1}}
+        </h1>
+            <fusioncharts
+                width="1000"
+                height="400"
+                type="Column2D"
+                dataFormat="JSON"
+                [dataSource]="dataSourceOutpatient"
+            ></fusioncharts> 
+            
+      
+           </mat-tab> 
+           <mat-tab label="Graphical Inpatient">
+            <h1>
+              {{title3}}
+            </h1> 
+            <fusioncharts
+            width="1000"
+            height="400"
+            type="Column2D"
+            dataFormat="JSON"
+            [dataSource]="dataSourceinpatient"
+        ></fusioncharts> 
+            <h1>
+              {{title4}}
+            </h1>
+            <fusioncharts
+
+            width="1000"
+            height="400"
+            type="Column2D"
+            dataFormat="JSON"
+            [dataSource]="dataSourceinpatientpositive"
+        ></fusioncharts>
+           
+        <h1>
+          {{title5}}
+        </h1>
+        <fusioncharts
+        width="1000"
+        height="400"
+        type="Column2D"
+        dataFormat="JSON"
+        [dataSource]="dataSourceinpatientnegative"
+    ></fusioncharts>
+            
+       
+           </mat-tab> 
+
           <mat-tab label="All"> 
             <div class="row">
               <div class="col-sm-12">

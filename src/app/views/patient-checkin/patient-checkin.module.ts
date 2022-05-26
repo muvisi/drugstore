@@ -113,6 +113,7 @@ import {
 import { MaternityListComponent } from './maternity-list/maternity-list.component';
 import { MaternityDetailsComponent } from './maternity-details/maternity-details.component';
 import { WhatappComponent } from '../qrcodes/whatapp/whatapp.component';
+import { MaternityQrcodeComponent } from '../maternity-qrcode/maternity-qrcode.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
@@ -167,6 +168,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     SedgrickComponent,
     OldmutualClaimformComponent,
     MTNClaimformComponent,
+    MaternityQrcodeComponent,
     
     MinetClaimformsComponent,
     

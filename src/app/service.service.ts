@@ -1043,6 +1043,54 @@ searchBills(data): Observable<any>{
     return this.http.get(endpoint + 'api/feedbacks/'+s).pipe(
       map(this.extractData));
     }
+    feedbacksgraph():Observable<any>{
+      return this.http.get(endpoint + 'api/feedbackgraphing').pipe(
+        map(this.extractData));
+
+    }
+    Bookingsvsfeedbackgraph():Observable<any>{
+      return this.http.get(endpoint + 'api/averagefeedbackpiechart').pipe(
+        map(this.extractData));
+
+    }
+    feedbacksgraphoutpatientpositive():Observable<any>{
+      return this.http.get(endpoint + 'api/feedbackratingoutpatientpositive').pipe(
+        map(this.extractData));
+
+    }
+    feedbacksgraphinpatientpositive():Observable<any>{
+      return this.http.get(endpoint + 'api/feedbackratinginpatientpositive').pipe(
+        map(this.extractData));
+
+    }
+    feedbacksgrapinpatient():Observable<any>{
+      return this.http.get(endpoint + 'api/feedbackratinginpatient').pipe(
+        map(this.extractData));
+
+    }
+    feedbacksgraphoutpatient():Observable<any>{
+      return this.http.get(endpoint + 'api/feedbackratingoutpatient').pipe(
+        map(this.extractData));
+
+    }
+    feedbacksgraphaverage():Observable<any>{
+      return this.http.get(endpoint + 'api/averagegraphfeedback').pipe(
+        map(this.extractData));
+        // feedbackratinginpatientnegative
+
+    }
+    feedbacksgraphoutpatientnegative():Observable<any>{
+      return this.http.get(endpoint + 'api/feedbackratingoutpatientnegative').pipe(
+        map(this.extractData));
+        // feedbackratinginpatientnegative
+
+    }
+    feedbacksgraphinpatientnegative():Observable<any>{
+      return this.http.get(endpoint + 'api/feedbackratinginpatientnegative').pipe(
+        map(this.extractData));
+        // feedbackratinginpatientnegative
+
+    }
   appointmentFee(data){
     return this.http.get(endpoint + 'appointments/fee/?appointment='+data).pipe(
       map(this.extractData
