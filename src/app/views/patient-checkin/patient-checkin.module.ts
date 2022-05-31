@@ -114,6 +114,14 @@ import { MaternityListComponent } from './maternity-list/maternity-list.componen
 import { MaternityDetailsComponent } from './maternity-details/maternity-details.component';
 import { WhatappComponent } from '../qrcodes/whatapp/whatapp.component';
 import { MaternityQrcodeComponent } from '../maternity-qrcode/maternity-qrcode.component';
+import { FootwalkComponent } from './footwalk/footwalk.component';
+import { FeedbackResponseGraphComponent } from './feedback-response-graph/feedback-response-graph.component';
+import { FeedbackAgeGraphComponent } from './feedback-age-graph/feedback-age-graph.component';
+import { FeedbackSetupComponent } from './feedback-setup/feedback-setup.component';
+
+
+
+
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
@@ -188,7 +196,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FeedbackOutpatientQrcodesComponent,
     MpesaPaymentsComponent,
     MpesaPaymentReportComponent,   
-    UtilizePaymentModal, MaternityListComponent, MaternityDetailsComponent
+    UtilizePaymentModal, MaternityListComponent, MaternityDetailsComponent, FootwalkComponent, FeedbackResponseGraphComponent, FeedbackAgeGraphComponent, FeedbackSetupComponent
 
     
 
@@ -237,6 +245,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     QRCodeModule,
     CommonModule,
     NgbModule,  
+     
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [DayService, 

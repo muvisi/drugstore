@@ -68,6 +68,7 @@ import { MaternityfeedbackComponent } from './views/maternityfeedback/maternityf
 
 
 
+
 export function tokenGetter() {
   return sessionStorage.getItem('Token');
 }
@@ -113,6 +114,7 @@ export function tokenGetter() {
       tertiaryColour: '#71FF33'
   }),
   QRCodeModule,
+ 
   ],
   declarations: [
     AppComponent,

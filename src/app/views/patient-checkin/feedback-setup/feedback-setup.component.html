@@ -1,0 +1,350 @@
+
+
+<div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <h5 class="card-header">Feedback Questions</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="search"  placeholder="category or subcategory" type="search">
+                      </mat-form-field>
+        
+              </div>
+              <div class="col-sm-2">
+                <button  (click)="filterQuestions()"  class="btn btn-success pull-left" style="margin-top: 5px;padding-left: 10px;padding-right: 10px;">search</button> 
+              </div>
+              <div class="col-sm-6">
+                <button  (click)="addQuestion.show()"  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;">Add FeedBack Question</button> 
+            </div>
+            </div>
+              <div class="col-sm-12">
+  
+                  <div class="mat-elevation-z8 table-responsive">
+                    <table mat-table [dataSource]="questions" matSort style="width: 100%;"> 
+                        <ng-container matColumnDef="sn">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                            <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="category">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+                      <td mat-cell *matCellDef="let element"> {{element.category_name}} </td>
+              </ng-container>
+                          <ng-container matColumnDef="subcategory">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Subcategory</th>
+                                  <td mat-cell *matCellDef="let element"> {{element.subcategory_name}} </td>
+                          </ng-container>
+                      <ng-container matColumnDef="question">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Question</th>
+                        <td mat-cell *matCellDef="let element"> {{element.question}}</td>
+                      </ng-container>
+                
+                      <ng-container matColumnDef="createdby">
+                        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Created by</th>
+                        <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.created_by}}</td>
+                      </ng-container>                      
+                      <ng-container matColumnDef="update">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Update</th>
+                        <td mat-cell *matCellDef="let element" > 
+                          <button class="btn btn-success btn-sm" (click)="update(element)" >edit</button>
+                          </td>
+                      </ng-container>
+                      <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                        <td mat-cell *matCellDef="let element" >                          
+                          <button class="btn btn-danger btn-sm" (click)="delete(element)">remove</button>
+                          </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                      <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
+                    </table>
+                
+                    <mat-paginator [pageSizeOptions]="[100,200,500]" showFirstLastButtons></mat-paginator>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="modal fade" bsModal #addQuestion="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+ <div class="modal-header">
+   <h6 id="dialog-static-name" class="modal-title pull-left">Add Feedback Question</h6>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="addQuestion.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+     <form [formGroup]="feedbackForm" >
+   <div class="row">
+     <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" >
+              <mat-option (click)="categoryModal.show()" [value]="asd">Add Category</mat-option>
+              <mat-option  *ngFor="let item of categories"[value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.category && submitted">Category  <strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+
+     <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Sub Category</mat-label>
+            <mat-select formControlName="subcategory" >
+              <mat-option (click)="subCategoryModal.show()" [value]="sd">Add SubCategory</mat-option>f
+              <mat-option  *ngFor="let item of subcategories"[value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.subcategory && submitted">Sub Category  <strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+
+     <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+            <mat-label>Question</mat-label>
+              <input matInput placeholder="Question" formControlName="question">
+            </mat-form-field>
+     </div>
+     <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+            <mat-label>Compliments</mat-label>
+            <mat-select formControlName="compliments" multiple >
+              <mat-option (click)="complimentModal.show()" [value]="">Add Compliment</mat-option>
+              <mat-option  *ngFor="let item of compliments"[value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.category && submitted">Compliment  <strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+     <div class="col-sm-12">
+        <mat-form-field appearance="outline" >
+            <mat-label>Issues</mat-label>
+            <mat-select formControlName="issues" multiple>
+              <mat-option (click)="issueModal.show()" [value]="">Add Issue</mat-option>
+              <mat-option  *ngFor="let item of issues"[value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.subcategory && submitted">Issue<strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+    <div class="col-sm-12">
+      <br>
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitQuestion()" > <span style="text-transform: capitalize;">Save FeedBack Question</span> </button>
+    </div>
+   </div>
+   </form>
+ </div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" bsModal #editQuestion="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+ <div class="modal-header">
+   <h6 id="dialog-static-name" class="modal-title pull-left">Add Feedback Question</h6>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="addQuestion.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+     <form [formGroup]="editfeedbackForm" >
+   <div class="row">
+     <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" >
+              <mat-option (click)="categoryModal.show()" [value]="asd">Add Category</mat-option>
+              <mat-option  *ngFor="let item of categories"[value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.category && submitted">Category  <strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+
+     <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+            <mat-label>Sub Category</mat-label>
+            <mat-select formControlName="subcategory" >
+              <mat-option (click)="subCategoryModal.show()" [value]="sd">Add SubCategory</mat-option>f
+              <mat-option  *ngFor="let item of subcategories"[value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.subcategory && submitted">Sub Category  <strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+
+     <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+            <mat-label>Question</mat-label>
+              <input matInput placeholder="Question" formControlName="question">
+            </mat-form-field>
+     </div>
+     <div class="col-sm-12">
+        <mat-form-field appearance="outline">
+            <mat-label>Compliments</mat-label>
+            <mat-select formControlName="compliments" multiple >
+              <mat-option (click)="complimentModal.show()" [value]="">Add Compliment</mat-option>
+              <mat-option  *ngFor="let item of compliments"[value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.category && submitted">Compliment  <strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+     <div class="col-sm-12">
+        <mat-form-field appearance="outline" >
+            <mat-label>Issues</mat-label>
+            <mat-select formControlName="issues" multiple>
+              <mat-option (click)="issueModal.show()" [value]="">Add Issue</mat-option>
+              <mat-option  *ngFor="let item of issues"[value]="item.name">{{item.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.subcategory && submitted">Issue<strong>required</strong></mat-error>
+          </mat-form-field>
+     </div>
+    <div class="col-sm-12">
+      <br>
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="updateQuestion()" > <span style="text-transform: capitalize;">Update FeedBack Question</span> </button>
+    </div>
+   </div>
+   </form>
+ </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" bsModal #categoryModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 id="dialog-static-name" class="modal-title pull-left">Add Category</h5>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="categoryModal.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+  <form [formGroup]="categoryForm" >
+   <div class="row">
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Category Name</mat-label>
+          <input matInput formControlName="name" placeholder="Category">
+          <mat-error *ngIf="c.name && submitted">Visit Type  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+     <div class="col-sm-12">
+      <mat-form-field appearance="outline">
+          <mat-label>Visit Type</mat-label>
+          <mat-select formControlName="visit_type" >
+            <mat-option value="OUTPATIENT">OUTPATIENT</mat-option>
+            <mat-option value="INPATIENT">INPATIENT</mat-option>
+          </mat-select>
+          <mat-error *ngIf="c.visit_type && submitted">Visit Type  <strong>required</strong></mat-error>
+        </mat-form-field>
+   </div>
+     <div class="col-sm-12">
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitCategory()"> <span style="text-transform: capitalize;">Save Category</span> </button>
+     </div>
+   </div>
+   </form>
+ </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" bsModal #subCategoryModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 id="dialog-static-name" class="modal-title pull-left">Add Sub Category</h5>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="subCategoryModal.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+   <div class="row">
+     <div class="col-sm-12">
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Sub Category Name</mat-label>
+          <input matInput [(ngModel)]="subcategory" placeholder="Sub Category">
+        </mat-form-field>
+     </div>
+     <div class="col-sm-12">
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitSubCategory()"> <span style="text-transform: capitalize;">Save Sub Category</span> </button>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="modal fade" bsModal #complimentModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 id="dialog-static-name" class="modal-title pull-left">Add Compliment</h5>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="complimentModal.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+   <div class="row">
+     <div class="col-sm-12">
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Compliment</mat-label>
+          <input matInput [(ngModel)]="compliment" placeholder="Compliment">
+        </mat-form-field>
+     </div>
+     <div class="col-sm-12">
+      <button class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitCompliment()" > <span style="text-transform: capitalize;">Save Compliment</span> </button>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" bsModal #issueModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 id="dialog-static-name" class="modal-title pull-left">Add Issue</h5>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="issueModal.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+   <div class="row">
+     <div class="col-sm-12">
+     
+      <mat-form-field appearance="outline">
+        <mat-label>Compliment</mat-label>
+          <input matInput [(ngModel)]="issue" placeholder="issue">
+        </mat-form-field>
+     </div>
+     <div class="col-sm-12">
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitIssue()"   > <span style="text-transform: capitalize;">Save Issue</span> </button>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+</div>
