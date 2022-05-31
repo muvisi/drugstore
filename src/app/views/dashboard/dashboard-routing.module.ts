@@ -75,6 +75,10 @@ import { MpesaPaymentsComponent } from '../payments/mpesa-payments/mpesa-payment
 import { MaternityListComponent } from '../patient-checkin/maternity-list/maternity-list.component';
 import { MaternityDetailsComponent } from '../patient-checkin/maternity-details/maternity-details.component';
 import { WhatappComponent } from '../qrcodes/whatapp/whatapp.component';
+import { FootwalkComponent } from '../patient-checkin/footwalk/footwalk.component';
+import { FeedbackResponseGraphComponent } from '../patient-checkin/feedback-response-graph/feedback-response-graph.component';
+import { FeedbackAgeGraphComponent } from '../patient-checkin/feedback-age-graph/feedback-age-graph.component';
+import { FeedbackSetupComponent } from '../patient-checkin/feedback-setup/feedback-setup.component';
 const routes: Routes = [
   {
     path: '',
@@ -385,6 +389,39 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Mpesa Payments'
+    }
+  },
+  {
+    path: 'foot-walk',
+    component: FootwalkComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Foot  Walk'
+    }
+  },
+
+  {
+    path: 'feedback-responses',
+    component: FeedbackResponseGraphComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Feedback  Response'
+    }
+  },
+  {
+    path: 'feedback-ages',
+    component: FeedbackAgeGraphComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Feedback  ages'
+    }
+  },
+  {
+    path: 'feedback-setup',
+    component: FeedbackSetupComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Feedback  setup'
     }
   },
   {

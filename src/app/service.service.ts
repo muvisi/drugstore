@@ -13,13 +13,13 @@ const httpOptions_payments = {
 };
 
 
-// export const endpoint='http://localhost:8000/';
+export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
-export const endpoint='https://bookings.aarhospital.com/';
+// export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
@@ -81,9 +81,37 @@ export class ServiceService {
       map(this.extractData));
   }
   
+  mpesaPayment(phone): Observable<any> {
+    return this.http.get('https://payments.healthixsolutions.com/payments/?phone_number='+phone).pipe(
+      map(this.extractData));
+  }
+
+  requestStkPush(data): Observable<any> {
+    return this.http.post("https://payments.healthixsolutions.com/payments/pay/",data).pipe(
+      map(this.extractData));
+  }
+
+  addMaternityMpesaPayment(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/maternity-mpesa-payment/',data).pipe(
+      map(this.extractData));
+  }
+  getMaternityMpesaPayment(id): Observable<any> {
+    return this.http.get(endpoint+ 'api/maternity-mpesa-payment/'+id+'/').pipe(
+      map(this.extractData));
+  }
  
- 
- 
+  getFootWalkData() {
+    return this.http.get(endpoint + 'api/foot-walk/').pipe(
+      map(this.extractData));
+  }
+  getFeedbcakResponses() {
+    return this.http.get(endpoint + 'api/feedback-responses/').pipe(
+      map(this.extractData));
+  }
+  getFeedbcakAges() {
+    return this.http.get(endpoint + 'api/feedback-ages/').pipe(
+      map(this.extractData));
+  }
   reset(data): Observable<{}> {
     return this.http.post<{}>(endpoint + 'users/reset/', data ).pipe(
       map(this.extractData
@@ -1413,4 +1441,59 @@ CalendarData(specialty): Observable<any> {
   return this.http.get(endpoint + 'api/calendar/',specialty).pipe(
     map(this.extractData));
 }
+
+
+
+submitFeedbackCategory(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/feedback-category/',data).pipe(
+    map(this.extractData));
+}
+submitFeedbackSubCategory(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/feedback-subcategory/',data).pipe(
+    map(this.extractData));
+}
+submitFeedbackQuestion(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/feedback-question/',data).pipe(
+    map(this.extractData));
+}
+updateFeedbackQuestion(id,data): Observable<any> {
+  return this.http.post(endpoint+ 'api/feedback-question/'+id+"/",data).pipe(
+    map(this.extractData));
+}
+
+submitFeedbackCompliment(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/feedback-compliment/',data).pipe(
+    map(this.extractData));
+}
+submitFeedbackIssue(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/feedback-issue/',data).pipe(
+    map(this.extractData));
+}
+
+getFeedbackCategory(): Observable<any> {
+  return this.http.get(endpoint+ 'api/feedback-category/').pipe(
+    map(this.extractData));
+}
+getFeedbackSubCategory(): Observable<any> {
+  return this.http.get(endpoint+ 'api/feedback-subcategory/').pipe(
+    map(this.extractData));
+}
+getFeedbackQuestion(): Observable<any> {
+  return this.http.get(endpoint+ 'api/feedback-question/').pipe(
+    map(this.extractData));
+}
+filterFeedbackQuestion(query): Observable<any> {
+  return this.http.get(endpoint+ 'api/feedback-question/?search='+query).pipe(
+    map(this.extractData));
+}
+
+getFeedbackCompliments(): Observable<any> {
+  return this.http.get(endpoint+ 'api/feedback-compliment/').pipe(
+    map(this.extractData));
+}
+getFeedbackIssues(): Observable<any> {
+  return this.http.get(endpoint+ 'api/feedback-issue/').pipe(
+    map(this.extractData));
+}
+
 }

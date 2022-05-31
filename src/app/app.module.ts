@@ -65,6 +65,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 
 
+
 export function tokenGetter() {
   return sessionStorage.getItem('Token');
 }
@@ -106,6 +107,7 @@ export function tokenGetter() {
       tertiaryColour: '#71FF33'
   }),
   QRCodeModule,
+ 
   ],
   declarations: [
     AppComponent,

@@ -107,13 +107,29 @@ export const navItems: NavData[] = [
     url: '/dashboard/payments',
     icon: 'fas fa-credit-card',
   },
+
+  {
+    name: 'Feedback Setup',
+    url: '/dashboard/feedback-setup',
   
-  // {
-  //   name: 'Time Slot Setup',
-  //   url: '/dashboard/timeslot',
-  //   icon: 'fas fa-address-book',
+  },
   
-  // },
+  {
+    name: 'Foot Walk',
+    url: '/dashboard/foot-walk',
+  
+  },
+
+  {
+    name: 'Feedback Responses',
+    url: '/dashboard/feedback-responses',
+  
+  },
+  {
+    name: 'Feedback Ages',
+    url: '/dashboard/feedback-ages',
+  
+  },
   // {
   //   name: 'Payments',
   //   url: '/dashboard/payments',

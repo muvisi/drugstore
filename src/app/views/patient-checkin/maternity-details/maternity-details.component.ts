@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../../service.service';
 import dateFormat, { masks } from "dateformat";
+import { MatTableDataSource } from '@angular/material/table';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
@@ -45,7 +46,7 @@ export class MaternityDetailsComponent implements OnInit {
   insurance_company_suggestions=[];
   show_insurance;
   loading: boolean;
-
+  Columns: string[] = ['sn','date','phone','name','transaction_code','amount']
 
   formatter = (result: string) => result.toUpperCase();
 search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
@@ -55,6 +56,15 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     map(term => term === '' ? []
       : this.insurance_company_suggestions.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
   )
+  transaction_code: any;
+  phone: any;
+  mpesa_paid: boolean;
+  payment_amount: any;
+  show_mpesa_payments: boolean;
+  dataSource: any;
+  payer_name: any;
+  transaction_date: any;
+  payer_phone: any;
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
 
   ngOnInit() {
@@ -188,6 +198,8 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
         }   
     
     }});
+
+    this.getMaternityMpesaPayment();
   }
 
   updateClientData(){
@@ -284,4 +296,114 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       this.toast.error("Update Failed")
     })
   }
+
+
+  onclickMakePayement(){
+    var phone_number='';
+    var phone_txt=this.phone;
+    if(phone_txt.slice(0,2)=="07"&& phone_txt.length==10){
+      phone_number="254"+phone_txt.slice(1,10)
+    }else{
+      phone_number=this.phone;
+    }
+
+    let data=
+      {
+      "mobile":phone_number,
+      "amount":this.payment_amount,
+      "visit_number":102107194002
+      }
+    
+      this.loading=true;
+      this.service.requestStkPush(data).subscribe((res)=>{
+        this.check_paid(phone_number,data.amount,0);
+      
+    },(err)=>{
+      this.loading=false;
+      this.toast.error("Payment Failed");
+    });  
+        
+      
+
+}
+
+sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async check_paid(phone,amount,count){
+  this.sleep(2000);
+  if(count>=100){
+    this.loading=false;
+    this.toast.error("Payment Failed"); 
+    this.mpesa_paid=false;;
+      return;
+  }
+ this.service.mpesaPayment(phone).subscribe((res)=>{
+    
+    for(var i=0;i<res.length;i++){
+      if(amount==res[i].Amount){
+        this.loading=false;
+        this.mpesa_paid=true;
+        this.transaction_code=res[i].MpesaReceiptNumber
+        this.payment_amount=res[i].Amount
+        this.payer_name=res[i].Name
+        this.payer_phone=phone;
+        this.transaction_date=res[i].TransactionDate
+
+        count=11;
+       return;
+      }
+    }
+
+
+     
+    this.check_paid(phone,amount,count+1);
+    
+    },(err)=>{
+      this.mpesa_paid=false;
+      this.loading=false;
+      console.log(err);
+      this.toast.error(err.error.message);       
+    });
+    
+}
+  savePayment(){
+    let data={
+      id:this.route.snapshot.params.id,
+      reference:this.transaction_code,
+      amount:this.payment_amount,
+      name:this.payer_name,
+      phone:this.payer_phone,
+      transaction_date:this.transaction_date
+    }
+    this.service.addMaternityMpesaPayment(data).subscribe(res=>{
+      this.toast.success("Successfully added payment");
+      this.mpesa_paid=false;
+      this.transaction_code="";
+      this.payment_amount="";
+      this.payer_name="";
+      this.payer_phone="";
+      this.transaction_date="";
+      this.getMaternityMpesaPayment();
+    },err=>{
+      this.toast.success("Failed to added payment");
+    })
+    
+  }
+  getMaternityMpesaPayment(){
+    this.service.getMaternityMpesaPayment(this.route.snapshot.params.id).subscribe(res=>{
+      if(res.length>0){
+        this.show_mpesa_payments=true;
+        this.dataSource=new MatTableDataSource <[]>(res);
+
+
+      }else{
+        this.show_mpesa_payments=false; 
+      }
+    },err=>{
+
+    })
+  }
+
 }
