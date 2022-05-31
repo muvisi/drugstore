@@ -20,6 +20,7 @@ export class MaternityDetailsComponent implements OnInit {
   other_info;
   payment_type;
   payment_info;
+  insurances;
   department;
   speciality=[];
   symptoms=[];
@@ -39,7 +40,8 @@ export class MaternityDetailsComponent implements OnInit {
     email:'',
     first_name:'',
     last_name:'',
-    other_names:''
+    other_names:'',
+    dob:'',
 
   };
   insurance_company_suggestions=[];

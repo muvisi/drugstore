@@ -43,6 +43,7 @@ export class FeedbacksComponent implements OnInit {
 
   positive_dataSource;
   negative_dataSource;
+  maternity_dataSource;
   
   average_dataSource;
   all_dataSource
@@ -61,20 +62,18 @@ export class FeedbacksComponent implements OnInit {
   allpatients;
   withfeedback;
   withoutfeedback;
-  
-
-
-
-
+  period_maternity
   period_outpatient;
   date_outpatient;
   outpatient_dataSource;
-
-
-
+  surgery_dataSource;
+  date_martenity;
+  period_surgery;
+  date_surgery;
   period_inpatient;
   date_inpatient;
   inpatient_dataSource;
+  endpoint;
 
   loading;
   // idnumber;
@@ -118,6 +117,9 @@ export class FeedbacksComponent implements OnInit {
     this.getFeedbacksGraphInpatient();
     this.getFeedbacksgraphaverage();
     this.geBookingvsPatientsfeedback();
+    this.getMaternityfeedback();
+    this.getSurgeryfeedback();
+    this.getEdpoint();
     // dataFormat: 'json',
 
     this.bookingvspatient={
@@ -160,6 +162,32 @@ this.date_positive="";
       () => console.log('There is an error')
     );
   }
+  getSurgeryfeedback(){
+    this.service.feedbacksurgery().subscribe(
+      datas => {
+        this.surgery_dataSource=datas
+          console.log("DATA",this.surgery_dataSource)
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+    }
+  getMaternityfeedback(){
+    this.service.feedbackmaternity().subscribe(
+      datas => {
+        this.maternity_dataSource=datas
+          console.log("DATA",this.maternity_dataSource)
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+    }
   getFeedbacksgraphaverage(){
     this.service.feedbacksgraphaverage().subscribe(
       datas => {
@@ -665,6 +693,18 @@ this.date_positive="";
 
   downloadInpatient(){
     window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_inpatient,"mediumDate")+"&visit_type=INPATIENT&period="+this.period_inpatient, "_blank");
+  }
+  downloadMaternity(){
+    console.log(this.date_martenity,this.period_maternity)
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_martenity,"mediumDate")+"&visit_type=MATERNITY&period="+this.period_maternity, "_blank");
+  }
+  downloadSurgery(){
+    console.log(this.date_surgery,this.period_surgery)
+    window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_surgery,"mediumDate")+"&visit_type=SURGERY&period="+this.period_surgery, "_blank");
+  }
+  getEdpoint(){
+    this.endpoint= this.service.getendpoint()
+  console.log("URL IS",this.endpoint)
   }
  
 }
