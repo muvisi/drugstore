@@ -14,6 +14,7 @@ export class FeedbackSetupComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   Columns: string[] = ['sn','category','subcategory','question','createdby','update','delete']
   loading: boolean;
+  submitted;
   category: any;
   subcategory: any;
   categories: any;

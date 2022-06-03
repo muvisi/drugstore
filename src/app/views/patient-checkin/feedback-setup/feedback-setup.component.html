@@ -90,7 +90,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category" >
-              <mat-option (click)="categoryModal.show()" [value]="asd">Add Category</mat-option>
+              <mat-option (click)="categoryModal.show()" value="">Add Category</mat-option>
               <mat-option  *ngFor="let item of categories"[value]="item.id">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.category && submitted">Category  <strong>required</strong></mat-error>
@@ -101,7 +101,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Sub Category</mat-label>
             <mat-select formControlName="subcategory" >
-              <mat-option (click)="subCategoryModal.show()" [value]="sd">Add SubCategory</mat-option>f
+              <mat-option (click)="subCategoryModal.show()" value="">Add SubCategory</mat-option>f
               <mat-option  *ngFor="let item of subcategories"[value]="item.id">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.subcategory && submitted">Sub Category  <strong>required</strong></mat-error>
@@ -118,7 +118,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Compliments</mat-label>
             <mat-select formControlName="compliments" multiple >
-              <mat-option (click)="complimentModal.show()" [value]="">Add Compliment</mat-option>
+              <mat-option (click)="complimentModal.show()" value="">Add Compliment</mat-option>
               <mat-option  *ngFor="let item of compliments"[value]="item.name">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.category && submitted">Compliment  <strong>required</strong></mat-error>
@@ -128,7 +128,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline" >
             <mat-label>Issues</mat-label>
             <mat-select formControlName="issues" multiple>
-              <mat-option (click)="issueModal.show()" [value]="">Add Issue</mat-option>
+              <mat-option (click)="issueModal.show()" value="">Add Issue</mat-option>
               <mat-option  *ngFor="let item of issues"[value]="item.name">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.subcategory && submitted">Issue<strong>required</strong></mat-error>
@@ -163,7 +163,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category" >
-              <mat-option (click)="categoryModal.show()" [value]="asd">Add Category</mat-option>
+              <mat-option (click)="categoryModal.show()" value="">Add Category</mat-option>
               <mat-option  *ngFor="let item of categories"[value]="item.id">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.category && submitted">Category  <strong>required</strong></mat-error>
@@ -174,7 +174,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Sub Category</mat-label>
             <mat-select formControlName="subcategory" >
-              <mat-option (click)="subCategoryModal.show()" [value]="sd">Add SubCategory</mat-option>f
+              <mat-option (click)="subCategoryModal.show()" value="">Add SubCategory</mat-option>f
               <mat-option  *ngFor="let item of subcategories"[value]="item.id">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.subcategory && submitted">Sub Category  <strong>required</strong></mat-error>
@@ -191,7 +191,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Compliments</mat-label>
             <mat-select formControlName="compliments" multiple >
-              <mat-option (click)="complimentModal.show()" [value]="">Add Compliment</mat-option>
+              <mat-option (click)="complimentModal.show()" value="">Add Compliment</mat-option>
               <mat-option  *ngFor="let item of compliments"[value]="item.name">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.category && submitted">Compliment  <strong>required</strong></mat-error>
@@ -201,7 +201,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline" >
             <mat-label>Issues</mat-label>
             <mat-select formControlName="issues" multiple>
-              <mat-option (click)="issueModal.show()" [value]="">Add Issue</mat-option>
+              <mat-option (click)="issueModal.show()" value="">Add Issue</mat-option>
               <mat-option  *ngFor="let item of issues"[value]="item.name">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.subcategory && submitted">Issue<strong>required</strong></mat-error>
