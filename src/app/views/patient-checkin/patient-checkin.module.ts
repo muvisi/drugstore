@@ -118,6 +118,7 @@ import { FootwalkComponent } from './footwalk/footwalk.component';
 import { FeedbackResponseGraphComponent } from './feedback-response-graph/feedback-response-graph.component';
 import { FeedbackAgeGraphComponent } from './feedback-age-graph/feedback-age-graph.component';
 import { FeedbackSetupComponent } from './feedback-setup/feedback-setup.component';
+import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
 
 
 
@@ -177,6 +178,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     OldmutualClaimformComponent,
     MTNClaimformComponent,
     MaternityQrcodeComponent,
+    FeedbackGraphsComponent,
     
     MinetClaimformsComponent,
     

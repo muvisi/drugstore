@@ -81,6 +81,7 @@ import { FootwalkComponent } from '../patient-checkin/footwalk/footwalk.componen
 import { FeedbackResponseGraphComponent } from '../patient-checkin/feedback-response-graph/feedback-response-graph.component';
 import { FeedbackAgeGraphComponent } from '../patient-checkin/feedback-age-graph/feedback-age-graph.component';
 import { FeedbackSetupComponent } from '../patient-checkin/feedback-setup/feedback-setup.component';
+import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
 const routes: Routes = [
   {
     path: '',
@@ -382,6 +383,16 @@ const routes: Routes = [
   {
     path: 'maternity',
     component:MaternityListComponent,
+    
+    
+  },
+  {
+    path: 'Feedback-graphs',
+    component:FeedbackGraphsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Feedback Graphs'
+    }
     
   },
   {

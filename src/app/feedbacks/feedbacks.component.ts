@@ -19,23 +19,22 @@ export class FeedbacksComponent implements OnInit {
   
   
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  dataSource: Object;
-  dataSourceOutpatient: Object;
-  dataSourceOutpatientpositive: Object;
-  dataSourceOutpatientnegative: Object;
-  dataSourceinpatientpositive: Object;
-  dataSourceinpatientnegative: Object;
-  dataSourceinpatient: Object;
-  averagegraphdata: Object;
+  // dataSource: Object;
+  dataSourceOutpatient: any={}
+  dataSourceOutpatientpositive: any={}
+  dataSourceOutpatientnegative: any={}
+  dataSourceinpatientpositive: any={}
+  dataSourceinpatientnegative: any={}
+  dataSourceinpatient: any={}
+  inpatientaveragegraphdata: any={}
+  outpatientaveragegraphdata: any={}
+  averagegraphdata: any={}
+  dataSource: any={}
+  SurgerydataSource: any={}
+  MatarnitydataSource: any={}
   bookingvspatient: Object;
   dataSources;
-  title='Total Feedbacks Count Per Department'
-  title1='Total Outpatient Per Department'
-  title2='Total Outpatient Positive Per Department'
-  title3='Total Inpatient  Per Department'
-  title4='Total Inpatient Positive Per Department'
-  title5='Total Outpatient Negative Per Department'
-  title6='Total Inpatient Negative Per Department'
+ 
 
 
 
@@ -82,21 +81,148 @@ export class FeedbacksComponent implements OnInit {
   PositiveColumns: string[] = ['sn','date','patient','service','rating','compliments','comments',"visit_type"]
   NegativeColumns: string[] = ['sn','date','patient','service','rating','issues','comments',"visit_type"]
   AverageColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
-  AllColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
+  AllColumns: string[] = ['sn','date','patient','service','phone','rating','comments',"visit_type"]
   constructor(public service:ServiceService,private toastr:ToastrService,private datePipe: DatePipe) { 
+    this.averagegraphdata= {
+      chart: {
+        caption: 'AAR HOSPITAL',
+        subCaption: 'All Feedback Averages',
+        xAxisName: 'Departments',
+        yAxisName: 'Average values',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.outpatientaveragegraphdata= {
+      chart: {
+        caption: 'AAR HOSPITAL',
+        subCaption: 'Outpatient Feedback Averages',
+        xAxisName: 'Departments',
+        yAxisName: 'Average values',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.inpatientaveragegraphdata= {
+      chart: {
+        caption: 'AAR HOSPITAL',
+        subCaption: 'Inpatient Feedback Averages',
+        xAxisName: 'Departments',
+        yAxisName: 'Average values',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.dataSource= {
+      chart: {
+        caption: 'AAR HOSPITAL',
+        subCaption: 'Total Respondents Per Department',
+        xAxisName: 'Departments',
+        yAxisName: 'Total Count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+   
+    this.MatarnitydataSource= {
+      chart: {
+        caption: 'AAR HOSPITAL',
+        subCaption: ' Maternity Average Feedback',
+        xAxisName: 'Departments',
+        yAxisName: 'Average',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.SurgerydataSource= {
+      chart: {
+        caption: 'AAR HOSPITAL',
+        subCaption: 'Surgery Average Feedback',
+        xAxisName: 'Departments',
+        yAxisName: 'Average',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
 
-  // this.dataSource = {
-  //   chart: {
-  //     caption: 'Countries With Most Oil Reserves [2017-18]',
-  //     subCaption: 'In MMbbl = One Million barrels',
-  //     xAxisName: 'Country',
-  //     yAxisName: 'Reserves (MMbbl)',
-  //     numberSuffix: 'K',
-  //     theme: 'fusion'
-  //   },
-    
-  // };
+    this.dataSourceOutpatientpositive= {
+      chart: {
+        caption: 'AAR HOSPITAL LTD',
+        subCaption: 'Outpatient Positive Repondents Feedbacks',
+        xAxisName: 'Departments',
+        yAxisName: 'Count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.dataSourceinpatientpositive= {
+      chart: {
+        caption: 'AAR HOSPITAL LTD',
+        subCaption: 'Inpatient Positive Repondents Feedbacks',
+        xAxisName: 'Departments',
+        yAxisName: 'Count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.dataSourceinpatientnegative= {
+      chart: {
+        caption: 'AAR HOSPITAL LTD',
+        subCaption: 'Inpatient Negative Repondents Feedbacks',
+        xAxisName: 'Departments',
+        yAxisName: 'Count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.dataSourceOutpatientnegative= {
+      chart: {
+        caption: 'AAR HOSPITAL LTD',
+        subCaption: 'Outpatient Negative Repondents Feedbacks',
+        xAxisName: 'Departments',
+        yAxisName: 'Count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.dataSourceinpatient= {
+      chart: {
+        caption: 'AAR HOSPITAL LTD',
+        subCaption: ' Inpatient Repondents Feedbacks',
+        xAxisName: 'Departments',
+        yAxisName: 'Count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+    this.dataSourceOutpatient= {
+      chart: {
+        caption: 'AAR HOSPITAL LTD',
+        subCaption: 'Outpatient Repondents Feedbacks',
+        xAxisName: 'Departments',
+        yAxisName: 'Count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
+
+
+
+
 }
+
 
  
  ngOnInit() {
@@ -108,18 +234,11 @@ export class FeedbacksComponent implements OnInit {
     this.getFeedbacksAll();
     this.getFeedbacksOutpatient();
     this.getFeedbacksInpatient();
-    this.getFeedbacksGraph();
-    this.getFeedbacksGraphOutpatient();
-    this.getFeedbacksGraphOutpatientPositive();
-    this.getFeedbacksGraphIpatientPositive();
-    this.getFeedbacksGraphOuatientNegative();
-    this.getFeedbacksGraphIpatientNegative();
-    this.getFeedbacksGraphInpatient();
-    this.getFeedbacksgraphaverage();
-    this.geBookingvsPatientsfeedback();
+  
     this.getMaternityfeedback();
     this.getSurgeryfeedback();
     this.getEdpoint();
+   
     // dataFormat: 'json',
 
     this.bookingvspatient={
@@ -188,130 +307,7 @@ this.date_positive="";
       () => console.log('There is an error')
     );
     }
-  getFeedbacksgraphaverage(){
-    this.service.feedbacksgraphaverage().subscribe(
-      datas => {
-        // console.log("DATA",datas)
-        this.averagegraphdata=datas
-          console.log("DATA",this.averagegraphdata)
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-  getFeedbacksGraphIpatientNegative(){
-    this.service.feedbacksgraphinpatientnegative().subscribe(
-      data => {
-        console.log(data)
-        this.dataSourceinpatientnegative=data
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-  getFeedbacksGraphOuatientNegative(){
-    this.service.feedbacksgraphoutpatientnegative().subscribe(
-      data => {
-        console.log(data)
-        this.dataSourceOutpatientnegative=data
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-  getFeedbacksGraphOutpatient(){
-  this.service.feedbacksgraphoutpatient().subscribe(
-    data => {
-      console.log(data)
-      this.dataSourceOutpatient=data
-      
-    },
-   
-    err => console.error(err),
-   
-    () => console.log('There is an error')
-  );
-  }
-  getFeedbacksGraphIpatientPositive(){
-    this.service.feedbacksgraphinpatientpositive().subscribe(
-      data => {
-        console.log(data)
-        this.dataSourceinpatientpositive=data
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-  getFeedbacksGraphOutpatientPositive(){
-    this.service.feedbacksgraphoutpatientpositive().subscribe(
-      data => {
-        console.log(data)
-        this.dataSourceOutpatientpositive=data
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-    geBookingvsPatientsfeedback(){
-      this.service.Bookingsvsfeedbackgraph().subscribe(
-        data => {
-          console.log('Bookings data',data)
-          this.allpatients=data.bookings;
-          this.withfeedback=data.withfeedback;
-          this.withoutfeedback=data.nofeedback;
-  //         allpatients;
-  // withfeedback;
-  // withoutfeedback;
-          
-        },
-       
-        err => console.error(err),
-       
-        () => console.log('There is an error')
-      );
-      }
-    // Bookingsvsfeedbackgraph()
-  getFeedbacksGraphInpatient(){
-    this.service.feedbacksgrapinpatient().subscribe(
-      data => {
-        console.log(data)
-        this.dataSourceinpatient=data
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-  getFeedbacksGraph() {
-    this.service.feedbacksgraph().subscribe(
-      data => {
-        console.log(data)
-        this.dataSource=data
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-  }
+
   downloadPositive(){
     window.open(this.service.getendpoint()+"api/feedbacks_download/?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period, "_blank");
   }

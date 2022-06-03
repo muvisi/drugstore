@@ -80,22 +80,7 @@ export const navItems: NavData[] = [
     icon: 'fa fa-line-chart',
   },
   
-  // {
-  //   name: 'Users',
-  //   url: '/dashboard/Users',
-  //   icon: 'fa fa-user',
-  // },
-  // {
-  //   name: 'Bookings Report',
-  //   url: '/dashboard/queuereports',
-  //   icon: 'icon-chart',
-  // },
 
-  // {
-  //   name: 'Vaccine Setup',
-  //   url: '/dashboard/vaccine-setup',
-  //   icon: 'fas fa-syringe',
-  // },
 
    {
     name: 'Feedbacks',
@@ -103,57 +88,17 @@ export const navItems: NavData[] = [
     icon: 'fas fa-comment',
   },
   {
+    name: 'Feedbacks Graphs',
+    url: '/dashboard/Feedback-graphs',
+    icon: 'fa fa-bar-chart',
+  },
+  {
     name: 'Mpesa Payments',
     url: '/dashboard/payments',
     icon: 'fas fa-credit-card',
   },
 
-  // {
-  //   name: 'Feedback Setup',
-  //   url: '/dashboard/feedback-setup',
   
-  // },
-  
-  // {
-  //   name: 'Foot Walk',
-  //   url: '/dashboard/foot-walk',
-  
-  // },
-
-  // {
-  //   name: 'Feedback Responses',
-  //   url: '/dashboard/feedback-responses',
-  
-  // },
-  // {
-  //   name: 'Feedback Ages',
-  //   url: '/dashboard/feedback-ages',
-  
-  // },
-  // {
-  //   name: 'Payments',
-  //   url: '/dashboard/payments',
-  //   icon: 'icon-wallet',
-  
-  // }
-
-  // {
-  //   name: 'Vaccine Setup',
-  //   url: '/dashboard/vaccine-setup',
-  //   icon: 'fas fa-syringe',
-  // },
-  // {
-  //   name: 'Time Slot Setup',
-  //   url: '/dashboard/timeslot',
-  //   icon: 'fas fa-address-book',
-  
-  // },
-  // {
-  //   name: 'Payments',
-  //   url: '/dashboard/payments',
-  //   icon: 'icon-wallet',
-  
-  // }
   
  
 ];

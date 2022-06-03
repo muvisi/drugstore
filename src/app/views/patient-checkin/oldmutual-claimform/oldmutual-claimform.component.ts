@@ -9,6 +9,9 @@ import { execPath } from 'process';
 import { ClaimformService } from '../../../claimform.service';
 import { ServiceService } from '../../../service.service';
 import { SignatureService } from '../../../signature.service';
+import { jsPDF } from "jspdf";
+import html2PDF from 'jspdf-html2canvas';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-oldmutual-claimform',
@@ -406,5 +409,58 @@ document.title=this.patient.insuranceVisit.visit_number.concat("-01")
     })
     
   }
+  async SavePage(){
+
+
+    const pdfElement = document.getElementById('myDivToPrint') as /* What element is it? */ | null;
+    if( !pdfElement ) throw new Error( "Couldn't find 'pdf' element." );
+   let title=document.title=this.patient.insuranceVisit.visit_number.concat('.pdf')
+  
+     let encounter_no=this.patient.insuranceVisit.visit_number;
+     let phone_number=this.patient.patient.phone
+  
+  //  }
+  
+    const canvas = await html2canvas(pdfElement);
+  
+    let docWidth = 208;
+    let docHeight = canvas.height * docWidth / canvas.width;
+    
+    const doc = new jsPDF( 'p', 'mm', 'a4' );
+    
+    doc.addImage(canvas, 'PNG', /*x:*/ 0, /*y:*/ 0, docWidth,docHeight);
+    
+    const pdfBlob = doc.output( 'blob' );
+    console.log('data',pdfBlob)
+    var file = new File([pdfBlob], title,{ type: pdfBlob.type });
+    console.log('data file',file)
+    var formData = new FormData();
+    var blob = new Blob([pdfBlob],{type: 'application/pdf' });
+    //  doc.save('minet.pdf')
+  
+    formData.append("file", pdfBlob, title); 
+    var reader = new FileReader();
+    let vm=this;
+    reader.readAsDataURL(blob); 
+    reader.onloadend = function() {
+    var base64data = reader.result;                
+    // console.log(base64data);
+    // console.log("console",encounter_data)
+    console
+    const uploadResponse =  vm.service.savefile({'file':base64data,filename:title,visit_number:encounter_no,phone:phone_number}).subscribe((res:any)=>{
+      vm.toast.success('Successfully saved the form','Saved')
+  
+      console.log(res)
+    })
+  
+    
+  }
+  
+  
+  
+  
+  
+  }
+  
 }
 
