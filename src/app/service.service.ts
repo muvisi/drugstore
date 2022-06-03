@@ -1113,7 +1113,31 @@ searchBills(data): Observable<any>{
     feedbacksgraphaverage():Observable<any>{
       return this.http.get(endpoint + 'api/averagegraphfeedback').pipe(
         map(this.extractData));
-        // feedbackratinginpatientnegative
+       
+
+    }
+    maternitygraphaverage():Observable<any>{
+      return this.http.get(endpoint + 'api/maternityaveragefeedbacks').pipe(
+        map(this.extractData));
+       
+
+    }
+    surgerygraphaverage():Observable<any>{
+      return this.http.get(endpoint + 'api/surgeryaveragefeedbacks').pipe(
+        map(this.extractData));
+       
+
+    }
+    outpatientgraphaverage():Observable<any>{
+      return this.http.get(endpoint + 'api/outpatientaveragefeedbacks').pipe(
+        map(this.extractData));
+       
+
+    }
+    inpatientgraphaverage():Observable<any>{
+      return this.http.get(endpoint + 'api/inpatientaveragefeedbacks').pipe(
+        map(this.extractData));
+       
 
     }
     feedbacksgraphoutpatientnegative():Observable<any>{

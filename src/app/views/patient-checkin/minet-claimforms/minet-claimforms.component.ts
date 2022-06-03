@@ -3,13 +3,14 @@ import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap';
-import { jsPDF } from "jspdf";
-import html2PDF from 'jspdf-html2canvas';
+
 import { ToastrService } from 'ngx-toastr';
 import { ClaimformService } from '../../../claimform.service';
 import { ServiceService } from '../../../service.service';
 import { SignatureService } from '../../../signature.service';
 // import * as html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
+import html2PDF from 'jspdf-html2canvas';
 import html2canvas from 'html2canvas';
 import { post } from 'jquery';
 

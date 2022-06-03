@@ -60,6 +60,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MaternityfeedbackComponent } from './views/maternityfeedback/maternityfeedback.component';
+// import { FeedbackGraphsComponent } from './views/feedback-graphs/feedback-graphs.component';
 // import { MaternityQrcodeComponent } from './views/maternity-qrcode/maternity-qrcode.component';
 // import { NgChartsModule } from 'ng2-charts';
 
@@ -124,6 +125,7 @@ export function tokenGetter() {
     LoginComponent,
     RegisterComponent,
     MaternityfeedbackComponent,
+    // FeedbackGraphsComponent,
     // MaternityQrcodeComponent,
 
   ],

@@ -1,0 +1,192 @@
+
+<div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <h5 class="card-header">FeedBacks Graphical</h5>
+        <div class="card-body">
+
+
+            <mat-tab-group>
+
+               
+                <mat-tab label="All Average per Department">
+                
+                    <!--  -->
+                  <fusioncharts
+                  width="1300"
+                  height="450"
+                  type="Column2D"
+                  dataFormat="JSON"
+                  [dataSource]="averagegraphdata"
+                 ></fusioncharts>
+               
+                  
+                
+                </mat-tab> 
+
+                <mat-tab label="All Respondents per Department">
+                
+                    <!--  -->
+           
+                  <fusioncharts
+                      width="1300"
+                      height="450"
+                      type="Column2D"
+                      dataFormat="JSON"
+                      [dataSource]="dataSource"
+                  ></fusioncharts> 
+                  
+                
+                </mat-tab> 
+                <mat-tab label="Averages for Maternity">
+                
+                    <!--  -->
+           
+                    <fusioncharts
+                width="1300"
+                height="450"
+                type="Column2D"
+                dataFormat="JSON"
+                [dataSource]="MatarnitydataSource"
+               ></fusioncharts> 
+                  
+                
+                </mat-tab>
+                <mat-tab label="Averanges for Surgery">
+                
+                  <!--  -->
+             
+                <fusioncharts
+                    width="1300"
+                    height="450"
+                    type="Column2D"
+                    dataFormat="JSON"
+                    [dataSource]="SurgerydataSource"
+                ></fusioncharts> 
+                
+              
+              </mat-tab>
+              <mat-tab label="Averanges for Outpatient">
+                
+                <fusioncharts
+                width="1000"
+                height="400"
+                type="Column2D"
+                dataFormat="JSON"
+                [dataSource]="outpatientaveragegraphdata"
+            ></fusioncharts> 
+              
+            
+            </mat-tab>
+            <mat-tab label="Respondent Count for Outpatient Positive">
+                
+                 
+                <fusioncharts
+                width="1000"
+                height="400"
+                type="Column2D"
+                dataFormat="JSON"
+                [dataSource]="dataSourceOutpatientpositive"
+            ></fusioncharts>
+              
+            
+            </mat-tab>
+            <mat-tab label="Respondent Count for Outpatient Negative">
+                
+                 
+                <fusioncharts
+              width="1000"
+              height="400"
+              type="Column2D"
+              dataFormat="JSON"
+              [dataSource]="dataSourceOutpatientnegative"
+          ></fusioncharts>
+              
+            
+            </mat-tab>
+                <mat-tab label="Total Respondent for Outpatiient">
+                
+             
+             
+           
+              
+                  <fusioncharts
+                      width="1000"
+                      height="400"
+                      type="Column2D"
+                      dataFormat="JSON"
+                      [dataSource]="dataSourceOutpatient"
+                  ></fusioncharts> 
+                  
+            
+                 </mat-tab> 
+                 <mat-tab label="Averages for Inpatient">
+                
+                    <fusioncharts
+                    width="1000"
+                    height="400"
+                    type="Column2D"
+                    dataFormat="JSON"
+                    [dataSource]="inpatientaveragegraphdata"
+                ></fusioncharts> 
+                    
+              
+                   </mat-tab> 
+                   
+                   <mat-tab label="Total Respodents for Inpatient">
+                
+                    <fusioncharts
+                    width="1000"
+                    height="400"
+                    type="Column2D"
+                    dataFormat="JSON"
+                    [dataSource]="dataSourceinpatient"
+                ></fusioncharts> 
+                    
+              
+                   </mat-tab>
+                   <mat-tab label="Total Respodents Positive for Inpatient">
+                
+                    <fusioncharts
+      
+                  width="1000"
+                  height="400"
+                  type="Column2D"
+                  dataFormat="JSON"
+                  [dataSource]="dataSourceinpatientpositive"
+              ></fusioncharts>
+                    
+              
+                   </mat-tab>
+                 <mat-tab label="Total Respodents Negative for Inpatient">
+              
+               
+                 
+              
+                 
+              
+              <fusioncharts
+              width="1000"
+              height="400"
+              type="Column2D"
+              dataFormat="JSON"
+              [dataSource]="dataSourceinpatientnegative"
+          ></fusioncharts>
+                  
+             
+                 </mat-tab> 
+      
+               
+      
+      
+                                      
+                      </mat-tab-group>
+
+
+      
+        </div>
+    </div>
+</div>
+</div>                
+  
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>      
