@@ -113,7 +113,10 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       time:[''],
       package:[''],
       edd:[''],
+      referred_by:[''],
       referral:[''],
+      practitioner:[''],
+      maternity_package:[''],
       current_doctor:['']
     });
     this.service.getMaternityBookingDetail(this.route.snapshot.params.id).subscribe((res)=>{
@@ -142,6 +145,9 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
         date:res.date,
         time:res.time,
         package:res.package,
+        maternity_package:res.maternity_package,
+        referred_by:res.referred_by,
+        practitioner:res.practitioner,
         edd:res.edd,
         referral:res.referral,
         current_doctor:res.current_doctor

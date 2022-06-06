@@ -1576,5 +1576,9 @@ getFeedbackIssues(): Observable<any> {
   return this.http.get(endpoint+ 'api/feedback-issue/').pipe(
     map(this.extractData));
 }
+deleteQuestion(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/feedback-question-delete/',data).pipe(
+    map(this.extractData));
+}
 
 }

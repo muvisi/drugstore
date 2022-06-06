@@ -55,7 +55,7 @@
                       <ng-container matColumnDef="delete">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
                         <td mat-cell *matCellDef="let element" >                          
-                          <button class="btn btn-danger btn-sm" (click)="delete(element)">remove</button>
+                          <button class="btn btn-danger btn-sm" (click)="deleteQuestion(element)">remove</button>
                           </td>
                       </ng-container>
                       <tr mat-header-row *matHeaderRowDef="Columns"></tr>
@@ -79,7 +79,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-content">
  <div class="modal-header">
    <h6 id="dialog-static-name" class="modal-title pull-left">Add Feedback Question</h6>
-   <button type="button" class="close pull-right" aria-label="Close" (click)="addQuestion.hide()">
+   <button type="button" class="close pull-right" aria-label="Close" (click)="hideAddQuestion()">
      <span aria-hidden="true">&times;</span>
    </button>
  </div>
@@ -88,7 +88,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
    <div class="row">
      <div class="col-sm-6">
         <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
+            <mat-label>Category/Feedback type e.g Maternity feedback</mat-label>
             <mat-select formControlName="category" >
               <mat-option (click)="categoryModal.show()" value="">Add Category</mat-option>
               <mat-option  *ngFor="let item of categories"[value]="item.id">{{item.name}}</mat-option>
@@ -99,7 +99,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 
      <div class="col-sm-6">
         <mat-form-field appearance="outline">
-            <mat-label>Sub Category</mat-label>
+            <mat-label>Sub Category/Department e.g Doctor service</mat-label>
             <mat-select formControlName="subcategory" >
               <mat-option (click)="subCategoryModal.show()" value="">Add SubCategory</mat-option>f
               <mat-option  *ngFor="let item of subcategories"[value]="item.id">{{item.name}}</mat-option>
