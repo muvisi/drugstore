@@ -156,9 +156,9 @@ export class FeedbackSetupComponent implements OnInit {
         });      
       }
       updateQuestion(){
-        var data=this.feedbackForm.value;
+        var data=this.editfeedbackForm.value;
         this.loading=true;
-        this.service.updateFeedbackQuestion(data.id,this.feedbackForm.value).subscribe(res=>{
+        this.service.updateFeedbackQuestion(data.id,this.editfeedbackForm.value).subscribe(res=>{
           this.loading=false;
           this.toast.success("Successfully added");
           this.getQuestions();
@@ -169,7 +169,9 @@ export class FeedbackSetupComponent implements OnInit {
           this.toast.warning("failed")
         });  
       }
-
+      closeEditQuestion(){
+        this.editQuestion.hide()
+      }
       update(item){
         this.editfeedbackForm.patchValue(item);
         this.editQuestion.show()

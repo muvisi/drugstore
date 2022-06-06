@@ -209,7 +209,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FormsModule,
     BsDatepickerModule.forRoot(),
     TabsModule,
-    MatStepperModule,
+    
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,

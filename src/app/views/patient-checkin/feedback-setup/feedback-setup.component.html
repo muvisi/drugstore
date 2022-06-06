@@ -30,11 +30,11 @@
                             <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                     </ng-container>
                     <ng-container matColumnDef="category">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Category/Type</th>
                       <td mat-cell *matCellDef="let element"> {{element.category_name}} </td>
               </ng-container>
                           <ng-container matColumnDef="subcategory">
-                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Subcategory</th>
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Subcategory/Department/Service</th>
                                   <td mat-cell *matCellDef="let element"> {{element.subcategory_name}} </td>
                           </ng-container>
                       <ng-container matColumnDef="question">
@@ -90,7 +90,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Category/Feedback type e.g Maternity feedback</mat-label>
             <mat-select formControlName="category" >
-              <mat-option (click)="categoryModal.show()" value="">Add Category</mat-option>
+              <mat-option  (click)="categoryModal.show()" value="">Add Category</mat-option>
               <mat-option  *ngFor="let item of categories"[value]="item.id">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.category && submitted">Category  <strong>required</strong></mat-error>
@@ -118,7 +118,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <mat-form-field appearance="outline">
             <mat-label>Compliments</mat-label>
             <mat-select formControlName="compliments" multiple >
-              <mat-option (click)="complimentModal.show()" value="">Add Compliment</mat-option>
+              <mat-option   (click)="complimentModal.show()" value="">Add Compliment</mat-option>
               <mat-option  *ngFor="let item of compliments"[value]="item.name">{{item.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="f.category && submitted">Compliment  <strong>required</strong></mat-error>
@@ -151,8 +151,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-dialog modal-lg">
 <div class="modal-content">
  <div class="modal-header">
-   <h6 id="dialog-static-name" class="modal-title pull-left">Add Feedback Question</h6>
-   <button type="button" class="close pull-right" aria-label="Close" (click)="addQuestion.hide()">
+   <h6 id="dialog-static-name" class="modal-title pull-left">Edit Feedback Question</h6>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="closeEditQuestion()">
      <span aria-hidden="true">&times;</span>
    </button>
  </div>
@@ -161,23 +161,23 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
    <div class="row">
      <div class="col-sm-6">
         <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
+            <mat-label>Category/Type</mat-label>
             <mat-select formControlName="category" >
-              <mat-option (click)="categoryModal.show()" value="">Add Category</mat-option>
+              <mat-option (click)="categoryModal.show()" value="">Add Category/Type</mat-option>
               <mat-option  *ngFor="let item of categories"[value]="item.id">{{item.name}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="f.category && submitted">Category  <strong>required</strong></mat-error>
+            <mat-error *ngIf="f.category && submitted">Category/Type  <strong>required</strong></mat-error>
           </mat-form-field>
      </div>
 
      <div class="col-sm-6">
         <mat-form-field appearance="outline">
-            <mat-label>Sub Category</mat-label>
+            <mat-label>Sub Category/Department/Service</mat-label>
             <mat-select formControlName="subcategory" >
-              <mat-option (click)="subCategoryModal.show()" value="">Add SubCategory</mat-option>f
+              <mat-option (click)="subCategoryModal.show()" value="">Add SubCategory/Department/Service</mat-option>f
               <mat-option  *ngFor="let item of subcategories"[value]="item.id">{{item.name}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="f.subcategory && submitted">Sub Category  <strong>required</strong></mat-error>
+            <mat-error *ngIf="f.subcategory && submitted">Sub Category/Department/Service  <strong>required</strong></mat-error>
           </mat-form-field>
      </div>
 
@@ -223,7 +223,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-dialog modal-md">
 <div class="modal-content">
  <div class="modal-header">
-   <h5 id="dialog-static-name" class="modal-title pull-left">Add Category</h5>
+   <h5 id="dialog-static-name" class="modal-title pull-left">Add Category/Type</h5>
    <button type="button" class="close pull-right" aria-label="Close" (click)="categoryModal.hide()">
      <span aria-hidden="true">&times;</span>
    </button>
@@ -234,8 +234,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
      <div class="col-sm-12">
     
       <mat-form-field appearance="outline">
-        <mat-label>Category Name</mat-label>
-          <input matInput formControlName="name" placeholder="Category">
+        <mat-label>Feedback Category/Type Name</mat-label>
+          <input matInput formControlName="name" placeholder="Category/Type">
           <mat-error *ngIf="c.name && submitted">Visit Type  <strong>required</strong></mat-error>
         </mat-form-field>
 
@@ -251,7 +251,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         </mat-form-field>
    </div>
      <div class="col-sm-12">
-      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitCategory()"> <span style="text-transform: capitalize;">Save Category</span> </button>
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitCategory()"> <span style="text-transform: capitalize;">Save</span> </button>
      </div>
    </div>
    </form>
@@ -265,7 +265,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 <div class="modal-dialog modal-md">
 <div class="modal-content">
  <div class="modal-header">
-   <h5 id="dialog-static-name" class="modal-title pull-left">Add Sub Category</h5>
+   <h5 id="dialog-static-name" class="modal-title pull-left">Add Sub Category/Department/Service</h5>
    <button type="button" class="close pull-right" aria-label="Close" (click)="subCategoryModal.hide()">
      <span aria-hidden="true">&times;</span>
    </button>
@@ -275,12 +275,12 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
      <div class="col-sm-12">
   
       <mat-form-field appearance="outline">
-        <mat-label>Sub Category Name</mat-label>
+        <mat-label>Sub Category/Service Name</mat-label>
           <input matInput [(ngModel)]="subcategory" placeholder="Sub Category">
         </mat-form-field>
      </div>
      <div class="col-sm-12">
-      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitSubCategory()"> <span style="text-transform: capitalize;">Save Sub Category</span> </button>
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitSubCategory()"> <span style="text-transform: capitalize;">Save</span> </button>
      </div>
    </div>
  </div>
@@ -336,7 +336,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
      <div class="col-sm-12">
      
       <mat-form-field appearance="outline">
-        <mat-label>Compliment</mat-label>
+        <mat-label> Issue</mat-label>
           <input matInput [(ngModel)]="issue" placeholder="issue">
         </mat-form-field>
      </div>

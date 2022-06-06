@@ -1538,7 +1538,7 @@ submitFeedbackQuestion(data): Observable<any> {
     map(this.extractData));
 }
 updateFeedbackQuestion(id,data): Observable<any> {
-  return this.http.post(endpoint+ 'api/feedback-question/'+id+"/",data).pipe(
+  return this.http.put(endpoint+ 'api/feedback-question/'+id+"/",data).pipe(
     map(this.extractData));
 }
 
