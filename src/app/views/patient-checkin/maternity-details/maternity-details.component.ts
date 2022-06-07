@@ -17,6 +17,7 @@ export class MaternityDetailsComponent implements OnInit {
   clientForm: FormGroup;
   paymentForm: FormGroup;
   otherInfoForm:FormGroup;
+  maternity_package;
   patient_info;
   other_info;
   payment_type;
@@ -152,6 +153,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
         referral:res.referral,
         current_doctor:res.current_doctor
       }
+      this.maternity_package=res.maternity_package;
       this.otherInfoForm.patchValue(this.other_info);
       console.log(this.other_info);
       this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:''}
