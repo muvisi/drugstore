@@ -21,9 +21,9 @@ const httpOptions_payments = {
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
-export const endpoint='https://booking.healthixsolutions.com/';
+// export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
-// export const endpoint='http://134.209.199.123:8888/';
+export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
@@ -85,8 +85,8 @@ export class ServiceService {
     return this.http.get(endpoint+ 'api/maternityfeedback/').pipe(
       map(this.extractData));
   }
-  feedbacksurgery(): Observable<any> {
-    return this.http.get(endpoint+ 'api/surgeryfeedback/').pipe(
+  allfeedbacks(): Observable<any> {
+    return this.http.get(endpoint+ 'api/allfeedbacklist/').pipe(
       map(this.extractData));
   }
   
@@ -1080,8 +1080,16 @@ searchBills(data): Observable<any>{
     return this.http.get(endpoint + 'api/feedbacks/'+s).pipe(
       map(this.extractData));
     }
+    feedbackscallpatient(id): Observable<any> {
+      return this.http.get(endpoint + 'api/feedbacks/'+id).pipe(
+        map(this.extractData));
+      }
+    callpatient(phone): Observable<any> {
+      return this.http.post(endpoint + 'api/callpatient/',phone).pipe(
+        map(this.extractData));
+      }
     feedbacksgraph():Observable<any>{
-      return this.http.get(endpoint + 'api/feedbackgraphing').pipe(
+      return this.http.get(endpoint + 'api/graphicalviewcount').pipe(
         map(this.extractData));
 
     }
@@ -1111,13 +1119,13 @@ searchBills(data): Observable<any>{
 
     }
     feedbacksgraphaverage():Observable<any>{
-      return this.http.get(endpoint + 'api/averagegraphfeedback').pipe(
+      return this.http.get(endpoint + 'api/graphicalview').pipe(
         map(this.extractData));
        
 
     }
-    maternitygraphaverage():Observable<any>{
-      return this.http.get(endpoint + 'api/maternityaveragefeedbacks').pipe(
+    Allerespondents():Observable<any>{
+      return this.http.get(endpoint + 'api/graphicalviewrespondents').pipe(
         map(this.extractData));
        
 

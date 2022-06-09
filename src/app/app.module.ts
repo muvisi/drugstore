@@ -125,6 +125,7 @@ export function tokenGetter() {
     LoginComponent,
     RegisterComponent,
     MaternityfeedbackComponent,
+    // CallPatientsComponent,
     // FeedbackGraphsComponent,
     // MaternityQrcodeComponent,
 

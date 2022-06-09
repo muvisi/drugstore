@@ -1,0 +1,173 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <h6 class="card-header bg-success">Feedback Details
+
+            </h6>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-12 col-md-1 col-lg-1 col-3">
+                          <img src="assets/img/avatars/female.png" class="rounded-circle" alt="" style="width: 90px;">
+                        </div>
+                        <div class="col-sm-12 col-md-11 col-lg-11 col-9">
+                          <div class="row">
+                        <div class="col-sm-5">
+                            <div class="row">
+                                 <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{dataSourceCall.patient.first_name}} {{dataSourceCall.patient.last_name}} {{dataSourceCall.patient.other_name}}
+                                    </div>
+                                <div class="col-sm-12" > {{dataSourceCall.patient.phone}} </div>
+                                <div class="col-sm-12" > {{dataSourceCall.patient.email}} </div>
+                                <div class="col-sm-12" > {{dataSourceCall.patient.dob}} </div>
+
+                            </div> 
+
+                        </div>
+                       
+                           
+                          </div>
+              
+                        </div>
+                      </div>
+                     
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-tab-group>
+                          <mat-tab>
+                            <!-- <ng-template mat-tab-label>
+                              Prevew
+                            </ng-template> -->
+                         
+                            
+                              <!-- <br> -->
+                              <div class="row container-fluid">                         
+                             
+                                <div class="col-sm-12">
+                              <div class="card">
+                                <div class="card-header bg-default">
+                                  <h6 >Patient Information</h6>
+                                </div>
+                                <div class="card-body">
+                                    <fieldset>
+                                        <legend>Feedback Info</legend>
+                                        <div class="col-sm-12">
+                                         
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <mat-form-field appearance="outline">
+                                                          <mat-label>Department</mat-label>
+                                                            <input matInput placeholder="department" name="name" value="{{dataSourceCall.department}}">
+                                                          </mat-form-field>
+                                                    </div>
+                                             
+                                            
+                                          
+                                               <div class="col-sm-4">
+                                                <mat-form-field  appearance="outline">
+                                                  <mat-label>Service</mat-label>
+                                                    <input matInput placeholder="service" name="phone" value="{{dataSourceCall.service}}">
+                                            
+                                                  </mat-form-field>
+                                               </div>
+                                          
+                                               <div class="col-sm-4">
+                                                <mat-form-field appearance="outline">
+                                                  <mat-label>Type</mat-label>
+                                                    <input matInput placeholder="Type" name="type"  value="{{dataSourceCall.type}}">
+                                                  </mat-form-field>
+                                            </div>
+                                             
+                                              <div class="col-sm-4">
+                                                <mat-form-field appearance="outline">
+                                                  <mat-label>Visit Type</mat-label>
+                                                    <input matInput placeholder="visit type"   name="residence" value="{{dataSourceCall.visit_type}}">
+                                                  </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-4">
+                                              <mat-form-field appearance="outline">
+                                                <mat-label>Rating</mat-label>
+                                                  <input matInput placeholder="Rating"   name="residence" value="{{dataSourceCall.rating}}">
+                                                </mat-form-field>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Comment</mat-label>
+                                                <input matInput placeholder="Comments"   name="residence" value="{{dataSourceCall.comment}}">
+                                              </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label>Compliments</mat-label>
+                                              <input matInput placeholder="commpliments"   name="residence" value="{{dataSourceCall.compliments}}">
+                                            </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Feedback date</mat-label>
+                                            <input matInput placeholder="feedbackdate"   name="residence" value="{{dataSourceCall.date}}">
+                                          </mat-form-field>
+                                    </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Patient Phone</mat-label>
+                                            <input matInput placeholder="phone"   name="residence" value="{{dataSourceCall.patient.phone}}">
+                                          </mat-form-field>
+                                    </div>
+                                            <div class="col-sm-8">
+                                              <button class="btn btn-success pull-right" (click)="CallPatient()">Confirm Called</button>
+                                              </div>
+                                                </div>
+                                              </form>
+            
+            
+                                        </div>
+                                      </fieldset>
+                             
+                              
+                        
+
+                            
+                              
+                            
+                            </div>
+                            </div>
+                          </div>
+                          </div>
+
+                              <br>
+                          
+                         
+                         
+                          
+                        
+
+
+
+
+                           </mat-tab> 
+                           
+                           
+                          
+                         
+                         
+
+                          
+  
+                          </mat-tab-group>
+                    </div>
+                    
+                  </div>
+                  
+            </div>
+          </div>
+    </div> 
+
+</div>
+
+
+
+
+
+<!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading> -->

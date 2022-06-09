@@ -9,6 +9,7 @@ import { ServiceService } from '../service.service';
 
 // import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feedbacks',
@@ -19,21 +20,21 @@ export class FeedbacksComponent implements OnInit {
   
   
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  // dataSource: Object;
-  dataSourceOutpatient: any={}
-  dataSourceOutpatientpositive: any={}
-  dataSourceOutpatientnegative: any={}
-  dataSourceinpatientpositive: any={}
-  dataSourceinpatientnegative: any={}
-  dataSourceinpatient: any={}
-  inpatientaveragegraphdata: any={}
-  outpatientaveragegraphdata: any={}
-  averagegraphdata: any={}
-  dataSource: any={}
-  SurgerydataSource: any={}
-  MatarnitydataSource: any={}
-  bookingvspatient: Object;
-  dataSources;
+  dataSource;
+  // dataSourceOutpatient: any={}
+  // dataSourceOutpatientpositive: any={}
+  // dataSourceOutpatientnegative: any={}
+  // dataSourceinpatientpositive: any={}
+  // dataSourceinpatientnegative: any={}
+  // dataSourceinpatient: any={}
+  // inpatientaveragegraphdata: any={}
+  // outpatientaveragegraphdata: any={}
+  // averagegraphdata: any={}
+  // dataSource: any={}
+  // SurgerydataSource: any={}
+  // MatarnitydataSource: any={}
+  // bookingvspatient: Object;
+  // dataSources;
  
 
 
@@ -45,7 +46,7 @@ export class FeedbacksComponent implements OnInit {
   maternity_dataSource;
   
   average_dataSource;
-  all_dataSource
+  all_dataSource;
   date_positive;
   date_negative;
   date_average;
@@ -72,6 +73,8 @@ export class FeedbacksComponent implements OnInit {
   period_inpatient;
   date_inpatient;
   inpatient_dataSource;
+  selected;
+  dataSourceCall;
   endpoint;
 
   loading;
@@ -81,144 +84,9 @@ export class FeedbacksComponent implements OnInit {
   PositiveColumns: string[] = ['sn','date','patient','service','rating','compliments','comments',"visit_type"]
   NegativeColumns: string[] = ['sn','date','patient','service','rating','issues','comments',"visit_type"]
   AverageColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
-  AllColumns: string[] = ['sn','date','patient','service','phone','rating','comments',"visit_type"]
-  constructor(public service:ServiceService,private toastr:ToastrService,private datePipe: DatePipe) { 
-    this.averagegraphdata= {
-      chart: {
-        caption: 'AAR HOSPITAL',
-        subCaption: 'All Feedback Averages',
-        xAxisName: 'Departments',
-        yAxisName: 'Average values',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.outpatientaveragegraphdata= {
-      chart: {
-        caption: 'AAR HOSPITAL',
-        subCaption: 'Outpatient Feedback Averages',
-        xAxisName: 'Departments',
-        yAxisName: 'Average values',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.inpatientaveragegraphdata= {
-      chart: {
-        caption: 'AAR HOSPITAL',
-        subCaption: 'Inpatient Feedback Averages',
-        xAxisName: 'Departments',
-        yAxisName: 'Average values',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.dataSource= {
-      chart: {
-        caption: 'AAR HOSPITAL',
-        subCaption: 'Total Respondents Per Department',
-        xAxisName: 'Departments',
-        yAxisName: 'Total Count',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
+  AllColumns: string[] = ['sn','date','patient','service','phone','rating','comments',"visit_type","status","type"]
+  constructor(public service:ServiceService,private toastr:ToastrService,private datePipe: DatePipe,public router: Router) { 
    
-    this.MatarnitydataSource= {
-      chart: {
-        caption: 'AAR HOSPITAL',
-        subCaption: ' Maternity Average Feedback',
-        xAxisName: 'Departments',
-        yAxisName: 'Average',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.SurgerydataSource= {
-      chart: {
-        caption: 'AAR HOSPITAL',
-        subCaption: 'Surgery Average Feedback',
-        xAxisName: 'Departments',
-        yAxisName: 'Average',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-
-    this.dataSourceOutpatientpositive= {
-      chart: {
-        caption: 'AAR HOSPITAL LTD',
-        subCaption: 'Outpatient Positive Repondents Feedbacks',
-        xAxisName: 'Departments',
-        yAxisName: 'Count',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.dataSourceinpatientpositive= {
-      chart: {
-        caption: 'AAR HOSPITAL LTD',
-        subCaption: 'Inpatient Positive Repondents Feedbacks',
-        xAxisName: 'Departments',
-        yAxisName: 'Count',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.dataSourceinpatientnegative= {
-      chart: {
-        caption: 'AAR HOSPITAL LTD',
-        subCaption: 'Inpatient Negative Repondents Feedbacks',
-        xAxisName: 'Departments',
-        yAxisName: 'Count',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.dataSourceOutpatientnegative= {
-      chart: {
-        caption: 'AAR HOSPITAL LTD',
-        subCaption: 'Outpatient Negative Repondents Feedbacks',
-        xAxisName: 'Departments',
-        yAxisName: 'Count',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.dataSourceinpatient= {
-      chart: {
-        caption: 'AAR HOSPITAL LTD',
-        subCaption: ' Inpatient Repondents Feedbacks',
-        xAxisName: 'Departments',
-        yAxisName: 'Count',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-    this.dataSourceOutpatient= {
-      chart: {
-        caption: 'AAR HOSPITAL LTD',
-        subCaption: 'Outpatient Repondents Feedbacks',
-        xAxisName: 'Departments',
-        yAxisName: 'Count',
-        numberSuffix: '',
-        theme: 'fusion'
-      },
-      data:[]
-    };
-
-
 
 
 }
@@ -228,37 +96,21 @@ export class FeedbacksComponent implements OnInit {
  ngOnInit() {
   // this.idnumber="";
  
-    this.getFeedbacksPositive();
-    this.getFeedbacksNegative();
-    this.getFeedbacksAverage();
-    this.getFeedbacksAll();
-    this.getFeedbacksOutpatient();
-    this.getFeedbacksInpatient();
+    // this.getFeedbacksPositive();
+    // this.getFeedbacksNegative();
+    // this.getFeedbacksAverage();
   
-    this.getMaternityfeedback();
-    this.getSurgeryfeedback();
+    // this.getFeedbacksOutpatient();
+    // this.getFeedbacksInpatient();
+    this.getAllfeedback();
+  
+    // this.getMaternityfeedback();
+   
     this.getEdpoint();
    
     // dataFormat: 'json',
 
-    this.bookingvspatient={
-      data:[{
-        label: "Total Patients Booked",
-        value:  this.allpatients
-    },
-    {
-        label: "Total Feedbacks",
-        value:this.withfeedback
-    },
-    {
-        label: "No Feedbacks",
-        value:this.withoutfeedback
-    },
-    ]
-
-    }
-    console.log('data',this.bookingvspatient)
-    
+   
     
   }
   ngAfterViewInit(){
@@ -281,11 +133,11 @@ this.date_positive="";
       () => console.log('There is an error')
     );
   }
-  getSurgeryfeedback(){
-    this.service.feedbacksurgery().subscribe(
+  getAllfeedback(){
+    this.service.allfeedbacks().subscribe(
       datas => {
-        this.surgery_dataSource=datas
-          console.log("DATA",this.surgery_dataSource)
+        this.dataSource=datas.data
+      
         
       },
      
@@ -308,6 +160,24 @@ this.date_positive="";
     );
     }
 
+    clickRow(item){
+      console.log(item)
+      this.selected=item.id
+      console.log(this.selected)
+      this.router.navigate(['/dashboard/call-patients/',item.id])
+
+      // this.service.feedbackscallpatient(this.selected).subscribe(
+      //   datas => {
+      //     this.dataSourceCall=datas
+      //       console.log("dataSourceCall",this.dataSourceCall)
+          
+      //   },
+       
+      //   err => console.error(err),
+       
+      //   () => console.log('There is an error')
+      // );
+    }
   downloadPositive(){
     window.open(this.service.getendpoint()+"api/feedbacks_download/?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period, "_blank");
   }
@@ -499,75 +369,14 @@ this.date_positive="";
     );
   }
 
-  getFeedbacksAll() {
-    this.service.feedbacks("?period="+this.period4).subscribe(
-      data => {
-        this.all_dataSource = new MatTableDataSource <[]>(data);
-        this.all_dataSource.paginator = this.paginator;
-        this.loading = false;
-        // this.toastr.success('finished loading Patients');
-        
-      
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-  }
+
   downloadAll(){
     window.open(this.service.getendpoint()+"api/feedbacks_download/?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4, "_blank");
   }
 
-  allDateSelection(){
-    
-    this.service.feedbacks("?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4).subscribe(
-      data => {
-        this.all_dataSource = new MatTableDataSource <[]>(data);
-        this.all_dataSource.paginator = this.paginator;
-        this.loading = false;
-        // this.toastr.success('finished loading Patients');
-        
-      
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-  }
-  allVisitTypeChange(){
-    this.service.feedbacks("?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4).subscribe(
-      data => {
-        this.all_dataSource = new MatTableDataSource <[]>(data);
-        this.all_dataSource.paginator = this.paginator;
-        this.loading = false;
-        // this.toastr.success('finished loading Patients');
-        
-      
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-  }
-  periodChangedAll(){
-    this.service.feedbacks("?date="+this.datePipe.transform(this.date_all,"mediumDate")+"&visit_type="+this.visit_type_all+"&period="+this.period4).subscribe(
-      data => {
-        this.all_dataSource = new MatTableDataSource <[]>(data);
-        this.all_dataSource.paginator = this.paginator;
-        this.loading = false;
-        // this.toastr.success('finished loading Patients');
-        
-      
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-  }
+
+ 
+
 
 
   applyFilter(filterValue: string) {
@@ -702,5 +511,6 @@ this.date_positive="";
     this.endpoint= this.service.getendpoint()
   console.log("URL IS",this.endpoint)
   }
+ 
  
 }

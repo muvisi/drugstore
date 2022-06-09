@@ -119,6 +119,7 @@ import { FeedbackResponseGraphComponent } from './feedback-response-graph/feedba
 import { FeedbackAgeGraphComponent } from './feedback-age-graph/feedback-age-graph.component';
 import { FeedbackSetupComponent } from './feedback-setup/feedback-setup.component';
 import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
+import { CallPatientsComponent } from '../call-patients/call-patients.component';
 
 
 
@@ -198,7 +199,11 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FeedbackOutpatientQrcodesComponent,
     MpesaPaymentsComponent,
     MpesaPaymentReportComponent,   
-    UtilizePaymentModal, MaternityListComponent, MaternityDetailsComponent, FootwalkComponent, FeedbackResponseGraphComponent, FeedbackAgeGraphComponent, FeedbackSetupComponent
+    UtilizePaymentModal, MaternityListComponent,
+     MaternityDetailsComponent, FootwalkComponent, 
+     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
+      FeedbackSetupComponent, CallPatientsComponent,
+      
 
     
 

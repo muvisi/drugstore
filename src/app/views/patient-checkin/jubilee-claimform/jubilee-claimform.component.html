@@ -6,38 +6,36 @@
     
             </div>
         </div>
-        <div class="row" >
+        <!-- <div class="row" > -->
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                  <h1>
-                     <img src="../../../../assets/img/avatars/jubilee.png" alt="">
+                     <img src="./../../../assets/img/avatars/jubilee.png" height="100px" alt="">
                  </h1>
                 </div>
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                  <h1>
-                     <img src="../../../../assets/img/avatars/mdc.png" alt="">
+                     <img src="./../../../assets/img/avatars/mdc.png" height="150px" alt="">
                  </h1>
               </div>
             </div>
-            
-                
-            <div class="col-sm-6" style="margin-left: 15px;">
+            <div class="row">
+                <div class="col-sm-4">
                     <strong style="color: red;">JUBILEE HEALTH INSURANCE LIMITED</strong><br> 
-               <strong> Head Office<br></strong>
-                Jubilee Insurance House,Wabera Street,<br>
-                P.O Box 6694-00100 GPO Nairobi,Kenya<br>
-                Tel:+254203281000<br>
-                Call Centre:+254709949000<br>
-                Email: talk2us@jubileekenya.com<br>
-               wwww.jubileeinsurance.com<br>
-            </div>
-                
-                <div class="col-sm-6" style="margin-left: 500px; margin-top: 1px;background-color: grey;">
-                   <i>
+                    <strong> Head Office<br></strong>
+                     Jubilee Insurance House,Wabera Street,<br>
+                     P.O Box 6694-00100 GPO Nairobi,Kenya<br>
+                     Tel:+254203281000<br>
+                     Call Centre:+254709949000<br>
+                     Email: talk2us@jubileekenya.com<br>
+                    wwww.jubileeinsurance.com<br>
+                </div>
+              <div class="col-sm-8" style="background-color: grey; font-size: 8px;">
+                <i>
                     DIRECTIONS:<br>
                     please read carefully and fill out the entire form in BLOCK LETTERS.<br>
                     1.Complete a separate claim form for each insured individual and for each visit<br>
-                    to the doctor or service provider.
+                    to the doctor or service provider.<br>
                     2.Attach All medical bill(s) relating to the claim.<br>
                     a.Make certain,all bills identify the respective patient.<br>
                     b.All bills should indicate date of treatment,description of service & charges.<br>
@@ -48,21 +46,16 @@
                     card for adult patients to ensure that member details are correct.
                     6.All invoices must be signed by client.
                    </i>
-
-                </div>
-               
+              </div>
+            </div>
+           
+            
                     
-                   
-                
                
-               
-                
-            </div> 
            
            
            
             <div class="col-sm-12" >
-                <!-- <i class="fa fa-chevron-right" style="color: white;font-size: 14px;float: left;" aria-hidden="true"></i> -->
                 <div class="text">
                     <h6 style="color: black;">EMPLOYEE(MEMBER) INFORMATION (This is the individual whose name is on the ID card) </h6>
                 </div>
@@ -77,11 +70,11 @@
 
                 <div class="row">
                     <div class="col-sm-2">Name:</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                     <input type="text" [(ngModel)]="patient.employee">
                     </div>
                     <div class="col-sm-2">ID No</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                     <input type="text" [(ngModel)]="patient.id_number">
                     </div>
                 </div>
@@ -99,7 +92,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="col-sm-2">P.O BOX</div>
+                    <div class="col-sm-2">P.O Box</div>
                     <div class="col-sm-4">
                     <input type="text">
                     </div>
@@ -121,41 +114,52 @@
 
                 <div class="row">
                     <div class="col-sm-2">Patient Name:</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                     <input type="text" value="{{patient.patient.first_name}} {{patient.patient.last_name}}">
                     </div>
                     <div class="col-sm-2">Member No</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                     <input type="text" [(ngModel)]="patient.member_number">
                     </div>
                 </div>
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-sm-2">Date of Birth</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-1">Date of Birth</div>
+                    <div class="col-sm-1">
                     <input type="text" [(ngModel)]="patient.patient.dob">
                     </div>
-                    <div class="col-sm-2">Sex</div>
-                    <div class="col-sm-4">
-                    <input type="text" [(ngModel)]="patient.patient.gender">
+                   
+                    <div class="col-sm-1">Sex:</div>
+                    <div class="col-sm-1">
+                        <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'yes')" [checked]="patient.patient.gender" ></mat-checkbox>
+                        Male
+                    </div>
+                    <div class="col-sm-1">
+                     <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'no')" [checked]="!patient.patient.gender"></mat-checkbox>
+                    Female
+                  </div>
+                  <div class="col-sm-3">Relationship:
+                    <div >
+                        Employee
+                        <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'yes')" [checked]="patient.relation" ></mat-checkbox>
+                        
+                    </div>
+                  </div>
+                   
+                    <div class="col-sm-1">
+                        Spouse
+                        <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'yes')" [checked]="!patient.relation" ></mat-checkbox>
+                       
+                    </div>
+                    <div class="col-sm-1">
+                        Child
+                        <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'yes')" [checked]="!patient.relation" ></mat-checkbox>
+                       
                     </div>
                 </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-sm-2">P.O BOX</div>
-                    <div class="col-sm-2">
-                    <input type="text" >
-                    </div>
-                    <div class="col-sm-2">Email</div>
-                    <div class="col-sm-2">
-                    <input type="text">
-                    </div>
-                    <div class="col-sm-2">Relationship</div>
-                    <div class="col-sm-2">
-                    <input type="text" [(ngModel)]="patient.relation">
-                    </div>
-                </div>
+            
+                
                
               
             </div>
@@ -185,12 +189,29 @@
                  not objection to jubilee Health insuarnce Limited and/or their representatives communicating with the Doctor/Physician or hospital i have consulted or visited<br>
                  and shall submit to any medical examination(s) if so required by jubilee Health Insurance Limited. 
             </p> -->
+            <div class="row" style="position: relative;" style="font-size: 12px;">
+                <div class="col-sm-4">Is this Condition</div>
+                
+                <div class="col-sm-2">
+                    <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'yes')" [checked]="form_data.sickness_firsttime" ></mat-checkbox>
+                    Recurrent?
+                </div>
+                <div class="col-sm-2">
+                 <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'no')" [checked]="!form_data.sickness_firsttime"></mat-checkbox>
+                chronic?
+              </div>
+              <div class="col-sm-2">
+                <mat-checkbox class="example-margin"  (change)="checkBoxsickness_firsttime($event,'no')" [checked]="!form_data.sickness_firsttime"></mat-checkbox>
+               Congenital
+             </div>
+                
+            </div>
 
             <div class="row">
                 <div class="col-sm-8">What is the diagnosis for the patient ?(Write in <strong>BLOCK LETTERS</strong> No Medical Shorthand)</div>
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
-                    <textarea rows="3" style="width: 100%;"></textarea>
+                    <textarea rows="1" style="width: 100%;"></textarea>
                 </div>
                 
             </div>
@@ -216,7 +237,7 @@
                 <div class="col-sm-8">Any underlying conditions which could result in this illness or injury?</div>
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
-                    <textarea rows="3" style="width: 100%;"></textarea>
+                    <textarea rows="1" style="width: 100%;"></textarea>
                 </div>
                 <div class="clearfix"></div>
                 
@@ -240,17 +261,17 @@
             <div class="row">
                 <div class="col-sm-12">If yes provide the details of the specialist or in c ase of accidental injury, provide details</div>
                 <div class="col-sm-12">
-                    <textarea rows="3" style="width: 100%;"></textarea>
+                    <textarea rows="1" style="width: 100%;"></textarea>
                 </div>
                 
             </div>
 
-        </div>
+        
         <div class="text">
             <h6 style="color: black;">CERTIFICATION BY MEDICAL PRACTITIONER</h6>
         </div>
         <P>
-            I certify that the above information regarding Mr/Mrs/Mst/Ms.______________________________________________________________________<br>
+            I certify that the above information regarding Mr/Mrs/Mst/Ms.<br>
             is true, to the best of my knowledge and the expences incured are as a result of the accident/illness referred to.<br>
 
         </P>
@@ -261,19 +282,49 @@
         <div class="row">
             <div class="col-sm-4">Name and address of Doctor/Physician:</div>
             <div class="col-sm-8">
-            <input type="text">
+                <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                    <!-- <strong>{{doctor}}</strong> -->
+                </div> <hr>
             </div>
             
         </div>
         <div class="clearfix"></div>
         <div class="row">
-            <div class="col-sm-2">Qualifications</div>
-            <div class="col-sm-10">
-            <input type="text">
-            </div>
-            
+            <div class="col-sm-4">Qualifications</div>
+            <div class="col-sm-8">
+            <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                <!-- <strong>{{doctor}}</strong> -->
+            </div> <hr>
         </div>
-        <div class="row" style="margin-top: 12px;">
+        </div>
+        <div class="row" style="margin-left: 5px; margin-top: 20px;">
+            <div class="col-sm-2"  style="font-size: 12px;">
+                Date:
+          </div>
+          <div class="col-sm-2">
+            <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
+                <strong>{{'date'}}</strong>
+            </div> <hr>
+            
+          </div>
+             
+              <div class="col-sm-4"  (click)="activateStaffSignature()"style="font-size: 12px;"><strong>
+                Signature and Official Stamp
+
+              </strong>
+
+              </div>
+             
+                <div class="col-sm-4" >
+                    <div class="row" style="position: absolute;bottom: 0;margin-bottom: 0px;" *ngIf="signature2_show"><img src="{{signature2_src}}" width="80px" height="50px"/></div>
+                <hr>
+                      
+                              
+               
+            </div>
+
+          </div>
+        <!-- <div class="row" style="margin-top: 12px;">
             <div class="col-sm-4">
                 Date:_______________________________________
             </div>
@@ -282,12 +333,12 @@
                 Signature and Official Stamp:______________________________________________________________
             </div>
            
-        </div>
+        </div> -->
         <div class="clearfix"></div>
         <p>
             <strong>
                 <i>
-                    *Incomplete forms shall  ot be processed
+                   <b style="color: black;"> *Incomplete forms shall  ot be processed</b>
 
                 </i>
             </strong>
@@ -297,7 +348,7 @@
 
 
 
-
+    </div>
 
 
      

@@ -261,16 +261,16 @@ this.router.navigate(['/dashboard/heritageinsurance/',item.id])
 
 // this.router.navigate(['/dashboard/heritageinsurance/',item.id])
 // }
-// if (this.selected.insurance_company=='JUBILEE INSURANCE') 
-//  {
+if (this.selected.insurance_company=='JUBILEE INSURANCE') 
+ {
 
-// this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
-// }
-// if (this.selected.insurance_company=='Jubilee Insurance') 
-//  {
+this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
+}
+if (this.selected.insurance_company=='Jubilee Insurance') 
+ {
 
-// this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
-// }
+this.router.navigate(['/dashboard/jubileeinsurance/',item.id])
+}
 if (this.selected.insurance_company=='MINET KENYA INSURANCE BROKERS LTD') 
  {
 

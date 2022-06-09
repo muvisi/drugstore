@@ -82,6 +82,7 @@ import { FeedbackResponseGraphComponent } from '../patient-checkin/feedback-resp
 import { FeedbackAgeGraphComponent } from '../patient-checkin/feedback-age-graph/feedback-age-graph.component';
 import { FeedbackSetupComponent } from '../patient-checkin/feedback-setup/feedback-setup.component';
 import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
+import { CallPatientsComponent } from '../call-patients/call-patients.component';
 const routes: Routes = [
   {
     path: '',
@@ -398,6 +399,11 @@ const routes: Routes = [
   {
     path: 'maternity-details/:id',
     component:MaternityDetailsComponent,
+    
+  },
+  {
+    path: 'call-patients/:id',
+    component:CallPatientsComponent,
     
   },
   {

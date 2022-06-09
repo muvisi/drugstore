@@ -18,7 +18,7 @@ export class FeedbackGraphsComponent implements OnInit {
   averagegraphdata: any={}
   dataSource: any={}
   SurgerydataSource: any={}
-  MatarnitydataSource: any={}
+  RespondentdataSource: any={}
   bookingvspatient: Object;
   dataSources;
  
@@ -60,6 +60,7 @@ export class FeedbackGraphsComponent implements OnInit {
   date_inpatient;
   inpatient_dataSource;
   endpoint;
+  selected;
 
   loading;
   constructor( public service:ServiceService) {
@@ -99,7 +100,7 @@ export class FeedbackGraphsComponent implements OnInit {
   this.dataSource= {
     chart: {
       caption: 'AAR HOSPITAL',
-      subCaption: 'Total Respondents Per Department',
+      subCaption: 'All Respondent Counts',
       xAxisName: 'Departments',
       yAxisName: 'Total Count',
       numberSuffix: '',
@@ -108,10 +109,10 @@ export class FeedbackGraphsComponent implements OnInit {
     data:[]
   };
  
-  this.MatarnitydataSource= {
+  this.RespondentdataSource= {
     chart: {
       caption: 'AAR HOSPITAL',
-      subCaption: ' Maternity Average Feedback',
+      subCaption: ' Total Respondents',
       xAxisName: 'Departments',
       yAxisName: 'Average',
       numberSuffix: '',
@@ -142,122 +143,24 @@ export class FeedbackGraphsComponent implements OnInit {
     },
     data:[]
   };
-  this.dataSourceinpatientpositive= {
-    chart: {
-      caption: 'AAR HOSPITAL LTD',
-      subCaption: 'Inpatient Positive Repondents Feedbacks',
-      xAxisName: 'Departments',
-      yAxisName: 'Count',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.dataSourceinpatientnegative= {
-    chart: {
-      caption: 'AAR HOSPITAL LTD',
-      subCaption: 'Inpatient Negative Repondents Feedbacks',
-      xAxisName: 'Departments',
-      yAxisName: 'Count',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.dataSourceOutpatientnegative= {
-    chart: {
-      caption: 'AAR HOSPITAL LTD',
-      subCaption: 'Outpatient Negative Repondents Feedbacks',
-      xAxisName: 'Departments',
-      yAxisName: 'Count',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.dataSourceinpatient= {
-    chart: {
-      caption: 'AAR HOSPITAL LTD',
-      subCaption: ' Inpatient Repondents Feedbacks',
-      xAxisName: 'Departments',
-      yAxisName: 'Count',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.dataSourceOutpatient= {
-    chart: {
-      caption: 'AAR HOSPITAL LTD',
-      subCaption: 'Outpatient Repondents Feedbacks',
-      xAxisName: 'Departments',
-      yAxisName: 'Count',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
+ 
+ 
+
+ 
+ 
 }
 
 
   ngOnInit() {
     this.getFeedbacksGraph();
-    this.getFeedbacksGraphOutpatient();
-    this.getFeedbacksGraphOutpatientPositive();
-    this.getFeedbacksGraphIpatientPositive();
-    this.getFeedbacksGraphOuatientNegative();
-    this.getFeedbacksGraphIpatientNegative();
-    this.getFeedbacksGraphInpatient();
-    this.getFeedbacksgraphaverage();
-    this.geBookingvsPatientsfeedback();
   
-    this.getMaternitygraphaverage();
+    this.getFeedbacksgraphaverage();
+  
    this.getSurgerygraphaverage()
-   this.getOutpatientgraphaverage()
-   this.getInpatientgraphaverage()
+ 
   }
-  getMaternitygraphaverage(){
-    this.service.maternitygraphaverage().subscribe(
-      datas => {
-        
-        this.MatarnitydataSource.data =datas.data
-          console.log("maternity average",this.MatarnitydataSource )
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-    getInpatientgraphaverage(){
-      this.service.maternitygraphaverage().subscribe(
-        datas => {
-          
-          this.inpatientaveragegraphdata.data =datas.data
-            // console.log("maternity average",this.inpatientaveragegraphdata )
-          
-        },
-       
-        err => console.error(err),
-       
-        () => console.log('There is an error')
-      );
-      }
-      getOutpatientgraphaverage(){
-        this.service.maternitygraphaverage().subscribe(
-          datas => {
-            
-            this.outpatientaveragegraphdata.data =datas.data
-              // console.log("maternity average",this.outpatientaveragegraphdata )
-            
-          },
-         
-          err => console.error(err),
-         
-          () => console.log('There is an error')
-        );
-        }
+ 
+  
   getSurgerygraphaverage(){
     this.service.surgerygraphaverage().subscribe(
       datas => {
@@ -277,7 +180,7 @@ getFeedbacksgraphaverage(){
     datas => {
       
       this.averagegraphdata.data =datas.data
-        // console.log("DATA average",this.averagegraphdata )
+
       
     },
    
@@ -286,103 +189,14 @@ getFeedbacksgraphaverage(){
     () => console.log('There is an error')
   );
   }
-getFeedbacksGraphIpatientNegative(){
-  this.service.feedbacksgraphinpatientnegative().subscribe(
-    datas => {
-      // console.log(data)
-      this.dataSourceinpatientnegative.data=datas.data
-      
-    },
-   
-    err => console.error(err),
-   
-    () => console.log('There is an error')
-  );
-  }
-getFeedbacksGraphOuatientNegative(){
-  this.service.feedbacksgraphoutpatientnegative().subscribe(
-    datas => {
-      // console.log(data)
-      this.dataSourceOutpatientnegative.data=datas.data
-      
-    },
-   
-    err => console.error(err),
-   
-    () => console.log('There is an error')
-  );
-  }
-getFeedbacksGraphOutpatient(){
-this.service.feedbacksgraphoutpatient().subscribe(
-  datas => {
-    // console.log(data)
-    this.dataSourceOutpatient.data=datas.data
-    
-  },
+
+
+
+
+
  
-  err => console.error(err),
  
-  () => console.log('There is an error')
-);
-}
-getFeedbacksGraphIpatientPositive(){
-  this.service.feedbacksgraphinpatientpositive().subscribe(
-    datas => {
-      // console.log(data)
-      this.dataSourceinpatientpositive.data=datas.data
-      
-    },
-   
-    err => console.error(err),
-   
-    () => console.log('There is an error')
-  );
-  }
-getFeedbacksGraphOutpatientPositive(){
-  this.service.feedbacksgraphoutpatientpositive().subscribe(
-    datas => {
-      // console.log(data)
-      this.dataSourceOutpatientpositive.data=datas.data
-      
-    },
-   
-    err => console.error(err),
-   
-    () => console.log('There is an error')
-  );
-  }
-  geBookingvsPatientsfeedback(){
-    this.service.Bookingsvsfeedbackgraph().subscribe(
-      data => {
-        console.log('Bookings data',data)
-        this.allpatients=data.bookings;
-        this.withfeedback=data.withfeedback;
-        this.withoutfeedback=data.nofeedback;
-//         allpatients;
-// withfeedback;
-// withoutfeedback;
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-  // Bookingsvsfeedbackgraph()
-getFeedbacksGraphInpatient(){
-  this.service.feedbacksgrapinpatient().subscribe(
-    datas => {
-      console.log(datas)
-      this.dataSourceinpatient.data=datas.data
-      
-    },
-   
-    err => console.error(err),
-   
-    () => console.log('There is an error')
-  );
-  }
+
 getFeedbacksGraph() {
   this.service.feedbacksgraph().subscribe(
     datas=> {
@@ -396,5 +210,6 @@ getFeedbacksGraph() {
     () => console.log('There is an error')
   );
 }
+
 
 }
