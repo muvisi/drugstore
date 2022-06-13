@@ -13,7 +13,7 @@ const httpOptions_payments = {
 };
 
 
-// export const endpoint='http://localhost:8000/';
+export const endpoint='http://localhost:8000/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
@@ -23,7 +23,7 @@ const httpOptions_payments = {
 // export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
-export const endpoint='http://134.209.199.123:8888/';
+// export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
@@ -1084,6 +1084,10 @@ searchBills(data): Observable<any>{
       return this.http.get(endpoint + 'api/feedbacks/'+id).pipe(
         map(this.extractData));
       }
+      singlepatientfeedback(data): Observable<any> {
+        return this.http.get(endpoint + 'api/siglepatientallfeedbacks/',data).pipe(
+          map(this.extractData));
+        }
     callpatient(phone): Observable<any> {
       return this.http.post(endpoint + 'api/callpatient/',phone).pipe(
         map(this.extractData));

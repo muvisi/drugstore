@@ -97,6 +97,11 @@ export const navItems: NavData[] = [
     url: '/dashboard/payments',
     icon: 'fas fa-credit-card',
   },
+  {
+    name: 'Birthday Notifications',
+    url: '/dashboard/birthday-Messanges',
+    // icon: 'fas fa-credit-card',
+  }
 
   
   
