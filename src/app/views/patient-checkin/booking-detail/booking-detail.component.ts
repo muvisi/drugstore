@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 export class BookingDetailComponent implements OnInit {
   clientForm: FormGroup;
   paymentForm: FormGroup;
+  dateTimeForm: FormGroup;
   patient_info;
   payment_type;
   payment_info;
@@ -94,6 +95,12 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       nhif_number:['']
   
     });
+
+
+    this.dateTimeForm=this.formBuilder.group({
+      date:[''],
+      time:[''],
+    });
     this.service.getbookingDetails(this.route.snapshot.params.id).subscribe((res)=>{
       this.customer=res.patient;
       // console.log(this.date,"kimmmm")
@@ -122,6 +129,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       this.department=res.department;
       this.payment_type={'payment':res.payment !=null ? res.payment : ''}
       this.payment_mode=res.payment;
+      this.dateTimeForm.patchValue({date:res.date,time:res.time});
       
 
       console.log("pateint",this.patient_info);

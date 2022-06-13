@@ -58,7 +58,7 @@ export const navItems: NavData[] = [
   },
   {
     name: 'Calendar',
-    url: '/dashboard/specialty',
+    url: '/dashboard/calendar',
     icon: 'fa fa-calendar-check-o',
   },
   

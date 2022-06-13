@@ -60,7 +60,7 @@ export class ClinicSetupComponent implements OnInit {
   }
   // data to the table
   getData(){
-    this.service.getClinics().subscribe((res)=>{
+    this.service.getClinicsData().subscribe((res)=>{
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
      
