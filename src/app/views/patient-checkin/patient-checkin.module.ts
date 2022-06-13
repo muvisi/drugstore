@@ -120,6 +120,7 @@ import { FeedbackAgeGraphComponent } from './feedback-age-graph/feedback-age-gra
 import { FeedbackSetupComponent } from './feedback-setup/feedback-setup.component';
 import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
+import { ClinicsSetupComponent } from './clinics-setup/clinics-setup.component';
 
 
 
@@ -200,9 +201,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MpesaPaymentsComponent,
     MpesaPaymentReportComponent,   
     UtilizePaymentModal, MaternityListComponent,
-     MaternityDetailsComponent, FootwalkComponent, 
-     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
-      FeedbackSetupComponent, CallPatientsComponent,
+    MaternityDetailsComponent, FootwalkComponent, 
+    FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
+    FeedbackSetupComponent, CallPatientsComponent,
+    ClinicsSetupComponent
       
 
     

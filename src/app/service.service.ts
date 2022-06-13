@@ -14,14 +14,14 @@ const httpOptions_payments = {
 
 
 // export const endpoint='http://localhost:8000/';
-// export const endpoint='http://localhost:8888/';
+export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
-export const endpoint='https://booking.healthixsolutions.com/';
+// export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
@@ -1457,7 +1457,7 @@ getslots() {
   return this.http.get(endpoint + 'api/slots').pipe(
     map(this.extractData));
   }
-  getClinics() {
+  getClinicsData() {
     return this.http.get(endpoint + 'api/clinicdata/').pipe(
       map(this.extractData));
     }
@@ -1588,5 +1588,45 @@ deleteQuestion(data): Observable<any> {
   return this.http.post(endpoint+ 'api/feedback-question-delete/',data).pipe(
     map(this.extractData));
 }
+getClinicTypes(): Observable<any> {
+  return this.http.get(endpoint+ 'api/clinics-type/').pipe(
+    map(this.extractData));
+}
+addClinicTypes(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/clinics-type/',data).pipe(
+    map(this.extractData));
+}
+getClinics(): Observable<any> {
+  return this.http.get(endpoint+ 'api/clinics/').pipe(
+    map(this.extractData));
+}
+getClinicsCalendar(): Observable<any> {
+  return this.http.get(endpoint+ 'api/get-calendar-clinics/').pipe(
+    map(this.extractData));
+}
+addClinics(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/clinics/',data).pipe(
+    map(this.extractData));
+}
+deleteClinics(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/clinics/'+data.id+'/',data).pipe(
+    map(this.extractData));
+}
+updateClinics(data): Observable<any> {
+  return this.http.put(endpoint+ 'api/clinics/'+data.id+'/',data).pipe(
+    map(this.extractData));
+}
+filterClinics(text): Observable<any> {
+  return this.http.get(endpoint+ 'api/clinics/?search='+text).pipe(
+    map(this.extractData));
+}
 
+addClinicWorkDay(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/clinics-workdays/',data).pipe(
+    map(this.extractData));
+}
+getClinicWorkDay(id): Observable<any> {
+  return this.http.get(endpoint+ 'api/clinics-workdays/'+id+'/').pipe(
+    map(this.extractData));
+}
 }
