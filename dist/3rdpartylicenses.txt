@@ -220,9 +220,6 @@ THE SOFTWARE.
 @syncfusion/ej2-angular-base
 SEE LICENSE IN license
 
-@syncfusion/ej2-angular-buttons
-SEE LICENSE IN license
-
 @syncfusion/ej2-angular-calendars
 SEE LICENSE IN license
 
