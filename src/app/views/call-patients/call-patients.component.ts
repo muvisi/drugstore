@@ -15,16 +15,21 @@ import { ServiceService } from '../../service.service';
 })
 export class CallPatientsComponent implements OnInit {
   dataSourceCall;
+  dataSource;
+  mypatient_id;
   phone;
   patient_info;
+  notesdatasource;
   clientForm: FormGroup;
-  nextofKin={
-    name:"",
-    phone:"",
-    residence:"",
-    relationship:""
+  take_notes={
+    notes:"",
+   
   
   }
+  AllColumns1: string[] = ['sn','date','note','user']
+
+  AllColumns: string[] = ['sn','date','patient','service','phone','rating','comments',"visit_type"]
+
   constructor(public service:ServiceService,private route: ActivatedRoute,private formBuilder:FormBuilder,public toastr:ToastrService) { }
 
   ngOnInit() {
@@ -49,8 +54,10 @@ export class CallPatientsComponent implements OnInit {
   
     this.service.feedbackscallpatient(this.route.snapshot.params.id).subscribe(
         res => {
-              this.dataSourceCall=res
-              this.phone=this.dataSourceCall.id
+              this.dataSourceCall=res;
+              // this.take_notes=this.dataSourceCall.feedback_notes
+              this.phone=this.dataSourceCall.id;
+              this.mypatient_id=this.dataSourceCall.phone;
             console.log("dataSourceCall",this.dataSourceCall)
           
         },
@@ -59,17 +66,20 @@ export class CallPatientsComponent implements OnInit {
        
         () => console.log('There is an error')
       );
+  
+    
+
+
+    
       }
   
   CallPatient(){
-    console.log('phone',this.route.snapshot.params.id)
+    
     this.service.callpatient({phone:this.route.snapshot.params.id}).subscribe(
       res => {
-      // if(res.status=='CALLED')
-      // {
+     
         this.toastr.success('success','Thank you for calling')
-      // }
-      
+   
             
       
         
@@ -81,6 +91,74 @@ export class CallPatientsComponent implements OnInit {
     );
     // this.toastr.info('Please', 'This patient Was Called')
     }
-  
+    SinglePatient(){
+      let data={
+        phone:this.dataSourceCall.phone
+        
+      }
+      console.log('MY DATA',data)
+    this.service.singlepatientfeedback(data).subscribe(
+      res => {
+      
+        this.dataSource=res
+        console.log('allpatientdata',res)
+            
+      
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+
+
+    }
+  feedbacksnotes(){
+  let dt={
+    phone:this.dataSourceCall.phone
+  }
+    this.service.feedbacksnotes(dt).subscribe(
+      res => {
+            this.notesdatasource=res;
+           
+        
+      },
+     
+     
+    );
+  }
+    Update(){
+      let data1={
+        notes:this.dataSourceCall.feedback_notes,
+        id:this.route.snapshot.params.id
+      }
+      console.log('notes data',data1)
+    this.service. updatecomments(data1).subscribe(
+      res => {
+        this.toastr.success('success','Notes successfully saved')
+        console.log('data',res)
+        // this.service.feedbackscallpatient(this.route.snapshot.params.id).subscribe(
+        //   res => {
+        //         this.notesdatasource=res;
+               
+            
+        //   },
+         
+         
+        // );
+    
+        // this.ngOnInit();
+      
+       
+            
+      
+        
+      },
+     
+     
+    );
+  } 
 
 }

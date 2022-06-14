@@ -485,6 +485,10 @@ mpesa(): Observable<any> {
     return this.http.get(endpoint + 'payments/mpesa_list/').pipe(
       map(this.extractData));
 }
+getbirthdarmessages(): Observable<any> {
+  return this.http.get(endpoint + 'api/getbirthdarmessages/').pipe(
+    map(this.extractData));
+}
 mpesaList(): Observable<any> {
   return this.http.get(endpoint + 'payments/mpesa_list/?status=0').pipe(
     map(this.extractData));
@@ -1086,6 +1090,31 @@ searchBills(data): Observable<any>{
       return this.http.get(endpoint + 'api/feedbacks/'+id).pipe(
         map(this.extractData));
       }
+      singlepatientfeedback(data): Observable<any> {
+        return this.http.post(endpoint + 'api/siglepatientallfeedbacks/',data).pipe(
+          map(this.extractData));
+        }
+        feedbacksnotes(data): Observable<any> {
+          return this.http.post(endpoint + 'api/feedbacksnotes/',data).pipe(
+            map(this.extractData));
+          }
+      
+    updatecomments(data): Observable<any> {
+          return this.http.post(endpoint + 'api/updatecomments/',data).pipe(
+            map(this.extractData));
+          }
+    birthdayMonth(): Observable<any> {
+            return this.http.get(endpoint + 'api/birthdaynotifications/').pipe(
+              map(this.extractData));
+            }
+    createnewmessage(data): Observable<any> {
+      return this.http.post(endpoint + 'api/createbirthdaymessages/',data).pipe(
+        map(this.extractData));
+      }
+      sendsmsforbirthday(data): Observable<any> {
+        return this.http.post(endpoint + 'api/sendsmsforbirthday/',data).pipe(
+          map(this.extractData));
+        }
     callpatient(phone): Observable<any> {
       return this.http.post(endpoint + 'api/callpatient/',phone).pipe(
         map(this.extractData));
@@ -1534,7 +1563,10 @@ CalendarData(specialty): Observable<any> {
 }
 
 
-
+CalendarDataedit(data): Observable<any> {
+  return this.http.post(endpoint + 'api/reschedule-appointment/',data).pipe(
+    map(this.extractData));
+}
 submitFeedbackCategory(data): Observable<any> {
   return this.http.post(endpoint+ 'api/feedback-category/',data).pipe(
     map(this.extractData));
@@ -1604,6 +1636,10 @@ getClinics(): Observable<any> {
 }
 getClinicsCalendar(): Observable<any> {
   return this.http.get(endpoint+ 'api/get-calendar-clinics/').pipe(
+    map(this.extractData));
+}
+getClinicsCalendarEdited(data): Observable<any> {
+  return this.http.get(endpoint+ 'api/get-calendar-clinics/',data).pipe(
     map(this.extractData));
 }
 addClinics(data): Observable<any> {

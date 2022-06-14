@@ -37,6 +37,7 @@ import { TriageComponent } from './triage/triage.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HospitalComponent } from './hospital/hospital.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 // import { CalendarComponent } from './calendar/calendar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
@@ -120,6 +121,7 @@ import { FeedbackAgeGraphComponent } from './feedback-age-graph/feedback-age-gra
 import { FeedbackSetupComponent } from './feedback-setup/feedback-setup.component';
 import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
+import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { ClinicsSetupComponent } from './clinics-setup/clinics-setup.component';
 
 
@@ -201,10 +203,13 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MpesaPaymentsComponent,
     MpesaPaymentReportComponent,   
     UtilizePaymentModal, MaternityListComponent,
+     MaternityDetailsComponent, FootwalkComponent, 
+     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
+      FeedbackSetupComponent, CallPatientsComponent,BirthdaymessengesComponent,
     MaternityDetailsComponent, FootwalkComponent, 
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
-    FeedbackSetupComponent, CallPatientsComponent,
-    ClinicsSetupComponent
+    FeedbackSetupComponent, ClinicsSetupComponent
+   
       
 
     
@@ -216,7 +221,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FormsModule,
     BsDatepickerModule.forRoot(),
     TabsModule,
-    
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
@@ -245,10 +249,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatButtonModule,
     MatSliderModule,
     ScheduleModule,
+    ButtonModule,
     DateTimePickerModule,
     MatBadgeModule,
-    // DropDownListModule,
-    // FullCalendarModule,
     NgxMaterialTimepickerModule,
     TimePickerModule,
     QRCodeModule,

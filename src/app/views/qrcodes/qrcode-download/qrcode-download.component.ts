@@ -28,7 +28,7 @@ export class QrcodeDownloadComponent implements OnInit {
 
     let qrcode = new QrCodeWithLogo({
    
-      content: "https://bookings.aarhospital.com/#/register/patient",      width: 380,
+      content: "http://134.209.199.123:8889/#/register/patient",      width: 380,
       nodeQrCodeOptions:{
         color:{
             dark:"#4dbd74",

@@ -20,6 +20,7 @@ export class BookingDetailComponent implements OnInit {
   patient_info;
   payment_type;
   payment_info;
+  // minDate;
   department;
   speciality=[];
   symptoms=[];

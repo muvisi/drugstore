@@ -1,0 +1,269 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Upcoming Birthdays
+    </ng-template>
+    <div class="card">
+      <h6 class="card-header bg-success">Upcomming Birthdays
+    
+      </h6>
+      <!-- <button type="button" class="btn btn-success"  style="float: right;"><i class="fa fa-pencil" aria-hidden="true"></i >Success</button> -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+        
+          
+          </div>
+          <div class="row" style="width:100%;justify-content: right; margin-top: 10px;">
+              
+           
+            <div class="col-sm-4">
+                <button class="btn btn-success" style="float: right; " (click)="ComposeNew()"> <i class="fa fa-pencil" aria-hidden="true"></i > Compose Messages</button>        
+    
+            </div>
+                   
+                      </div>
+            
+          <div class="col-sm-12" style="margin-top: 15px;">
+            <div class="mat-elevation-z8 table-responsive">
+              <table mat-table [dataSource]="dataSource">
+                  <ng-container matColumnDef="sn">
+                      <th mat-header-cell *matHeaderCellDef>S/N</th>
+                      <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+              </ng-container>
+              <ng-container matColumnDef="dob">
+                <th mat-header-cell *matHeaderCellDef>DOB</th>
+                <td mat-cell *matCellDef="let element"> {{element.dob | date:'mediumDate'}} </td>
+              </ng-container>
+              <ng-container matColumnDef="client">
+                <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}}</td>
+              </ng-container>
+                <ng-container matColumnDef="phone">
+                  <th mat-header-cell *matHeaderCellDef>Tel Number</th>
+                  <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef>Email</th>
+                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+                <ng-container matColumnDef="age">
+                  <th mat-header-cell *matHeaderCellDef>Age</th>
+                  <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                </ng-container>
+                <ng-container matColumnDef="view">
+                  <th mat-header-cell *matHeaderCellDef>Send Manually</th>
+                  <td mat-cell *matCellDef="let element"> 
+                    <button class="btn btn-success btn-sm" (click)="clickRow(selected=element)"><i class="fa fa-paper-plane"  style="font-size: 24px;" aria-hidden="true"></i></button>
+                    
+                     </td>
+                </ng-container>
+                
+                    
+                   
+        
+              
+        
+                
+              
+                <tr mat-header-row *matHeaderRowDef="AllColumns1"></tr>
+                <tr mat-row *matRowDef="let row; columns:AllColumns1;"></tr>
+              </table>
+        
+              <mat-paginator [pageSizeOptions]="[19,50]" showFirstLastButtons></mat-paginator>
+            </div>
+          </div>
+          </div>
+    
+      </div>
+    
+    
+    </div>
+    
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Birthday Messages
+    </ng-template>
+    <br>
+    <div class="card">
+      <h6 class="card-header bg-success">Birthday Messages
+    
+      </h6>
+      <div class="card-body">
+        <div class="row">
+        
+          
+            
+          <div class="col-sm-12" style="margin-top: 15px;">
+            <div class="mat-elevation-z8 table-responsive">
+              <table mat-table [dataSource]="messagesdataSource">
+                  <ng-container matColumnDef="sn">
+                      <th mat-header-cell *matHeaderCellDef>S/N</th>
+                      <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+              </ng-container>
+              <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef>Created</th>
+                <td mat-cell *matCellDef="let element"> {{element.created | date:'mediumDate'}} </td>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Company Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.company_name}} </td>
+              </ng-container>
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef>Company Email</th>
+                  <td mat-cell *matCellDef="let element"> {{element.company_email}} </td>
+                </ng-container>
+                <ng-container matColumnDef="contact">
+                  <th mat-header-cell *matHeaderCellDef>Company Contact</th>
+                  <td mat-cell *matCellDef="let element"> {{element.company_contact}} </td>
+                </ng-container>
+                <ng-container matColumnDef="message">
+                  <th mat-header-cell *matHeaderCellDef>Birthday Message</th>
+                  <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+                </ng-container>
+                <ng-container matColumnDef="createdby">
+                  <th mat-header-cell *matHeaderCellDef>Created By</th>
+                  <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+                </ng-container>
+                
+                
+                    
+                   
+        
+              
+        
+                
+              
+                <tr mat-header-row *matHeaderRowDef="AllColumns2"></tr>
+                <tr mat-row *matRowDef="let row; columns:AllColumns2;"></tr>
+              </table>
+        
+              <mat-paginator [pageSizeOptions]="[19,50]" showFirstLastButtons></mat-paginator>
+            </div>
+          </div>
+          </div>
+    
+      </div>
+    
+    
+    </div>
+    
+    
+  </mat-tab>
+</mat-tab-group>
+
+
+
+
+
+
+
+
+
+<div class="modal fade" bsModal #addModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header bg-success">
+ <h5>
+ <span>Compose New Birthday Message</span>
+ </h5>
+  <button type="button" class="close" (click)="addModal.hide()" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+ <div class="modal-body">
+    <form [formGroup]="registerForm" (ngSubmit)="NewMessage()">
+   <div class="row">
+           
+     <div class="col-sm-6">
+       <mat-form-field appearance="outline">
+         <mat-label>Message Title</mat-label>
+           <input type="text" id="text-input" name="title"  placeholder="Message Title"
+           formControlName="title" matInput>
+       </mat-form-field>
+     </div>
+       <div class="col-sm-6">
+           <mat-form-field appearance="outline">
+             <mat-label>Message Body</mat-label>
+               <input type="text" id="text-input"  placeholder="Message"
+               formControlName="message" matInput>
+           </mat-form-field>
+         </div>
+        
+      
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Company Name</mat-label>
+            <input type="text" id="text-input"  placeholder="company"
+            formControlName="company_name" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+         <mat-form-field appearance="outline">
+           <mat-label>Designation</mat-label>
+             <input type="text" placeholder="designation"
+             formControlName="designation" matInput>
+         </mat-form-field>
+       </div>
+     
+         <div class="col-sm-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Company Location</mat-label>
+              <input type="text" id="text-input"  placeholder="location"
+              formControlName="location" matInput>
+          </mat-form-field>
+           
+           </div>
+           <div class="col-sm-6">
+               <mat-form-field appearance="outline">
+                 <mat-label>Contact</mat-label>
+                   <input type="contact" id="text-input"   placeholder="Contact"
+                   formControlName="contact" matInput>
+               </mat-form-field>
+             </div>
+             <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Company Email</mat-label>
+                  <input type="email" id="text-input"   placeholder="email"
+                  formControlName="email" matInput>
+              </mat-form-field>
+            </div>
+           
+              <div class="col-sm-12">
+                <input 
+                formControlName="file"
+                id="file" 
+                type="file" 
+                class="form-control"
+                (change)="onFileChange($event)" required>
+                
+              </div>
+              <img [src]="imageSrc" *ngIf="imageSrc" style="height: 150px; width:250px">
+              <div class="col-sm-12">
+                 <button class="btn btn-primary btn-sm pull-right"  style="margin-right: 8px;">Create</button>
+               </div>
+   </div>
+ </form>
+ </div>
+</div>
+</div>
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
