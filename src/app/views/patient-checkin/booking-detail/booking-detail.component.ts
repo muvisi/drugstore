@@ -20,7 +20,7 @@ export class BookingDetailComponent implements OnInit {
   patient_info;
   payment_type;
   payment_info;
-  minDate;
+  // minDate;
   department;
   speciality=[];
   symptoms=[];
@@ -47,7 +47,7 @@ export class BookingDetailComponent implements OnInit {
   show_insurance;
   loading: boolean;
 
-
+  minDate=new Date();
   formatter = (result: string) => result.toUpperCase();
 search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
   text$.pipe(
@@ -76,7 +76,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       national_id: [''],
       brought_in_by: [''],
   });
-
+ 
     this.paymentForm=this.formBuilder.group({
       cash:['',[Validators.required]],
       mpesa:['',[Validators.required]],

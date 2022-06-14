@@ -138,7 +138,7 @@ currentView="Month"
     
       deleteClinic(item){      
         this.loading=true;
-        this.service.deleteclinic(item).subscribe(res=>{
+        this.service.deleteclinic(item.id).subscribe(res=>{
           this.loading=false;
           this.toast.success("Successfully deleted");
           this.getClinicTypes();
@@ -148,6 +148,8 @@ currentView="Month"
         });  
       }
       showCalendar(element){
+        this.selected_clinic_id=element.id
+        this.getWorkdays();
         this.calendarModal.show()
       }
 

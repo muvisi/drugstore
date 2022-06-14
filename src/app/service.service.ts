@@ -15,6 +15,7 @@ const httpOptions_payments = {
 
 // export const endpoint='http://localhost:8000/';
 // export const endpoint='https://8cc9-154-159-246-36.ngrok.io/';
+// export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
