@@ -83,11 +83,9 @@ import { FeedbackAgeGraphComponent } from '../patient-checkin/feedback-age-graph
 import { FeedbackSetupComponent } from '../patient-checkin/feedback-setup/feedback-setup.component';
 import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
-<<<<<<< HEAD
 import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
-=======
 import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
->>>>>>> 1f34974fe79f640ce33708746f8a29ae98d5bc24
+// import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
     path: '',

@@ -1,12 +1,146 @@
 
-
-
-
-
-
-<ejs-schedule id="schedule" width='100%' height='550px' #scheduleObj [allowDragAndDrop]=true   currentView="Month" [workHours]="scheduleHours"  [eventSettings]='eventSettings'  [selectedDate]='selectedDate' [showWeekend]="showWeekend" [views]="scheduleViews" [workDays]='workWeekDays'>
-    <e-schedule-views>
-        <e-schedule-view option="Month" eventTemplate="#event-template"></e-schedule-view>
-    </e-schedule-views>
+<ejs-schedule  (popupOpen)='onPopupOpen($event)' width='100%' height='800px' rowAutoHeight="true"    [workHours]="scheduleHours"  [selectedDate]='selectedDate' [views]="setViews"  [group]='group' [currentView]="setView" [eventSettings]="eventSettings">
+    <e-views>
+        <e-view option='Day' startHour='08:00' endHour='17:00' [interval]='1'></e-view>
+        <!-- <e-view  startHour='08:00' endHour='17:00' option='Week' ></e-view> -->
+        <e-view option='Week'  startHour='08:00' endHour='17:00'></e-view>
+        <!-- <e-view option='Month'></e-view> -->
+        <e-view option='Agenda'></e-view>
+        <e-view option='MonthAgenda' ></e-view>
+      </e-views>
+      <e-resources>
+        <e-resource field="OwnerId" title="Clinic" name="Clinics"
+        [dataSource]="ownerDataSource"
+        textField="text" idField="id" colorField="color">
+        </e-resource>
+    </e-resources>
+      <ng-template #editorTemplate>
+        <table class="custom-event-editor" width="100%" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td class="e-textlabel">Summary</td>
+                    <td colspan="4">
+                        <input id="Subject" class="e-field e-input" type="text" value="" name="Subject" style="width: 100%" />
+                    </td>
+                </tr>
+             
+                <tr>
+                    <td class="e-textlabel">From</td>
+                    <td colspan="4">
+                        <input id="StartTime" class="e-field" type="text"   name="StartTime" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="e-textlabel">To</td>
+                    <td colspan="4">
+                        <input id="EndTime" class="e-field"   type="text" name="EndTime" />
+                    </td>
+                </tr>
+               
+            </tbody>
+        </table>
+        <!-- <div *ngIf="data.elementType == 'event'"> -->
+			<!-- <div class="e-popup-header" style="background-color: rgb(234, 122, 87);"> -->
+				<div class="e-header-icon-wrapper">
+					<button (click)="onEditClick($event)" ejs-button class="e-edit e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Edit">
+              <span class="e-btn-icon e-icons e-edit-icon"></span>
+          </button>
+					<button (click)="onDeleteClick($event)" ejs-button class="e-delete e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Delete">
+              <span class="e-btn-icon e-icons e-delete-icon"></span>
+          </button>
+					<button (click)="onCloseClick($event)" ejs-button class="e-close e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Close">
+            <span class="e-btn-icon e-icons e-close-icon"></span>
+           </button>
+				</div>
+				<div class="e-subject-wrap">
+					<div class="e-subject e-text-ellipsis" [title]="data.Subject">
+						<div [innerHTML]="data.Subject"></div>
+					</div>
+				</div>
+			<!-- </div> -->
+		<!-- </div> -->
+    </ng-template>
+    <!-- <ng-template #ownerDataSource let-data>
+		<div *ngIf="data.elementType == 'event'">
+			<div class="e-popup-header" style="background-color: rgb(234, 122, 87);">
+				<div class="e-header-icon-wrapper">
+					<button (click)="onEditClick($event)" ejs-button class="e-edit e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Edit">
+              <span class="e-btn-icon e-icons e-edit-icon"></span>
+          </button>
+					<button (click)="onDeleteClick($event)" ejs-button class="e-delete e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Delete">
+              <span class="e-btn-icon e-icons e-delete-icon"></span>
+          </button>
+					<button (click)="onCloseClick($event)" ejs-button class="e-close e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Close">
+            <span class="e-btn-icon e-icons e-close-icon"></span>
+           </button>
+				</div>
+				<div class="e-subject-wrap">
+					<div class="e-subject e-text-ellipsis" [title]="data.Subject">
+						<div [innerHTML]="data.Subject"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-template> -->
 </ejs-schedule>
 
+
+
+
+
+
+<div class="modal fade" bsModal #editEventModal="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+    <div class="modal-content">
+     <div class="modal-header">
+       <h5 id="dialog-static-name" class="modal-title pull-left">Reschedule</h5>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="editEventModal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+     <div class="modal-body">    
+      <div class="col-sm-12">      
+            <div class="control-section">
+              <div class="col-lg-12 conent-wrapper">
+                <!-- <fieldset>
+                  <legend>Reschedule Appointment</legend> -->
+               <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <!-- <mat-label>Clinic</mat-label> -->
+                      <input matInput placeholder="Subject" [(ngModel)]="booking_event.Subject " name="Subject" >
+                      
+                    </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <!-- <mat-label>Start</mat-label> -->
+                    <input matInput placeholder="Start" [(ngModel)]="booking_event.StartTime" name="Subject" >
+                    
+                  </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <!-- <mat-label>End</mat-label> -->
+                  <input matInput  [(ngModel)]="booking_event.EndTime" name="Subject" >
+                  
+                </mat-form-field>
+          </div>
+                  
+                   
+                
+              
+            </div>
+            <button class="btn btn-success btn-sm" (click)="Reschedule()">Reshedule</button>
+
+                <!-- </fieldset> -->
+              </div>      
+         
+        </div>
+         
+      </div>
+      
+     </div>
+    </div>
+    </div>
+    </div>
