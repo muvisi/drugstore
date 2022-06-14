@@ -37,7 +37,6 @@ import { TriageComponent } from './triage/triage.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { HospitalComponent } from './hospital/hospital.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
-import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 // import { CalendarComponent } from './calendar/calendar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
@@ -249,7 +248,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MatButtonModule,
     MatSliderModule,
     ScheduleModule,
-    ButtonModule,
     DateTimePickerModule,
     MatBadgeModule,
     NgxMaterialTimepickerModule,
