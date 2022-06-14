@@ -23,6 +23,7 @@ selectedDate: Date = new Date();
 
 weekdays=[]
 offdays=[]
+workdays=[]
 currentView="Month"
 
   clinicForm: FormGroup;
@@ -153,10 +154,14 @@ currentView="Month"
         this.calendarModal.show()
       }
 
-      public isWorkDay(date: Date){
-        if (this.checkOffdays(date)) {
+       isWorkDay(date: Date){
+        if (this.checkOffdays(date)){
           return false;
-        } else{
+        }else if(!this.checkWeekdaysInList(date.getDay()) && this.checkWorkdays(date)){
+          return true;
+        }else if(!this.checkWeekdaysInList(date.getDay())){
+          return false;
+      }else{
           return true;
         }
       }
@@ -168,9 +173,22 @@ currentView="Month"
             return false;
           } 
       }
+      checkWorkdays(date){
+        var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+        if(this.workdays.indexOf(t)>-1){
+          return true;
+        }else{
+          return false;
+        } 
+    }
+
       addOffdays(date){
         var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
         this.offdays.push(t)
+      }
+      addWorkdays(date){
+        var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+        this.workdays.push(t)
       }
       removeOffdays(date){
         var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
@@ -183,63 +201,40 @@ currentView="Month"
         }
         this.offdays=new_list;
     }
+    removeWorkdays(date){
+      var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+      var new_list=[]
+      for (var i=0;i<this.workdays.length;i++){
+        if(this.workdays[i]!=t){
+          new_list.push(this.offdays[i])
+        }
+       
+      }
+      this.workdays=new_list;
+  }
       onPopupOpen(args: PopupOpenEventArgs){
         args.cancel = true; 
       }
       checkWeekdaysInList(item){
+        
         if(this.weekdays.indexOf(item)>-1){
+        
           return true;
         }else{
           return false;
-        }
-    
+        }    
       }
       weekdayChange(item){
         if (this.checkWeekdaysInList(item)){      
           this.weekdays=this.remove(item,this.weekdays)
-          this.addWeekdayInOffday(item)
         }else{
           this.weekdays.push(item)
-          this.removeWeekdayFromOffdays(item)
     
         }
       }
     
-      addWeekdayInOffday(item){
-        let today=new Date()
-        console.log(today);
-        console.log(today.getDate().toString())
-        for(var i=0;i<32;i++ ){
-          try{
-            var date=new Date((today.getMonth()+1).toString()+"/"+i.toString()+"/"+today.getFullYear().toString())
-          
-            if(date.getDay()==item){
-              
-                this.addOffdays(date);
-            }
-    
-          }catch(err){
-    
-          }
-        }
-        console.log(this.offdays);
-      }
-      removeWeekdayFromOffdays(item){
-        let today=new Date()
-        console.log(today);
-        console.log(today.getDate().toString())
-        for(var i=0;i<32;i++ ){
-          try{
-            var date=new Date((today.getMonth()+1).toString()+"/"+i.toString()+"/"+today.getFullYear().toString())
-            if(date.getDay()==item){              
-                this.removeOffdays(date);
-            }    
-          }catch(err){    
-          }
-        }
-        console.log(this.offdays);
-      }
-    
+  
+
     
       remove(item,itemlist){
         var new_list=[]
@@ -254,11 +249,20 @@ currentView="Month"
     
       onCellClick(event) {
         var date = new Date(event.startTime);
-        if(this.checkOffdays(date)){
-          this.removeOffdays(date)
+        if(this.checkWeekdaysInList(date.getDay())){
+          if(this.checkOffdays(date)){
+            this.removeOffdays(date)
+          }else{
+            this.addOffdays(date)
+          }
         }else{
-          this.addOffdays(date)
+          if(this.checkWorkdays(date)){
+            this.removeWorkdays(date)
+          }else{
+            this.addWorkdays(date)
+          }
         }
+       
       }
       getWorkdays(){
         this.loading=true;
@@ -276,7 +280,8 @@ currentView="Month"
         let d={
           id:this.selected_clinic_id,
           weekdays:this.weekdays,
-          offdays:this.offdays
+          offdays:this.offdays,
+          workdays:this.workdays
           
         }
         this.loading=true;
