@@ -18,6 +18,9 @@ import { ToastrService } from 'ngx-toastr';
 export class CalendarComponent implements OnInit {
 token: string = sessionStorage.getItem('Token');
 selectedDate: Date = new Date();
+data2={
+  ""
+}
 booking_event:any={
   StartTime:"",
   EndTime:"",
