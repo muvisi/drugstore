@@ -30,7 +30,7 @@ export class MaternityfeedbackComponent implements OnInit {
 
     let qrcode = new QrCodeWithLogo({
    
-      content: "http://134.209.199.123:8889/#/feedbacks/4JQbNBkQk5",
+      content: "http://134.209.199.123:8889/#/feedbacks/IRu9oHUBQO",
       width: 380,
       nodeQrCodeOptions:{
         color:{
