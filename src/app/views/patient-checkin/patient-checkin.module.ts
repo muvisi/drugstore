@@ -127,6 +127,9 @@ import { BookAppointmentComponent } from '../add/book-appointment/book-appointme
 import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
 import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
 import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
+import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
+
+
 
 
 
@@ -210,9 +213,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
       FeedbackSetupComponent, CallPatientsComponent,BirthdaymessengesComponent,
     MaternityDetailsComponent, FootwalkComponent, 
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
-    FeedbackSetupComponent, ClinicsSetupComponent,
-
-
+    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,
    
       
 

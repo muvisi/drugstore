@@ -16,8 +16,10 @@ export class BirthdaymessengesComponent implements OnInit {
   dataSource;
   selected;
   messagesdataSource;
+  deliveredmessagesdataSource;
   registerForm: FormGroup;
   imageSrc: string;
+  // @ViewChild("fileInput") fileInput;
   @ViewChild('addModal', { static: false }) addModal: ModalDirective;
   AllColumns2: string[] = ['sn','created','name','email','contact','message','createdby']
   AllColumns1: string[] = ['sn','dob','client','phone','email','age','view']
@@ -32,7 +34,9 @@ export class BirthdaymessengesComponent implements OnInit {
       designation:['',Validators.required],
       location:['',Validators.required],
       contact:['',Validators.required],
-      file:['',Validators.required,]
+      file:['',Validators.required,],
+      filename:"image.png",
+      fileSource:['']
 
   });
 //  console.log(this.registerForm.value)
@@ -41,6 +45,18 @@ this.service.getbirthdarmessages().subscribe(
   res => {
         this.messagesdataSource=res;
         console.log(this.messagesdataSource)
+    
+  },
+ 
+  err => console.error(err),
+ 
+  () => console.log('There is an error')
+);
+this.service.getsendbirthdarmessages().subscribe(
+  res => {
+        this.deliveredmessagesdataSource=res;
+        console.log(this.deliveredmessagesdataSource)
+        this.ngOnInit()
     
   },
  
@@ -70,6 +86,9 @@ this.service.getbirthdarmessages().subscribe(
   }
   onFileChange(event) {
     const reader = new FileReader();
+ 
+    
+    // const reader = new FileReader();
     
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
@@ -83,17 +102,17 @@ this.service.getbirthdarmessages().subscribe(
           fileSource: reader.result
         });
    
-      
-      }}
+      };
+   
+  
+  }
+    
     
       } 
       NewMessage(){
          if(this.registerForm.valid)
          {
-
-
-
-          console.log(this.registerForm.value)
+         console.log(this.registerForm.value)
          this.service.createnewmessage(this.registerForm.value).subscribe(
           res => {
           this.toastr.success('success','Birthday Message Created')
@@ -120,7 +139,9 @@ this.service.getbirthdarmessages().subscribe(
         let data={
           phone:this.selected.phone,
           email:this.selected.email,
-          first_name:this.selected.first_name
+          first_name:this.selected.first_name,
+          dob:this.selected.dob,
+          age:this.selected.age,
         }
         console.log(data)
         this.service.sendsmsforbirthday(data).subscribe(

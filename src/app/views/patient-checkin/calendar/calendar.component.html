@@ -39,49 +39,28 @@
                
             </tbody>
         </table>
-        <!-- <div *ngIf="data.elementType == 'event'"> -->
-			<!-- <div class="e-popup-header" style="background-color: rgb(234, 122, 87);"> -->
-				<div class="e-header-icon-wrapper">
-					<button (click)="onEditClick($event)" ejs-button class="e-edit e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Edit">
-              <span class="e-btn-icon e-icons e-edit-icon"></span>
-          </button>
-					<button (click)="onDeleteClick($event)" ejs-button class="e-delete e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Delete">
-              <span class="e-btn-icon e-icons e-delete-icon"></span>
-          </button>
-					<button (click)="onCloseClick($event)" ejs-button class="e-close e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Close">
-            <span class="e-btn-icon e-icons e-close-icon"></span>
-           </button>
-				</div>
-				<div class="e-subject-wrap">
-					<div class="e-subject e-text-ellipsis" [title]="data2.Subject">
-						<div [innerHTML]="data2.Subject"></div>
-					</div>
-				</div>
-			<!-- </div> -->
-		<!-- </div> -->
+        <div class="e-popup-header" style="background-color: rgb(234, 122, 87);">
+          <div class="e-header-icon-wrapper">
+            <button (click)="onEditClick($event)" ejs-button class="e-edit e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Edit">
+                <span class="e-btn-icon e-icons e-edit-icon"></span>
+            </button>
+            <button (click)="onDeleteClick($event)" ejs-button class="e-delete e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Delete">
+                <span class="e-btn-icon e-icons e-delete-icon"></span>
+            </button>
+            <button (click)="onCloseClick($event)" ejs-button class="e-close e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Close">
+              <span class="e-btn-icon e-icons e-close-icon"></span>
+             </button>
+          </div>
+          <div class="e-subject-wrap">
+            <div class="e-subject e-text-ellipsis" [title]="data.Subject">
+              <div [innerHTML]="data.Subject"></div>
+            </div>
+          </div>
+        </div>
+      
+	
     </ng-template>
-    <!-- <ng-template #ownerDataSource let-data>
-		<div *ngIf="data.elementType == 'event'">
-			<div class="e-popup-header" style="background-color: rgb(234, 122, 87);">
-				<div class="e-header-icon-wrapper">
-					<button (click)="onEditClick($event)" ejs-button class="e-edit e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Edit">
-              <span class="e-btn-icon e-icons e-edit-icon"></span>
-          </button>
-					<button (click)="onDeleteClick($event)" ejs-button class="e-delete e-icons e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Delete">
-              <span class="e-btn-icon e-icons e-delete-icon"></span>
-          </button>
-					<button (click)="onCloseClick($event)" ejs-button class="e-close e-control e-btn e-lib e-flat e-round e-small e-icon-btn" title="Close">
-            <span class="e-btn-icon e-icons e-close-icon"></span>
-           </button>
-				</div>
-				<div class="e-subject-wrap">
-					<div class="e-subject e-text-ellipsis" [title]="data.Subject">
-						<div [innerHTML]="data.Subject"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</ng-template> -->
+   
 </ejs-schedule>
 
 

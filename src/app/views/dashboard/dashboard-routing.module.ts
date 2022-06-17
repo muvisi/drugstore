@@ -85,12 +85,12 @@ import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.comp
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
 import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
-import { AddModule } from '../add/add.module';
 import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
 import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
 import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
 import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
 
+import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -113,6 +113,10 @@ const routes: Routes = [
   {
     path: 'register-qrcode-download',
     component: QrcodeDownloadComponent,
+  },
+  {
+    path: 'maternityfeedback-qrcode-download',
+    component: MaternityfeedbackComponent,
   },
   {
     path: 'maternity-qrcode-download',

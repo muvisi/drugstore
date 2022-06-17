@@ -21,21 +21,6 @@ export class FeedbacksComponent implements OnInit {
   
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   dataSource;
-  // dataSourceOutpatient: any={}
-  // dataSourceOutpatientpositive: any={}
-  // dataSourceOutpatientnegative: any={}
-  // dataSourceinpatientpositive: any={}
-  // dataSourceinpatientnegative: any={}
-  // dataSourceinpatient: any={}
-  // inpatientaveragegraphdata: any={}
-  // outpatientaveragegraphdata: any={}
-  // averagegraphdata: any={}
-  // dataSource: any={}
-  // SurgerydataSource: any={}
-  // MatarnitydataSource: any={}
-  // bookingvspatient: Object;
-  // dataSources;
- 
 
 
 
@@ -73,10 +58,10 @@ export class FeedbacksComponent implements OnInit {
   period_inpatient;
   date_inpatient;
   inpatient_dataSource;
+  notregistered_dataSource;
   selected;
   dataSourceCall;
   endpoint;
-
   loading;
   // idnumber;
   phonenumber;
@@ -105,11 +90,11 @@ export class FeedbacksComponent implements OnInit {
     // this.getAllfeedback();
     this.getFeedbacksAll();
   
-    // this.getMaternityfeedback();
+
    
     this.getEdpoint();
    
-    // dataFormat: 'json',
+   
 
    
     
@@ -139,8 +124,38 @@ this.date_positive="";
   getAllfeedback(){
     this.service.allfeedbacks().subscribe(
       datas => {
-        this.dataSource=datas.data
+        this.dataSource = new MatTableDataSource(datas.data);
+        this.dataSource.paginator = this.paginator;
+        // this.dataSource=datas.data
       
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+    }
+    getfeedbackwithotpatient(){
+      this.service.allfeedbackswithoutpatient().subscribe(
+        datas => {
+          this.dataSource = new MatTableDataSource(datas.data);
+          this.dataSource.paginator = this.paginator;
+          // this.dataSource=datas.data
+        
+          
+        },
+       
+        err => console.error(err),
+       
+        () => console.log('There is an error')
+      );
+      }
+  getMaternityfeedback(){
+    this.service.feedbackmaternity().subscribe(
+      datas => {
+        this.maternity_dataSource=datas
+          console.log("DATA",this.maternity_dataSource)
         
       },
      

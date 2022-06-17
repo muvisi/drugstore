@@ -8,6 +8,7 @@ import { createElement } from '@syncfusion/ej2-base';
 import { DateTimePicker } from '@syncfusion/ej2-calendars';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { extend, Internationalization,isNullOrUndefined } from '@syncfusion/ej2-base';
 // import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
 @Component({
   selector: 'app-calendar',
@@ -18,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CalendarComponent implements OnInit {
 token: string = sessionStorage.getItem('Token');
 selectedDate: Date = new Date();
-data2={
+data={
   Subject:''
 }
 booking_event:any={
@@ -84,12 +85,30 @@ Reschedule(){
   console.log('backend data',this.booking_event)
   this.service.CalendarDataedit(this.booking_event).subscribe((res)=>{
       
-    console.log(res)
+    // console.log(res)
     this.toast.success('Success','Appointment rescheduled successfully' )
-    // this.toastr.success('success','Thank you for calling')
+    this.editEventModal.hide()
+   
   },(err)=>{
     this.toast.warning('Error','Appointment rescheduled failed' )
   })
+}
+public onDetailsClick(): void {
+  this.onCloseClick();
+  const data: Object = this.scheduleObj.getCellDetails(this.scheduleObj.getSelectedElements()) as Object;
+  this.scheduleObj.openEditor(data, 'Add');
+}
+public onAddClick(): void {
+ ;
+}
+public onEditClick(args: any): void {
+
+}
+public onDeleteClick(args: any): void {
+ 
+}
+public onCloseClick(): void {
+  this.scheduleObj.quickPopup.quickPopupHide();
 }
 
 

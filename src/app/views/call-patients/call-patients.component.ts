@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ServiceService } from '../../service.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-call-patients',
   templateUrl: './call-patients.component.html',
@@ -21,11 +22,13 @@ export class CallPatientsComponent implements OnInit {
   patient_info;
   notesdatasource;
   clientForm: FormGroup;
+  notesform: FormGroup;
   take_notes={
     notes:"",
    
   
   }
+  @ViewChild('paymentModal', { static: false }) paymentModal: ModalDirective;
   AllColumns1: string[] = ['sn','date','note','user']
 
   AllColumns: string[] = ['sn','date','patient','service','phone','rating','comments',"visit_type"]
@@ -51,6 +54,11 @@ export class CallPatientsComponent implements OnInit {
       national_id: [''],
       brought_in_by: [''],
   });
+//   this.notesform = this.formBuilder.group({
+//     notes: ['',[Validators.required]],
+   
+// });
+
   
     this.service.feedbackscallpatient(this.route.snapshot.params.id).subscribe(
         res => {
@@ -72,6 +80,27 @@ export class CallPatientsComponent implements OnInit {
 
     
       }
+      TakeNotes(){ let data1={
+        notes:this.take_notes.notes,
+        id:this.route.snapshot.params.id
+      }
+      console.log(data1)
+      console.log('notes data',data1)
+    this.service. updatecomments(data1).subscribe(
+      res => {
+        this.toastr.success('success','Notes successfully saved')
+        this.paymentModal.hide()
+        console.log('data',res)
+        
+       
+            
+      
+        
+      },
+     
+     
+    );
+  } 
   
   CallPatient(){
     
@@ -139,18 +168,7 @@ export class CallPatientsComponent implements OnInit {
       res => {
         this.toastr.success('success','Notes successfully saved')
         console.log('data',res)
-        // this.service.feedbackscallpatient(this.route.snapshot.params.id).subscribe(
-        //   res => {
-        //         this.notesdatasource=res;
-               
-            
-        //   },
-         
-         
-        // );
-    
-        // this.ngOnInit();
-      
+        
        
             
       
