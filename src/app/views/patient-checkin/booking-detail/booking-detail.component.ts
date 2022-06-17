@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,6 +6,9 @@ import { ServiceService } from '../../../service.service';
 import dateFormat, { masks } from "dateformat";
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { ModalDirective } from 'ngx-bootstrap';
+import { extend } from '@syncfusion/ej2-base';
+import { PopupOpenEventArgs } from '@syncfusion/ej2-schedule';
 // import { ServiceService } from '../../../service.service';
 
 @Component({
@@ -20,6 +23,7 @@ export class BookingDetailComponent implements OnInit {
   patient_info;
   payment_type;
   payment_info;
+ 
   // minDate;
   department;
   speciality=[];
@@ -46,9 +50,13 @@ export class BookingDetailComponent implements OnInit {
   insurance_company_suggestions=[];
   show_insurance;
   loading: boolean;
-
+  @ViewChild('calendarModal', { static: false }) calendarModal: ModalDirective;
+  @ViewChild('calendarModalTime', { static: false }) calendarModalTime: ModalDirective;
+  @ViewChild('ConfirmAppointment', { static: false }) confirmAppointmentModal: ModalDirective;
+  
   minDate=new Date();
   formatter = (result: string) => result.toUpperCase();
+
 search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
   text$.pipe(
     debounceTime(200),
@@ -56,6 +64,21 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     map(term => term === '' ? []
       : this.insurance_company_suggestions.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
   )
+
+
+  eventSettings;
+  offdays=[];
+  weekdays=[];
+  workdays=[];
+  selected_clinic_id: any;
+  selected_appointment_date;
+  selectedDate=new Date();
+  currentView="Month"
+  currentWorkweek="WorkWeek"
+  workdate=[]
+  workHours = { start: '08:00', end: '17:00' };
+  clinics: any;
+  selected_clinic: any;
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
 
   ngOnInit() {
@@ -101,6 +124,9 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     this.dateTimeForm=this.formBuilder.group({
       date:[''],
       time:[''],
+      clinic:[''],
+      clinic_name:[''],
+      id:['']
     });
     this.service.getbookingDetails(this.route.snapshot.params.id).subscribe((res)=>{
       this.customer=res.patient;
@@ -181,8 +207,12 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
         }   
     
     }});
-  }
 
+    this.getClinics();
+  }
+  createAppointment(){
+    this.calendarModal.show()
+  }
   updateClientData(){
     this.loading=true;
     var client_data=this.clientForm.getRawValue();
@@ -273,6 +303,140 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     },(err)=>{
       this.loading=false;
       this.toast.error("Update Failed")
+    })
+  }
+
+  onPopupOpen(args: PopupOpenEventArgs){
+    args.cancel = true; 
+  }
+  
+  onClinicSelected(item){
+    this.selected_clinic_id=item.id
+    this.selected_clinic=item;
+    this.dateTimeForm.patchValue({clinic_name:item.name,clinic:item.id,id:this.route.snapshot.params.id})
+    this.getWorkdays(item.id);
+  }
+  getClinics(){
+    this.service.getAllClinics().subscribe((res)=>{
+       this.clinics=res;
+   
+    },(err)=>{
+
+    })
+  }
+
+getWorkdays(id){
+        this.loading=true;
+        this.service.getClinicWorkDay(id).subscribe(res=>{
+          this.loading=false;
+          this.offdays=res.offdays;
+          this.workdays=res.workdays;
+          this.weekdays=res.weekdays;
+    
+        },err=>{
+          this.loading=false;
+          this.toast.warning("Failed");
+        });
+}
+isWorkDay(date: Date){
+  if (this.checkOffdays(date)){
+    return false;
+  }else if(!this.checkWeekdaysInList(date.getDay()) && this.checkWorkdays(date)){
+    return true;
+  }else if(!this.checkWeekdaysInList(date.getDay())){
+    return false;
+}else{
+    return true;
+  }
+}
+checkOffdays(date){
+    var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+    if(this.offdays.indexOf(t)>-1){
+      return true;
+    }else{
+      return false;
+    } 
+}
+checkWorkdays(date){
+  var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+  if(this.workdays.indexOf(t)>-1){
+    return true;
+  }else{
+    return false;
+  } 
+}
+checkWeekdaysInList(item){
+        
+  if(this.weekdays.indexOf(item)>-1){
+  
+    return true;
+  }else{
+    return false;
+  }    
+}
+
+  onCellClick(event) {
+    var date = new Date(event.startTime);
+   
+    this.selected_appointment_date=date;
+    this.workdate=[date.getDay()]
+    if(this.isWorkDay(date)){
+
+      var string_date=this.selected_appointment_date.getDate().toString()+'-'+(this.selected_appointment_date.getMonth()+1).toString()+'-'+this.selected_appointment_date.getFullYear().toString()
+      this.service.getClinicWorkDate(this.selected_clinic_id,string_date).subscribe(res=>{
+        this.eventSettings = { dataSource: extend([], res, null, true) as Record<string, any>[] }
+        this.calendarModalTime.show()
+      },err=>{})
+    
+      // var t=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+      // const modalRef =this.modalService.open(WorkDateModal, {size: 'lg'});
+      // modalRef.componentInstance.id = this.selected_clinic_id;
+      // modalRef.componentInstance.date = t;
+      // modalRef.componentInstance.timeSelectedEmitter.subscribe((resp) => {
+      //   console.log(resp);
+      //   })
+    }else{
+      
+    }
+  }
+
+
+  onCellClickTime(event) {
+ 
+    var today=new Date()
+    
+    var date = new Date(event.startTime);
+    if (date<today){
+      this.toast.warning("Sorry you cannot select past time");
+      return;
+    }
+    this.calendarModalTime.hide();
+    this.calendarModal.hide();
+    
+    var d=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+    var mins=date.getMinutes().toString().length==1 ? "0"+date.getMinutes().toString() : date.getMinutes().toString()
+    var t=date.getHours().toString()+":"+mins
+    console.log(d,t)
+    this.dateTimeForm.patchValue({date:date,time:t})
+    this.confirmAppointmentModal.show()
+
+
+  }
+
+
+  confirmAppointment(){
+    this.service.rebook(this.dateTimeForm.value).subscribe(res=>{
+      if(res.status){
+      this.toast.success(res.message)
+      this.confirmAppointmentModal.hide();
+
+      }else{
+        this.toast.warning(res.message)
+      }
+    },err=>{
+      this.toast.error(
+        "Failed"
+      )
     })
   }
 }

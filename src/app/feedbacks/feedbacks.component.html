@@ -31,7 +31,7 @@
                           </ng-container>
                           <ng-container matColumnDef="patient">
                             <th mat-header-cell *matHeaderCellDef>Patient</th>
-                            <td mat-cell *matCellDef="let element"> {{element.patient_first_name}} {{element.patient_last_name}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.client_name }} </td>
                           </ng-container>
                             <ng-container matColumnDef="service">
                               <th mat-header-cell *matHeaderCellDef>Service</th>
@@ -157,7 +157,7 @@
                           </ng-container>
                           <ng-container matColumnDef="patient">
                             <th mat-header-cell *matHeaderCellDef>Patient</th>
-                            <td mat-cell *matCellDef="let element"> {{element.patient.first_name}} {{element.patient.last_name}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.client_name }}</td>
                           </ng-container>
                             <ng-container matColumnDef="service">
                               <th mat-header-cell *matHeaderCellDef>Service</th>
@@ -254,7 +254,7 @@
                                   </ng-container>
                                   <ng-container matColumnDef="patient">
                                     <th mat-header-cell *matHeaderCellDef>Patient</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
+                                    <td mat-cell *matCellDef="let element"> {{element.client_name }} </td>
                                   </ng-container>
                                     <ng-container matColumnDef="service">
                                       <th mat-header-cell *matHeaderCellDef>Service</th>

@@ -1,0 +1,643 @@
+<style>
+  ::ng-deep .mat-step-header .mat-step-icon-selected {
+     background-color: black;
+     color: #fff; 
+  }
+   ::ng-deep .mat-step-header .mat-step-icon-state-edit {
+     background-color: black;
+     color: #fff;
+   
+  }
+  ::ng-deep  .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+     background-color: black;
+ }
+ 
+ ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+     border-color: black;
+ }
+ </style>
+ 
+ <div class="card">
+  <div class="card-header bg-default">
+    <h2 >Create Appointment</h2>
+  
+  </div>
+  <div class="card-body">
+         <div class="col-sm-12">
+             <mat-horizontal-stepper linear="true" #stepper>
+                  <mat-step  [stepControl]="registerForm" label="Patient Information">
+                     
+                     <form [formGroup]="registerForm"   #register="ngForm">
+                    
+                                       <div class="row">
+                               
+             
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>First Name</mat-label>
+                                                 <input matInput placeholder="First Name" formControlName="first_name" >
+                                                 <mat-error *ngIf="f.first_name.errors?.required">First Name is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Last Name</mat-label>
+                                                 <input matInput placeholder="Last Name" formControlName="last_name" >
+                                                 <mat-error *ngIf="f.last_name.errors?.required">Last Name is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+ 
+                                         <div class="col-sm-4">
+                                           <mat-form-field appearance="outline">
+                                               <mat-label>Other Names</mat-label>
+                                               <input matInput placeholder="Other Names" formControlName="other_names" >
+                                               <mat-error *ngIf="f.other_names.errors?.required">Other Names is required</mat-error>
+                               
+                                             </mat-form-field>
+                                       </div>
+                                   
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Gender</mat-label>
+                                 
+                                                 <mat-select formControlName="gender" >
+                                                     <mat-option *ngFor="let item of ['Female','Male','Other']" [value]="item">
+                                                       {{item}}
+                                                     </mat-option>
+                                                   </mat-select>
+                                                 <mat-error *ngIf="f.gender.errors?.required">Gender is required</mat-error>
+                                               </mat-form-field>
+                                         </div>
+ 
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Date Of Birth</mat-label>
+                                                 <input matInput placeholder="D.O.B"  (dateInput)="patientDobChange()" formControlName="dob" [matDatepicker]="picker" [max]="maxDate">
+                                                 <mat-error *ngIf="f.dob.errors?.required">Date of birth is required</mat-error>
+                                                 <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                                                   <mat-datepicker #picker></mat-datepicker>
+                                               </mat-form-field>
+                                               
+                                         </div>
+                                         <div class="col-sm-4">
+                                           <mat-form-field appearance="outline">
+                                               <mat-label>Select Marital Status</mat-label>
+                               
+                                               <mat-select formControlName="marital_status" >
+                                                   <mat-option *ngFor="let item of ['Single', 'Married', 'Widowed', 'Divorced', 'Separated']" [value]="item">
+                                                     {{item}}
+                                                   </mat-option>
+                                                 </mat-select>
+                                             </mat-form-field>
+                                       </div>
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Residence</mat-label>
+                                                 <input matInput placeholder="Residence" formControlName="residence">
+                                                 <mat-error *ngIf="f.residence.errors?.required">Residence is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4">
+                                           <mat-form-field appearance="outline">
+                                               <mat-label>Religion</mat-label>
+                               
+                                               <mat-select formControlName="religion" >
+                                                   <mat-option *ngFor="let item of ['Christianity','Islam',  'Hinduism', 'Judaism', 'Others']" [value]="item">
+                                                     {{item}}
+                                                   </mat-option>
+                                                 </mat-select>
+                                               <mat-error *ngIf="f.religion.errors?.required">Religion is required</mat-error>
+                                             </mat-form-field>
+                                       </div>
+                                       <div class="col-sm-4">
+                                         <mat-form-field appearance="outline">
+                                             <mat-label>Select Nationality</mat-label>
+                             
+                                             <mat-select formControlName="nationality" >
+                                                 <mat-option *ngFor="let item of countries" [value]="item">
+                                                   {{item}}
+                                                 </mat-option>
+                                               </mat-select>
+                                             <mat-error *ngIf="f.religion.errors?.required">Nationality is required</mat-error>
+                                           </mat-form-field>
+                                     </div>
+                                         <div class="col-sm-4" [ngStyle]="{'visibility':patient_show_id ? 'hidden' : 'visible'}">
+                                             <mat-form-field appearance="outline" >
+                                                 <mat-label>National ID/Passport</mat-label>
+                                                 <input matInput placeholder="Identity Document No" formControlName="national_id">
+                                                 <mat-error *ngIf="f.national_id.errors?.required">National ID/Passport is required</mat-error>
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4" [ngStyle]="{'visibility':patient_show_phone ? 'hidden' : 'visible'}">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Mobile Number</mat-label>
+                                                 <input matInput placeholder="Enter mobile" formControlName="phone" [readonly]="outfilled">
+                                                 <mat-error *ngIf="f.phone.errors?.required">Phone is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline" [ngStyle]="{'visibility':patient_show_email ? 'hidden' : 'visible' }">
+                                                 <mat-label>Email</mat-label>
+                                                 <input matInput placeholder="Enter email" formControlName="email" >
+                                                 <mat-error *ngIf="f.email.errors?.required">Email is required</mat-error>
+                                                 <mat-error *ngIf="f.email.errors?.email">Email must be a valid email address</mat-error>
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4">
+                                           <mat-form-field appearance="outline">
+                                               <mat-label>Occupation</mat-label>
+                                               <input matInput placeholder="Residence" formControlName="occupation">
+                                               <mat-error *ngIf="f.occupation.errors?.required">Occupation is required</mat-error>
+                               
+                                             </mat-form-field>
+                                       </div>
+                                         <div class="col-sm-4">
+                                           <mat-form-field appearance="outline">
+                                               <mat-label>Brought In By</mat-label>
+                                               <input matInput placeholder="Brought In By" formControlName="brought_in_by">
+                                             </mat-form-field>
+                                       </div>
+                                       </div>
+                        
+                                       <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                 
+                                         <button mat-raised-button class="btn-success"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitPatientInfo()">next</button>
+                                   
+                                 </div>
+                       
+                     </form>
+                   </mat-step>
+                   <mat-step  [stepControl]="nextOfKinForm" label="NextOfKin Information">
+                 <form [formGroup]="nextOfKinForm" #guadian="ngForm" style="margin-top: 10px;" >
+                  
+                           <div class="row">
+                                          
+               
+                               <div class="col-sm-4">
+                                   <mat-form-field appearance="outline">
+                                       <mat-label>Name</mat-label>
+                                       <input matInput placeholder="Name" formControlName="first_name">
+                                       <mat-error *ngIf="g.first_name.errors?.required">First Name is required</mat-error>
+                       
+                                     </mat-form-field>
+                               </div>
+                           
+                             <div class="col-sm-4">
+                               <mat-form-field appearance="outline">
+                                   <mat-label>Relationship</mat-label>
+                                   <mat-select formControlName="relationship" >
+                                       <mat-option *ngFor="let item of ['Spouse','Son','Daughter','Brother','Sister','Father','Mother','others']" [value]="item">
+                                         {{item}}
+                                       </mat-option>
+                                     </mat-select>
+                                   <mat-error *ngIf="g.relationship.errors?.required">Relationship is required</mat-error>
+                                 </mat-form-field>
+                             </div>
+               
+                               <div class="col-sm-4">
+                                 <mat-form-field appearance="outline">
+                                     <mat-label>Residence</mat-label>
+                                     <input matInput placeholder="Residence" formControlName="residence">
+                                     <mat-error *ngIf="f.residence.errors?.required">Residence is required</mat-error>
+                     
+                                   </mat-form-field>
+                             </div>
+                               <div class="col-sm-4">
+                                   <mat-form-field appearance="outline">
+                                       <mat-label>Mobile Number</mat-label>
+                                       <input matInput placeholder="Enter mobile" formControlName="phone">
+                                       <mat-error *ngIf="g.phone.errors?.required">Phone is required</mat-error>
+                       
+                                     </mat-form-field>
+                               </div>
+                         
+                             </div>
+                  
+                     <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                 
+                       <button mat-raised-button  class="btn-success" style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitGuardianInfo()">next</button>
+                 
+               </div>
+                 </form>
+                           
+              
+                 </mat-step>
+                 
+                 <mat-step     [stepControl]="paymentForm"  label="Payments Mode">
+                   <form [formGroup]="paymentForm"   #payment="ngForm">
+                     <div class="col-sm-12">
+                       <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Select mode of payment</span></h2></div>
+    
+                     <mat-radio-group  formControlName="payment">
+                       <div class="row"  style="justify-content: center;display: flex;">
+                         <div class="col-sm-3">
+                              <mat-radio-button    value="Cash" (click)="insuranceUnClicked()"  style="font-family: lato light;margin-right: 30px;"><h3>Cash</h3></mat-radio-button>
+                          </div>
+                          <div class="col-sm-3">
+                           <mat-radio-button    value="Mpesa" (click)="insuranceUnClicked()"  style="font-family: lato light;margin-right: 30px;"><h3>Mpesa</h3></mat-radio-button>
+                       </div>
+                          <div class="col-sm-3">
+                                <mat-radio-button value="Credit Card" (click)="insuranceUnClicked()" style="font-family: lato light; margin-right: 30px;" ><h3>Credit Card</h3></mat-radio-button>
+                           </div>
+                           <div class="col-sm-3">
+                                <mat-radio-button value="Insurance" (click)="insuranceClicked()" style="font-family: lato light;margin-right: 30px;" ><h3>Insurance</h3></mat-radio-button>
+                           </div>                       
+                       </div>
+       
+                      </mat-radio-group>
+                   </div> 
+                 <div class="card" *ngIf="insurance">
+                         <div class="card-header bg-default">
+                           <h6 >Insurance Payment Details</h6>
+                         </div>
+                         <div class="card-body">
+                           
+ 
+                             <div class="row"  *ngIf="insurance">
+                                            
+                               <div class="col-sm-4">                            
+                          
+                                   <mat-form-field  appearance="outline">
+                                     <input id="typeahead-format" type="text"  matInput placeholder="Insurance Company" formControlName="insurance_company" [(ngModel)]="insurance_s" [ngbTypeahead]="search" [resultFormatter]="formatter" />
+                               
+                                   </mat-form-field>
+                             </div>
+                             <div class="col-sm-4">                            
+ 
+                               <mat-form-field  appearance="outline">
+                                 <mat-label>Scheme Name</mat-label>
+                                 <input type="text" matInput  formControlName="scheme_name"  >
+                         
+                                 <mat-error *ngIf="p.scheme_name.errors?.required && insurance">Scheme is required</mat-error>
+                               </mat-form-field>
+                           </div>
+                           <div class="col-sm-4">
+                             <mat-form-field  appearance="outline">
+                                 <mat-label>Scheme Number (Optional)</mat-label>
+                                 <input matInput placeholder="Scheme number" formControlName="scheme_number">
+                                 <mat-error *ngIf="p.scheme_number.errors?.required && insurance">Scheme number is required</mat-error>
+                 
+                               </mat-form-field>
+                         </div>
+                         <div class="col-sm-4">
+                           <mat-form-field appearance="outline">
+                               <mat-label>Member Name</mat-label>
+                               <input matInput placeholder="Member name" formControlName="member_name">
+                               <mat-error *ngIf="p.member_name.errors?.required && insurance">Member Name is required</mat-error>
+               
+                             </mat-form-field>
+                       </div>
+ 
+ 
+                                 <div class="col-sm-4">
+                                     <mat-form-field appearance="outline">
+                                         <mat-label>Member Number</mat-label>
+                                         <input matInput placeholder="Member number" formControlName="member_number">
+                                         <mat-error *ngIf="p.member_number.errors?.required && insurance">Member number is required</mat-error>
+                         
+                                       </mat-form-field>
+                                 </div>
+ 
+ 
+                                 <div class="col-sm-4">
+                                   <mat-form-field  appearance="outline">
+                                       <mat-label> Employer/Name of Policy Holder</mat-label>
+                                       <input matInput placeholder=" Employer/Name of Policy Holder" formControlName="employee">
+                                       <mat-error *ngIf="p.employee.errors?.required && insurance"> Employer/Name of Policy Holder is required</mat-error>
+                       
+                                     </mat-form-field>
+                               </div>
+                               <div class="col-sm-4">
+                                 <mat-form-field  appearance="outline">
+                                     <mat-label>Employee Number</mat-label>
+                                     <input matInput placeholder="Employee number" formControlName="employee_number">
+                                     <mat-error *ngIf="p.employee_number.errors?.required && insurance">Employee  Number is required</mat-error>
+                     
+                                   </mat-form-field>
+                             </div>
+                             <div class="col-sm-4">
+                               <mat-form-field  appearance="outline">
+                                   <mat-label>Department (Optional)</mat-label>
+                                   <input matInput placeholder="Employee number" formControlName="department">
+                                   <mat-error *ngIf="p.department.errors?.required && insurance">Department is required</mat-error>
+                   
+                                 </mat-form-field>
+                           </div>
+ 
+                           <div class="col-sm-4">
+                             <mat-form-field appearance="outline">
+                               <mat-label>Relationship to Employee</mat-label>
+                               <mat-select formControlName="relation">
+                                 <mat-option *ngFor="let item of EMPLOYEE_RELATIONSHIP" [value]="item">
+                                   {{item}}
+                                 </mat-option>
+                               </mat-select>  
+                               <mat-error *ngIf="p.relation.errors?.required && insurance">Relationship to Employee is required</mat-error>
+                             </mat-form-field>
+                         </div>
+ 
+                         <div class="col-sm-4">
+                           <mat-form-field  appearance="outline">
+                               <mat-label>Medical Card Number</mat-label>
+                               <input matInput placeholder="Medical Card Number" formControlName="card_number">
+                               <mat-error *ngIf="p.card_number.errors?.required && insurance">Medical Card Number is required</mat-error>
+                             </mat-form-field>
+                       </div>
+ 
+                       <div class="col-sm-4">
+                         <mat-form-field  appearance="outline">
+                             <mat-label>NHIF Number (Optional)</mat-label>
+                             <input matInput placeholder="NHIF Number" formControlName="nhif_number">
+                             <mat-error *ngIf="p.nhif_number.errors?.required && insurance">NHIF number is required</mat-error>
+                           </mat-form-field>
+                     </div>
+                       <div class="col-sm-4">
+                         <mat-form-field  appearance="outline">
+                             <mat-label>ID Number/ Passport Number</mat-label>
+                             <input matInput placeholder="ID Number/ Passport Number" formControlName="id_number">
+                             <mat-error *ngIf="p.id_number.errors?.required && insurance">ID Number/ Passport Number is required</mat-error>
+                           </mat-form-field>
+                     </div>
+                         
+                               </div>
+                           </div>
+                         </div>
+   
+                   <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                   
+                         <button mat-raised-button class="btn-success"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitpayment()">next</button>
+                   
+                 </div>
+                     </form>
+   
+                 
+                   </mat-step>
+                   
+                   <mat-step   [stepControl]="sysptomForm" label="Symptoms">
+                     <form   [formGroup]="sysptomForm"   #payment="ngForm">
+                       <div class="col-sm-12">
+                         <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Select the following symptoms that patient might be experiencing?</span></h2></div>
+                         <div class="col-sm-12"  style="justify-content: center;">
+ 
+                           <section class="example-section">
+                             
+                             
+                         <div class="col-sm-3">                         
+                               <mat-checkbox  value="Abdominal pain"  (change)="addSysptom('Abdominal pain',$event)"  style="font-family: lato light;"><h3>Abdominal pain</h3></mat-checkbox>
+                        </div>                             
+                        <div class="col-sm-3">                         
+                         <mat-checkbox  value="Blood in stool"  (change)="addSysptom('Blood in stool:',$event)"  style="font-family: lato light;"><h3>Blood in stool</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                                <mat-checkbox  value="Fever"  (change)="addSysptom('Fever',$event)"  style="font-family: lato light;"><h3>Fever</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Chest pain"  (change)="addSysptom('Chest pain',$event)"  style="font-family: lato light;"><h3>Chest pain</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Dizzy"  (change)="addSysptom('Dizzy',$event)"  style="font-family: lato light;"><h3>Dizzy</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Fatigue"  (change)="addSysptom('Fatigue',$event)"  style="font-family: lato light;"><h3>Fatigue</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Headache"  (change)="addSysptom('Headache',$event)"  style="font-family: lato light;"><h3>Headache</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Nausea"  (change)="addSysptom('Nausea',$event)"  style="font-family: lato light;"><h3>Nausea</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Sweaty"  (change)="addSysptom('Sweaty',$event)"  style="font-family: lato light;"><h3>Sweaty</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Thirsty"  (change)="addSysptom('Thirsty',$event)"  style="font-family: lato light;"><h3>Thirsty</h3></mat-checkbox>
+                         </div> 
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Tired"  (change)="addSysptom('Tired',$event)"  style="font-family: lato light;"><h3>Tired</h3></mat-checkbox>
+                         </div>                       
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Weak"  (change)="addSysptom('Weak',$event)"  style="font-family: lato light;"><h3>Weak</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3">                         
+                           <mat-checkbox  value="Vomiting"  (change)="addSysptom('Vomiting',$event)"  style="font-family: lato light;"><h3>Vomiting</h3></mat-checkbox>
+                         </div>
+                         
+                         
+                         <div class="col-sm-3">
+                                  <mat-checkbox   value="headache"  (change)="addSysptom('headache',$event)" style="font-family: lato light;" ><h3>Head ache</h3></mat-checkbox>
+                         </div>
+                         <div class="col-sm-3" >
+                                  <mat-checkbox value="diarrhoea"  (change)="addSysptom('diarrhoea',$event)" style="font-family: lato light;" ><h3>Diarrhoea</h3></mat-checkbox>
+                       </div>
+                       <div class="col-sm-3" >
+                         <mat-checkbox value="cough"  (change)="addSysptom('cough',$event)" style="font-family: lato light;" ><h3>Cough</h3></mat-checkbox>
+                       </div>
+                       <div class="col-sm-3" >
+                             <mat-checkbox value="others"  (change)="otherSysptom()" style="font-family: lato light;" ><h3>Others</h3></mat-checkbox>
+                                                     
+                         </div>
+                         <div class="col-sm-3" *ngFor="let cb  of checkboxs">
+                           <mat-checkbox [value]="cb"  (change)="addSysptom(cb,$event)" style="font-family: lato light;" checked="true" ><h3>{{cb}}</h3></mat-checkbox>
+                                         
+                           </div>
+                       </section>
+                          <div class="col-sm-3"  *ngIf="other_sysptoms" style="display: flex;">
+                           <mat-form-field appearance="outline" >
+                             <mat-label>Others</mat-label>
+                             <input matInput placeholder="Other sysptoms" formControlName="other_sysptoms">            
+                           </mat-form-field> 
+                           <mat-icon (click)="addChechbox()" style="align-self: center;" >add_box</mat-icon>        
+                            </div>
+                       
+  
+                         </div>
+      
+                     </div> 
+     
+                     <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                           <button mat-raised-button  class="btn-success"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitSysptom()">next</button>
+                   </div>
+                 </form>
+                   
+                     </mat-step>
+                   
+ 
+                     <mat-step  [stepControl]="specialistForm" label="Specialists">
+                       <form [formGroup]="specialistForm"   #payment="ngForm">
+ 
+                      
+                       <div class="col-sm-12">
+                         <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Select Service or Clinic</span></h2></div>
+      
+                     
+                         <div class="row"  style="justify-content: center; display: flex;">
+                            <!-- <div class="col-sm-4" *ngFor="let item of clinics" >
+                                <mat-checkbox     value="item.name" (change)="selectedSpecialist(item.id,$event)"  style="font-family: lato light;"><h3>{{item.name}}</h3></mat-checkbox>
+                             </div> -->
+                             <mat-radio-group  formControlName="clinic">
+                               <div class="row"  style="justify-content: center; display: grid;">
+                                 <div class="col-sm-2" *ngFor="let item of clinics" >
+                                      <mat-radio-button [value]="item.id" style="font-family: lato light;margin-right: 20px;"  (click)="selectedSpecialist(item.id)"><h3>{{item.name}}</h3></mat-radio-button>
+                                     </div>
+                                                           
+                               </div>
+               
+                              </mat-radio-group>
+                             <!-- <div class="col-sm-3"  *ngIf="specialist_visible">
+                               <mat-form-field appearance="outline">
+                                 <mat-label>Others</mat-label>
+                                 <input matInput placeholder="Other specialist" formControlName="other_specialist">
+ 
+                                 <mat-error *ngIf="s.other_specialist.errors?.required && specialist_visible">Specialist is required</mat-error>
+                               </mat-form-field>
+                                                  
+                               </div>                      -->
+                         </div>
+                     </div> 
+     
+                     <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                     
+                           <button mat-raised-button  class="btn-success"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitClinic()">next</button>
+                     
+                   </div>
+     
+                   </form>
+                     </mat-step>
+ 
+                  
+                     <mat-step  label="Select date"  *ngIf="show_calendar">
+                       <form>
+                         <div class="col-sm-12">
+                           <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Please select the appointment's date, Available date have a green tick.</span></h2></div>
+                           <div class="row" style="width:100%;justify-content:center">
+                             <div  class="col-sm-12 calendar-width" style="padding:0px">
+     
+                               <div class="control-section">
+                                 <div class="col-lg-12 conent-wrapper" style="padding: 0px;"> 
+                                   <ejs-schedule #schedule [(selectedDate)]="selectedDate"   (popupOpen)='onPopupOpen($event)'    (cellClick)="onCellClick($event)" [currentView]='currentView' >
+                                     <ng-template #cellTemplate let-data>
+                                       <div class="templatewrap" style="position:relative; bottom:-25px;"> 
+                                         <img src="./assets/img/avatars/accept.png" width="15px" height="15px" *ngIf="isWorkDay(data.date)" (click)="calendarModal.show()"/>
+                                         <img src="./assets/img/avatars/close.png" width="15px" height="15px"  *ngIf="!isWorkDay(data.date)"/>
+                                       
+                                       </div>
+                                     </ng-template>
+                                     <e-views>          
+                                       <e-view option="Month"  ></e-view> 
+                                     </e-views>
+                               
+                                   </ejs-schedule>
+                                 </div>
+                                 
+                               </div>
+                               
+                          
+                           </div>
+                         </div>
+                         
+                             
+                       </div> 
+       
+                       <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                       
+                             <button mat-raised-button  class="btn-success"  style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitCalendar()">next</button>
+                       
+                     </div>
+                         </form>
+       
+                       </mat-step>
+                       <mat-step [stepControl]="dateTimeForm" label="Date and time"  *ngIf="!session_today">
+                         <form [formGroup]="dateTimeForm"   #dateTime="ngForm">
+                           <div class="col-sm-12">
+                             <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Please select the appointment's date and time ?</span></h2></div>
+                             <div class="row" style="width:100%;justify-content:center">
+                               <div class="col-sm-4">
+       
+                               <mat-form-field appearance="outline" class="example-full-width" style="max-width: 400px;">
+                                 <mat-label>Date</mat-label>
+                                 <input matInput placeholder="Date"  formControlName="date" [min]="maxDate" [matDatepicker]="picker3"   >
+                                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                   <mat-datepicker #picker3></mat-datepicker>
+                               </mat-form-field> 
+                             </div>
+                            <div class="col-sm-4">
+       
+                            
+                               <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                                   <mat-label>Time</mat-label>
+                                   <input matInput placeholder="Time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top"  formControlName="time">
+                                 </mat-form-field>
+                          
+                             </div></div>
+                           
+                               
+                         </div> 
+         
+                         <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                         
+                               <button mat-raised-button  class="btn-success" style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;" (click)= "finish()" >finish</button>
+                         
+                       </div>
+                           </form>
+         
+                         </mat-step>
+                
+                     
+               </mat-horizontal-stepper>
+               
+     </div>
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="modal fade" bsModal #calendarModal="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+   <div class="modal-dialog modal-md">
+   <div class="modal-content">
+    <div class="modal-header">
+      <h5 id="dialog-static-name" class="modal-title pull-left">Calendar</h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="calendarModal.hide()">
+       <span aria-hidden="true">&times;</span>
+     </button>
+    </div>
+    <div class="modal-body">    
+     <div class="col-sm-12">      
+           <div class="control-section">
+             <div class="col-lg-12 conent-wrapper">
+               <ejs-schedule #schedule [(selectedDate)]="selected_appointment_date"   (popupOpen)='onPopupOpen($event)'    (cellClick)="onCellClickTime($event)" [currentView]='currentWorkweek'   [workHours]="workHours" [workDays]="workdate"  [eventSettings]="eventSettings">
+              
+                 <e-views>          
+                   <e-view option="WorkWeek"  startHour="08:00" endHour="18:00" ></e-view> 
+                 </e-views>
+                 <ng-template #eventSettingsTemplate let-data >
+                   <div class='template-wrap' style="color: black; font-size: large;" >
+                     <div class="subject">{{data.Subject}}</div>
+                   </div>
+                 </ng-template>
+               </ejs-schedule>
+               
+             </div>      
+        
+       </div>
+        
+       <button class="btn btn-danger btn-sm" (click)="calendarModal.hide()" > close</button>
+     </div>
+     
+    </div>
+   </div>
+   </div>
+   </div>
+   
+ 
+   
+ 
+ <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+ 

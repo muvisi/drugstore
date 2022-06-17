@@ -84,7 +84,7 @@ export class FeedbacksComponent implements OnInit {
   PositiveColumns: string[] = ['sn','date','patient','service','rating','compliments','comments',"visit_type"]
   NegativeColumns: string[] = ['sn','date','patient','service','rating','issues','comments',"visit_type"]
   AverageColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
-  AllColumns: string[] = ['sn','date','patient','service','phone','rating','comments',"visit_type","status","type"]
+  AllColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type","status","type"]
   constructor(public service:ServiceService,private toastr:ToastrService,private datePipe: DatePipe,public router: Router) { 
    
 
@@ -96,13 +96,14 @@ export class FeedbacksComponent implements OnInit {
  ngOnInit() {
   // this.idnumber="";
  
-    // this.getFeedbacksPositive();
-    // this.getFeedbacksNegative();
-    // this.getFeedbacksAverage();
+    this.getFeedbacksPositive();
+    this.getFeedbacksNegative();
+    this.getFeedbacksAverage();
   
     // this.getFeedbacksOutpatient();
     // this.getFeedbacksInpatient();
-    this.getAllfeedback();
+    // this.getAllfeedback();
+    this.getFeedbacksAll();
   
     // this.getMaternityfeedback();
    
@@ -120,6 +121,7 @@ this.date_positive="";
   getFeedbacksPositive() {
     this.service.feedbacks("?category=POSITIVE"+"&period="+this.period).subscribe(
       data => {
+        console.log("",data)
         this.positive_dataSource = new MatTableDataSource <[]>(data);
         this.positive_dataSource.paginator = this.paginator;
         this.loading = false;
@@ -133,24 +135,12 @@ this.date_positive="";
       () => console.log('There is an error')
     );
   }
+  
   getAllfeedback(){
     this.service.allfeedbacks().subscribe(
       datas => {
         this.dataSource=datas.data
       
-        
-      },
-     
-      err => console.error(err),
-     
-      () => console.log('There is an error')
-    );
-    }
-  getMaternityfeedback(){
-    this.service.feedbackmaternity().subscribe(
-      datas => {
-        this.maternity_dataSource=datas
-          console.log("DATA",this.maternity_dataSource)
         
       },
      
@@ -181,6 +171,26 @@ this.date_positive="";
   downloadPositive(){
     window.open(this.service.getendpoint()+"api/feedbacks_download/?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period, "_blank");
   }
+
+
+  getFeedbacksAll() {
+    this.service.feedbacks("").subscribe(
+      data => {
+        console.log("",data)
+        this.dataSource = new MatTableDataSource <[]>(data);
+        this.dataSource.paginator = this.paginator;
+        this.loading = false;
+        // this.toastr.success('finished loading Patients');
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  
   positiveDateSelection(){
     
     this.service.feedbacks("?category=POSITIVE&date="+this.datePipe.transform(this.date_positive,"mediumDate")+"&visit_type="+this.visit_type_positive+"&period="+this.period).subscribe(

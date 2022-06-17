@@ -19,7 +19,7 @@ export class CalendarComponent implements OnInit {
 token: string = sessionStorage.getItem('Token');
 selectedDate: Date = new Date();
 data2={
-  ""
+  Subject:''
 }
 booking_event:any={
   StartTime:"",

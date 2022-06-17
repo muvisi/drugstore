@@ -85,6 +85,12 @@ import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.comp
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
 import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
+import { AddModule } from '../add/add.module';
+import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
+import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
+import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
+import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
+
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -319,6 +325,8 @@ const routes: Routes = [
       title: 'parients-dashboard'
     }
   },
+
+  
   {
     path: 'registration-link',
     component: RegistrationLinkComponent,
@@ -563,7 +571,54 @@ component : CalendarComponent
   data: {
     title: 'Tags'
   }
-  } 
+  }, 
+  // {
+  //   path: 'book',
+  //   data: {
+  //     title: 'Book'
+  //   },
+  //   children: [
+  //     {
+  //       path: '',
+  //       loadChildren: () => import('../add/add.module').then(m => m.AddModule),
+  //       data: { preload: true }
+  //     }
+  //   ]
+  // },
+
+  {
+    path: 'book-appointment',
+    component: BookAppointmentComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Book Appointment'
+    }
+  },
+  {
+    path: 'book-vaccination',
+    component: BookVaccinationComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Book vaccination'
+    }
+  },
+  {
+    path: 'book-covid-testing',
+    component: BookCovidtestingComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Book vaccination'
+    }
+  },
+
+  {
+    path: 'book-maternity',
+    component: BookMaternityComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Book Maternity'
+    }
+  }
   
 ];
 
@@ -571,4 +626,5 @@ component : CalendarComponent
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class DashboardRoutingModule {}

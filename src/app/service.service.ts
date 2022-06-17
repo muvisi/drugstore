@@ -38,6 +38,7 @@ export const HEALTHIX_BACKEND_URL_AAR ='https://aarclaims.healthixsolutions.com/
 })
 
 export class ServiceService {
+  
   private customHttpClient: HttpClient;
 
 
@@ -127,10 +128,14 @@ export class ServiceService {
       map(this.extractData
       ));
   }
-  
-
-
-
+  addPatient(data:any): Observable<any> {
+    return this.http.post(endpoint+'api/patient-register/',data).pipe(
+      map(this.extractData));
+  }
+  postDateMaternity(data): Observable<any> {
+    return this.http.post(endpoint+'api/new-maternity-date/',data).pipe(
+      map(this.extractData));
+  }
   getVisitNumbers() {
     return this.http.get(endpoint + 'api/visit_numbers/').pipe(
       map(this.extractData));
@@ -1337,6 +1342,71 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
 
+  postPaymentMaternity(data): Observable<any> {
+    return this.http.post(endpoint+'api/new-maternity-payment/',data).pipe(
+      map(this.extractData));
+  }
+
+  postpatientMaternity(data): Observable<any> {
+    return this.http.post(endpoint+'api/new-maternity-pateint/',data).pipe(
+      map(this.extractData));
+  }
+
+  postNextofkinMaternity(data): Observable<any> {
+    return this.http.post(endpoint+'api/new-maternity-nextofkin/',data).pipe(
+      map(this.extractData));
+  }
+  postPackageMaternity(data): Observable<any> {
+    return this.http.post(endpoint+'api/new-maternity-package/',data).pipe(
+      map(this.extractData));
+  }
+  createCovidTesting(data): Observable<any> {
+    return this.http.post(endpoint+'api/covid_testing/',data).pipe(
+      map(this.extractData));
+  }
+  cancelCovidTesting(data): Observable<any> {
+    return this.http.post(endpoint+'api/covid_testing_cancel/',data).pipe(
+      map(this.extractData));
+  }
+  changeCovidTesting(data): Observable<any> {
+    return this.http.post(endpoint+'api/covid_testing_change/',data).pipe(
+      map(this.extractData));
+  }
+  getVaccines(data:any): Observable<any> {
+    return this.http.post(endpoint+'api/get_vaccines/',data).pipe(
+      map(this.extractData));
+  }
+  cancelAppointment(data): Observable<any> {
+    return this.http.post(endpoint+'api/appointment_cancel/',data).pipe(
+      map(this.extractData));
+  }
+
+  getAvailableTimeSlot(date): Observable<any> {
+    return this.http.get(endpoint+'api/calendar/slots/?date='+date).pipe(
+      map(this.extractData));
+  }
+
+  getClinicWorkDate(id,date): Observable<any> {
+    return this.http.get(endpoint+ 'api/get-clinics-workdate/'+id+'/?date='+date).pipe(
+      map(this.extractData));
+  }
+  rebook(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/re-book/',data).pipe(
+      map(this.extractData));
+  }
+  postMaternityProcedurePackage(data): Observable<any> {
+    return this.http.post(endpoint+'api/new-maternity-procedure-package/',data).pipe(
+      map(this.extractData));
+  }
+  postMedicalInfoMaternity(data): Observable<any> {
+    return this.http.post(endpoint+'api/new-maternity-medicalinfo/',data).pipe(
+      map(this.extractData));
+  }
+  confirmMaternityDetail(data): Observable<any> {
+    return this.http.post(endpoint+'api/confirm-maternity-details/',data).pipe(
+      map(this.extractData));
+  }
+
   createDepartment(data): Observable<any> {
     return this.http.post(endpoint + 'hospitals/create_department/', data ).pipe(
       map(this.extractData));
@@ -1631,6 +1701,10 @@ addClinicTypes(data): Observable<any> {
 }
 getClinics(): Observable<any> {
   return this.http.get(endpoint+ 'api/clinics/').pipe(
+    map(this.extractData));
+}
+getAllClinics(): Observable<any> {
+  return this.http.get(endpoint+ 'api/get-clinics/').pipe(
     map(this.extractData));
 }
 getClinicsCalendar(): Observable<any> {

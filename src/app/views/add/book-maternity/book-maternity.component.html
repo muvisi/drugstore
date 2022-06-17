@@ -1,0 +1,867 @@
+<style>
+  ::ng-deep .mat-step-header .mat-step-icon-selected {
+     background-color: black;
+     color: #fff; 
+  }
+   ::ng-deep .mat-step-header .mat-step-icon-state-edit {
+     background-color: black;
+     color: #fff;
+   
+  }
+  ::ng-deep  .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+     background-color: black;
+ }
+ 
+ ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+     border-color: black;
+ }
+ .vertical-center {
+
+-ms-transform: translateY(40%);
+transform: translateY(40%);
+}
+ </style>
+ <div class="card">
+  <div class="card-header bg-default">
+    <h2 >Book Maternity</h2>
+  
+  </div>
+  <div class="card-body">
+         <div class="col-sm-12">
+             <mat-horizontal-stepper linear="true" #stepper>
+         
+                 <mat-step  [stepControl]="registerForm" label="Patient Information">
+ 
+                     
+                     <form [formGroup]="registerForm"   #register="ngForm">
+                       
+                                <div class="row">
+                               
+             
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>First Name</mat-label>
+                                                 <input matInput placeholder="First Name" formControlName="first_name">
+                                                 <mat-error *ngIf="f.first_name.errors?.required">First Name is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Last Name</mat-label>
+                                                 <input matInput placeholder="Last Name" formControlName="last_name" >
+                                                 <mat-error *ngIf="f.last_name.errors?.required">Last Name is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4">
+                                          <mat-form-field appearance="outline">
+                                              <mat-label>Surname</mat-label>
+                                              <input matInput placeholder="Surname" formControlName="other_names" >
+                                              <mat-error *ngIf="f.other_names.errors?.required">Surname is required</mat-error>
+                              
+                                            </mat-form-field>
+                                      </div>
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Date Of Birth</mat-label>
+                                                 <input matInput placeholder="D.O.B" [readonly]="outfilled" (dateInput)="patientDobChange()" formControlName="dob" [matDatepicker]="picker" [max]="maxDate">
+                                                 <mat-error *ngIf="f.dob.errors?.required">Date of birth is required</mat-error>
+                                                 <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                                                   <mat-datepicker #picker></mat-datepicker>
+                                               </mat-form-field>
+                                               
+                                         </div>
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Residence</mat-label>
+                                                 <input matInput placeholder="Residence" formControlName="residence">
+                                                 <mat-error *ngIf="f.residence.errors?.required">Residence is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4" [ngStyle]="{'visibility':patient_show_id ? 'hidden' : 'visible'}">
+                                             <mat-form-field appearance="outline" >
+                                                 <mat-label>National ID/Passport</mat-label>
+                                                 <input matInput placeholder="Identity Document No" formControlName="national_id" >
+                                                 <mat-error *ngIf="f.national_id.errors?.required">National ID/Passport is required</mat-error>
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4" [ngStyle]="{'visibility':patient_show_phone ? 'hidden' : 'visible'}">
+                                             <mat-form-field appearance="outline">
+                                                 <mat-label>Mobile Number</mat-label>
+                                                 <input matInput placeholder="Enter mobile" formControlName="phone" >
+                                                 <mat-error *ngIf="f.phone.errors?.required">Phone is required</mat-error>
+                                 
+                                               </mat-form-field>
+                                         </div>
+                                         <div class="col-sm-4">
+                                             <mat-form-field appearance="outline" [ngStyle]="{'visibility':patient_show_email ? 'hidden' : 'visible' }">
+                                                 <mat-label>Email</mat-label>
+                                                 <input matInput placeholder="Enter email" formControlName="email">
+                                                 <mat-error *ngIf="f.email.errors?.required">Email is required</mat-error>
+                                                 <mat-error *ngIf="f.email.errors?.email">Email must be a valid email address</mat-error>
+                                               </mat-form-field>
+                                         </div>
+                                       </div>
+                      
+                                       <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                 
+                                         <button mat-raised-button  class="btn-success" style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitPatientInfo()">submit</button>
+                                   
+                                 </div>
+                       
+                     </form>
+                   </mat-step>
+                   <mat-step  [stepControl]="nextOfKinForm" label="NextOfKin Information">
+                 <form [formGroup]="nextOfKinForm" #guadian="ngForm" style="margin-top: 10px;" >
+                   
+                           <div class="row">
+                                          
+               
+                               <div class="col-sm-4">
+                                   <mat-form-field appearance="outline">
+                                       <mat-label>Name</mat-label>
+                                       <input matInput placeholder="Name" formControlName="first_name" >
+                                       <mat-error *ngIf="g.first_name.errors?.required">First Name is required</mat-error>
+                       
+                                     </mat-form-field>
+                               </div>
+                             
+                       
+                             <div class="col-sm-4">
+                               <mat-form-field appearance="outline">
+                                   <mat-label>Relationship</mat-label>
+                                   <mat-select formControlName="relationship">
+                                       <mat-option *ngFor="let item of ['Spouse','Son','Daughter','Brother','Sister','Father','Mother','others']" [value]="item">
+                                         {{item}}
+                                       </mat-option>
+                                     </mat-select>
+                                   <mat-error *ngIf="g.relationship.errors?.required">Relationship is required</mat-error>
+                                 </mat-form-field>
+                             </div>
+                             
+                          
+                               <div class="col-sm-4">
+                                 <mat-form-field appearance="outline">
+                                     <mat-label>Residence</mat-label>
+                                     <input matInput placeholder="Residence" formControlName="residence">
+                                     <mat-error *ngIf="f.residence.errors?.required">Residence is required</mat-error>
+                     
+                                   </mat-form-field>
+                             </div>
+                               <div class="col-sm-4">
+                                   <mat-form-field appearance="outline">
+                                       <mat-label>Mobile Number</mat-label>
+                                       <input matInput placeholder="Enter mobile" formControlName="phone" >
+                                       <mat-error *ngIf="g.phone.errors?.required">Phone is required</mat-error>
+                       
+                                     </mat-form-field>
+                               </div>
+                          
+                             </div>
+                 
+                     <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                 
+                       <button mat-raised-button class="btn-success"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitGuardianInfo()">submit</button>
+                 
+               </div>
+                 </form>
+                           
+              
+                 </mat-step>  
+              <mat-step    label="Medical Info">
+                   <form [formGroup]="medicalForm"   #medical="ngForm">
+                    <div class="row" style="justify-content: center;">
+                               
+             
+                    <div class="col-sm-4">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Estimated Date of Delivery</mat-label>
+                          <input matInput placeholder="E.D.D"  formControlName="edd" [matDatepicker]="picker7" [min]="maxDate">
+                          <mat-error *ngIf="m.edd.errors?.required">EDD is required</mat-error>
+                          <mat-datepicker-toggle matSuffix [for]="picker7" ></mat-datepicker-toggle>
+                            <mat-datepicker #picker7></mat-datepicker>
+                        </mat-form-field>
+                        
+                  </div>
+                <div class="col-sm-4">
+                  <mat-label><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">First maternity booking with AAR Hospital:</span></mat-label>
+ 
+                  <mat-radio-group formControlName="first_time">
+                 
+                           <mat-radio-button value="yes" (change)="firstMaternity('yes')"  style="font-family: lato light;margin-right: 20px;"><h3>Yes</h3></mat-radio-button>
+                        
+                             <mat-radio-button value="no"  (change)="firstMaternity('no')" style="font-family: lato light" ><h3>No</h3></mat-radio-button>
+             
+                   </mat-radio-group>
+               
+                </div> 
+                    </div>
+                    <div class="row" style="justify-content: center;"> 
+
+                  <div class="col-sm-6" *ngIf="refferal_show ">
+                     <span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Referred By</span>
+   
+                    <mat-radio-group  formControlName="referral">
+                             <mat-radio-button   (click)="referredByClicked('hospital')" value="Hospital"  style="font-family: lato light;margin-right: 30px;"><h3>Hospital</h3></mat-radio-button>
+                      
+                          <mat-radio-button    (click)="referredByClicked('doctor')"  value="Doctor"  style="font-family: lato light;margin-right: 30px;"><h3>Doctor</h3></mat-radio-button>
+                    
+                               <mat-radio-button   (click)="referredByClicked('self')"value="Self" style="font-family: lato light; margin-right: 30px;" ><h3>Self</h3></mat-radio-button>
+                   
+      
+                     </mat-radio-group>
+                   </div> 
+                 
+                   <div class="col-sm-6" *ngIf="refferal_show && reffered_by">   
+                    <mat-form-field appearance="outline">
+                      <mat-label>Referred By</mat-label>
+                      <input id="typeahead-format" type="text"  matInput [placeholder]="placeholder_reffered_by" formControlName="referred_by" />
+                   
+                    </mat-form-field>
+                    
+                 </div> 
+
+                    <div class="col-sm-6" *ngIf="currect_doctor_show">
+
+                 
+                      <mat-form-field appearance="outline">
+                          <mat-label>Current Doctor</mat-label>
+                          <input matInput placeholder="Current Doctor" formControlName="current_doctor" >
+                          <mat-error *ngIf="m.current_doctor.errors?.required">Current Doctor is required</mat-error>
+          
+                        </mat-form-field>
+              
+                    </div>
+                    </div>
+                    
+                    <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                 
+                      <button mat-raised-button  class="btn-success" style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitMedicalInfo()">submit</button>
+                
+              </div>
+                    </form>
+                    </mat-step>
+              <mat-step  [stepControl]="paymentForm"  label="Payments">
+                   <form [formGroup]="paymentForm"   #payment="ngForm">
+                     <div class="col-sm-12">
+                   <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Payment Mode</span></h2>
+    
+                     <mat-radio-group  formControlName="payment">
+                     
+                           <mat-radio-button value="Mpesa"     (click)="insuranceUnClicked('Mpesa')"  style="font-family: lato light;margin-right: 30px;"><h3>Mpesa</h3></mat-radio-button>
+                      
+                                <mat-radio-button value="credit Card" (click)="insuranceUnClicked('Credit Card')" style="font-family: lato light; margin-right: 30px;" ><h3>Credit Card</h3></mat-radio-button>
+                         
+                                <mat-radio-button value="Insurance" (click)="insuranceClicked()" style="font-family: lato light;margin-right: 30px;" ><h3>Insurance</h3></mat-radio-button>
+                         
+                            <mat-radio-button    value="Bank" (click)="insuranceUnClicked('Bank')"  style="font-family: lato light;margin-right: 30px;"><h3>Bank Transfer</h3></mat-radio-button>
+                     
+       
+                      </mat-radio-group>
+                   </div> 
+                   <div class="col-sm-12" *ngIf="show_bank_details">
+                     <div class="row">
+                      <div class="col-sm-4">BANK ACCOUNT NAME:</div>
+                      <div class="col-sm-8"><strong>HOSPITAL LIMITED</strong> </div>
+                     </div>
+                     <div class="row">
+                      <div class="col-sm-4">BANK ACCOUNT NUMBER:</div>
+                      <div class="col-sm-8"><strong>01136164077400</strong></div>
+                     </div>
+                     <div class="row">
+                      <div class="col-sm-4">BANK NAME:</div>
+                      <div class="col-sm-8"><strong>THE COOPERATIVE BANK OF KENYA</strong></div>
+                     </div>
+                     <div class="row">
+                      <div class="col-sm-4">BANK BRANCH:</div>
+                      <div class="col-sm-8"><strong>UPPERHILL</strong></div>
+                     </div>
+                     <div class="row">
+                      <div class="col-sm-4">BANK CODE:</div>
+                      <div class="col-sm-8"><strong>011</strong> </div>
+                     </div>
+                     <div class="row">
+                      <div class="col-sm-4">BRANCH CODE:</div>
+                      <div class="col-sm-8"><strong>037</strong> </div>
+                     </div>
+                     <div class="row">
+                      <div class="col-sm-4">SWIFT CODE OF ACCOUNT:</div>
+                      <div class="col-sm-8"><strong>KCOOKENYA</strong> </div>
+                     </div>
+                     <div class="row">
+                      <div class="col-sm-4">CURRENCY OF ACCOUNT:</div>
+                      <div class="col-sm-8"><strong>KSHS</strong> </div>
+                     </div>
+                   </div>
+                 <div class="card" *ngIf="insurance">
+                         <div class="card-header bg-default">
+                           <h6 >Insurance Payment Details</h6>
+                         </div>
+                         <div class="card-body">
+                           
+ 
+                             <div class="row"  *ngIf="insurance">
+                                            
+                               <div class="col-sm-4">                            
+                          
+                                   <mat-form-field  appearance="outline">
+                                     <input id="typeahead-format" type="text"  matInput placeholder="Insurance Company" formControlName="insurance_company" [(ngModel)]="insurance_s" [ngbTypeahead]="search" [resultFormatter]="formatter" />
+                               
+                                   </mat-form-field>
+                             </div>
+
+
+                             <div class="col-sm-4">                            
+ 
+                               <mat-form-field  appearance="outline">
+                                 <mat-label>Scheme Name</mat-label>
+                                 <input type="text" matInput  formControlName="scheme_name"  >
+                         
+                                 <mat-error *ngIf="p.scheme_name.errors?.required && insurance">Scheme is required</mat-error>
+                               </mat-form-field>
+                           </div>
+                           <div class="col-sm-4">
+                             <mat-form-field  appearance="outline">
+                                 <mat-label>Scheme Number (Optional)</mat-label>
+                                 <input matInput placeholder="Scheme number" formControlName="scheme_number">
+                                 <mat-error *ngIf="p.scheme_number.errors?.required && insurance">Scheme number is required</mat-error>
+                 
+                               </mat-form-field>
+                         </div>
+ 
+                                 <div class="col-sm-4">
+                                     <mat-form-field appearance="outline">
+                                         <mat-label>Member Number</mat-label>
+                                         <input matInput placeholder="Member number" formControlName="member_number">
+                                         <mat-error *ngIf="p.member_number.errors?.required && insurance">Member number is required</mat-error>
+                         
+                                       </mat-form-field>
+                                 </div>
+ 
+ 
+                                 <div class="col-sm-4">
+                                   <mat-form-field  appearance="outline">
+                                       <mat-label> Employer/Name of Policy Holder</mat-label>
+                                       <input matInput placeholder=" Employer/Name of Policy Holder" formControlName="employee">
+                                       <mat-error *ngIf="p.employee.errors?.required && insurance"> Employer/Name of Policy Holder is required</mat-error>
+                       
+                                     </mat-form-field>
+                               </div>
+                               <div class="col-sm-4">
+                                 <mat-form-field  appearance="outline">
+                                     <mat-label>Employee Number</mat-label>
+                                     <input matInput placeholder="Employee number" formControlName="employee_number">
+                                     <mat-error *ngIf="p.employee_number.errors?.required && insurance">Employee  Number is required</mat-error>
+                     
+                                   </mat-form-field>
+                             </div>
+                             <div class="col-sm-4">
+                               <mat-form-field  appearance="outline">
+                                   <mat-label>Department (Optional)</mat-label>
+                                   <input matInput placeholder="Employee number" formControlName="employee_number">
+                                   <mat-error *ngIf="p.department.errors?.required && insurance">Department is required</mat-error>
+                   
+                                 </mat-form-field>
+                           </div>
+ 
+                           <div class="col-sm-4">
+                             <mat-form-field appearance="outline">
+                               <mat-label>Relationship to Employee</mat-label>
+                               <mat-select formControlName="relation">
+                                 <mat-option *ngFor="let item of EMPLOYEE_RELATIONSHIP" [value]="item">
+                                   {{item}}
+                                 </mat-option>
+                               </mat-select>  
+                               <mat-error *ngIf="p.relation.errors?.required && insurance">Relationship to Employee is required</mat-error>
+                             </mat-form-field>
+                         </div>
+ 
+                        
+ 
+                       <div class="col-sm-4">
+                         <mat-form-field  appearance="outline">
+                             <mat-label>NHIF Number (Optional)</mat-label>
+                             <input matInput placeholder="NHIF Number" formControlName="nhif_number">
+                             <mat-error *ngIf="p.nhif_number.errors?.required && insurance">NHIF number is required</mat-error>
+                           </mat-form-field>
+                     </div>
+                       <div class="col-sm-4">
+                         <mat-form-field  appearance="outline">
+                             <mat-label>ID Number/ Passport Number</mat-label>
+                             <input matInput placeholder="ID Number/ Passport Number" formControlName="id_number">
+                             <mat-error *ngIf="p.id_number.errors?.required && insurance">ID Number/ Passport Number is required</mat-error>
+                           </mat-form-field>
+                     </div>
+            
+                               </div>
+                           </div>
+                         </div>
+   
+                   <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                   
+                         <button mat-raised-button class="btn-success" style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitpayment()">submit</button>
+                   
+                 </div>
+                     </form>
+   
+                 
+                   </mat-step>
+                   <mat-step   label="Maternity packages"   >
+                    <form [formGroup]="maternitypackageForm"   #maternity_package="ngForm">
+                      <div class="col-sm-12">
+                        <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Please select maternity package?</span></h2></div>
+     
+                      <mat-radio-group  formControlName="maternity_package">
+                        <div class="row"  style="justify-content: center; display: grid;">
+                        
+                          <div class="col-sm-12">
+                            <mat-radio-button value="Normal Delivery"  (click)="maternityPackage('normal')"    style="font-family: lato light;margin-right: 20px;">
+                              Normal Delivery   <strong> COST: KES 98,700</strong></mat-radio-button>
+                            
+                           </div>
+                           <div class="col-sm-12" *ngIf="show_normal_package_detail">
+                            <!-- <div class="col-sm-1"></div> -->
+                            <div class="col-sm-12">
+                              <ul>
+                                <li>Obstetrician and Paediatrician fees</li>
+                                <li>Post-natal standards drugs</li>
+                                <li>Post-natal investigation</li>
+                                <li>Shared rooom for two nights</li>
+                                <li>1st Vaccination before discharge</li>
+                              </ul>
+                            </div>
+                           </div>
+
+                          <div class="col-sm-12">
+                               <mat-radio-button value="Caesarean Section"    (click)="maternityPackage('cs')"  style="font-family: lato light;margin-right: 20px;">Caesarean Section   <strong> COST: KES 210,000</strong></mat-radio-button>
+                              </div>
+                              <div class="col-sm-12"  *ngIf="show_cs_package_detail">
+                                <!-- <div class="col-sm-1"></div> -->
+                                <div class="col-sm-12">
+                                  <ul>
+                                    <li>All services in the normal delivery package</li>
+                                    <li>Anaesthetist fee</li>
+                                    <li>Theatre fees</li>
+                                    <li>Shared rooom for three nights</li>
+                                  </ul>
+                                </div>
+                               </div>
+                               <!-- <div class="col-sm-12">
+                                <mat-radio-button value="Normal Delivery and Emergency CS"    (click)="maternityPackage('ndcs')"  style="font-family: lato light;margin-right: 20px;">Normal Delivery and Emergency CS</mat-radio-button>
+                               </div>-->
+                               <div class="col-sm-12">
+                                <mat-radio-button value="Private Arrangement"   (click)="maternityPackage('private')" style="font-family: lato light;margin-right: 20px;">Private Arrangements</mat-radio-button>
+                               </div> 
+                           
+                                                    
+                        </div>
+        
+                       </mat-radio-group>
+            
+                    </div> 
+                    <div *ngIf="practitioner_show" class="col-sm-12" >
+                      <div class="row" style="justify-content: center;">
+                      <div class="col-sm-4" >
+                        <mat-form-field  appearance="outline">
+                            <mat-label>Doctor/Practitioner</mat-label>
+                            <input matInput placeholder="Practitioner" formControlName="practitioner">
+                            <mat-error *ngIf="ma.practitioner.errors?.required">Practitioner is required</mat-error>
+                        </mat-form-field>
+                    </div>  
+                  </div>                    
+           
+                    </div>
+    
+                    <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                    
+                          <button mat-raised-button   class="btn-success" style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitMaternityPackage()">next</button>
+                    
+                  </div>
+                      </form>
+    
+                    </mat-step>
+
+                 
+                   <mat-step   label="Room packages"  *ngIf="thirdlast_show"  >
+                    <form [formGroup]="packageForm"   #package="ngForm">
+                      <div class="col-sm-12">
+                        <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Please select room package?</span></h2></div>
+     
+                      <mat-radio-group  formControlName="package">
+                        <div class="row"  style="justify-content: center; display: grid;">
+                          <div class="col-sm-12">
+                               <mat-radio-button value="Quad ensuite room  - ksh 9,500"   style="font-family: lato light;margin-right: 20px;">Quad ensuite room - ksh 9,500</mat-radio-button>
+                              </div>
+
+                              <div class="col-sm-12">
+                                <mat-radio-button value="Triple ensuite room - ksh 12,500"   style="font-family: lato light;margin-right: 20px;">Triple ensuite room - ksh 12,500</mat-radio-button>
+                               </div>
+
+                               <div class="col-sm-12">
+                                <mat-radio-button value="Double ensuite room - ksh 12,500"   style="font-family: lato light;margin-right: 20px;">Double ensuite room - ksh 12,500</mat-radio-button>
+                               </div>
+                               <div class="col-sm-12">
+                                <mat-radio-button value="Private ensuite room  - Ksh 18,000"   style="font-family: lato light;margin-right: 20px;">Private ensuite room - Ksh 18,000</mat-radio-button>
+                               </div>
+                               <div class="col-sm-12">
+                                <mat-radio-button value="Day care/ short stay bed - Ksh 5,700"   style="font-family: lato light;margin-right: 20px;">Day care/ short stay bed - Ksh 5,700</mat-radio-button>
+                               </div>
+                           
+                                                    
+                        </div>
+                        
+        
+                       </mat-radio-group>
+            
+                    </div> 
+    
+                    <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                    
+                          <button mat-raised-button  class="btn-success"  style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitRoomPackage()">next</button>
+                    
+                  </div>
+                      </form>
+    
+                    </mat-step>
+
+
+               
+                    <mat-step [stepControl]="dateTimeForm" label="Date and time"  *ngIf="secondlast_show" >
+                      <form [formGroup]="dateTimeForm"   #dateTime="ngForm">
+                        <div class="col-sm-12">
+                          <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Please select the Admission date and time ?</span></h2></div>
+                          <div class="row" style="width:100%;justify-content:center">
+                            <div  class="col-sm-4">
+    
+                            <mat-form-field appearance="outline" class="example-full-width" style="max-width: 400px;">
+                              <mat-label>Date</mat-label>
+                              <input matInput placeholder="Date" formControlName="date" [min]="maxDate" [matDatepicker]="picker3"   >
+                              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                            </mat-form-field> 
+                          </div>
+                         <div class="col-sm-4">
+    
+                            <mat-form-field appearance="outline">
+                              <mat-label>Time</mat-label>
+               
+                              <input matInput placeholder="Time" formControlName="time"   data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top">
+                          </mat-form-field> 
+                          </div></div>
+                        
+                            
+                      </div> 
+      
+                      <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                      
+                            <button mat-raised-button  class="btn-success" style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitDateTime()">next</button>
+                      
+                    </div>
+                        </form>
+      
+                      </mat-step> 
+      
+                      <!---->
+                      <mat-step  label="Confirmation"  *ngIf="last_show"  >
+                        <form>
+                          <div class="col-sm-12">
+                            <div class="row" style="justify-content: start;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;font-weight: 900;">Patient details</span></h2></div>
+                            <div class="row">
+                               
+             
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Patient First Name</mat-label>
+                                      <input matInput placeholder="First Name" [(ngModel)]="confirm_data.patient.first_name" name="first_name">
+                                     
+                      
+                                    </mat-form-field>
+                              </div>
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Patient Last Name</mat-label>
+                                      <input matInput placeholder="Last Name" [(ngModel)]="confirm_data.patient.last_name" name="last_name" >
+                                    
+                      
+                                    </mat-form-field>
+                              </div>
+                              <div class="col-sm-4">
+                               <mat-form-field appearance="outline">
+                                   <mat-label>Patient Surname</mat-label>
+                                   <input matInput placeholder="Surname" [(ngModel)]="confirm_data.patient.other_names"  name="other_names">
+                                  
+                   
+                                 </mat-form-field>
+                           </div>
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Patient Date Of Birth</mat-label>
+                                      <input matInput placeholder="D.O.B" (dateInput)="patientDobChange()" [(ngModel)]="confirm_data.patient.dob" [matDatepicker]="picker10" [max]="maxDate" name="dob">
+                                    
+                                      <mat-datepicker-toggle matSuffix [for]="picker10" ></mat-datepicker-toggle>
+                                        <mat-datepicker #picker10></mat-datepicker>
+                                    </mat-form-field>
+                                    
+                              </div>
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Patient Residence</mat-label>
+                                      <input matInput placeholder="Residence" [(ngModel)]="confirm_data.patient.residence" name="residence">
+                                   
+                      
+                                    </mat-form-field>
+                              </div>
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline" >
+                                      <mat-label>Patient National ID/Passport</mat-label>
+                                      <input matInput placeholder="Identity Document No" [(ngModel)]="confirm_data.patient.national_id" name="national_id">
+                                   
+                                    </mat-form-field>
+                              </div>
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Patient Mobile Number</mat-label>
+                                      <input matInput placeholder="Enter mobile" [(ngModel)]="confirm_data.patient.phone" name="phone">
+
+                      
+                                    </mat-form-field>
+                              </div>
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline" >
+                                      <mat-label>Patient Email</mat-label>
+                                      <input matInput placeholder="Enter email" [(ngModel)]="confirm_data.patient.email" name="email">
+                                    
+                                    </mat-form-field>
+                              </div>
+
+
+                        
+                        
+                            </div>
+
+
+                            <div class="row" style="justify-content: start;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;font-weight: 900;">NextOfKin details</span></h2></div>
+
+                              <div class="row"> 
+               
+                                <div class="col-sm-4">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label> NextOfKin Name</mat-label>
+                                        <input matInput placeholder="Name"  [(ngModel)]="confirm_data.nextofkin.name" name="name2" >
+                                      
+                        
+                                      </mat-form-field>
+                                </div>
+                              
+                        
+                              <div class="col-sm-4">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>NextOfKin Relationship</mat-label>
+                                    <mat-select  [(ngModel)]="confirm_data.nextofkin.relationship" name="relationship">
+                                        <mat-option *ngFor="let item of ['Spouse','Son','Daughter','Brother','Sister','Father','Mother','others']" [value]="item">
+                                          {{item}}
+                                        </mat-option>
+                                      </mat-select>
+                                  
+                                  </mat-form-field>
+                              </div>
+                              
+                           
+                                <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>NextOfKin Residence</mat-label>
+                                      <input matInput placeholder="Residence"  [(ngModel)]="confirm_data.nextofkin.residence" name="residence">
+                                   
+                      
+                                    </mat-form-field>
+                              </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>NextOfKin Mobile Number</mat-label>
+                                        <input matInput placeholder="Enter mobile"  [(ngModel)]="confirm_data.nextofkin.phone" name="mobile">                                        
+                        
+                                      </mat-form-field>
+                                </div>
+                           
+                              
+                            </div>
+
+
+
+                            <div class="row" style="justify-content: start;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;font-weight: 900;">Payment details</span></h2></div>
+
+                            
+             
+                            <div class="row">  
+                              <mat-form-field appearance="outline">
+                                <mat-label>Payment Mode</mat-label>
+                                <input matInput placeholder="Payment Mode"  [(ngModel)]="confirm_data.payment" name="payment_mode">
+                             
+                
+                              </mat-form-field>
+                            </div>
+                            <div class="row" *ngIf="confirmation_insurance_details">  
+                      
+                            <div class="col-sm-4">
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Insurance Company</mat-label>
+                                  <input  [(ngModel)]="confirm_data.insurance.insurance_company" name="insurance_company" matInput>
+                                    
+                                </mat-form-field>
+                            </div>
+                            
+                         
+                              <div class="col-sm-4">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Scheme Name</mat-label>
+                                    <input matInput placeholder="Scheme Name"  [(ngModel)]="confirm_data.insurance.scheme_name" name="scheme_name">
+                                 
+                    
+                                  </mat-form-field>
+                            </div>
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Scheme Number</mat-label>
+                                      <input matInput placeholder="Scheme Number"  [(ngModel)]="confirm_data.insurance.scheme_number" name="scheme_number">                                        
+                      
+                                    </mat-form-field>
+                              </div>
+                         
+                              <div class="col-sm-4">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Employee Name/Policy Holder</mat-label>
+                                    <input matInput placeholder="Employee Name/Policy Holder"  [(ngModel)]="confirm_data.insurance.employee" name="employee">                                        
+                    
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Employee Number</mat-label>
+                                  <input matInput placeholder="Employee  Number"  [(ngModel)]="confirm_data.insurance.employee_number" name="employee_number">                                        
+                  
+                                </mat-form-field>
+                          </div>
+                          <div class="col-sm-4">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Department</mat-label>
+                                <input matInput placeholder="Department"  [(ngModel)]="confirm_data.insurance.department" name="department">                                        
+                
+                              </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
+                          <mat-form-field appearance="outline">
+                              <mat-label>Member Number</mat-label>
+                              <input matInput placeholder="Scheme Number"  [(ngModel)]="confirm_data.insurance.member_number" name="member_number">                                        
+              
+                            </mat-form-field>
+                      </div>
+                      <div class="col-sm-4">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Member Name</mat-label>
+                            <input matInput placeholder="Member Name"  [(ngModel)]="confirm_data.insurance.member_name" name="member_name">                                        
+            
+                          </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Relationship</mat-label>
+                          <input matInput placeholder="Relationship"  [(ngModel)]="confirm_data.insurance.relation" name="relation">                                        
+          
+                        </mat-form-field>
+                  </div>       
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>NHIF Number</mat-label>
+                        <input matInput placeholder="NHIF Number"  [(ngModel)]="confirm_data.insurance.nhif_number" name="nhif_number">                                        
+        
+                      </mat-form-field>
+                </div>               
+                    </div>
+    
+                            <div class="row" style="justify-content: start;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;font-weight: 900;">Other details</span></h2></div>
+
+                            <div class="row"> 
+             
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Estimated Date of Delivery</mat-label>
+                                      <input matInput placeholder="Name"  [(ngModel)]="confirm_data.edd" name="edd" >
+                                    
+                      
+                                    </mat-form-field>
+                              </div>
+                            
+                      
+                            <div class="col-sm-4"  *ngIf="confirm_data.first_time=='yes'">
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Referred by</mat-label>
+                                  <input matInput [(ngModel)]="confirm_data.referred_by" name="referred_by">
+                                
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4"  *ngIf="confirm_data.first_time=='no'">
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Current Doctor</mat-label>
+                                  <input matInput [(ngModel)]="confirm_data.current_doctor" name="current_doctor">                                  
+                                </mat-form-field>
+                            </div>
+                         
+                              <div class="col-sm-4">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Room Package</mat-label>
+                                    <input matInput placeholder="Room Package"  [(ngModel)]="confirm_data.package" name="package">                     
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-sm-4"  >
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Maternity Package</mat-label>
+                                  <input matInput [(ngModel)]="confirm_data.maternity_package" name="maternity_package">
+                                
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4"   *ngIf="confirm_data.maternity_package=='Private Arrangement'" >
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Practitioner</mat-label>
+                                  <input matInput [(ngModel)]="confirm_data.practitioner" name="practitioner">
+                                
+                                </mat-form-field>
+                            </div>
+                         
+                              <div class="col-sm-4">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Booking Date</mat-label>
+                                      <input matInput placeholder="Booking Date"  [(ngModel)]="confirm_data.date" name="date">                                        
+                      
+                                    </mat-form-field>
+                              </div>
+                              <div class="col-sm-4">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Booking Time</mat-label>
+                                    <input matInput placeholder="Booking Time"  [(ngModel)]="confirm_data.time" name="time">                                        
+                    
+                                  </mat-form-field>
+                            </div>
+                         
+                            
+                          </div>
+                      </div>
+                      <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
+                      
+                        <button mat-raised-button   style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large; background-color: #EF2D2D;color: white;"  (click)= "confirm_details()">Confirm </button>
+                  
+                    </div>
+                          </form>
+        
+                        </mat-step>
+               </mat-horizontal-stepper>
+               
+     </div>
+ </div>
+ </div>
+ 
+ 
+ <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+ 
