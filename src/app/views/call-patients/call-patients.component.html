@@ -22,8 +22,20 @@
                                 <div class="col-sm-12" > {{dataSourceCall.patient.dob}} </div>
 
                             </div> 
+                            
 
                         </div>
+                        <div class="col-sm-5" style="text-align:right">
+     
+                          <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">Call Patient</button> 
+
+                        <!-- </div>
+                        <div class="col-sm-5" style="text-align:right">
+     
+                          <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">Confirm</button> 
+
+                        </div> -->
+                       
                        
                            
                           </div>
@@ -364,4 +376,45 @@
 
 
 
-<!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading> -->
+<div class="modal fade" bsModal #paymentModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row" style="width:100%;justify-content: center;">
+        <div class="col-sm-3"> <img width="50px" src="./assets/img/avatars/notes.jpeg"/></div>
+      </div>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="paymentModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+          <form >
+            <div class="form-group">        
+            <label for="message-text" class="col-form-label">Take notes for the patient.</label>          
+            </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+             
+              <input type="text" class="form-control" required placeholder="Notes" name="notes"  [(ngModel)]="take_notes. notes">
+            </div> 
+          </div>
+         
+        </div>
+      
+         
+          </form>
+     
+        <div mat-dialog-actions>
+          <button mat-button  style=" background-color: #e33434; color: white;" (click)="paymentModal.hide()" >Close</button>
+          <button mat-button  style="  background-color: #222222;color: white;"(click)="TakeNotes()">Save Notes</button>
+          <!-- <button mat-button *ngIf="mpesa_paid" style="  background-color: #4dbd74;color: white;"(click)="savePayment()">Save</button> -->
+          <!-- [mat-dialog-close]="data.phone" cdkFocusInitial -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -122,6 +122,7 @@ import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.comp
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
 import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { ClinicsSetupComponent } from './clinics-setup/clinics-setup.component';
+import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 
 
 
@@ -207,7 +208,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
       FeedbackSetupComponent, CallPatientsComponent,BirthdaymessengesComponent,
     MaternityDetailsComponent, FootwalkComponent, 
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
-    FeedbackSetupComponent, ClinicsSetupComponent
+    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent
    
       
 

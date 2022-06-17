@@ -39,27 +39,12 @@ export const navItems: NavData[] = [
     title: true,
     name: 'Main'
   },
-  {
-    name: 'Register Link',
-    url: '/dashboard/registration-link',
-    icon: 'fas fa-address-book',
-  
-  },
+
 
   {
     name: 'Bookings',
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
-  },
-  {
-    name: 'Print Forms',
-    url: '/dashboard/InsuranceclaimsForm',
-    icon: 'fa fa-folder-open',
-  },
-  {
-    name: 'Calendar',
-    url: '/dashboard/calendar',
-    icon: 'fa fa-calendar-check-o',
   },
   
   {
@@ -67,42 +52,55 @@ export const navItems: NavData[] = [
     url: '/dashboard/records',
     icon: 'icon-people',
   },
-  // {
-  //   name: 'Calendar',
-  //   url: '/dashboard/calendar',
-  //   icon: 'fa fa-calendar-check-o',
-  // },
+  {
+    name: 'Calendar',
+    url: '/dashboard/calendar',
+    icon: 'fa fa-calendar-check-o',
+  },
+  {
+    name: 'SMS Links',
+    url: '/dashboard/registration-link',
+    icon: 'fas fa-address-book',
+  
+  },
+
  
 
-  {
-    name: 'Covid Report',
-    url: '/dashboard/reports',
-    icon: 'fa fa-line-chart',
-  },
-  
-
-
    {
-    name: 'Feedbacks',
+    name: 'Feedback',
     url: '/dashboard/feedbacks',
     icon: 'fas fa-comment',
   },
   {
-    name: 'Feedbacks Graphs',
-    url: '/dashboard/Feedback-graphs',
-    icon: 'fa fa-bar-chart',
-  },
-  {
-    name: 'Mpesa Payments',
+    name: 'Mpesa',
     url: '/dashboard/payments',
     icon: 'fas fa-credit-card',
   },
   {
-    name: 'Birthday Notifications',
+    name: 'Claim Forms',
+    url: '/dashboard/InsuranceclaimsForm',
+    icon: 'fa fa-folder-open',
+  },
+  
+  {
+    name: 'Clients Birthday',
     url: '/dashboard/birthday-Messanges',
     icon: 'fas fa-paper-plane',
-    // <i class="fas fa-paper-plane"></i>
+ 
+  },
+
+  {
+    name: 'Feedback Graphs',
+    url: '/dashboard/Feedback-graphs',
+    icon: 'fa fa-bar-chart',
+  },
+
+  {
+    name: 'Covid Reports',
+    url: '/dashboard/reports',
+    icon: 'fa fa-line-chart',
   }
+
 
   
   

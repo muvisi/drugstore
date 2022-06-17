@@ -2,11 +2,11 @@ div{
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-::ng-deep .mat-tab-label {
-    padding: 0px !important;
-    justify-content: left !important;
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
+// ::ng-deep .mat-tab-label {
+//     padding: 0px !important;
+//     justify-content: left !important;
+//     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+// }
 table{
     width: 100%;
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -31,3 +31,22 @@ tr.mat-row, tr.mat-footer-row {
 transform: translateY(-1.1em) scale(.75);
 width: 133.33333%;
 }
+.mat-tab-group {
+    flex-direction: row;
+  }
+.mat-tab-header {
+    border-bottom: none;
+  }
+  .mat-tab-header-pagination {
+    display: none !important;
+  }
+ .mat-tab-labels {
+    flex-direction: column;
+  }
+ .mat-ink-bar {
+    height: 100%;
+    left: 98% !important;
+  }
+.mat-tab-body-wrapper {
+    flex: 1 1 auto;
+  }

@@ -85,6 +85,7 @@ import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.comp
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
 import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
+import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -107,6 +108,10 @@ const routes: Routes = [
   {
     path: 'register-qrcode-download',
     component: QrcodeDownloadComponent,
+  },
+  {
+    path: 'maternityfeedback-qrcode-download',
+    component: MaternityfeedbackComponent,
   },
   {
     path: 'maternity-qrcode-download',

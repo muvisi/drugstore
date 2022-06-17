@@ -151,6 +151,80 @@
     
     
   </mat-tab>
+
+
+   <mat-tab>
+    <ng-template mat-tab-label>
+      Delivered Messages
+    </ng-template>
+    <br>
+    <div class="card">
+      <h6 class="card-header bg-success">Resend Birthday Messages 
+    
+      </h6>
+      <div class="card-body">
+        <div class="row">
+        
+          
+            
+          <div class="col-sm-12" style="margin-top: 15px;">
+            <div class="mat-elevation-z8 table-responsive">
+              <table mat-table [dataSource]="deliveredmessagesdataSource">
+                <ng-container matColumnDef="sn">
+                    <th mat-header-cell *matHeaderCellDef>S/N</th>
+                    <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dob">
+              <th mat-header-cell *matHeaderCellDef>DOB</th>
+              <td mat-cell *matCellDef="let element"> {{element.dob | date:'mediumDate'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="client">
+              <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}}</td>
+            </ng-container>
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef>Tel Number</th>
+                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+              </ng-container>
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+              <ng-container matColumnDef="age">
+                <th mat-header-cell *matHeaderCellDef>Age</th>
+                <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+              </ng-container>
+              <ng-container matColumnDef="view">
+                <th mat-header-cell *matHeaderCellDef>Resend Manually</th>
+                <td mat-cell *matCellDef="let element"> 
+                  <button class="btn btn-success btn-sm" (click)="clickRow(selected=element)"><i class="fa fa-paper-plane"  style="font-size: 24px;" aria-hidden="true"></i></button>
+                  
+                   </td>
+              </ng-container>
+              
+                  
+                 
+      
+            
+      
+              
+            
+              <tr mat-header-row *matHeaderRowDef="AllColumns1"></tr>
+              <tr mat-row *matRowDef="let row; columns:AllColumns1;"></tr>
+            </table>
+        
+              <mat-paginator [pageSizeOptions]="[19,50]" showFirstLastButtons></mat-paginator>
+            </div>
+          </div>
+          </div>
+    
+      </div>
+    
+    
+    </div>
+    
+    
+  </mat-tab>
 </mat-tab-group>
 
 
@@ -177,21 +251,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <form [formGroup]="registerForm" (ngSubmit)="NewMessage()">
    <div class="row">
            
-     <div class="col-sm-6">
-       <mat-form-field appearance="outline">
-         <mat-label>Message Title</mat-label>
-           <input type="text" id="text-input" name="title"  placeholder="Message Title"
-           formControlName="title" matInput>
-       </mat-form-field>
-     </div>
-       <div class="col-sm-6">
-           <mat-form-field appearance="outline">
-             <mat-label>Message Body</mat-label>
-               <input type="text" id="text-input"  placeholder="Message"
-               formControlName="message" matInput>
-           </mat-form-field>
-         </div>
-        
+   
       
       <div class="col-sm-6">
         <mat-form-field appearance="outline">
@@ -202,7 +262,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
       </div>
       <div class="col-sm-6">
          <mat-form-field appearance="outline">
-           <mat-label>Designation</mat-label>
+           <mat-label>Company signature</mat-label>
              <input type="text" placeholder="designation"
              formControlName="designation" matInput>
          </mat-form-field>
@@ -218,7 +278,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
            </div>
            <div class="col-sm-6">
                <mat-form-field appearance="outline">
-                 <mat-label>Contact</mat-label>
+                 <mat-label>Company Tel</mat-label>
                    <input type="contact" id="text-input"   placeholder="Contact"
                    formControlName="contact" matInput>
                </mat-form-field>
@@ -230,8 +290,23 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                   formControlName="email" matInput>
               </mat-form-field>
             </div>
-           
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Message Title</mat-label>
+                  <input type="text" id="text-input" name="title"  placeholder="Message Title"
+                  formControlName="title" matInput>
+              </mat-form-field>
+            </div>
               <div class="col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Message Body</mat-label>
+                      <input type="text" id="text-input"  placeholder="Message"
+                      formControlName="message" matInput>
+                  </mat-form-field>
+                </div>
+               
+           
+               <div class="col-sm-12">
                 <input 
                 formControlName="file"
                 id="file" 
@@ -239,7 +314,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                 class="form-control"
                 (change)="onFileChange($event)" required>
                 
-              </div>
+              </div> 
               <img [src]="imageSrc" *ngIf="imageSrc" style="height: 150px; width:250px">
               <div class="col-sm-12">
                  <button class="btn btn-primary btn-sm pull-right"  style="margin-right: 8px;">Create</button>
