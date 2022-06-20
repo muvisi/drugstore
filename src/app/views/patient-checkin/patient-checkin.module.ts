@@ -216,8 +216,11 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
       FeedbackSetupComponent, CallPatientsComponent,BirthdaymessengesComponent,
     MaternityDetailsComponent, FootwalkComponent, 
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
-    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,DashboardReportComponent,AdminSetupsComponent,
+    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,DashboardReportComponent,
+    AdminSetupsComponent,
    
+
+    
       
 
 
@@ -270,7 +273,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     QRCodeModule,
     CommonModule,
     MatStepperModule,
-    NgbModule,  
+    NgbModule, 
      
 
   ],

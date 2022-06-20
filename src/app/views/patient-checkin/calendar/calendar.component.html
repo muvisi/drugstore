@@ -2,12 +2,13 @@
   <div class="col-sm-12">
       <div class="card">
           <div class="card-header">
-           <div class="row" style="font-size: larger;font-family: 'Courier New', Courier, monospace; margin-left: 10px;">Calendar</div> 
+           <!-- <div class="row" style="font-size: larger;font-family: 'Courier New', Courier, monospace; margin-left: 10px;">Calendar</div>  -->
            <div class="row">
             <div class="col-sm-4">
               <mat-form-field appearance="outline">
                   <mat-label>Select Clinics</mat-label>
                   <mat-select name="clinic">
+                    <mat-option  value="" (click)="clinicClicked({name:'All'})">All</mat-option>
                     <mat-option  *ngFor="let item of clinics"[value]="item.id" (click)="clinicClicked(item)">{{item.text}}</mat-option>
                   </mat-select>
                

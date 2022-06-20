@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { type } from 'os';
+import { Observable, OperatorFunction } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ServiceService } from '../../../service.service';
 
 @Component({
@@ -13,8 +17,22 @@ export class RegistrationLinkComponent implements OnInit {
   mpesa_amount;
   loading;
 
+  already_booked_data=[];
   @ViewChild('stk', { static: false }) private stk;
-  constructor(private formBuilder: FormBuilder,private service:ServiceService,private toast: ToastrService) {
+
+    formatter = (item: {phone:'',type:string,date:string,id:string}) =>
+    { 
+      return item.phone+" "+item.type+" "+item.date;
+    }
+
+    search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+      text$.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        map(term => term === '' ? []
+          : this.already_booked_data.filter(v => v.phone.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+      )
+  constructor(private formBuilder: FormBuilder,private service:ServiceService,private toast: ToastrService,private router:Router) {
   
    }
 
@@ -22,6 +40,7 @@ export class RegistrationLinkComponent implements OnInit {
     this.patientMobileForm=this.formBuilder.group({
       phone:[''],
     })
+    this.filterBooking()
   }
 
   submitPhoneMaternity(){
@@ -194,5 +213,29 @@ export class RegistrationLinkComponent implements OnInit {
     })
 
   }
+
+  selectedBooking($event){
+    let item=$event.item
+    if($event.item.type=="Appointment booking"){
+      this.router.navigateByUrl("dashboard/booking-details/"+item.id)
+    }else if($event.item.type=="Maternity booking"){
+      this.router.navigateByUrl("dashboard/maternity-details/"+item.id)
+    }else if($event.item.type=="Covid Vaccination"){
+      this.router.navigateByUrl("dashboard/appointment-details/"+item.id)
+    }else if($event.item.type=="Covid testing"){
+      this.router.navigateByUrl("dashboard/testing-details/"+item.id)
+    }
+  }
+
+  filterBooking(){
+    let d=this.patientMobileForm.value
+    this.service.getBookingSuggestions(d.phone).subscribe(res=>{
+      this.already_booked_data=res;
+    },err=>{
+
+    })
+  }
+
+
 
 }

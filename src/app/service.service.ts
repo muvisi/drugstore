@@ -250,6 +250,10 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/clinics-appointments/'+id+'/').pipe(
       map(this.extractData));
   }
+  getAllClinicsAppointments() {
+    return this.http.get(endpoint + 'api/clinics-appointments/').pipe(
+      map(this.extractData));
+  }
 
 
 
@@ -1637,7 +1641,7 @@ filtercalendarr() {
       map(this.extractData));
   }
   deleteclinic(id) {
-    return this.http.delete(endpoint + 'api/deleteclinic/'+id+'/').pipe(
+    return this.http.delete(endpoint + 'api/clinics/'+id+'/').pipe(
       map(this.extractData));
   }
   getPatientData_Hospserver(): Observable<any> {
@@ -1775,6 +1779,31 @@ addClinicWorkDay(data): Observable<any> {
 }
 getClinicWorkDay(id): Observable<any> {
   return this.http.get(endpoint+ 'api/clinics-workdays/'+id+'/').pipe(
+    map(this.extractData));
+}
+getBookingSuggestions(phone): Observable<any> {
+  return this.http.get(endpoint+ 'api/booking-suggestions/?phone='+phone).pipe(
+    map(this.extractData));
+}
+getBranches(): Observable<any> {
+  return this.http.get(endpoint+ 'api/branch/').pipe(
+    map(this.extractData));
+}
+postBranches(data): Observable<any> {
+  return this.http.post(endpoint+ 'api/branch/',data).pipe(
+    map(this.extractData));
+}
+
+updateBranches(data): Observable<any> {
+  return this.http.put(endpoint+ 'api/branch/'+data.id+'/',data).pipe(
+    map(this.extractData));
+}
+deleteBranches(data): Observable<any> {
+  return this.http.delete(endpoint+ 'api/branch/'+data.id+'/').pipe(
+    map(this.extractData));
+}
+filterBranches(text): Observable<any> {
+  return this.http.get(endpoint+ 'api/branch/?search='+text).pipe(
     map(this.extractData));
 }
 }

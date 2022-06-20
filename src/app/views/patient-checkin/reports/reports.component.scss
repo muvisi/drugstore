@@ -24,3 +24,25 @@ tr.mat-row, tr.mat-footer-row {
 .graphic-reports-background{
     background-color: #06163e !important;
 }
+
+
+::ng-deep .mat-tab-group.vertical {
+    flex-direction: row;
+}
+::ng-deep .mat-tab-group.horizontal {
+    flex-direction: column;
+}
+::ng-deep .vertical .mat-tab-labels {
+    flex-direction: column;
+}
+::ng-deep .horizontal .mat-tab-labels {
+    flex-direction: row;
+}
+
+::ng-deep .mat-tab-body-wrapper{
+    width: 100%;
+}
+
+::ng-deep .horizontal .mat-tab-labels .mat-tab-label .mat-tab-label-content{
+    font-size: smaller;
+}

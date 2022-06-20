@@ -65,10 +65,20 @@ ownerDataSource: Object[] = [];
   }
 
 clinicClicked(item){
+  if(item.name=='All'){
+    this.ownerDataSource=this.clinics;
+    this.service.getAllClinicsAppointments().subscribe(res=>{
+     
+      this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
+    },err=>{})
+
+  }else{
   this.clinic_selected=item;
   this.service.getClinicAppointments(item.id).subscribe(res=>{
+    this.ownerDataSource = [item];
     this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
   },err=>{})
+}
 
   }
 onPopupOpen(args: PopupOpenEventArgs): void {

@@ -5,11 +5,11 @@
       <div class="card">
         <h5 class="card-header">Clinics Setup</h5>
         <div class="card-body">
-          <!-- <mat-tab-group>
-            <mat-tab label="Clinics">  -->
+          <mat-tab-group>
+            <mat-tab label="Clinics"> 
           <div class="row">
             <div class="col-sm-12">
-              <div class="row">
+              <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-4">
                     <mat-form-field>
                         <input matInput [(ngModel)]="search"  placeholder="clinics type" type="search">
@@ -31,14 +31,23 @@
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
                             <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="type">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-                      <td mat-cell *matCellDef="let element"> {{element.type_name}} </td>
-              </ng-container>
+                    <ng-container matColumnDef="branch">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Branch</th>
+                      <td mat-cell *matCellDef="let element"> {{element.branch_name}}</td>
+                    </ng-container>
+                
                         
                       <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Clinic</th>
                         <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="open">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Opening Time</th>
+                        <td mat-cell *matCellDef="let element"> {{element.open}} </td>
+                     </ng-container>
+                      <ng-container matColumnDef="close">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Closing Time</th>
+                        <td mat-cell *matCellDef="let element"> {{element.close}} </td>
                       </ng-container>
                       <ng-container matColumnDef="description">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
@@ -51,8 +60,8 @@
                       </ng-container>                      
                       <ng-container matColumnDef="update">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Update</th>
-                        <td mat-cell *matCellDef="let element" > 
-                          <button class="btn btn-success btn-sm" (click)="update(element)" >edit</button>
+                        <td mat-ceupdatell *matCellDef="let element" > 
+                          <button class="btn btn-success btn-sm" (click)="updateClinic(element)" >edit</button>
                           </td>
                       </ng-container>
                       <ng-container matColumnDef="calendar">
@@ -79,78 +88,81 @@
 
           </div>
           
-          <!--   </mat-tab>
-    <mat-tab  label="Calendar">
-            
-  <div class="card">
-    <div class="card-header">
-    <h5><b>My Working Days</b></h5>
-    </div>
-    <div class="card-body">
-
-
-
-
-
-  <div class="col-sm-12">
-  <div class="row">
-      <div class="col-sm-3">
-        <div class="col-sm-12"><h5> Select Clinic</h5></div>
-        
-  
+        </mat-tab>
+    <mat-tab  label="Branches">
      
-        <mat-radio-group  name="d">
-          <div class="row" style="margin-left: 10px;" *ngFor="let clinic of clinics_list" >
-               <mat-radio-button [value]="clinic.id"  [checked]="clinic.id==selected_clinic_id" (click)="onCounsellorSelect(counselor.id)"  style="font-family: lato light;margin-right: 20px;"><h5>{{clinic.name}}</h5></mat-radio-button>
-            </div>
-                        
-     
-       </mat-radio-group>
-      </div>
-      <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-4">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="search2"  placeholder="clinics type" type="search">
+                  </mat-form-field>
     
-        <div class="control-section">
-          <div class="col-lg-12 conent-wrapper">
-            <ejs-schedule #schedule2 [(selectedDate)]="selectedDate"   (popupOpen)='onPopupOpen($event)'    (cellClick)="onCellClick($event)" [currentView]='currentView' >
-              <ng-template #cellTemplate2 let-data>
-                <div class="templatewrap">
-                  <img src="./assets/img/avatars/accept.png" width="32px" height="32px" *ngIf="isWorkDay(data.date)"/>
-                  <img src="./assets/img/avatars/close.png" width="32px" height="32px"  *ngIf="!isWorkDay(data.date)"/>
-                
-                </div>
-              </ng-template>
-              <e-views>          
-                <e-view option="Month"  ></e-view> 
-              </e-views>
-      
-            </ejs-schedule>
           </div>
-          
+          <div class="col-sm-2">
+            <button  (click)="filterBranch()"  class="btn btn-success pull-left" style="margin-top: 5px;padding-left: 10px;padding-right: 10px;">search</button> 
+          </div>
+          <div class="col-sm-6">
+            <button  (click)="branchModal.show()"  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;">Add Branch</button> 
         </div>
-      
+        </div>
+          <div class="col-sm-12">
+
+              <div class="mat-elevation-z8 table-responsive">
+                <table mat-table [dataSource]="branchesDataSource" matSort style="width: 100%;"> 
+                    <ng-container matColumnDef="sn">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                        <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="branch">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Branch</th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                </ng-container>           
+                    
+                  <ng-container matColumnDef="location">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                    <td mat-cell *matCellDef="let element"> {{element.location}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</th>
+                    <td mat-cell *matCellDef="let element"> {{element.phone}}</td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}}</td>
+                  </ng-container>
+                                 
+                  <ng-container matColumnDef="update">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Update</th>
+                    <td mat-ceupdatell *matCellDef="let element" > 
+                      <button class="btn btn-success btn-sm" (click)="editBranch(element)" >edit</button>
+                      </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+                    <td mat-cell *matCellDef="let element" >                          
+                      <button class="btn btn-danger btn-sm" (click)="deleteBranch(element)">remove</button>
+                      </td>
+                  </ng-container>
+             
+                  <tr mat-header-row *matHeaderRowDef="Columns2"></tr>
+                  <tr mat-row *matRowDef="let row; columns:Columns2;" ></tr>
+                </table>
+            
+                <mat-paginator [pageSizeOptions]="[100,200,500]" showFirstLastButtons></mat-paginator>
+              </div>
+            </div>
       </div>
-      <div class="col-sm-3">
-        <div class="col-sm-12"><h5> Select Week Days</h5></div>
-        
-  
-     
-        <div class="col-sm-12"><mat-checkbox color="primary"  [checked]="checkWeekdaysInList(0)" (change)="weekdayChange(0)"> Sunday</mat-checkbox></div>
-        <div class="col-sm-12"><mat-checkbox color="primary"  [checked]="checkWeekdaysInList(1)" (change)="weekdayChange(1)"> Monday</mat-checkbox></div>
-        <div class="col-sm-12"><mat-checkbox color="primary"  [checked]="checkWeekdaysInList(2)" (change)="weekdayChange(2)"> Tuesday</mat-checkbox></div>
-        <div class="col-sm-12"><mat-checkbox color="primary"  [checked]="checkWeekdaysInList(3)" (change)="weekdayChange(3)"> Wednesday</mat-checkbox></div>
-        <div class="col-sm-12"><mat-checkbox color="primary"  [checked]="checkWeekdaysInList(4)" (change)="weekdayChange(4)"> Thursday</mat-checkbox></div>
-        <div class="col-sm-12"><mat-checkbox color="primary"  [checked]="checkWeekdaysInList(5)" (change)="weekdayChange(5)"> Friday</mat-checkbox></div>
-        <div class="col-sm-12"><mat-checkbox color="primary"  [checked]="checkWeekdaysInList(6)" (change)="weekdayChange(6)"> Saturday</mat-checkbox></div>
-        
+
       </div>
-    </div>
-     
-    <button class="btn btn-success btn-sm" (click)="submitWorkdays()" > Submit</button>
-  </div>
-  </div>
-  </div>
+
+
+
         </mat-tab> 
-        </mat-tab-group>-->
+        </mat-tab-group> 
       </div>
       </div>
     </div>
@@ -172,6 +184,17 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
    
   <form [formGroup]="clinicForm" >
    <div class="row">
+
+    <div class="col-sm-12">
+      <mat-form-field appearance="outline">
+          <mat-label>Add Branch</mat-label>
+          <mat-select formControlName="branch" >
+            <mat-option  (click)="branchModal.show()" value="">Add Branch</mat-option>
+            <mat-option  *ngFor="let item of branches"[value]="item.id">{{item.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="f.branch && submitted">Branch  <strong>required</strong></mat-error>
+        </mat-form-field>
+   </div>
      <div class="col-sm-12">
         <mat-form-field appearance="outline">
             <mat-label>Type e.g  Speciality clinics</mat-label>
@@ -191,7 +214,21 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               <input matInput placeholder="name" formControlName="name">
             </mat-form-field>
      </div>
-     <div class="col-sm-12">
+     <div class="col-sm-6">
+      <!-- <mat-form-field appearance="outline"> -->
+          <label>Opening Time</label>
+          <ngb-timepicker   formControlName="open"  [meridian]="true"></ngb-timepicker>
+            <!-- <input matInput placeholder="Opening Time"  formControlName="open" data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top" > -->
+          <!-- </mat-form-field> -->
+    </div>
+    <div class="col-sm-6">
+    <!-- <mat-form-field appearance="outline"> -->
+        <label>Closing  Time</label>
+        <ngb-timepicker  formControlName="close" [meridian]="true"></ngb-timepicker>
+          <!-- <input matInput placeholder="Closing Time" formControlName="close" data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top" > -->
+        <!-- </mat-form-field> -->
+    </div>
+    <div class="col-sm-12" style="margin-top: 10px;">
       <mat-form-field appearance="outline">
           <mat-label>Session Duration per Client (mins)</mat-label>
             <input matInput placeholder="Session Duration per Client (mins)" type="number" formControlName="session_duration">
@@ -231,6 +268,16 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
   <form [formGroup]="editClinicForm" >
    <div class="row">
     <div class="col-sm-12">
+      <mat-form-field appearance="outline">
+          <mat-label>Add Branch</mat-label>
+          <mat-select formControlName="branch" >
+            <mat-option  (click)="branchModal.show()" value="">Add Branch</mat-option>
+            <mat-option  *ngFor="let item of branches"[value]="item.id">{{item.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="f.branch && submitted">Branch  <strong>required</strong></mat-error>
+        </mat-form-field>
+   </div>
+    <div class="col-sm-12">
     <mat-form-field appearance="outline">
       <mat-label>Type e.g  Speciality clinics</mat-label>
       <mat-select formControlName="type" >
@@ -249,7 +296,21 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         <input matInput placeholder="name" formControlName="name">
       </mat-form-field>
 </div>
-<div class="col-sm-12">
+<div class="col-sm-6">
+  <!-- <mat-form-field appearance="outline"> -->
+      <label>Opening Time</label>
+      <ngb-timepicker   formControlName="open"  [meridian]="true"></ngb-timepicker>
+        <!-- <input matInput placeholder="Opening Time"  formControlName="open" data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top" > -->
+      <!-- </mat-form-field> -->
+</div>
+<div class="col-sm-6">
+<!-- <mat-form-field appearance="outline"> -->
+    <label>Closing  Time</label>
+    <ngb-timepicker  formControlName="close" [meridian]="true"></ngb-timepicker>
+      <!-- <input matInput placeholder="Closing Time" formControlName="close" data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top" > -->
+    <!-- </mat-form-field> -->
+</div>
+<div class="col-sm-12" style="margin-top: 10px;">
   <mat-form-field appearance="outline">
       <mat-label>Session Duration per Client (mins)</mat-label>
         <input matInput placeholder="Session Duration per Client (mins)" type="number" formControlName="session_duration">
@@ -263,7 +324,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 </div>
     <div class="col-sm-12">
       <br>
-      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="updateClinic()" > <span style="text-transform: capitalize;">Update Clinic</span> </button>
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitupdateClinic()" > <span style="text-transform: capitalize;">Update Clinic</span> </button>
     </div>
    </div>
    </form>
@@ -305,7 +366,125 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 </div>
 </div>
 
+<div class="modal fade" bsModal #branchModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 id="dialog-static-name" class="modal-title pull-left">Add Branch</h5>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="branchModal.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+  <form [formGroup]="branchForm" >
+   <div class="row">
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Name</mat-label>
+          <input matInput formControlName="name" placeholder="Name">
+          <mat-error *ngIf="b.name && submitted">Branch Name  <strong>required</strong></mat-error>
+        </mat-form-field>
 
+     </div>
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Location</mat-label>
+          <input matInput formControlName="location" placeholder="Location">
+          <mat-error *ngIf="b.location && submitted">Branch Location  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+   
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Phone</mat-label>
+          <input matInput formControlName="phone" placeholder="Phone">
+          <mat-error *ngIf="b.phone && submitted">Branch Phone  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email">
+          <mat-error *ngIf="b.email && submitted">Branch Email  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+     <div class="col-sm-12">
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="submitBranch()"> <span style="text-transform: capitalize;">Save</span> </button>
+     </div>
+   </div>
+   </form>
+ </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" bsModal #editBranchModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 id="dialog-static-name" class="modal-title pull-left">Update Branch</h5>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="branchModal.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+  <form [formGroup]="editBranchForm" >
+   <div class="row">
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Name</mat-label>
+          <input matInput formControlName="name" placeholder="Name">
+          <mat-error *ngIf="eb.name && submitted">Branch Name  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Location</mat-label>
+          <input matInput formControlName="location" placeholder="Location">
+          <mat-error *ngIf="eb.location && submitted">Branch Location  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+   
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Phone</mat-label>
+          <input matInput formControlName="phone" placeholder="Phone">
+          <mat-error *ngIf="eb.phone && submitted">Branch Phone  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+     <div class="col-sm-12">
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Branch Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email">
+          <mat-error *ngIf="eb.email && submitted">Branch Email  <strong>required</strong></mat-error>
+        </mat-form-field>
+
+     </div>
+     <div class="col-sm-12">
+      <button  class="btn btn-success pull-right" style="padding-left: 10px;padding-right: 10px;" (click)="updateBranch()"> <span style="text-transform: capitalize;">Save</span> </button>
+     </div>
+   </div>
+   </form>
+ </div>
+</div>
+</div>
+</div>
 
 
 <div class="modal fade" bsModal #calendarModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">

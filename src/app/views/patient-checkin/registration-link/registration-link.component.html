@@ -19,8 +19,8 @@
                                     <div class="col-sm-5">
                                     <mat-form-field class="example-full-width"  appearance="outline">
                                         <mat-label>Phone number</mat-label>
-                                        <input type="text" matInput  formControlName="phone" >
-                                        <!-- <input matInput placeholder="Enter Encounter Number/Visit Number" (change)="visitNumberChange()" required="true" [(ngModel)]="encounter_number" [ngbTypeahead]="search" [resultFormatter]="formatter"> -->
+                                        <!-- <input type="text" matInput  formControlName="phone" > -->
+                                        <input matInput  formControlName="phone"  placeholder="Enter phone" (change)="filterBooking()"  (selectItem)="selectedBooking($event)" required="true" [ngbTypeahead]="search" [resultFormatter]="formatter">
                                     </mat-form-field>
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex" >
                             
-                                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneRegister()">Outpatient/Inpatient Register</button>
+                                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneRegister()">Register</button>
                         
                         </div>
                         <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">

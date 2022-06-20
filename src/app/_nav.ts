@@ -63,11 +63,6 @@ export const navItems: NavData[] = [
     icon: 'icon-people',
   },
   {
-    name: 'Calendar',
-    url: '/dashboard/calendar',
-    icon: 'fa fa-calendar-check-o',
-  },
-  {
     name: 'SMS Links',
     url: '/dashboard/registration-link',
     icon: 'fas fa-address-book',
