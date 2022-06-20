@@ -19,6 +19,9 @@ import { extend, Internationalization,isNullOrUndefined } from '@syncfusion/ej2-
 export class CalendarComponent implements OnInit {
 token: string = sessionStorage.getItem('Token');
 selectedDate: Date = new Date();
+data={
+  Subject:''
+}
 booking_event:any={
   StartTime:"",
   EndTime:"",

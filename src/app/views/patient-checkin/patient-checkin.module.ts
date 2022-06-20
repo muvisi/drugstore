@@ -122,6 +122,11 @@ import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.comp
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
 import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { ClinicsSetupComponent } from './clinics-setup/clinics-setup.component';
+import { FilterPipe } from '../../filter.pipe';
+import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
+import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
+import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
+import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
 import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
@@ -186,7 +191,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MTNClaimformComponent,
     MaternityQrcodeComponent,
     FeedbackGraphsComponent,
-    
+    FilterPipe,
     MinetClaimformsComponent,
     
     JubileeClaimformComponent,
@@ -211,10 +216,16 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
       FeedbackSetupComponent, CallPatientsComponent,BirthdaymessengesComponent,
     MaternityDetailsComponent, FootwalkComponent, 
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
-    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,DashboardReportComponent,AdminSetupsComponent
+    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,DashboardReportComponent,AdminSetupsComponent,
    
       
 
+
+
+    BookAppointmentComponent,
+    BookMaternityComponent,
+    BookVaccinationComponent,
+    BookCovidtestingComponent
     
 
   ],
@@ -258,8 +269,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     TimePickerModule,
     QRCodeModule,
     CommonModule,
-    NgbModule, 
-  
+    MatStepperModule,
+    NgbModule,  
      
 
   ],

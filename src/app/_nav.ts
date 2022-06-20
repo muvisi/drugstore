@@ -46,6 +46,16 @@ export const navItems: NavData[] = [
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
   },
+  {
+    name: 'Claim Forms',
+    url: '/dashboard/InsuranceclaimsForm',
+    icon: 'fa fa-folder-open',
+  },
+  {
+    name: 'Calendar',
+    url: '/dashboard/calendar',
+    icon: 'fa fa-calendar-check-o',
+  },
   
   {
     name: 'Clients',

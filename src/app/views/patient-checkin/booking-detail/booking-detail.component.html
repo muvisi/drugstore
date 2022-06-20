@@ -28,9 +28,11 @@
 
                         </div>
                             <div class="col-sm-7" style="text-align:right">
-     
-                              <button  (click)="feedbackClicked()"  class="btn btn-success pull-right">Feedback</button> 
-
+                              <div class="row">
+                                
+                                  <div class="col-sm-12" ><button  (click)="feedbackClicked()"  class="btn btn-success pull-right">Feedback</button></div> 
+                                  <div class="col-sm-12" style="margin-top:10px;"><button  (click)="createAppointment()" class="btn btn-success pull-right"> <i class="fas fa-plus"></i>Create Appointment</button></div>
+                          </div>
                             </div>
                           </div>
               
@@ -484,5 +486,153 @@
 
 </div>
 
+
+
+<div class="modal fade" bsModal #calendarModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+   <div class="modal-header">
+     <h5 id="dialog-static-name" class="modal-title pull-left">Calendar</h5>
+     <button type="button" class="close pull-right" aria-label="Close" (click)="calendarModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+   </div>
+   <div class="modal-body">
+       
+    <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="col-sm-12"><h5> Select Clinics</h5></div>
+           
+        <mat-radio-group  name="d">
+          <div class="row" style="margin-left: 10px;" *ngFor="let clinic of clinics" >
+               <mat-radio-button [value]="clinic.id"  [checked]="clinic.id==selected_clinic_id" (click)="onClinicSelected(clinic)"  style="font-family: lato light;margin-right: 20px;"><h5>{{clinic.name}}</h5></mat-radio-button>
+            </div>
+                        
+     
+       </mat-radio-group>
+
+      </div>
+        <div class="col-sm-8">
+      
+          <div class="control-section">
+            <div class="col-lg-12 conent-wrapper">
+              <ejs-schedule #schedule [(selectedDate)]="selectedDate"   (popupOpen)='onPopupOpen($event)'    (cellClick)="onCellClick($event)" [currentView]='currentView' >
+                <ng-template #cellTemplate let-data>
+                  <div class="templatewrap">
+                    <img src="./assets/img/avatars/accept.png" width="32px" height="32px" *ngIf="isWorkDay(data.date)"/>
+                    <img src="./assets/img/avatars/close.png" width="32px" height="32px"  *ngIf="!isWorkDay(data.date)"/>
+                  
+                  </div>
+                </ng-template>
+                <e-views>          
+                  <e-view option="Month"  ></e-view> 
+                </e-views>
+        
+              </ejs-schedule>
+            </div>
+            
+          </div>
+        
+        </div>
+      
+      </div>
+       
+      <button class="btn btn-danger btn-sm" (click)="calendarModal.hide()" > close</button>
+    </div>
+    
+   </div>
+  </div>
+  </div>
+  </div>
+  
+
+
+
+
+<div class="modal fade" bsModal #calendarModalTime="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+  <div class="modal-content">
+   <div class="modal-header">
+     <h5 id="dialog-static-name" class="modal-title pull-left">Calendar</h5>
+     <button type="button" class="close pull-right" aria-label="Close" (click)="calendarModalTime.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+   </div>
+   <div class="modal-body">    
+    <div class="col-sm-12">      
+          <div class="control-section">
+            <div class="col-lg-12 conent-wrapper">
+              <ejs-schedule #schedule [(selectedDate)]="selected_appointment_date"   (popupOpen)='onPopupOpen($event)'    (cellClick)="onCellClickTime($event)" [currentView]='currentWorkweek'   [workHours]="workHours" [workDays]="workdate"  [eventSettings]="eventSettings">
+             
+                <e-views>          
+                  <e-view option="WorkWeek"  startHour="08:00" endHour="18:00" ></e-view> 
+                </e-views>
+                <ng-template #eventSettingsTemplate let-data >
+                  <div class='template-wrap' style="color: black; font-size: large;" >
+                    <div class="subject">{{data.Subject}}</div>
+                  </div>
+                </ng-template>
+              </ejs-schedule>
+              
+            </div>      
+       
+      </div>
+       
+      <button class="btn btn-danger btn-sm" (click)="calendarModalTime.hide()" > close</button>
+    </div>
+    
+   </div>
+  </div>
+  </div>
+  </div>
+
+
+  <div class="modal fade" bsModal #ConfirmAppointment="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+    <div class="modal-content">
+     <div class="modal-header">
+       <h5 id="dialog-static-name" class="modal-title pull-left">Confirm Appointment</h5>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="ConfirmAppointment.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+     <div class="modal-body">    
+      <div class="col-sm-12">
+
+        <form [formGroup]="dateTimeForm" >
+          <div class="row" style="width:100%">
+            <div class="col-sm-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Service Type/Clinic</mat-label>
+                <input matInput placeholder="clinic_name"  formControlName="clinic_name">
+              </mat-form-field>
+            </div>
+              <div class="col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Appointment Date</mat-label>
+                      <input matInput placeholder="Appointment Date" [minDate]="minDate" formControlName="date" [matDatepicker]="picker3">
+
+                      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                      <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Select Time</mat-label>
+                  <input matInput placeholder="Time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top"  formControlName="time">
+                </mat-form-field>
+              </div>
+          </div>
+          </form>
+         
+        <button class="btn btn-danger btn-sm" (click)="ConfirmAppointment.hide()" > close</button>
+        <button class="btn btn-success btn-sm" (click)="confirmAppointment()" > Submit</button>
+      </div>
+      
+     </div>
+    </div>
+    </div>
+    </div>
 
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

@@ -39,6 +39,7 @@ export class AppointmentDetailsComponent implements OnInit {
   @ViewChild('clientModal', { static: false }) clientModal: ModalDirective;
   @ViewChild('paginator', { static: true}) paginator: MatPaginator;
   @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective;
+ 
   Columns: string[] = ['sn','date','trans_id','name','msisdn','trans_type','amount','status','use']
   cashColumns: string[] = ['sn','date','name','amount','trx'];
   diaColumns: string[] = ['sn','date','name','code'];

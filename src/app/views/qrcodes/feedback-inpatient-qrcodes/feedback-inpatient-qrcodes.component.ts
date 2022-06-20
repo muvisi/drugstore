@@ -26,7 +26,7 @@ export class FeedbackInpatientQrcodesComponent implements OnInit {
    }
    let qrcode = new QrCodeWithLogo({
    
-     content: "http://134.209.199.123:8889/#/feedbacks/TJ1m4aRwez",
+     content: "http://134.209.199.123:8889/#/feedbacks/Ut09D59Wjy",
      width: 380,
      nodeQrCodeOptions:{
        color:{
