@@ -22,33 +22,16 @@
                
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item" (click)="qrcodeModal.show()"> Signature Qrcode </a>
-        <a class="dropdown-item" (click)="downloadRegister()"> Self Register Qrcode </a>
-        <a class="dropdown-item" (click)="downloadInpatient()"> Inpatient feedback Qrcode </a>
-        <a class="dropdown-item" (click)="downloadOutpatient()"> Outpatient feedback Qrcode </a>
-        
-        <a class="dropdown-item" (click)="downloadMaternity()"> Maternity  Registratin Qrcode </a>
-        <a class="dropdown-item" (click)="downloadMaternityfeedback()"> Maternity Feedback Qrcode </a>
+        <a class="dropdown-item" (click)="qrcodeModal.show()"><i class="fa fa-pencil" aria-hidden="true"></i>Signature Qrcode </a>
+        <a class="dropdown-item" (click)="AdminSetups()"><i class="fa fa-users" aria-hidden="true"></i>Admin-setups</a>
 
-        <a class="dropdown-item" (click)="downloadWhatapp()"> Whatapp Qrcode </a>
-
-     
-     
-
-        
-        <a class="dropdown-item" routerLink="/dashboard/vaccine-setup" > <i class="fas fa-syringe"></i>Vaccine Setup</a>
-        <a class="dropdown-item" routerLink="/dashboard/timeslot" > <i class="fas fa-address-book"></i>Time Slot Setup</a>
-        <!-- <a class="dropdown-item" routerLink="/dashboard/clinic-setup" > <i class="fa fa-thermometer-half"></i>Clinic Setup</a> -->
-        <a class="dropdown-item" routerLink="/dashboard/clinics-setup" > <i class="fa fa-thermometer-half"></i>Clinics Setup</a>
-        <a class="dropdown-item" routerLink="/dashboard/feedback-setup" > <i class="fa fa-thermometer-half"></i>Feedback Setup</a>
-        <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="icon-wrench"></i>Set up</a>
+        <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="fa fa-cog" aria-hidden="true"></i>Set up</a>
 
             
-        <a class="dropdown-item" routerLink="/dashboard/payments" > <i class="icon-wallet"></i>  Payments</a>
  
         <a class="dropdown-item" routerLink="/dashboard/Users" *ngIf="(user.role == 'admin' || user.role == 'aaradmin')" ><i class="icon-wrench"></i>Manage Users</a>
 
-        <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-lock"></i>Change password </a>
+        <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-key" aria-hidden="true"></i>Change password </a>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
      
      

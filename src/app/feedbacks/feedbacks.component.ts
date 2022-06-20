@@ -5,9 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../service.service';
-
-
-// import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Router } from '@angular/router';
 
@@ -59,10 +56,13 @@ export class FeedbacksComponent implements OnInit {
   date_inpatient;
   inpatient_dataSource;
   notregistered_dataSource;
+  dataSourcecategories;
   selected;
   dataSourceCall;
   endpoint;
   loading;
+  category;
+  periodfilter;
   // idnumber;
   phonenumber;
   Columns: string[] = ['sn','date','patient','service','rating','issues','compliments','comments']
@@ -96,7 +96,19 @@ export class FeedbacksComponent implements OnInit {
    
    
 
-   
+  
+      this.service.getallcategories().subscribe(
+        datas => {
+          this.dataSourcecategories = datas
+          console.log('console',this.dataSourcecategories)
+          
+        },
+       
+        err => console.error(err),
+       
+        () => console.log('There is an error')
+      );
+    
     
   }
   ngAfterViewInit(){
@@ -126,6 +138,7 @@ this.date_positive="";
       datas => {
         this.dataSource = new MatTableDataSource(datas.data);
         this.dataSource.paginator = this.paginator;
+        console.log(this.dataSource)
         // this.dataSource=datas.data
       
         
@@ -493,7 +506,7 @@ this.date_positive="";
         this.inpatient_dataSource = new MatTableDataSource <[]>(data);
         this.inpatient_dataSource.paginator = this.paginator;
         this.loading = false;
-        // this.toastr.success('finished loading Patients');
+       
         
       
       },
@@ -510,7 +523,7 @@ this.date_positive="";
         this.inpatient_dataSource = new MatTableDataSource <[]>(data);
         this.inpatient_dataSource.paginator = this.paginator;
         this.loading = false;
-        // this.toastr.success('finished loading Patients');
+       
         
       
       },
@@ -519,6 +532,55 @@ this.date_positive="";
      
       () => console.log('There is an error')
     );
+  }
+  Filter(){
+    console.log('samuel mwangangi')
+    console.log('category',this.category)
+    let data={
+      category:this.category
+    }
+    this.service.feedbackcategoryfiltered(data).subscribe(
+      datas => {
+        this.dataSource = new MatTableDataSource(datas.data);
+        this.dataSource.paginator = this.paginator;
+        console.log(this.dataSource)
+        // this.dataSource=datas.data
+      
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+    
+
+
+
+
+  }
+  PeriodFilter(){
+    console.log('samuel mwangangi')
+    console.log('category',this.periodfilter)
+    let data={
+      period:this.periodfilter
+    }
+    console.log('data',data)
+    this.service.feedbackperiodfiltered(data).subscribe(
+      datas => {
+        this.dataSource = new MatTableDataSource(datas.data);
+        this.dataSource.paginator = this.paginator;
+        console.log(this.dataSource)
+        // this.dataSource=datas.data
+      
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
   }
 
   downloadInpatient(){
@@ -535,6 +597,29 @@ this.date_positive="";
   getEdpoint(){
     this.endpoint= this.service.getendpoint()
   console.log("URL IS",this.endpoint)
+  }
+
+  FeedbackFilter(){
+    let data={
+      period:this.periodfilter,
+      type:this.category
+    }
+    this.service.feedbackperiodtype(data).subscribe(
+      datas => {
+        this.dataSource = new MatTableDataSource(datas.data);
+        this.dataSource.paginator = this.paginator;
+        console.log(this.dataSource)
+        // this.dataSource=datas.data
+      
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+
   }
  
  

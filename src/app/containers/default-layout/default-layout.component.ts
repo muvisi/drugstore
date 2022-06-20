@@ -86,28 +86,32 @@ export class DefaultLayoutComponent implements OnDestroy {
     }
     return gen_str;
   }
-  downloadInpatient() {
-    this.router.navigateByUrl('dashboard')   
-    this.navCtrl.navigate('dashboard/feedback-inpatient-qrcode-download',{"data":{url:this.INPATIENT_QRCODE,type:"Inpatient"}})  
-  }
-  downloadOutpatient() {
-    this.router.navigateByUrl('dashboard')
-    this.navCtrl.navigate('dashboard/feedback-outpatient-qrcode-download',{"data":{url:this.OUTPATIENT_QRCODE,type:"Outpatient"}})
-  }
-  downloadRegister(){
-    this.router.navigateByUrl('dashboard')
-      this.navCtrl.navigate('dashboard/register-qrcode-download',{"data":{url:this.REGISTER_QRCODE,type:"Register"}})
-  }
-  downloadWhatapp(){
-    this.router.navigateByUrl('dashboard')
-    this.navCtrl.navigate('dashboard/whatapp-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Whatapp"}})
-  }
-  downloadMaternity(){
-    this.router.navigateByUrl('dashboard')
-    this.navCtrl.navigate('dashboard/maternity-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Maternity"}})
-}
-downloadMaternityfeedback(){
+  // downloadInpatient() {
+  //   this.router.navigateByUrl('dashboard')   
+  //   this.navCtrl.navigate('dashboard/feedback-inpatient-qrcode-download',{"data":{url:this.INPATIENT_QRCODE,type:"Inpatient"}})  
+  // }
+  // downloadOutpatient() {
+  //   this.router.navigateByUrl('dashboard')
+  //   this.navCtrl.navigate('dashboard/feedback-outpatient-qrcode-download',{"data":{url:this.OUTPATIENT_QRCODE,type:"Outpatient"}})
+  // }
+  // downloadRegister(){
+  //   this.router.navigateByUrl('dashboard')
+  //     this.navCtrl.navigate('dashboard/register-qrcode-download',{"data":{url:this.REGISTER_QRCODE,type:"Register"}})
+  // }
+  // downloadWhatapp(){
+  //   this.router.navigateByUrl('dashboard')
+  //   this.navCtrl.navigate('dashboard/whatapp-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Whatapp"}})
+  // }
+//   downloadMaternity(){
+//     this.router.navigateByUrl('dashboard')
+//     this.navCtrl.navigate('dashboard/maternity-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Maternity"}})
+// }
+// downloadMaternityfeedback(){
+//   this.router.navigateByUrl('dashboard')
+//   this.navCtrl.navigate('dashboard/maternityfeedback-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Maternity"}})
+// }
+AdminSetups(){
   this.router.navigateByUrl('dashboard')
-  this.navCtrl.navigate('dashboard/maternityfeedback-qrcode-download',{"data":{url:this.WHATAPP_QRCODE,type:"Maternity"}})
+  this.navCtrl.navigate('dashboard/admin-setups')
 }
 }

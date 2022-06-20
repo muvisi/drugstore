@@ -1,0 +1,133 @@
+<div class="container" style="margin-top: 30px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <h6 class="card-header bg-success">
+            
+                        </h6>
+                        <div class="card-body">
+                            
+
+                            <form >
+                                <div class="col-sm-12">
+
+                            <br>
+                                    <div class="row" style="justify-content: center;">
+                                    
+
+
+
+
+                                    <div class="col-sm-12" style="height:60px; justify-content: center;align-items: center;">
+                                       
+                                        <img src="assets/img/avatars/logo.png" alt="" style="height:60px;">
+                                      </div>
+                                </div>
+                                
+
+                                <!-- <mat-error *ngIf="fs.first_time.errors?.required">select yes or no</mat-error> -->
+                            </div> 
+                            <div class="row">
+
+                            <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+                                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitinpatientfeedback()">Inpatient Feedback Qrcode</button>
+                            
+                            </div>
+                            <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex" >
+                            
+                                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "downloadOutpatientfeedback()">Outpatient feedback QRcodes</button>
+                        
+                        </div>
+                        <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+                            <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "downloadMaternityfeedback()">Maternity Feedback Qrcode</button>
+                    
+                    </div>
+                    <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+                        <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "downloadRegister()">Self Registration Qrcode</button>
+                
+                </div>
+                <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "downloadMaternity()">Maternity Registration Qrcodes</button>
+            
+            </div>
+            <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "downloadWhatapp()">Whatsapp Registration</button>
+        
+        </div>
+        <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+            <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "VaccineSetup()">Vaccine Set-up</button>
+    
+    </div>
+    <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+        <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "TimeSlotsetup()">Time Slot set-up</button>
+
+</div>
+<div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "ClinicSetup()">Clinic Set-up</button>
+
+</div>
+<div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "FeedbackSetup()">Feedback Set-up</button>
+
+</div>
+<div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "ClinicsSetup()">Clinics set-up</button>
+
+</div>
+<!-- <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+                            
+    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)="qrcodeModal.show()">Signature Qrcode</button>
+
+</div> -->
+   
+                            </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+</div>
+</div>
+
+<!-- <section class="jumbotron" [ngxWatermark]="options">
+    Helthix Solutions Kenya
+</section> -->
+
+
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
+
+
+<style>
+    :host  qrcode ::ng-deep .qrcode {
+           display: flex;
+           justify-content: center;
+   }
+  </style>
+  <div class="modal fade" bsModal #qrcodeModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="qrcodeModal.hide()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <qrcode [qrdata]="QRCODE_DATA" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
+      </div>
+    </div>
+  </div>

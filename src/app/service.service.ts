@@ -25,7 +25,6 @@ export const endpoint='http://localhost:8888/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
-
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
 export const payment_url='https://payments.healthixsolutions.com/payments/';
@@ -94,6 +93,22 @@ export class ServiceService {
   }
   allfeedbacks(): Observable<any> {
     return this.http.get(endpoint+ 'api/allfeedbacklist/').pipe(
+      map(this.extractData));
+  }
+  feedbackcategoryfiltered(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/feedbackcategoryfiltered/',data).pipe(
+      map(this.extractData));
+  }
+  feedbackperiodfiltered(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/feedbackperiodfiltered/',data).pipe(
+      map(this.extractData));
+  }
+  // feedbackperiodtype(data): Observable<any> {
+  //   return this.http.post(endpoint+ 'api/feedbackperiodfiltered/',data).pipe(
+  //     map(this.extractData));
+  // }
+  feedbackperiodtype(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/feedbackperiodtype/',data).pipe(
       map(this.extractData));
   }
   
@@ -1108,6 +1123,10 @@ searchBills(data): Observable<any>{
     return this.http.get(endpoint + 'api/feedbacks/'+s).pipe(
       map(this.extractData));
     }
+    getallcategories(): Observable<any> {
+      return this.http.get(endpoint + 'api/automatedfedbackcategories/').pipe(
+        map(this.extractData));
+      }
     feedbackscallpatient(id): Observable<any> {
       return this.http.get(endpoint + 'api/feedbacks/'+id).pipe(
         map(this.extractData));

@@ -91,6 +91,8 @@ import { BookMaternityComponent } from '../add/book-maternity/book-maternity.com
 import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
 
 import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
+import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
+import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -294,6 +296,11 @@ const routes: Routes = [
   {
     path: 'cicinsurance/:id',
     component:CicgroupClaimformComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-setups',
+    component:AdminSetupsComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -561,7 +568,7 @@ const routes: Routes = [
 {
   path: 'bill-client/:id',
   canActivate: [AuthGuard],
-  component: BillPatientComponent
+  component: BillPatientComponent,
   }
   ,
 
@@ -569,6 +576,14 @@ const routes: Routes = [
 path : 'calendar',
 component : CalendarComponent
 },
+{
+  path : 'patients-reports',
+  component : DashboardReportComponent,
+  canActivate: [AuthGuard],
+  data: {
+    title: 'Reports'
+  }
+  },
 {
   path : 'reports',
   component : ReportsComponent,

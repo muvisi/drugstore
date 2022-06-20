@@ -86,7 +86,7 @@ export class CallPatientsComponent implements OnInit {
       }
       console.log(data1)
       console.log('notes data',data1)
-    this.service. updatecomments(data1).subscribe(
+    this.service.updatecomments(data1).subscribe(
       res => {
         this.toastr.success('success','Notes successfully saved')
         this.paymentModal.hide()
@@ -164,7 +164,7 @@ export class CallPatientsComponent implements OnInit {
         id:this.route.snapshot.params.id
       }
       console.log('notes data',data1)
-    this.service. updatecomments(data1).subscribe(
+    this.service.updatecomments(data1).subscribe(
       res => {
         this.toastr.success('success','Notes successfully saved')
         console.log('data',res)

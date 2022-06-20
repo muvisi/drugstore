@@ -349,7 +349,7 @@
                                     <tr mat-row *matRowDef="let row; columns:AllColumns1;"></tr>
                                   </table>
                             
-                                  <mat-paginator [pageSizeOptions]="[19,50]" showFirstLastButtons></mat-paginator>
+                                  <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
                                 </div>
                               </div>
                               </div>
@@ -382,7 +382,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="row" style="width:100%;justify-content: center;">
-        <div class="col-sm-3"> <img width="50px" src="./assets/img/avatars/notes.jpeg"/></div>
+        <div class="col-sm-3"> <img width="70px" src="./assets/img/avatars/notes.jpeg"/></div>
       </div>
         <button type="button" class="close pull-right" aria-label="Close" (click)="paymentModal.hide()">
           <span aria-hidden="true">&times;</span>
@@ -392,14 +392,14 @@
       
           <form >
             <div class="form-group">        
-            <label for="message-text" class="col-form-label">Take notes for the patient.</label>          
+            <label for="message-text" class="col-form-label">Note: {{take_notes.notes}}</label>          
             </div>
         
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
              
-              <input type="text" class="form-control" required placeholder="Notes" name="notes"  [(ngModel)]="take_notes. notes">
+              <input type="text" class="form-control" (keyup.enter)="TakeNotes()" required placeholder="Notes" name="notes"  [(ngModel)]="take_notes.notes">
             </div> 
           </div>
          

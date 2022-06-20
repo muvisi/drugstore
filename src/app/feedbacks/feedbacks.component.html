@@ -8,8 +8,46 @@
         <mat-tab-group>
 
           <mat-tab label="All"> 
-            <div class="row">
-              <div class="col-sm-12">
+            <div class="row" style="margin-top: 10px;">
+              <div class="row" style="margin-left: 30px;">
+                <mat-form-field appearance="outline">
+                <mat-label>Select Category</mat-label>
+        
+                <mat-select  [(ngModel)]="category" (ngModelChange)="Filter()">
+                    <mat-option *ngFor="let item of dataSourcecategories" [value]="item.name">
+                      {{item.name}}
+                    </mat-option>
+                     </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-sm-3" style="margin-left: 50px;">
+                  <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                      <mat-label>Period</mat-label>
+                      <mat-select  [(ngModel)]="periodfilter"  (selectionChange)="PeriodFilter()">
+                        <mat-option value="daily">Daily</mat-option>
+                        <mat-option value="weekly">Weekly </mat-option>
+                        <mat-option value="monthly">Monthly </mat-option>
+                        <mat-option value="yearly">Yearly </mat-option>
+                      </mat-select>  
+                    </mat-form-field>
+                </div>
+                <!-- <button type="button"  [disabled]="!periodfilter || !category" class="btn btn-success btn-lg">Search</button> -->
+                
+                <div class="col-sm-4">
+                  <button class="btn btn-success btn-sm" style="margin-top: 10px;" (click)="FeedbackFilter()" [disabled]="!periodfilter || !category">Search</button>
+              </div>
+                
+                <div class="col-sm-2">
+                  <a type="button"    href="{{endpoint}}api/downloadfeedbackautomated/?category={{category}}&&period={{periodfilter}}" download class="btn btn-success btn-xs" style="float: right;"><i class="fa fa-download" aria-hidden="true"></i>
+                   Download</a>
+              </div>
+              
+              
+              
+                <div class="col-sm-12">
+                
             
                     
                     <div class="row">
@@ -27,7 +65,7 @@
                           </ng-container>
                           <ng-container matColumnDef="date">
                             <th mat-header-cell *matHeaderCellDef>Date </th>
-                            <td mat-cell *matCellDef="let element"> {{element.created | date:'mediumDate'}} </td>
+                            <td mat-cell *matCellDef="let element"  style="font-size: 12px;"> {{element.created | date:'mediumDate'}} </td>
                           </ng-container>
                           <ng-container matColumnDef="patient">
                             <th mat-header-cell *matHeaderCellDef>Patient</th>
@@ -35,23 +73,22 @@
                           </ng-container>
                             <ng-container matColumnDef="service">
                               <th mat-header-cell *matHeaderCellDef>Service</th>
-                              <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                              <td mat-cell *matCellDef="let element"  style="font-size: 12px;"> {{element.service}} </td>
                             </ng-container>
                             <ng-container matColumnDef="phone">
                               <th mat-header-cell *matHeaderCellDef>phone</th>
-                              <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                              <td mat-cell *matCellDef="let element"  style="font-size: 12px;"> {{element.phone}} </td>
                             </ng-container>
                               <ng-container matColumnDef="rating">
                                 <th mat-header-cell *matHeaderCellDef>Rating</th>
-                                <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
+                                <td mat-cell *matCellDef="let element"  style="font-size: 12px;"> {{element.rating}} </td>
                               </ng-container>                                            
                                 <ng-container matColumnDef="comments">
                                   <th mat-header-cell *matHeaderCellDef>Type</th>
-                                  <td mat-cell *matCellDef="let element"> {{element.type| titlecase}} </td>
+                                  <td mat-cell *matCellDef="let element"  style="font-size: 12px;"> {{element.type| titlecase}} </td>
                                 </ng-container>     
                                 <ng-container matColumnDef="visit_type">
                                   <th mat-header-cell *matHeaderCellDef>Category </th>
-                                  <!-- <td mat-cell *matCellDef="let element"> {{element.category}} </td> -->
                                   <td mat-cell *matCellDef="let element">
                                     <span *ngIf="element.category=='NEGATIVE'"><span class="badge bg-danger">Negative</span>
                                   </span> 
@@ -65,18 +102,19 @@
                                 <ng-container matColumnDef="status">
                                   <th mat-header-cell *matHeaderCellDef>Status</th>
                                   <!-- <td mat-cell *matCellDef="let element"> {{element.category}} </td> -->
+                                  <!-- /home/mwangangi/Healthix/FE/admin/src/assets/img/avatars/tick.png -->
                                   <td mat-cell *matCellDef="let element">
-                                    <span *ngIf="element.is_called=='CALLED' && element.category=='NEGATIVE'"><span class="badge badge-success">Called</span>
+                                    <span *ngIf="element.is_called=='CALLED' && element.category=='NEGATIVE'"><img width="20px" src="./assets/img/avatars/tick.png">
                                   </span> 
-                                  <span *ngIf="element.is_called=='NOTCALLED' && element.category=='NEGATIVE'"><span class="badge bg-danger">Call Patient</span>
+                                  <span *ngIf="element.is_called=='NOTCALLED' && element.category=='NEGATIVE'"><img width="20px" src="./assets/img/avatars/x.png">
                                 </span>
                                 
                                 
                                 </td>
                                 </ng-container>  
                                 <ng-container matColumnDef="type">
-                                  <th mat-header-cell *matHeaderCellDef>Action</th>
-                                  <td mat-cell *matCellDef="let element"><span *ngIf="element.category=='NEGATIVE'"><button type="button" (click)="clickRow(selected=element)" class="btn btn-success">Call Patient</button></span>  </td>
+                                  <th mat-header-cell *matHeaderCellDef>Call</th>
+                                  <td mat-cell *matCellDef="let element"><span *ngIf="element.category=='NEGATIVE'"><button type="button" (click)="clickRow(selected=element)"><img width="20px" src="./assets/img/avatars/call.png"></button></span>  </td>
                                 </ng-container>
                     
                           
@@ -95,7 +133,7 @@
                     </div>
                   </mat-tab>
 
-                  <mat-tab label="Not Registered"> 
+                  <mat-tab label="Non Patients"> 
                     <div class="row">
                       <div class="col-sm-12">
                     
