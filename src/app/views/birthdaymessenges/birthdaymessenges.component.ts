@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { MatPaginator, MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { MatTableDataSource } from '@angular/material';
 // import { ServiceService } from '../../../servi
 @Component({
   selector: 'app-birthdaymessenges',
@@ -19,7 +21,7 @@ export class BirthdaymessengesComponent implements OnInit {
   deliveredmessagesdataSource;
   registerForm: FormGroup;
   imageSrc: string;
-  // @ViewChild("fileInput") fileInput;
+
   @ViewChild('addModal', { static: false }) addModal: ModalDirective;
   AllColumns2: string[] = ['sn','created','name','email','contact','message','createdby']
   AllColumns1: string[] = ['sn','dob','client','phone','email','age','view']
@@ -39,7 +41,7 @@ export class BirthdaymessengesComponent implements OnInit {
       fileSource:['']
 
   });
-//  console.log(this.registerForm.value)
+
 
 this.service.getbirthdarmessages().subscribe(
   res => {
@@ -54,6 +56,10 @@ this.service.getbirthdarmessages().subscribe(
 );
 this.service.getsendbirthdarmessages().subscribe(
   res => {
+
+
+
+
         this.deliveredmessagesdataSource=res;
         console.log(this.deliveredmessagesdataSource)
         this.ngOnInit()

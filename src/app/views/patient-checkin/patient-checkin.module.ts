@@ -123,7 +123,10 @@ import { CallPatientsComponent } from '../call-patients/call-patients.component'
 import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { ClinicsSetupComponent } from './clinics-setup/clinics-setup.component';
 import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
+import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
+import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 
+// import { NgxWatermarkModule } from 'ngx-watermark';
 
 
 
@@ -208,7 +211,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
       FeedbackSetupComponent, CallPatientsComponent,BirthdaymessengesComponent,
     MaternityDetailsComponent, FootwalkComponent, 
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
-    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent
+    FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,DashboardReportComponent,AdminSetupsComponent
    
       
 
@@ -255,7 +258,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     TimePickerModule,
     QRCodeModule,
     CommonModule,
-    NgbModule,  
+    NgbModule, 
+  
      
 
   ],
