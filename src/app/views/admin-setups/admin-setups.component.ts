@@ -22,11 +22,33 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 // @ViewChild('qrcodeModal', { static: false }) qrcodeModal: ModalDirective;
 export class AdminSetupsComponent implements OnInit {
   patientMobileForm: FormGroup;
-
-  constructor(public navCtrl: NgxNavigationWithDataComponent,private router: Router,public service:ServiceService,public toastr: ToastrService,@Inject(DOCUMENT) _document?: any) {}
+  loading;
+  QRCODE_DATA: string;
+  constructor(public navCtrl: NgxNavigationWithDataComponent,private router: Router,public service:ServiceService,public toastr: ToastrService,@Inject(DOCUMENT) _document?: any) {
+    if (localStorage.getItem("SIGNATURE_ID")!=null){
+      this.QRCODE_DATA=localStorage.getItem("SIGNATURE_ID");
+    }else{
+      let id=this.generate_signature_id();
+      localStorage.setItem("SIGNATURE_ID",id);
+      this.QRCODE_DATA=id;
+    }
+  }
 
   ngOnInit() {
   
+  }
+  generate_signature_id(){
+    var gen_str="AAR-SIGNATURE-";
+    let random_str="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+    for (var i=0;i<=30;i++){
+      try{
+        let randint=Math.floor((Math.floor(Math.random()*10)*Math.floor(Math.random()*10))/2)
+        gen_str+=random_str.charAt(randint)
+      }catch(e){
+
+      }
+    }
+    return gen_str;
   }
   submitinpatientfeedback(){
     this.router.navigateByUrl('dashboard')   
