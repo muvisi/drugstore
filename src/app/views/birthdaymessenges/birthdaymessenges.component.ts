@@ -21,9 +21,22 @@ export class BirthdaymessengesComponent implements OnInit {
   deliveredmessagesdataSource;
   registerForm: FormGroup;
   imageSrc: string;
+  selectedd: any ={
+    'company_contact':'',
+    'company_email':'',
+    'company_location':'',
+    'company_name':'',
+    'company_title':'',
+    'message':'',
+    'designation':''
 
+   
+
+
+  }
+  @ViewChild('userModal', { static: false }) userModal: ModalDirective;
   @ViewChild('addModal', { static: false }) addModal: ModalDirective;
-  AllColumns2: string[] = ['sn','created','name','email','contact','message','createdby']
+  AllColumns2: string[] = ['sn','created','name','email','contact','message','createdby','edit']
   AllColumns1: string[] = ['sn','dob','client','phone','email','age','view']
   constructor(public service:ServiceService,private route: ActivatedRoute,private formBuilder:FormBuilder,public toastr:ToastrService) { }
 
@@ -41,6 +54,16 @@ export class BirthdaymessengesComponent implements OnInit {
       fileSource:['']
 
   });
+//   this.registerForm = this.formBuilder.group({
+//     first_name: ['', Validators.required],
+//     last_name: ['', Validators.required],
+//     email: ['', Validators.required],
+//     department:['',Validators.required],
+//     phone:['',Validators.required],
+//     role:[''],
+//     gender:['',Validators.required]
+
+// });
 
 
 this.service.getbirthdarmessages().subscribe(
@@ -165,5 +188,30 @@ this.service.getsendbirthdarmessages().subscribe(
     );
 
     }
+    Edit(){
+      console.log(this .selectedd)
+      this.userModal.show()
+    
+    }
+    // updateMessange()
+    updateMessange(){
+      console.log(this .selectedd)
+      this.service.updatebirthdaymessage(this.selectedd).subscribe(
+        res => {
+        this.toastr.success('success','Birthday Message Updated')
+        this.userModal.hide()
+        console.log(res)
+        
+       
 
+
+
+    },err => console.error(err),
+       
+    () => console.log('There is an error')
+  );
+
+      // this.userModal.show()
+    
+    }
 }
