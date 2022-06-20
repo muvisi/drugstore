@@ -70,7 +70,7 @@
                 <tr mat-row *matRowDef="let row; columns:AllColumns1;"></tr>
               </table>
         
-              <mat-paginator [pageSizeOptions]="[19,50]" showFirstLastButtons></mat-paginator>
+              <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
             </div>
           </div>
           </div>
@@ -126,6 +126,12 @@
                   <th mat-header-cell *matHeaderCellDef>Created By</th>
                   <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
                 </ng-container>
+                <ng-container matColumnDef="edit">
+                  <th mat-header-cell *matHeaderCellDef  style="font-size: 12px;">Edit</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button class="btn btn-success btn-sm" (click)="Edit(selectedd=element)" style="font-size: 12px; margin-left:10px"><i class="fas fa-edit"></i></button>
+                     </td>
+                </ng-container>
                 
                 
                     
@@ -139,7 +145,7 @@
                 <tr mat-row *matRowDef="let row; columns:AllColumns2;"></tr>
               </table>
         
-              <mat-paginator [pageSizeOptions]="[19,50]" showFirstLastButtons></mat-paginator>
+              <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
             </div>
           </div>
           </div>
@@ -335,7 +341,92 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
 
 
 
-
+<div class="modal fade" bsModal #userModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header bg-success">
+ <h5>
+ <span>Update Messanges</span>
+ </h5>
+  <button type="button" class="close" (click)="userModal.hide()" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+ <div class="modal-body">
+   <div class="row">
+           
+     <div class="col-sm-6">
+       <mat-form-field appearance="outline">
+         <mat-label>Company Name</mat-label>
+           <input type="text" id="text-input" name="first_name" [(ngModel)]="selectedd.company_name" placeholder="Company Name"
+          matInput>
+       </mat-form-field>
+     </div>
+       <div class="col-sm-6">
+           <mat-form-field appearance="outline">
+             <mat-label>Company Title</mat-label>
+               <input type="text" id="text-input"  placeholder="Company Title" [(ngModel)]="selectedd.company_title"
+               matInput>
+           </mat-form-field>
+         </div>
+         <div class="col-sm-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Company Email</mat-label>
+              <input type="text" id="text-input"  placeholder="Company Email" [(ngModel)]="selectedd.company_email"
+              matInput>
+          </mat-form-field>
+          
+        </div>
+         <div class="col-sm-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Company Contact</mat-label>
+              <input type="text" id="text-input"  placeholder="Company contact" [(ngModel)]="selectedd.company_contact"
+              matInput>
+          </mat-form-field>
+          
+ 
+         
+           </div>
+      
+         
+           <div class="col-sm-6">
+            <mat-form-field appearance="outline">
+              <mat-label>designation</mat-label>
+                <input type="text" id="text-input"  placeholder="designation" [(ngModel)]="selectedd.designation"
+                matInput>
+            </mat-form-field>
+              
+             </div>
+             <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Company Location</mat-label>
+                  <input type="text" id="text-input"  placeholder="Company Location" [(ngModel)]="selectedd.company_location"
+                  matInput>
+              </mat-form-field>
+                
+               </div>
+             <div class="col-sm-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Messenge</mat-label>
+                  <input type="text" id="text-input"  placeholder="Company contact" [(ngModel)]="selectedd.message"
+                  matInput>
+              </mat-form-field>
+              
+     
+             
+               </div>
+           
+              <div class="col-sm-12">
+              </div>
+              <div class="col-sm-12">
+                 <button class="btn btn-primary btn-sm pull-right" (click)="updateMessange()" style="margin-right: 8px;">Update</button>
+               </div>
+   </div>
+ </div>
+</div>
+</div>
+</div> 
 
 
 

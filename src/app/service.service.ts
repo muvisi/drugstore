@@ -1644,6 +1644,11 @@ updateuser(data): Observable<{}> {
       map(this.extractData
       ));
   }
+  updatebirthdaymessage(data): Observable<{}> {
+    return this.http.post<{}>(endpoint + 'api/updatebirthdaymessage/', data ).pipe(
+      map(this.extractData
+      ));
+  }
   deleteUSER(data) {
     return this.http.post(endpoint + 'users/archiveuser/',data).pipe(
       map(this.extractData));

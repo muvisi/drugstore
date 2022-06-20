@@ -83,15 +83,36 @@ onPopupOpen(args: PopupOpenEventArgs): void {
 }
 Reschedule(){
   console.log('backend data',this.booking_event)
-  this.service.CalendarDataedit(this.booking_event).subscribe((res)=>{
+  var current_date = new Date();
+  var event_date = new Date(this.booking_event.StartTime);
+  var event_end=new Date(this.booking_event.EndTime);
+  if(event_date<current_date){
+    this.toast.info('Oops!','You cannot Reschedule past date!')
+
+    }
+
+  if(event_end<current_date){
+    this.toast.info('Oops!','You cannot Reschedule past end date!')
+
+  }
+  else{
+    this.service.CalendarDataedit(this.booking_event).subscribe((res)=>{
       
-    // console.log(res)
-    this.toast.success('Success','Appointment rescheduled successfully' )
-    this.editEventModal.hide()
    
-  },(err)=>{
-    this.toast.warning('Error','Appointment rescheduled failed' )
-  })
+      this.toast.success('Success','Appointment rescheduled successfully' )
+      this.editEventModal.hide()
+     
+    },
+    (err)=>{
+      this.toast.warning('Error','Appointment rescheduled failed' )
+    })
+
+
+
+
+  }
+
+
 }
 public onDetailsClick(): void {
   this.onCloseClick();
