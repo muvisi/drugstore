@@ -14,14 +14,14 @@ const httpOptions_payments = {
 
 
 // export const endpoint='http://localhost:8000/';
-// export const endpoint='http://localhost:8888/';
+export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
-export const endpoint='https://booking.healthixsolutions.com/';
+// export const endpoint='https://booking.healthixsolutions.com/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
@@ -227,6 +227,15 @@ export class ServiceService {
       map(this.extractData));
     
   }
+  getPatientAppointments(id) {
+    return this.http.get(endpoint + 'api/appointments_patient/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  getClinicAppointments(id) {
+    return this.http.get(endpoint + 'api/clinics-appointments/'+id+'/').pipe(
+      map(this.extractData));
+  }
+
 
 
 

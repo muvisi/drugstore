@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../../service.service';
 import dateFormat, { masks } from "dateformat";
@@ -79,7 +79,10 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   workHours = { start: '08:00', end: '17:00' };
   clinics: any;
   selected_clinic: any;
-  constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
+  bookingColumns: string[] = ['sn','date','time','clinic','action']
+  dataSource: any;
+
+  constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.clientForm = this.formBuilder.group({
@@ -131,6 +134,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     this.service.getbookingDetails(this.route.snapshot.params.id).subscribe((res)=>{
       this.customer=res.patient;
       // console.log(this.date,"kimmmm")
+      this.getPatientAppointments(this.customer.id);
       // console.log("",this.date)
       this.patient_info={    
           'dob': res.patient.dob,
@@ -213,6 +217,13 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   createAppointment(){
     this.calendarModal.show()
   }
+
+  getPatientAppointments(id){
+    this.service.getPatientAppointments(id).subscribe(res=>{
+      this.dataSource=res;
+    },err=>{});
+
+  }
   updateClientData(){
     this.loading=true;
     var client_data=this.clientForm.getRawValue();
@@ -287,7 +298,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   ngAfterViewInit(){
     if(this.clientForm!=null){
       this.clientForm.patchValue(this.patient_info);
-      
+    
       this.paymentForm.patchValue(this.payment_type);
     }
   }
@@ -399,7 +410,9 @@ checkWeekdaysInList(item){
       
     }
   }
-
+  rowSelectedBookingView(element){
+    this.router.navigateByUrl("dashboard/booking-details/"+element.id)
+  }
 
   onCellClickTime(event) {
  
