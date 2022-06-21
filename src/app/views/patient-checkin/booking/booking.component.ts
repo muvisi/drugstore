@@ -168,6 +168,7 @@ export class BookingComponent implements OnInit {
    
     this.service.registrations().subscribe(
       data => {
+        console.log(data)
         this.dataSourceRegistration = new MatTableDataSource <[]>(data.booking);
         this.dataSourceRegistration.paginator = this.paginator;
         this.loading = false;

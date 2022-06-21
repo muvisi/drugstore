@@ -350,6 +350,10 @@ getWorkdays(id){
         });
 }
 isWorkDay(date: Date){
+  var today= new Date()
+  if(new Date(date.getFullYear().toString()+"-"+(date.getMonth()+1).toString()+"-"+date.getDate().toString())<new Date(today.getFullYear().toString()+"-"+(today.getMonth()+1).toString()+"-"+today.getDate().toString())){
+    return false;
+  }
   if (this.checkOffdays(date)){
     return false;
   }else if(!this.checkWeekdaysInList(date.getDay()) && this.checkWorkdays(date)){

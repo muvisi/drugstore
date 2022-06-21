@@ -130,6 +130,7 @@ import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidte
 import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
+import { UtilizationsModal } from '../payments/mpesa-payments/utilizations.modal';
 
 // import { NgxWatermarkModule } from 'ngx-watermark';
 
@@ -210,7 +211,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FeedbackOutpatientQrcodesComponent,
     MpesaPaymentsComponent,
     MpesaPaymentReportComponent,   
-    UtilizePaymentModal, MaternityListComponent,
+    UtilizePaymentModal,
+    UtilizationsModal,
+    MaternityListComponent,
      MaternityDetailsComponent, FootwalkComponent, 
      FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
       FeedbackSetupComponent, CallPatientsComponent,BirthdaymessengesComponent,
@@ -285,7 +288,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     AgendaService,
     MonthAgendaService],
   entryComponents: [
-      UtilizePaymentModal
+      UtilizePaymentModal,
+      UtilizationsModal
     ]
   
 

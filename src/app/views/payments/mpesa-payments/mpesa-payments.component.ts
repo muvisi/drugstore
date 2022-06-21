@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ServiceService } from '../../../service.service';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { UtilizePaymentModal } from './utilize.payment.modal';
+import { UtilizationsModal } from './utilizations.modal';
 @Component({
   selector: 'app-mpesa-payments',
   templateUrl: './mpesa-payments.component.html',
@@ -65,7 +66,15 @@ export class MpesaPaymentsComponent implements OnInit {
       item.status=false;
       })
    }
-  
+   showUtilizations(item){
+    console.log("opening");
+    const modalRef =this.modalService.open(UtilizationsModal, {size: 'lg'});
+    modalRef.componentInstance.item = item;
+    modalRef.componentInstance.utilizeEmitter.subscribe((resp) => {
+      console.log(resp);
+      item.status=false;
+      })
+   }
   refreshPayments(){
     this.loading=true;
     this.service.refreshPayments().subscribe((res)=>{

@@ -15,22 +15,31 @@ import { ServiceService } from '../../../service.service';
        <div class="row">
             <mat-form-field  appearance="outline">
             <mat-label>Enter Encounter Number/Visit Number</mat-label>
-                        <input matInput placeholder="Enter Encounter Number/Visit Number" (change)="visitNumberChange()" required="true" [(ngModel)]="encounter_number" [ngbTypeahead]="search" [resultFormatter]="formatter">
+                        <input matInput placeholder="Enter Visit Number" (change)="visitNumberChange()" required="true" [(ngModel)]="encounter_number" [ngbTypeahead]="search" [resultFormatter]="formatter">
                        
                 </mat-form-field>
         </div>
-
         <div class="row">
-        <mat-form-field appearance="outline">
-        <mat-label>Select Department</mat-label>
-
-        <mat-select  [(ngModel)]="department">
-            <mat-option *ngFor="let item of departments" [value]="item">
-              {{item}}
-            </mat-option>
-             </mat-select>
+        <mat-form-field  appearance="outline">
+        <mat-label>Enter Invoice Number</mat-label>
+                    <input matInput placeholder="Enter Invoice Number"  required="true" [(ngModel)]="invoice_number" >
+                   
+            </mat-form-field>
+      </div>
+        <div class="row">
+        <mat-form-field  appearance="outline">
+        <mat-label>Reference</mat-label>
+                    <input matInput placeholder="Reference" required="true" [(ngModel)]="reference" readonly>
+                   
             </mat-form-field>
         </div>
+        <div class="row">
+        <mat-form-field  appearance="outline">
+        <mat-label>Amount</mat-label>
+                    <input matInput placeholder="Amount" type="number" required="true" [(ngModel)]="amount">
+                   
+            </mat-form-field>
+    </div>
        </div>
       </div>
       <div class="modal-footer">
@@ -42,8 +51,10 @@ import { ServiceService } from '../../../service.service';
     `
   })
   export class UtilizePaymentModal implements OnInit {
+    amount: any;
+  invoice_number: any;
     constructor( public activeModal: NgbActiveModal,private serviceService: ServiceService,private toast:ToastrService) {}
- 
+    reference;
   
     encounter_number;
     
@@ -66,6 +77,8 @@ import { ServiceService } from '../../../service.service';
 
 
     ngOnInit(): void {
+      this.reference=this.item.MpesaReceiptNumber;
+      this.amount=this.item.Amount;
       this.serviceService.getVisitNumbers().subscribe((res)=>{
         for(var i=0;i < res.length;i++){
          
@@ -89,10 +102,11 @@ import { ServiceService } from '../../../service.service';
       }
     }
     utilizePayment(){
-        if (this.encounter_number==null || this.department==null){
+        if (this.encounter_number==null || this.encounter_number=='' || this.amount==null || this.amount==''|| this.amount==0 || this.reference==''|| this.invoice_number==null || this.invoice_number==''){
             this.toast.warning("Empty Field");
+            return
         }
-        this.serviceService.utilizePayment({visit_number:this.encounter_number,department:this.department,reference:this.item.MpesaReceiptNumber}).subscribe((res)=>{
+        this.serviceService.utilizePayment([{visit_number:this.encounter_number,invoice_number:this.invoice_number,amount:this.amount,reference:this.item.MpesaReceiptNumber}]).subscribe((res)=>{
             this.toast.success("Successfully Utilized");
             this.utilizeEmitter.emit({status:true});
             this.activeModal.close({status:true});

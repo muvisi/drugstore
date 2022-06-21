@@ -5,12 +5,6 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 
-const httpOptions_payments = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic ' + btoa('technical@healthix.co.ke:Hr9j4cX7dK5mof')
-  })
-};
 
 
 // export const endpoint='http://localhost:8000/';
@@ -28,7 +22,8 @@ export const endpoint='http://localhost:8888/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
 export const payment_url='https://payments.healthixsolutions.com/payments/';
-
+export const utilize_url="http://payments.healthixsolutions.com:8000/payments/utilize/"
+export const stk_url="https://payments.healthixsolutions.com/payments/pay/"
 // export const HEALTHIX_BACKEND_URL_AAR ='http://134.209.199.123:7777/'
 export const HEALTHIX_BACKEND_URL_AAR ='https://aarclaims.healthixsolutions.com/';
 // export const HEALTHIX_BACKEND_URL_AAR ='http://localhost:8000/'
@@ -113,12 +108,12 @@ export class ServiceService {
   }
   
   mpesaPayment(phone): Observable<any> {
-    return this.http.get('https://payments.healthixsolutions.com/payments/?phone_number='+phone).pipe(
+    return this.http.get(payment_url+'?phone_number='+phone).pipe(
       map(this.extractData));
   }
 
   requestStkPush(data): Observable<any> {
-    return this.http.post("https://payments.healthixsolutions.com/payments/pay/",data).pipe(
+    return this.http.post(stk_url,data).pipe(
       map(this.extractData));
   }
 
@@ -201,7 +196,7 @@ export class ServiceService {
       map(this.extractData));
   }
   utilizePayment(data) {
-    return this.http.post(endpoint + 'api/patient-utilize/',data).pipe(
+    return this.http.post(utilize_url,data).pipe(
       map(this.extractData));
   }
   searchPayments(text) {
@@ -1435,6 +1430,10 @@ searchScheme(payer, searchTerm): Observable<any> {
     return this.http.post(endpoint+ 'api/re-book/',data).pipe(
       map(this.extractData));
   }
+  add_client_appointment(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/add-client-appointment/',data).pipe(
+      map(this.extractData));
+  }
   postMaternityProcedurePackage(data): Observable<any> {
     return this.http.post(endpoint+'api/new-maternity-procedure-package/',data).pipe(
       map(this.extractData));
@@ -1809,6 +1808,10 @@ deleteBranches(data): Observable<any> {
 }
 filterBranches(text): Observable<any> {
   return this.http.get(endpoint+ 'api/branch/?search='+text).pipe(
+    map(this.extractData));
+}
+getUtilizations(reference): Observable<any> {
+  return this.http.get(utilize_url+'?reference='+reference).pipe(
     map(this.extractData));
 }
 }
