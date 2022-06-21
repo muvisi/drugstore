@@ -43,6 +43,8 @@ booking_event:any={
 
 }
 // maxDate;
+// maxDate;
+clinics;
 public scheduleObj: ScheduleComponent;
 private selectionTarget: Element;
 @ViewChild('editEventModal', { static: false }) editEventModal: ModalDirective;
@@ -59,6 +61,7 @@ eventSettings: EventSettingsModel = { dataSource: this.dataManager
 }
 group: GroupModel = { resources: ['Clinics'] };
 ownerDataSource: Object[] = [];
+  clinic_selected: any;
   constructor( public service: ServiceService,private toast: ToastrService) {
    }
 
@@ -67,12 +70,29 @@ ownerDataSource: Object[] = [];
   }
   getClinics(){
     this.service.getClinicsCalendar().subscribe((res)=>{
-      
+      this.clinics=res;
       this.ownerDataSource = res;
       console.log("data",this.ownerDataSource)
     })
   }
 
+clinicClicked(item){
+  if(item.name=='All'){
+    this.ownerDataSource=this.clinics;
+    this.service.getAllClinicsAppointments().subscribe(res=>{
+     
+      this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
+    },err=>{})
+
+  }else{
+  this.clinic_selected=item;
+  this.service.getClinicAppointments(item.id).subscribe(res=>{
+    this.ownerDataSource = [item];
+    this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
+  },err=>{})
+}
+
+  }
 onPopupOpen(args: PopupOpenEventArgs): void {
   var data=args.data
   var date=new Date(data.StartTime)

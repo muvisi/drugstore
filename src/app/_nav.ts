@@ -47,11 +47,6 @@ export const navItems: NavData[] = [
     url: '/dashboard/booking',
   },
   {
-    name: 'Claim Forms',
-    url: '/dashboard/InsuranceclaimsForm',
-    icon: 'fa fa-folder-open',
-  },
-  {
     name: 'Calendar',
     url: '/dashboard/calendar',
     icon: 'fa fa-calendar-check-o',
@@ -62,7 +57,6 @@ export const navItems: NavData[] = [
     url: '/dashboard/records',
     icon: 'icon-people',
   },
-
   {
     name: 'SMS Links',
     url: '/dashboard/registration-link',
