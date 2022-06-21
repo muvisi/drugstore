@@ -62,11 +62,7 @@ export const navItems: NavData[] = [
     url: '/dashboard/records',
     icon: 'icon-people',
   },
-  {
-    name: 'Calendar',
-    url: '/dashboard/calendar',
-    icon: 'fa fa-calendar-check-o',
-  },
+
   {
     name: 'SMS Links',
     url: '/dashboard/registration-link',
@@ -87,8 +83,8 @@ export const navItems: NavData[] = [
     icon: 'fas fa-credit-card',
   },
   {
-    name: 'Claim Forms',
-    url: '/dashboard/InsuranceclaimsForm',
+    name: 'Clients Insight',
+    url: '/dashboard/patients-reports',
     icon: 'fa fa-folder-open',
   },
   

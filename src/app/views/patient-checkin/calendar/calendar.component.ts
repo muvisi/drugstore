@@ -17,8 +17,19 @@ import { extend, Internationalization,isNullOrUndefined } from '@syncfusion/ej2-
   providers: [WeekService, TimelineViewsService, MonthService, TimelineMonthService]
 })
 export class CalendarComponent implements OnInit {
+  public today: Date = new Date();
+  public currentYear: number = this.today.getFullYear();
+  public currentMonth: number = this.today.getMonth();
+  public currentDay: number = this.today.getDate();
+  public currentHour: number = this.today.getHours();
+  public currentMinute: number = this.today.getMinutes();
+  public currentSecond: number = this.today.getSeconds();
+  public date: Date = new Date(new Date().setDate(14));
+  public minDate: Date = new Date(this.currentYear,this.currentMonth,7,0,0,0);
+  public maxDate: Date = new Date(this.currentYear,this.currentMonth,27,this.currentHour,this.currentMinute,this.currentSecond);
 token: string = sessionStorage.getItem('Token');
 selectedDate: Date = new Date();
+loading;
 data={
   Subject:''
 }
@@ -31,7 +42,7 @@ booking_event:any={
 
 
 }
-maxDate;
+// maxDate;
 public scheduleObj: ScheduleComponent;
 private selectionTarget: Element;
 @ViewChild('editEventModal', { static: false }) editEventModal: ModalDirective;
@@ -96,10 +107,13 @@ Reschedule(){
 
   }
   else{
+    this.loading=true
     this.service.CalendarDataedit(this.booking_event).subscribe((res)=>{
       
    
       this.toast.success('Success','Appointment rescheduled successfully' )
+      this.loading=false
+      this.ngOnInit()
       this.editEventModal.hide()
      
     },
