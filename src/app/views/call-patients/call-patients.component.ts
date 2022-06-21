@@ -166,6 +166,7 @@ export class CallPatientsComponent implements OnInit {
       console.log('notes data',data1)
     this.service.updatecomments(data1).subscribe(
       res => {
+        this.CallPatient()
         this.toastr.success('success','Notes successfully saved')
         console.log('data',res)
         
