@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-sm-5" style="text-align:right">
      
-                          <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">Call Patient</button> 
+                          <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">Take Notes</button> 
 
                         <!-- </div>
                         <div class="col-sm-5" style="text-align:right">
@@ -232,22 +232,22 @@
                                          
                                             <form>
                                                 <div class="row">
-                                                    <div class="col-sm-4">
+                                                    <!-- <div class="col-sm-4">
                                                         <mat-form-field appearance="outline">
                                                           <mat-label>Status</mat-label>
                                                             <input matInput placeholder="status" name="name" value="{{dataSourceCall.patient.marital_status}}">
                                                           </mat-form-field>
                                                     </div>
-                                             
+                                              -->
                                             
                                           
-                                               <div class="col-sm-4">
+                                               <!-- <div class="col-sm-4">
                                                 <mat-form-field  appearance="outline">
                                                   <mat-label>Brought BY</mat-label>
                                                     <input matInput placeholder="service" name="phone" value="{{dataSourceCall.patient.brought_in_by}}">
                                             
                                                   </mat-form-field>
-                                               </div>
+                                               </div> -->
                                           
                                                <div class="col-sm-4">
                                                 <mat-form-field appearance="outline">
@@ -262,12 +262,12 @@
                                                     <input matInput placeholder="visit type"   name="residence" value="{{dataSourceCall.call_date  | date:'mediumDate'}}">
                                                   </mat-form-field>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <!-- <div class="col-sm-4">
                                               <mat-form-field appearance="outline">
                                                 <mat-label>Occupation</mat-label>
                                                   <input matInput placeholder="Occupation"   name="occupation" value="{{dataSourceCall.patient.occupation}}">
                                                 </mat-form-field>
-                                          </div>
+                                          </div> -->
                                           <div class="col-sm-4">
                                             <mat-form-field appearance="outline">
                                               <mat-label>Called/Not Called</mat-label>
@@ -306,7 +306,7 @@
                            </mat-tab> 
                            <mat-tab>
                             <ng-template mat-tab-label>
-                              <span (click)="feedbacksnotes()">See Notes</span> <!-- See Notes -->
+                              <span (click)="feedbacksnotes()">See Notes</span>
                             </ng-template>
                             
                             <br>

@@ -94,8 +94,8 @@
 <div class="modal fade" bsModal #editEventModal="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-md">
     <div class="modal-content">
-     <div class="modal-header">
-       <h5 id="dialog-static-name" class="modal-title pull-left">Reschedule</h5>
+     <div class="modal-header bg-success">
+       <h5 id="dialog-static-name" class="modal-title pull-center">Reschedule Date and Time</h5>
        <button type="button" class="close pull-right" aria-label="Close" (click)="editEventModal.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -110,32 +110,30 @@
                 <div class="col-sm-6">
                   <mat-form-field appearance="outline">
                     <!-- <mat-label>Clinic</mat-label> -->
-                      <input matInput placeholder="Subject" [(ngModel)]="booking_event.Subject " name="Subject" >
+                      <input matInput  placeholder="Subject" [(ngModel)]="booking_event.Subject " name="Subject" >
                       
                     </mat-form-field>
               </div>
-              <div class="col-sm-6">
-                <mat-form-field appearance="outline">
-                  <!-- <mat-label>Start</mat-label> -->
-                    <input matInput placeholder="Start" [(ngModel)]="booking_event.StartTime" name="Subject" >
-                    
-                  </mat-form-field>
-            </div>
-            <div class="col-sm-6">
-              <mat-form-field appearance="outline">
-                <!-- <mat-label>End</mat-label> -->
-                  <input matInput  [(ngModel)]="booking_event.EndTime" name="Subject" >
-                  
-                </mat-form-field>
-          </div>
-                  
+               <div class="col-sm-6">
+                <label>Start Time</label>
+                <ejs-datetimepicker [(ngModel)]="booking_event.StartTime" [min]='minDate' [max]='maxDate'></ejs-datetimepicker>
+
+                
+          </div> 
+          <div class="col-sm-6">
+            <label>End Time</label>
+            <ejs-datetimepicker [(ngModel)]="booking_event.EndTime" [min]='minDate' [max]='maxDate'></ejs-datetimepicker>
+
+            
+      </div> 
+           
                    
                 
               
             </div>
-            <button class="btn btn-success btn-sm" (click)="Reschedule()">Reshedule</button>
+            <button class="btn btn-success btn-sm"  (click)="editEventModal.hide()">Cancel</button>
 
-                <!-- </fieldset> -->
+            <button class="btn btn-success btn-sm" style="float: right;" (click)="Reschedule()">Reshedule</button>
               </div>      
          
         </div>
@@ -146,3 +144,5 @@
     </div>
     </div>
     </div>
+
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

@@ -98,10 +98,5 @@ SetUps(){
   this.router.navigateByUrl('dashboard')
     this.navCtrl.navigate('dashboard/clinics-setup')
 }
-// <!-- <a class="dropdown-item" routerLink="/dashboard/vaccine-setup" > <i class="fas fa-syringe"></i>Vaccine Setup</a> -->
-// <!-- <a class="dropdown-item" routerLink="/dashboard/timeslot" > <i class="fas fa-address-book"></i>Time Slot Setup</a> -->
-// <!-- <a class="dropdown-item" routerLink="/dashboard/clinic-setup" > <i class="fa fa-thermometer-half"></i>Clinic Setup</a> -->
-// <!-- <a class="dropdown-item" routerLink="/dashboard/clinics-setup" > <i class="fa fa-thermometer-half"></i>Clinics Setup</a> -->
-// <!-- <a class="dropdown-item" routerLink="/dashboard/feedback-setup" > <i class="fa fa-thermometer-half"></i>Feedback Setup</a> -->
 
 }

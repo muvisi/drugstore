@@ -65,6 +65,7 @@ export class FeedbacksComponent implements OnInit {
   periodfilter;
   // idnumber;
   phonenumber;
+  
   Columns: string[] = ['sn','date','patient','service','rating','issues','compliments','comments']
   PositiveColumns: string[] = ['sn','date','patient','service','rating','compliments','comments',"visit_type"]
   NegativeColumns: string[] = ['sn','date','patient','service','rating','issues','comments',"visit_type"]
@@ -79,6 +80,7 @@ export class FeedbacksComponent implements OnInit {
 
  
  ngOnInit() {
+   
   // this.idnumber="";
  
     this.getFeedbacksPositive();
