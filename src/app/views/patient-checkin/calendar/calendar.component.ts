@@ -23,10 +23,10 @@ export class CalendarComponent implements OnInit {
   public currentDay: number = this.today.getDate();
   public currentHour: number = this.today.getHours();
   public currentMinute: number = this.today.getMinutes();
-  public currentSecond: number = this.today.getSeconds();
+  // public currentSecond: number = this.today.getSeconds();
   public date: Date = new Date(new Date().setDate(14));
-  public minDate: Date = new Date(this.currentYear,this.currentMonth,7,0,0,0);
-  public maxDate: Date = new Date(this.currentYear,this.currentMonth,27,this.currentHour,this.currentMinute,this.currentSecond);
+  public minDate;
+  public maxDate;
 token: string = sessionStorage.getItem('Token');
 selectedDate: Date = new Date();
 loading;
@@ -116,18 +116,18 @@ Reschedule(){
   console.log('backend data',this.booking_event)
   var current_date = new Date();
   var event_date = new Date(this.booking_event.StartTime);
-  var event_end=new Date(this.booking_event.EndTime);
+  // var event_end=new Date(this.booking_event.EndTime);
   if(event_date<current_date){
     this.toast.info('Oops!','You cannot Reschedule past date!')
 
     }
 
-  if(event_end<current_date){
-    this.toast.info('Oops!','You cannot Reschedule past end date!')
+  // if(event_end<current_date){
+  //   this.toast.info('Oops!','You cannot Reschedule past end date!')
 
-  }
+  // }
   else{
-    this.loading=true
+    // this.loading=true
     this.service.CalendarDataedit(this.booking_event).subscribe((res)=>{
       
    
@@ -138,7 +138,7 @@ Reschedule(){
      
     },
     (err)=>{
-      this.toast.warning('Error','Appointment rescheduled failed' )
+      this.toast.warning('Error!','Failed To Reschedule Appointment' )
     })
 
 

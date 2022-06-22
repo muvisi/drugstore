@@ -129,7 +129,8 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       time:[''],
       clinic:[''],
       clinic_name:[''],
-      id:['']
+      id:[''],
+      booking_id:this.route.snapshot.params.id
     });
     this.service.getbookingDetails(this.route.snapshot.params.id).subscribe((res)=>{
       this.customer=res.patient;
@@ -452,4 +453,37 @@ checkWeekdaysInList(item){
       )
     })
   }
+
+  Rescheduledatetime(){
+
+
+    console.log(this.dateTimeForm.value)
+    let today=new Date()
+    let date=this.dateTimeForm.value.date
+    if(date<today){
+      this.toast.info('oops!','Consider a future Date')
+    }
+    else{
+      console.log('date',date)
+      this.service.reschedulebooking(this.dateTimeForm.value).subscribe(res=>{
+       console.log(res)
+       this.toast.success('Success','Rescheduled the Booking successfully')
+       this.ngOnInit()
+  
+      },err=>{
+        this.toast.error(
+          "Failed","failed to reschedule"
+        )
+      })
+    
+
+      
+    }
+    
+   
+  }
+
+
+
+
 }
