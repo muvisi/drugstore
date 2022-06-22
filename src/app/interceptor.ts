@@ -16,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor() {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = sessionStorage.getItem('Token');
-    if(request.url.toString().indexOf("payments.healthixsolutions.com")>-1){
+    if(request.url.toString().indexOf("booking.healthixsolutions.com/payment")>-1){
       request = request.clone({ headers: request.headers.set('Authorization','Basic ' + btoa('healthix.admin@gmail.com:admin')) });
     }
     else if (token) {
