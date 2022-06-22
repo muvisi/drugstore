@@ -22,6 +22,7 @@ export class RecordListComponent implements OnInit {
   submitted=false;
   maxDate=new Date();
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  search_text: any;
   constructor(public service: ServiceService,public router:Router,public formBuilder:FormBuilder,private toastr: ToastrService,public datePipe:DatePipe) { }
   ngOnInit() {
     this.clientForm = this.formBuilder.group({
@@ -51,8 +52,8 @@ rowClick(item){
  this.router.navigate(['/dashboard/reappointments/',item.id])
 
 }
-applyFilter(filterValue: string) {
-  this.service.SearchPatientRecords(filterValue).subscribe((res)=>{
+applyFilter() {
+  this.service.SearchPatientRecords(this.search_text).subscribe((res)=>{
     console.log(res)
     this.dataSource = new MatTableDataSource(res);
     this.dataSource.paginator = this.paginator;

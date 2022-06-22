@@ -12,15 +12,14 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="row">
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                   <mat-form-field>
-                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Mobile , National id" autocomplete="off" autofocus="off">
+                      <input matInput [(ngModel)]="search_text" placeholder="Mobile , National id" autocomplete="off" autofocus="off">
                     </mat-form-field>
               </div>
-              <div class="col-sm-2">
-                <!-- <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="n_id"  placeholder="National id" autocomplete="off" type="search">
-                  </mat-form-field> -->
+            
+            <div class="col-sm-8">
+              <button class="btn btn-success pull-left"  (click)="applyFilter()">Search</button>
             </div>
             </div>
           </div>

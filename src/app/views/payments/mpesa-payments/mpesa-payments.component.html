@@ -74,7 +74,7 @@
               <ng-container matColumnDef="Status">
                 <th mat-header-cell *matHeaderCellDef>Status</th>
                 <td mat-cell *matCellDef="let element">
-                    <button class="btn btn-success btn-sm" [hidden]="element.status" >Utilized</button>
+                    <button class="btn btn-success btn-sm" [hidden]="element.status"  (click)="showUtilizations(element)">Utilized</button>
                     <button class="btn btn-danger btn-sm" [hidden]="!element.status"  (click)="utilizePayment(element)">Not Utilized</button>
 
                 </td>

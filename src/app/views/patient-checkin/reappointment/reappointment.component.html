@@ -1,7 +1,7 @@
 
     <div class="card">
         <div class="card-header">
-          CREATE REAPPOINTMENT
+          CREATE APPOINTMENT
         </div>
         <div class="card-body">
           <div class="row">
@@ -30,107 +30,172 @@
           </div> 
                 <div class="row">
                 <div class="col-sm-12">
-                
-                <div class="row">
-                  <div class="col-sm-12">
-                    <mat-tab-group>
-                      <mat-tab label="Appointment Details">
-                        <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" style="margin-top: 10px;">
-                          <div class="col-sm-12">
-                            <div class="row">
-                
-                              <div class="col-sm-12">
-                                <div class="row">
-                                  <div class="col-sm-2">
-                  
-                                    <mat-form-field appearance="outline">
-                                      <mat-label>Appointment Date</mat-label>
-                                        <input matInput placeholder="Appointment Date" [min]="maxDate" formControlName="date" [matDatepicker]="picker1">
-                                        <mat-error *ngIf="f.date.errors && submitted">Appointment Date <strong>required</strong></mat-error>
-                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker1></mat-datepicker>
-                                      </mat-form-field>
-                                </div>
-                                <div class="col-sm-2">
-                                  
-                                  <mat-form-field appearance="outline">
-                                    <mat-label>Appointment Time</mat-label>
-                                    <input matInput placeholder="Time" formControlName="time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top">
-                                    <mat-error *ngIf="f.time && submitted">Appointment Time <strong>required</strong></mat-error>
-        
-                                  </mat-form-field>
-                                </div>
-                                <div class="col-sm-2">
-                                  <mat-form-field appearance="outline"  >
-                                    <mat-label>Appointment Type</mat-label>
-                                    <mat-select formControlName="type" (selectionChange)="appointmentTypeSelected($event.value)">
-                                      <mat-option *ngFor="let item of counsellling_type"  [value]="item.value">
-                                        {{item.type}}
-                                      </mat-option>
-                                    </mat-select>
-                                    <mat-error *ngIf="f.type && submitted">Appointment Type <strong>required</strong></mat-error>
-                                  </mat-form-field>
-                                </div>
-                                <div class="col-sm-2"  *ngIf="!student">
-                                  <mat-form-field appearance="outline">
-                                    <mat-label>Payment Type</mat-label>
-                                    <mat-select formControlName="payment_type">
-                                      <mat-option  value="Cash">
-                                      Cash
-                                      </mat-option>
-                                      <mat-option  value="Mpesa">
-                                      Mpesa
-                                      </mat-option>
-                                    </mat-select>
-                                    <mat-error *ngIf="f.payment_type && submitted && !student">Payment Type <strong>required</strong></mat-error>
-                                  </mat-form-field>
-                                </div>
-                                <div class="col-sm-2" *ngIf="f.payment_type.value == 'Mpesa' && !student" >
-                                
-                                  <mat-form-field appearance="outline" >
-                                    <mat-label>Transaction No</mat-label>
-                                    <input matInput placeholder="Transaction No" [typeahead]="transactions"  typeaheadOptionField="phone_number" (typeaheadOnSelect)="typeaheadOnSelect($event)"  [disabled]="f.payment_type.value == 'Cash'" (ngModelChange)="searchTransaction(f.no.value)" formControlName="no">
-                                    <mat-error *ngIf="f.no.errors && submitted">Transaction no<strong>required</strong></mat-error>
-                                    </mat-form-field>
-                                </div>
-                
-                                <div class="col-sm-2"  *ngIf="!student">
-                                  <mat-form-field appearance="outline">
-                                    <mat-label>Amount</mat-label>
-                                      <input matInput placeholder="Amount"  formControlName="amount">
-                                      <mat-error *ngIf="f.amount.errors && submitted && !student">Amount<strong>required</strong></mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-12">
-                                      
-                                  <mat-form-field  appearance="outline">
-                                      <mat-label>Appointment Reason</mat-label>
-                                      <textarea matInput cols="30" rows="5"  placeholder="Reason for Appointment" formControlName="reason"></textarea>
-                                  <mat-error *ngIf="f.reason && submitted">Reason for Appointment <strong>required</strong></mat-error>
-                                    </mat-form-field>
-                              </div>
-                                </div>
+                    <fieldset>
+                      <legend>Select Clinic</legend>
+                      <form [formGroup]="dateTimeForm"   #payment="ngForm">
+
+                     
+                      <div class="col-sm-12">
+                      
+                        <div class="row"  style="justify-content: left; display: flex;">
+                           <!-- <div class="col-sm-4" *ngFor="let item of clinics" >
+                               <mat-checkbox     value="item.name" (change)="selectedSpecialist(item.id,$event)"  style="font-family: lato light;"><h3>{{item.name}}</h3></mat-checkbox>
+                            </div> -->
+                     
+                              <mat-label>Select Service or Clinic</mat-label>
+                            <mat-radio-group  formControlName="clinic" style="width: 100%;">
+                              <div class="row">
+                                <div class="col-sm-4" *ngFor="let item of clinics" >
+                                     <mat-radio-button [value]="item.id" style="font-family: lato light;margin-right: 20px;"  (click)="selectedClinic(item)"><strong>{{item.name}}</strong></mat-radio-button>
+                                    </div>
+                                                          
+                            
                             </div>
-              </div>
-                          </div>
-                          
-                        
+              
+                             </mat-radio-group>
                            
-                            <div class="col-sm-12">
-                                    <br>
-                                <button class="btn btn-success pull-right">Submit</button>
+                        </div>
+                    </div>     
+                
+    
+                  </form>
+                 </fieldset>
+
+                    <fieldset style="margin-top: 20px;">
+                        <legend>Date and time</legend>
+                        <form [formGroup]="dateTimeForm"   #dateTime="ngForm">
+                          <div class="col-sm-12">
+                            <div class="row" style="width:100%;justify-content:left">
+                              <div class="col-sm-4">
+      
+                              <mat-form-field appearance="outline" class="example-full-width" style="max-width: 400px;">
+                                <mat-label>Date</mat-label>
+                                <input matInput placeholder="Date"  formControlName="date" [min]="maxDate" [matDatepicker]="picker3"   >
+                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker3></mat-datepicker>
+                              </mat-form-field> 
                             </div>
-                        </form>
-                      </mat-tab>
-                    
-                    </mat-tab-group>
-                  </div>
-               
-                </div>
+                           <div class="col-sm-4">
+      
+                           
+                              <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                                  <mat-label>Time</mat-label>
+                                  <input matInput placeholder="Time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top"  formControlName="time">
+                                </mat-form-field>
+                         
+                            </div></div>
+                          
+                              
+                        </div> 
+
+                          </form>
+        
+                      </fieldset>
+
+                          
+<div class="row" style="margin-top: 20px;">
+
+  <button mat-raised-button  class="btn-success"  style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitAppointment()">Add Appointment</button>
+                       
+</div>
+
+
+                      
                 </div>
               
                 </div>
         </div>
       </div>
 
+
+
+
+      <div class="modal fade" bsModal #calendarModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+         <div class="modal-header">
+           <h5 id="dialog-static-name" class="modal-title pull-left">Calendar</h5>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="calendarModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+         </div>
+         <div class="modal-body">
+             
+          <div class="col-sm-12">
+          <div class="row">
+         
+              <div class="col-sm-12">
+            
+                <div class="control-section">
+                  <div class="col-lg-12 conent-wrapper">
+                    <ejs-schedule #schedule [(selectedDate)]="selectedDate"   (popupOpen)='onPopupOpen($event)'    (cellClick)="onCellClick($event)" [currentView]='currentView' >
+                      <ng-template #cellTemplate let-data>
+                        <div class="templatewrap">
+                          <img src="./assets/img/avatars/accept.png" width="32px" height="32px" *ngIf="isWorkDay(data.date)"/>
+                          <img src="./assets/img/avatars/close.png" width="32px" height="32px"  *ngIf="!isWorkDay(data.date)"/>
+                        
+                        </div>
+                      </ng-template>
+                      <e-views>          
+                        <e-view option="Month"  ></e-view> 
+                      </e-views>
+              
+                    </ejs-schedule>
+                  </div>
+                  
+                </div>
+              
+              </div>
+            
+            </div>
+             
+            <button class="btn btn-danger btn-sm" (click)="calendarModal.hide()" > close</button>
+          </div>
+          
+         </div>
+        </div>
+        </div>
+        </div>
+        
+      
+      
+      
+      
+      <div class="modal fade" bsModal #calendarModalTime="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+        <div class="modal-dialog modal-md">
+        <div class="modal-content">
+         <div class="modal-header">
+           <h5 id="dialog-static-name" class="modal-title pull-left">Calendar</h5>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="calendarModalTime.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+         </div>
+         <div class="modal-body">    
+          <div class="col-sm-12">      
+                <div class="control-section">
+                  <div class="col-lg-12 conent-wrapper">
+                    <ejs-schedule #schedule [(selectedDate)]="selected_appointment_date"   (popupOpen)='onPopupOpen($event)'    (cellClick)="onCellClickTime($event)" [currentView]='currentWorkweek'   [workHours]="workHours" [workDays]="workdate"  [eventSettings]="eventSettings">
+                   
+                      <e-views>          
+                        <e-view option="WorkWeek"  startHour="08:00" endHour="18:00" ></e-view> 
+                      </e-views>
+                      <ng-template #eventSettingsTemplate let-data >
+                        <div class='template-wrap' style="color: black; font-size: large;" >
+                          <div class="subject">{{data.Subject}}</div>
+                        </div>
+                      </ng-template>
+                    </ejs-schedule>
+                    
+                  </div>      
+             
+            </div>
+             
+            <button class="btn btn-danger btn-sm" (click)="calendarModalTime.hide()" > close</button>
+          </div>
+          
+         </div>
+        </div>
+        </div>
+        </div>
+      
       <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
