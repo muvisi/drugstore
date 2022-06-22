@@ -65,6 +65,7 @@ export class ReportsComponent implements OnInit {
     this.getAlltest();
     this.getAlltestcomplete();
     this.getendPont();
+    this.Search();
 
 
   }
