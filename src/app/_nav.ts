@@ -39,6 +39,12 @@ export const navItems: NavData[] = [
     title: true,
     name: 'Main'
   },
+  {
+    name: 'SMS Links',
+    url: '/dashboard/registration-link',
+    icon: 'fas fa-address-book',
+  
+  },
 
 
   {
@@ -62,12 +68,7 @@ export const navItems: NavData[] = [
     url: '/dashboard/records',
     icon: 'icon-people',
   },
-  {
-    name: 'SMS Links',
-    url: '/dashboard/registration-link',
-    icon: 'fas fa-address-book',
-  
-  },
+ 
 
  
 

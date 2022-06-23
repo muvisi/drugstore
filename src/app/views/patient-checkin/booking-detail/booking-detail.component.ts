@@ -222,7 +222,9 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   getPatientAppointments(id){
     this.service.getPatientAppointments(id).subscribe(res=>{
       this.dataSource=res;
+      this.ngOnInit()
     },err=>{});
+
 
   }
   updateClientData(){
@@ -233,6 +235,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     let data=Object.assign(client_data,{id:this.customer.id})
     this.service.updateClient(data).subscribe((res)=>{
       this.toast.success("Update was Successful")
+      this.ngOnInit()
       this.loading=false;
 
     },(err)=>{
@@ -247,6 +250,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     this.service.updateNextofKinData(data).subscribe((res)=>{
       this.loading=false
       this.toast.success("Update was Successful")
+      this.ngOnInit()
     },(error)=>{
       this.loading=false;
       this.toast.error("Update Failed");
@@ -256,6 +260,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     this.loading=true;
     this.service.getFeedbackLink({"phone":this.customer.phone}).subscribe((res)=>{
       this.toast.success("Successful")
+      this.ngOnInit()
       this.loading=false
     },(err)=>{
       this.toast.warning("Failed")
@@ -312,6 +317,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     this.service.updatePaymentDetails(this.route.snapshot.params.id,'').subscribe((res)=>{
       this.loading=false;
       this.toast.success("Update was successful")
+      this.ngOnInit()
     },(err)=>{
       this.loading=false;
       this.toast.error("Update Failed")
@@ -331,6 +337,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   getClinics(){
     this.service.getAllClinics().subscribe((res)=>{
        this.clinics=res;
+       this.ngOnInit()
    
     },(err)=>{
 
@@ -446,6 +453,7 @@ checkWeekdaysInList(item){
     this.service.rebook(this.dateTimeForm.value).subscribe(res=>{
       if(res.status){
       this.toast.success(res.message)
+      this.ngOnInit()
       this.confirmAppointmentModal.hide();
 
       }else{
