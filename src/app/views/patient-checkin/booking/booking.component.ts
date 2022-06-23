@@ -41,10 +41,16 @@ export class BookingComponent implements OnInit {
 
     this.getMaternitybooking();
     this.getTestingRecords();
-    this.getVaccinationRecords();
+    // this.getVaccinationRecords();
     this.getBookingRecords();
     this.applyFilterRegistrations();
     this.getRegistartionRecords();
+
+    this.service.getcovidVaccinationdata().subscribe((res)=>{
+
+      this.dataSourceVaccination = new MatTableDataSource((res));
+      this.dataSourceVaccination.paginator = this.paginator;
+    })
   }
 
   getMaternitybooking() {

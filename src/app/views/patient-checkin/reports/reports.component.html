@@ -7,6 +7,314 @@
       <div class="card-body">
 
         <mat-tab-group>
+          <mat-tab label="Vaccination First Dose"> 
+
+            <div class="row container-fluid" style="margin-top: 12px;">
+              <div class="col-sm-3"> 
+                <mat-form-field appearance="outline">
+                  <mat-label>Vaccination Date</mat-label>
+                    <input matInput placeholder="Date" [max]="selected_date"  [matDatepickerFilter]="dateFilter"  [(ngModel)]="date1"  [matDatepicker]="picker" (ngModelChange)="getFirstDose()">
+                    <mat-error *ngIf="date_b">Vaccination Date <strong>required</strong></mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+              <div class="col-sm-9">
+                <button (click)="downloadReportFirstDose()" class="btn btn-success pull-right">Download </button>
+              </div>
+                <div class="col-sm-12" style="margin-top: 12px;">
+    
+                    <div class="mat-elevation-z8 table-responsive">
+                      <table mat-table [dataSource]="firstDoseAppointMent" matSort>
+                          <ng-container matColumnDef="sn">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                      </ng-container>
+                   
+                            <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                        <ng-container matColumnDef="time">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                          <td mat-cell *matCellDef="let element"> {{element.time}}</td>
+                        </ng-container>
+                  
+                        <ng-container matColumnDef="Client">
+                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Client</th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.client}}</td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="phone">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
+                          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="national_id">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>National ID</th>
+                          <td mat-cell *matCellDef="let element"> {{element.national_id }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dose">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Dose</th>
+                          <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="status">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                          <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                        <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
+                      </table>
+                  
+                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                    </div>
+                  </div>
+            </div>
+            <br>
+            <br>
+          </mat-tab>
+                   
+          <mat-tab label="Vaccination Second Dose"> 
+            <div class="row container-fluid" style="margin-top: 12px;">
+              <div class="col-sm-3">
+                  
+                <mat-form-field appearance="outline">
+                  <mat-label>Vaccination Date</mat-label>
+                    <input matInput placeholder="Date" [max]="selected_date"  [matDatepickerFilter]="dateFilter"  [(ngModel)]="date2"  [matDatepicker]="picker2" (ngModelChange)="getSecondDose()">
+                    <mat-error *ngIf="date_b">Vaccination Date <strong>required</strong></mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+            </div>
+                  <div class="col-sm-9">
+                    <button  (click)="downloadReportSecondDose()" class="btn btn-success pull-right">Download </button>
+                  </div>
+
+                <div class="col-sm-12" style="margin-top: 12px;">
+    
+                    <div class="mat-elevation-z8 table-responsive">
+                      <table mat-table [dataSource]="secondDoseAppointMent" matSort>
+                          <ng-container matColumnDef="sn">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                      </ng-container>
+                     
+                            <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                        <ng-container matColumnDef="time">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                          <td mat-cell *matCellDef="let element"> {{element.time}}</td>
+                        </ng-container>
+                  
+                        <ng-container matColumnDef="Client">
+                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Client</th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.client}}</td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="phone">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
+                          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="national_id">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>National ID</th>
+                          <td mat-cell *matCellDef="let element"> {{element.national_id }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dose">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Dose</th>
+                          <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
+                        </ng-container>
+                        
+                          <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                            <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+                          </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                        <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
+                      </table>
+                  
+                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                    </div>
+                  </div>
+            </div>  
+            <br>
+            <br>
+          </mat-tab>
+          <mat-tab label="Covid Test"> 
+            <div class="row container-fluid" style="margin-top: 12px;">
+             
+           
+          
+            <div class="col-sm-9">
+               <button class="btn btn-success pull-right"><a href="{{endpoint}}api/covidreport/">Download All </a></button>
+            </div> 
+
+                <div class="col-sm-12" style="margin-top: 12px;">
+    
+                    <div class="mat-elevation-z8 table-responsive">
+                      <table mat-table [dataSource]="testing" matSort>
+                          <ng-container matColumnDef="sn">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                      </ng-container>
+                     
+                            <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                        <ng-container matColumnDef="names">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Names</th>
+                          <td mat-cell *matCellDef="let element"> {{element.client}}</td>
+                        </ng-container>
+                  
+                        <ng-container matColumnDef="email">
+                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Travel places</th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.travel_places}}</td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="phone">
+                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Phone</th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.phone}}</td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="national_id">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact CaseName</th>
+                          <td mat-cell *matCellDef="let element"> {{element.contact_case_name }} </td>
+                        </ng-container>
+                       
+                        
+                          <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+                            <td mat-cell *matCellDef="let element"> {{element.gender}}</td>
+                          </ng-container>
+                          <ng-container matColumnDef="dob">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms Date</th>
+                            <td mat-cell *matCellDef="let element"> {{element.symptoms_date | date:'dd/MM/yyyy'}}</td>
+                          </ng-container>
+                          <ng-container matColumnDef="patient_no">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Number</th>
+                            <td mat-cell *matCellDef="let element"> {{element.no}}</td>
+                          </ng-container>
+                          <ng-container matColumnDef="Time">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                            <td mat-cell *matCellDef="let element"> {{element.time}}</td>
+                          </ng-container><br><br>
+                          <ng-container matColumnDef="vaccinated">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms</th>
+                            <td mat-cell *matCellDef="let element"> {{element.symptoms}}</td>
+                          </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="Columns3"></tr>
+                        <tr mat-row *matRowDef="let row; columns:Columns3;" ></tr>
+                      </table>
+                  
+                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                    </div>
+                  </div>
+            </div>  
+            <br>
+            <br>
+          </mat-tab>
+          <mat-tab label="Dated Covid Test"> 
+            <div class="row container-fluid" style="margin-top: 12px;">
+              <div class="col-sm-3">
+                  
+                <mat-form-field appearance="outline">
+                  <mat-label>Select Date</mat-label>
+                    <input matInput placeholder="Start date" [(ngModel)]="dated"  [matDatepicker]="picker4"  autocomplete="off">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                  </mat-form-field>
+            </div>
+            
+            <div class="col-sm-3">
+                  
+              <mat-form-field appearance="outline">
+                <mat-label>Select End-Date</mat-label>
+                  <input matInput placeholder="Select date" [(ngModel)]="datede"  [matDatepicker]="picker5"  autocomplete="off">
+                  <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                  <mat-datepicker #picker5></mat-datepicker>
+                </mat-form-field>
+          </div>
+          
+            <div class="col-sm-3">
+              
+              <button (click)="Search()"  [disabled]="!dated || !datede" class="btn btn-success pull-right">Search</button>
+          </div>
+          
+      <div class="col-sm-3">
+               <a   class="btn btn-success pull-right" [disabled]="!dated || !datede" href="{{endpoint}}/api/dated/?from={{this.dated}}&to={{this.datede}}">Download </a>
+            </div>  
+
+                <div class="col-sm-12" style="margin-top: 12px;">
+    
+                    <div class="mat-elevation-z8 table-responsive">
+                      <table mat-table [dataSource]="datedtesting" matSort>
+                          <ng-container matColumnDef="sn">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
+                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+                      </ng-container>
+                     
+                            <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
+                            </ng-container>
+                        <ng-container matColumnDef="names">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Names</th>
+                          <td mat-cell *matCellDef="let element">{{element.client}}</td>
+                        </ng-container>
+                  
+                        <ng-container matColumnDef="email">
+                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Travel places</th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.travel_places}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="phone">
+                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Phone</th>
+                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.phone}}</td>
+                        </ng-container>
+                      
+                       
+                        <ng-container matColumnDef="national_id">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact CaseName</th>
+                          <td mat-cell *matCellDef="let element"> {{element.contact_case_name }} </td>
+                        </ng-container>
+                       
+                        
+                          <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+                            <td mat-cell *matCellDef="let element"> {{element.gender}}</td>
+                          </ng-container>
+                          <ng-container matColumnDef="dob">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms Date</th>
+                            <td mat-cell *matCellDef="let element"> {{element.symptoms_date | date:'dd/MM/yyyy'}}</td>
+                          </ng-container>
+                          <ng-container matColumnDef="patient_no">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Number</th>
+                            <td mat-cell *matCellDef="let element"> {{element.no}}</td>
+                          </ng-container>
+                          <ng-container matColumnDef="Time">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                            <td mat-cell *matCellDef="let element"> {{element.time}}</td>
+                          </ng-container><br><br>
+                          <ng-container matColumnDef="vaccinated">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms</th>
+                            <td mat-cell *matCellDef="let element"> {{element.symptoms}}</td>
+                          </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="Columns3"></tr>
+                        <tr mat-row *matRowDef="let row; columns:Columns3;" ></tr>
+                      </table>
+                  
+                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                    </div>
+                  </div>
+            </div>  
+            <br>
+            <br>
+          </mat-tab>
           <mat-tab label="Monthly Vaccination"> 
             <div class="row container-fluid" style="margin-top: 12px;"> 
               <div class="col-sm-12">
@@ -157,6 +465,7 @@
             <br>
             <br>
           </mat-tab>
+        
       
           <mat-tab label="Completed Vaccination"> 
 
@@ -227,301 +536,10 @@
             <br>
             <br>
           </mat-tab>
-          <mat-tab label="Vaccination First Dose"> 
+        
 
-            <div class="row container-fluid" style="margin-top: 12px;">
-              <div class="col-sm-3"> 
-                <mat-form-field appearance="outline">
-                  <mat-label>Vaccination Date</mat-label>
-                    <input matInput placeholder="Date" [max]="selected_date"  [matDatepickerFilter]="dateFilter"  [(ngModel)]="date1"  [matDatepicker]="picker" (ngModelChange)="getFirstDose()">
-                    <mat-error *ngIf="date_b">Vaccination Date <strong>required</strong></mat-error>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-            </div>
-              <div class="col-sm-9">
-                <button (click)="downloadReportFirstDose()" class="btn btn-success pull-right">Download </button>
-              </div>
-                <div class="col-sm-12" style="margin-top: 12px;">
-    
-                    <div class="mat-elevation-z8 table-responsive">
-                      <table mat-table [dataSource]="firstDoseAppointMent" matSort>
-                          <ng-container matColumnDef="sn">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
-                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                      </ng-container>
-                   
-                            <ng-container matColumnDef="date">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
-                            </ng-container>
-                        <ng-container matColumnDef="time">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-                          <td mat-cell *matCellDef="let element"> {{element.time}}</td>
-                        </ng-container>
-                  
-                        <ng-container matColumnDef="Client">
-                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Client</th>
-                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.client}}</td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="phone">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
-                          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="national_id">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>National ID</th>
-                          <td mat-cell *matCellDef="let element"> {{element.national_id }} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="dose">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Dose</th>
-                          <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
-                        </ng-container>
-                        
-                        <ng-container matColumnDef="status">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                          <td mat-cell *matCellDef="let element"> {{element.status}}</td>
-                        </ng-container>
-                        
-                        <tr mat-header-row *matHeaderRowDef="Columns"></tr>
-                        <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
-                      </table>
-                  
-                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
-                    </div>
-                  </div>
-            </div>
-            <br>
-            <br>
-          </mat-tab>
-          <mat-tab label="Vaccination Second Dose"> 
-            <div class="row container-fluid" style="margin-top: 12px;">
-              <div class="col-sm-3">
-                  
-                <mat-form-field appearance="outline">
-                  <mat-label>Vaccination Date</mat-label>
-                    <input matInput placeholder="Date" [max]="selected_date"  [matDatepickerFilter]="dateFilter"  [(ngModel)]="date2"  [matDatepicker]="picker2" (ngModelChange)="getSecondDose()">
-                    <mat-error *ngIf="date_b">Vaccination Date <strong>required</strong></mat-error>
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                  </mat-form-field>
-            </div>
-                  <div class="col-sm-9">
-                    <button  (click)="downloadReportSecondDose()" class="btn btn-success pull-right">Download </button>
-                  </div>
-
-                <div class="col-sm-12" style="margin-top: 12px;">
-    
-                    <div class="mat-elevation-z8 table-responsive">
-                      <table mat-table [dataSource]="secondDoseAppointMent" matSort>
-                          <ng-container matColumnDef="sn">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
-                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                      </ng-container>
-                     
-                            <ng-container matColumnDef="date">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
-                            </ng-container>
-                        <ng-container matColumnDef="time">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-                          <td mat-cell *matCellDef="let element"> {{element.time}}</td>
-                        </ng-container>
-                  
-                        <ng-container matColumnDef="Client">
-                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Client</th>
-                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.client}}</td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="phone">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
-                          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="national_id">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>National ID</th>
-                          <td mat-cell *matCellDef="let element"> {{element.national_id }} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="dose">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Dose</th>
-                          <td mat-cell *matCellDef="let element"> {{element.dose}} </td>
-                        </ng-container>
-                        
-                          <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                            <td mat-cell *matCellDef="let element"> {{element.status}}</td>
-                          </ng-container>
-                        
-                        <tr mat-header-row *matHeaderRowDef="Columns"></tr>
-                        <tr mat-row *matRowDef="let row; columns:Columns;" ></tr>
-                      </table>
-                  
-                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
-                    </div>
-                  </div>
-            </div>  
-            <br>
-            <br>
-          </mat-tab>
-          <mat-tab label="Covid Test"> 
-            <div class="row container-fluid" style="margin-top: 12px;">
-             
-           
-          
-            <div class="col-sm-9">
-               <button class="btn btn-success pull-right"><a href="http://127.0.0.1:8000/api/covidreport/?">Download All </a></button>
-            </div> 
-
-                <div class="col-sm-12" style="margin-top: 12px;">
-    
-                    <div class="mat-elevation-z8 table-responsive">
-                      <table mat-table [dataSource]="testing" matSort>
-                          <ng-container matColumnDef="sn">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
-                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                      </ng-container>
-                     
-                            <ng-container matColumnDef="date">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
-                            </ng-container>
-                        <ng-container matColumnDef="names">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Names</th>
-                          <td mat-cell *matCellDef="let element"> {{element.client}}</td>
-                        </ng-container>
-                  
-                        <ng-container matColumnDef="email">
-                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Travel places</th>
-                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.travel_places}}</td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="phone">
-                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Phone</th>
-                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.phone}}</td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="national_id">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact CaseName</th>
-                          <td mat-cell *matCellDef="let element"> {{element.contact_case_name }} </td>
-                        </ng-container>
-                       
-                        
-                          <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
-                            <td mat-cell *matCellDef="let element"> {{element.gender}}</td>
-                          </ng-container>
-                          <ng-container matColumnDef="dob">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms Date</th>
-                            <td mat-cell *matCellDef="let element"> {{element.symptoms_date | date:'dd/MM/yyyy'}}</td>
-                          </ng-container>
-                          <ng-container matColumnDef="patient_no">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Number</th>
-                            <td mat-cell *matCellDef="let element"> {{element.no}}</td>
-                          </ng-container>
-                          <ng-container matColumnDef="Time">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-                            <td mat-cell *matCellDef="let element"> {{element.time}}</td>
-                          </ng-container><br><br>
-                          <ng-container matColumnDef="vaccinated">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms</th>
-                            <td mat-cell *matCellDef="let element"> {{element.symptoms}}</td>
-                          </ng-container>
-                        
-                        <tr mat-header-row *matHeaderRowDef="Columns3"></tr>
-                        <tr mat-row *matRowDef="let row; columns:Columns3;" ></tr>
-                      </table>
-                  
-                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
-                    </div>
-                  </div>
-            </div>  
-            <br>
-            <br>
-          </mat-tab>
-          <mat-tab label="Dated Covid Test"> 
-            <div class="row container-fluid" style="margin-top: 12px;">
-              <div class="col-sm-3">
-                <input type="date" [(ngModel)]="dated">
-               
-            </div>
-            <div class="col-sm-3">
-              <input type="date" [(ngModel)]="datede" autocomplete="off">
-             
-          </div>
-            <div class="col-sm-3">
-              
-              <button (click)="Search()" class="btn btn-success pull-right">Search</button>
-          </div>
-          
-            <div class="col-sm-3">
-               <a   class="btn btn-success pull-right" ng-disabled="!dated" href="http://127.0.0.1:8000/api/dated/?from={{this.dated}}&to={{this.datede}}">Download </a>
-            </div> 
-
-                <div class="col-sm-12" style="margin-top: 12px;">
-    
-                    <div class="mat-elevation-z8 table-responsive">
-                      <table mat-table [dataSource]="datedtesting" matSort>
-                          <ng-container matColumnDef="sn">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header>S/N</th>
-                              <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
-                      </ng-container>
-                     
-                            <ng-container matColumnDef="date">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-                                    <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
-                            </ng-container>
-                        <ng-container matColumnDef="names">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Names</th>
-                          <td mat-cell *matCellDef="let element">{{element.client}}</td>
-                        </ng-container>
-                  
-                        <ng-container matColumnDef="email">
-                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Travel places</th>
-                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.travel_places}}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="phone">
-                          <th mat-header-cell *matHeaderCellDef  mat-sort-header>Phone</th>
-                          <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.phone}}</td>
-                        </ng-container>
-                      
-                       
-                        <ng-container matColumnDef="national_id">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact CaseName</th>
-                          <td mat-cell *matCellDef="let element"> {{element.contact_case_name }} </td>
-                        </ng-container>
-                       
-                        
-                          <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
-                            <td mat-cell *matCellDef="let element"> {{element.gender}}</td>
-                          </ng-container>
-                          <ng-container matColumnDef="dob">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms Date</th>
-                            <td mat-cell *matCellDef="let element"> {{element.symptoms_date | date:'dd/MM/yyyy'}}</td>
-                          </ng-container>
-                          <ng-container matColumnDef="patient_no">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Number</th>
-                            <td mat-cell *matCellDef="let element"> {{element.no}}</td>
-                          </ng-container>
-                          <ng-container matColumnDef="Time">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
-                            <td mat-cell *matCellDef="let element"> {{element.time}}</td>
-                          </ng-container><br><br>
-                          <ng-container matColumnDef="vaccinated">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Symptoms</th>
-                            <td mat-cell *matCellDef="let element"> {{element.symptoms}}</td>
-                          </ng-container>
-                        
-                        <tr mat-header-row *matHeaderRowDef="Columns3"></tr>
-                        <tr mat-row *matRowDef="let row; columns:Columns3;" ></tr>
-                      </table>
-                  
-                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
-                    </div>
-                  </div>
-            </div>  
-            <br>
-            <br>
-          </mat-tab>
+   
+       
           <mat-tab label="Completed Covid Test"> 
             <div class="row container-fluid" style="margin-top: 12px;">
               <div class="col-sm-3">

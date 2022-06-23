@@ -24,6 +24,7 @@ export class ReportsComponent implements OnInit {
   secondDoseAppointMentList;
   completedAppointMent
   completedAppointMentList;
+  endpoint;
   allAppointMent;
   allAppointMentList;
   monthlyAppointMent;
@@ -63,6 +64,8 @@ export class ReportsComponent implements OnInit {
     this.getDaily();
     this.getAlltest();
     this.getAlltestcomplete();
+    this.getendPont();
+    this.Search();
 
 
   }
@@ -318,6 +321,10 @@ handle_download(data){
       
     }
   return return_data;
+}
+getendPont(){
+  this.endpoint=this.service.getendpoint()
+  console.log('endpoint',this.endpoint)
 }
 
 }

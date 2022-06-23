@@ -282,7 +282,7 @@ export class ServiceService {
       map(this.extractData));
   }
   getAppointments(): Observable<any> {
-    return this.http.get(endpoint + 'api/appointment/?limit=100').pipe(
+    return this.http.get(endpoint + 'api/appointment/').pipe(
       map(this.extractData));
   }
   getAppointmentsRevenues(): Observable<any> {
@@ -860,7 +860,9 @@ searchProcedure(data): Observable<any> {
   getAppointmentreports(urlparams): Observable<any>{
     return this.http.get(endpoint + 'api/reports/?'+urlparams);
   }
-
+  getcovidVaccinationdata(): Observable<any>{
+    return this.http.get(endpoint + 'api/covidvaccination/');
+  }
 
 downloadAppointmentreports(urlparams): Observable<any>{
   return this.http.get(endpoint + 'api/reports_download/?'+urlparams);
@@ -981,6 +983,10 @@ searchBills(data): Observable<any>{
 
   updateNextofKinData(data): Observable<any> {
     return this.http.post(endpoint + 'api/nextofkin-update/'+data.id+'/',data).pipe(
+      map(this.extractData));
+  }
+  reschedulebooking(data): Observable<any> {
+    return this.http.post(endpoint + 'api/reschedulebooking/',data).pipe(
       map(this.extractData));
   }
   SearchPatientRecords(data): Observable<any> {
