@@ -70,6 +70,10 @@ export class RegistrationLinkComponent implements OnInit {
       this.toast.warning("Network error")
     })
 
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
   }
   showStk(){
     var data=this.patientMobileForm.value;
@@ -101,6 +105,9 @@ export class RegistrationLinkComponent implements OnInit {
       this.loading=false;
       this.toast.warning("Network error")
     })
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
 
   }
   submitPhoneVacinnation(){
@@ -124,6 +131,9 @@ export class RegistrationLinkComponent implements OnInit {
       this.toast.warning("Network error")
     })
 
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
   }
   submitPhoneTesting(){
     var data=this.patientMobileForm.value;
@@ -146,6 +156,9 @@ export class RegistrationLinkComponent implements OnInit {
       this.toast.warning("Network error")
     })
 
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
   }
   submitPhoneFeedBack(){
     var data=this.patientMobileForm.value;
@@ -163,6 +176,10 @@ export class RegistrationLinkComponent implements OnInit {
       this.toast.warning("Failed")
       this.loading=false
     });
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
 
   }
 
@@ -182,10 +199,19 @@ export class RegistrationLinkComponent implements OnInit {
       this.toast.warning("Network error")
     })
 
+
   }
 
   selectedBooking($event){
     let item=$event.item
+    try{
+      this.service.postFootWalkData(item).subscribe(res=>{
+
+      },err=>{})
+  
+    }catch(err){
+
+    }
     if($event.item.type=="Appointment booking"){
       this.router.navigateByUrl("dashboard/booking-details/"+item.id)
     }else if($event.item.type=="Maternity booking"){
@@ -242,6 +268,9 @@ export class RegistrationLinkComponent implements OnInit {
     });  
         
       
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
 
 }
 
