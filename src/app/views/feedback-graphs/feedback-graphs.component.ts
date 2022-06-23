@@ -18,9 +18,11 @@ export class FeedbackGraphsComponent implements OnInit {
   averagegraphdata: any={}
   dataSource: any={}
   SurgerydataSource: any={}
+  piedataSource: any={}
   RespondentdataSource: any={}
   bookingvspatient: Object;
   dataSources;
+  periodres;
  
 
 
@@ -61,70 +63,53 @@ export class FeedbackGraphsComponent implements OnInit {
   inpatient_dataSource;
   endpoint;
   selected;
+  feedbackperdepartment;
+  perioddepart;
+  servicegraphdata;
+
 
   loading;
   constructor( public service:ServiceService) {
+  this.feedbackperdepartment= {
+    chart: {
+      caption: 'AAR HOSPITAL',
+      subCaption: 'Department Averages',
+      xAxisName: 'Departments',
+      yAxisName: 'Average values',
+      numberSuffix: '',
+      theme: 'fusion'
+    },
+    data:[]
+  };
+  this.servicegraphdata= {
+    chart: {
+      caption: 'AAR HOSPITAL',
+      subCaption: 'Service Averages',
+      xAxisName: 'services',
+      yAxisName: 'Average values',
+      numberSuffix: '',
+      theme: 'fusion'
+    },
+    data:[]
+  };
+
   this.averagegraphdata= {
     chart: {
       caption: 'AAR HOSPITAL',
-      subCaption: 'All Feedback Averages',
+      subCaption: 'Category Averages',
       xAxisName: 'Departments',
-      yAxisName: 'Average values',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.outpatientaveragegraphdata= {
-    chart: {
-      caption: 'AAR HOSPITAL',
-      subCaption: 'Outpatient Feedback Averages',
-      xAxisName: 'Departments',
-      yAxisName: 'Average values',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.inpatientaveragegraphdata= {
-    chart: {
-      caption: 'AAR HOSPITAL',
-      subCaption: 'Inpatient Feedback Averages',
-      xAxisName: 'Departments',
-      yAxisName: 'Average values',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.dataSource= {
-    chart: {
-      caption: 'AAR HOSPITAL',
-      subCaption: 'All Respondent Counts',
-      xAxisName: 'Departments',
-      yAxisName: 'Total Count',
+      yAxisName: 'Avg',
       numberSuffix: '',
       theme: 'fusion'
     },
     data:[]
   };
  
-  this.RespondentdataSource= {
+  this.dataSource= {
     chart: {
       caption: 'AAR HOSPITAL',
       subCaption: ' Total Respondents',
-      xAxisName: 'Departments',
-      yAxisName: 'Average',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
-  this.SurgerydataSource= {
-    chart: {
-      caption: 'AAR HOSPITAL',
-      subCaption: 'Surgery Average Feedback',
-      xAxisName: 'Departments',
+      xAxisName: 'count',
       yAxisName: 'Average',
       numberSuffix: '',
       theme: 'fusion'
@@ -132,17 +117,8 @@ export class FeedbackGraphsComponent implements OnInit {
     data:[]
   };
 
-  this.dataSourceOutpatientpositive= {
-    chart: {
-      caption: 'AAR HOSPITAL LTD',
-      subCaption: 'Outpatient Positive Repondents Feedbacks',
-      xAxisName: 'Departments',
-      yAxisName: 'Count',
-      numberSuffix: '',
-      theme: 'fusion'
-    },
-    data:[]
-  };
+
+
  
  
 
@@ -155,18 +131,58 @@ export class FeedbackGraphsComponent implements OnInit {
     this.getFeedbacksGraph();
   
     this.getFeedbacksgraphaverage();
-  
-   this.getSurgerygraphaverage()
+    this.getFeedbackperdepartment();
+    this.getFeedbackservice();
  
   }
- 
-  
-  getSurgerygraphaverage(){
-    this.service.surgerygraphaverage().subscribe(
+  periodChangeddepartment(){
+    let data={
+      period:this.perioddepart
+    }
+    console.log('department',data)
+    this.service.AverangeFeedbacksDepartment(data).subscribe(
       datas => {
         
-        this.SurgerydataSource.data =datas.data
-          console.log("Surgery average",this.SurgerydataSource )
+        this.feedbackperdepartment.data =datas.data
+  console.log(datas)
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+
+  }
+  periodChanged(){
+    console.log('period',this.periodres)
+    let data={
+      period:this.periodres
+    }
+    // this.periodres
+    this.service.surgeryperiodfilter(data).subscribe(
+      datas => {
+        
+        this.averagegraphdata.data =datas.data
+          console.log("Surgery average",this.averagegraphdata.data )
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+    
+
+  }
+  getFeedbackservice(){
+  
+    this.service.getFeedbackservice().subscribe(
+      datas => {
+        
+        this.servicegraphdata.data =datas.data
+  
         
       },
      
@@ -175,8 +191,12 @@ export class FeedbackGraphsComponent implements OnInit {
       () => console.log('There is an error')
     );
     }
+ 
 getFeedbacksgraphaverage(){
-  this.service.feedbacksgraphaverage().subscribe(
+  let data={
+    period:this.periodres
+  }
+  this.service.feedbacksgraphaverage(data).subscribe(
     datas => {
       
       this.averagegraphdata.data =datas.data
@@ -191,7 +211,23 @@ getFeedbacksgraphaverage(){
   }
 
 
+  getFeedbackperdepartment(){
+    let data={
+      period:this.perioddepart
+    }
+  this.service.AverangeFeedbacksDepartment(data).subscribe(
+    datas => {
+      
+      this.feedbackperdepartment.data =datas.data
 
+      
+    },
+   
+    err => console.error(err),
+   
+    () => console.log('There is an error')
+  );
+}
 
 
  

@@ -13,6 +13,7 @@ MatHeaderRowDef,
 MatRowDef
 } from '@angular/material';
 // import { FullCalendarModule } from '@fullcalendar/angular';
+// import { IgxItemLegendModule, IgxPieChartModule } from 'igniteui-angular-charts';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
@@ -253,6 +254,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
+ 
     MatOptionModule,
     MatChipsModule,
     MatCheckboxModule,

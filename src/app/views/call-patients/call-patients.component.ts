@@ -104,7 +104,7 @@ export class CallPatientsComponent implements OnInit {
   
   CallPatient(){
     
-    this.service.callpatient({phone:this.route.snapshot.params.id}).subscribe(
+    this.service.callpatient({phone:this.dataSourceCall.phone}).subscribe(
       res => {
      
         this.toastr.success('success','Thank you for calling')

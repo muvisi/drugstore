@@ -7,9 +7,20 @@
 
 
             <mat-tab-group class="vertical">
+            
 
-               
-                <mat-tab label="CATEGORIES AVERAGES">
+                <mat-tab label="Departments Averages">
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                        <mat-label>Period</mat-label>
+                        <mat-select  [(ngModel)]="perioddepart" (selectionChange)="periodChangeddepartment()">
+                          <mat-option value="daily">Today</mat-option>
+                          <mat-option value="weekly">Weekly </mat-option>
+                          <mat-option value="monthly">Monthly </mat-option>
+                          <mat-option value="yearly">Yearly </mat-option>
+                        </mat-select>  
+                      </mat-form-field>
+                  </div>
                 
                    
                   <fusioncharts
@@ -17,30 +28,57 @@
                   height="400"
                   type="Column2D"
                   dataFormat="JSON"
-                  [dataSource]="averagegraphdata"
+                  [dataSource]="feedbackperdepartment"
                  ></fusioncharts>
-               
-                  
+
+                
                 
                 </mat-tab> 
-
-            
+                <mat-tab label="Services Averages">
                
-                <!-- <mat-tab label="CATEGORIES COUNT">
-                
-                   
+              
+                 
                   <fusioncharts
                   width="800"
                   height="400"
                   type="Column2D"
                   dataFormat="JSON"
-                  [dataSource]="dataSource"
+                  [dataSource]="servicegraphdata"
                  ></fusioncharts>
-               
-                  
+  
                 
-                </mat-tab>  -->
-                <mat-tab label="TOTAL RESPONDENTS COUNT">
+                
+                </mat-tab> 
+  
+                 
+                  <mat-tab label="Categories Averages">
+                    <div class="col-sm-3">
+                      <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                          <mat-label>Period</mat-label>
+                          <mat-select  [(ngModel)]="periodres"  (selectionChange)="periodChanged()">
+                            <mat-option value="daily">Today</mat-option>
+                            <mat-option value="weekly">Weekly </mat-option>
+                            <mat-option value="monthly">Monthly </mat-option>
+                            <mat-option value="yearly">Yearly </mat-option>
+                          </mat-select>  
+                        </mat-form-field>
+                    </div>
+                  
+                     
+                    <fusioncharts
+                    width="600"
+                    height="350"
+                    type="Column2D"
+                    dataFormat="JSON"
+                    [dataSource]="averagegraphdata"
+                   ></fusioncharts>
+  
+                  
+                  
+                  </mat-tab> 
+               
+               
+                <mat-tab label="Respondents Counts">
                 
                    
                   <fusioncharts

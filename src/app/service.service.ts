@@ -1192,8 +1192,8 @@ searchBills(data): Observable<any>{
         map(this.extractData));
 
     }
-    feedbacksgraphaverage():Observable<any>{
-      return this.http.get(endpoint + 'api/graphicalview').pipe(
+    feedbacksgraphaverage(data):Observable<any>{
+      return this.http.post(endpoint + 'api/graphicalview/',data).pipe(
         map(this.extractData));
        
 
@@ -1204,11 +1204,25 @@ searchBills(data): Observable<any>{
        
 
     }
-    surgerygraphaverage():Observable<any>{
-      return this.http.get(endpoint + 'api/surgeryaveragefeedbacks').pipe(
+    AverangeFeedbacksDepartment(data):Observable<any>{
+      return this.http.post(endpoint + 'api/AverangeFeedbacksDepartment/',data).pipe(
         map(this.extractData));
        
 
+    }
+    getFeedbackservice():Observable<any>{
+      return this.http.get(endpoint + 'api/averagefeedbackdepartment/').pipe(
+        map(this.extractData));
+       
+
+    }
+    surgerygraphaverage(data):Observable<any>{
+      return this.http.post(endpoint + 'api/AverangeFeedbacksDepartment/',data).pipe(
+        map(this.extractData));
+    }
+    surgeryperiodfilter(data):Observable<any>{
+      return this.http.post(endpoint + 'api/graphicalview/',data).pipe(
+        map(this.extractData));
     }
     outpatientgraphaverage():Observable<any>{
       return this.http.get(endpoint + 'api/outpatientaveragefeedbacks').pipe(
