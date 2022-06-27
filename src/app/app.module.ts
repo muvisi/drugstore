@@ -61,6 +61,7 @@ import { ServiceService } from './service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { DashboardReportComponent } from './views/dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from './views/admin-setups/admin-setups.component';
+import { ViewmaternityComponent } from './viewmaternity/viewmaternity.component';
 // import { MaternityfeedbackComponent } from './views/maternityfeedback/maternityfeedback.component';
 // import { BirthdaymessengesComponent } from './views/birthdaymessenges/birthdaymessenges.component';
 // import { FeedbackGraphsComponent } from './views/feedback-graphs/feedback-graphs.component';
@@ -127,6 +128,7 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+    // ViewmaternityComponent,
     // AdminSetupsComponent,
     // DashboardReportComponent,
     // MaternityfeedbackComponent,

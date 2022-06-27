@@ -93,6 +93,7 @@ import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidte
 import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
+import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -230,6 +231,11 @@ const routes: Routes = [
   {
     path: 'user-account/:id',
     component:UserAccountComponent,
+    canActivate: [AuthGuard]
+  },
+   {
+    path: 'view-maternity-booking',
+    component:ViewmaternityComponent,
     canActivate: [AuthGuard]
   },
   {

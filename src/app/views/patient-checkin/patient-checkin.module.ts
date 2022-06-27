@@ -132,6 +132,7 @@ import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedba
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 import { UtilizationsModal } from '../payments/mpesa-payments/utilizations.modal';
+import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
 
 // import { NgxWatermarkModule } from 'ngx-watermark';
 
@@ -232,7 +233,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BookAppointmentComponent,
     BookMaternityComponent,
     BookVaccinationComponent,
-    BookCovidtestingComponent
+    BookCovidtestingComponent,
+    ViewmaternityComponent
     
 
   ],

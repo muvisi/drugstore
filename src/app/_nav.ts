@@ -52,6 +52,14 @@ export const navItems: NavData[] = [
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
   },
+
+
+
+  {
+    name: 'Maternity',
+    icon: 'fa fa-bed',
+    url: '/dashboard/view-maternity-booking',
+  },
   {
     name: 'Claim Forms',
     url: '/dashboard/InsuranceclaimsForm',
@@ -191,6 +199,12 @@ export const navItemsnursesdocs: NavData[] = [
     name: 'Bookings',
     icon: 'fa fa-calendar-o',
     url: '/dashboard/booking',
+  },
+
+  {
+    name: 'Maternity',
+    icon: 'fa fa-bed',
+    url: '/dashboard/view-maternity-booking',
   },
 
   {
