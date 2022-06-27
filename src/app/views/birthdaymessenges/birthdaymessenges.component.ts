@@ -46,12 +46,12 @@ export class BirthdaymessengesComponent implements OnInit {
       message: ['', Validators.required],
       email: ['', Validators.required],
       company_name:['',Validators.required],
-      designation:['',Validators.required],
+      // designation:['',Validators.required],
       location:['',Validators.required],
       contact:['',Validators.required],
-      file:['',Validators.required,],
-      filename:"image.png",
-      fileSource:['']
+      // file:['',Validators.required,],
+      // filename:"image.png",
+      // fileSource:['']
 
   });
 //   this.registerForm = this.formBuilder.group({

@@ -523,7 +523,7 @@ getbirthdarmessages(): Observable<any> {
     map(this.extractData));
 }
 getsendbirthdarmessages(): Observable<any> {
-  return this.http.get(endpoint + 'api/getdeliveredbirthdarmessages/').pipe(
+  return this.http.get(endpoint + 'api/allsendmessanges/').pipe(
     map(this.extractData));
 }
 mpesaList(): Observable<any> {

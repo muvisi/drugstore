@@ -30,7 +30,7 @@ export class MaternityQrcodeComponent implements OnInit {
 
     let qrcode = new QrCodeWithLogo({
    
-      content: "http://134.209.199.123:8889/#/maternity",
+      content: "https://bookings.aarhospital.com/#/maternity",
       width: 380,
       nodeQrCodeOptions:{
         color:{
