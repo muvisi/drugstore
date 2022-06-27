@@ -47,7 +47,7 @@
 <div class="app-body">
   <app-sidebar [fixed]="true" [display]="'lg'">
    
-    <app-sidebar-nav *ngIf="user.role == 'mwangangi'"   [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized">
+    <app-sidebar-nav *ngIf="user.role == 'admin' || user.role == 'hospital_admin'"   [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized">
 
     </app-sidebar-nav>
 
