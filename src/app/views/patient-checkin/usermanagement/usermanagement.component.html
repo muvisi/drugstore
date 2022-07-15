@@ -205,8 +205,13 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
          <mat-form-field appearance="outline">
              <mat-label>Role</mat-label>
              <mat-select [(ngModel)]="employee.role">
-               <mat-option value="user">User</mat-option>
-               <mat-option value="aaradmin">AAR Admin</mat-option>
+              <mat-option value="hospital_admin">ICT</mat-option>
+               <mat-option value="hospital_cashiers">Cashier</mat-option>
+               <mat-option value="hospital_doctors">Doctor</mat-option> 
+               <mat-option value="hospital_nurses">Maternity Nurses</mat-option> 
+               <mat-option value="customer_service">P-Experience</mat-option>
+                <mat-option value="hospital_management">Management</mat-option> 
+                <mat-option value="hospital_finance">Finance</mat-option> 
                
              </mat-select>
              
@@ -294,13 +299,13 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
          <mat-form-field appearance="outline">
              <mat-label>Role</mat-label>
              <mat-select formControlName="role">
-               <mat-option value="hospital_admin">User</mat-option>
+               <mat-option value="hospital_admin">ICT</mat-option>
                <mat-option value="hospital_cashiers">Cashier</mat-option>
                <mat-option value="hospital_doctors">Doctor</mat-option> 
-               <mat-option value="hospital_nurses">Doctor</mat-option> 
+               <mat-option value="hospital_nurses">Maternity Nurse</mat-option> 
                <mat-option value="customer_service">P-Experience</mat-option>
                 <mat-option value="hospital_management">Management</mat-option> 
-                <mat-option value="hospital_finance">Finance-Claims</mat-option> 
+                <mat-option value="hospital_finance">Finance</mat-option> 
              </mat-select>
            </mat-form-field>
       </div>

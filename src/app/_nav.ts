@@ -98,12 +98,12 @@ export const navItems: NavData[] = [
     icon: 'fa fa-folder-open',
   },
   
-  {
-    name: 'Clients Birthday',
-    url: '/dashboard/birthday-Messanges',
-    icon: 'fas fa-paper-plane',
+  // {
+  //   name: 'Clients Birthday',
+  //   url: '/dashboard/birthday-Messanges',
+  //   icon: 'fas fa-paper-plane',
  
-  },
+  // },
 
   {
     
@@ -310,12 +310,12 @@ export const navItemscustomerservice: NavData[] = [
     icon: 'fa fa-folder-open',
   },
   
-  {
-    name: 'Clients Birthday',
-    url: '/dashboard/birthday-Messanges',
-    icon: 'fas fa-paper-plane',
+  // {
+  //   name: 'Clients Birthday',
+  //   url: '/dashboard/birthday-Messanges',
+  //   icon: 'fas fa-paper-plane',
  
-  },
+  // },
 
   {
     

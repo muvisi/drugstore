@@ -8,7 +8,7 @@
 <div class="animated fadeIn">
 
   <div class="row">
-    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' ||user.role == 'admin' || user.role == 'hospital_admin'"  >
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' ||user.role == 'admin' || user.role == 'hospital_admin' || user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'"  >
       <a routerLink="/dashboard/registration-link">
         <div class="card">
           <div class="card-body">
@@ -28,7 +28,7 @@
       </a>
     </div>
     
-    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' ||user.role == 'admin' ||user.role == 'hospital_nurses'|| user.role == 'hospital_doctors'||user.role == 'hospital_management' || user.role == 'hospital_admin'" >
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' ||user.role == 'admin' ||user.role == 'hospital_nurses'|| user.role == 'hospital_doctors'||user.role == 'hospital_management' || user.role == 'hospital_admin' || user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
       <a routerLink="booking/">
         <div class="card">
           <div class="card-body">
@@ -49,7 +49,7 @@
     </div>
 
 
-    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'admin' ||user.role == 'hospital_nurses'|| user.role == 'hospital_doctors'|| user.role == 'hospital_admin'" >
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'admin' ||user.role == 'hospital_nurses'|| user.role == 'hospital_doctors'|| user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
       <a routerLink="view-maternity-booking/">
         <div class="card">
           <div class="card-body">
@@ -70,7 +70,7 @@
     </div>
 
 
-    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'admin' ||user.role == 'hospital_cashiers' || user.role == 'hospital_finance' || user.role == 'hospital_admin'"  >
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'admin' ||user.role == 'hospital_cashiers' || user.role == 'hospital_finance' || user.role == 'hospital_admin' || user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'"  >
       <a routerLink="InsuranceclaimsForm">
         <div class="card">
           <div class="card-body">
@@ -90,7 +90,7 @@
       </a>
     </div>
   
-    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'hospital_cashiers' || user.role == 'admin' ||user.role == 'hospital_doctors' ||user.role == 'hospital_nurses' ||user.role == 'hospital_doctors' || user.role == 'hospital_admin'" >
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'hospital_cashiers' || user.role == 'admin' ||user.role == 'hospital_doctors' ||user.role == 'hospital_nurses' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
       <a routerLink="calendar">
         <div class="card">
           <div class="card-body">
@@ -111,7 +111,7 @@
     </div>
 
  
-    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'hospital_cashiers'|| user.role == 'customer_service' || user.role == 'admin' || user.role == 'hospital_admin' "  > 
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'hospital_cashiers'|| user.role == 'customer_service' || user.role == 'admin' || user.role == 'hospital_admin'|| user.role == 'hospital_super_admin' "  > 
       <a routerLink="/dashboard/records">
         <div class="card">
           <div class="card-body">
@@ -140,7 +140,7 @@
 
       
      
-      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_admin'" >
+      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
         <a routerLink="feedbacks">
           <div class="card">
             <div class="card-body">
@@ -175,7 +175,7 @@
           </div>
         </a>
       </div> 
-      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_admin'" >
+      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
         <a routerLink="patients-reports">
           <div class="card">
             <div class="card-body">
@@ -196,7 +196,7 @@
 
       
      
-      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin' || user.role == 'hospital_admin'" >
+      <!-- <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin' || user.role == 'hospital_admin'" >
         <a routerLink="birthday-Messanges">
           <div class="card">
             <div class="card-body">
@@ -213,8 +213,8 @@
             </div>
           </div>
         </a>
-      </div>
-      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'hospital_management' || user.role == 'admin' || user.role == 'hospital_admin'" >
+      </div> -->
+      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'hospital_management' || user.role == 'admin' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
         <a routerLink="Feedback-graphs">
           <div class="card">
             <div class="card-body">
@@ -232,7 +232,7 @@
           </div>
         </a>
       </div>
-      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_cashiers' || user.role == 'hospital_doctors' || user.role == 'hospital_nurses' || user.role == 'hospital_admin'" >
+      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_cashiers' || user.role == 'hospital_doctors' || user.role == 'hospital_nurses' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
         <a routerLink="reports">
           <div class="card">
             <div class="card-body">

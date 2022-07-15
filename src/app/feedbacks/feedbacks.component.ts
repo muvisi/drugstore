@@ -56,6 +56,7 @@ export class FeedbacksComponent implements OnInit {
   date_inpatient;
   inpatient_dataSource;
   notregistered_dataSource;
+  dataSourcenotcalled ;
   dataSourcecategories;
   selected;
   dataSourceCall;
@@ -95,6 +96,13 @@ export class FeedbacksComponent implements OnInit {
 
    
     this.getEdpoint();
+    this.service.negativenotcalledpatients().subscribe((res)=>{
+      console.log('notcalled',this.dataSourcenotcalled)
+
+      this.dataSourcenotcalled = new MatTableDataSource((res));
+      this.dataSourcenotcalled.paginator = this.paginator;
+    })
+
    
    
 

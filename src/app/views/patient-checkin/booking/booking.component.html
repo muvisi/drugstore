@@ -89,17 +89,27 @@
                                     <input matInput [(ngModel)]="mobile_booking"  autocomplete="off"    placeholder="Mobile, ID, Name" type="search">
                                   </mat-form-field>
                             </div>
-                            <div class="col-sm-2">
                             
-          
-                          </div>
                           <div class="col-sm-2">
                             <button  (click)="applyFilterBooking()"  class="btn btn-success pull-right">search</button> 
                         </div>
-                        <div class="col-sm-6">
+                        <!-- <div class="row"> -->
+                          <div class="col-sm-4">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Select Clinics</mat-label>
+                                <mat-select name="clinic" [(ngModel)]="clinic_department">
+                                  <!-- <mat-option  value="" (click)="FilterDepartment({name:'All'})">All</mat-option> -->
+                                  <mat-option  *ngFor="let item of clinics"[value]="item.department" (click)="FilterDepartment(item)">{{item.department}}</mat-option>
+                                </mat-select>
+                             
+                              </mat-form-field>
+                         <!-- </div> -->
+                         </div> 
+                          
+                        <div class="col-sm-4">
                           <a routerLink="/dashboard/book-appointment/">  <button  class="btn btn-success pull-right"> <i class="fas fa-plus"></i>Add  Booking</button></a>
                         </div>
-                          
+                        
                           </div>
                         </div>
                       <div class="col-sm-12">
@@ -126,7 +136,10 @@
                                   <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">phone</th>
                                   <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.patient.phone}} </td>
                                 </ng-container>
-                            
+                                <ng-container matColumnDef="clinic" style="font-size: 11px;">
+                                  <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Clinic</th>
+                                  <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.department}} </td>
+                                </ng-container>
                                 <ng-container matColumnDef="action">
                                   <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
                                   <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 

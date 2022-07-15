@@ -27,11 +27,12 @@ export class BookingComponent implements OnInit {
 
 
 
-  BookingColumns: string[] = ['sn','created','First','payment','phone','action']
+  BookingColumns: string[] = ['sn','created','First','payment','phone','clinic','action']
   dataSourceBooking;
   mobile_booking;
-
-
+  dataSourcenotcalled;
+  clinics ;
+  clinic_department;
   RegistrationColumns: string[] = ['sn','created','First','payment','phone','action']
   dataSourceRegistration;
   mobile_registrations;
@@ -45,7 +46,13 @@ export class BookingComponent implements OnInit {
     this.getBookingRecords();
     this.applyFilterRegistrations();
     this.getRegistartionRecords();
-
+     this.service.getclinicsdepartment().subscribe((data)=>{
+      console.log("Departments",data);
+      this.clinics = data
+    
+      // this.dataSourceBooking.paginator = this.paginator;
+    })
+  
     this.service.getcovidVaccinationdata().subscribe((res)=>{
 
       this.dataSourceVaccination = new MatTableDataSource((res));
@@ -141,7 +148,7 @@ export class BookingComponent implements OnInit {
 
   getBookingRecords() {
    
-    this.service.list().subscribe(
+    this.service.list({department:this.clinic_department}).subscribe(
       data => {
         this.dataSourceBooking = new MatTableDataSource(data.booking);
         this.dataSourceBooking.paginator = this.paginator;
@@ -202,6 +209,28 @@ export class BookingComponent implements OnInit {
   rowSelectedViewRegistrations(item){
     this.router.navigate(['/dashboard/booking-details/',item.id])
   }
+
+FilterDepartment(){
+  console.log('selected',this.clinic_department)
+  this.service.list({department:this.clinic_department}).subscribe(
+    data => {
+      this.dataSourceBooking = new MatTableDataSource(data.booking);
+      this.dataSourceBooking.paginator = this.paginator;
+      this.loading = false;
+
+      
+    
+    },
+   
+    err => console.error(err),
+   
+    () => console.log('There is an error')
+  );
+
+
+
+
+}
 
 
 

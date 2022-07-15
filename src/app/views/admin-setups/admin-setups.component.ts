@@ -66,10 +66,10 @@ downloadMaternityfeedback(){
   this.router.navigateByUrl('dashboard')
   this.navCtrl.navigate('dashboard/maternityfeedback-qrcode-download')
 }
-downloadWhatapp(){
-  this.router.navigateByUrl('dashboard')
-  this.navCtrl.navigate('dashboard/whatapp-qrcode-download')
-}
+// downloadWhatapp(){
+//   this.router.navigateByUrl('dashboard')
+//   this.navCtrl.navigate('dashboard/whatapp-qrcode-download')
+// }
 downloadRegister(){
   this.router.navigateByUrl('dashboard')
     this.navCtrl.navigate('dashboard/register-qrcode-download')
