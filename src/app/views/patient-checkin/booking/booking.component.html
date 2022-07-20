@@ -99,7 +99,7 @@
                                 <mat-label>Select Clinics</mat-label>
                                 <mat-select name="clinic" [(ngModel)]="clinic_department">
                                   <!-- <mat-option  value="" (click)="FilterDepartment({name:'All'})">All</mat-option> -->
-                                  <mat-option  *ngFor="let item of clinics"[value]="item.department" (click)="FilterDepartment(item)">{{item.department}}</mat-option>
+                                  <mat-option  *ngFor="let item of clinics"[value]="item.clinics" (click)="FilterDepartment(item)">{{item.department}}</mat-option>
                                 </mat-select>
                              
                               </mat-form-field>

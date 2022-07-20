@@ -98,12 +98,12 @@ export const navItems: NavData[] = [
     icon: 'fa fa-folder-open',
   },
   
-  // {
-  //   name: 'Clients Birthday',
-  //   url: '/dashboard/birthday-Messanges',
-  //   icon: 'fas fa-paper-plane',
+  {
+    name: 'FeedBack-Analysis',
+    url: '/dashboard/feedback-reporting',
+    icon: 'fa fa-comments-o',
  
-  // },
+  },
 
   {
     

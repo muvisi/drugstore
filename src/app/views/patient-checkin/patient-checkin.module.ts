@@ -133,6 +133,7 @@ import { DashboardReportComponent } from '../dashboard-report/dashboard-report.c
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 import { UtilizationsModal } from '../payments/mpesa-payments/utilizations.modal';
 import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
+import { FeedbackreportingComponent } from './feedbackreporting/feedbackreporting.component';
 
 // import { NgxWatermarkModule } from 'ngx-watermark';
 
@@ -234,7 +235,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BookMaternityComponent,
     BookVaccinationComponent,
     BookCovidtestingComponent,
-    ViewmaternityComponent
+    ViewmaternityComponent,
+    FeedbackreportingComponent
     
 
   ],

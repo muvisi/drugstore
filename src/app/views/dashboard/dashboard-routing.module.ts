@@ -94,6 +94,7 @@ import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedba
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
+import { FeedbackreportingComponent } from '../patient-checkin/feedbackreporting/feedbackreporting.component';
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -120,6 +121,10 @@ const routes: Routes = [
   {
     path: 'maternityfeedback-qrcode-download',
     component: MaternityfeedbackComponent,
+  },
+  {
+    path: 'feedback-reporting',
+    component: FeedbackreportingComponent,
   },
   {
     path: 'maternity-qrcode-download',

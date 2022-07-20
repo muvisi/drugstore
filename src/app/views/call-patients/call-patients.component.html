@@ -223,63 +223,38 @@
                            </mat-tab>
                            <mat-tab>
                             <ng-template mat-tab-label>
-                              Call Details
+                              Call Status
                             </ng-template>
                             <br>
                                     <fieldset>
-                                        <legend>Calling Details</legend>
+                                        <legend>Call Status</legend>
                                         <div class="col-sm-12">
                                          
                                             <form>
                                                 <div class="row">
-                                                    <!-- <div class="col-sm-4">
-                                                        <mat-form-field appearance="outline">
-                                                          <mat-label>Status</mat-label>
-                                                            <input matInput placeholder="status" name="name" value="{{dataSourceCall.patient.marital_status}}">
-                                                          </mat-form-field>
-                                                    </div>
-                                              -->
-                                            
-                                          
-                                               <!-- <div class="col-sm-4">
-                                                <mat-form-field  appearance="outline">
-                                                  <mat-label>Brought BY</mat-label>
-                                                    <input matInput placeholder="service" name="phone" value="{{dataSourceCall.patient.brought_in_by}}">
-                                            
-                                                  </mat-form-field>
-                                               </div> -->
+                                                   
                                           
                                                <div class="col-sm-4">
                                                 <mat-form-field appearance="outline">
-                                                  <mat-label>Cashier Called</mat-label>
-                                                    <input matInput placeholder="Type" name="type"  value="{{dataSourceCall.called_by}}">
+                                                  <mat-label>Customer service Personnel</mat-label>
+                                                    <input matInput placeholder="Type" [readonly]="true" name="type"  value="{{dataSourceCall.called_by}}">
                                                   </mat-form-field>
                                             </div>
                                              
                                               <div class="col-sm-4">
                                                 <mat-form-field appearance="outline">
                                                   <mat-label>Date Called</mat-label>
-                                                    <input matInput placeholder="visit type"   name="residence" value="{{dataSourceCall.call_date  | date:'mediumDate'}}">
+                                                    <input matInput placeholder="visit type" [readonly]="true"  name="residence" value="{{dataSourceCall.call_date  | date:'mediumDate'}}">
                                                   </mat-form-field>
                                             </div>
-                                            <!-- <div class="col-sm-4">
-                                              <mat-form-field appearance="outline">
-                                                <mat-label>Occupation</mat-label>
-                                                  <input matInput placeholder="Occupation"   name="occupation" value="{{dataSourceCall.patient.occupation}}">
-                                                </mat-form-field>
-                                          </div> -->
+                                           
                                           <div class="col-sm-4">
                                             <mat-form-field appearance="outline">
-                                              <mat-label>Called/Not Called</mat-label>
-                                                <input matInput placeholder="whether called"   name="residence" value="{{dataSourceCall.is_called}}">
+                                              <mat-label>Call Status</mat-label>
+                                                <input matInput placeholder="whether called" [readonly]="true"  name="residence" value="{{dataSourceCall.is_called}}">
                                               </mat-form-field>
                                         </div>
-                                        <div class="col-sm-4">
-                                          <mat-form-field appearance="outline">
-                                            <mat-label>Nationality </mat-label>
-                                              <input matInput placeholder="nationality"   name="nationality" value="{{dataSourceCall.patient.national_id}}">
-                                            </mat-form-field>
-                                      </div>
+                                       
                                       <div class="col-sm-4">
                                         <mat-form-field appearance="outline">
                                           <mat-label>Write Notes </mat-label>
