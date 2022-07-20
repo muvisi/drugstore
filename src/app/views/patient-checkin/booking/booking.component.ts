@@ -33,7 +33,7 @@ export class BookingComponent implements OnInit {
   dataSourcenotcalled;
   clinics ;
   clinic_department;
-  RegistrationColumns: string[] = ['sn','created','First','payment','phone','action']
+  RegistrationColumns: string[] = ['sn','created','First','payment','phone','clinic','action']
   dataSourceRegistration;
   mobile_registrations;
   user = JSON.parse(sessionStorage.getItem('user'));
@@ -148,7 +148,7 @@ export class BookingComponent implements OnInit {
 
   getBookingRecords() {
    
-    this.service.list({department:this.clinic_department}).subscribe(
+    this.service.list2("").subscribe(
       data => {
         this.dataSourceBooking = new MatTableDataSource(data.booking);
         this.dataSourceBooking.paginator = this.paginator;
@@ -184,7 +184,8 @@ export class BookingComponent implements OnInit {
         console.log(data)
         this.dataSourceRegistration = new MatTableDataSource <[]>(data.booking);
         this.dataSourceRegistration.paginator = this.paginator;
-        this.loading = false;
+        // this.dataSourceRegistration=data.booking
+        // this.loading = false;
 
         
       

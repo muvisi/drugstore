@@ -884,7 +884,7 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'api/covidvaccination/');
   }
   getclinicsdepartment(): Observable<any>{
-    return this.http.get(endpoint + 'api/clinical_department/');
+    return this.http.get(endpoint + 'api/clinicsnames/');
   }
 
 downloadAppointmentreports(urlparams): Observable<any>{
@@ -1575,7 +1575,10 @@ searchScheme(payer, searchTerm): Observable<any> {
   }
 
 list(data):Observable<any>  {
-  return this.http.post(endpoint+'api/bookings/',data);
+  return this.http.post(endpoint+'api/getportalbookings/',data);
+}
+list2(data):Observable<any>{
+  return this.http.post(endpoint+'api/getportalbookings/',data)
 }
 registrations():Observable<any>  {
   return this.http.get(endpoint+'api/registrations/');
