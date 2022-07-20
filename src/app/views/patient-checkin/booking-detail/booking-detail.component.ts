@@ -222,7 +222,6 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   getPatientAppointments(id){
     this.service.getPatientAppointments(id).subscribe(res=>{
       this.dataSource=res;
-      this.ngOnInit()
     },err=>{});
 
 
@@ -260,7 +259,6 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     this.loading=true;
     this.service.getFeedbackLink({"phone":this.customer.phone}).subscribe((res)=>{
       this.toast.success("Successful")
-      this.ngOnInit()
       this.loading=false
     },(err)=>{
       this.toast.warning("Failed")
@@ -337,7 +335,6 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   getClinics(){
     this.service.getAllClinics().subscribe((res)=>{
        this.clinics=res;
-       this.ngOnInit()
    
     },(err)=>{
 
@@ -453,7 +450,6 @@ checkWeekdaysInList(item){
     this.service.rebook(this.dateTimeForm.value).subscribe(res=>{
       if(res.status){
       this.toast.success(res.message)
-      this.ngOnInit()
       this.confirmAppointmentModal.hide();
 
       }else{
@@ -480,7 +476,7 @@ checkWeekdaysInList(item){
       this.service.reschedulebooking(this.dateTimeForm.value).subscribe(res=>{
        console.log(res)
        this.toast.success('Success','Rescheduled the Booking successfully')
-       this.ngOnInit()
+      
   
       },err=>{
         this.toast.error(
