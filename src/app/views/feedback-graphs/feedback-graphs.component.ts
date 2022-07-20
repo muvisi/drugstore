@@ -191,6 +191,8 @@ export class FeedbackGraphsComponent implements OnInit {
       () => console.log('There is an error')
     );
     }
+
+    
  
 getFeedbacksgraphaverage(){
   let data={
