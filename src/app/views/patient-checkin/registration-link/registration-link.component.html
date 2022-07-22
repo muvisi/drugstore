@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
                             
-                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneFeedBack()">Feedback</button>
+                    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "feedbackModal.show()">Feedback</button>
             
             </div>
             <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
@@ -133,5 +133,63 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" bsModal #feedbackModal="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header">
+   <div class="row" style="width:100%;justify-content: center;">
+   <div class="col-sm-3"> <img width="200px" src="./assets/img/avatars/feedback1.jpeg"/></div>
+   <!-- /home/mwangangi/Healthix/FE/admin/src/assets/img/avatars/feedback1.jpeg -->
+ </div>
+   <button type="button" class="close pull-right" aria-label="Close" (click)="feedbackModal.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+ 
+     <form >
+       <div class="form-group">        
+       <label for="message-text" class="col-form-label" style="color: grey; text-align: center;">Please Select the Visit Type</label>          
+       </div>
+   
+   <div class="row">
+     <div class="col-sm-12">
+       <div class="form-group">
+        
+         <!-- <input type="text" class="form-control"  required placeholder="07" value="{{Selected_phone}}"> -->
+       </div> 
+     </div>
+    
+   </div>
+   <!-- <div class="col-sm-12">
+     <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+         <mat-label>Service Type</mat-label>
+         <mat-select  [(ngModel)]="periodfilter">
+           <mat-option value="inpatient">Inpatient</mat-option>
+           <mat-option value="outpatient">OutPatient</mat-option>
+            <mat-option value="maternity">Maternity </mat-option>
+          
+         </mat-select>  
+       </mat-form-field>
+   </div> -->
+   <div mat-dialog-actions style="margin-left: 10px;">
+     <button mat-button  style=" background-color: #18537d; color: white; margin: 20px;" (click)="InpatientFeedback()" >Inpatient</button>
+     <button mat-button  style="  background-color: #222222;color: white; margin: 20px;"(click)="OutpatientFeedback()">Outpatient</button>
+     <button mat-button  style="  background-color: #34b523;color: white; margin: 20px"(click)=" MaternitytFeedback()">Maternity</button>
+
+    
+   </div>
+ 
+    
+     </form>
+
+  
+ </div>
+</div>
+</div>
+</div>
+
 
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

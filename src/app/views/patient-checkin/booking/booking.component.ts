@@ -15,6 +15,7 @@ export class BookingComponent implements OnInit {
   dataSourceMaternity;
   MaternityColumns: string[] = ['sn','created','client','phone','payment','date','time','action']
   maternity_mobile;
+  bookingcount;
 
   TestingColumns: string[] = ['sn','created','date','time','Client','phone','national_id','status','action']
   dataSourceTesting;
@@ -128,6 +129,8 @@ export class BookingComponent implements OnInit {
     this.service.getAppointments().subscribe((res)=>{
       this.loading=false;
       this.dataSourceVaccination = new MatTableDataSource(res);
+      this.bookingcount=this.dataSourceVaccination.length;
+      console.log('fnvfjvfjvfjv',this.bookingcount)
       this.dataSourceVaccination.paginator = this.paginator;
     },(err)=>{
       this.loading=false;
