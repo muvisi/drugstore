@@ -67,6 +67,36 @@
                   
                 
                 </mat-tab> 
+
+                <mat-tab label="Channels">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                        <mat-label>Period</mat-label>
+                        <mat-select  [(ngModel)]="channels_filter.periodic"  (selectionChange)="channelFilterChange()">
+                          <mat-option value="Y">Yearly</mat-option>
+                          <mat-option value="M">Monthly </mat-option>
+                          <mat-option value="W">Weekly </mat-option>
+                          <mat-option value="D">Daily </mat-option>
+                        </mat-select>  
+                      </mat-form-field>
+                  </div>
+                  <div class="col-sm-3" style="padding-top: 15px;">
+                  <ejs-datetimepicker [(ngModel)]="channels_filter.date" (change)="channelFilterChange()"></ejs-datetimepicker>
+                </div>
+              </div>
+
+                  <fusioncharts
+                  width="800"
+                  height="400"
+                  type="Column2D"
+                  dataFormat="JSON"
+                  [dataSource]="channels_data"
+                 ></fusioncharts>
+               
+                  
+                
+                </mat-tab> 
       
                                       
                       </mat-tab-group>

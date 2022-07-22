@@ -63,19 +63,24 @@ export class FeedbackGraphsComponent implements OnInit {
   inpatient_dataSource;
   endpoint;
   selected;
-  feedbackperdepartment;
+  channels_data;
   perioddepart;
   servicegraphdata;
 
 
+  channels_filter={
+    periodic:'Y',
+    date:new Date()
+  };
+
   loading;
   constructor( public service:ServiceService) {
-  this.feedbackperdepartment= {
+  this.channels_data= {
     chart: {
       caption: 'AAR HOSPITAL',
-      subCaption: 'Department Averages',
-      xAxisName: 'Departments',
-      yAxisName: 'Average values',
+      subCaption: 'Feedback Channel Respondents',
+      xAxisName: 'Channels',
+      yAxisName: 'Total Respondents',
       numberSuffix: '',
       theme: 'fusion'
     },
@@ -131,20 +136,16 @@ export class FeedbackGraphsComponent implements OnInit {
     this.getFeedbacksGraph();
   
     this.getFeedbacksgraphaverage();
-    this.getFeedbackperdepartment();
+    this.getFeedbackChannels();
     this.getFeedbackservice();
  
   }
-  periodChangeddepartment(){
-    let data={
-      period:this.perioddepart
-    }
-    console.log('department',data)
-    this.service.AverangeFeedbacksDepartment(data).subscribe(
-      datas => {
+  getFeedbackChannels(){
+  
+    this.service.getChannelData().subscribe(
+      res => {
         
-        this.feedbackperdepartment.data =datas.data
-  console.log(datas)
+        this.channels_data.data =res;
         
       },
      
@@ -155,6 +156,22 @@ export class FeedbackGraphsComponent implements OnInit {
 
 
   }
+
+  channelFilterChange(){
+      
+    this.service.filterChannelData(this.channels_filter).subscribe(
+      res => {
+        
+        this.channels_data.data =res;
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
   periodChanged(){
     console.log('period',this.periodres)
     let data={
@@ -211,25 +228,6 @@ getFeedbacksgraphaverage(){
     () => console.log('There is an error')
   );
   }
-
-
-  getFeedbackperdepartment(){
-    let data={
-      period:this.perioddepart
-    }
-  this.service.AverangeFeedbacksDepartment(data).subscribe(
-    datas => {
-      
-      this.feedbackperdepartment.data =datas.data
-
-      
-    },
-   
-    err => console.error(err),
-   
-    () => console.log('There is an error')
-  );
-}
 
 
  

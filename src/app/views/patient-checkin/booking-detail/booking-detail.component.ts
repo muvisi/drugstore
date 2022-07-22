@@ -53,6 +53,7 @@ export class BookingDetailComponent implements OnInit {
   @ViewChild('calendarModal', { static: false }) calendarModal: ModalDirective;
   @ViewChild('calendarModalTime', { static: false }) calendarModalTime: ModalDirective;
   @ViewChild('ConfirmAppointment', { static: false }) confirmAppointmentModal: ModalDirective;
+  @ViewChild('smslinks', { static: false }) smslinks: ModalDirective;
   
   minDate=new Date();
   formatter = (result: string) => result.toUpperCase();
@@ -79,9 +80,17 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   workHours = { start: '08:00', end: '17:00' };
   clinics: any;
   selected_clinic: any;
-  bookingColumns: string[] = ['sn','date','time','clinic','action']
+  bookingColumns: string[] = ['sn','date','time','clinic','status','action']
   dataSource: any;
-
+  phone_number: any;
+  @ViewChild('paymentModal', { static: false }) private stk;
+  mpesa_paid: boolean;
+  transaction_code: any;
+  payment_amount: any;
+  payer_name: any;
+  payer_phone: any;
+  mpesa_amount: any;
+  feedback_categories: any;
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService,private router:Router) { }
 
   ngOnInit() {
@@ -202,7 +211,6 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       this.clientForm.patchValue(this.patient_info);
       this.paymentForm.patchValue(this.payment_type);
     })
-   
 
     this.service.getInsuranceCompany().subscribe((res)=>{
       console.log("company", res.results[0]);
@@ -243,6 +251,19 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     });
 
   }
+     
+  endSession(){
+    this.loading=true
+    this.service.endSession({id:this.route.snapshot.params.id}).subscribe((res)=>{
+      this.loading=false
+      this.toast.success("Update was Successful")
+      this.ngOnInit()
+    },(error)=>{
+      this.loading=false;
+      this.toast.error("Update Failed");
+    });
+  }
+
 
   updateNextOfKinData(){
     let data=Object.assign(this.nextofKin,{id:this.customer.id})
@@ -332,6 +353,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     this.dateTimeForm.patchValue({clinic_name:item.name,clinic:item.id,id:this.route.snapshot.params.id})
     this.getWorkdays(item.id);
   }
+
   getClinics(){
     this.service.getAllClinics().subscribe((res)=>{
        this.clinics=res;
@@ -462,8 +484,14 @@ checkWeekdaysInList(item){
     })
   }
 
-  Rescheduledatetime(){
+  smsAndMpesaModal(){
 
+    this.service.getFeedbacksCategories().subscribe(res=>{
+      this.feedback_categories=res;
+    },err=>{})
+    this.smslinks.show()
+  }
+  Rescheduledatetime(){
 
     console.log(this.dateTimeForm.value)
     let today=new Date()
@@ -491,6 +519,231 @@ checkWeekdaysInList(item){
    
   }
 
+
+
+
+  submitPhoneMaternity(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'maternity'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+  }
+  showStk(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    var data=this.clientForm.value;
+    this.phone_number=data['phone']
+    this.stk.show()
+  }
+  submitPhoneRegister(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'register'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+  }
+  submitPhoneVacinnation(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'vaccination'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+  }
+  submitPhoneTesting(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'testing'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+  }
+
+
+
+  submitFeedBack(token){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    data.type="feedback";
+    data.token=token;
+    this.loading=true;
+  
+
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.toast.success("Successful")
+      this.loading=false
+    },(err)=>{
+      this.toast.warning("Failed")
+      this.loading=false
+    });
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+  }
+
+
+  mpesaPayment(){
+    var data=this.clientForm.value;
+    var phone=data['phone']
+  this.phone_number=""
+    if (phone.startsWith("07")||phone.startsWith("01")){
+      this.phone_number="254"+phone.slice(1,10);
+    }else if(phone.startsWith("254")){
+      this.phone_number=phone;
+    }
+    else if(phone.startsWith("+254")){
+      this.phone_number=phone.replace("+","");
+  }else{
+    this.toast.warning("Check mobile number")
+    return;
+  }
+  if (Number(this.mpesa_amount)<1){
+    this.toast.warning("Please enter amount")
+  }
+  let post_data={
+    "mobile":this.phone_number,
+    "amount":this.mpesa_amount,
+    "visit_number":this.phone_number
+  }
+
+  
+    
+      this.loading=true;
+      this.service.requestStkPush(post_data).subscribe((res)=>{
+        this.check_paid(this.phone_number,post_data.amount,0);
+      
+    },(err)=>{
+      this.loading=false;
+      this.toast.error("Payment Failed");
+    });  
+        
+      
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+}
+
+sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async check_paid(phone,amount,count){
+  this.sleep(2000);
+  if(count>=100){
+    this.loading=false;
+    this.toast.error("Payment Failed"); 
+    this.mpesa_paid=false;;
+      return;
+  }
+ this.service.mpesaPayment(phone).subscribe((res)=>{
+    
+    for(var i=0;i<res.length;i++){
+      if(amount==res[i].Amount){
+        this.loading=false;
+        this.mpesa_paid=true;
+        this.transaction_code=res[i].MpesaReceiptNumber
+        this.payment_amount=res[i].Amount
+        this.payer_name=res[i].Name
+        this.payer_phone=phone;
+
+        count=11;
+       return;
+      }
+    }
+
+
+     
+    this.check_paid(phone,amount,count+1);
+    
+    },(err)=>{
+      this.mpesa_paid=false;
+      this.loading=false;
+      console.log(err);
+      this.toast.error(err.error.message);       
+    });
+    
+}
 
 
 

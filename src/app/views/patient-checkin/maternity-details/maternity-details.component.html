@@ -29,8 +29,8 @@
 
                         </div>
                             <div class="col-sm-2" style="text-align:right">
-     
-                              <button  (click)="feedbackClicked()"  class="btn btn-success pull-right">Feedback</button> 
+                             <button  (click)="smsModal()"  class="btn btn-success pull-right">Sms Links</button>
+                              <!-- <button  (click)="feedbackClicked()"  class="btn btn-success pull-right">Feedback</button>  -->
 
                             </div>
                           </div>
@@ -1214,5 +1214,78 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="modal fade" bsModal #smslinks="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+   <div class="modal-header">
+     <h5 id="dialog-static-name" class="modal-title pull-left">Confirm Appointment</h5>
+     <button type="button" class="close pull-right" aria-label="Close" (click)="smslinks.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+   </div>
+   <div class="modal-body">    
+    <div class="col-sm-12">
+      <form [formGroup]="clientForm"   #patientConfirm="ngForm">
+        <div class="col-sm-12">
+        <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Enter the phone number</span></h2></div>
+
+    <br>
+            <div class="row" style="justify-content: center;">
+            <div class="col-sm-5">
+            <mat-form-field class="example-full-width"  appearance="outline">
+                <mat-label>Phone number</mat-label>
+                <!-- <input type="text" matInput  formControlName="phone" > -->
+                <input matInput  formControlName="phone"  placeholder="Enter phone" >
+            </mat-form-field>
+            </div>
+        </div>
+        
+
+        <!-- <mat-error *ngIf="fs.first_time.errors?.required">select yes or no</mat-error> -->
+    </div> 
+    <div class="row">
+
+    <div  *ngIf="customer.gender == 'Female'"  class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+    
+            <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneMaternity()">Maternity</button>
+    
+    </div>
+    <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex" >
+    
+        <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneRegister()">Register</button>
+
+</div>
+<div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+    
+    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneVacinnation()">Covid Vaccination</button>
+
+</div>
+<div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+    
+<button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneTesting()">Covid Testing</button>
+
+</div>
+<div class="col-sm-4"  *ngFor="let item of feedback_categories " style="margin-top: 20px;justify-content: center;display:flex">
+    
+<button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitFeedBack(item.token)">{{ item.name  }} Feedback</button>
+
+</div>
+
+
+    </div>
+        </form>
+       
+      <button class="btn btn-danger btn-sm" style="margin-top: 10px;" (click)="smslinks.hide()" > close</button>
+    </div>
+    
+   </div>
+  </div>
+  </div>
+  </div>
+
+
 
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +7,7 @@ import dateFormat, { masks } from "dateformat";
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-maternity-details',
@@ -50,7 +51,7 @@ export class MaternityDetailsComponent implements OnInit {
   show_insurance;
   loading: boolean;
   Columns: string[] = ['sn','date','phone','name','transaction_code','amount']
-
+  @ViewChild('smslinks', { static: false }) smslinks: ModalDirective;
   formatter = (result: string) => result.toUpperCase();
 search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
   text$.pipe(
@@ -68,6 +69,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   payer_name: any;
   transaction_date: any;
   payer_phone: any;
+  feedback_categories: any;
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
 
   ngOnInit() {
@@ -415,5 +417,122 @@ async check_paid(phone,amount,count){
 
     })
   }
+
+
+
+
+
+  submitPhoneMaternity(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'maternity'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+  }
+  smsModal(){
+    this.service.getFeedbacksCategories().subscribe(res=>{
+      this.feedback_categories=res;
+    },err=>{})
+    this.smslinks.show()
+  }
+  submitPhoneVacinnation(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'vaccination'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+  }
+  submitPhoneTesting(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'testing'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+  }
+
+
+
+  submitFeedBack(token){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    data.type="feedback";
+    data.token=token;
+    this.loading=true;
+  
+
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.toast.success("Successful")
+      this.loading=false
+    },(err)=>{
+      this.toast.warning("Failed")
+      this.loading=false
+    });
+
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+  }
+
+
+
 
 }

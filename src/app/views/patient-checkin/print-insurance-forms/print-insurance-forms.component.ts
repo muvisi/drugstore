@@ -25,7 +25,6 @@ export class PrintInsuranceFormsComponent implements OnInit {
   phonenumber;
   Claims_DATA;
   Columns: string[] = ['sn','visit_no','phone','name','insurancecompany','member_sign','doctor_sign','print']
-  
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
   doctors=[];
   doctors_search
@@ -69,15 +68,27 @@ export class PrintInsuranceFormsComponent implements OnInit {
     )
   }
   getPatientData(){
-    this.loading=true;
+    // this.loading=true;
+    try{
+      if(localStorage.getItem('claims_form_data')!=null){
+       this.Claims_DATA = new MatTableDataSource(JSON.parse(localStorage.getItem('claims_form_data')));
+        this.Claims_DATA.paginator = this.paginator;
+      }else{
+        this.loading=true;
+      }
+    }catch(err){}
+
+
     this.service.getPatientInfo().subscribe(
       
         data => {
           this.loading=false;
-          this.Claims_DATA = new MatTableDataSource <[]>(data);
+          this.Claims_DATA = new MatTableDataSource <[]>(data.results);
           
           this.Claims_DATA.paginator = this.paginator;
-        
+          try{
+            localStorage.setItem('claims_form_data',JSON.stringify(data.results))
+          }catch(error){}
          
           
      
@@ -88,7 +99,15 @@ export class PrintInsuranceFormsComponent implements OnInit {
 
 
     getTodays_data(){
-      this.loading=true;
+      // this.loading=true;
+      try{
+        if(localStorage.getItem('todays_claims_form_data')!=null){
+         this.todays_DATA = new MatTableDataSource(JSON.parse(localStorage.getItem('todays_claims_form_data')));
+          this.todays_DATA.paginator = this.paginator;
+        }
+      }catch(err){}
+
+
       this.service.getTodaysInsuranceDetails().subscribe(
         
           data => {
@@ -97,7 +116,9 @@ export class PrintInsuranceFormsComponent implements OnInit {
             
             this.todays_DATA.paginator = this.paginator;
           
-           
+            try{
+              localStorage.setItem('todays_claims_form_data',JSON.stringify(data))
+            }catch(error){}
             
        
       },(err)=>{

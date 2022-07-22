@@ -8,9 +8,9 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 // export const endpoint='http://localhost:8000/';
-// export const endpoint='http://localhost:8888/';
+export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
-export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
@@ -268,6 +268,10 @@ export class ServiceService {
     return this.http.post(endpoint + 'triage/get_triage/',data).pipe(
       map(this.extractData));
   }
+  getFeedbacksCategories(): Observable<any> {
+    return this.http.get(endpoint+'api/feedback-categories/').pipe(
+      map(this.extractData));
+  }
 
   getRegistrationLink(data): Observable<any> {
     return this.http.post(endpoint + 'api/registration-link/',data).pipe(
@@ -298,7 +302,7 @@ export class ServiceService {
       map(this.extractData));
   }
   getPatientInfo(): Observable<any> {
-    return this.http.get(endpoint + 'api/insurance_details/').pipe(
+    return this.http.get(endpoint + 'api/insurance_details/?limit=100').pipe(
       map(this.extractData));
   }
   getTodaysInsuranceDetails(): Observable<any> {
@@ -394,6 +398,7 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/appointment/'+id+'/').pipe(
       map(this.extractData));
   }
+
   getTestingAppointment(id): Observable<any> {
     return this.http.get(endpoint + 'api/covid_testing/'+id+'/').pipe(
       map(this.extractData));
@@ -1140,6 +1145,16 @@ searchBills(data): Observable<any>{
       return this.http.get(endpoint + 'api/automatedfedbackcategories/').pipe(
         map(this.extractData));
       }
+      getChannelData(): Observable<any> {
+        return this.http.get(endpoint + 'api/feedback-channels/').pipe(
+          map(this.extractData));
+        }
+
+
+    filterChannelData(data): Observable<any> {
+          return this.http.get(endpoint + 'api/feedback-channels-filter/?p='+data.periodic+'&d='+data.date).pipe(
+            map(this.extractData));
+    }
     feedbackscallpatient(id): Observable<any> {
       return this.http.get(endpoint + 'api/feedbacks/'+id).pipe(
         map(this.extractData));
@@ -1180,6 +1195,11 @@ searchBills(data): Observable<any>{
     }
     Bookingsvsfeedbackgraph():Observable<any>{
       return this.http.get(endpoint + 'api/averagefeedbackpiechart').pipe(
+        map(this.extractData));
+
+    }
+    endSession(data):Observable<any>{
+      return this.http.post(endpoint + 'api/end_session_booking/',data).pipe(
         map(this.extractData));
 
     }

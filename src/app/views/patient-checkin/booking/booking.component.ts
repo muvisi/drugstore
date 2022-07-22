@@ -61,14 +61,22 @@ export class BookingComponent implements OnInit {
   }
 
   getMaternitybooking() {
-    this.loading=true;
-   
+    // this.loading=true;
+    try{
+      if(localStorage.getItem('maternity_booking')!=null){
+       this.dataSourceMaternity = new MatTableDataSource(JSON.parse(localStorage.getItem('maternity_booking')));
+        this.dataSourceMaternity.paginator = this.paginator;
+      }
+    }catch(err){}
     this.service.getMaternityBookingList().subscribe(
       data => {
         console.log("maternity",data)
         this.dataSourceMaternity = new MatTableDataSource(data);
         this.dataSourceMaternity.paginator = this.paginator;
-        this.loading = false;
+        // this.loading = false;
+        try{
+          localStorage.setItem('maternity_booking',JSON.stringify(data))
+        }catch(error){}
  
 
         
@@ -102,11 +110,23 @@ export class BookingComponent implements OnInit {
 
   getTestingRecords(){
     // this.loading=true;
+    try{
+      if(localStorage.getItem('covid_test_booking')!=null){
+      this.dataSourceTesting = new MatTableDataSource(JSON.parse(localStorage.getItem('covid_test_booking')));
+       this.dataSourceTesting.paginator = this.paginator;
+      }
+   }catch(err){}
+
+
     this.service.getAlltesting().subscribe((res)=>{
       this.loading=false;
  
       this.dataSourceTesting = new MatTableDataSource(res);
       this.dataSourceTesting.paginator = this.paginator;
+      try{
+        localStorage.setItem('covid_test_booking',JSON.stringify(res))
+      }catch(error){}
+
     })
   }
 
@@ -124,13 +144,25 @@ export class BookingComponent implements OnInit {
 
 
   getVaccinationRecords(){
-    this.loading=true;
+    // this.loading=true;
+    try{
+      if(localStorage.getItem('covid_vaccination_booking')!=null){
+      this.dataSourceVaccination = new MatTableDataSource(JSON.parse(localStorage.getItem('covid_vaccination_booking')));
+       this.dataSourceVaccination.paginator = this.paginator;
+      }
+   }catch(err){}
+
     this.service.getAppointments().subscribe((res)=>{
-      this.loading=false;
+      // this.loading=false;
       this.dataSourceVaccination = new MatTableDataSource(res);
       this.dataSourceVaccination.paginator = this.paginator;
+
+      try{
+        localStorage.setItem('covid_vaccination_booking',JSON.stringify(res))
+      }catch(error){} 
+
     },(err)=>{
-      this.loading=false;
+      // this.loading=false;
     })
   }
   applyFilterVaccination(filterValue: string) {
@@ -147,13 +179,22 @@ export class BookingComponent implements OnInit {
 
 
   getBookingRecords() {
-   
+    try{
+      if(localStorage.getItem('appointment_booking')!=null){
+      this.dataSourceBooking = new MatTableDataSource(JSON.parse(localStorage.getItem('appointment_booking')));
+       this.dataSourceBooking.paginator = this.paginator;
+      }
+   }catch(err){}
+
     this.service.list({department:this.clinic_department}).subscribe(
       data => {
         this.dataSourceBooking = new MatTableDataSource(data.booking);
         this.dataSourceBooking.paginator = this.paginator;
-        this.loading = false;
+        // this.loading = false;
 
+        try{
+          localStorage.setItem('appointment_booking',JSON.stringify(data.booking))
+        }catch(error){} 
         
       
       },
@@ -178,7 +219,13 @@ export class BookingComponent implements OnInit {
   }
 
   getRegistartionRecords() {
-   
+    try{
+      if(localStorage.getItem('registrations')!=null){
+      this.dataSourceRegistration = new MatTableDataSource(JSON.parse(localStorage.getItem('registrations')));
+       this.dataSourceRegistration.paginator = this.paginator;
+      }
+   }catch(err){}
+
     this.service.registrations().subscribe(
       data => {
         console.log(data)
@@ -187,7 +234,11 @@ export class BookingComponent implements OnInit {
         this.loading = false;
 
         
-      
+        try{
+          localStorage.setItem('registrations',JSON.stringify(data.booking))
+        }catch(error){} 
+
+
       },
      
       err => console.error(err),

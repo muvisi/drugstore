@@ -26,8 +26,13 @@
                             <div class="col-sm-7" style="text-align:right">
                               <div class="row">
                                 
-                                  <div class="col-sm-12" ><button  (click)="feedbackClicked()"  class="btn btn-success pull-right">Feedback</button></div> 
-                                  <div class="col-sm-12" style="margin-top:10px;"><button  (click)="createAppointment()" class="btn btn-success pull-right"> <i class="fas fa-plus"></i>Create Appointment</button></div>
+                                  <div class="col-sm-4" > <button  (click)="smsAndMpesaModal()"  class="btn btn-success pull-right">Sms Links And Mpesa push</button></div>  
+                                 
+                                  <div class="col-sm-4"><button  (click)="createAppointment()" class="btn btn-success pull-right"> <i class="fas fa-plus"></i>Create Appointment</button></div>
+                          </div>
+                                <div class="row" style="margin-top: 10px;">
+                                
+                                  <div class="col-sm-12" > <button  (click)="endSession()"  class="btn btn-success pull-right">Ended</button></div>
                           </div>
                             </div>
                           </div>
@@ -502,7 +507,13 @@
                                                 <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Clinic</th>
                                                 <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.clinic}} </td>
                                               </ng-container>
-                                          
+                                              <ng-container matColumnDef="status" style="font-size: 11px;">
+                                                <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Status</th>
+                                                <td mat-cell *matCellDef="let element" style="font-size: 11px;">
+                                                  <span class="badge badge-success" *ngIf="element.processing_status=='Completed'">Completed</span>
+                                                  <span class="badge badge-info"  *ngIf="element.processing_status=='Pending'">Pending</span>
+                                                  <span class="badge badge-danger" *ngIf="element.processing_status=='No show'">No show</span> </td>
+                                              </ng-container>
                                               <ng-container matColumnDef="action">
                                                 <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
                                                 <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
@@ -683,4 +694,137 @@
     </div>
     </div>
 
+    <div class="modal fade" bsModal #smslinks="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+      <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div class="modal-header">
+         <h5 id="dialog-static-name" class="modal-title pull-left">Confirm Appointment</h5>
+         <button type="button" class="close pull-right" aria-label="Close" (click)="smslinks.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+       </div>
+       <div class="modal-body">    
+        <div class="col-sm-12">
+          <form [formGroup]="clientForm"   #patientConfirm="ngForm">
+            <div class="col-sm-12">
+            <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Enter the phone number</span></h2></div>
+
+        <br>
+                <div class="row" style="justify-content: center;">
+                <div class="col-sm-5">
+                <mat-form-field class="example-full-width"  appearance="outline">
+                    <mat-label>Phone number</mat-label>
+                    <!-- <input type="text" matInput  formControlName="phone" > -->
+                    <input matInput  formControlName="phone"  placeholder="Enter phone" >
+                </mat-form-field>
+                </div>
+            </div>
+            
+
+            <!-- <mat-error *ngIf="fs.first_time.errors?.required">select yes or no</mat-error> -->
+        </div> 
+        <div class="row">
+
+        <div  *ngIf="customer.gender == 'Female'"  class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+        
+                <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneMaternity()">Maternity</button>
+        
+        </div>
+        <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex" >
+        
+            <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneRegister()">Register</button>
+    
+    </div>
+    <div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+        
+        <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneVacinnation()">Covid Vaccination</button>
+
+</div>
+<div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+        
+    <button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitPhoneTesting()">Covid Testing</button>
+
+</div>
+<div class="col-sm-4"  *ngFor="let item of feedback_categories " style="margin-top: 20px;justify-content: center;display:flex">
+        
+<button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "submitFeedBack(item.token)">{{ item.name  }} Feedback</button>
+
+</div>
+
+<div class="col-sm-4" style="margin-top: 20px;justify-content: center;display:flex">
+        
+<button    style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px;color: white; width:100%" class="btn btn-success"  (click)= "showStk()">STK Payment</button>
+
+</div>
+        </div>
+            </form>
+           
+          <button class="btn btn-danger btn-sm" style="margin-top: 10px;" (click)="smslinks.hide()" > close</button>
+        </div>
+        
+       </div>
+      </div>
+      </div>
+      </div>
+
+
+
+      <div class="modal fade" bsModal #paymentModal="bs-modal" [config]="{backdrop: 'static'}"
+      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+   <div class="modal-dialog modal-md">
+     <div class="modal-content">
+       <div class="modal-header">
+         <div class="row" style="width:100%;justify-content: center;">
+         <div class="col-sm-3"> <img src="./assets/img/avatars/mpesa.png"/></div>
+       </div>
+         <button type="button" class="close pull-right" aria-label="Close" (click)="paymentModal.hide()">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+       
+           <form>
+             <div class="form-group">        
+             <label for="message-text" class="col-form-label"> Fill the following detail to make Payment.</label>          
+             </div>
+         
+         <div class="row">
+           <div class="col-sm-6">
+             <div class="form-group">
+              
+               <input type="text" class="form-control"  placeholder="PAYER PHONE NUMBER" name="number" [(ngModel)]="phone_number">
+             </div> 
+           </div>
+             <div class="col-sm-6">
+               <div class="form-group">               
+                 <input type="text" class="form-control" placeholder="PAYER FIRST NAME" name="name" [(ngModel)]="payer_name">
+               </div> 
+             </div>
+         </div>
+         <div class="row">
+           <div class="col-sm-6">
+             <div class="form-group">
+               <input type="number" class="form-control" placeholder="AMOUNT" name="mpesa_amount" [(ngModel)]="mpesa_amount"> 
+             </div> 
+           </div>
+             <div class="col-sm-6">
+               <div class="form-group">               
+                 <input type="text" class="form-control" placeholder="TRANSACTION CODE" name="transaction_code" [(ngModel)]="transaction_code"> 
+               </div> 
+             </div>
+         </div>
+          
+           </form>
+      
+         <div mat-dialog-actions>
+           <button mat-button  style="background-color: #e33434; color: white;" (click)="paymentModal.hide()" >Close</button>
+           <button mat-button  style="background-color: #222222;color: white;"(click)="mpesaPayment()">Push Stk</button>
+ 
+           <!-- [mat-dialog-close]="data.phone" cdkFocusInitial -->
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
