@@ -832,7 +832,7 @@
 
 
 
-      <div class="modal fade" bsModal #paymentModal="bs-modal" [config]="{backdrop: 'static'}"
+      <div class="modal fade" bsModal #mpesaModal="bs-modal" [config]="{backdrop: 'static'}"
       tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
    <div class="modal-dialog modal-md">
      <div class="modal-content">
@@ -840,7 +840,7 @@
          <div class="row" style="width:100%;justify-content: center;">
          <div class="col-sm-3"> <img src="./assets/img/avatars/mpesa.png"/></div>
        </div>
-         <button type="button" class="close pull-right" aria-label="Close" (click)="paymentModal.hide()">
+         <button type="button" class="close pull-right" aria-label="Close" (click)="mpesaModal.hide()">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
@@ -880,7 +880,7 @@
            </form>
       
          <div mat-dialog-actions>
-           <button mat-button  style="background-color: #e33434; color: white;" (click)="paymentModal.hide()" >Close</button>
+           <button mat-button  style="background-color: #e33434; color: white;" (click)="mpesaModal.hide()" >Close</button>
            <button mat-button  style="background-color: #222222;color: white;"(click)="mpesaPayment()">Push Stk</button>
  
            <!-- [mat-dialog-close]="data.phone" cdkFocusInitial -->

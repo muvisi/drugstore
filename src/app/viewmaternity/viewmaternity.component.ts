@@ -29,7 +29,15 @@ export class ViewmaternityComponent implements OnInit {
 
 
   getMaternitybooking() {
-    this.loading=true;
+    try{
+      if(localStorage.getItem('maternity_booking2')!=null){
+      this.dataSourceMaternity = new MatTableDataSource(JSON.parse(localStorage.getItem('maternity_booking2')));
+       this.dataSourceMaternity.paginator = this.paginator;
+      }else{
+        this.loading=true;
+      }
+   }catch(err){}
+    
    
     this.service.getMaternityBookingList().subscribe(
       data => {
@@ -37,7 +45,9 @@ export class ViewmaternityComponent implements OnInit {
         this.dataSourceMaternity = new MatTableDataSource(data);
         this.dataSourceMaternity.paginator = this.paginator;
         this.loading = false;
- 
+        try{
+          localStorage.setItem('maternity_booking2',JSON.stringify(data))
+        }catch(error){} 
 
         
       

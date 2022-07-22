@@ -454,6 +454,34 @@ async check_paid(phone,amount,count){
     },err=>{})
     this.smslinks.show()
   }
+
+
+  submitPhoneRegister(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    this.loading=true;
+    
+    data=Object.assign(data,{type:'register'});
+    this.service.getRegistrationLink(data).subscribe((res)=>{
+      this.loading=false
+      if(res.status){
+        this.toast.success("Successfully sent");
+      }else{
+        this.toast.warning("System error")
+      }
+    },(err)=>{
+      this.loading=false;
+      this.toast.warning("Network error")
+    })
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+  }
+  
   submitPhoneVacinnation(){
     var data=this.clientForm.value;
     if(data.phone=="" || data.phone==null){

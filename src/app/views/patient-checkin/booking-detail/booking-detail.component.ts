@@ -86,7 +86,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   bookingColumns: string[] = ['sn','date','time','clinic','status','action']
   dataSource: any;
   phone_number: any;
-  @ViewChild('paymentModal', { static: false }) private stk;
+  @ViewChild('mpesaModal', { static: false }) private stk;
   mpesa_paid: boolean;
   transaction_code: any;
   payment_amount: any;
