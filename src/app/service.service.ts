@@ -258,8 +258,8 @@ notcalledpatients(){
       map(this.extractData));
     
   }
-  getPatientAppointments(data) {
-    return this.http.post(endpoint + 'api/appointments_patient/',data).pipe(
+  getPatientAppointments(id) {
+    return this.http.get(endpoint + 'api/appointments_patient/'+id+'/').pipe(
       map(this.extractData));
   }
   getClinicAppointments(id) {
