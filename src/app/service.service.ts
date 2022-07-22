@@ -8,9 +8,9 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 // export const endpoint='http://localhost:8000/';
-export const endpoint='http://localhost:8888/';
+// export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
-// export const endpoint = 'https://booking.healthixsolutions.com/';
+export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
@@ -127,6 +127,26 @@ export class ServiceService {
     return this.http.get(endpoint + 'api/efall/').pipe(
       map(this.extractData));
   }
+  getIssuesData() {
+    return this.http.get(endpoint + 'api/numberofissues/').pipe(
+      map(this.extractData));
+  }
+  calledpatients(){
+     return this.http.get(endpoint + 'api/allcalledpatients/').pipe(
+    map(this.extractData));
+}
+notcalledpatients(){
+  return this.http.get(endpoint + 'api/allnotcalledpatients/').pipe(
+ map(this.extractData));
+}
+  getComlimentData() {
+    return this.http.get(endpoint + 'api/numberofcompliments/').pipe(
+      map(this.extractData));
+  }
+  getSiglePatientData() {
+    return this.http.get(endpoint + 'api/singlefeedbackforpatient/').pipe(
+      map(this.extractData));
+  }
   postFootWalkData(data) {
     return this.http.post(endpoint + 'api/efall/',data).pipe(
       map(this.extractData));
@@ -238,8 +258,8 @@ export class ServiceService {
       map(this.extractData));
     
   }
-  getPatientAppointments(id) {
-    return this.http.get(endpoint + 'api/appointments_patient/'+id+'/').pipe(
+  getPatientAppointments(data) {
+    return this.http.post(endpoint + 'api/appointments_patient/',data).pipe(
       map(this.extractData));
   }
   getClinicAppointments(id) {
@@ -869,7 +889,7 @@ searchProcedure(data): Observable<any> {
     return this.http.get(endpoint + 'api/covidvaccination/');
   }
   getclinicsdepartment(): Observable<any>{
-    return this.http.get(endpoint + 'api/clinical_department/');
+    return this.http.get(endpoint + 'api/clinicsnames/');
   }
 
 downloadAppointmentreports(urlparams): Observable<any>{
@@ -995,6 +1015,10 @@ searchBills(data): Observable<any>{
   }
   reschedulebooking(data): Observable<any> {
     return this.http.post(endpoint + 'api/reschedulebooking/',data).pipe(
+      map(this.extractData));
+  }
+  getInpatient(data): Observable<any> {
+    return this.http.post(endpoint + 'api/sendsmslinks/',data).pipe(
       map(this.extractData));
   }
   SearchPatientRecords(data): Observable<any> {
@@ -1575,7 +1599,10 @@ searchScheme(payer, searchTerm): Observable<any> {
   }
 
 list(data):Observable<any>  {
-  return this.http.post(endpoint+'api/bookings/',data);
+  return this.http.post(endpoint+'api/getportalbookings/',data);
+}
+list2(data):Observable<any>{
+  return this.http.post(endpoint+'api/getportalbookings/',data)
 }
 registrations():Observable<any>  {
   return this.http.get(endpoint+'api/registrations/');

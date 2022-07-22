@@ -34,7 +34,8 @@ export class BookingDetailComponent implements OnInit {
     name:"",
     phone:"",
     residence:"",
-    relationship:""
+    relationship:"",
+    alternative:""
   
   }
   customer= {
@@ -54,6 +55,7 @@ export class BookingDetailComponent implements OnInit {
   @ViewChild('calendarModalTime', { static: false }) calendarModalTime: ModalDirective;
   @ViewChild('ConfirmAppointment', { static: false }) confirmAppointmentModal: ModalDirective;
   @ViewChild('smslinks', { static: false }) smslinks: ModalDirective;
+  @ViewChild('paymentModal', { static: false }) paymentModal: ModalDirective;
   
   minDate=new Date();
   formatter = (result: string) => result.toUpperCase();
@@ -70,6 +72,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   eventSettings;
   offdays=[];
   weekdays=[];
+  Selected_phone;
   workdays=[];
   selected_clinic_id: any;
   selected_appointment_date;
@@ -164,7 +167,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
           
           
       }
-      this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:''}
+      this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:'',alternative:''}
       this.speciality=res.specialist!= null ? res.specialist.split(",") : [];
       this.symptoms=res.symptoms !=null ? res.symptoms.split(",") : [];
       this.department=res.department;
@@ -174,6 +177,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       
 
       console.log("pateint",this.patient_info);
+      console.log("nextofkin",this.nextofKin);
       
      
 
@@ -484,7 +488,48 @@ checkWeekdaysInList(item){
     })
   }
 
-  smsAndMpesaModal(){
+
+  InpatientFeedback(){
+   this.Selected_phone=this.patient_info.phone
+    console.log("pateint",this.patient_info.phone);
+    console.log("type","INPATIENT")
+    let data={
+      phone:this.Selected_phone,
+      type:"INPATIENT"
+    }
+    this.service.getInpatient(data).subscribe(res=>{
+      this.toast.success('Success','Send successfully')    },err=>{});
+      this.paymentModal.hide()
+
+  }
+  OutpatientFeedback(){
+    this.Selected_phone=this.patient_info.phone
+     console.log("pateint",this.patient_info.phone);
+     console.log("type","OUTPATIENT")
+     let data={
+       phone:this.Selected_phone,
+       type:"OUTPATIENT"
+     }
+     this.service.getInpatient(data).subscribe(res=>{
+       this.toast.success('Success','Send successfully')    },err=>{});
+       this.paymentModal.hide()
+ 
+   }
+   MaternitytFeedback(){
+    this.Selected_phone=this.patient_info.phone
+     console.log("pateint",this.patient_info.phone);
+     console.log("type","maternity")
+     let data={
+       phone:this.Selected_phone,
+       type:"MATERNITY"
+     }
+     this.service.getInpatient(data).subscribe(res=>{
+       this.toast.success('Success','Send successfully')    },err=>{});
+       this.paymentModal.hide()
+ 
+   }
+
+   smsAndMpesaModal(){
 
     this.service.getFeedbacksCategories().subscribe(res=>{
       this.feedback_categories=res;

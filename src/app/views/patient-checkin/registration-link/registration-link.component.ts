@@ -15,11 +15,12 @@ import { ServiceService } from '../../../service.service';
 export class RegistrationLinkComponent implements OnInit {
   patientMobileForm: FormGroup;
   mpesa_amount;
+  Selected_phone;
   loading;
 
   already_booked_data=[];
   @ViewChild('paymentModal', { static: false }) private stk;
-
+  @ViewChild('feedbackModal', { static: false }) private payment;
     formatter = (item: {phone:'',type:string,date:string,id:string}) =>
     { 
       return item.phone+" "+item.type+" "+item.date;
@@ -49,32 +50,32 @@ export class RegistrationLinkComponent implements OnInit {
     this.filterBooking()
   }
 
-  submitPhoneMaternity(){
-    var data=this.patientMobileForm.value;
-    if(data.phone=="" || data.phone==null){
-      this.toast.warning("Enter phone number");
-      return ;
-    }
-    this.loading=true;
+  // submitPhoneMaternity(){
+  //   var data=this.patientMobileForm.value;
+  //   if(data.phone=="" || data.phone==null){
+  //     this.toast.warning("Enter phone number");
+  //     return ;
+  //   }
+  //   this.loading=true;
     
-    data=Object.assign(data,{type:'maternity'});
-    this.service.getRegistrationLink(data).subscribe((res)=>{
-      this.loading=false
-      if(res.status){
-        this.toast.success("Successfully sent");
-      }else{
-        this.toast.warning("System error")
-      }
-    },(err)=>{
-      this.loading=false;
-      this.toast.warning("Network error")
-    })
+  //   data=Object.assign(data,{type:'maternity'});
+  //   this.service.getRegistrationLink(data).subscribe((res)=>{
+  //     this.loading=false
+  //     if(res.status){
+  //       this.toast.success("Successfully sent");
+  //     }else{
+  //       this.toast.warning("System error")
+  //     }
+  //   },(err)=>{
+  //     this.loading=false;
+  //     this.toast.warning("Network error")
+  //   })
 
-    this.service.postFootWalkData(data).subscribe(res=>{
+  //   this.service.postFootWalkData(data).subscribe(res=>{
 
-    },err=>{})
+  //   },err=>{})
 
-  }
+  // }
   showStk(){
     var data=this.patientMobileForm.value;
     if(data.phone=="" || data.phone==null){
@@ -85,81 +86,81 @@ export class RegistrationLinkComponent implements OnInit {
     this.phone_number=data['phone']
     this.stk.show()
   }
-  submitPhoneRegister(){
-    var data=this.patientMobileForm.value;
-    if(data.phone=="" || data.phone==null){
-      this.toast.warning("Enter phone number");
-      return ;
-    }
-    this.loading=true;
+  // submitPhoneRegister(){
+  //   var data=this.patientMobileForm.value;
+  //   if(data.phone=="" || data.phone==null){
+  //     this.toast.warning("Enter phone number");
+  //     return ;
+  //   }
+  //   this.loading=true;
     
-    data=Object.assign(data,{type:'register'});
-    this.service.getRegistrationLink(data).subscribe((res)=>{
-      this.loading=false
-      if(res.status){
-        this.toast.success("Successfully sent");
-      }else{
-        this.toast.warning("System error")
-      }
-    },(err)=>{
-      this.loading=false;
-      this.toast.warning("Network error")
-    })
-    this.service.postFootWalkData(data).subscribe(res=>{
+  //   data=Object.assign(data,{type:'register'});
+  //   this.service.getRegistrationLink(data).subscribe((res)=>{
+  //     this.loading=false
+  //     if(res.status){
+  //       this.toast.success("Successfully sent");
+  //     }else{
+  //       this.toast.warning("System error")
+  //     }
+  //   },(err)=>{
+  //     this.loading=false;
+  //     this.toast.warning("Network error")
+  //   })
+  //   this.service.postFootWalkData(data).subscribe(res=>{
 
-    },err=>{})
+  //   },err=>{})
 
-  }
-  submitPhoneVacinnation(){
-    var data=this.patientMobileForm.value;
-    if(data.phone=="" || data.phone==null){
-      this.toast.warning("Enter phone number");
-      return ;
-    }
-    this.loading=true;
+  // }
+  // submitPhoneVacinnation(){
+  //   var data=this.patientMobileForm.value;
+  //   if(data.phone=="" || data.phone==null){
+  //     this.toast.warning("Enter phone number");
+  //     return ;
+  //   }
+  //   this.loading=true;
     
-    data=Object.assign(data,{type:'vaccination'});
-    this.service.getRegistrationLink(data).subscribe((res)=>{
-      this.loading=false
-      if(res.status){
-        this.toast.success("Successfully sent");
-      }else{
-        this.toast.warning("System error")
-      }
-    },(err)=>{
-      this.loading=false;
-      this.toast.warning("Network error")
-    })
+  //   data=Object.assign(data,{type:'vaccination'});
+  //   this.service.getRegistrationLink(data).subscribe((res)=>{
+  //     this.loading=false
+  //     if(res.status){
+  //       this.toast.success("Successfully sent");
+  //     }else{
+  //       this.toast.warning("System error")
+  //     }
+  //   },(err)=>{
+  //     this.loading=false;
+  //     this.toast.warning("Network error")
+  //   })
 
-    this.service.postFootWalkData(data).subscribe(res=>{
+  //   this.service.postFootWalkData(data).subscribe(res=>{
 
-    },err=>{})
-  }
-  submitPhoneTesting(){
-    var data=this.patientMobileForm.value;
-    if(data.phone=="" || data.phone==null){
-      this.toast.warning("Enter phone number");
-      return ;
-    }
-    this.loading=true;
+  //   },err=>{})
+  // }
+  // submitPhoneTesting(){
+  //   var data=this.patientMobileForm.value;
+  //   if(data.phone=="" || data.phone==null){
+  //     this.toast.warning("Enter phone number");
+  //     return ;
+  //   }
+  //   this.loading=true;
     
-    data=Object.assign(data,{type:'testing'});
-    this.service.getRegistrationLink(data).subscribe((res)=>{
-      this.loading=false
-      if(res.status){
-        this.toast.success("Successfully sent");
-      }else{
-        this.toast.warning("System error")
-      }
-    },(err)=>{
-      this.loading=false;
-      this.toast.warning("Network error")
-    })
+  //   data=Object.assign(data,{type:'testing'});
+  //   this.service.getRegistrationLink(data).subscribe((res)=>{
+  //     this.loading=false
+  //     if(res.status){
+  //       this.toast.success("Successfully sent");
+  //     }else{
+  //       this.toast.warning("System error")
+  //     }
+  //   },(err)=>{
+  //     this.loading=false;
+  //     this.toast.warning("Network error")
+  //   })
 
-    this.service.postFootWalkData(data).subscribe(res=>{
+  //   this.service.postFootWalkData(data).subscribe(res=>{
 
-    },err=>{})
-  }
+  //   },err=>{})
+  // }
   submitPhoneFeedBack(){
     var data=this.patientMobileForm.value;
     if(data.phone=="" || data.phone==null){
@@ -182,6 +183,151 @@ export class RegistrationLinkComponent implements OnInit {
     },err=>{})
 
   }
+  submitPhoneVacinnation(){
+    var simu=this.patientMobileForm.value;
+    console.log(simu)
+    if(simu.phone=="" || simu.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+   
+     
+     let data={
+       phone:simu.phone,
+       type:"COVIDVACCINATION"
+     }
+     this.service.getInpatient(data).subscribe(res=>{
+       this.toast.success('Success','Send successfully') 
+       this.payment.hide()
+      
+      },err=>{});
+
+  }
+  InpatientFeedback(){
+    var simu=this.patientMobileForm.value;
+    console.log(simu)
+    if(simu.phone=="" || simu.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+   
+     console.log("type","INPATIENT")
+     let data={
+       phone:simu.phone,
+       type:"INPATIENT"
+     }
+     this.service.getInpatient(data).subscribe(res=>{
+       this.toast.success('Success','Send successfully') 
+       this.payment.hide()
+      
+      },err=>{});
+      
+ 
+   }
+   OutpatientFeedback(){
+    var simu=this.patientMobileForm.value;
+    console.log(simu)
+    if(simu.phone=="" || simu.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+ 
+      console.log("type","OUTPATIENT")
+      let data={
+        phone:simu.phone,
+        type:"OUTPATIENT"
+      }
+      this.service.getInpatient(data).subscribe(res=>{
+        this.toast.success('Success','Send successfully') 
+        this.payment.hide()
+      
+      
+      },err=>{});
+       
+  
+    }
+    MaternitytFeedback(){
+      var simu=this.patientMobileForm.value;
+      console.log(simu)
+      if(simu.phone=="" || simu.phone==null){
+        this.toast.warning("Enter phone number");
+        return ;
+      }
+   
+        console.log("type","maternity")
+        let data={
+          phone:simu.phone,
+          type:"MATERNITY"
+        }
+      this.service.getInpatient(data).subscribe(res=>{
+        this.toast.success('Success','Send successfully') 
+      
+        this.payment.hide()},err=>{});
+        // this.paymentModal.hide()
+  
+    }
+    submitPhoneMaternity(){
+      var simu=this.patientMobileForm.value;
+      console.log(simu)
+      if(simu.phone=="" || simu.phone==null){
+        this.toast.warning("Enter phone number");
+        return ;
+      }
+   
+        console.log("type","maternity")
+        let data={
+          phone:simu.phone,
+          type:"MATERNITYREGISTRATION"
+        }
+      this.service.getInpatient(data).subscribe(res=>{
+        this.toast.success('Success','Send successfully') 
+      
+        // this.payment.hide()
+      },err=>{});
+
+    }
+    submitPhoneRegister(){
+      var simu=this.patientMobileForm.value;
+      console.log(simu)
+      if(simu.phone=="" || simu.phone==null){
+        this.toast.warning("Enter phone number");
+        return ;
+      }
+   
+        console.log("type","maternity")
+        let data={
+          phone:simu.phone,
+          type:"SELFREGISTRATION"
+        }
+      this.service.getInpatient(data).subscribe(res=>{
+        this.toast.success('Success','Send successfully') 
+      
+        // this.payment.hide()
+      },err=>{});
+
+
+    }
+    submitPhoneTesting(){
+      var simu=this.patientMobileForm.value;
+      console.log(simu)
+      if(simu.phone=="" || simu.phone==null){
+        this.toast.warning("Enter phone number");
+        return ;
+      }
+   
+        console.log("type","maternity")
+        let data={
+          phone:simu.phone,
+          type:"COVIDTESTINGREGISTRATION"
+        }
+      this.service.getInpatient(data).subscribe(res=>{
+        this.toast.success('Success','Send successfully') 
+      
+        // this.payment.hide()
+      },err=>{});
+
+
+    }
 
 
 

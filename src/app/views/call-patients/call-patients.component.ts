@@ -108,6 +108,7 @@ export class CallPatientsComponent implements OnInit {
       res => {
      
         this.toastr.success('success','Thank you for calling')
+        this.ngOnInit()
    
             
       
