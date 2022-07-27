@@ -57,7 +57,7 @@ export const navItems: NavData[] = [
 
   {
     name: 'Maternity',
-    icon: 'fa fa-bed',
+    icon: 'fa fa-h-square',
     url: '/dashboard/view-maternity-booking',
   },
   {
@@ -203,7 +203,7 @@ export const navItemsnursesdocs: NavData[] = [
 
   {
     name: 'Maternity',
-    icon: 'fa fa-bed',
+    icon: 'fa fa-h-square',
     url: '/dashboard/view-maternity-booking',
   },
 

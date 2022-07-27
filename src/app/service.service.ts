@@ -10,10 +10,10 @@ import { map, catchError, tap } from 'rxjs/operators';
 // export const endpoint='http://localhost:8000/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
-export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
-// export const endpoint='https://bookings.aarhospital.com/';
+export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
@@ -243,10 +243,44 @@ notcalledpatients(){
   geMaternityDownloadUrl() {
     return  endpoint + 'api/maternity-download/';
   }
+  MaternityDownloadDischargeDownloadUrl() {
+    return  endpoint + 'api/MaternityDownloadDischarge/';
+  }
+  MaternityDownloadAdmittedDownloadUrl() {
+    return  endpoint + 'api/MaternityDownloadAdmitted/';
+  }
+  MaternityDownloadCsection() {
+    return  endpoint + 'api/MaternityDownloadCsection/';
+  }
+  MaternityDownloadNormalDelivery() {
+    return  endpoint + 'api/MaternityDownloadNormalDelivery/';
+  }
   getMaternityBookingList() {
     return this.http.get(endpoint + 'api/maternity/').pipe(
       map(this.extractData));
     
+  }
+  gecstMaternityBookingList() {
+    return this.http.get(endpoint + 'api/csmaternity/').pipe(
+      map(this.extractData));
+    
+  }
+  alladmittedmaternitypatients() {
+    return this.http.get(endpoint + 'api/maternityadmittedpending/').pipe(
+      map(this.extractData));
+    
+  }
+  alladmittedmaternitycompletedpatients() {
+    return this.http.get(endpoint + 'api/maternityadmittedcompleted/').pipe(
+      map(this.extractData));
+    
+  }
+  
+  getnormalMaternityBookingList(){
+    return this.http.get(endpoint + 'api/normalmaternity/').pipe(
+      map(this.extractData));
+    
+
   }
   getMaternityBookingDetail(id) {
     return this.http.get(endpoint + 'api/maternity-details/'+id+'/').pipe(
@@ -1011,6 +1045,10 @@ searchBills(data): Observable<any>{
 
   updateNextofKinData(data): Observable<any> {
     return this.http.post(endpoint + 'api/nextofkin-update/'+data.id+'/',data).pipe(
+      map(this.extractData));
+  }
+  maternityadmitdischarge(data): Observable<any> {
+    return this.http.post(endpoint + 'api/maternityadmissionanddischarge/',data).pipe(
       map(this.extractData));
   }
   reschedulebooking(data): Observable<any> {
