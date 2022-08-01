@@ -10,6 +10,29 @@
             
      
                 <mat-tab label="Services Averages">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                          <mat-label>Period</mat-label>
+                          <mat-select  [(ngModel)]="services_period"  (selectionChange)="getFeedbackservicefilter()">
+                            <mat-option value="yearly">Yearly</mat-option>
+                            <mat-option value="monthly">Monthly </mat-option>
+                            <mat-option value="weekly">Weekly </mat-option>
+                            <mat-option value="daily">Today</mat-option>
+                          </mat-select>  
+                        </mat-form-field>
+                    </div>
+                 
+                  <!-- <div class="col-sm-3">
+                          
+                    <mat-form-field appearance="outline">
+                      <mat-label>Select Date</mat-label>
+                        <input matInput placeholder="Select date"    [(ngModel)]="services_date"  [matDatepicker]="picker1" (ngModelChange)="getFeedbackservicefilterdate()" autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+                </div> -->
+                </div>
                
               
                  
@@ -54,6 +77,17 @@
                
                
                 <mat-tab label="Respondents Counts">
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                        <mat-label>Period</mat-label>
+                        <mat-select  [(ngModel)]="respondent_period"  (selectionChange)="getFeedbacksGraphfilter()">
+                          <mat-option value="daily">Today</mat-option>
+                          <mat-option value="weekly">Weekly </mat-option>
+                          <mat-option value="monthly">Monthly </mat-option>
+                          <mat-option value="yearly">Yearly </mat-option>
+                        </mat-select>  
+                      </mat-form-field>
+                  </div>
                 
                    
                   <fusioncharts
@@ -81,9 +115,16 @@
                         </mat-select>  
                       </mat-form-field>
                   </div>
-                  <div class="col-sm-3" style="padding-top: 15px;">
-                  <ejs-datetimepicker [(ngModel)]="channels_filter.date" (change)="channelFilterChange()"></ejs-datetimepicker>
-                </div>
+               
+                <div class="col-sm-3">
+                        
+                  <mat-form-field appearance="outline">
+                    <mat-label>Select Date</mat-label>
+                      <input matInput placeholder="Select date"    [(ngModel)]="channels_filter.date"  [matDatepicker]="picker42" (ngModelChange)="channelFilterChange()" autocomplete="off">
+                      <mat-datepicker-toggle matSuffix [for]="picker42"></mat-datepicker-toggle>
+                      <mat-datepicker #picker42></mat-datepicker>
+                    </mat-form-field>
+              </div>
               </div>
 
                   <fusioncharts
@@ -97,6 +138,44 @@
                   
                 
                 </mat-tab> 
+                <mat-tab label="Nps">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                          <mat-label>Period</mat-label>
+                          <mat-select  [(ngModel)]="nps_period"  (selectionChange)="NPSFilterChange()">
+                            <mat-option value="yearly">Yearly</mat-option>
+                            <mat-option value="monthly">Monthly </mat-option>
+                            <mat-option value="weekly">Weekly </mat-option>
+                            <mat-option value="daily">Daily </mat-option>
+                          </mat-select>  
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-sm-3" style="padding-top: 15px;">
+                    <ejs-datetimepicker [(ngModel)]="channels_filter.date" (change)="channelFilterChange()"></ejs-datetimepicker>
+                  </div> -->
+                  <div class="col-sm-3">
+                        
+                    <mat-form-field appearance="outline">
+                      <mat-label>Select Date</mat-label>
+                        <input matInput placeholder="Select date"    [(ngModel)]="nps_date"  [matDatepicker]="picker4" (ngModelChange)="NPSFilterChangedate()" autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                </div>
+  
+                    <fusioncharts
+                    width="800"
+                    height="400"
+                    type="Column2D"
+                    dataFormat="JSON"
+                    [dataSource]="nps_data"
+                   ></fusioncharts>
+                 
+                    
+                  
+                  </mat-tab> 
       
                                       
                       </mat-tab-group>

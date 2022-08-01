@@ -1212,13 +1212,18 @@ searchBills(data): Observable<any>{
       return this.http.post(endpoint + 'api/callpatient/',phone).pipe(
         map(this.extractData));
       }
-    feedbacksgraph():Observable<any>{
-      return this.http.get(endpoint + 'api/graphicalviewcount').pipe(
+    feedbacksgraph(data):Observable<any>{
+      return this.http.post(endpoint + 'api/graphicalviewcount/',data).pipe(
+        map(this.extractData));
+
+    }
+    npsgraph(data):Observable<any>{
+      return this.http.post(endpoint + 'api/npsgraphdata/',data).pipe(
         map(this.extractData));
 
     }
     Bookingsvsfeedbackgraph():Observable<any>{
-      return this.http.get(endpoint + 'api/averagefeedbackpiechart').pipe(
+      return this.http.get(endpoint + 'api/averagefeedbackpiechart/').pipe(
         map(this.extractData));
 
     }
@@ -1228,12 +1233,12 @@ searchBills(data): Observable<any>{
 
     }
     feedbacksgraphoutpatientpositive():Observable<any>{
-      return this.http.get(endpoint + 'api/feedbackratingoutpatientpositive').pipe(
+      return this.http.get(endpoint + 'api/feedbackratingoutpatientpositive/').pipe(
         map(this.extractData));
 
     }
     feedbacksgraphinpatientpositive():Observable<any>{
-      return this.http.get(endpoint + 'api/feedbackratinginpatientpositive').pipe(
+      return this.http.get(endpoint + 'api/feedbackratinginpatientpositive/').pipe(
         map(this.extractData));
 
     }
@@ -1265,8 +1270,8 @@ searchBills(data): Observable<any>{
        
 
     }
-    getFeedbackservice():Observable<any>{
-      return this.http.get(endpoint + 'api/averagefeedbackdepartment/').pipe(
+    getFeedbackservice(data):Observable<any>{
+      return this.http.post(endpoint + 'api/averagefeedbackdepartment/',data).pipe(
         map(this.extractData));
        
 

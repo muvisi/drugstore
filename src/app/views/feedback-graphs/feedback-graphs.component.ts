@@ -32,6 +32,7 @@ export class FeedbackGraphsComponent implements OnInit {
   positive_dataSource;
   negative_dataSource;
   maternity_dataSource;
+  services_period;
   
   average_dataSource;
   all_dataSource
@@ -63,10 +64,14 @@ export class FeedbackGraphsComponent implements OnInit {
   inpatient_dataSource;
   endpoint;
   selected;
+  nps_date;
   channels_data;
+  nps_data;
+  nps_period;
   perioddepart;
   servicegraphdata;
-
+  services_date;
+  respondent_period;
 
   channels_filter={
     periodic:'Y',
@@ -75,6 +80,17 @@ export class FeedbackGraphsComponent implements OnInit {
 
   loading;
   constructor( public service:ServiceService) {
+    this.nps_data= {
+      chart: {
+        caption: 'AAR HOSPITAL',
+        subCaption: 'Feedback Nps Respondents',
+        xAxisName: 'Nps Values',
+        yAxisName: 'Total Nps-Value count',
+        numberSuffix: '',
+        theme: 'fusion'
+      },
+      data:[]
+    };
   this.channels_data= {
     chart: {
       caption: 'AAR HOSPITAL',
@@ -138,6 +154,7 @@ export class FeedbackGraphsComponent implements OnInit {
     this.getFeedbacksgraphaverage();
     this.getFeedbackChannels();
     this.getFeedbackservice();
+    this.getNpsgraphdata();
  
   }
   getFeedbackChannels(){
@@ -195,7 +212,7 @@ export class FeedbackGraphsComponent implements OnInit {
   }
   getFeedbackservice(){
   
-    this.service.getFeedbackservice().subscribe(
+    this.service.getFeedbackservice("").subscribe(
       datas => {
         
         this.servicegraphdata.data =datas.data
@@ -208,6 +225,43 @@ export class FeedbackGraphsComponent implements OnInit {
       () => console.log('There is an error')
     );
     }
+    getFeedbackservicefilter(){
+      let data={
+        period:this.services_period
+      }
+  
+      this.service.getFeedbackservice(data).subscribe(
+        datas => {
+          
+          this.servicegraphdata.data =datas.data
+    
+          
+        },
+       
+        err => console.error(err),
+       
+        () => console.log('There is an error')
+      );
+      }
+      // getFeedbackservicefilterdate(){
+      //   let data={
+      //     period:this.services_date
+      //   }
+    
+      //   this.service.getFeedbackservice(data).subscribe(
+      //     datas => {
+            
+      //       this.servicegraphdata.data =datas.data
+      
+            
+      //     },
+         
+      //     err => console.error(err),
+         
+      //     () => console.log('There is an error')
+      //   );
+      //   }
+  
 
     
  
@@ -234,7 +288,7 @@ getFeedbacksgraphaverage(){
  
 
 getFeedbacksGraph() {
-  this.service.feedbacksgraph().subscribe(
+  this.service.feedbacksgraph("").subscribe(
     datas=> {
       console.log(datas)
       this.dataSource.data=datas.data
@@ -246,6 +300,80 @@ getFeedbacksGraph() {
     () => console.log('There is an error')
   );
 }
+getFeedbacksGraphfilter() {
+  let data={
+    period:this.respondent_period
+  }
+  this.service.feedbacksgraph(data).subscribe(
+    datas=> {
+      console.log(datas)
+      this.dataSource.data=datas.data
+      
+    },
+   
+    err => console.error(err),
+   
+    () => console.log('There is an error')
+  );
+}
+getNpsgraphdata(){
+  this.service.npsgraph("").subscribe(
+    datas=> {
+      console.log(datas)
+      this.nps_data.data=datas.data
+      
+    },
+   
+    err => console.error(err),
+   
+    () => console.log('There is an error')
+  );
 
+
+
+
+}
+NPSFilterChange(){
+  let data={
+    period:this.nps_period,
+    // date:this.nps_date,
+  }
+  console.log("filter data",data)
+  this.service.npsgraph(data).subscribe(
+    datas=> {
+      console.log(datas)
+      this.nps_data.data=datas.data
+      
+    },
+   
+    err => console.error(err),
+   
+    () => console.log('There is an error')
+  );
+
+
+
+
+
+
+}
+NPSFilterChangedate(){
+  let data={
+    // period:this.nps_period,
+    date:this.nps_date,
+  }
+  console.log("filter data",data)
+  this.service.npsgraph(data).subscribe(
+    datas=> {
+      console.log(datas)
+      this.nps_data.data=datas.data
+      
+    },
+   
+    err => console.error(err),
+   
+    () => console.log('There is an error')
+  );
+  }
 
 }
