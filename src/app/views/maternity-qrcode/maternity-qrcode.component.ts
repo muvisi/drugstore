@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import QrCodeWithLogo from "qrcode-with-logos";
+import { FRONT_END_URL } from '../../service.service';
 @Component({
   selector: 'app-maternity-qrcode',
   templateUrl: './maternity-qrcode.component.html',
@@ -30,7 +31,7 @@ export class MaternityQrcodeComponent implements OnInit {
 
     let qrcode = new QrCodeWithLogo({
    
-      content: "https://bookings.aarhospital.com/#/maternity",
+      content: FRONT_END_URL+"maternity",
       width: 380,
       nodeQrCodeOptions:{
         color:{

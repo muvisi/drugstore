@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import QrCodeWithLogo from "qrcode-with-logos";
+import { FRONT_END_URL } from '../../../service.service';
 @Component({
   selector: 'app-qrcode-download',
   templateUrl: './qrcode-download.component.html',
@@ -28,7 +29,7 @@ export class QrcodeDownloadComponent implements OnInit {
 
     let qrcode = new QrCodeWithLogo({
    
-      content: "https://bookings.aarhospital.com/#/register/patient",      width: 380,
+      content: FRONT_END_URL+"register/patient",      width: 380,
       nodeQrCodeOptions:{
         color:{
             dark:"#4dbd74",

@@ -25,6 +25,9 @@ export const stk_url="https://payments.healthixsolutions.com/payments/pay/"
 export const HEALTHIX_BACKEND_URL_AAR ='https://aarclaims.healthixsolutions.com/';
 // export const HEALTHIX_BACKEND_URL_AAR ='http://localhost:8000/'
 
+// export const FRONT_END_URL="https://bookings.aarhospital.com/#/"
+export const FRONT_END_URL="http://134.209.199.123:8889/#/"
+
 @Injectable({
   providedIn: 'root'
 })

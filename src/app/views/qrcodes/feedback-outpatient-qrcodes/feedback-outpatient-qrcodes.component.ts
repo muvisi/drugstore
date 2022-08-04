@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import QrCodeWithLogo from "qrcode-with-logos";
+import { FRONT_END_URL } from '../../../service.service';
 @Component({
   selector: 'app-feedback-outpatient-qrcodes',
   templateUrl: './feedback-outpatient-qrcodes.component.html',
@@ -29,7 +30,7 @@ export class FeedbackOutpatientQrcodesComponent implements OnInit {
 
     let qrcode = new QrCodeWithLogo({
    
-      content: "https://bookings.aarhospital.com/#/feedback-quiz-qrcode/outpatient",
+      content: FRONT_END_URL+"feedback-quiz-qrcode/outpatient",
       width: 380,
       nodeQrCodeOptions:{
         color:{
