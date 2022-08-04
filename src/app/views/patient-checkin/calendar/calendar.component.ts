@@ -9,6 +9,7 @@ import { DateTimePicker } from '@syncfusion/ej2-calendars';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { extend, Internationalization,isNullOrUndefined } from '@syncfusion/ej2-base';
+import { Router } from '@angular/router';
 // import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
 @Component({
   selector: 'app-calendar',
@@ -62,7 +63,7 @@ eventSettings: EventSettingsModel = { dataSource: this.dataManager
 group: GroupModel = { resources: ['Clinics'] };
 ownerDataSource: Object[] = [];
   clinic_selected: any;
-  constructor( public service: ServiceService,private toast: ToastrService) {
+  constructor( public service: ServiceService,private toast: ToastrService,public router:Router) {
    }
 
   ngOnInit() {
@@ -111,6 +112,14 @@ onPopupOpen(args: PopupOpenEventArgs): void {
   console.log("arguments",args.data)
   console.log("event selected",this.booking_event)
   
+}
+ViewBookong(){
+  console.log('backend data',this.booking_event.booking_id)
+  this.router.navigate(['/dashboard/booking-details/',this.booking_event.booking_id])
+
+
+
+
 }
 Reschedule(){
   console.log('backend data',this.booking_event)
