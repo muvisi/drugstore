@@ -59,6 +59,8 @@ currentView="Month"
   editBranchForm:FormGroup;
   typeForm: FormGroup;
   @ViewChild('editClinic', { static: false }) editClinic: ModalDirective;
+  @ViewChild('uploadDoctors', { static: false })uploadDoctors: ModalDirective;
+
   @ViewChild('typeModal', { static: false }) typeModal: ModalDirective;
   @ViewChild('calendarModal', { static: false }) calendarModal: ModalDirective;
   @ViewChild('branchModal', { static: false }) branchModal: ModalDirective;

@@ -83,9 +83,9 @@ export class FeedbackGraphsComponent implements OnInit {
     this.nps_data= {
       chart: {
         caption: 'AAR HOSPITAL',
-        subCaption: 'Feedback Nps Respondents',
-        xAxisName: 'Nps Values',
-        yAxisName: 'Total Nps-Value count',
+        subCaption: 'Net Promoter Score Value',
+        xAxisName: 'NPS Values',
+        yAxisName: 'Score Value count',
         numberSuffix: '',
         theme: 'fusion'
       },
