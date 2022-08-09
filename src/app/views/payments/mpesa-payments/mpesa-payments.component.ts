@@ -7,6 +7,7 @@ import { ServiceService } from '../../../service.service';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { UtilizePaymentModal } from './utilize.payment.modal';
 import { UtilizationsModal } from './utilizations.modal';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-mpesa-payments',
   templateUrl: './mpesa-payments.component.html',
@@ -21,7 +22,7 @@ export class MpesaPaymentsComponent implements OnInit {
     max = new Date()
     @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   loading: boolean;
-    constructor(public service:ServiceService,public datePipe:DatePipe,private modalService: NgbModal) { }
+    constructor(public service:ServiceService,public datePipe:DatePipe,private modalService: NgbModal,private toastr:ToastrService) { }
     ngOnInit() {
       this.getPayments();
       this. getEdpoint()
@@ -89,5 +90,22 @@ export class MpesaPaymentsComponent implements OnInit {
     this.endpoint= this.service.getendpoint()
   console.log("URL IS",this.endpoint)
   }
+  SendFeedbackSMS(){
+    this.refreshPayments()
+    this.service.SendSmsMpesa().subscribe((res)=>{
+      this.loading=false;
+      this.toastr.success("Successfully Feedback send")
+      //  this.dataSource = new MatTableDataSource(res);
+      //  this.dataSource.paginator = this.paginator;
+     },(err)=>{
+      this.loading=false;
+      this.toastr.warning("Please Refresh the Mpesa First")
+
+     })
+   }
+
+
+
+  
   }
   

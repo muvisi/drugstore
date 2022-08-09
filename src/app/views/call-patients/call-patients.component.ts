@@ -19,6 +19,12 @@ export class CallPatientsComponent implements OnInit {
   dataSource;
   mypatient_id;
   phone;
+  client_name;
+  client_phone;
+  client_email;
+  client_department;
+  client_dob
+
   patient_info;
   notesdatasource;
   clientForm: FormGroup;
@@ -66,6 +72,44 @@ export class CallPatientsComponent implements OnInit {
               // this.take_notes=this.dataSourceCall.feedback_notes
               this.phone=this.dataSourceCall.id;
               this.mypatient_id=this.dataSourceCall.phone;
+              if(this.dataSourceCall.patient.first_name!== null && this.dataSourceCall.patient.last_name!== null)
+              {
+                this.client_name=this.dataSourceCall.patient.first_name.concat(" ").concat(this.dataSourceCall.patient.last_name)
+
+
+
+              }
+              if(this.dataSourceCall.patient.first_name== null && this.dataSourceCall.patient.last_name== null)
+              {
+                // this.client_name=this.dataSourceCall.patient.first_name.concat(" ").concat(this.dataSourceCall.patient.last_name)
+              this.client_name="No Names"
+
+
+              }
+              if(this.dataSourceCall.patient.email!== null)
+                {
+                  this.client_email=this.dataSourceCall.patient.email
+
+
+
+                }
+              if(this.dataSourceCall.patient.email== null)
+                {
+                  this.client_email="No Email"
+
+
+
+                }
+              if(this.dataSourceCall.department!==null){
+
+
+                this.client_department=this.dataSourceCall.department
+              }
+              if(this.dataSourceCall.department==null){
+
+
+                this.client_department="No Department"
+              }
             console.log("dataSourceCall",this.dataSourceCall)
           
         },
