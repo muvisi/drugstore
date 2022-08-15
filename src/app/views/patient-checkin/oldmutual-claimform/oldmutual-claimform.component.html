@@ -696,14 +696,14 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="col-sm-6">
       <mat-form-field  appearance="outline">
         <mat-label>Practitioner Tel No </mat-label>
-          <input matInput placeholder="Phone" [(ngModel)]="form_data.practitioner_tel_no" name="practitioner_tel_no" >
+          <input matInput placeholder="Tel No" [(ngModel)]="form_data.practitioner_tel_no" name="practitioner_tel_no" >
         </mat-form-field>
      </div>
      <div class="col-sm-6">
       <mat-form-field  appearance="outline">
         <mat-label>Practitioner Mobile </mat-label>
-          <input matInput placeholder="Phone" [(ngModel)]="form_data.practitioner_phone" name="practitioner_phone" >
-        </mat-form-field>f
+          <input matInput type="number"  [maxLength]="10" placeholder="Phone" [(ngModel)]="form_data.practitioner_phone" name="practitioner_phone" >
+        </mat-form-field>
      </div>
      <div class="col-sm-6">
       <mat-form-field  appearance="outline">
