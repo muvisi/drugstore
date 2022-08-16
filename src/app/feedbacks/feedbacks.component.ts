@@ -58,6 +58,7 @@ export class FeedbacksComponent implements OnInit {
   notregistered_dataSource;
   dataSourcenotcalled ;
   dataSourcecategories;
+  dataSourcenonregisted;
   selected;
   dataSourceCall;
   endpoint;
@@ -72,6 +73,7 @@ export class FeedbacksComponent implements OnInit {
   NegativeColumns: string[] = ['sn','date','patient','service','rating','issues','comments',"visit_type"]
   AverageColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
   AllColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type","status","type"]
+  dataSourcecalled: any;
   constructor(public service:ServiceService,private toastr:ToastrService,private datePipe: DatePipe,public router: Router) { 
    
 
@@ -102,8 +104,19 @@ export class FeedbacksComponent implements OnInit {
       this.dataSourcenotcalled = new MatTableDataSource((res));
       this.dataSourcenotcalled.paginator = this.paginator;
     })
+    this.service.negativecalledpatients().subscribe((res)=>{
+      console.log('notcalled',this.dataSourcecalled)
 
+      this.dataSourcecalled = new MatTableDataSource((res));
+      this.dataSourcecalled.paginator = this.paginator;
+    })
    
+    this.service.nonregisteredpatients().subscribe((res)=>{
+      console.log('notcalled',this.dataSourcecalled)
+
+      this.dataSourcenonregisted= new MatTableDataSource((res));
+      this.dataSourcenonregisted.paginator = this.paginator;
+    })
    
 
   

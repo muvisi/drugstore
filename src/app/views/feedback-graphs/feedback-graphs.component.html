@@ -6,7 +6,7 @@
         <div class="card-body">
 
 
-            <mat-tab-group class="vertical">
+            <mat-tab-group>
             
      
                 <mat-tab label="Services Averages">
@@ -138,45 +138,305 @@
                   
                 
                 </mat-tab> 
-                <mat-tab label="Net Promoter Score">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
-                          <mat-label>Period</mat-label>
-                          <mat-select  [(ngModel)]="nps_period"  (selectionChange)="NPSFilterChange()">
-                            <mat-option value="yearly">Yearly</mat-option>
-                            <mat-option value="monthly">Monthly </mat-option>
-                            <mat-option value="weekly">Weekly </mat-option>
-                            <mat-option value="daily">Daily </mat-option>
-                          </mat-select>  
-                        </mat-form-field>
-                    </div>
-                    <!-- <div class="col-sm-3" style="padding-top: 15px;">
-                    <ejs-datetimepicker [(ngModel)]="channels_filter.date" (change)="channelFilterChange()"></ejs-datetimepicker>
-                  </div> -->
-                  <div class="col-sm-3">
-                        
-                    <mat-form-field appearance="outline">
-                      <mat-label>Select Date</mat-label>
-                        <input matInput placeholder="Select date"    [(ngModel)]="nps_date"  [matDatepicker]="picker4" (ngModelChange)="NPSFilterChangedate()" autocomplete="off">
-                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-                        <mat-datepicker #picker4></mat-datepicker>
-                      </mat-form-field>
-                </div>
-                </div>
-  
-                    <fusioncharts
-                    width="800"
-                    height="400"
-                    type="Column2D"
-                    dataFormat="JSON"
-                    [dataSource]="nps_data"
-                   ></fusioncharts>
-                 
-                    
-                  
-                  </mat-tab> 
+       
       
+                  <mat-tab label="Net Promoter Score" style="padding-bottom: 20px;">
+                    <div class="row">
+                      <div class="col-sm-3">
+                           
+                        <mat-form-field appearance="outline">
+                          <mat-label>Select Start date</mat-label>
+                            <input matInput placeholder="Select start date"    [(ngModel)]="nps_date1"  [matDatepicker]="picker7" (ngModelChange)="NPSFilterChangedate()" autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                            <mat-datepicker #picker7></mat-datepicker>
+                          </mat-form-field>
+                      </div>
+                      <!-- <div class="col-sm-3" style="padding-top: 15px;">
+                      <ejs-datetimepicker [(ngModel)]="channels_filter.date" (change)="channelFilterChange()"></ejs-datetimepicker>
+                    </div> -->
+                    <div class="col-sm-3">
+                          
+                      <mat-form-field appearance="outline">
+                        <mat-label>Select End Date</mat-label>
+                          <input matInput placeholder="Select end date"    [(ngModel)]="nps_date2"  [matDatepicker]="picker4" (ngModelChange)="NPSFilterChangedate()" autocomplete="off">
+                          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                          <mat-datepicker #picker4></mat-datepicker>
+                        </mat-form-field>
+                  </div>
+                  </div>
+
+                    <div class="row" style="justify-content:center ;margin-top: 10px; margin-bottom: 10px;"><span style="font-size: xx-large;">NET PROMOTER SCORE</span></div>
+                    <div class="row" style="color: white;">
+                      <div class="col-sm-1"></div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/angry.png" width="50"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[0]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/angry.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[1]}}</span>
+                        </div>
+                      </div>
+      
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/angry.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark">{{nps_datasource.data[2]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/angry.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[3]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/angry.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[4]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/angry.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark">{{nps_datasource.data[5]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/neutral.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[6]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/neutral.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[7]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/happy.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[8]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1">
+                        <div class="row"   style="justify-content: center;"> 
+                          <img src="./assets/img/emoji/happy.png" width="50px"/>
+                        </div>
+                        <div class="row" style="justify-content: center; margin-top: 10px;" >
+                         <span class="badge badge-pill badge-dark" >{{nps_datasource.data[9]}}</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-1"></div>
+                    </div>
+                    <div class="row" style="color: white; margin-top: 20px;font-size: x-large;" >
+                      <div class="col-sm-1"></div>
+                      <div class="col-sm-6 badge badge-pill badge-danger" style="margin:5px">
+                        <div class="row">
+                          <div class="col-sm-2">  
+                            <span class="badge badge-pill badge-danger" >1</span>
+                          </div>
+                          <div class="col-sm-2">
+                            <span class="badge badge-pill badge-danger" >2</span>
+                          </div>
+                          <div class="col-sm-2">
+                            <span class="badge badge-pill badge-danger" >3</span>
+                          </div>
+                          <div class="col-sm-2">
+                            <span class="badge badge-pill badge-danger" >4</span>
+                          </div>
+                          <div class="col-sm-2">
+                            <span class="badge badge-pill badge-danger" >5</span>
+                          </div>
+                          <div class="col-sm-2">
+                            <span class="badge badge-pill badge-danger" >6</span>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div class="col-sm-2 badge badge-pill badge-warning" style="margin:5px">
+                        <div class="row">
+                          <div class="col-sm-6">  
+                            <span class="badge badge-pill badge-warning"  >7</span>
+                          </div>
+                          <div class="col-sm-6">
+                            <span class="badge badge-pill badge-warning" >8</span>
+                          </div>
+                          
+                        </div>
+                     
+                      </div>
+                      <div class="col-sm-2 badge badge-pill badge-success" style="margin:5px">
+                        <div class="row">
+                          <div class="col-sm-6">  
+                            <span class="badge badge-pill badge-success" >9</span>
+                          </div>
+                          <div class="col-sm-6">
+                            <span class="badge badge-pill badge-success" >10</span>
+                          </div>
+                          
+                        </div>
+    
+                      
+                      </div>
+                      </div>
+    
+                      <div class="row" style="margin-top: 20px;" >
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-6" style="margin:5px">
+                          <div class="row" style="justify-content: end;margin-top: 10px;">
+                            <span >DETRACTORS</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="margin:5px">
+                          <div class="row" style="justify-content: center;margin-top: 10px;">
+                            <span>PASSIVES</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="margin:5px">
+                          <div class="row" style="justify-content: center;margin-top: 10px;">
+                            <span>PROMOTERS</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        </div>
+                  <div class="row" style="font-size: xx-large;">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                      NPS = <span style="color: #4dbd74;">%PROMOTERS</span> -  <span style="color: #f86c6b;">%DETRACTORS</span>
+                      <div class="row"></div>
+                      NPS = {{nps_datasource.nps}}
+                    </div>
+                    </div>
+                
+    
+    
+                    <div class="row" style="font-size: large;">
+                      <div class="col-sm-4" style=" margin-top: -80px;">
+    
+    
+    
+    
+    
+                        <fusioncharts
+                        width="100%"
+                        height="350"
+                        type="doughnut2d"
+                        dataFormat="JSON"
+                        [dataSource]="nps_datasource_chart"
+                    ></fusioncharts>
+    
+    
+    
+    
+    
+    
+                      </div>
+                      <div class="col-sm-5" style=" font-size: xx-large;">
+                
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <span class="badge badge-pill badge-danger">detractors</span>                  
+                        
+    
+                        </div>
+                        <div class="col-sm-3">
+                          <span class="badge badge-pill badge-danger">{{nps_datasource.detractors}}</span>
+                        </div>
+                        <div class="col-sm-4">
+                          <span class="badge badge-pill badge-danger">{{nps_datasource.detractors_perc}}%</span>
+                        </div> 
+                       
+                      </div>
+                      <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-5">
+                          <span class="badge badge-pill badge-warning">passives</span>                  
+                        
+    
+                        </div>
+                        <div class="col-sm-3">
+                          <span class="badge badge-pill badge-warning">{{nps_datasource.passives}}</span>
+                        </div>
+                        <div class="col-sm-4">
+                          <span class="badge badge-pill badge-warning">{{nps_datasource.passives_perc}}%</span>
+                        </div> 
+                       
+                      </div>
+                      <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-5">
+                          <span class="badge badge-pill badge-success">promoters</span>                  
+                        
+    
+                        </div>
+                        <div class="col-sm-3">
+                          <span class="badge badge-pill badge-success">{{nps_datasource.promoters}}</span>
+                        </div>
+                        <div class="col-sm-4">
+                          <span class="badge badge-pill badge-success">{{nps_datasource.promoters_perc}}%</span>
+                        </div> 
+                       
+                      </div>
+                      </div>
+                      <div class="col-sm-3" style="margin-top: 15px; font-size: xx-large;">
+                        <div class="row" style="justify-content:center">
+                          <span class="badge badge-pill badge-dark" style="color: white;">total</span>
+                        </div>
+                        <div class="row" style="justify-content:center;margin-top: 5px;">
+                          <span class="badge badge-pill badge-dark" style="color: white; font-size: 70px;">{{nps_datasource.total}}</span>
+                        </div>
+                      </div>
+            
+                      </div>
+                
+                </mat-tab> 
+                <mat-tab label="Foot Fall">
+                
+                   
+                  <fusioncharts
+                  width="100%"
+                  height="350"
+                  type="Column2D"
+                  dataFormat="JSON"
+                  [dataSource]="dataSource_fall"
+              ></fusioncharts>
+                
+              
+              </mat-tab> 
+              <mat-tab label="Feedback Responces">
+              
+                 
+                  <fusioncharts
+                  width="100%"
+                  height="350"
+                  type="Column2D"
+                  dataFormat="JSON"
+                  [dataSource]="dataSource3"
+              ></fusioncharts>
+                             
+              
+              </mat-tab>
                                       
                       </mat-tab-group>
 

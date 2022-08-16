@@ -1,0 +1,413 @@
+/* Responsive Styles */
+
+/*** Navbar Toggler ***/
+.menu-toggler {
+    background: #007cc3;
+	cursor: pointer;
+    border-radius: 0;
+    height: 35px;
+	position: relative;
+    width: 35px;
+}
+
+.menu-toggler.active::after {
+	animation: fade-in 0.5s both 0.5s ease-in-out;
+    bottom: -15px;
+    border-bottom: 5px solid #ee2b74;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    content: "";
+    left: 0;
+    height: 0;
+    margin: auto;
+    right: 0;
+    top: 100%;
+    width: 0;
+    position: absolute;
+}
+
+.menu-toggler-inner {
+  height: 2px;
+  margin: 3px auto 0;
+  position: relative;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  width: 25px;
+}
+
+.menu-toggler-inner,
+.menu-toggler-inner::after,
+.menu-toggler-inner::before {
+	background: #fff;
+}
+
+.menu-toggler-inner::after,
+.menu-toggler-inner::before {
+	content: "";
+	display: block;
+	height: 2px;
+	margin: -3px 0;
+	width: 25px;
+}
+
+.menu-toggler-inner::before {
+	transform: translateY(-8px);
+}
+
+.menu-toggler-inner::after {
+	transform: translateY(8px);
+}
+
+#nwh-menu,
+.menu-toggler,
+.menu-toggler-inner,
+.menu-toggler-inner::before,
+.menu-toggler-inner::after {
+	-moz-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+	-ms-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+	-o-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+	-webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.menu-toggler-inner.active {
+	background: transparent;
+}
+
+.menu-toggler-inner.active::before {
+	transform: rotate(45deg);
+}
+
+.menu-toggler-inner.active::after {
+	transform: rotate(-45deg);
+}
+
+/*** Mobile Booking Form ***/
+#mobile-booking-form {
+	background: #ee2b74;	
+}
+
+/*** For Devices larger than 1280px ***/
+@media only screen and (min-width:1024px) {
+	.navbar-toggler {
+		display: none;
+	}
+	
+	.whatsApp {
+	    display: none;
+	}	
+}
+
+/*** For Devices Larger Than 1024px ***/
+@media only screen and (min-width:1024px) {
+	
+	.menu-toggler {
+		display: none;
+	}
+	
+	#mobile-booking-form {
+		display: none;
+	}
+	
+	.modal-lg {
+	    max-width: 1000px;
+	}
+	
+}
+
+/*** For Devices Up To 1024px ***/
+@media only screen and (max-width:1023px) {
+    
+    .main-header-title h2 {
+        display: none;
+    }    
+	
+	.team-member-links .nwh-btn {
+		width: 100%;
+	}
+	
+	/*** Header Styles ***/
+	.site-logo {
+		display: block;
+		margin: auto;
+		max-width: 150px;
+	}
+	
+	.nwh-top-menu {
+		/* border: none; */
+		/* text-align: center; */
+	}
+	
+	.nwh-top-menu ul {
+		/* border-bottom: none; */
+		/* padding: 0; */
+		/* text-align: center; */
+	}
+	
+	.nwh-top-menu a {
+		font-size: 12px;
+		font-weight: 400;
+	}
+	
+	.nwh-menu li.current-menu-item a {
+		color: #fff;
+    background: #007dc3;
+    font-weight: 600;
+}
+	
+	.nwh-menu {
+		display: none;
+		float: none;
+		text-align: center;
+	}
+	
+	.nwh-menu.active  {
+        animation: fade-in 0.5s both 0.5s ease-in-out;
+        background: #fff;
+        background: rgba(255, 255, 255, 0.92);
+        border: .05rem solid #a7a5ad;
+        border-radius: 5px;
+        display: block;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        width: 100%;
+	}
+	
+	.nwh-menu li {
+		display: block;
+	}
+	
+	.nwh-menu li {
+		margin: 0;
+	}
+	
+	.nwh-menu li > a {
+	    border-bottom: .05rem solid;
+        color: #000;
+        display: block;
+        font-weight: 600;
+	}
+	
+	.nwh-menu .dropdown-menu {
+	    background-color: transparent;
+	    border: 0;
+	    border-radius: 0;
+	    margin: 0;
+	    text-align: center;
+	}
+	
+	.nwh-menu .dropdown-item {
+	    color: #505152;
+	}
+	
+	.top-menu-link .dropdown-menu .dropdown-item {
+	    font-size: 11px;
+	}
+	
+	/*** Homepage Slider ***/
+	.main-slider .slides > li {
+		min-height: 350px;
+	}
+	
+	.slide-info .page-margin {
+	    padding: 0;
+	}
+	
+	.slide-info {
+		text-align: center;
+	}
+	
+	.slide-info h1 {
+		font-size: 25px;
+	}
+	
+	.slide-info p {
+		font-size: 14px;
+	}
+	
+	.slide-info .app-booking-form {
+		display: none;
+	}
+	
+	.slide-info-inner {
+	    min-height: 200px;
+	    padding: 20px;
+	}
+	
+	.slide-info-inner h2 {
+	    font-size: 18px;
+	}
+	
+	/*** Intro Section ***/
+	.intro-section {
+		padding: 0 0 20px;
+	}
+	
+	/*** Page Styles ***/
+	
+	.single-page-header-inner span, 
+	.page-header-inner span {
+		font-size: 14px;
+	}
+	
+	.team-member-links,
+	.nwh-latest-news {
+		-moz-column-count: 1;
+		-ms-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
+	}
+	
+	.news-block {
+		margin-bottom: 10px;
+	}
+	
+	#services-container {
+		padding: 20px 0;
+	}
+	
+	.services-info {
+		left: inherit;
+		position: relative;
+		top: inherit;
+		transform: none;
+	}
+	
+	.services-info-text {
+		margin-bottom: 30px;
+	}
+	
+	.dept-menu li > a {
+		font-size: 20px;
+		line-height: normal;
+	}
+	
+	.sub-title {
+		line-height: normal;
+	}
+	
+	/*** Single Service ***/
+	#dept-tabs .tab-content {
+	    padding-left: 0;
+	    padding-right: 0;
+	}
+	
+	/*** Additional Services ***/
+    #additional-services-accordion .card {
+        display: block;
+        width: 100%;
+    }
+	
+	/*** News & Media ***/
+	.nwh-recently-published .news-block {
+		display: block;
+		width: 100%;
+	}
+	
+	/*** Footer Area ***/
+	.footer-area .site-logo {
+		display: inline-block;
+	}
+	
+}
+
+/*** ??? ***/
+@media only screen and (max-width:1279px) {
+    
+    .page-header {
+        min-height: 300px;
+    }
+    
+	.page-margin {
+		padding: 0 30px;
+	}
+}
+
+
+/*** For Devices Between 768px and 1023px  ***/
+@media only screen and (max-width:1023px) and (min-width:768px) {
+    
+	.justified-centre {
+	    margin-bottom: 20px;
+	}    
+	
+	.nwh-menu {
+		max-width: 48%;
+	}
+	
+	.nwh-team-members li {
+	    max-width: 48%;
+	}
+	
+}
+
+/*** For Mobile Devices Up to 767px ***/
+@media only screen and (max-width:767px) {
+    
+    /*** Menu ***/
+    .top-menu-link li {
+        margin-bottom: 5px;
+    }
+    
+    .top-menu-link button {
+        font-size: 11px;
+    }
+    
+	/*** General Styles ***/
+	.page-margin {
+		padding: 0 20px;
+	}    
+	
+	.justified-centre {
+	    margin-bottom: 20px;
+	}
+    
+    .nwh-alert-info::before {
+        display: none;
+    }
+    
+    .intro-section h3 {
+        font-size: 20px;
+    }
+    
+    .single-page-header-inner h1,
+    .page-header-inner h1 {
+        font-size: 30px;
+    }
+    
+    .mv {
+        border-right: none;
+        border-bottom: 1px solid #6cdbf5;
+        margin-bottom: 10px;
+        padding: 0 20px 10px;
+    }
+    
+    .team-member-links li {
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    
+    .nwh-team-members li {
+        max-width: 100%;
+    }
+    
+	.dept-icon {
+		display: none;
+	}
+	
+	.nwh-gallery ul {
+        -moz-column-count: 1;
+        -ms-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;	    
+	}
+
+}

@@ -8,12 +8,12 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 // export const endpoint='http://localhost:8000/';
-// export const endpoint='http://localhost:8888/';
+export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
-export const endpoint='https://bookings.aarhospital.com/';
+// export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
@@ -86,6 +86,14 @@ export class ServiceService {
     return this.http.get(endpoint+ 'api/feedbackwithoutpatient/').pipe(
       map(this.extractData));
   }
+  negativecalledpatients(): Observable<any> {
+    return this.http.get(endpoint + 'api/negativecalledpatients/').pipe(
+      map(this.extractData));
+}
+nonregisteredpatients(): Observable<any> {
+  return this.http.get(endpoint + 'api/nonregisteredpatients/').pipe(
+    map(this.extractData));
+}
   allfeedbacks(): Observable<any> {
     return this.http.get(endpoint+ 'api/allfeedbacklist/').pipe(
       map(this.extractData));
@@ -1163,6 +1171,14 @@ searchBills(data): Observable<any>{
   feedbacks(s): Observable<any> {
     return this.http.get(endpoint + 'api/feedbacks/'+s).pipe(
       map(this.extractData));
+    }
+
+
+    getNps():Observable<any>{
+      return this.http.get(endpoint + 'api/nps/').pipe(
+        map(this.extractData));
+       
+    
     }
     negativenotcalledpatients(): Observable<any> {
       return this.http.get(endpoint + 'api/negativenotcalledpatients/').pipe(

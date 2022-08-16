@@ -27,6 +27,44 @@ export class FeedbackGraphsComponent implements OnInit {
 
 
 
+  nps_datasource={
+    data:[0,0,0,0,0,0,0,0,0,0,0],
+    total: '',
+    detractors: '',
+    passives: '',
+    promoters: '',
+    detractors_perc: '',
+    passives_perc: '',
+    promoters_perc: '',
+    nps: ''
+
+  };
+  nps_datasource_chart= {"chart": {
+    "caption": "",
+    "subCaption": "",
+    "numberPrefix": "$",
+    "bgColor": "#ffffff",
+    "startingAngle": "310",
+    "showLegend": "0",
+    "defaultCenterLabel":"",
+    "centerLabel":  "",
+    "centerLabelBold": "1",
+    "baseFont": "Verdana",
+    "basefontsize": "1vw",
+    "outcnvbasefontsize": "1vw",
+    "labelfontsize": "3rem",
+    "valuefontsize": "60%",
+    "showTooltip": "0",
+    "showLabels":"0",
+    "showValues":"0",
+    "decimals": "0",
+    "theme": "fusion"
+},
+"data":[]
+}
+
+
+
 
 
   positive_dataSource;
@@ -64,7 +102,8 @@ export class FeedbackGraphsComponent implements OnInit {
   inpatient_dataSource;
   endpoint;
   selected;
-  nps_date;
+  nps_date1;
+  nps_date2;
   channels_data;
   nps_data;
   nps_period;
@@ -79,6 +118,10 @@ export class FeedbackGraphsComponent implements OnInit {
   };
 
   loading;
+  dataSource_fall: { chart: { caption: string; subCaption: string; xAxisName: string; yAxisName: string; numberSuffix: string; theme: string; }; data: any[]; };
+  title: string;
+  title3: string;
+  dataSource3: { chart: { caption: string; subCaption: string; xAxisName: string; yAxisName: string; numberSuffix: string; theme: string; }; data: any[]; };
   constructor( public service:ServiceService) {
     this.nps_data= {
       chart: {
@@ -138,6 +181,34 @@ export class FeedbackGraphsComponent implements OnInit {
     data:[]
   };
 
+  this.title = 'Weekly patient  arrival graph';
+
+  this.dataSource_fall = {
+    chart: {
+      caption: 'AAR HOSPITAL',
+      subCaption: 'Patient arrival',
+      xAxisName: 'Week day',
+      yAxisName: 'patients',
+      numberSuffix: '',
+      theme: 'fusion'
+    },
+    data: []
+  };
+
+this.title3 = 'Weekly feedback response graph';
+
+this.dataSource3 = {
+  chart: {
+    caption: 'AAR HOSPITAL',
+    subCaption: 'Feedback Responses',
+    xAxisName: 'Week day',
+    yAxisName: 'patients',
+    numberSuffix: '',
+    theme: 'fusion'
+  },
+  data: []
+};
+
 
 
  
@@ -155,7 +226,11 @@ export class FeedbackGraphsComponent implements OnInit {
     this.getFeedbackChannels();
     this.getFeedbackservice();
     this.getNpsgraphdata();
+    this.getnps();
  
+
+    this.getFootWalkData()
+    this.getFeedbcakResponses()
   }
   getFeedbackChannels(){
   
@@ -264,7 +339,48 @@ export class FeedbackGraphsComponent implements OnInit {
   
 
     
- 
+      getnps(){
+        this.service.getNps().subscribe(res=>{
+          this.nps_datasource=res;
+          this.nps_datasource_chart={
+            "chart": {
+                "caption": "",
+                "subCaption": "",
+                "numberPrefix": "$",
+                "bgColor": "#ffffff",
+                "startingAngle": "310",
+                "showLegend": "0",
+                "defaultCenterLabel":res.nps,
+                "centerLabel":    res.nps,
+                "centerLabelBold": "1",
+                "baseFont": "Verdana",
+                "basefontsize": "1vw",
+                "outcnvbasefontsize": "1vw",
+                "labelfontsize": "3rem",
+                "valuefontsize": "60%",
+                "showTooltip": "0",
+                "showLabels":"0",
+                "showValues":"0",
+                "decimals": "0",
+                "theme": "fusion"
+            },
+            "data":[{
+            label:"detractors",
+            value:res.detractors_perc,
+            color:'#f86c6b'
+          },
+          {
+            label:"passives",
+            value:res.passives_perc,
+            color:'#ffc107'
+          },
+          {
+            label:"promoters",
+            value:res.promoters_perc,
+            color:'#4dbd74'
+          }]}
+        },err=>{})
+      }
 getFeedbacksgraphaverage(){
   let data={
     period:this.periodres
@@ -360,13 +476,50 @@ NPSFilterChange(){
 NPSFilterChangedate(){
   let data={
     // period:this.nps_period,
-    date:this.nps_date,
+    date1:this.nps_date1,
+    date2:this.nps_date2,
   }
   console.log("filter data",data)
   this.service.npsgraph(data).subscribe(
-    datas=> {
-      console.log(datas)
-      this.nps_data.data=datas.data
+    res=> {
+      this.nps_datasource=res;
+      this.nps_datasource_chart={
+        "chart": {
+            "caption": "",
+            "subCaption": "",
+            "numberPrefix": "$",
+            "bgColor": "#ffffff",
+            "startingAngle": "310",
+            "showLegend": "0",
+            "defaultCenterLabel":res.nps,
+            "centerLabel":    res.nps,
+            "centerLabelBold": "1",
+            "baseFont": "Verdana",
+            "basefontsize": "1vw",
+            "outcnvbasefontsize": "1vw",
+            "labelfontsize": "3rem",
+            "valuefontsize": "60%",
+            "showTooltip": "0",
+            "showLabels":"0",
+            "showValues":"0",
+            "decimals": "0",
+            "theme": "fusion"
+        },
+        "data":[{
+        label:"detractors",
+        value:res.detractors_perc,
+        color:'#f86c6b'
+      },
+      {
+        label:"passives",
+        value:res.passives_perc,
+        color:'#ffc107'
+      },
+      {
+        label:"promoters",
+        value:res.promoters_perc,
+        color:'#4dbd74'
+      }]}
       
     },
    
@@ -375,5 +528,18 @@ NPSFilterChangedate(){
     () => console.log('There is an error')
   );
   }
+
+  getFootWalkData(){
+    this.service.getFootWalkData().subscribe(res=>{
+      this.dataSource_fall.data=res;
+    },err=>{})
+}
+
+getFeedbcakResponses(){
+  this.service.getFeedbcakResponses().subscribe(res=>{
+    this.dataSource3.data=res;
+  },err=>{})
+}
+
 
 }
