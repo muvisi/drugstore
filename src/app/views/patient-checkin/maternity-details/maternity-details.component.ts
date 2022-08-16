@@ -158,7 +158,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       this.maternity_package=res.maternity_package;
       this.otherInfoForm.patchValue(this.other_info);
       console.log(this.other_info);
-      this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:''}
+      this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ first_name :'',last_name :'',other_names :'',relationship:'', phone:'',residence:''}
    
       this.payment_mode=res.payment;
 

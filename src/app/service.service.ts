@@ -120,6 +120,7 @@ nonregisteredpatients(): Observable<any> {
       map(this.extractData));
   }
 
+
   requestStkPush(data): Observable<any> {
     return this.http.post(stk_url,data).pipe(
       map(this.extractData));
@@ -413,6 +414,10 @@ notcalledpatients(){
   }
   getbookingDetails(id): Observable<any> {
     return this.http.get(endpoint + 'api/booking/'+id+'/').pipe(
+      map(this.extractData));
+  }
+  getfilterbooking(s): Observable<any> {
+    return this.http.get(endpoint + 'api/booking/'+s).pipe(
       map(this.extractData));
   }
   searchBilling(id): Observable<any> {

@@ -81,11 +81,9 @@ export const navItems: NavData[] = [
  
 
    {
-    //  <div>
     name: 'Feedback',
     url: '/dashboard/feedbacks',
     icon: 'fas fa-comment',
-    // </div>
   },
   {
     name: 'Mpesa',

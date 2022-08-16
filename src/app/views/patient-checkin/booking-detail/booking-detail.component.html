@@ -25,16 +25,21 @@
                         </div>
                             <div class="col-sm-7" style="text-align:right">
                               <div class="row">
-                                
-                                  <div class="col-sm-4" > <button  (click)="smsAndMpesaModal()"  class="btn btn-success pull-right">Sms Links And Mpesa push</button></div>  
-                                 
-                                  <div class="col-sm-4"><button  (click)="createAppointment()" class="btn btn-success pull-right"> <i class="fas fa-plus"></i>Create Appointment</button></div>
+                                <div class="col-sm-3" style="text-align:right"> <button (click)="endSession()"  class="btn btn-danger pull-right">Check-out</button></div>
+                                <div class="col-sm-2" style="text-align:right">
+                                  <button  (click)="smsAndMpesaModal()"  class="btn btn-success pull-right">SMS</button>
+          
+                                 </div>
+                                 <div class="col-sm-2" style="text-align:right">
+                                  <button  (click)="showStk()"  class="btn btn-success pull-right">M-pesa</button>
+          
+                                 </div>
+                                <div class="col-sm-3" style="text-align:right">
+                                  <button  (click)="createAppointment()" class="btn btn-success pull-right"> <i class="fas fa-plus"></i>  Appointment</button>
+                  
+                                </div>
                           </div>
-                                <div class="row" style="margin-top: 10px;">
                                 
-                                  <div class="col-sm-12" > <button  (click)="endSession()"  class="btn btn-success pull-right">Ended</button></div>
-                                <div class="col-sm-12" ><button  (click)="paymentModal.show()"  class="btn btn-success pull-right">Feedback</button></div> 
-                          </div>
                             </div>
                           </div>
               
@@ -181,14 +186,30 @@
                                  
                                     <form>
                                         <div class="row">
-                                            <div class="col-sm-4">
-                                                <mat-form-field appearance="outline">
-                                                  <mat-label>Name</mat-label>
-                                                    <input matInput placeholder="Name" name="name" [(ngModel)]="nextofKin.name">
-                                                  </mat-form-field>
-                                            </div>
-                                     
-                                    
+                                          <div class="col-sm-4">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>First Name</mat-label>
+                                                <input matInput placeholder="First Name" name="first_name"  [(ngModel)]="nextofKin.first_name">
+                                                
+                                                <mat-error *ngIf="c.first_name.errors && submitted">First Name <strong>required</strong></mat-error>
+                                              </mat-form-field>
+                                        </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Last Name</mat-label>
+                                            <input matInput placeholder="Last Name" name="last_name"  [(ngModel)]="nextofKin.last_name">
+                                            <mat-error *ngIf="c.last_name.errors &&submitted">Last Name <strong>required</strong></mat-error>
+                                          </mat-form-field>
+                                      </div>
+                                
+                                    <div class="col-sm-4">
+                                      <mat-form-field appearance="outline">
+                                        <mat-label>Middle</mat-label>
+                                          <input matInput placeholder="Middle Name" name="other_names"  [(ngModel)]="nextofKin.other_names">
+                                         
+                                          <mat-error *ngIf="c.other_names.errors && submitted">Other Name <strong>required</strong></mat-error>
+                                        </mat-form-field>
+                                  </div>
                                   
                                        <div class="col-sm-4">
                                         <mat-form-field  appearance="outline">

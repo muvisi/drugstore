@@ -38,6 +38,19 @@ export class BookingComponent implements OnInit {
   dataSourceRegistration;
   mobile_registrations;
   user = JSON.parse(sessionStorage.getItem('user'));
+
+
+
+  mobile_registrations_completed;
+  mobile_registrations_pending;
+  mobile_registrations_checkedin;
+  dataSourceRegistration_checkedin: any;
+  dataSourceRegistration_completed: any;
+  mobile_registrations_pending_count: any;
+  dataSourceRegistration_checkedin_count: any;
+  dataSourceRegistration_completed_count: any;
+  dataSourceRegistration_pending: any;
+  dataSourceRegistration_pending_count: any;
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
   ngOnInit() {
 
@@ -59,6 +72,11 @@ export class BookingComponent implements OnInit {
       this.dataSourceVaccination = new MatTableDataSource((res));
       this.dataSourceVaccination.paginator = this.paginator;
     })
+
+
+    this.getRegistartionRecords_pending();
+    this.getRegistartionRecords_completed();
+    this.getRegistartionRecords_checkedin();
   }
 
   getMaternitybooking() {
@@ -105,6 +123,62 @@ export class BookingComponent implements OnInit {
 
   downloadMaternityExcel(){
     window.open(this.service.geMaternityDownloadUrl(), "_blank")
+  }
+  filterRegistrationByBranch_pending(){
+    this.service.getfilterbooking('?is_today=yes&processing_status=Pending&=search'+this.mobile_registrations_pending).subscribe(res=>{
+      this.dataSourceRegistration_pending = new MatTableDataSource <[]>(res);
+      this.dataSourceRegistration_pending_count=res.length
+        this.dataSourceRegistration_pending.paginator = this.paginator;
+        this.loading = false;
+    },err=>{});
+  }
+
+  filterRegistrationByBranch_checkedin(){
+    this.service.getfilterbooking('?is_today=yes&processing_status=Active&search='+this.mobile_registrations_checkedin).subscribe(res=>{
+      this.dataSourceRegistration_checkedin = new MatTableDataSource <[]>(res);
+      this.dataSourceRegistration_checkedin_count=res.length
+        this.dataSourceRegistration_checkedin.paginator = this.paginator;
+        this.loading = false;
+    },err=>{});
+  }
+  
+  filterRegistrationByBranch_completed(){
+    this.service.getfilterbooking('?is_today=yes&processing_status=Completed&search='+this.mobile_registrations_completed).subscribe(res=>{
+      this.dataSourceRegistration_completed = new MatTableDataSource <[]>(res);
+      this.dataSourceRegistration_completed_count=res.length;
+        this.dataSourceRegistration_completed.paginator = this.paginator;
+        this.loading = false;
+    },err=>{});
+  }
+  getRegistartionRecords_pending() {
+    this.service.getfilterbooking('?is_today=yes&processing_status=Pending').subscribe(res=>{
+      this.dataSourceRegistration_pending = new MatTableDataSource <[]>(res);
+      this.dataSourceRegistration_pending_count=res.length
+        this.dataSourceRegistration_pending.paginator = this.paginator;
+    },err=>{});
+    
+  }
+
+  getRegistartionRecords_checkedin() {
+    this.service.getfilterbooking('?is_today=yes&processing_status=Active').subscribe(res=>{
+      this.dataSourceRegistration_checkedin = new MatTableDataSource <[]>(res);
+      this.dataSourceRegistration_checkedin_count=res.length
+        this.dataSourceRegistration_checkedin.paginator = this.paginator;
+    },err=>{});
+
+   
+  }
+  getRegistartionRecords_completed() {
+   
+    this.service.getfilterbooking('?is_today=yes&processing_status=Completed').subscribe(res=>{
+      this.dataSourceRegistration_completed = new MatTableDataSource <[]>(res);
+      this.dataSourceRegistration_completed_count=res.length;
+        this.dataSourceRegistration_completed.paginator = this.paginator;
+
+    },err=>{});
+
+
+   
   }
 
 

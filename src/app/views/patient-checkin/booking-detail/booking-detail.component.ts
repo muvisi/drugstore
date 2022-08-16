@@ -167,7 +167,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
           
           
       }
-      this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ name :'',relationship:'', phone:'',residence:'',alternative:''}
+      this.nextofKin=res.nextofKin !=null ? res.nextofKin :{ first_name :'',last_name :'',others_name :'',relationship:'', phone:'',residence:'',alternative:''}
       this.speciality=res.specialist!= null ? res.specialist.split(",") : [];
       this.symptoms=res.symptoms !=null ? res.symptoms.split(",") : [];
       this.department=res.department;
@@ -536,6 +536,16 @@ checkWeekdaysInList(item){
     },err=>{})
     this.smslinks.show()
   }
+  showStk(){
+    var data=this.clientForm.value;
+    if(data.phone=="" || data.phone==null){
+      this.toast.warning("Enter phone number");
+      return ;
+    }
+    var data=this.clientForm.value;
+    this.phone_number=data['phone']
+    this.stk.show()
+  }
   Rescheduledatetime(){
 
     console.log(this.dateTimeForm.value)
@@ -593,16 +603,7 @@ checkWeekdaysInList(item){
     },err=>{})
 
   }
-  showStk(){
-    var data=this.clientForm.value;
-    if(data.phone=="" || data.phone==null){
-      this.toast.warning("Enter phone number");
-      return ;
-    }
-    var data=this.clientForm.value;
-    this.phone_number=data['phone']
-    this.stk.show()
-  }
+
   submitPhoneRegister(){
     var data=this.clientForm.value;
     if(data.phone=="" || data.phone==null){

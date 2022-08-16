@@ -17,7 +17,7 @@ import { DatePipe } from '@angular/common';
 export class RecordListComponent implements OnInit {
   dataSource;
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  Columns: string[] = ['sn','name','phone','email','create','edit']
+  Columns: string[] = ['sn','name','phone','email','view','edit']
   clientForm: FormGroup;
   submitted=false;
   maxDate=new Date();
@@ -78,6 +78,20 @@ onSave(){
  })
 }
 
+checkin(element){
+
+}
+viewDetails(item){
+  if(item.type=="booking"){
+    this.router.navigateByUrl("dashboard/booking-details/"+item.id)
+  }else if(item.type=="maternity"){
+    this.router.navigateByUrl("dashboard/maternity-details/"+item.id)
+  }else if(item.type=="vaccination"){
+    this.router.navigateByUrl("dashboard/appointment-details/"+item.id)
+  }else if(item.type=="testing"){
+    this.router.navigateByUrl("dashboard/testing-details/"+item.id)
+  }
+}
 
 
 }
