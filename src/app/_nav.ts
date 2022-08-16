@@ -92,11 +92,6 @@ export const navItems: NavData[] = [
     url: '/dashboard/payments',
     icon: 'fas fa-credit-card',
   },
-  {
-    name: 'Clients Insight',
-    url: '/dashboard/patients-reports',
-    icon: 'fa fa-folder-open',
-  },
   
   {
     name: 'FeedBack-Analysis',
