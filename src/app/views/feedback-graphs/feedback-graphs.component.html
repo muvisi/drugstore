@@ -22,16 +22,25 @@
                           </mat-select>  
                         </mat-form-field>
                     </div>
-                 
-                  <!-- <div class="col-sm-3">
-                          
-                    <mat-form-field appearance="outline">
-                      <mat-label>Select Date</mat-label>
-                        <input matInput placeholder="Select date"    [(ngModel)]="services_date"  [matDatepicker]="picker1" (ngModelChange)="getFeedbackservicefilterdate()" autocomplete="off">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field>
-                </div> -->
+                
+                <div class="col-sm-3">
+                        
+                  <mat-form-field appearance="outline">
+                    <mat-label>Start Date</mat-label>
+                      <input matInput placeholder="Start date"    [(ngModel)]="services_start_date"  [matDatepicker]="picker161"  autocomplete="off">
+                      <mat-datepicker-toggle matSuffix [for]="picker161"></mat-datepicker-toggle>
+                      <mat-datepicker #picker161></mat-datepicker>
+                    </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                        
+                <mat-form-field appearance="outline">
+                  <mat-label>End Date</mat-label>
+                    <input matInput placeholder="End date"    [(ngModel)]="services_end_date"  [matDatepicker]="picker162" (ngModelChange)="ServicesFilterChanged()" autocomplete="off">
+                    <mat-datepicker-toggle matSuffix [for]="picker162"></mat-datepicker-toggle>
+                    <mat-datepicker #picker162></mat-datepicker>
+                  </mat-form-field>
+            </div>
                 </div>
                
               
@@ -50,17 +59,41 @@
   
                  
                   <mat-tab label="Categories Averages">
-                    <div class="col-sm-3">
-                      <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
-                          <mat-label>Period</mat-label>
-                          <mat-select  [(ngModel)]="periodres"  (selectionChange)="periodChanged()">
-                            <mat-option value="daily">Today</mat-option>
-                            <mat-option value="weekly">Weekly </mat-option>
-                            <mat-option value="monthly">Monthly </mat-option>
-                            <mat-option value="yearly">Yearly </mat-option>
-                          </mat-select>  
-                        </mat-form-field>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                            <mat-label>Period</mat-label>
+                            <mat-select  [(ngModel)]="periodres"  (selectionChange)="periodChanged()">
+                              <mat-option value="daily">Today</mat-option>
+                              <mat-option value="weekly">Weekly </mat-option>
+                              <mat-option value="monthly">Monthly </mat-option>
+                              <mat-option value="yearly">Yearly </mat-option>
+                            </mat-select>  
+                          </mat-form-field>
+                      </div>
+                      <div class="col-sm-3">
+                          
+                        <mat-form-field appearance="outline">
+                          <mat-label>Start Date</mat-label>
+                            <input matInput placeholder="Start date"    [(ngModel)]="category_start_date"  [matDatepicker]="picker165"  autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="picker165"></mat-datepicker-toggle>
+                            <mat-datepicker #picker165></mat-datepicker>
+                          </mat-form-field>
                     </div>
+                    <div class="col-sm-3">
+                              
+                      <mat-form-field appearance="outline">
+                        <mat-label>End Date</mat-label>
+                          <input matInput placeholder="End date"    [(ngModel)]="category_end_date"  [matDatepicker]="picker166" (ngModelChange)="CategoryFilterChanged()" autocomplete="off">
+                          <mat-datepicker-toggle matSuffix [for]="picker166"></mat-datepicker-toggle>
+                          <mat-datepicker #picker166></mat-datepicker>
+                        </mat-form-field>
+                  </div>
+
+
+
+                    </div>
+                    
                   
                      
                     <fusioncharts
