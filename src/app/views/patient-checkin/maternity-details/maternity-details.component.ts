@@ -229,6 +229,33 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       this.loading=false;
     });
 
+
+  }
+  Maternity_Admit(){
+    let data={
+      id:this.route.snapshot.params.id,
+      type:"admit"
+    }
+    this.service.maternityadmitdischarge(data).subscribe((res)=>{
+      this.loading=false
+      this.toast.success("Update was Successful")
+    },(error)=>{
+      this.loading=false;
+      this.toast.error("Update Failed");
+    });
+  }
+  Maternity_Discharge(){
+    let data={
+      id:this.route.snapshot.params.id,
+      type:"discharge"
+    }
+    this.service.maternityadmitdischarge(data).subscribe((res)=>{
+      this.loading=false
+      this.toast.success("Update was Successful")
+    },(error)=>{
+      this.loading=false;
+      this.toast.error("Update Failed");
+    });
   }
 
   updateNextOfKinData(){

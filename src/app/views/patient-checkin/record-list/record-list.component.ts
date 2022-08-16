@@ -22,6 +22,7 @@ export class RecordListComponent implements OnInit {
   submitted=false;
   maxDate=new Date();
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
+  
   search_text: any;
   constructor(public service: ServiceService,public router:Router,public formBuilder:FormBuilder,private toastr: ToastrService,public datePipe:DatePipe) { }
   ngOnInit() {

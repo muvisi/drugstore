@@ -71,6 +71,8 @@ export class FeedbackGraphsComponent implements OnInit {
   negative_dataSource;
   maternity_dataSource;
   services_period;
+  category_start_date;
+  category_end_date;
   
   average_dataSource;
   all_dataSource
@@ -110,6 +112,8 @@ export class FeedbackGraphsComponent implements OnInit {
   perioddepart;
   servicegraphdata;
   services_date;
+  services_start_date;
+  services_end_date
   respondent_period;
 
   channels_filter={
@@ -318,6 +322,32 @@ this.dataSource3 = {
         () => console.log('There is an error')
       );
       }
+      ServicesFilterChanged(){
+        let data={
+          startdate:this.services_start_date,
+          enddate:this.services_end_date
+        }
+        console.log("my data data",data)
+    
+        this.service.getFeedbackservice(data).subscribe(
+          datas => {
+            
+            this.servicegraphdata.data =datas.data
+      
+            
+          },
+         
+          err => console.error(err),
+         
+          () => console.log('There is an error')
+        );
+
+
+
+
+
+
+      }
       // getFeedbackservicefilterdate(){
       //   let data={
       //     period:this.services_date
@@ -466,6 +496,31 @@ NPSFilterChange(){
    
     () => console.log('There is an error')
   );
+
+
+
+
+
+
+}
+CategoryFilterChanged(){
+  let data={
+    startdate:this.category_start_date,
+    enddate:this.category_end_date
+  }
+console.log(data)
+this.service.feedbacksgraphaverage(data).subscribe(
+  datas => {
+    
+    this.averagegraphdata.data =datas.data
+
+    
+  },
+ 
+  err => console.error(err),
+ 
+  () => console.log('There is an error')
+);
 
 
 

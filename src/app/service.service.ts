@@ -241,6 +241,11 @@ notcalledpatients(){
       map(this.extractData));
     
   }
+  SendSmsMpesa(){
+    return this.http.get(endpoint + 'api/getfeedbackfrommpesa/').pipe(
+      map(this.extractData));
+
+  }
   searchPaymentsUtilized(text) {
     return this.http.get(endpoint + 'api/utilized-payments/?search='+text).pipe(
       map(this.extractData));
@@ -254,10 +259,44 @@ notcalledpatients(){
   geMaternityDownloadUrl() {
     return  endpoint + 'api/maternity-download/';
   }
+  MaternityDownloadDischargeDownloadUrl() {
+    return  endpoint + 'api/MaternityDownloadDischarge/';
+  }
+  MaternityDownloadAdmittedDownloadUrl() {
+    return  endpoint + 'api/MaternityDownloadAdmitted/';
+  }
+  MaternityDownloadCsection() {
+    return  endpoint + 'api/MaternityDownloadCsection/';
+  }
+  MaternityDownloadNormalDelivery() {
+    return  endpoint + 'api/MaternityDownloadNormalDelivery/';
+  }
   getMaternityBookingList() {
     return this.http.get(endpoint + 'api/maternity/').pipe(
       map(this.extractData));
     
+  }
+  gecstMaternityBookingList() {
+    return this.http.get(endpoint + 'api/csmaternity/').pipe(
+      map(this.extractData));
+    
+  }
+  alladmittedmaternitypatients() {
+    return this.http.get(endpoint + 'api/maternityadmittedpending/').pipe(
+      map(this.extractData));
+    
+  }
+  alladmittedmaternitycompletedpatients() {
+    return this.http.get(endpoint + 'api/maternityadmittedcompleted/').pipe(
+      map(this.extractData));
+    
+  }
+  
+  getnormalMaternityBookingList(){
+    return this.http.get(endpoint + 'api/normalmaternity/').pipe(
+      map(this.extractData));
+    
+
   }
   getMaternityBookingDetail(id) {
     return this.http.get(endpoint + 'api/maternity-details/'+id+'/').pipe(
@@ -923,6 +962,10 @@ downloadAppointmentreports(urlparams): Observable<any>{
     return this.http.post(endpoint + 'patients/patient_revisit/', data ).pipe(
       map(this.extractData));
   }
+  editclientfeedback(data) {
+    return this.http.post(endpoint + 'api/updatepatientonfeedback/', data ).pipe(
+      map(this.extractData));
+  }
   updateClient(data) {
       return this.http.put(endpoint + 'api/patient/'+data.id+'/', data ).pipe(
         map(this.extractData));
@@ -1022,6 +1065,10 @@ searchBills(data): Observable<any>{
 
   updateNextofKinData(data): Observable<any> {
     return this.http.post(endpoint + 'api/nextofkin-update/'+data.id+'/',data).pipe(
+      map(this.extractData));
+  }
+  maternityadmitdischarge(data): Observable<any> {
+    return this.http.post(endpoint + 'api/maternityadmissionanddischarge/',data).pipe(
       map(this.extractData));
   }
   reschedulebooking(data): Observable<any> {
