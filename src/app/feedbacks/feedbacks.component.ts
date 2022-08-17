@@ -73,6 +73,7 @@ export class FeedbacksComponent implements OnInit {
   NegativeColumns: string[] = ['sn','date','patient','service','rating','issues','comments',"visit_type"]
   AverageColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type"]
   AllColumns: string[] = ['sn','date','patient','service','rating','comments',"visit_type","status","type"]
+  AllColumnsCalled: string[] = ['sn','date','patient',"calledby",'service','rating','comments',"visit_type","status","type"]
   dataSourcecalled: any;
   constructor(public service:ServiceService,private toastr:ToastrService,private datePipe: DatePipe,public router: Router) { 
    

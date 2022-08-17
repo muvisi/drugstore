@@ -14,10 +14,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./mpesa-payments.component.scss']
 })
 export class MpesaPaymentsComponent implements OnInit {
-
+  displayedColumns3: string[] = ['sn','TransactionDate','PhoneNumber','Name', 'MpesaReceiptNumber', 'Amount','type','department'];
+    displayedColumns1: string[] = ['sn','TransactionDate','PhoneNumber','Name', 'MpesaReceiptNumber', 'Amount','type'];
+    dataSource3;
+    dataSource2;
+    endpoint;
+    data3:any={};
+    data2:any={};
     displayedColumns: string[] = ['sn','TransactionDate','PhoneNumber','Name', 'MpesaReceiptNumber', 'Amount','type','Status'];
     dataSource;
-    endpoint;
     data:any={};
     max = new Date()
     @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
@@ -25,10 +30,23 @@ export class MpesaPaymentsComponent implements OnInit {
     constructor(public service:ServiceService,public datePipe:DatePipe,private modalService: NgbModal,private toastr:ToastrService) { }
     ngOnInit() {
       this.getPayments();
-      this. getEdpoint()
+      this.getEdpoint();
+      this.getUtilizedPayments()
+      this.getNotUtilizedPayments()
    
     }
-
+    getUtilizedPayments(){
+      this.service.getUtilizePayments().subscribe((res)=>{
+        this.dataSource3 = new MatTableDataSource(res);
+        this.dataSource3.paginator = this.paginator;
+      })
+    }
+    getNotUtilizedPayments(){
+     this.service.getNotUtilizePayments().subscribe((res)=>{
+       this.dataSource2 = new MatTableDataSource(res);
+       this.dataSource2.paginator = this.paginator;
+     })
+   }
 
    getPayments(){
     this.loading=true;
@@ -40,17 +58,36 @@ export class MpesaPaymentsComponent implements OnInit {
       this.loading=false;
      })
    }
+
    dateFilter(){
-     this.data.start_date=this.datePipe.transform(this.data.start_date,'yyyy-MM-dd');
-     this.data.end_date=this.datePipe.transform(this.data.end_date,'yyyy-MM-dd');
-     console.log(this.data);
+    this.data.start_date=this.datePipe.transform(this.data.start_date,'yyyy-MM-dd');
+    this.data.end_date=this.datePipe.transform(this.data.end_date,'yyyy-MM-dd');
+    console.log(this.data);
+    this.service.paymentsDateFilter(this.data).subscribe((res)=>{
+     this.dataSource = new MatTableDataSource(res);
+     this.dataSource.paginator = this.paginator;
+    })
+  }
+   dateFilterUtilized(){
+     this.data3.start_date=this.datePipe.transform(this.data3.start_date,'yyyy-MM-dd');
+     this.data3.end_date=this.datePipe.transform(this.data3.end_date,'yyyy-MM-dd');
+     console.log(this.data3);
      this.loading=true;
-     this.service.paymentsDateFilter(this.data).subscribe((res)=>{
+     this.service.paymentsDateFilterUtilized(this.data3).subscribe((res)=>{
       this.loading=false;
-      this.dataSource = new MatTableDataSource(res);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource3 = new MatTableDataSource(res);
+      this.dataSource3.paginator = this.paginator;
      },(err)=>{  this.loading=false;})
    }
+   dateFilterNotUtilized(){
+    this.data2.start_date=this.datePipe.transform(this.data2.start_date,'yyyy-MM-dd');
+    this.data2.end_date=this.datePipe.transform(this.data2.end_date,'yyyy-MM-dd');
+    console.log(this.data2);
+    this.service.paymentsDateFilterNotUtilized(this.data2).subscribe((res)=>{
+     this.dataSource2 = new MatTableDataSource(res);
+     this.dataSource2.paginator = this.paginator;
+    })
+  }
    applyFilter(text){
      console.log(text);
      this.service.searchPayments(text).subscribe((res)=>{
@@ -58,7 +95,20 @@ export class MpesaPaymentsComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
      })
    }
-  
+   applyFilter1(text){
+    console.log(text);
+    this.service.searchPaymentsUtilized(text).subscribe((res)=>{
+     this.dataSource3 = new MatTableDataSource(res);
+     this.dataSource3.paginator = this.paginator;
+    })
+  }
+  applyFilter2(text){
+   console.log(text);
+   this.service.searchPaymentsNotUtilized(text).subscribe((res)=>{
+    this.dataSource2 = new MatTableDataSource(res);
+    this.dataSource2.paginator = this.paginator;
+   })
+ }
    utilizePayment(item){
     const modalRef =this.modalService.open(UtilizePaymentModal, {size: 'lg'});
     modalRef.componentInstance.item = item;
@@ -105,6 +155,18 @@ export class MpesaPaymentsComponent implements OnInit {
    }
 
 
+   downloadUtilized(){
+    window.open(this.service.getUtilizePaymentsDownloadUrl())
+  }
+  downloadNotUtilized(){
+    window.open(this.service.getNotUtilizePaymentsDownloadUrl())
+  }
+  dateddownloaddatedNotUtilized(){
+    console.log("the end date",this.data2.end_date)
+    console.log("start time",this.data2.start_date)
+    
+    // window.open(this.service.getdatedNotUtilizePaymentsDownloadUrl())
+  }
 
   
   }

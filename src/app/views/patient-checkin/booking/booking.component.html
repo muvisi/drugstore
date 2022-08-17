@@ -9,6 +9,101 @@
       <div class="card-body">
 
         <mat-tab-group>
+          <mat-tab label="Maternity"> 
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="row" style="margin-top: 20px;">
+                <div class="col-sm-12">
+                
+                </div>
+                </div>
+                  <div class="row" style="margin-top: 10px;">
+                    <div class="col-sm-2">
+                            <mat-form-field>
+                            <input matInput [(ngModel)]="maternity_mobile"  autocomplete="off"    placeholder="Mobile, ID, Name" type="search">
+                          </mat-form-field>
+                    </div>
+       
+                  <div class="col-sm-2">
+                    <button  (click)="applyMaternityFilter()"  class="btn btn-success pull-right">search</button> 
+                </div>
+                <div class="col-sm-2" style="float: right;">
+                  <button  (click)="getMaternitybooking()"  class="btn btn-success pull-right">  <i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>refresh</button> 
+              </div>
+              <div class="col-sm-2" style="float: right;">
+                  <button  (click)="downloadMaternityExcel()"  class="btn btn-success pull-right">  <i class="fa fa-download" aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>Download</button> 
+              </div>
+              <div class="col-sm-4">
+                <a routerLink="/dashboard/book-maternity/">  <button  class="btn btn-success pull-right"> <i class="fas fa-plus"></i>Add  Maternity Booking</button></a>  
+  
+              </div>
+                  
+                  </div>
+                </div>
+              <div class="col-sm-12">
+                <div class="mat-elevation-z8 table-responsive">
+                  <table mat-table [dataSource]="dataSourceMaternity">
+                      <ng-container matColumnDef="sn">
+                          <th mat-header-cell *matHeaderCellDef>S/N</th>
+                          <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="created">
+                    <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Admission Status</th>
+                    <td mat-cell *matCellDef="let element">
+                      <span *ngIf="element.admission_status=='PENDING'"><span class="badge badge-primary">Admitted</span>
+                    </span> 
+                    <span *ngIf="element.admission_status=='COMPLETED'"><span class="badge badge-success">Discharged</span>
+                  </span><span *ngIf="element.admission_status=='NEW'"><span class="badge badge-dark">No Show</span>
+                </span>
+
+                  </td>
+                  </ng-container>
+                  <ng-container matColumnDef="client">
+                    <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Patient Name</th>
+                    <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
+                  </ng-container>
+                
+                        
+                      <ng-container matColumnDef="phone" style="font-size: 11px;">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">phone</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.patient.phone}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="payment">
+                          <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">payment</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.payment}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="date">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Type</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.date  | date:'dd/MM/yyyy'}} </td>
+                        </ng-container>
+                       <ng-container matColumnDef="time">
+                                                <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Booking Type</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                  <span *ngIf="element.maternity_package=='Normal Delivery'"><span class="badge badge-primary">Normal</span>
+                                                </span> 
+                                                <span *ngIf="element.maternity_package=='Caesarean Section'"><span class="badge badge-dark">C-Section</span>
+                                              </span>
+                                              </td>
+                                              </ng-container>
+                        <ng-container matColumnDef="action">
+                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
+                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
+                            <button class="btn btn-success btn-sm" (click)="rowMaternitySelectedView(element)" style="font-size: 11px;">View </button>
+                             </td>
+                        </ng-container>
+  
+  
+                    <tr mat-header-row *matHeaderRowDef="MaternityColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns:MaternityColumns;"></tr>
+                  </table>
+            
+                  <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                </div>
+              </div>
+              
+            </div>
+          </mat-tab>
+                     
           <!-- <mat-tab label="Registrations"> 
            
 
@@ -565,101 +660,7 @@
                   </div>
             </div>
           </mat-tab>
-          <mat-tab label="Maternity"> 
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="row" style="margin-top: 20px;">
-                <div class="col-sm-12">
-                
-                </div>
-                </div>
-                  <div class="row" style="margin-top: 10px;">
-                    <div class="col-sm-2">
-                            <mat-form-field>
-                            <input matInput [(ngModel)]="maternity_mobile"  autocomplete="off"    placeholder="Mobile, ID, Name" type="search">
-                          </mat-form-field>
-                    </div>
-       
-                  <div class="col-sm-2">
-                    <button  (click)="applyMaternityFilter()"  class="btn btn-success pull-right">search</button> 
-                </div>
-                <div class="col-sm-2" style="float: right;">
-                  <button  (click)="getMaternitybooking()"  class="btn btn-success pull-right">  <i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>refresh</button> 
-              </div>
-              <div class="col-sm-2" style="float: right;">
-                  <button  (click)="downloadMaternityExcel()"  class="btn btn-success pull-right">  <i class="fa fa-download" aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>Download</button> 
-              </div>
-              <div class="col-sm-4">
-                <a routerLink="/dashboard/book-maternity/">  <button  class="btn btn-success pull-right"> <i class="fas fa-plus"></i>Add  Maternity Booking</button></a>  
-  
-              </div>
-                  
-                  </div>
-                </div>
-              <div class="col-sm-12">
-                <div class="mat-elevation-z8 table-responsive">
-                  <table mat-table [dataSource]="dataSourceMaternity">
-                      <ng-container matColumnDef="sn">
-                          <th mat-header-cell *matHeaderCellDef>S/N</th>
-                          <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="created">
-                    <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Admission Status</th>
-                    <td mat-cell *matCellDef="let element">
-                      <span *ngIf="element.admission_status=='PENDING'"><span class="badge badge-primary">Admitted</span>
-                    </span> 
-                    <span *ngIf="element.admission_status=='COMPLETED'"><span class="badge badge-success">Discharged</span>
-                  </span><span *ngIf="element.admission_status=='NEW'"><span class="badge badge-dark">No Show</span>
-                </span>
-
-                  </td>
-                  </ng-container>
-                  <ng-container matColumnDef="client">
-                    <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Patient Name</th>
-                    <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.patient.first_name}} {{element.patient.last_name}} </td>
-                  </ng-container>
-                
-                        
-                      <ng-container matColumnDef="phone" style="font-size: 11px;">
-                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">phone</th>
-                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.patient.phone}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="payment">
-                          <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">payment</th>
-                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.payment}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="date">
-                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Type</th>
-                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.date  | date:'dd/MM/yyyy'}} </td>
-                        </ng-container>
-                       <ng-container matColumnDef="time">
-                                                <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Booking Type</th>
-                                                <td mat-cell *matCellDef="let element">
-                                                  <span *ngIf="element.maternity_package=='Normal Delivery'"><span class="badge badge-primary">Normal</span>
-                                                </span> 
-                                                <span *ngIf="element.maternity_package=='Caesarean Section'"><span class="badge badge-dark">C-Section</span>
-                                              </span>
-                                              </td>
-                                              </ng-container>
-                        <ng-container matColumnDef="action">
-                          <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Action</th>
-                          <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
-                            <button class="btn btn-success btn-sm" (click)="rowMaternitySelectedView(element)" style="font-size: 11px;">View </button>
-                             </td>
-                        </ng-container>
-  
-  
-                    <tr mat-header-row *matHeaderRowDef="MaternityColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns:MaternityColumns;"></tr>
-                  </table>
-            
-                  <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
-                </div>
-              </div>
-              
-            </div>
-          </mat-tab>
-                     
+          
         </mat-tab-group>
       
       </div>
