@@ -133,7 +133,24 @@
      
 
      
-   
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin' || user.role == 'hospital_cashiers' || user.role == 'hospital_admin'" >
+      <a routerLink="mpesa-payments">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <span class="fa-stack fa-4x">
+                <i class=" fa-stack-2x icon-background4"></i>
+                <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
+                <i class="fa fa-usd" aria-hidden="true" style="color:#A6CF39;"></i>
+              </span>
+            </div>
+            <div class="text-center item" >Mpesa</div>
+    
+    
+          </div>
+        </div>
+      </a>
+    </div> 
     
       
 
@@ -157,63 +174,9 @@
           </div>
         </a>
       </div>
-      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin' || user.role == 'hospital_cashiers' || user.role == 'hospital_admin'" >
-        <a routerLink="payments">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-                  <i class="fa fa-usd" aria-hidden="true" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >Mpesa</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div> 
-      <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
-        <a routerLink="patients-reports">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-                  <i class="fa fa-line-chart" aria-hidden="true" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item" >Clients Insights</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div>
 
-      
-     
-     <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin' || user.role == 'hospital_admin'" >
-        <a routerLink="feedback-reporting">
-          <div class="card">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="fa-stack fa-4x">
-                  <i class=" fa-stack-2x icon-background4"></i>
-                  <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
-                  <i class="fa fa-comments-o" aria-hidden="true" style="color:#A6CF39;"></i>
-                </span>
-              </div>
-              <div class="text-center item">Feedback-Breakdown</div>
-      
-      
-            </div>
-          </div>
-        </a>
-      </div> 
+
+
       <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'hospital_management' || user.role == 'admin' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
         <a routerLink="Feedback-graphs">
           <div class="card">
@@ -225,13 +188,14 @@
                   <i class="fa fa-bar-chart" aria-hidden="true" style="color:#A6CF39;"></i>
                 </span>
               </div>
-              <div class="text-center item"  >Feedback Graphs</div>
+              <div class="text-center item"  >Feedback Reports</div>
       
       
             </div>
           </div>
         </a>
       </div>
+
       <div class="col-sm-6 col-md-3" *ngIf="user.role == 'customer_service' || user.role == 'admin'  || user.role == 'hospital_management' || user.role == 'hospital_cashiers' || user.role == 'hospital_doctors' || user.role == 'hospital_nurses' || user.role == 'hospital_admin'|| user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'" >
         <a routerLink="reports">
           <div class="card">

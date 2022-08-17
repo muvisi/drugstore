@@ -96,7 +96,7 @@ export const navItems: NavData[] = [
 
   {
     
-    name: 'Feedback Graphs',
+    name: 'Feedback Reports',
     url: '/dashboard/Feedback-graphs',
     icon: 'fa fa-bar-chart',
   },
