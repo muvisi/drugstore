@@ -36,6 +36,7 @@ export class CallPatientsComponent implements OnInit {
    
   
   }
+  maxDate=new Date();
   @ViewChild('paymentModal', { static: false }) paymentModal: ModalDirective;
   @ViewChild('staticModal', { static: false }) staticModal: ModalDirective;
   AllColumns1: string[] = ['sn','date','note','user']

@@ -32,6 +32,9 @@ export class BookingDetailComponent implements OnInit {
   submitted;
   nextofKin={
     name:"",
+    first_name:"",
+    last_name:"",
+    other_names:"",
     phone:"",
     residence:"",
     relationship:"",
