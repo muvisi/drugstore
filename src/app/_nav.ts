@@ -80,23 +80,19 @@ export const navItems: NavData[] = [
 
  
 
-   {
-    name: 'Feedback',
-    url: '/dashboard/feedbacks',
-    icon: 'fas fa-comment',
-  },
+
   {
     name: 'Mpesa',
-    url: '/dashboard/payments',
+    url: '/dashboard/mpesa-payments',
     icon: 'fas fa-credit-card',
   },
   
   {
-    name: 'FeedBack-Analysis',
-    url: '/dashboard/feedback-reporting',
-    icon: 'fa fa-comments-o',
- 
+    name: 'Feedback',
+    url: '/dashboard/feedbacks',
+    icon: 'fas fa-comment',
   },
+
 
   {
     

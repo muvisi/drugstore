@@ -279,6 +279,11 @@
                                             <th mat-header-cell *matHeaderCellDef>Patient</th>
                                             <td mat-cell *matCellDef="let element"> {{element.client_name }} </td>
                                           </ng-container>
+                                          
+                                          <ng-container matColumnDef="calledby">
+                                            <th mat-header-cell *matHeaderCellDef>Called By</th>
+                                            <td mat-cell *matCellDef="let element"> {{element.called_by }} </td>
+                                          </ng-container>
                                             <ng-container matColumnDef="service">
                                               <th mat-header-cell *matHeaderCellDef>Service</th>
                                               <td mat-cell *matCellDef="let element"  style="font-size: 12px;"> {{element.service}} </td>
@@ -329,8 +334,8 @@
                                     
                                             
                                           
-                                            <tr mat-header-row *matHeaderRowDef="AllColumns"></tr>
-                                            <tr mat-row *matRowDef="let row; columns:AllColumns;"></tr>
+                                            <tr mat-header-row *matHeaderRowDef="AllColumnsCalled"></tr>
+                                            <tr mat-row *matRowDef="let row; columns:AllColumnsCalled;"></tr>
                                           </table>
                                     
                                           <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>

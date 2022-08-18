@@ -191,7 +191,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
           console.log(res2);
 
           this.payment_info={
-              "payment":this.payment_type.payment,
+              "payment":"Insurance",
               "insurance_company": res2.insurance_company !=  null ? res2.insurance_company : '',
               "scheme_name":  res2.scheme_name !=  null ? res2.scheme_name : '',
               "scheme_number":  res2.scheme_number !=  null ? res2.scheme_number : '',

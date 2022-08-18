@@ -23,6 +23,10 @@ export class FeedbackGraphsComponent implements OnInit {
   bookingvspatient: Object;
   dataSources;
   periodres;
+
+
+  complimentdataSource;
+  issuesdataSource;
  
 
 
@@ -125,7 +129,11 @@ export class FeedbackGraphsComponent implements OnInit {
   dataSource_fall: { chart: { caption: string; subCaption: string; xAxisName: string; yAxisName: string; numberSuffix: string; theme: string; }; data: any[]; };
   title: string;
   title3: string;
+
   dataSource3: { chart: { caption: string; subCaption: string; xAxisName: string; yAxisName: string; numberSuffix: string; theme: string; }; data: any[]; };
+  
+  AllColumns2: string[] = ['sn','compliment','count']
+  AllColumns1: string[] = ['sn','issue','count']
   constructor( public service:ServiceService) {
     this.nps_data= {
       chart: {
@@ -235,6 +243,9 @@ this.dataSource3 = {
 
     this.getFootWalkData()
     this.getFeedbcakResponses()
+
+    this. getIssuesData()
+    this.getComplimentsData()
   }
   getFeedbackChannels(){
   
@@ -596,5 +607,17 @@ getFeedbcakResponses(){
   },err=>{})
 }
 
+getComplimentsData(){
+  this.service.getComlimentData().subscribe(res=>{
+    this.complimentdataSource=res;
+    console.log('data',this.complimentdataSource)
+  },err=>{})
+}
+getIssuesData(){
+  this.service.getIssuesData().subscribe(res=>{
+    this.issuesdataSource=res;
+    console.log('data',this.issuesdataSource)
+  },err=>{})
+}
 
 }
