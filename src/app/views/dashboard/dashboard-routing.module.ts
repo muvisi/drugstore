@@ -95,6 +95,7 @@ import { DashboardReportComponent } from '../dashboard-report/dashboard-report.c
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
 import { FeedbackreportingComponent } from '../patient-checkin/feedbackreporting/feedbackreporting.component';
+import { PatientsuploadsComponent } from '../../patientsuploads/patientsuploads.component';
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -412,6 +413,11 @@ const routes: Routes = [
   {
     path: 'payments',
     component:PaymentsComponent,
+    
+  },
+  {
+    path: 'patients-upload',
+    component:PatientsuploadsComponent,
     
   },
   {

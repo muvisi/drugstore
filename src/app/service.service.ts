@@ -7,10 +7,10 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 
-// export const endpoint='http://localhost:8000/';
+export const endpoint='http://localhost:8000/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
-export const endpoint = 'https://booking.healthixsolutions.com/';
+// export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
@@ -440,6 +440,16 @@ notcalledpatients(){
     return this.http.post(endpoint + 'appointments/service/',data).pipe(
       map(this.extractData));
   }
+
+  fileUpload(data){
+    return this.http.post(endpoint+'api/membersupload/',data)
+  }
+  alluploadedpatients(): Observable<any> {
+    return this.http.get(endpoint + 'api/uploadedmembers/').pipe(
+      map(this.extractData));
+  }
+
+  
   appointmentSupervison(data): Observable<any> {
     return this.http.post(endpoint + 'appointments/supervision/',data).pipe(
       map(this.extractData));
@@ -448,6 +458,7 @@ notcalledpatients(){
     return this.http.post(endpoint + 'appointments/get_supervisions/',{id:id}).pipe(
       map(this.extractData));
   }
+
 
   deleteServices(id): Observable<any> {
     return this.http.delete(endpoint + 'appointments/services/'+id+'/').pipe(
