@@ -380,17 +380,39 @@
                
                
                 <mat-tab label="Respondents Counts">
-                  <div class="col-sm-3">
-                    <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
-                        <mat-label>Period</mat-label>
-                        <mat-select  [(ngModel)]="respondent_period"  (selectionChange)="getFeedbacksGraphfilter()">
-                          <mat-option value="daily">Today</mat-option>
-                          <mat-option value="weekly">Weekly </mat-option>
-                          <mat-option value="monthly">Monthly </mat-option>
-                          <mat-option value="yearly">Yearly </mat-option>
-                        </mat-select>  
-                      </mat-form-field>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                          <mat-label>Period</mat-label>
+                          <mat-select  [(ngModel)]="respondent_period"  (selectionChange)="getFeedbacksGraphfilter()">
+                            <mat-option value="daily">Today</mat-option>
+                            <mat-option value="weekly">Weekly </mat-option>
+                            <mat-option value="monthly">Monthly </mat-option>
+                            <mat-option value="yearly">Yearly </mat-option>
+                          </mat-select>  
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                          
+                      <mat-form-field appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                          <input matInput placeholder="Start date"    [(ngModel)]="respondent_start_date"  [matDatepicker]="picker20"  autocomplete="off">
+                          <mat-datepicker-toggle matSuffix [for]="picker20"></mat-datepicker-toggle>
+                          <mat-datepicker #picker20></mat-datepicker>
+                        </mat-form-field>
                   </div>
+                  <div class="col-sm-3">
+                            
+                    <mat-form-field appearance="outline">
+                      <mat-label>End Date</mat-label>
+                        <input matInput placeholder="End date"    [(ngModel)]="respondent_end_date"  [matDatepicker]="picker30" (ngModelChange)="RespondentChanged()" autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker30"></mat-datepicker-toggle>
+                        <mat-datepicker #picker30></mat-datepicker>
+                      </mat-form-field>
+                </div>
+
+                  </div>
+                  
                 
                    
                   <fusioncharts
@@ -444,7 +466,7 @@
        
       
               
-                <mat-tab label="Foot Fall">
+                <!-- <mat-tab label="Foot Fall">
                 
                    
                   <fusioncharts
@@ -456,7 +478,7 @@
               ></fusioncharts>
                 
               
-              </mat-tab> 
+              </mat-tab>  -->
               <mat-tab label="Feedback Responces">
               
                  
@@ -477,9 +499,31 @@
      
                     <div class="row">
                       <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-sm-3">
+                            
+                            <mat-form-field appearance="outline">
+                              <mat-label>Start Date</mat-label>
+                                <input matInput placeholder="Start date"    [(ngModel)]="issues_start_date"  [matDatepicker]="picker90"  autocomplete="off">
+                                <mat-datepicker-toggle matSuffix [for]="picker90"></mat-datepicker-toggle>
+                                <mat-datepicker #picker90></mat-datepicker>
+                              </mat-form-field>
+                        </div>
+                        <div class="col-sm-3">
+                                  
+                          <mat-form-field appearance="outline">
+                            <mat-label>End Date</mat-label>
+                              <input matInput placeholder="End date"    [(ngModel)]="issues_end_date"  [matDatepicker]="picker009" (ngModelChange)="IssuesFilterChanged()" autocomplete="off">
+                              <mat-datepicker-toggle matSuffix [for]="picker009"></mat-datepicker-toggle>
+                              <mat-datepicker #picker009></mat-datepicker>
+                            </mat-form-field>
+                      </div>
+  
+                        </div>
                     
                       
                       </div>
+                      
                     
                         
                       <div class="col-sm-12" style="margin-top: 15px;">
@@ -524,8 +568,30 @@
                   Compliments
                 </ng-template>
                 <br>
+                <div class="row">
+                  <div class="col-sm-3">
+                    
+                    <mat-form-field appearance="outline">
+                      <mat-label>Start Date</mat-label>
+                        <input matInput placeholder="Start date"    [(ngModel)]="comments_start_date"  [matDatepicker]="picker900"  autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker900"></mat-datepicker-toggle>
+                        <mat-datepicker #picker900></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                          
+                  <mat-form-field appearance="outline">
+                    <mat-label>End Date</mat-label>
+                      <input matInput placeholder="End date"    [(ngModel)]="comments_end_date"  [matDatepicker]="picker109" (ngModelChange)="CommentsFilterChanged()" autocomplete="off">
+                      <mat-datepicker-toggle matSuffix [for]="picker109"></mat-datepicker-toggle>
+                      <mat-datepicker #picker109></mat-datepicker>
+                    </mat-form-field>
+              </div>
+
+                </div>
            
                     <div class="row">
+                     
                     
                       
                         

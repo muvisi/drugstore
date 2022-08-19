@@ -129,7 +129,7 @@
                                 </ng-container>  
                                 <ng-container matColumnDef="type">
                                   <th mat-header-cell *matHeaderCellDef>Call</th>
-                                  <td mat-cell *matCellDef="let element"><span *ngIf="element.category=='NEGATIVE'"><button type="button" [disabled]="element.is_called=='CALLED'" (click)="clickRow(selected=element)"><img width="20px" src="./assets/img/avatars/call.png"></button></span>  </td>
+                                  <td mat-cell *matCellDef="let element"><span *ngIf="element.category=='NEGATIVE'"><button type="button"  (click)="clickRow(selected=element)"><img width="20px" src="./assets/img/avatars/call.png"></button></span>  </td>
                                 </ng-container>
                     
                           

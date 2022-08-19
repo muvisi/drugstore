@@ -7,13 +7,13 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 
-export const endpoint='http://localhost:8000/';
+// export const endpoint='http://localhost:8000/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
-// export const endpoint='https://bookings.aarhospital.com/';
+export const endpoint='https://bookings.aarhospital.com/';
 // export const endpoint='http://134.209.199.123:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
@@ -139,8 +139,8 @@ nonregisteredpatients(): Observable<any> {
     return this.http.get(endpoint + 'api/efall/').pipe(
       map(this.extractData));
   }
-  getIssuesData() {
-    return this.http.get(endpoint + 'api/numberofissues/').pipe(
+  getIssuesData(data) {
+    return this.http.post(endpoint + 'api/numberofissues/',data).pipe(
       map(this.extractData));
   }
   calledpatients(){
@@ -151,8 +151,8 @@ notcalledpatients(){
   return this.http.get(endpoint + 'api/allnotcalledpatients/').pipe(
  map(this.extractData));
 }
-  getComlimentData() {
-    return this.http.get(endpoint + 'api/numberofcompliments/').pipe(
+  getComlimentData(data) {
+    return this.http.post(endpoint + 'api/numberofcompliments/',data).pipe(
       map(this.extractData));
   }
   getSiglePatientData() {

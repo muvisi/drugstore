@@ -45,6 +45,7 @@ export class PatientsuploadsComponent implements OnInit {
       }
       this.service.fileUpload(file).subscribe((res:any)=>{
         this.toastr.success('Successfully saved the form','Saved')
+        this.getUploadedPatients()
     
         console.log(res)
       })
