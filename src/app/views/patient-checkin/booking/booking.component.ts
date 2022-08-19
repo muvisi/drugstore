@@ -51,6 +51,7 @@ export class BookingComponent implements OnInit {
   dataSourceRegistration_completed_count: any;
   dataSourceRegistration_pending: any;
   dataSourceRegistration_pending_count: any;
+  
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
   ngOnInit() {
 

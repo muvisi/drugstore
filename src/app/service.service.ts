@@ -139,8 +139,8 @@ nonregisteredpatients(): Observable<any> {
     return this.http.get(endpoint + 'api/efall/').pipe(
       map(this.extractData));
   }
-  getIssuesData() {
-    return this.http.get(endpoint + 'api/numberofissues/').pipe(
+  getIssuesData(data) {
+    return this.http.post(endpoint + 'api/numberofissues/',data).pipe(
       map(this.extractData));
   }
   calledpatients(){
@@ -151,8 +151,8 @@ notcalledpatients(){
   return this.http.get(endpoint + 'api/allnotcalledpatients/').pipe(
  map(this.extractData));
 }
-  getComlimentData() {
-    return this.http.get(endpoint + 'api/numberofcompliments/').pipe(
+  getComlimentData(data) {
+    return this.http.post(endpoint + 'api/numberofcompliments/',data).pipe(
       map(this.extractData));
   }
   getSiglePatientData() {
@@ -440,6 +440,16 @@ notcalledpatients(){
     return this.http.post(endpoint + 'appointments/service/',data).pipe(
       map(this.extractData));
   }
+
+  fileUpload(data){
+    return this.http.post(endpoint+'api/membersupload/',data)
+  }
+  alluploadedpatients(): Observable<any> {
+    return this.http.get(endpoint + 'api/uploadedmembers/').pipe(
+      map(this.extractData));
+  }
+
+  
   appointmentSupervison(data): Observable<any> {
     return this.http.post(endpoint + 'appointments/supervision/',data).pipe(
       map(this.extractData));
@@ -448,6 +458,7 @@ notcalledpatients(){
     return this.http.post(endpoint + 'appointments/get_supervisions/',{id:id}).pipe(
       map(this.extractData));
   }
+
 
   deleteServices(id): Observable<any> {
     return this.http.delete(endpoint + 'appointments/services/'+id+'/').pipe(

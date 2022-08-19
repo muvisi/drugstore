@@ -23,6 +23,10 @@ export class FeedbackGraphsComponent implements OnInit {
   bookingvspatient: Object;
   dataSources;
   periodres;
+  respondent_end_date;
+  respondent_start_date;
+  comments_start_date;
+  comments_end_date;
 
 
   complimentdataSource;
@@ -77,6 +81,8 @@ export class FeedbackGraphsComponent implements OnInit {
   services_period;
   category_start_date;
   category_end_date;
+  issues_start_date;
+  issues_end_date;
   
   average_dataSource;
   all_dataSource
@@ -608,16 +614,59 @@ getFeedbcakResponses(){
 }
 
 getComplimentsData(){
-  this.service.getComlimentData().subscribe(res=>{
+  this.service.getComlimentData("").subscribe(res=>{
     this.complimentdataSource=res;
     console.log('data',this.complimentdataSource)
   },err=>{})
 }
 getIssuesData(){
-  this.service.getIssuesData().subscribe(res=>{
+  this.service.getIssuesData("").subscribe(res=>{
     this.issuesdataSource=res;
     console.log('data',this.issuesdataSource)
   },err=>{})
+}
+RespondentChanged(){
+  let data={
+    start:this.respondent_end_date,
+    end:this.respondent_start_date
+  }
+
+  this.service.feedbacksgraph(data).subscribe(
+    datas=> {
+      console.log(datas)
+      this.dataSource.data=datas.data
+      
+    },
+   
+    err => console.error(err),
+   
+    () => console.log('There is an error')
+  );
+
+
+}
+IssuesFilterChanged(){
+  let data={
+    start:this.issues_start_date,
+    end:this.issues_end_date
+  }
+  this.service.getIssuesData(data).subscribe(res=>{
+    this.issuesdataSource=res;
+    console.log('data',this.issuesdataSource)
+  },err=>{})
+
+}
+CommentsFilterChanged(){
+  let data={
+    start:this.comments_start_date,
+    end:this.comments_end_date
+  }
+  this.service.getComlimentData(data).subscribe(res=>{
+    this.complimentdataSource=res;
+    console.log('data',this.complimentdataSource)
+  },err=>{})
+
+
 }
 
 }

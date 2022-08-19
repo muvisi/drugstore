@@ -34,7 +34,7 @@ export class FeedbackreportingComponent implements OnInit {
     this.getAllnotCalledPatient()
   }
   getIssuesData(){
-    this.service.getIssuesData().subscribe(res=>{
+    this.service.getIssuesData("").subscribe(res=>{
       this.issuesdataSource=res;
       console.log('data',this.issuesdataSource)
     },err=>{})
@@ -52,7 +52,7 @@ getAllnotCalledPatient(){
   },err=>{})
 }
 getComplimentsData(){
-  this.service.getComlimentData().subscribe(res=>{
+  this.service.getComlimentData("").subscribe(res=>{
     this.complimentdataSource=res;
     console.log('data',this.complimentdataSource)
   },err=>{})

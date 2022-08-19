@@ -128,6 +128,7 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+    // PatientsuploadsComponent,
     // ViewmaternityComponent,
     // AdminSetupsComponent,
     // DashboardReportComponent,
