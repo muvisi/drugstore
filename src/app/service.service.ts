@@ -7,14 +7,23 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 
+<<<<<<< HEAD
 // export const endpoint='http://localhost:8000/';
 export const endpoint='http://localhost:8888/';
+=======
+export const endpoint='http://localhost:8000/';
+// export const endpoint='http://localhost:8888/';
+>>>>>>> 9b74f04126bbde1d7713cdee873d08b729b65c4d
 // export const endpoint='http://134.209.199.123:8787/';
 // export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
+<<<<<<< HEAD
 // export const endpoint='http://192.168.12.15:8888/';
+=======
+// export const endpoint='http://134.209.199.123:8888/';
+>>>>>>> 9b74f04126bbde1d7713cdee873d08b729b65c4d
 // export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";

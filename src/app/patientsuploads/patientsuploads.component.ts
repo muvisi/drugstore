@@ -42,17 +42,24 @@ export class PatientsuploadsComponent implements OnInit {
       // } else {
         this.fileInputLabel = file.name;
         this.fileUploadForm.get('myfile').setValue(file);
+<<<<<<< HEAD
       // }
       this.service.fileUpload(file).subscribe((res:any)=>{
         this.toastr.success('Successfully saved the form','Saved')
         this.getUploadedPatients()
+=======
+      }
+  //     this.service.fileUpload(file).subscribe((res:any)=>{
+  //       this.toastr.success('Successfully saved the form','Saved')
+  //       this.getUploadedPatients()
+>>>>>>> 9b74f04126bbde1d7713cdee873d08b729b65c4d
     
-        console.log(res)
-      })
+  //       console.log(res)
+  //     })
   };
     // }
   }
-  onFormSubmit(event) {
+  onFormSubmit() {
 
     if (!this.fileUploadForm.get('myfile').value) {
       alert('Please fill valid details!');
