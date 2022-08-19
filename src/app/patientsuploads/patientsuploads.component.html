@@ -12,7 +12,7 @@
            
                 <div class="col-sm-4">
                    
-                             <form [formGroup]="fileUploadForm">
+                             <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
                                 <div class="row">
                                     <div class="col-sm-12">
                                        
@@ -28,7 +28,7 @@
                             
                                     </div>
                                     <div class="col-sm-6 text-center">
-                                        <button class="btn btn-primary"  (ngSubmit)="onFormSubmit()" type="submit">Upload</button>
+                                        <button class="btn btn-primary"   type="submit">Upload</button>
                                     </div>
                                 </div>
                             </form>

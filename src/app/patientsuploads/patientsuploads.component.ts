@@ -43,16 +43,16 @@ export class PatientsuploadsComponent implements OnInit {
         this.fileInputLabel = file.name;
         this.fileUploadForm.get('myfile').setValue(file);
       }
-      this.service.fileUpload(file).subscribe((res:any)=>{
-        this.toastr.success('Successfully saved the form','Saved')
-        this.getUploadedPatients()
+  //     this.service.fileUpload(file).subscribe((res:any)=>{
+  //       this.toastr.success('Successfully saved the form','Saved')
+  //       this.getUploadedPatients()
     
-        console.log(res)
-      })
+  //       console.log(res)
+  //     })
   };
     // }
   }
-  onFormSubmit(event) {
+  onFormSubmit() {
 
     if (!this.fileUploadForm.get('myfile').value) {
       alert('Please fill valid details!');
