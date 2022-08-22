@@ -135,12 +135,13 @@ import { UtilizationsModal } from '../payments/mpesa-payments/utilizations.modal
 import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
 import { FeedbackreportingComponent } from './feedbackreporting/feedbackreporting.component';
 import { PatientsuploadsComponent } from '../../patientsuploads/patientsuploads.component';
+import { FeedbackQuestionsComponent } from './feedback-questions/feedback-questions.component';
 
 
 // import { NgxWatermarkModule } from 'ngx-watermark';
-
-
-
+// import { NgxStarsModule } from 'ngx-stars';
+// import { NgxStarRatingModule } from 'ngx-star-rating';
+import { RatingModule } from 'ng-starrating';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
@@ -226,6 +227,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
     FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,DashboardReportComponent,
     AdminSetupsComponent,
+    FeedbackQuestionsComponent,
    
 
     
@@ -285,8 +287,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     QRCodeModule,
     CommonModule,
     MatStepperModule,
-    NgbModule, 
-     
+    NgbModule,
+    RatingModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

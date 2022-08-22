@@ -479,7 +479,7 @@
                 
               
               </mat-tab>  -->
-              <mat-tab label="Feedback Responces">
+              <mat-tab label="Feedback Responses">
               
                  
                   <fusioncharts
@@ -492,6 +492,41 @@
                              
               
               </mat-tab>
+              <mat-tab label="Mpesa Feedback Responses">
+              
+                <div class="row">
+                  <div class="col-sm-3">
+                       
+                    <mat-form-field appearance="outline">
+                      <mat-label>Select Start date</mat-label>
+                        <input matInput placeholder="Select start date"    [(ngModel)]="mpesa_feedback_date1"  [matDatepicker]="picker13" (ngModelChange)="mpesafeedbackChangedate()" autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="picker13"></mat-datepicker-toggle>
+                        <mat-datepicker #picker13></mat-datepicker>
+                      </mat-form-field>
+                  </div>
+                  <!-- <div class="col-sm-3" style="padding-top: 15px;">
+                  <ejs-datetimepicker [(ngModel)]="channels_filter.date" (change)="channelFilterChange()"></ejs-datetimepicker>
+                </div> -->
+                <div class="col-sm-3">
+                      
+                  <mat-form-field appearance="outline">
+                    <mat-label>Select End Date</mat-label>
+                      <input matInput placeholder="Select end date"    [(ngModel)]="mpesa_feedback_date2"  [matDatepicker]="picker14" (ngModelChange)="mpesafeedbackChangedate()" autocomplete="off">
+                      <mat-datepicker-toggle matSuffix [for]="picker14"></mat-datepicker-toggle>
+                      <mat-datepicker #picker14></mat-datepicker>
+                    </mat-form-field>
+              </div>
+              </div>
+                <fusioncharts
+                width="800"
+                height="350"
+                type="Column2D"
+                dataFormat="JSON"
+                [dataSource]="dataSource_mpesa_responses"
+            ></fusioncharts>
+                           
+            
+            </mat-tab>
               <mat-tab>
                 <ng-template mat-tab-label>
                  Issues

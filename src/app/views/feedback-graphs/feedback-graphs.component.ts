@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../service.service';
 
@@ -27,6 +28,10 @@ export class FeedbackGraphsComponent implements OnInit {
   respondent_start_date;
   comments_start_date;
   comments_end_date;
+
+
+
+  dataSource_mpesa_responses;
 
 
   complimentdataSource;
@@ -105,6 +110,7 @@ export class FeedbackGraphsComponent implements OnInit {
   period_outpatient;
   date_outpatient;
   outpatient_dataSource;
+  
   surgery_dataSource;
   date_martenity;
   period_surgery;
@@ -124,6 +130,9 @@ export class FeedbackGraphsComponent implements OnInit {
   services_date;
   services_start_date;
   services_end_date
+
+  mpesa_feedback_date1;
+  mpesa_feedback_date2;
   respondent_period;
 
   channels_filter={
@@ -140,7 +149,7 @@ export class FeedbackGraphsComponent implements OnInit {
   
   AllColumns2: string[] = ['sn','compliment','count']
   AllColumns1: string[] = ['sn','issue','count']
-  constructor( public service:ServiceService) {
+  constructor( public service:ServiceService,private datePipe:DatePipe) {
     this.nps_data= {
       chart: {
         caption: 'AAR HOSPITAL',
@@ -228,6 +237,18 @@ this.dataSource3 = {
 };
 
 
+this.dataSource_mpesa_responses = {
+  chart: {
+    caption: 'AAR HOSPITAL',
+    subCaption: 'Feedback Responses',
+    xAxisName: 'Week day',
+    yAxisName: 'patients',
+    numberSuffix: '',
+    theme: 'fusion'
+  },
+  data: []
+};
+
 
  
  
@@ -245,6 +266,7 @@ this.dataSource3 = {
     this.getFeedbackservice();
     this.getNpsgraphdata();
     this.getnps();
+    this.getMpesafeedbackResponse();
  
 
     this.getFootWalkData()
@@ -282,6 +304,31 @@ this.dataSource3 = {
       err => console.error(err),
      
       () => console.log('There is an error')
+    );
+  }
+  getMpesafeedbackResponse(){
+    this.service.getMpesaFeedbackRespondents().subscribe(
+      res => {
+        
+        this.dataSource_mpesa_responses.data =res
+        
+      },
+     
+      err => console.error(err)
+    );
+  }
+
+  mpesafeedbackChangedate(){
+    let start_date=this.datePipe.transform(this.mpesa_feedback_date1,'yyyy-MM-dd');
+    let end_date=this.datePipe.transform(this.mpesa_feedback_date2,'yyyy-MM-dd');
+    this.service.getMpesaFeedbackRespondentsFilter("?s="+start_date+"&e="+end_date).subscribe(
+      res => {
+        
+        this.dataSource_mpesa_responses.data =res
+        
+      },
+     
+      err => console.error(err)
     );
   }
 

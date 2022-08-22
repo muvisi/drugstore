@@ -13,8 +13,10 @@ import * as _ from 'lodash';
   styleUrls: ['./patientsuploads.component.scss']
 })
 export class PatientsuploadsComponent implements OnInit {
-  RegistrationColumns: string[] = ['sn','created','First','payment','phone','clinic','department','gender','residence','action']
+  RegistrationColumns: string[] = ['sn','created','First','payment','phone','clinic','department','gender','residence','action','view']
+  completedColumns: string[] = ['sn','created','client','opno','phone','called_by','status']
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
+  file: File;
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router,private http: HttpClient,
     private formBuilder: FormBuilder
 ) { }
@@ -23,13 +25,17 @@ export class PatientsuploadsComponent implements OnInit {
   fileInputLabel: string;
   dataSourceuploaded_pending;
   dataSourcepatientuploaded;
+  dataSourcepatientuploaded_completed;
   selFile
+  file_name;
+  file_selected;
 
   ngOnInit() {
     this.fileUploadForm = this.formBuilder.group({
       myfile: ['']
     });
     this.getUploadedPatients()
+    this.getUploadedPatientsCompleted();
   }
   onFileSelect(event) {
     let af = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']
@@ -42,24 +48,19 @@ export class PatientsuploadsComponent implements OnInit {
       // } else {
         this.fileInputLabel = file.name;
         this.fileUploadForm.get('myfile').setValue(file);
-<<<<<<< HEAD
       // }
-      this.service.fileUpload(file).subscribe((res:any)=>{
-        this.toastr.success('Successfully saved the form','Saved')
-        this.getUploadedPatients()
-=======
-      }
   //     this.service.fileUpload(file).subscribe((res:any)=>{
   //       this.toastr.success('Successfully saved the form','Saved')
   //       this.getUploadedPatients()
->>>>>>> 9b74f04126bbde1d7713cdee873d08b729b65c4d
     
   //       console.log(res)
   //     })
   };
     // }
+ 
   }
   onFormSubmit() {
+
 
     if (!this.fileUploadForm.get('myfile').value) {
       alert('Please fill valid details!');
@@ -82,6 +83,11 @@ export class PatientsuploadsComponent implements OnInit {
             console.log(res)
           })
       };
+    
+  }
+  viewClicked(item){
+    this.router.navigateByUrl("dashboard/feedback-call-details/"+item.id)
+
   }
   getUploadedPatients(){
     this.service.alluploadedpatients().subscribe(
@@ -105,5 +111,26 @@ export class PatientsuploadsComponent implements OnInit {
     );
 
   }
- 
+  getUploadedPatientsCompleted(){
+    this.service.getuploadedpatientsCompleted().subscribe(
+      data => {
+        console.log("uploadedmembers",data)
+        this.dataSourcepatientuploaded_completed = new MatTableDataSource(data);
+        this.dataSourcepatientuploaded_completed .paginator = this.paginator;
+        // this.loading = false;
+        // try{
+        //   localStorage.setItem('maternity_booking3',JSON.stringify(data))
+        // }
+        // catch(error){} 
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+  }
 }

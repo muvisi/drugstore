@@ -105,8 +105,12 @@ export const navItems: NavData[] = [
     name: 'Covid Reports',
     url: '/dashboard/reports',
     icon: 'fa fa-line-chart',
+  },
+  {
+    name: 'Patients Upload',
+    url: '/dashboard/patients-upload',
+    icon: 'fa fa-upload',
   }
-
 
   
   

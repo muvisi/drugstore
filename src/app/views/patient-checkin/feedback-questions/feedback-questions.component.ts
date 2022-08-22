@@ -3,24 +3,36 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalDirective } from 'ngx-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ServiceService } from '../../../service.service';
 import { TokenGenerator } from '../../../utils/token.generator';
 
 
 @Component({
-  selector: 'app-feedback-maternity',
-  templateUrl: './feedback-all.component.html',
-  styleUrls: ['./feedback-all.component.scss']
+  selector: 'app-feedback-questions',
+  templateUrl: './feedback-questions.component.html',
+  styleUrls: ['./feedback-questions.component.scss']
 })
 export class FeedbackQuestionsComponent implements OnInit {
 
-
+  AllColumns1: string[] = ['sn','date','note','user']
 req_data=[];
 l;
 phone;
-
+hide_feedback_question=false;
 @ViewChild('stepper',{static:true}) private stepper: MatStepper
 rating=0;
+patient;
+client_name;
+client_phone;
+client_email;
+client_age;
+client_gender;
+
+
+ratingFormGroup:FormGroup;
+
 
 loading: boolean;
 show_phone: boolean;
@@ -31,7 +43,19 @@ questions=[];
   channel: any;
   feedback_token: string;
   skipped=[]
-constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,public service:ServiceService,public router:Router,public toast:ToastrService,@Inject(DOCUMENT) private document: Document) { }
+  selected_feedback: any;
+  feedback_categories: any;
+  take_notes={
+    notes:"",
+    service:"",
+   
+  
+  }
+
+
+  @ViewChild('noteModal', { static: false }) noteModal: ModalDirective;
+  services=[];
+constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,public router:Router,public toast:ToastrService,@Inject(DOCUMENT) private document: Document,private service:ServiceService) { }
 
 ngOnInit() {
 
@@ -43,53 +67,87 @@ ngOnInit() {
   }
 })
 
-  this.service.getFeedbacksCategoryQuestions(this.route.snapshot.params.category).subscribe(res=>{
-  this.l=res.length-1
-  for(var i=0;i<res.length;i++){
-    var d=Object.assign(res[i],{selected_issues:[],
-      selected_compliments:[],
-      show_issues:false,
-      show_compliments:false
-      ,comment:''})
-    this.questions.push(d)
-  }
-  },err=>{})
+this.getFeedbackQuestions('outpatient');
 
    
 
 
+this.loadPatientDetails();
+this.service.getFeedbacksCategories().subscribe(res=>{
+  this.feedback_categories=res;
+},err=>{})
 
-  if(this.route.snapshot.params.token){
-    if(localStorage.getItem('TOKEN')==this.route.snapshot.params.token &&  localStorage.getItem('FEEDBACK')=='false'){
 
-      this.router.navigateByUrl('/')
+
+
+}
+
+
+getFeedbackQuestions(token){
+this.selected_feedback=token;
+this.questions=[]
+this.services=[]
+  this.service.getFeedbacksCategoryQuestions(token).subscribe(res=>{
+    this.l=res.length-1
+
+    for(var i=0;i<res.length;i++){
+      this.services.push(res[i].subcategory_name)
+      var d=Object.assign(res[i],{selected_issues:[],
+        selected_compliments:[],
+        show_issues:false,
+        show_compliments:false
+        ,comment:''})
+      this.questions.push(d)
     }
-  this.load_patient_phone();
-  }else{
-    // var t=localStorage.getItem('TRACKING_TOKEN');    
-    // if (t==no)
-    this.show_phone=true;
-  }
+    },err=>{})
 }
 submitPhone(){
-  this.loading=true;
-  this.service.confirmPhone({phone:this.phone}).subscribe(
-    (res)=>{
-      this.loading=false;
-      if (res.exists){  
-        this.stepper.next();
-      }else{
-        this.stepper.next();
+  this.stepper.next();
+  
 
-        // this.toast.warning("Patient Does Not Exist")
-        // this.router.navigateByUrl('/')
-      }
-    },
-    (err)=>{
-      this.loading=false;
-      this.toast.error("Application Error")
-    }
-  )  
+}
+
+
+clickComplete(){
+this.service.postuploadedpatientComplete(this.route.snapshot.params.id,this.take_notes).subscribe(res=>{
+
+  this.router.navigateByUrl('dashboard/patients-upload')
+},err=>{})
+}
+
+
+
+
+takeNote(){ 
+  let data={service:this.take_notes.service,notes:this.take_notes.notes,phone:this.client_phone}
+this.service.feedbackTakeNote(data).subscribe(
+res => {
+  this.toast.success('success','Notes successfully saved')
+  
+ this.take_notes.notes="";
+ this.take_notes.service="";
+
+      
+
+  
+},
+
+
+);
+} 
+
+
+loadPatientDetails(){
+  let id =this.route.snapshot.params.id;
+  this.service.getPatientDetails(id).subscribe(res=>{
+this.patient=res;
+this.client_name=res.first_name+" "+res.last_name;
+this.client_phone=res.phone;
+this.client_email=res.email;
+this.client_age=res.age;
+this.client_gender=res.gender;
+    
+  },err=>{})
 
 }
 
@@ -99,7 +157,7 @@ load_patient_phone(){
     this.phone=res.phone;
   })
  }
-submitRating(i,item,final){ 
+submitRating(i,item){ 
   this.req_data[i]={
     department:item.subcategory_name,
     rating:item.rating,
@@ -107,12 +165,18 @@ submitRating(i,item,final){
     issues:item.selected_issues.toString(),
     compliments:item.selected_compliments.toString(),
     comment:item.comment,
+    channel:"call",
+    feedback_token:this.feedback_token,
+    "visit_type":this.questions[0].visit_type,
+    "phone":this.client_phone,
   }
-if(final){
-  this.submitAllRating(); 
-}else{
-  this.stepper.next()
-}
+
+  this.service.feedbackRating( this.req_data[i]).subscribe(res=>{
+    this.toast.success('Successfully!', 'Sent successful!')
+  },err=>{
+    
+  })
+
 }
 
 
@@ -125,11 +189,12 @@ submitAllRating(){
 
   var t=localStorage.getItem('TRACKING_TOKEN');    
   this.loading=true;
-  var d=Object.assign({"services":this.req_data},{"token":t,"phone":this.phone,"visit_type":this.questions[0].visit_type,'recommendation_rating':this.recommendation_rating,channel:this.channel,feedback_token:this.feedback_token})
+  var d=Object.assign({"services":this.req_data},{"token":t,"phone":this.client_phone,"visit_type":this.questions[0].visit_type,'recommendation_rating':this.recommendation_rating,channel:"call",feedback_token:this.feedback_token})
   this.service.feedback(Object.assign(d)).subscribe((res)=>{
     this.loading=false;
     if(res.status){
       localStorage.setItem('FEEDBACK','false')
+      this.hide_feedback_question=true;
       this.toast.success('Successfully!', 'Sent successful!')
     }else{
       this.toast.error('Failed!', 'Not Successful')
@@ -141,13 +206,21 @@ submitAllRating(){
   });
 }
 
-finish(){
-  this.submitAllRating(); 
+nps(){
+  let data={
+    phone:this.client_phone,
+  rating:this.recommendation_rating
+  }
+  this.service.feedbackNPS(data).subscribe(res=>{
+    this.toast.success('Successfully!', 'Sent successful!')
+  },err=>{})
+
 }
 
 
 
-rateClicked(rating: number,item): void {
+rateClicked($event,item): void {
+  var rating=$event.newValue;
   item.rating=rating;
   if(rating<3){
     item.selected_issues=[];
@@ -194,18 +267,19 @@ isItemInList(item,items_list){
       return false;
     }
 }
-recommendation(rating: number){
+recommendation($event:any){
+  var rating=$event.newValue;
   this.recommendation_rating=rating;
   console.log(rating)
  if (rating<6){
    this.show_rating_type='low';
-  //  this.recommendation_color="#dc3545"
+   this.recommendation_color="#dc3545"
  }else if(rating>=6 && rating<9){
   this.show_rating_type='middle';
-  // this.recommendation_color="#ffc107"
+  this.recommendation_color="#ffc107"
  }else{
   this.show_rating_type='high';
-  // this.recommendation_color="#28a745"
+  this.recommendation_color="#28a745"
  }
 }
 Skip(i){
