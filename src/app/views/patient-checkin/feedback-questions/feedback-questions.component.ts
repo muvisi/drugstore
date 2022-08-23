@@ -55,6 +55,7 @@ questions=[];
 
   @ViewChild('noteModal', { static: false }) noteModal: ModalDirective;
   services=[];
+  disable_save_button: boolean;
 constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,public router:Router,public toast:ToastrService,@Inject(DOCUMENT) private document: Document,private service:ServiceService) { }
 
 ngOnInit() {
@@ -170,15 +171,24 @@ submitRating(i,item){
     "visit_type":this.questions[0].visit_type,
     "phone":this.client_phone,
   }
-
-  this.service.feedbackRating( this.req_data[i]).subscribe(res=>{
-    this.toast.success('Successfully!', 'Sent successful!')
-  },err=>{
-    
-  })
+  this.stepper.next()
 
 }
-
+next(){
+this.stepper.next()
+}
+clickSave(){
+  this.nps()
+  for(var i=0;i<this.req_data.length;i++){
+    this.service.feedbackRating( this.req_data[i]).subscribe(res=>{
+    },err=>{
+      
+    })
+  
+  }
+  this.clickComplete()
+  this.disable_save_button=true;
+}
 
 submitAllRating(){
  
@@ -212,7 +222,7 @@ nps(){
   rating:this.recommendation_rating
   }
   this.service.feedbackNPS(data).subscribe(res=>{
-    this.toast.success('Successfully!', 'Sent successful!')
+    // this.toast.success('Successfully!', 'Sent successful!')
   },err=>{})
 
 }

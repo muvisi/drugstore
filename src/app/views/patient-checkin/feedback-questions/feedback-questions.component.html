@@ -30,12 +30,13 @@
                       </div>
                       <div class="col-sm-4" style="text-align:right">
    
-                        <button  style="margin-left: 10px;" (click)="clickComplete()"  class="btn btn-success pull-right">Complete</button> 
+                        <!-- <button  style="margin-left: 10px;margin-right: 10px;" (click)="clickComplete()"  class="btn btn-success pull-right">Complete</button>  -->
+                        <button  style="margin-left: 10px;" (click)="clickSave()" [disabled]="disable_save_button" class="btn btn-success pull-right">Save</button> 
 
                       <!-- </div>
                       <div class="col-sm-5" style="text-align:right">
    
-                        <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">Confirm</button> 
+                        <!-- <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">Confirm</button>  -->
 
                       </div> -->
                      
@@ -92,7 +93,7 @@
                                     
                                         <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
                                         
-                                              <button mat-raised-button  class="btn btn-success"  (click)= "nps()">save</button>
+                                              <button mat-raised-button  class="btn btn-success"  (click)= "next()">Next</button>
                                         
                                       </div>
                                           </form>
@@ -138,8 +139,8 @@
                                                     
                                                   <div class="row" style="justify-content: center;">
                         
-                                                      <button class="btn" type="submit" style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: small; background-color: #abb8c3;color: white;margin-top: 20px; border-radius: 30px;" (click)="submitRating(i,item)">Save</button>
-                        
+                                                      <!-- <button class="btn" type="submit" style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: small; background-color: #abb8c3;color: white;margin-top: 20px; border-radius: 30px;" (click)="submitRating(i,item)">Next</button> -->
+                                                      <button mat-raised-button  class="btn btn-success"  (click)= "submitRating(i,item)">Next</button>
                                                     <!-- <button class="btn" type="submit" style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: small; background-color: #139e7e;color: white;margin-top: 20px; border-radius: 30px;" *ngIf="i==l" (click)="submitRating(i,item,true)">submit</button> -->
                                                   </div>
                                     
@@ -161,7 +162,7 @@
                          <mat-tab label="Notes" >
 
                           <fieldset>
-                            <legend>Appointment Details</legend>
+                            <legend>Notes Details</legend>
                             <div class="col-sm-12">
                               <form>
                                 <div class="row">
@@ -170,7 +171,7 @@
                                       <mat-form-field appearance="outline">
                                         <mat-label>Select Service</mat-label>
                                         <mat-select  [(ngModel)]="take_notes.service" name="service">
-                                          <mat-option *ngFor="let i of services">{{i}}</mat-option>
+                                          <mat-option  *ngFor="let i of services" [value]="i">{{i}}</mat-option>
                                         </mat-select>
                                       </mat-form-field>
                                     </div>
