@@ -135,6 +135,7 @@ import { UtilizationsModal } from '../payments/mpesa-payments/utilizations.modal
 import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
 import { FeedbackreportingComponent } from './feedbackreporting/feedbackreporting.component';
 import { PatientsuploadsComponent } from '../../patientsuploads/patientsuploads.component';
+import { MaternityCalendarComponent } from '../../maternity-calendar/maternity-calendar.component';
 
 
 // import { NgxWatermarkModule } from 'ngx-watermark';
@@ -225,7 +226,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MaternityDetailsComponent, FootwalkComponent, 
     FeedbackResponseGraphComponent, FeedbackAgeGraphComponent,
     FeedbackSetupComponent, ClinicsSetupComponent,MaternityfeedbackComponent,DashboardReportComponent,
-    AdminSetupsComponent,
+    AdminSetupsComponent,MaternityCalendarComponent,
    
 
     

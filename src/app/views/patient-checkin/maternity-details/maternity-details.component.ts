@@ -55,6 +55,8 @@ export class MaternityDetailsComponent implements OnInit {
   loading: boolean;
   Columns: string[] = ['sn','date','phone','name','transaction_code','amount']
   @ViewChild('smslinks', { static: false }) smslinks: ModalDirective;
+  @ViewChild('paymentModalz', { static: false }) paymentModalz: ModalDirective;
+
   formatter = (result: string) => result.toUpperCase();
 search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
   text$.pipe(
@@ -589,7 +591,29 @@ async check_paid(phone,amount,count){
     },err=>{})
 
   }
+  Prenatalmaternity(){
+    let data={
+      id:this.route.snapshot.params.id,
+      type:"PRE-NATAL BOOKING"
+    }
+    console.log(data)
+    this.service.getPrenatalBooking(data).subscribe((res)=>{
+      this.toast.success("Successful")
+      this.loading=false
+    },(err)=>{
+      this.toast.warning("Failed")
+      this.loading=false
+    });
 
+    this.service.postFootWalkData(data).subscribe(res=>{
+
+    },err=>{})
+
+
+
+
+
+  }
 
 
 

@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-sm-12 col-md-11 col-lg-11 col-9">
                           <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <div class="row">
                                 <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} </div>
                                 <div class="col-sm-12" > {{customer.phone}} </div>
@@ -23,20 +23,20 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-9">
                           <div class="row">                       
-                             <div class="col-sm-4" style="text-align:right">
+                             <div class="col-sm-2" style="text-align:right">
          
                           <button  (click)="Maternity_Admit()"  class="btn btn-primary pull-right">Admit Patient</button> 
 
                         </div>
-                            <div class="col-sm-3" style="text-align:right">
+                            <div class="col-sm-2" style="text-align:right">
                              <button  (click)="Maternity_Discharge()"  class="btn btn-info pull-right">Discharge Patient</button>
 
                             </div>
-                        <div class="col-sm-3" style="text-align:right">
+                        <div class="col-sm-2" style="text-align:right">
      
-                          <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">MPESA stk push</button> 
+                          <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">STK Push</button> 
 
                         </div>
                             <div class="col-sm-2" style="text-align:right">
@@ -44,6 +44,9 @@
                               <!-- <button  (click)="feedbackClicked()"  class="btn btn-success pull-right">Feedback</button>  -->
 
                             </div>
+                            <div class="col-sm-2" style="float: right;">
+                              <button  (click)="paymentModalz.show()"  class="btn btn-success pull-right">  <i class="fa fa-calendar-o"  aria-hidden="true" style="color:white;"></i>+ Booking</button> 
+                          </div>
                           </div>
 
                           </div>
@@ -1334,3 +1337,42 @@
 
 
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
+
+
+<div class="modal fade" bsModal #paymentModalz="bs-modal" [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+ <div class="modal-header bg-success">Add Booking for Patient
+   <!-- <div class="row" style="width:100%;justify-content: center;">
+   <div class="col-sm-3"> <img width="70px" src="./assets/img/avatars/download.jpeg"/></div>
+ </div> -->
+   <button type="button" class="close pull-right" aria-label="Close" (click)="paymentModalz.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+  
+ 
+     <form >
+     
+   
+   <div class="row">
+    
+    
+   </div>
+ 
+    
+     </form>
+
+     <div mat-dialog-actions style="margin-left: 10px;">
+       <button mat-button  style=" background-color: #18537d; color: white; margin: 20px;" (click)="Prenatalmaternity()" >Pre-natal</button>
+       <button mat-button  style="  background-color: #222222;color: white; margin: 20px;"(click)="postnatalmaternity()">post-natal</button>
+       <button mat-button  style="  background-color: #34b523;color: white; margin: 20px"(click)=" MaternitytFeedback()">Anti-natal</button>
+  
+      
+     </div>
+ </div>
+</div>
+</div>
+</div>

@@ -3,6 +3,7 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../service.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-viewmaternity',
   templateUrl: './viewmaternity.component.html',
@@ -10,6 +11,7 @@ import { ServiceService } from '../service.service';
 })
 export class ViewmaternityComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
+
   loading;
   dataSourceMaternity;
   dataSourcenormalMaternity;
@@ -18,6 +20,7 @@ export class ViewmaternityComponent implements OnInit {
   dataSourcecsMaternity;
   MaternityColumns: string[] = ['sn','created','client','phone','payment','date','time','action']
   maternity_mobile;
+  MaternityColumns2: string[] = ['sn','created','client','phone','payment','date','time','action','calendar']
 
 
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }
@@ -179,6 +182,10 @@ MaternityDownloadNormalDelivery(){
 }
 MaternityDownloadCsection(){
   window.open(this.service.MaternityDownloadCsection(), "_blank")
+}
+ViewMaternityCalendar(){
+
+  this.router.navigate(['/dashboard/view-maternity-calendar/'])
 }
 
 

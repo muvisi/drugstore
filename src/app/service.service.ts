@@ -317,6 +317,10 @@ notcalledpatients(){
     return this.http.get(endpoint + 'api/clinics-appointments/'+id+'/').pipe(
       map(this.extractData));
   }
+  getMaternityAppointments(data) {
+    return this.http.post(endpoint + 'api/maternity-calendar/',data).pipe(
+      map(this.extractData));
+  }
   getAllClinicsAppointments() {
     return this.http.get(endpoint + 'api/clinics-appointments/').pipe(
       map(this.extractData));
@@ -346,6 +350,11 @@ notcalledpatients(){
 
   getRegistrationLink(data): Observable<any> {
     return this.http.post(endpoint + 'api/registration-link/',data).pipe(
+      map(this.extractData));
+  }
+
+  getPrenatalBooking(data): Observable<any> {
+    return this.http.post(endpoint + 'api/new-maternity-prenatal-care/',data).pipe(
       map(this.extractData));
   }
   getFeedbackLink(data): Observable<any> {

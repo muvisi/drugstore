@@ -35,9 +35,9 @@
                     <div class="col-sm-2">
                       <button  (click)="applyMaternityFilter()"  class="btn btn-success pull-right">search</button> 
                   </div>
-                  <div class="col-sm-2" style="float: right;">
-                    <button  (click)="getMaternitybooking()"  class="btn btn-success pull-right">  <i class="fa fa-refresh"  aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>refresh</button> 
-                </div>
+                  <!-- <div class="col-sm-2" style="float: right;">
+                    <button  (click)="paymentModal.show()"  class="btn btn-success pull-right">  <i class="fa fa-calendar-o"  aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>PRE/POST-NATAL</button> 
+                </div> -->
                 <div class="col-sm-2" style="float: right;">
                     <button  (click)="MaternityDownloadCsection()"  class="btn btn-success pull-right">  <i class="fa fa-download" aria-hidden="true" style="font-size: 20px;margin-right: 10px;color:white;"></i>Download</button> 
                 </div>
@@ -103,10 +103,16 @@
                               <button class="btn btn-success btn-sm" (click)="rowMaternitySelectedView(element)" style="font-size: 11px;">View </button>
                                </td>
                           </ng-container>
+                          <ng-container matColumnDef="calendar">
+                            <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Calendar</th>
+                            <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
+                              <button class="btn btn-success btn-sm" (click)="ViewMaternityCalendar()" style="font-size: 11px;">Calendar </button>
+                               </td>
+                          </ng-container>
             
             
-                      <tr mat-header-row *matHeaderRowDef="MaternityColumns"></tr>
-                      <tr mat-row *matRowDef="let row; columns:MaternityColumns;"></tr>
+                      <tr mat-header-row *matHeaderRowDef="MaternityColumns2"></tr>
+                      <tr mat-row *matRowDef="let row; columns:MaternityColumns2;"></tr>
                     </table>
               
                     <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>

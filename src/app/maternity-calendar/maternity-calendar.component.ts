@@ -1,0 +1,188 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+// import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, EventSettingsModel, PopupOpenEventArgs,TimelineViewsService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { EventSettingsModel, WeekService, TimelineViewsService, MonthService,PopupOpenEventArgs,TimelineMonthService, View, WorkHoursModel, GroupModel, CurrentAction, ScheduleComponent } from '@syncfusion/ej2-angular-schedule';
+import { DataManager, WebApiAdaptor, ODataV4Adaptor, Query, UrlAdaptor } from '@syncfusion/ej2-data';
+// import { ServiceService,endpoint } from '../../../service.service';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';"/home/mwangangi/Healthix/FE/admin/node_modules/@syncfusion/ej2-data/index"
+import { createElement } from '@syncfusion/ej2-base';
+import { DateTimePicker } from '@syncfusion/ej2-calendars';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { extend, Internationalization,isNullOrUndefined } from '@syncfusion/ej2-base';
+import { Router } from '@angular/router';
+import { endpoint, ServiceService } from '../service.service';
+@Component({
+  selector: 'app-maternity-calendar',
+  templateUrl: './maternity-calendar.component.html',
+  styleUrls: ['./maternity-calendar.component.scss']
+})
+export class MaternityCalendarComponent implements OnInit {
+  public today: Date = new Date();
+  public currentYear: number = this.today.getFullYear();
+  public currentMonth: number = this.today.getMonth();
+  public currentDay: number = this.today.getDate();
+  public currentHour: number = this.today.getHours();
+  public currentMinute: number = this.today.getMinutes();
+  // public currentSecond: number = this.today.getSeconds();
+  public date: Date = new Date(new Date().setDate(14));
+  public minDate;
+  public maxDate;
+token: string = sessionStorage.getItem('Token');
+selectedDate: Date = new Date();
+loading;
+data={
+  Subject:''
+}
+booking_event:any={
+  StartTime:"",
+  EndTime:"",
+  clinic:"",
+  Subject:"",
+  id:"",
+
+
+}
+// maxDate;
+// maxDate;
+clinics;
+public scheduleObj: ScheduleComponent;
+private selectionTarget: Element;
+@ViewChild('editEventModal', { static: false }) editEventModal: ModalDirective;
+setView: View ='MonthAgenda';
+scheduleHours: WorkHoursModel  = { highlight: true, start: '08:00', end: '06:00' };
+workWeekDays: number[] = [0,1,2,3,4,5,6];
+setViews: View[] = ['Day','TimelineDay','Week','TimelineWeek','TimelineMonth','Month','MonthAgenda'];
+dataManager: DataManager = new DataManager({
+  url: endpoint+'api/maternity-calendar/',
+  adaptor: new UrlAdaptor,
+  headers: [{ 'Authorization': 'Bearer ' + this.token}]
+});
+eventSettings: EventSettingsModel = { dataSource: this.dataManager
+}
+group: GroupModel = { resources: ['Clinics'] };
+ownerDataSource: Object[] = [];
+  clinic_selected: any;
+  item=""
+  constructor( public service: ServiceService,private toast: ToastrService,public router:Router) {
+   }
+
+  ngOnInit() {
+    this.getClinics()
+    this.clinicClicked(this.item)
+  }
+  
+  getClinics(){
+    this.service.getClinicsCalendar().subscribe((res)=>{
+      this.clinics=res;
+      this.ownerDataSource = res;
+      console.log("data",this.ownerDataSource)
+    })
+  }
+
+clinicClicked(item){
+  if(item.name=='Maternity'){
+    this.service.getMaternityAppointments("").subscribe(res=>{
+      console.log("data",res)
+     
+      this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
+    },err=>{})
+
+  }else{
+ 
+  this.service.getMaternityAppointments("").subscribe(res=>{
+    // this.ownerDataSource = [item];
+    this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
+  },err=>{})
+}
+
+  }
+onPopupOpen(args: PopupOpenEventArgs): void {
+  var data=args.data
+  var date=new Date(data.StartTime)
+  this.booking_event=data
+  var d=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+  var t=date.getHours().toString()+":"+(date.getMinutes().toString().length==1 ? "0"+date.getMinutes().toString() :date.getMinutes().toString() )
+  
+  this.booking_event['StartTime']=d+" "+t
+   date=new Date(data.EndTime)
+   d=(date.getMonth()+1).toString()+"/"+date.getDate().toString()+"/"+date.getFullYear().toString()
+   t=date.getHours().toString()+":"+(date.getMinutes().toString().length==1 ? "0"+date.getMinutes().toString() :date.getMinutes().toString() )
+  this.booking_event['EndTime']=d+" "+t
+  args.cancel=true;
+
+  this.editEventModal.show()
+  console.log("arguments",args.data)
+  console.log("event selected",this.booking_event)
+  
+}
+ViewBookong(){
+  console.log('backend data',this.booking_event.booking_id)
+  this.router.navigate(['/dashboard/booking-details/',this.booking_event.booking_id])
+
+
+
+
+}
+Reschedule(){
+  console.log('backend data',this.booking_event)
+  var current_date = new Date();
+  var event_date = new Date(this.booking_event.StartTime);
+  // var event_end=new Date(this.booking_event.EndTime);
+  if(event_date<current_date){
+    this.toast.info('Oops!','You cannot Reschedule past date!')
+
+    }
+
+  // if(event_end<current_date){
+  //   this.toast.info('Oops!','You cannot Reschedule past end date!')
+
+  // }
+  else{
+    // this.loading=true
+    this.service.CalendarDataedit(this.booking_event).subscribe((res)=>{
+      
+   
+      this.toast.success('Success','Appointment rescheduled successfully' )
+      this.loading=false
+      this.ngOnInit()
+      this.editEventModal.hide()
+     
+    },
+    (err)=>{
+      this.toast.warning('Error!','Failed To Reschedule Appointment' )
+    })
+
+
+
+
+  }
+
+
+}
+public onDetailsClick(): void {
+  this.onCloseClick();
+  const data: Object = this.scheduleObj.getCellDetails(this.scheduleObj.getSelectedElements()) as Object;
+  this.scheduleObj.openEditor(data, 'Add');
+}
+public onAddClick(): void {
+ ;
+}
+public onEditClick(args: any): void {
+
+}
+public onDeleteClick(args: any): void {
+ 
+}
+public onCloseClick(): void {
+  this.scheduleObj.quickPopup.quickPopupHide();
+}
+
+
+
+}
+
+
+
+
+
+
