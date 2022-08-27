@@ -157,6 +157,7 @@ export class JubileeClaimformComponent implements OnInit {
     employer : "",
     department : "",
     phone :"",
+    address:"",
     national_id:"",
     practitioner_qualification:"",
     drugs:false,

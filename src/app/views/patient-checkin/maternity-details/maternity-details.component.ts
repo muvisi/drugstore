@@ -29,6 +29,7 @@ export class MaternityDetailsComponent implements OnInit {
   speciality=[];
   symptoms=[];
   payment_mode;
+  maxDate;
   submitted;
   nextofKin={
     name:"",
@@ -462,6 +463,11 @@ async check_paid(phone,amount,count){
     },err=>{
 
     })
+
+  }
+  onSave(){
+
+    
   }
 
 
