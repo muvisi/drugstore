@@ -16,8 +16,10 @@ export class ViewmaternityComponent implements OnInit {
   dataSourceMaternity;
   dataSourcenormalMaternity;
   dataSourceMaternityadmitted;
+  dataSourceMaternityadded;
   dataSourceMaternitycompleted;
   dataSourcecsMaternity;
+  MaternityColumnsone:string[] = ['sn','created','client','phone','payment','date','time','action','view']
   MaternityColumns: string[] = ['sn','created','client','phone','payment','date','time','action']
   maternity_mobile;
   MaternityColumns2: string[] = ['sn','created','client','phone','payment','date','time','action','calendar']
@@ -31,7 +33,8 @@ export class ViewmaternityComponent implements OnInit {
   this.getCSectionDelivery();
   this.getNormalDelivery();
   this. getAdmittedPatients();
-  this.getCompletedmaternityPatients()
+  this.getCompletedmaternityPatients();
+  this.AddedMaternittyBooking()
   }
 
 
@@ -152,6 +155,14 @@ export class ViewmaternityComponent implements OnInit {
       () => console.log('There is an error')
     );
 
+  }
+  AddedMaternittyBooking() {
+    this.service.getAddedmaternity().subscribe((data)=>{
+      console.log(" AddedMaternittyBooking",data);
+      this.dataSourceMaternityadded = new MatTableDataSource(data);
+    
+      this.dataSourceMaternityadded.paginator = this.paginator;
+    })
   }
   
   applyMaternityFilter() {

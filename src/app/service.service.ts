@@ -7,14 +7,14 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 
-export const endpoint='http://localhost:8000/';
+// export const endpoint='http://localhost:8000/';
 // export const endpoint='http://localhost:8888/';
 // export const endpoint='http://134.209.199.123:8787/';
-// export const endpoint = 'https://booking.healthixsolutions.com/';
+export const endpoint = 'https://booking.healthixsolutions.com/';
 // export const endpoint='http://134.209.199.123:8080/';
 // export const endpoint='http://192.168.12.15:7778/';
 // export const endpoint='https://bookings.aarhospital.com/';
-// export const endpoint='http://134.209.199.123:8888/';
+// export const endpoint='http://192.168.12.15:8888/';
 // export const endpoint='http://197.248.31.237:8548/';
 export const SOCKET_URL="wss://booking.healthixsolutions.com/api/";
 export const SIGNATURE_URL="https://booking.healthixsolutions.com/";
@@ -163,6 +163,26 @@ notcalledpatients(){
     return this.http.post(endpoint + 'api/efall/',data).pipe(
       map(this.extractData));
   }
+  getFeedBackLink(token): Observable<any> {
+    return this.http.get(endpoint + 'api/feedback-link/?t='+token).pipe(
+      map(this.extractData));
+  }
+  feedback(data): Observable<any> {
+    return this.http.post(endpoint+'api/feedback/',data).pipe(
+      map(this.extractData));
+  }
+  feedbackNPS(data): Observable<any> {
+    return this.http.post(endpoint+'api/feedback-nps/',data).pipe(
+      map(this.extractData));
+  }
+  feedbackRating(data): Observable<any> {
+    return this.http.post(endpoint+'api/feedback-rating/',data).pipe(
+      map(this.extractData));
+  }
+  getFeedbacksCategoryQuestions(t): Observable<any> {
+    return this.http.get(endpoint+'api/feedback-category-questions/?t='+t).pipe(
+      map(this.extractData));
+  }
   getFeedbcakResponses() {
     return this.http.get(endpoint + 'api/feedback-responses/').pipe(
       map(this.extractData));
@@ -171,10 +191,22 @@ notcalledpatients(){
     return this.http.get(endpoint + 'api/feedback-ages/').pipe(
       map(this.extractData));
   }
+  getMpesaFeedbackRespondents() {
+    return this.http.get(endpoint + 'api/mpesa-feedback-respondents/').pipe(
+      map(this.extractData));
+  }
+  getMpesaFeedbackRespondentsFilter(s) {
+    return this.http.get(endpoint + 'api/mpesa-feedback-respondents-filter/'+s).pipe(
+      map(this.extractData));
+  }
   reset(data): Observable<{}> {
     return this.http.post<{}>(endpoint + 'users/reset/', data ).pipe(
       map(this.extractData
       ));
+  }
+  getPatientDetails(id) {
+    return this.http.get(endpoint + 'api/upload-feedback-patient-details/'+id+'/').pipe(
+      map(this.extractData));
   }
   addPatient(data:any): Observable<any> {
     return this.http.post(endpoint+'api/patient-register/',data).pipe(
@@ -309,6 +341,11 @@ notcalledpatients(){
       map(this.extractData));
     
   }
+  getAddedmaternity() {
+    return this.http.get(endpoint + 'api/maternityotherbookings/').pipe(
+      map(this.extractData));
+    
+  }
   getPatientAppointments(id) {
     return this.http.get(endpoint + 'api/appointments_patient/'+id+'/').pipe(
       map(this.extractData));
@@ -417,6 +454,10 @@ notcalledpatients(){
     return this.http.get(endpoint + 'api/individual-form/'+no+'/').pipe(
       map(this.extractData));
   }
+  getInsurancefilter(data): Observable<any> {
+    return this.http.post(endpoint + 'api/paymentdatafilter/',data).pipe(
+      map(this.extractData));
+  }
   getInsurancePatientData(id): Observable<any> {
     return this.http.get(endpoint + 'api/insurance_patientdetails/'+id+'/').pipe(
       map(this.extractData));
@@ -457,6 +498,22 @@ notcalledpatients(){
     return this.http.get(endpoint + 'api/uploadedmembers/').pipe(
       map(this.extractData));
   }
+  getuploadedpatientsCompleted(): Observable<any> {
+    return this.http.get(endpoint + 'api/uploadedmembers-completed/').pipe(
+      map(this.extractData));
+  }
+
+  postuploadedpatientComplete(id,data): Observable<any> {
+    return this.http.post(endpoint + 'api/uploadedmember-complete/'+id+'/',data).pipe(
+      map(this.extractData));
+  }
+
+
+  feedbackTakeNote(data): Observable<any> {
+    return this.http.post(endpoint + 'api/feedback-takenote/',data).pipe(
+      map(this.extractData));
+  }
+
 
   
   appointmentSupervison(data): Observable<any> {

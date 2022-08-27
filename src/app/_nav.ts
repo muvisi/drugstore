@@ -96,7 +96,7 @@ export const navItems: NavData[] = [
 
   {
     
-    name: 'Feedback Graphs',
+    name: 'Feedback Reports',
     url: '/dashboard/Feedback-graphs',
     icon: 'fa fa-bar-chart',
   },
@@ -105,8 +105,12 @@ export const navItems: NavData[] = [
     name: 'Covid Reports',
     url: '/dashboard/reports',
     icon: 'fa fa-line-chart',
+  },
+  {
+    name: 'Patients Upload',
+    url: '/dashboard/patients-upload',
+    icon: 'fa fa-upload',
   }
-
 
   
   
@@ -317,9 +321,13 @@ export const navItemscustomerservice: NavData[] = [
     name: 'Covid Reports',
     url: '/dashboard/reports',
     icon: 'fa fa-line-chart',
+  },
+
+  {
+    name: 'Patients Upload',
+    url: '/dashboard/patients-upload',
+    icon: 'fa fa-upload',
   }
-
-
   
   
  
@@ -376,6 +384,11 @@ export const navItemsmanagement: NavData[] = [
     name: 'Covid Reports',
     url: '/dashboard/reports',
     icon: 'fa fa-line-chart',
+  },
+  {
+    name: 'Patients Upload',
+    url: '/dashboard/patients-upload',
+    icon: 'fa fa-upload',
   }
 
 

@@ -22,6 +22,7 @@ export class PrintInsuranceFormsComponent implements OnInit {
   searchText;
   searchTextToday;
   encounterText;
+  insuranceText;
   phonenumber;
   Claims_DATA;
   Columns: string[] = ['sn','visit_no','phone','name','insurancecompany','member_sign','doctor_sign','print']
@@ -180,6 +181,22 @@ export class PrintInsuranceFormsComponent implements OnInit {
       this.todays_DATA = new MatTableDataSource <[]>(res);
           
       this.todays_DATA.paginator = this.paginator;
+      },(err)=>{
+        this.loading=false;
+      })
+      
+    }
+    InsuranceSerch(){
+      let data={
+        insurance:this.insuranceText
+      }
+      console.log("insurance filter",data)
+      this.loading=true;
+      this.service.getInsurancefilter(data).subscribe((res)=>{
+        this.loading=false;
+        this.Claims_DATA = new MatTableDataSource <[]>(res);
+        
+        this.Claims_DATA.paginator = this.paginator;;
       },(err)=>{
         this.loading=false;
       })

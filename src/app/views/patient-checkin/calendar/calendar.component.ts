@@ -81,6 +81,7 @@ clinicClicked(item){
   if(item.name=='All'){
     this.ownerDataSource=this.clinics;
     this.service.getAllClinicsAppointments().subscribe(res=>{
+      console.log("event claendar data",res)
      
       this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
     },err=>{})

@@ -10,6 +10,7 @@
         <div class="col-sm-2">
           <button class="btn btn-success" style="float: right;" data-html2canvas-ignore="true" [disabled]="editable=='COMPLETED'"  (click)="edit()">Edit Form</button>     
       </div>
+      <!-- [disabled]="editable=='COMPLETED'" -->
      
           <div class="col-sm-3">
               <button class="btn btn-success" style="float: right;" data-html2canvas-ignore="true" (click)="printPage()">Print Claim Form</button>        
@@ -151,7 +152,7 @@
                 </div>
                 
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 15px;">
+                <div class="row" style="font-size: 18px;">
                     <div class="col-sm-4">Full Name of Member(if patient is a dependant)</div>
                     <div class="col-sm-8">
                                 
@@ -164,7 +165,7 @@
                     
                 </div>
                 <div class="clearfix"></div>
-                <div class="row" style="font-size: 15px;">
+                <div class="row" style="font-size: 18px;">
                     <div class="col-sm-3">Members's Tel No</div>
                     <div class="col-sm-3">
                                 
@@ -465,7 +466,7 @@
            
 
             <div class="row" style="  margin-left: 1px; margin-top: 20px;">
-                <div class="col-sm-12" style="font-size: 14px;">
+                <div class="col-sm-12" style="font-size: 18px;">
                    <strong> Declaration:<br></strong>
                    I warrant the truth of the above statements. I have not withheld or misstated material information relating to this claim and have <br>no objection to yourselves communicating with 
                    my medical doctor with regards to this claim.
@@ -484,7 +485,7 @@
                 
                  <div class="col-sm-12">
                  <div class="row">
-                  <div class="col-sm-4" style="font-size: 15px;" (click)="activateMemberSignature()">
+                  <div class="col-sm-4" style="font-size: 18px;" (click)="activateMemberSignature()">
                     <strong>   Member's Signature</strong></div>
                    <div class="col-sm-4">
                      <div class="row" style="position: absolute;bottom: 0;margin-bottom: -10px;" *ngIf="signature1_show"><img src="{{signature1_src}}" width="80px" height="50px"/></div>
@@ -498,7 +499,7 @@
                                 
                                 
                   <div class="row" style="position: absolute;bottom: -1; margin-left: 20px;">
-                      <strong>{{patient.member_signature_date | date:"MMM d, y"}}</strong>
+                      <strong>{{form_data.member_signature_date | date:"MMM d, y"}}</strong>
                   </div> <hr>
               </div>
 

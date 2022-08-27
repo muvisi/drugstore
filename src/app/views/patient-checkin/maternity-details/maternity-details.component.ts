@@ -18,6 +18,7 @@ export class MaternityDetailsComponent implements OnInit {
   clientForm: FormGroup;
   paymentForm: FormGroup;
   otherInfoForm:FormGroup;
+  clientFormedit:FormGroup;
   maternity_package;
   patient_info;
   other_info;
@@ -78,6 +79,19 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
   constructor(private formBuilder:FormBuilder,private route: ActivatedRoute, private service:ServiceService,private toast:ToastrService) { }
 
   ngOnInit() {
+    this.clientFormedit = this.formBuilder.group({
+      // phone: ['',Validators.required],
+      // first_name: ['', Validators.required],
+      // other_names: [''],
+      // last_name: ['', Validators.required],
+      type: ['', Validators.required],
+      // email: ['',Validators.email],
+      date: ['', Validators.required],
+      // residence: [''],
+      // national_id: ['',Validators.required],
+      // occupation: [''],
+      id: this.route.snapshot.params.id
+    });
     this.clientForm = this.formBuilder.group({
       email: ['',[Validators.required,Validators.email]],
       phone: ['',[Validators.required,Validators.minLength(9)]],
@@ -596,9 +610,10 @@ async check_paid(phone,amount,count){
       id:this.route.snapshot.params.id,
       type:"PRE-NATAL BOOKING"
     }
-    console.log(data)
-    this.service.getPrenatalBooking(data).subscribe((res)=>{
+    console.log("FORMDATA",this.clientFormedit.value)
+    this.service.getPrenatalBooking(this.clientFormedit.value).subscribe((res)=>{
       this.toast.success("Successful")
+      this.paymentModalz.hide()
       this.loading=false
     },(err)=>{
       this.toast.warning("Failed")

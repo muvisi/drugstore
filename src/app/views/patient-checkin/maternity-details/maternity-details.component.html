@@ -1352,9 +1352,71 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
    </button>
  </div>
  <div class="modal-body">
+  <form [formGroup]="clientFormedit"  (ngSubmit)="onSave()">
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Booking Time</mat-label>
+            <input matInput placeholder="Date of Birth" [maxDate]="maxDate" formControlName="date" [matDatepicker]="picker999k">
+            <!-- <mat-error *ngIf="f.dob.errors && submitted">Date of birth <strong>required</strong></mat-error> -->
+            <mat-datepicker-toggle matSuffix [for]="picker999k"></mat-datepicker-toggle>
+            <mat-datepicker #picker999k></mat-datepicker>
+          </mat-form-field>
+      </div>
+     
+    
+   <div class="col-sm-6">
+    <mat-radio-group  formControlName="type">
+      <label>Type of booking</label>
+      <div class="row" >
+         <div class="col-sm-12">
+             <mat-radio-button  value="Pre-natal"  style="font-family: lato light" checked ><b>Pre-natal</b></mat-radio-button>
+           </div>
+           <div class="col-sm-12">
+               <mat-radio-button value="Post-natal"  style="font-family: lato light" ><b>Post-natal</b></mat-radio-button>
+             </div>
+             <div class="col-sm-12">
+              <mat-radio-button value="Anti-natal"  style="font-family: lato light" ><b>Anti-natal</b></mat-radio-button>
+            </div>
+      </div>
+     </mat-radio-group>
+   </div>
+  
+  
+  <!-- <div class="col-sm-4">
+    <mat-form-field appearance="outline">
+      <mat-label>National ID</mat-label>
+         <input matInput placeholder="National ID" formControlName="national_id">
+         <mat-error *ngIf="f.national_id.errors && submitted">National ID <strong>required</strong></mat-error>
+       </mat-form-field>
+  </div> -->
+  <!-- <div class="col-sm-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+         <input matInput placeholder="Email" formControlName="email">
+         <mat-error *ngIf="f.email.errors && submitted">Valid email <strong>required</strong></mat-error>
+    </mat-form-field>
+  </div> -->
+  <!-- <div class="col-sm-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Occupation</mat-label>
+        <input matInput placeholder="Occupation" formControlName="occupation">
+      </mat-form-field>
+  </div> -->
+  <!-- <div class="col-sm-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Residence</mat-label>
+        <input matInput placeholder="Residence" formControlName="residence">
+      </mat-form-field>
+</div> -->
+<!-- <div class="col-sm-8" *ngIf="clientFormedit.dirty">
+<button class="btn btn-success pull-right">Update</button>
+</div> -->
+    </div>
+  </form>
   
  
-     <form >
+     <!-- <form >
      
    
    <div class="row">
@@ -1363,12 +1425,12 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
    </div>
  
     
-     </form>
+     </form> -->
 
      <div mat-dialog-actions style="margin-left: 10px;">
-       <button mat-button  style=" background-color: #18537d; color: white; margin: 20px;" (click)="Prenatalmaternity()" >Pre-natal</button>
-       <button mat-button  style="  background-color: #222222;color: white; margin: 20px;"(click)="postnatalmaternity()">post-natal</button>
-       <button mat-button  style="  background-color: #34b523;color: white; margin: 20px"(click)=" MaternitytFeedback()">Anti-natal</button>
+       <button mat-button  style=" background-color: #18537d; color: white; margin: 20px;" (click)="this.paymentModalz.hide()" >Close</button>
+       <button mat-button  style="  background-color: #222222;color: white; margin: 20px;"(click)="Prenatalmaternity()">Book</button>
+       <button mat-button  style="  background-color: #34b523;color: white; margin: 20px"(click)="this.paymentModalz.hide()">Later</button>
   
       
      </div>

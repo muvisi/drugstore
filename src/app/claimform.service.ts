@@ -48,6 +48,20 @@ export class ClaimformService {
 
 
 
+  UpdateJubileeInsurance(data){
+return this.http.post(endpoint+"api/jubileeinsuranceclaimform/",data).pipe(map((res)=>{return res}))
+
+  }
+  JubileeInsurance(no){
+    return this.http.get(endpoint+"api/jubileeclaimform-details/"+no+"/").pipe(map((res)=>{return res}))
+  }
+  signatureJubileeform(data){
+    return this.http.post(endpoint+"api/jubileeform-signature/",data).pipe(map((res)=>{return res}))
+  }
+
+
+
+
   updateFirstInsurance(data){
     return this.http.post(endpoint+"api/firstassurancepatientform/",data).pipe(map((res)=>{return res}))
   }

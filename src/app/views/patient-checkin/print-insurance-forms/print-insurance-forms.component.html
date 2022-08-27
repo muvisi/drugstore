@@ -132,6 +132,14 @@
                 <div class="col-sm-2">
                   <button  (click)="clickSearch()"  class="btn btn-success pull-right">search</button> 
                 </div>
+                <div class="col-sm-2">
+                  <mat-form-field  appearance="outline">
+                  <input matInput [(ngModel)]="insuranceText"  autocomplete="off"    placeholder="Insurance Company" type="search">
+                  </mat-form-field>
+                  </div> 
+          <div class="col-sm-2">
+            <button  (click)="InsuranceSerch()"  class="btn btn-success pull-right">Insurance Filter</button> 
+          </div>
       
          
                       </div>

@@ -24,22 +24,18 @@
   input{
       width: 100%;
       float: right;
-      border:2px solid black;
+      // border:1px solid rgb(107, 106, 106);
       text-transform: capitalize;
+      // margin-top: 2px;
   }
   textarea{
-    border:2px solid black;
+    border:1px solid rgb(202, 193, 193);
   }
 
   fieldset 
   {
       border:none !important;
-    //   margin: 0;
-    //   padding: 10px;       
-    //   position: relative;
-    //   border-radius:4px;
-    //   background-color:#f5f5f5;
-    //   padding-left:10px!important;
+   
   }	
   
       legend

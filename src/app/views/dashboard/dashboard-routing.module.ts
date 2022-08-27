@@ -97,6 +97,7 @@ import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.compon
 import { FeedbackreportingComponent } from '../patient-checkin/feedbackreporting/feedbackreporting.component';
 import { PatientsuploadsComponent } from '../../patientsuploads/patientsuploads.component';
 import { MaternityCalendarComponent } from '../../maternity-calendar/maternity-calendar.component';
+import { FeedbackQuestionsComponent } from '../patient-checkin/feedback-questions/feedback-questions.component';
 // import { ClinicsSetupComponent } from '../patient-checkin/clinics-setup/clinics-setup.component';
 const routes: Routes = [
   {
@@ -240,6 +241,12 @@ const routes: Routes = [
     component:UserAccountComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'feedback-call-details/:id',
+    component:FeedbackQuestionsComponent,
+    canActivate: [AuthGuard]
+  },
+  
    {
     path: 'view-maternity-booking',
     component:ViewmaternityComponent,
