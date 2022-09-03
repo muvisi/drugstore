@@ -494,8 +494,8 @@ notcalledpatients(){
   fileUpload(data){
     return this.http.post(endpoint+'api/membersupload/',data)
   }
-  alluploadedpatients(): Observable<any> {
-    return this.http.get(endpoint + 'api/uploadedmembers/').pipe(
+  alluploadedpatients(data): Observable<any> {
+    return this.http.post(endpoint + 'api/uploadedmembers/',data).pipe(
       map(this.extractData));
   }
   getuploadedpatientsCompleted(): Observable<any> {
