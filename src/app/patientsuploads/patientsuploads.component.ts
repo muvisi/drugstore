@@ -28,6 +28,8 @@ export class PatientsuploadsComponent implements OnInit {
   dataSourcepatientuploaded_completed;
   selFile
   file_name;
+  filter_startdate;
+  filter_enddate;
   file_selected;
 
   ngOnInit() {
@@ -90,7 +92,7 @@ export class PatientsuploadsComponent implements OnInit {
 
   }
   getUploadedPatients(){
-    this.service.alluploadedpatients().subscribe(
+    this.service.alluploadedpatients('').subscribe(
       data => {
         console.log("uploadedmembers",data)
         this.dataSourcepatientuploaded = new MatTableDataSource(data);
@@ -122,6 +124,33 @@ export class PatientsuploadsComponent implements OnInit {
         //   localStorage.setItem('maternity_booking3',JSON.stringify(data))
         // }
         // catch(error){} 
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+  }
+  getUploadedPatientsFilter(){
+    let data={
+      // start:this.filter_startdate,
+      start:this.filter_enddate
+    }
+    console.log("my data here",data)
+    this.service.alluploadedpatients(data).subscribe(
+      data => {
+        console.log("uploadedmembers",data)
+        this.dataSourcepatientuploaded = new MatTableDataSource(data);
+        this.dataSourcepatientuploaded.paginator = this.paginator;
+        // this.loading = false;
+        try{
+          localStorage.setItem('maternity_booking3',JSON.stringify(data))
+        }
+        catch(error){} 
 
         
       

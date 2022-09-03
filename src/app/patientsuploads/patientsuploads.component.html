@@ -8,7 +8,7 @@
         <h5 class="card-header bg-success">Patients Uploads</h5>
         <div class="card-body">
             <div class="row" style="width:100%;justify-content: right; margin-top: 10px;">
-              
+            
               
               
               <div class="col-sm-4">
@@ -41,6 +41,19 @@
         <mat-tab-group>
 
           <mat-tab label="Pending"> 
+            <div class="row" style="margin-top: 10px; margin-left: 20px;">
+              
+           
+            <div class="col-sm-3">
+                  
+              <mat-form-field appearance="outline">
+                <mat-label>Select Date Filter</mat-label>
+                  <input matInput placeholder="Select end date"    [(ngModel)]="filter_enddate"  [matDatepicker]="picker4" (ngModelChange)="getUploadedPatientsFilter()" autocomplete="off">
+                  <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                  <mat-datepicker #picker4></mat-datepicker>
+                </mat-form-field>
+          </div>
+          </div>
             <div class="col-sm-12" style="margin-top: 10px;">
                 <div class="mat-elevation-z8 table-responsive">
                   <table mat-table [dataSource]="dataSourcepatientuploaded">
