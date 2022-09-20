@@ -299,10 +299,7 @@ this.skipped.push(i)
 
 SendFeedback(){
 
-  // let data={
-  //   phone:this.client_phone
-
-  // }
+ 
  
   let data={
     phone:this.client_phone,
