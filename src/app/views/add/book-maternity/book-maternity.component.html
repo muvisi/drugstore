@@ -65,7 +65,7 @@ transform: translateY(40%);
                                          <div class="col-sm-4">
                                              <mat-form-field appearance="outline">
                                                  <mat-label>Date Of Birth</mat-label>
-                                                 <input matInput placeholder="D.O.B" [readonly]="outfilled" (dateInput)="patientDobChange()" formControlName="dob" [matDatepicker]="picker" [max]="maxDate">
+                                                 <input matInput placeholder="D.O.B" [readonly]="outfilled" (dateInput)="patientDobChange()" formControlName="dob" [matDatepicker]="picker" [max]="maxDate" (dateChange)="onChangeEvent()">
                                                  <mat-error *ngIf="f.dob.errors?.required">Date of birth is required</mat-error>
                                                  <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
                                                    <mat-datepicker #picker></mat-datepicker>
@@ -107,7 +107,7 @@ transform: translateY(40%);
                       
                                        <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
                  
-                                         <button mat-raised-button  class="btn-success" style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitPatientInfo()">submit</button>
+                                         <button mat-raised-button  class="btn-success" style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "CheckDob()">submit</button>
                                    
                                  </div>
                        
@@ -133,7 +133,7 @@ transform: translateY(40%);
                                <mat-form-field appearance="outline">
                                    <mat-label>Relationship</mat-label>
                                    <mat-select formControlName="relationship">
-                                       <mat-option *ngFor="let item of ['Spouse','Son','Daughter','Brother','Sister','Father','Mother','others']" [value]="item">
+                                       <mat-option *ngFor="let item of ['Spouse','Son','Daughter','Guardian','Brother','Sister','Father','Mother','others']" [value]="item">
                                          {{item}}
                                        </mat-option>
                                      </mat-select>
@@ -158,6 +158,14 @@ transform: translateY(40%);
                        
                                      </mat-form-field>
                                </div>
+                               <div class="col-sm-4">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Alternative Phone</mat-label>
+                                    <input matInput placeholder="Enter Alternative Phone" formControlName="alternative_phone" >
+                                    <mat-error *ngIf="g.alternative_phone.errors?.required">Phone is required</mat-error>
+                    
+                                  </mat-form-field>
+                            </div>
                           
                              </div>
                  
@@ -422,14 +430,26 @@ transform: translateY(40%);
                             
                            </div>
                            <div class="col-sm-12" *ngIf="show_normal_package_detail">
-                            <!-- <div class="col-sm-1"></div> -->
+
+                            
                             <div class="col-sm-12">
                               <ul>
-                                <li>Obstetrician and Paediatrician fees</li>
-                                <li>Post-natal standards drugs</li>
-                                <li>Post-natal investigation</li>
-                                <li>Shared rooom for two nights</li>
-                                <li>1st Vaccination before discharge</li>
+                                <li>All services in the normal delivery package</li>
+                                <li>Anaesthetist fee</li>
+                                <li>Theatre fees</li>
+                                <li>Shared rooom for three nights 4-Beds</li>
+                                <li style="color: #0f53e4;"><u><i>The package has Below Exclusions</i></u></li>
+                                <li style="color: #1ba12d;"> Epidural Services</li>
+                                <li style="color: #1ba12d;"> Removal of Retained Placenta</li>
+                                <li style="color: #1ba12d;"> Repair of Laceration under General Anaesthesia</li>
+                                <li style="color: #1ba12d;"> Hospitalisation outside of Delivery</li>
+                                <li style="color: #1ba12d;"> Any Lab outside of prenatal investigations</li>
+                                <li style="color: #1ba12d;"> Any Drugs or Supplement outside what is captured in the Package</li>
+                                <li style="color: #1ba12d;"> Lamaze Classes</li>
+                                <li  style="color: #0f53e4;" (click)="showUpgradePrivateroom2()" ><u><i><b>Upgrade to Private Room</b></i></u></li>
+
+                              
+                              
                               </ul>
                             </div>
                            </div>
@@ -438,19 +458,29 @@ transform: translateY(40%);
                                <mat-radio-button value="Caesarean Section"    (click)="maternityPackage('cs')"  style="font-family: lato light;margin-right: 20px;">Caesarean Section   <strong> COST: KES 210,000</strong></mat-radio-button>
                               </div>
                               <div class="col-sm-12"  *ngIf="show_cs_package_detail">
-                                <!-- <div class="col-sm-1"></div> -->
+                               
                                 <div class="col-sm-12">
                                   <ul>
                                     <li>All services in the normal delivery package</li>
                                     <li>Anaesthetist fee</li>
                                     <li>Theatre fees</li>
-                                    <li>Shared rooom for three nights</li>
+                                    <li>Shared rooom for three nights 4-Beds</li>
+                                    <li style="color: #0f53e4;"><u><i>The package has Below Exclusions</i></u></li>
+                                    <li style="color: #1ba12d;"> Epidural Services</li>
+                                    <li style="color: #1ba12d;"> Removal of Retained Placenta</li>
+                                    <li style="color: #1ba12d;"> Repair of Laceration under General Anaesthesia</li>
+                                    <li style="color: #1ba12d;"> Hospitalisation outside of Delivery</li>
+                                    <li style="color: #1ba12d;"> Any Lab outside of prenatal investigations</li>
+                                    <li style="color: #1ba12d;"> Any Drugs or Supplement outside what is captured in the Package</li>
+                                    <li style="color: #1ba12d;"> Lamaze Classes</li>
+                                    <li  style="color: #0f53e4;" (click)="showUpgradePrivateroom()" ><u><i><b>Upgrade to Private Room</b></i></u></li>
+
+                                  
+                                  
                                   </ul>
                                 </div>
                                </div>
-                               <!-- <div class="col-sm-12">
-                                <mat-radio-button value="Normal Delivery and Emergency CS"    (click)="maternityPackage('ndcs')"  style="font-family: lato light;margin-right: 20px;">Normal Delivery and Emergency CS</mat-radio-button>
-                               </div>-->
+                              
                                <div class="col-sm-12">
                                 <mat-radio-button value="Private Arrangement"   (click)="maternityPackage('private')" style="font-family: lato light;margin-right: 20px;">Private Arrangements</mat-radio-button>
                                </div> 
@@ -484,30 +514,24 @@ transform: translateY(40%);
                     </mat-step>
 
                  
-                   <mat-step   label="Room packages"  *ngIf="thirdlast_show"  >
+                   <mat-step   label="Room packages"  *ngIf="show_room_package"  >
                     <form [formGroup]="packageForm"   #package="ngForm">
                       <div class="col-sm-12">
                         <div class="row" style="justify-content: center;"> <h2><span style="font-weight: 100;color: black;font-family: Roboto,'Helvetica Neue',sans-serif;">Please select room package?</span></h2></div>
      
                       <mat-radio-group  formControlName="package">
                         <div class="row"  style="justify-content: center; display: grid;">
-                          <div class="col-sm-12">
-                               <mat-radio-button value="Quad ensuite room  - ksh 9,500"   style="font-family: lato light;margin-right: 20px;">Quad ensuite room - ksh 9,500</mat-radio-button>
-                              </div>
+                          
 
                               <div class="col-sm-12">
                                 <mat-radio-button value="Triple ensuite room - ksh 12,500"   style="font-family: lato light;margin-right: 20px;">Triple ensuite room - ksh 12,500</mat-radio-button>
                                </div>
 
-                               <div class="col-sm-12">
-                                <mat-radio-button value="Double ensuite room - ksh 12,500"   style="font-family: lato light;margin-right: 20px;">Double ensuite room - ksh 12,500</mat-radio-button>
-                               </div>
+                               
                                <div class="col-sm-12">
                                 <mat-radio-button value="Private ensuite room  - Ksh 18,000"   style="font-family: lato light;margin-right: 20px;">Private ensuite room - Ksh 18,000</mat-radio-button>
                                </div>
-                               <div class="col-sm-12">
-                                <mat-radio-button value="Day care/ short stay bed - Ksh 5,700"   style="font-family: lato light;margin-right: 20px;">Day care/ short stay bed - Ksh 5,700</mat-radio-button>
-                               </div>
+                               
                            
                                                     
                         </div>
@@ -518,12 +542,11 @@ transform: translateY(40%);
                     </div> 
     
                     <div class="col-sm-12" style="margin-top: 20px;justify-content: center;display:flex">
-                    
-                          <button mat-raised-button  class="btn-success"  style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large;color: white;"  (click)= "submitRoomPackage()">next</button>
+                      <button mat-raised-button style="padding-top: 5px;padding-bottom: 5px;padding-left: 40px; padding-right: 40px; font-size: x-large; background-color: #EF2D2D;color: white;border-radius: 25px;margin: 10px;"  matStepperPrevious>Back</button>
+                          <button mat-raised-button   style="padding-top: 5px;padding-bottom: 5px; padding-left: 40px; padding-right: 40px; font-size: x-large; background-color: #EF2D2D;color: white;border-radius: 25px;margin: 10px;"  (click)= "submitRoomPackage()">Next</button>
                     
                   </div>
                       </form>
-    
                     </mat-step>
 
 

@@ -67,17 +67,18 @@ ownerDataSource: Object[] = [];
    }
 
   ngOnInit() {
-    this.getClinics()
-    this.clinicClicked(this.item)
+    // this.getClinics()
+    // this.clinicClicked(this.item)
+    this.MaternityCalendar()
   }
   
-  getClinics(){
-    this.service.getClinicsCalendar().subscribe((res)=>{
-      this.clinics=res;
-      this.ownerDataSource = res;
-      console.log("data",this.ownerDataSource)
-    })
-  }
+  // getClinics(){
+  //   this.service.getClinicsCalendar().subscribe((res)=>{
+  //     this.clinics=res;
+  //     this.ownerDataSource = res;
+  //     console.log("data",this.ownerDataSource)
+  //   })
+  // }
 
 clinicClicked(item){
   if(item.name=='Maternity'){
@@ -177,6 +178,16 @@ public onCloseClick(): void {
   this.scheduleObj.quickPopup.quickPopupHide();
 }
 
+
+MaternityCalendar(){
+  this.service. getMaternityCalendar().subscribe(res=>{
+    console.log("maternity",res)
+    this.eventSettings= { dataSource: extend([], res, null, true) as Record<string, any>[] }
+  },err=>{})
+
+
+
+}
 
 
 }

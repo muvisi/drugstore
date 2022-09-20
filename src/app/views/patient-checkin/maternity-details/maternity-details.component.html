@@ -200,12 +200,7 @@
                                  
                                     <form>
                                         <div class="row">
-                                            <!-- <div class="col-sm-4">
-                                                <mat-form-field>
-                                                  <mat-label>Name</mat-label>
-                                                    <input matInput placeholder="Name" name="name" [(ngModel)]="nextofKin.name">
-                                                  </mat-form-field>
-                                            </div> -->
+                                           
                                               <div class="col-sm-4">
                                                   <mat-form-field>
                                                     <mat-label>First Name</mat-label>
@@ -247,6 +242,12 @@
                                             <input matInput placeholder="Residence"   name="residence" [(ngModel)]="nextofKin.residence">
                                           </mat-form-field>
                                     </div>
+                                    <div class="col-sm-4">
+                                      <mat-form-field >
+                                        <mat-label>Alternative Number</mat-label>
+                                          <input matInput placeholder="Alternative Number"   name="alternative_phone" [(ngModel)]="nextofKin.alternative_phone">
+                                        </mat-form-field>
+                                  </div>
                                    
                                         </div>
                                       </form>
@@ -556,7 +557,7 @@
       
                                                         <mat-form-field class="example-full-width" style="max-width: 400px;">
                                                           <mat-label>Date</mat-label>
-                                                          <input matInput placeholder="Date" formControlName="date"  >
+                                                          <input matInput placeholder="Date"  formControlName="date"  >
                                                         </mat-form-field> 
                                                       </div>
                                                      <div class="col-sm-4">
@@ -564,7 +565,7 @@
                                                         <mat-form-field >
                                                           <mat-label>Time</mat-label>
                                                     
-                                                          <input matInput placeholder="Time" formControlName="time"   data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top">
+                                                          <input matInput placeholder="Time" formControlName="time"  data-clocklet="class-name: my-clocklet-style;format:HH:mm;placement: top">
                                                       </mat-form-field> 
                                                       </div>   
                                                 <div class="col-sm-4">
@@ -574,6 +575,13 @@
                                         
                                                       </mat-form-field>
                                                 </div>
+                                                <div class="col-sm-4">
+                                                  <mat-form-field >
+                                                      <mat-label>Package Upgrade</mat-label>
+                                                      <input matInput placeholder="Package Upgrade" formControlName="package_upgrade" >
+                                      
+                                                    </mat-form-field>
+                                              </div>
                                                 </div>
                                                 </fieldset>
                                             </form>
@@ -1370,48 +1378,18 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
       <label>Type of booking</label>
       <div class="row" >
          <div class="col-sm-12">
-             <mat-radio-button  value="Pre-natal"  style="font-family: lato light" checked ><b>Pre-natal</b></mat-radio-button>
+             <mat-radio-button  value="Pre-natal"  style="font-family: lato light"  ><b>Pre-natal</b></mat-radio-button>
            </div>
            <div class="col-sm-12">
                <mat-radio-button value="Post-natal"  style="font-family: lato light" ><b>Post-natal</b></mat-radio-button>
              </div>
-             <div class="col-sm-12">
-              <mat-radio-button value="Anti-natal"  style="font-family: lato light" ><b>Anti-natal</b></mat-radio-button>
-            </div>
+             
       </div>
      </mat-radio-group>
    </div>
   
   
-  <!-- <div class="col-sm-4">
-    <mat-form-field appearance="outline">
-      <mat-label>National ID</mat-label>
-         <input matInput placeholder="National ID" formControlName="national_id">
-         <mat-error *ngIf="f.national_id.errors && submitted">National ID <strong>required</strong></mat-error>
-       </mat-form-field>
-  </div> -->
-  <!-- <div class="col-sm-4">
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-         <input matInput placeholder="Email" formControlName="email">
-         <mat-error *ngIf="f.email.errors && submitted">Valid email <strong>required</strong></mat-error>
-    </mat-form-field>
-  </div> -->
-  <!-- <div class="col-sm-4">
-    <mat-form-field appearance="outline">
-      <mat-label>Occupation</mat-label>
-        <input matInput placeholder="Occupation" formControlName="occupation">
-      </mat-form-field>
-  </div> -->
-  <!-- <div class="col-sm-4">
-    <mat-form-field appearance="outline">
-      <mat-label>Residence</mat-label>
-        <input matInput placeholder="Residence" formControlName="residence">
-      </mat-form-field>
-</div> -->
-<!-- <div class="col-sm-8" *ngIf="clientFormedit.dirty">
-<button class="btn btn-success pull-right">Update</button>
-</div> -->
+ 
     </div>
   </form>
   

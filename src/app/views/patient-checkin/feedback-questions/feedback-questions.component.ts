@@ -297,5 +297,26 @@ this.skipped.push(i)
 
 }
 
+SendFeedback(){
+
+  // let data={
+  //   phone:this.client_phone
+
+  // }
+ 
+  let data={
+    phone:this.client_phone,
+    type:"OUTPATIENT",
+    id:this.route.snapshot.params.id
+  }
+  console.log(data)
+this.service.Send_smsKraniumPatients(data).subscribe(res=>{
+  this.toast.success('Success','Send successfully') 
+  this.router.navigateByUrl('dashboard/patients-upload')
+
+  // this.payment.hide()
+},err=>{});
+}
+
 
 }

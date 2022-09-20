@@ -144,6 +144,7 @@ import { MaternityCalendarComponent } from '../../maternity-calendar/maternity-c
 // import { NgxStarRatingModule } from 'ngx-star-rating';
 import { RatingModule } from 'ng-starrating';
 import { FeedbackQuestionsComponent } from './feedback-questions/feedback-questions.component';
+import { MaternityupgradeModalComponent } from '../maternityupgrade-modal/maternityupgrade-modal.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
@@ -244,7 +245,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BookCovidtestingComponent,
     ViewmaternityComponent,
     FeedbackreportingComponent,
-    PatientsuploadsComponent
+    PatientsuploadsComponent,
+    MaternityupgradeModalComponent
     
 
   ],
@@ -303,7 +305,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MonthAgendaService],
   entryComponents: [
       UtilizePaymentModal,
-      UtilizationsModal
+      UtilizationsModal,
+      MaternityupgradeModalComponent
     ]
   
 

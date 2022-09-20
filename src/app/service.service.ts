@@ -354,12 +354,24 @@ notcalledpatients(){
     return this.http.get(endpoint + 'api/clinics-appointments/'+id+'/').pipe(
       map(this.extractData));
   }
+  getuploadedpatientssms() {
+    return this.http.get(endpoint + 'api/uploadedmemberswithsms/').pipe(
+      map(this.extractData));
+  }
   getMaternityAppointments(data) {
     return this.http.post(endpoint + 'api/maternity-calendar/',data).pipe(
       map(this.extractData));
   }
+  getMaternityCalendar() {
+    return this.http.get(endpoint + 'api/maternity-caledar-api/').pipe(
+      map(this.extractData));
+  }
   getAllClinicsAppointments() {
     return this.http.get(endpoint + 'api/clinics-appointments/').pipe(
+      map(this.extractData));
+  }
+  UpgradeRoomPackage(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/new-maternity-specific-package-upgrade/',data).pipe(
       map(this.extractData));
   }
 
@@ -1160,6 +1172,12 @@ searchBills(data): Observable<any>{
   getInpatient(data): Observable<any> {
     return this.http.post(endpoint + 'api/sendsmslinks/',data).pipe(
       map(this.extractData));
+  }
+  Send_smsKraniumPatients(data): Observable<any>{
+    return this.http.post(endpoint+"api/sendsmsforkraniumpatient/",data).pipe(map(
+      this.extractData
+    ));
+
   }
   SearchPatientRecords(data): Observable<any> {
     return this.http.get(endpoint + 'api/patient/?search='+data).pipe(

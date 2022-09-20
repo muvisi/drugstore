@@ -26,6 +26,7 @@ export class PatientsuploadsComponent implements OnInit {
   dataSourceuploaded_pending;
   dataSourcepatientuploaded;
   dataSourcepatientuploaded_completed;
+  dataSourcepatientuploaded_sms;
   selFile
   file_name;
   filter_startdate;
@@ -38,6 +39,7 @@ export class PatientsuploadsComponent implements OnInit {
     });
     this.getUploadedPatients()
     this.getUploadedPatientsCompleted();
+    this.getUploadedPatientsSms()
   }
   onFileSelect(event) {
     let af = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']
@@ -119,11 +121,7 @@ export class PatientsuploadsComponent implements OnInit {
         console.log("uploadedmembers",data)
         this.dataSourcepatientuploaded_completed = new MatTableDataSource(data);
         this.dataSourcepatientuploaded_completed .paginator = this.paginator;
-        // this.loading = false;
-        // try{
-        //   localStorage.setItem('maternity_booking3',JSON.stringify(data))
-        // }
-        // catch(error){} 
+         
 
         
       
@@ -151,6 +149,24 @@ export class PatientsuploadsComponent implements OnInit {
           localStorage.setItem('maternity_booking3',JSON.stringify(data))
         }
         catch(error){} 
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+  }
+  getUploadedPatientsSms(){
+    this.service.getuploadedpatientssms().subscribe(
+      data => {
+        // console.log("uploadedmembers",data)
+        this. dataSourcepatientuploaded_sms = new MatTableDataSource(data);
+        this.dataSourcepatientuploaded_sms.paginator = this.paginator;
+         
 
         
       

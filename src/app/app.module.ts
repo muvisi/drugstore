@@ -63,6 +63,7 @@ import { DashboardReportComponent } from './views/dashboard-report/dashboard-rep
 import { AdminSetupsComponent } from './views/admin-setups/admin-setups.component';
 import { ViewmaternityComponent } from './viewmaternity/viewmaternity.component';
 import { MaternityCalendarComponent } from './maternity-calendar/maternity-calendar.component';
+// import { MaternityupgradeModalComponent } from './views/maternityupgrade-modal/maternityupgrade-modal.component';
 // import { MaternityfeedbackComponent } from './views/maternityfeedback/maternityfeedback.component';
 // import { BirthdaymessengesComponent } from './views/birthdaymessenges/birthdaymessenges.component';
 // import { FeedbackGraphsComponent } from './views/feedback-graphs/feedback-graphs.component';
@@ -129,6 +130,7 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+    // MaternityupgradeModalComponent,
     // MaternityCalendarComponent,
     // PatientsuploadsComponent,
     // ViewmaternityComponent,

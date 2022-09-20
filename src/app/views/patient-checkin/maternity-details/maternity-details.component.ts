@@ -8,6 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ModalDirective } from 'ngx-bootstrap';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-maternity-details',
@@ -38,7 +40,8 @@ export class MaternityDetailsComponent implements OnInit {
     other_names:"",
     phone:"",
     residence:"",
-    relationship:""
+    relationship:"",
+    alternative_phone:""
   
   }
   customer= {
@@ -55,6 +58,8 @@ export class MaternityDetailsComponent implements OnInit {
   insurance_company_suggestions=[];
   show_insurance;
   loading: boolean;
+  formated_date
+  
   Columns: string[] = ['sn','date','phone','name','transaction_code','amount']
   @ViewChild('smslinks', { static: false }) smslinks: ModalDirective;
   @ViewChild('paymentModalz', { static: false }) paymentModalz: ModalDirective;
@@ -135,6 +140,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       date:[''],
       time:[''],
       package:[''],
+      package_upgrade:[''],
       edd:[''],
       referred_by:[''],
       referral:[''],
@@ -144,6 +150,8 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
     });
     this.service.getMaternityBookingDetail(this.route.snapshot.params.id).subscribe((res)=>{
       this.customer=res.patient;
+      // const datepipe: DatePipe = new DatePipe('en-US');
+      
       // console.log(this.date,"kimmmm")
       // console.log("",this.date)
       this.patient_info={    
@@ -164,10 +172,12 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
           
           
       }
+      
       this.other_info={
         date:res.date,
         time:res.time,
         package:res.package,
+        package_upgrade:res.upgraded_private_room,
         maternity_package:res.maternity_package,
         referred_by:res.referred_by,
         practitioner:res.practitioner,
@@ -175,14 +185,17 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
         referral:res.referral,
         current_doctor:res.current_doctor
       }
+      // let formattedDate = datepipe.transform(res.time, 'HH:mm')
+      // console.log("my date",formattedDate)
       this.maternity_package=res.maternity_package;
       this.otherInfoForm.patchValue(this.other_info);
       console.log(this.other_info);
-      this.nextofKin=res.nextofKin !=null  ? res.nextofKin :{ first_name :'',last_name :'',other_names :'',relationship:'', phone:'',residence:''}
+      this.nextofKin=res.nextofKin !=null  ? res.nextofKin :{ first_name :'',last_name :'',other_names :'',relationship:'', phone:'',residence:'',alternative_phone:''}
    
       this.payment_mode=res.payment;
 
       console.log("pateint",this.patient_info);
+      console.log("nextofkin",this.nextofKin);
       
      
 

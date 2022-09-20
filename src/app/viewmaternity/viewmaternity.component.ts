@@ -22,7 +22,7 @@ export class ViewmaternityComponent implements OnInit {
   MaternityColumnsone:string[] = ['sn','created','client','phone','payment','date','time','action','view']
   MaternityColumns: string[] = ['sn','created','client','phone','payment','date','time','action']
   maternity_mobile;
-  MaternityColumns2: string[] = ['sn','created','client','phone','payment','date','time','action','calendar']
+  MaternityColumns2: string[] = ['sn','created','client','phone','payment','date','time','action']
 
 
   constructor(public service:ServiceService,public toastr:ToastrService,public router:Router) { }

@@ -12,6 +12,7 @@ import { DatePipe, DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ServiceService } from '../../../service.service';
+import { MaternityupgradeModalComponent } from '../../maternityupgrade-modal/maternityupgrade-modal.component';
 @Component({
   selector: 'app-maternity',
   templateUrl: './book-maternity.component.html',
@@ -84,7 +85,8 @@ export class BookMaternityComponent implements OnInit {
       phone: '',
       name:'',
       residence: '',
-      relationship: ''
+      relationship: '',
+      alternative_phone:''
     },
     date:'',
     time:'',
@@ -142,6 +144,9 @@ thirdlast_show=false;
   show_cs_package_detail: boolean;
   show_normal_package_detail: boolean;
   show_bank_details: boolean;
+  show_appointment_date: boolean;
+  show_room_package: boolean;
+  show_upgrade_private_arragements: boolean;
   constructor(public dialog: MatDialog,private datePipe:DatePipe, private route: ActivatedRoute,private formBuilder: FormBuilder,public service: ServiceService,public router: Router,public toast:ToastrService,@Inject(DOCUMENT) private document: Document) { 
 
   }
@@ -224,6 +229,7 @@ thirdlast_show=false;
     first_name: ['', Validators.required],
     residence: ['', Validators.required],
     relationship: ['', Validators.required],
+    alternative_phone: ['', Validators.required],
 });
 this.medicalForm =this.formBuilder.group({
   edd:[''],
@@ -676,23 +682,33 @@ getAge(dateString) {
 
 
   maternityPackage(p){
+
     if(p=='private'){
-      this.practitioner_show=true;
+      this.show_appointment_date=false;
+      this.show_normal_package_detail=false;
+      this.show_cs_package_detail=false;
+      // this.practitioner_show=true;
+      this.show_room_package=true;
     }else{
       this.practitioner_show=false
     }
 
 
     if(p=='cs'){
+      this.show_appointment_date=true;
+      this.show_room_package=false;
       this.show_cs_package_detail=true;
       this.show_normal_package_detail=false;
     }
     if(p=='normal'){
+      this.show_appointment_date=false;
+      this.show_room_package=false;
       this.show_cs_package_detail=false;
       this.show_normal_package_detail=true;
     }
+   
   }
-
+  
   submitMaternityPackage(){
     this.loading=true;
     let data=Object.assign(this.maternitypackageForm.value,{id:this.patient_id})
@@ -707,5 +723,81 @@ getAge(dateString) {
       this.loading=false;
       this.toast.error("Failed to submit") 
     })
+  }
+  diff_years(dt2, dt1) 
+  {
+ 
+   var diff =(dt2 - dt1) / 1000;
+    diff /= (60 * 60 * 24);
+   return Math.abs(Math.round(diff/365.25));
+    
+  }
+  CheckDob(){
+   console.log("DOB",this.registerForm.value.dob)
+   var dt1=new Date()
+  
+   var dt2=this.registerForm.value.dob
+   let sam=this.diff_years(dt1, dt2)
+   console.log(sam)
+   if(sam<15){
+     this.toast.warning("Oops!","The age cannot be below 15-years!")
+   
+      }
+   else
+   this.submitPatientInfo()
+   
+ 
+ 
+ 
+  }
+ 
+   onChangeEvent(){
+     
+     console.log("DOB",this.registerForm.value.dob)
+     var dt1=new Date()
+    
+     var dt2=this.registerForm.value.dob
+     let sam=this.diff_years(dt1, dt2)
+     console.log(sam)
+     if(sam<15){
+       this.toast.warning("Oops!","The age cannot be below 15years!")
+     
+     }
+   }
+   showUpgradePrivateroom(){
+    // this.stepper.next();
+    const dialogRef = this.dialog.open(MaternityupgradeModalComponent, {
+      width: '800px',
+      panelClass: 'custom-dialog-container',
+      data: {package_type:"CS-DELIVERY-UPGRADED TO PRIVATE ROOM",id:this.patient_id},
+    });
+    
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if(result.event=='PAY'){
+        // this.appointmentForm.patchValue(result.data);
+        // this.stepper.next();
+      }
+   
+    });
+  }
+  showUpgradePrivateroom2(){
+    // this.stepper.next();
+    const dialogRef = this.dialog.open(MaternityupgradeModalComponent, {
+      width: '800px',
+      panelClass: 'custom-dialog-container',
+      data: {package_type:"NORMAL-DELIVERY-UPGRADED TO PRIVATE ROOM",id:this.patient_id},
+    });
+    
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if(result.event=='PAY'){
+        // this.appointmentForm.patchValue(result.data);
+        // this.stepper.next();
+      }
+   
+    });
   }
 }
