@@ -31,6 +31,7 @@ export class PatientsuploadsComponent implements OnInit {
   file_name;
   filter_startdate;
   filter_enddate;
+  datasource_count;
   file_selected;
 
   ngOnInit() {
@@ -47,20 +48,12 @@ export class PatientsuploadsComponent implements OnInit {
       const file = event.target.files[0];
       console.log(file);
 
-      // if (!_.includes(af, file.type)) {
-      //   alert('Only EXCEL Docs Allowed!');
-      // } else {
+     
         this.fileInputLabel = file.name;
         this.fileUploadForm.get('myfile').setValue(file);
-      // }
-  //     this.service.fileUpload(file).subscribe((res:any)=>{
-  //       this.toastr.success('Successfully saved the form','Saved')
-  //       this.getUploadedPatients()
-    
-  //       console.log(res)
-  //     })
+      
   };
-    // }
+  
  
   }
   onFormSubmit() {
@@ -97,13 +90,10 @@ export class PatientsuploadsComponent implements OnInit {
     this.service.alluploadedpatients('').subscribe(
       data => {
         console.log("uploadedmembers",data)
-        this.dataSourcepatientuploaded = new MatTableDataSource(data);
+        this.dataSourcepatientuploaded = new MatTableDataSource(data.patient);
         this.dataSourcepatientuploaded.paginator = this.paginator;
-        // this.loading = false;
-        // try{
-        //   localStorage.setItem('maternity_booking3',JSON.stringify(data))
-        // }
-        // catch(error){} 
+        this.datasource_count=data.count
+        
 
         
       
@@ -142,8 +132,9 @@ export class PatientsuploadsComponent implements OnInit {
     this.service.alluploadedpatients(data).subscribe(
       data => {
         console.log("uploadedmembers",data)
-        this.dataSourcepatientuploaded = new MatTableDataSource(data);
+        this.dataSourcepatientuploaded = new MatTableDataSource(data.patient);
         this.dataSourcepatientuploaded.paginator = this.paginator;
+        this.datasource_count=data.count
         // this.loading = false;
         try{
           localStorage.setItem('maternity_booking3',JSON.stringify(data))
@@ -178,4 +169,5 @@ export class PatientsuploadsComponent implements OnInit {
     );
 
   }
+  
 }

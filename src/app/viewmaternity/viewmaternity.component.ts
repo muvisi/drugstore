@@ -16,6 +16,13 @@ export class ViewmaternityComponent implements OnInit {
   dataSourceMaternity;
   dataSourcenormalMaternity;
   dataSourceMaternityadmitted;
+  datasource_all_booking;
+  datasource_pending_booking;
+  datasource_admitted_bookings;
+  datasource_discharged_booking;
+  datasource_no_show_booking;
+  datasource__normal_delivery;
+  datasource__cs_delivery;
   dataSourceMaternityadded;
   dataSourceMaternitycompleted;
   dataSourcecsMaternity;
@@ -35,6 +42,17 @@ export class ViewmaternityComponent implements OnInit {
   this. getAdmittedPatients();
   this.getCompletedmaternityPatients();
   this.AddedMaternittyBooking()
+  this.service.getMaternityCount().subscribe((res)=>{
+  this.datasource_all_booking=res.all_maternity_bookings
+  this.datasource_pending_booking=res.pending_bookings
+  this.datasource_admitted_bookings=res.admitted_bookings
+  this.datasource_discharged_booking=res.discharged_bookings
+  this.datasource_no_show_booking=res.admitted_bookings
+  this.datasource__normal_delivery=res.normal_bookings
+  this.datasource__cs_delivery=res.cs_booking
+   
+  })
+
   }
 
 

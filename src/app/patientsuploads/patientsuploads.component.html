@@ -40,7 +40,17 @@
 
         <mat-tab-group>
 
-          <mat-tab label="Pending"> 
+          <mat-tab> 
+            <ng-template mat-tab-label>
+              <span matBadge="{{datasource_count}}" matBadgeColor="accent" matBadgeOverlap="false">
+                Pending
+              </span>
+            </ng-template>
+           
+           
+           
+           
+           
             <div class="row" style="margin-top: 10px; margin-left: 20px;">
               
            
@@ -120,6 +130,11 @@
               </div>
               </mat-tab>
               <mat-tab label="Completed"> 
+                <ng-template mat-tab-label>
+                  <span matBadge="{{datasource__normal_delivery}}" matBadgeColor="accent" matBadgeOverlap="false">
+                    Completed
+                  </span>
+                </ng-template> 
                 <div class="col-sm-12" style="margin-top: 10px;">
                     <div class="mat-elevation-z8 table-responsive">
                       <table mat-table [dataSource]="dataSourcepatientuploaded_completed">

@@ -7,7 +7,16 @@
 
 
             <mat-tab-group>
-              <mat-tab label="All Bookings"> <div class="row">
+              <mat-tab  >
+                <ng-template mat-tab-label>
+                  <span matBadge="{{datasource_all_booking}}" matBadgeColor="accent" matBadgeOverlap="false">
+                   All Bookings
+                  </span>
+                </ng-template>
+
+                
+                
+                <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <h6 class="card-header bg-success">All Bookings
@@ -129,7 +138,13 @@
                         </div>
                         </div>
               </mat-tab>
-              <mat-tab label="Normal Delivery"> <div class="row">
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <span matBadge="{{datasource__normal_delivery}}" matBadgeColor="accent" matBadgeOverlap="false">
+                   Normal Delivery
+                  </span>
+                </ng-template> 
+                <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <h6 class="card-header bg-success">Normal Delivery
@@ -234,8 +249,18 @@
                         </div>
                         </div>
                         </div>
-                        </div> </mat-tab>
-              <mat-tab label="C-Section Delivery"> <div class="row">
+                        </div> 
+              </mat-tab>
+              <mat-tab> 
+                <ng-template mat-tab-label>
+                  <span matBadge="{{datasource__cs_delivery}}" matBadgeColor="accent" matBadgeOverlap="false">
+                    C-Section Delivery
+                  </span>
+                </ng-template>
+                
+                
+                
+                <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <h6 class="card-header bg-success">C-Section Delivery
@@ -341,7 +366,11 @@
                         </div>
                         </div>
                         </div>
-                        </div> </mat-tab>
+                        </div> 
+                      
+                      
+                      
+                      </mat-tab>
               <!-- <mat-tab label="Completed Delivery"> <div class="row">
                           <div class="col-sm-12">
                               <div class="card">
@@ -438,7 +467,15 @@
                                   </div>
                                   </div>
                                   </div> </mat-tab> -->
-              <mat-tab label="Admitted Patients"> <div class="row">
+              <mat-tab label="Admitted Patients"> 
+
+
+                <ng-template mat-tab-label>
+                  <span matBadge="{{datasource_admitted_bookings}}" matBadgeColor="accent" matBadgeOverlap="false">
+                    Admitted Patients
+                  </span>
+                </ng-template>
+                <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">
                                             <h6 class="card-header bg-success">Admitted Patients
@@ -554,7 +591,16 @@
                                             </div>
                                             </div>
                                           </mat-tab>
-              <mat-tab label="Discharged Patients"> <div class="row">
+              <mat-tab >
+                <ng-template mat-tab-label>
+                  <span matBadge="{{datasource_discharged_booking}}" matBadgeColor="accent" matBadgeOverlap="false">
+                    Discharged Patients
+                  </span>
+                </ng-template> 
+                
+                
+                
+                <div class="row">
                                               <div class="col-sm-12">
                                                   <div class="card">
                                                       <h6 class="card-header bg-success">Discharged Patients

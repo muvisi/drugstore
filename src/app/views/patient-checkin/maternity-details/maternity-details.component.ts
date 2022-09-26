@@ -21,9 +21,11 @@ export class MaternityDetailsComponent implements OnInit {
   paymentForm: FormGroup;
   otherInfoForm:FormGroup;
   clientFormedit:FormGroup;
+  AditionalDataForm:FormGroup;
   maternity_package;
   patient_info;
   other_info;
+  additional_info;
   payment_type;
   payment_info;
   insurances;
@@ -86,8 +88,8 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
 
   ngOnInit() {
     this.clientFormedit = this.formBuilder.group({
-      // phone: ['',Validators.required],
-      // first_name: ['', Validators.required],
+      serial_no: [''],
+      baby_name: [''],
       // other_names: [''],
       // last_name: ['', Validators.required],
       type: ['', Validators.required],
@@ -115,6 +117,22 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       national_id: [''],
       brought_in_by: [''],
   });
+  this.AditionalDataForm = this.formBuilder.group({
+    scan_report: [''],
+    blood_result: [''],
+    smoking_cessation: [''],
+    last_prenatal_clinic: [''],
+    fertility_treatment:[''],
+    physical_disability: [''],
+    contraception_form: [''],
+    period_regular: [''],
+    medical_conditions: [''],
+    family_medical_history:[''],
+    non_medical_concerns:[''],
+    last_period_date:[''],
+    id: this.route.snapshot.params.id
+  
+});
 
     this.paymentForm=this.formBuilder.group({
       cash:['',[Validators.required]],
@@ -172,6 +190,21 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
           
           
       }
+    
+    this.additional_info={
+      scan_report:res.scan_report,
+      blood_result:res.blood_result,
+      smoking_cessation:res.smoking_cessation,
+      last_prenatal_clinic:res.last_prenatal_clinic,
+      fertility_treatment:res.fertility_treatment,
+      physical_disability:res.referred_by,
+      contraception_form:res.contraception_form,
+      regular_periods:res.regular_periods,
+      last_period_date:res.last_period_date,
+      medical_conditions:res.medical_conditions,
+      family_medical_history:res.family_medical_history,
+      non_medical_concerns:res.non_medical_concerns,
+    }
       
       this.other_info={
         date:res.date,
@@ -189,6 +222,7 @@ search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>
       // console.log("my date",formattedDate)
       this.maternity_package=res.maternity_package;
       this.otherInfoForm.patchValue(this.other_info);
+      this.AditionalDataForm.patchValue(this.additional_info)
       console.log(this.other_info);
       this.nextofKin=res.nextofKin !=null  ? res.nextofKin :{ first_name :'',last_name :'',other_names :'',relationship:'', phone:'',residence:'',alternative_phone:''}
    
@@ -647,6 +681,120 @@ async check_paid(phone,amount,count){
 
 
 
+  }
+  updateAdditionalData(){
+    console.log("my data",this.AditionalDataForm.value)
+    this.service.maternityadditionaldata(this.AditionalDataForm.value).subscribe((res)=>{
+      this.loading=false
+      this.toast.success("Update was Successful")
+      this.Restart()
+
+    },(error)=>{
+      this.loading=false;
+      this.toast.error("Update Failed");
+    });
+  }
+
+
+  Restart(){
+    this.service.getMaternityBookingDetail(this.route.snapshot.params.id).subscribe((res)=>{
+      this.customer=res.patient;
+    
+      this.patient_info={    
+          'dob': res.patient.dob,
+          'email': res.patient.email != null ? res.patient.email : '',
+          'first_name': res.patient.first_name != null ? res.patient.first_name : '',
+          'gender':  res.patient.gender != null ?  res.patient.gender : '',
+          'last_name':res.patient.last_name != null ? res.patient.last_name : '',
+          'national_id': res.patient.national_id != null ? res.patient.national_id : '' ,
+          'phone':res.patient.phone != null ? res.patient.phone : '',
+          'residence': res.patient.residence != null ? res.patient.residence : '',
+          'other_names': res.patient.other_names != null ? res.patient.other_names : '',
+          'occupation': res.patient.occupation !=null ? res.patient.occupation : '',
+          'marital_status': res.patient.marital_status !=null ? res.patient.marital_status : '',
+          'nationality': res.patient.nationality !=null ? res.patient.nationality : '',
+          'religion': res.patient.religion !=null ? res.patient.religion : '',
+          'patient_number': res.patient.patient_number !=null ? res.patient.patient_number : ''
+          
+          
+      }
+    
+    this.additional_info={
+      scan_report:res.scan_report,
+      blood_result:res.blood_result,
+      smoking_cessation:res.smoking_cessation,
+      last_prenatal_clinic:res.last_prenatal_clinic,
+      fertility_treatment:res.fertility_treatment,
+      physical_disability:res.referred_by,
+      contraception_form:res.contraception_form,
+      regular_periods:res.regular_periods,
+      last_period_date:res.last_period_date,
+      medical_conditions:res.medical_conditions,
+      family_medical_history:res.family_medical_history,
+      non_medical_concerns:res.non_medical_concerns,
+    }
+      
+      this.other_info={
+        date:res.date,
+        time:res.time,
+        package:res.package,
+        package_upgrade:res.upgraded_private_room,
+        maternity_package:res.maternity_package,
+        referred_by:res.referred_by,
+        practitioner:res.practitioner,
+        edd:res.edd,
+        referral:res.referral,
+        current_doctor:res.current_doctor
+      }
+      // let formattedDate = datepipe.transform(res.time, 'HH:mm')
+      // console.log("my date",formattedDate)
+      this.maternity_package=res.maternity_package;
+      this.otherInfoForm.patchValue(this.other_info);
+      this.AditionalDataForm.patchValue(this.additional_info)
+      console.log(this.other_info);
+      this.nextofKin=res.nextofKin !=null  ? res.nextofKin :{ first_name :'',last_name :'',other_names :'',relationship:'', phone:'',residence:'',alternative_phone:''}
+   
+      this.payment_mode=res.payment;
+
+      console.log("pateint",this.patient_info);
+      console.log("nextofkin",this.nextofKin);
+      
+     
+
+      // console.log("DOB",this.date)
+      if(res.payment=="Insurance"){
+        this.show_insurance=true;
+        this.service.getMaternityInsuranceDetails(res.patient.id).subscribe((res2)=>{
+          console.log(res2);
+
+          this.payment_info={
+              "payment":"Insurance",
+              "insurance_company": res2.insurance_company !=  null ? res2.insurance_company : '',
+              "scheme_name":  res2.scheme_name !=  null ? res2.scheme_name : '',
+              "scheme_number":  res2.scheme_number !=  null ? res2.scheme_number : '',
+              "employee":  res2.employee !=  null ? res2.employee : '',
+              "employee_number":  res2.employee_number !=  null ? res2.employee_number : '',
+              "department": res2.department !=  null ? res2.department : '',
+              "member_number":  res2.member_number !=  null ? res2.member_number : '',
+              "member_name": res2.member_name !=  null ? res2.member_name : '',
+              "relation":  res2.relation !=  null ? res2.relation : '',
+              "card_number":  res2.card_number !=  null ? res2.card_number : '',
+              "id_number":  res2.id_number !=  null ? res2.id_number : '',
+              "nhif_number":  res2.nhif_number !=  null ? res2.nhif_number : ''
+            }
+
+            console.log("payement",this.payment_info);
+        this.paymentForm.patchValue(this.payment_info);
+
+        })
+        
+
+
+      }
+      
+      this.clientForm.patchValue(this.patient_info);
+      // this.paymentForm.patchValue(this.payment_type);
+    })
   }
 
 

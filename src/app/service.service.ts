@@ -401,6 +401,10 @@ notcalledpatients(){
     return this.http.post(endpoint + 'api/registration-link/',data).pipe(
       map(this.extractData));
   }
+  getMaternityCount(): Observable<any> {
+    return this.http.get(endpoint + 'api/maternity-status-counts/').pipe(
+      map(this.extractData));
+  }
 
   getPrenatalBooking(data): Observable<any> {
     return this.http.post(endpoint + 'api/new-maternity-prenatal-care/',data).pipe(
@@ -1163,6 +1167,10 @@ searchBills(data): Observable<any>{
   }
   maternityadmitdischarge(data): Observable<any> {
     return this.http.post(endpoint + 'api/maternityadmissionanddischarge/',data).pipe(
+      map(this.extractData));
+  }
+  maternityadditionaldata(data): Observable<any> {
+    return this.http.post(endpoint + 'api/maternity-additional-data/',data).pipe(
       map(this.extractData));
   }
   reschedulebooking(data): Observable<any> {

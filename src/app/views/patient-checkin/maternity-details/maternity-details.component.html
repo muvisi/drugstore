@@ -53,13 +53,7 @@
                           </div>
                           <div class="row">
                             <div class="col-sm-5">
-                              <!-- <div class="row">
-                                  <div class="col-sm-12 text-primary" style="text-transform: capitalize;font-weight: 600;">{{customer.first_name}} {{customer.last_name}} {{customer.other_names}} </div>
-                                  <div class="col-sm-12" > {{customer.phone}} </div>
-                                  <div class="col-sm-12" > {{customer.email}} </div>
-                                  <div class="col-sm-12" > {{customer.dob}} </div>
-  
-                              </div> -->
+                              
   
                           </div>
                             
@@ -1197,6 +1191,130 @@
                             </div>
                             <br>
                             </mat-tab>
+                            <mat-tab>
+                              <ng-template mat-tab-label>
+                                Additional Data By (Maternity Nurses)
+                              </ng-template>
+                            
+                              <br>
+                              <fieldset>
+                                <legend>Additional Data</legend>
+                                <div class="col-sm-12">
+                                 
+                                    <form [formGroup]="AditionalDataForm" >
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <mat-form-field appearance="outline">
+                                                  <mat-label>Scan Report</mat-label>
+                                                    <input matInput placeholder="Scan Report" formControlName="scan_report">
+                                                    
+                                                  </mat-form-field>
+                                            </div>
+                                          <div class="col-sm-4">
+                                            <mat-form-field appearance="outline">
+                                              <mat-label>Blood Result</mat-label>
+                                                <input matInput placeholder="Last Name" formControlName="blood_result">
+                                              </mat-form-field>
+                                          </div>
+                                    
+                                        <div class="col-sm-4">
+                                          <mat-form-field appearance="outline">
+                                            <mat-label> Smoking Cessation</mat-label>
+                                              <input matInput placeholder=" Smoking Cessation" formControlName="smoking_cessation">
+                                             
+                                            </mat-form-field>
+                                      </div>
+                                       <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Fertility Treatment</mat-label>
+                                          <input matInput placeholder="Fertility Treatment" formControlName="fertility_treatment">
+                                        </mat-form-field>
+                                       </div>
+                                       <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Physical Disability</mat-label>
+                                            <input matInput placeholder="Physical Disability" formControlName="physical_disability">
+                                          </mat-form-field>
+                                      </div>
+                                       
+                                       <!-- <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Last Prenatal Clinic Date</mat-label>
+                                            <input matInput placeholder="Last Prenatal Clinic Date (DD/MM/YYYY)"  formControlName="last_prenatal_clinic" >
+                                         
+                                          </mat-form-field>
+                                      </div> -->
+                                      <div class="col-sm-4">
+                  
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Last Prenatal Clinic Date</mat-label>
+                                            <input matInput placeholder="Last Prenatal Clinic Date"   [matDatepicker]="picker4"  formControlName="last_prenatal_clinic" autocomplete="off">
+                                            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker4></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Last Form of Contraception</mat-label>
+                                             <input matInput placeholder="Last Form of Contraception" formControlName="contraception_form">
+                                           </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Are your Periods Regular?</mat-label>
+                                             <input matInput placeholder="Are your Periods Regular" formControlName="period_regular">
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Any medical Conditions</mat-label>
+                                            <input matInput placeholder="Any medical Conditions" formControlName="medical_conditions">
+                                          </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Family Medical History</mat-label>
+                                        
+                                              <input matInput placeholder="Family Medical History" formControlName="family_medical_history">
+                                          </mat-form-field>
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>Other Non-Medical Concerns</mat-label>
+                                            <input matInput placeholder="Other Non-Medical Concerns" formControlName="non_medical_concerns">
+                                          </mat-form-field>
+                                      </div>
+                                      <!-- <div class="col-sm-4">
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>First date of last period</mat-label>
+                                            <input matInput placeholder="First date of last period (DD/MM/YYYY)"  formControlName="last_period_date" >
+                                         
+                                          </mat-form-field>
+                                      </div> -->
+                                      <div class="col-sm-4">
+                  
+                                        <mat-form-field appearance="outline">
+                                          <mat-label>First date of last period</mat-label>
+                                            <input matInput placeholder="First date of last period"   [matDatepicker]="picker44"  formControlName="last_period_date" autocomplete="off">
+                                            <mat-datepicker-toggle matSuffix [for]="picker44"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker44></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                    <button class="btn btn-success pull-right" (click)="updateAdditionalData()">Update</button>
+                                    </div>
+                                        </div>
+                                      </form>
+
+
+                                </div>
+                              </fieldset>
+                              
+                        
+
+  
+                            </mat-tab>
 
                           
   
@@ -1387,6 +1505,21 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
       </div>
      </mat-radio-group>
    </div>
+   
+  <div class="col-sm-6">
+    <mat-form-field appearance="outline">
+        <mat-label>Baby Name</mat-label>
+        <input matInput placeholder="Baby Names" formControlName="baby_name" >
+        <!-- formControlName="nationality" -->
+      </mat-form-field>
+</div>
+<div class="col-sm-6">
+  <mat-form-field appearance="outline">
+      <mat-label>Birth serial No</mat-label>
+      <input matInput placeholder="Birth serial No" formControlName="serial_no" >
+      <!-- formControlName="nationality" -->
+    </mat-form-field>
+</div>
   
   
  
