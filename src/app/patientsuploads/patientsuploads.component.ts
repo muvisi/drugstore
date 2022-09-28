@@ -17,22 +17,50 @@ export class PatientsuploadsComponent implements OnInit {
   completedColumns: string[] = ['sn','created','client','opno','phone','called_by','status']
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   file: File;
-  constructor(public service:ServiceService,public toastr:ToastrService,public router:Router,private http: HttpClient,
-    private formBuilder: FormBuilder
-) { }
-  @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
   fileUploadForm: FormGroup;
   fileInputLabel: string;
   dataSourceuploaded_pending;
   dataSourcepatientuploaded;
   dataSourcepatientuploaded_completed;
   dataSourcepatientuploaded_sms;
-  selFile
+  filter_statdate;
+  // dataSource: any={}
+  dataSource: any={};
+  selFile;
   file_name;
+  services_filter_date;
   filter_startdate;
   filter_enddate;
   datasource_count;
   file_selected;
+  datasource_countcompleted;
+  datasource_sms;
+  personnels;
+  selected_user;
+  datasource_callbackstat;
+  datasource_countsms;
+  datasource_statistics
+  constructor(public service:ServiceService,public toastr:ToastrService,public router:Router,private http: HttpClient,
+    private formBuilder: FormBuilder
+) { 
+
+
+  this.dataSource= {
+    chart: {
+      caption: 'AAR HOSPITAL',
+      subCaption: 'Patients CallBacks',
+      xAxisName: 'Status',
+      yAxisName: 'Total Count',
+      numberSuffix: '',
+      theme: 'fusion'
+    },
+    data:[]
+  };
+  // this.dataSource = dataSource;
+}
+  @ViewChild('UploadFileInput', { static: false }) uploadFileInput: ElementRef;
+ 
+  
 
   ngOnInit() {
     this.fileUploadForm = this.formBuilder.group({
@@ -41,6 +69,9 @@ export class PatientsuploadsComponent implements OnInit {
     this.getUploadedPatients()
     this.getUploadedPatientsCompleted();
     this.getUploadedPatientsSms()
+    this.getCustomerService()
+    this.getStatistics()
+    this.getCallbackGraph()
   }
   onFileSelect(event) {
     let af = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel']
@@ -109,8 +140,9 @@ export class PatientsuploadsComponent implements OnInit {
     this.service.getuploadedpatientsCompleted().subscribe(
       data => {
         console.log("uploadedmembers",data)
-        this.dataSourcepatientuploaded_completed = new MatTableDataSource(data);
+        this.dataSourcepatientuploaded_completed = new MatTableDataSource(data.patients);
         this.dataSourcepatientuploaded_completed .paginator = this.paginator;
+        this.datasource_countcompleted=data.count
          
 
         
@@ -154,9 +186,10 @@ export class PatientsuploadsComponent implements OnInit {
   getUploadedPatientsSms(){
     this.service.getuploadedpatientssms().subscribe(
       data => {
-        // console.log("uploadedmembers",data)
-        this. dataSourcepatientuploaded_sms = new MatTableDataSource(data);
+        
+        this. dataSourcepatientuploaded_sms = new MatTableDataSource(data.patients);
         this.dataSourcepatientuploaded_sms.paginator = this.paginator;
+        this.datasource_countsms=data.count
          
 
         
@@ -170,4 +203,133 @@ export class PatientsuploadsComponent implements OnInit {
 
   }
   
+
+
+  getCustomerService(){
+    this.service.customerservicepersonnel().subscribe(
+      data => {
+        
+        // this. dataSourcepatientuploaded_sms = new MatTableDataSource(data.patients);
+        // this.dataSourcepatientuploaded_sms.paginator = this.paginator;
+        this.personnels=data
+         
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+  }
+  getStatistics(){
+
+    this.service.getstatistics("").subscribe(
+      data => {
+        
+        this.datasource_statistics = new MatTableDataSource(data.patients);
+        this.datasource_statistics.paginator = this.paginator;
+        this.datasource_callbackstat=data.count
+        
+         
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+
+
+  }
+  clinicClicked(item){
+    this.selected_user=item.name
+    let data={
+      email:item.name
+    }
+    this.service.getstatistics(data).subscribe(
+      data => {
+        
+        this.datasource_statistics = new MatTableDataSource(data.patients);
+        this.datasource_statistics.paginator = this.paginator;
+        this.datasource_callbackstat=data.count
+        
+         
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  getStatisticsFilter(){
+    let data={
+      email:this.selected_user,
+      date:this.filter_statdate
+    }
+    this.service.getstatistics(data).subscribe(
+      data => {
+        
+        this.datasource_statistics = new MatTableDataSource(data.patients);
+        this.datasource_statistics.paginator = this.paginator;
+        this.datasource_callbackstat=data.count
+        
+         
+
+        
+      
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  getCallbackGraph(){
+      
+    this.service.callback_graph("").subscribe(
+      res => {
+        
+        this.dataSource.data =res.data;
+        console.log("there is graph data",res)
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+  getFilterGraph(){
+    let data={
+      date:this.services_filter_date
+    }
+    console.log(data)
+    this.service.callback_graph(data).subscribe(
+      res => {
+        
+        this.dataSource.data =res.data;
+        console.log("there is graph data",res)
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+
+
+
+
+
+
+  }
 }

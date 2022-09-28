@@ -129,9 +129,9 @@
                 </div>
               </div>
               </mat-tab>
-              <mat-tab label="Completed"> 
+              <mat-tab > 
                 <ng-template mat-tab-label>
-                  <span matBadge="{{datasource__normal_delivery}}" matBadgeColor="accent" matBadgeOverlap="false">
+                  <span matBadge="{{datasource_countcompleted}}" matBadgeColor="accent" matBadgeOverlap="false">
                     Completed
                   </span>
                 </ng-template> 
@@ -180,7 +180,12 @@
                     </div>
                   </div>
                   </mat-tab>
-                  <mat-tab label="SMS Send"> 
+                  <mat-tab > 
+                    <ng-template mat-tab-label>
+                      <span matBadge="{{datasource_countsms}}" matBadgeColor="accent" matBadgeOverlap="false">
+                        Sms Send
+                      </span>
+                    </ng-template> 
                     <div class="col-sm-12" style="margin-top: 10px;">
                         <div class="mat-elevation-z8 table-responsive">
                           <table mat-table [dataSource]="dataSourcepatientuploaded_sms">
@@ -226,6 +231,131 @@
                         </div>
                       </div>
                       </mat-tab>
+                      <mat-tab > 
+                        <ng-template mat-tab-label>
+                          <span matBadge="{{datasource_callbackstat}}" matBadgeColor="accent" matBadgeOverlap="false">
+                            Callback Statistics
+                          </span>
+                        </ng-template> 
+                       <div class="row">
+                        <div class="col-sm-4">
+                          <mat-form-field appearance="outline">
+                              <mat-label>Select Personnel</mat-label>
+                              <mat-select name="clinic">
+                                <mat-option  *ngFor="let item of personnels"[value]="item.name" (click)="clinicClicked(item)">{{item.name}}</mat-option>
+                              </mat-select>
+                           
+                            </mat-form-field>
+                       </div>
+                       <div class="col-sm-4">
+                  
+                        <mat-form-field appearance="outline">
+                          <mat-label>Select Date Filter</mat-label>
+                            <input matInput placeholder="Select Filter date"    [(ngModel)]="filter_statdate"  [matDatepicker]="picker40" (ngModelChange)="getStatisticsFilter()" autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="picker40"></mat-datepicker-toggle>
+                            <mat-datepicker #picker40></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+
+                       </div>
+                        <div class="col-sm-12" style="margin-top: 10px;">
+                            <div class="mat-elevation-z8 table-responsive">
+                              <table mat-table [dataSource]="datasource_statistics">
+                                  <ng-container matColumnDef="sn">
+                                      <th mat-header-cell *matHeaderCellDef>S/N</th>
+                                      <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="created" >
+                                <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Date</th>
+                                <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;">  {{element.date | date:'dd/MM/yyyy'}}  </td>
+                              </ng-container>
+                              <ng-container matColumnDef="client">
+                                <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Patient Name</th>
+                                <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.patient_name}} </td>
+                              </ng-container>                   
+                            <ng-container matColumnDef="opno">
+                                      <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">OPNO</th>
+                                      <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.opno }} </td>
+            
+                                </ng-container>
+                                <ng-container matColumnDef="phone">
+                                  <th mat-header-cell *matHeaderCellDef  style="font-size: 11px;">Phone</th>
+                                  <td mat-cell *matCellDef="let element"  style="text-transform: capitalize; font-size: 11px;"> {{element.phone}} </td>
+                                </ng-container>   
+                                <ng-container matColumnDef="called_by">
+                                  <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">Called By</th>
+                                  <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.called_by }} </td>
+        
+                            </ng-container>
+                                <ng-container matColumnDef="status">
+                                      <th mat-header-cell *matHeaderCellDef style="font-size: 11px;">status</th>
+                                      <td mat-cell *matCellDef="let element" style="font-size: 11px;"> 
+                                        <span *ngIf="element.status=='SMS_SEND'"><span class="badge badge-primary">Sms Send</span>
+                                      </span>
+                                      <span *ngIf="element.status=='completed'"><span class="badge badge-success">Completed</span>
+                                      </span>
+                                      </td>
+            
+                                </ng-container>
+                        
+                                <tr mat-header-row *matHeaderRowDef="completedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns:completedColumns;"></tr>
+                              </table>
+                        
+                              <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                            </div>
+                          </div>
+                          </mat-tab>
+                          <mat-tab label="CallBack Graph">
+                            <div class="row">
+                               <!-- <div class="col-sm-3">
+                                <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
+                                    <mat-label>Period</mat-label>
+                                    <mat-select  [(ngModel)]="services_period"  (selectionChange)="getFeedbackservicefilter()">
+                                      <mat-option value="yearly">Yearly</mat-option>
+                                      <mat-option value="monthly">Monthly </mat-option>
+                                      <mat-option value="weekly">Weekly </mat-option>
+                                      <mat-option value="daily">Today</mat-option>
+                                    </mat-select>  
+                                  </mat-form-field>
+                              </div>  -->
+                          
+                         <div class="col-sm-3">
+                                  
+                            <mat-form-field appearance="outline">
+                              <mat-label>Filter Date</mat-label>
+                                <input matInput placeholder="Filter date"    [(ngModel)]="services_filter_date"  (ngModelChange)=" getFilterGraph()"  [matDatepicker]="picker161"  autocomplete="off">
+                                <mat-datepicker-toggle matSuffix [for]="picker161"></mat-datepicker-toggle>
+                                <mat-datepicker #picker161></mat-datepicker>
+                              </mat-form-field>
+                        </div> 
+                         <!-- <div class="col-sm-3">
+                                  
+                          <mat-form-field appearance="outline">
+                            <mat-label>End Date</mat-label>
+                              <input matInput placeholder="End date"    [(ngModel)]="services_end_date"  [matDatepicker]="picker162" (ngModelChange)="ServicesFilterChanged()" autocomplete="off">
+                              <mat-datepicker-toggle matSuffix [for]="picker162"></mat-datepicker-toggle>
+                              <mat-datepicker #picker162></mat-datepicker>
+                            </mat-form-field>
+                      </div>  -->
+                          </div>
+                         
+                        
+                           
+                            <fusioncharts
+                            width="100%"
+                            height="400"
+                            type="Column2D"
+                            dataFormat="JSON"
+                            [dataSource]="dataSource"
+                           >
+                          </fusioncharts>
+            
+                          
+                          
+                          </mat-tab>
+                    
+                    
               </mat-tab-group>
         </div>
     </div>
