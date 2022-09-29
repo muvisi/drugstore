@@ -49,7 +49,7 @@ export class OldmutualClaimformComponent implements OnInit {
     speciality:"",
     medication:"",
     practitioner:"",
-    practitioner_postal_address:"",
+    practitioner_postal_address:" P.O. Box 41766-00100 NAIROBI",
     practitioner_phone:"",
     practitioner_email:"",
     practitioner_tel_no:"",
@@ -246,11 +246,21 @@ export class OldmutualClaimformComponent implements OnInit {
   
   
     var str_serv=""
+      // try{
+      //   str_serv=str_serv.concat(res.insuranceVisit.services.pharmacy[0].name).concat("  ")
+      // str_serv=str_serv.concat(res.insuranceVisit.services.pharmacy[1].name).concat("  ")
+
+
+      // }catch(error){}
+    
+
    
    try{
    
-      for(var i=0;i<res.insuranceVisit.services.pharmacy.length;i++){
+      for(var i=0;i<5;i++){
         try{
+          // costs=costs.concat(res.insuranceVisit.services.pharmacy[i].name+"("+ res.insuranceVisit.services.pharmacy[i].amount+")").concat(" ")
+
         str_serv=str_serv.concat(res.insuranceVisit.services.pharmacy[i].name).concat("  ")
       }catch(error){
       }
@@ -259,14 +269,14 @@ export class OldmutualClaimformComponent implements OnInit {
     
   
   
-   try{ 
-      for(var i=0;i<res.insuranceVisit.services.procedure.length;i++){
-        try{
-        str_serv=str_serv.concat(res.insuranceVisit.services.procedure[i].name).concat("   ")
-      }catch(error){
-      }
-      }
-    }catch(error){}
+  //  try{ 
+  //     for(var i=0;i<res.insuranceVisit.services.procedure.length;i++){
+  //       try{
+  //       str_serv=str_serv.concat(res.insuranceVisit.services.procedure[i].name).concat("   ")
+  //     }catch(error){
+  //     }
+  //     }
+  //   }catch(error){}
        
   
   
