@@ -22,14 +22,14 @@
                
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <a class="dropdown-item" (click)="qrcodeModal.show()"><i class="fa fa-pencil" *ngIf="(user.role == 'admin' || user.role == 'aaradmin' || user.role == 'customer_service')" aria-hidden="true"></i>Signature Qrcode </a>
-        <a class="dropdown-item" (click)="AdminSetups()"><i class="fa fa-users" *ngIf="user.role == 'admin' || user.role == 'aaradmin' || user.role == 'customer_service'" aria-hidden="true"></i>Admin-setups</a>
+        <!-- <a class="dropdown-item" (click)="qrcodeModal.show()"><i class="fa fa-pencil" *ngIf="(user.role == 'admin' || user.role == 'aaradmin' || user.role == 'customer_service')" aria-hidden="true"></i>Signature Qrcode </a> -->
+        <!-- <a class="dropdown-item" (click)="AdminSetups()"><i class="fa fa-users" *ngIf="user.role == 'admin' || user.role == 'aaradmin' || user.role == 'customer_service'" aria-hidden="true"></i>Admin-setups</a> -->
 
         <!-- <a class="dropdown-item" routerLink="/dashboard/set-up" *ngIf="user.role =='admin'" ><i class="fa fa-cog" aria-hidden="true"></i>Set up</a> -->
 
             
  
-        <a class="dropdown-item" routerLink="/dashboard/Users" *ngIf="(user.role == 'admin' || user.role == 'hospital_super_admin')" ><i class="icon-wrench"></i>Manage Users</a>
+        <!-- <a class="dropdown-item" routerLink="/dashboard/Users" *ngIf="(user.role == 'admin' || user.role == 'hospital_super_admin')" ><i class="icon-wrench"></i>Manage Users</a> -->
 
         <a class="dropdown-item" (click)="staticModal.show()"><i class="fa fa-key" aria-hidden="true"></i>Change password </a>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
@@ -57,11 +57,11 @@
     <app-sidebar-nav  *ngIf="user.role == 'hospital_cashiers'" [navItems]="navItemscashiers" [perfectScrollbar] [disabled]="sidebarMinimized">
 
     </app-sidebar-nav>
-    <app-sidebar-nav  *ngIf="user.role == 'hospital_nurses' || user.role == 'hospital_doctors'" [navItems]="navItemsnursesdocs" [perfectScrollbar] [disabled]="sidebarMinimized">
+    <!-- <app-sidebar-nav  *ngIf="user.role == 'hospital_nurses' || user.role == 'hospital_doctors'" [navItems]="navItemsnursesdocs" [perfectScrollbar] [disabled]="sidebarMinimized">
 
-    </app-sidebar-nav>
+    </app-sidebar-nav> -->
 
-    <app-sidebar-nav  *ngIf="user.role == 'hospital_finance'" [navItems]="navItemsfinance" [perfectScrollbar] [disabled]="sidebarMinimized">
+    <!-- <app-sidebar-nav  *ngIf="user.role == 'hospital_finance'" [navItems]="navItemsfinance" [perfectScrollbar] [disabled]="sidebarMinimized">
 
     </app-sidebar-nav>
     
@@ -72,7 +72,7 @@
     
     <app-sidebar-nav  *ngIf="user.role == 'hospital_management'" [navItems]="navItemsmanagement" [perfectScrollbar] [disabled]="sidebarMinimized">
 
-    </app-sidebar-nav>
+    </app-sidebar-nav> -->
     
     
     

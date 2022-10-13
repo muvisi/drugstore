@@ -1,6 +1,6 @@
 import { Component, OnDestroy, Inject, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { navItems, navItemscashiers,navItemsnursesdocs,navItemsfinance,navItemscustomerservice,  navItemsmanagement } from '../../_nav';
+import { navItems, navItemscashiers,navItemsnursesdocs } from '../../_nav';
 import {  docNavItems } from '../../_doctor';
 import {  insuranceItems } from '../../_insurance';
 import { Router } from '@angular/router';
@@ -17,9 +17,9 @@ export class DefaultLayoutComponent implements OnDestroy {
   public navItems = navItems;
   public navItemscashiers= navItemscashiers;
   public navItemsnursesdocs=navItemsnursesdocs;
-  public  navItemsmanagement=  navItemsmanagement;
-  public navItemsfinance=navItemsfinance;
-  public navItemscustomerservice=navItemscustomerservice;
+  // public  navItemsmanagement=  navItemsmanagement;
+  // public navItemsfinance=navItemsfinance;
+  // public navItemscustomerservice=navItemscustomerservice;
   public docNavItems = docNavItems;
   public insuranceItems = insuranceItems;
   public sidebarMinimized = true;
