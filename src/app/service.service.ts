@@ -370,6 +370,10 @@ notcalledpatients(){
     return this.http.post(endpoint + 'api/statistics-graphs-view/',data).pipe(
       map(this.extractData));
       }
+     bulk_sms_feedback(data) {
+      return this.http.post(endpoint + 'api/send-bulk-sms-for-feedback/',data).pipe(
+        map(this.extractData));
+        }
   getMaternityAppointments(data) {
     return this.http.post(endpoint + 'api/maternity-calendar/',data).pipe(
       map(this.extractData));

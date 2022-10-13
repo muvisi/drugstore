@@ -17,6 +17,7 @@ export class PatientsuploadsComponent implements OnInit {
   completedColumns: string[] = ['sn','created','client','opno','phone','called_by','status']
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   file: File;
+  loading;
   fileUploadForm: FormGroup;
   fileInputLabel: string;
   dataSourceuploaded_pending;
@@ -294,8 +295,11 @@ export class PatientsuploadsComponent implements OnInit {
     );
   }
   getCallbackGraph(){
+    let data={
+      date:new Date("2022-08-14")}
+      console.log("custome data",data)
       
-    this.service.callback_graph("").subscribe(
+    this.service.callback_graph(data).subscribe(
       res => {
         
         this.dataSource.data =res.data;
@@ -327,6 +331,51 @@ export class PatientsuploadsComponent implements OnInit {
     );
 
 
+
+
+
+
+  }
+  getCallbackGraphclicked(){
+    let data={
+      date:new Date("2022-08-14")}
+      console.log("custome data",data)
+      
+    this.service.callback_graph(data).subscribe(
+      res => {
+        
+        this.dataSource.data =res.data;
+        console.log("there is graph data",res)
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
+  }
+
+  BulkFeedBackSMS(){
+    let data={
+      date:this.filter_enddate
+    }
+    this.loading=true
+ 
+    console.log("BULK SMS SENDING DATE",data)
+    this.service.bulk_sms_feedback(data).subscribe(
+      res => {
+
+        this.loading=false
+        this.toastr.success('Success','Bulk Sms Send')
+        // this.dataSource.data =res.data;
+        console.log("there is graph data",res)
+        
+      },
+     
+      err => console.error(err),
+     
+      () => console.log('There is an error')
+    );
 
 
 

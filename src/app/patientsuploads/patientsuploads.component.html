@@ -54,7 +54,8 @@
             <div class="row" style="margin-top: 10px; margin-left: 20px;">
               
            
-            <div class="col-sm-3">
+          <!-- <div class="row col-sm-12">  -->
+            <div class="col-sm-4">
                   
               <mat-form-field appearance="outline">
                 <mat-label>Select Date Filter</mat-label>
@@ -62,6 +63,13 @@
                   <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                   <mat-datepicker #picker4></mat-datepicker>
                 </mat-form-field>
+          </div>
+          <div class="col-sm-6 text-center">
+            <button type="submit" [disabled]="!filter_enddate" (click)="BulkFeedBackSMS()" class="btn btn-success">Send Bulk SMS</button>
+
+
+          <!-- </div> -->
+
           </div>
           </div>
             <div class="col-sm-12" style="margin-top: 10px;">
@@ -125,7 +133,13 @@
                     <tr mat-row *matRowDef="let row; columns:RegistrationColumns;"></tr>
                   </table>
             
-                  <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                  <!-- <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator> -->
+                  <mat-paginator [length]="2000"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[100, 400, 600, 800,1000,2000]"
+                  aria-label="Select page">
+    </mat-paginator>
+                
                 </div>
               </div>
               </mat-tab>
@@ -175,8 +189,13 @@
                         <tr mat-header-row *matHeaderRowDef="completedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns:completedColumns;"></tr>
                       </table>
+                      <mat-paginator [length]="2000"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[100, 400, 600, 800,1000,2000]"
+                  aria-label="Select page">
+    </mat-paginator>
                 
-                      <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                      <!-- <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator> -->
                     </div>
                   </div>
                   </mat-tab>
@@ -226,8 +245,12 @@
                             <tr mat-header-row *matHeaderRowDef="completedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns:completedColumns;"></tr>
                           </table>
-                    
-                          <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                          <mat-paginator [length]="2000"
+                          [pageSize]="10"
+                          [pageSizeOptions]="[100, 400, 600, 800,1000,2000]"
+                          aria-label="Select page">
+            </mat-paginator>
+                          <!-- <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator> -->
                         </div>
                       </div>
                       </mat-tab>
@@ -301,24 +324,22 @@
                                 <tr mat-header-row *matHeaderRowDef="completedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns:completedColumns;"></tr>
                               </table>
+                              <mat-paginator [length]="2000"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[100, 400, 600, 800,1000,2000]"
+                  aria-label="Select page">
+    </mat-paginator>
                         
-                              <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator>
+                              <!-- <mat-paginator [pageSizeOptions]="[100,200]" showFirstLastButtons></mat-paginator> -->
                             </div>
                           </div>
                           </mat-tab>
-                          <mat-tab label="CallBack Graph">
+                          <mat-tab>
+                            <ng-template mat-tab-label>
+                              <span (click)="getCallbackGraphclicked()">CallBack Graph</span>
+                          </ng-template>
                             <div class="row">
-                               <!-- <div class="col-sm-3">
-                                <mat-form-field appearance="outline"  class="example-full-width" style="max-width: 400px;">
-                                    <mat-label>Period</mat-label>
-                                    <mat-select  [(ngModel)]="services_period"  (selectionChange)="getFeedbackservicefilter()">
-                                      <mat-option value="yearly">Yearly</mat-option>
-                                      <mat-option value="monthly">Monthly </mat-option>
-                                      <mat-option value="weekly">Weekly </mat-option>
-                                      <mat-option value="daily">Today</mat-option>
-                                    </mat-select>  
-                                  </mat-form-field>
-                              </div>  -->
+                             
                           
                          <div class="col-sm-3">
                                   
@@ -361,3 +382,4 @@
     </div>
 </div>
 </div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '9px' }"></ngx-loading>
