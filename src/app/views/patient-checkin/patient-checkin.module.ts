@@ -30,17 +30,9 @@ import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
-// import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 
-import { OnlinereportsComponent } from '../../onlinereports/onlinereports.component';
-import { MaincovidComponent } from '../../maincovid/maincovid.component';
-import { TimeslotComponent } from '../../timeslot/timeslot.component';
-import { TestresultComponent } from '../../testresult/testresult.component';
-import { ViewlistComponent } from '../../viewlist/viewlist.component';
-import { CovidrevenuesComponent } from '../../covidrevenues/covidrevenues.component';
 
-import { FeedbacksComponent } from '../../feedbacks/feedbacks.component';
 
 
 
@@ -53,7 +45,6 @@ import { MaternityQrcodeComponent } from '../maternity-qrcode/maternity-qrcode.c
 
 import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
 import { CallPatientsComponent } from '../call-patients/call-patients.component';
-import { BirthdaymessengesComponent } from '../birthdaymessenges/birthdaymessenges.component';
 import { FilterPipe } from '../../filter.pipe';
 import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
 import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
@@ -62,51 +53,35 @@ import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidte
 import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
-import { ViewmaternityComponent } from '../../viewmaternity/viewmaternity.component';
-import { PatientsuploadsComponent } from '../../patientsuploads/patientsuploads.component';
-import { MaternityCalendarComponent } from '../../maternity-calendar/maternity-calendar.component';
 
 import { RatingModule } from 'ng-starrating';
 import { MaternityupgradeModalComponent } from '../maternityupgrade-modal/maternityupgrade-modal.component';
+import { RoomSetupComponent } from '../room-setup/room-setup.component';
+import { FreeroomsComponent } from '../freerooms/freerooms.component';
+import { AllbookingsComponent } from '../../allbookings/allbookings.component';
+// import { SignUpComponent } from '../sign-up/sign-up.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
 @NgModule({
   declarations: [
     
-    OnlinereportsComponent,
-    MaincovidComponent,
-    TimeslotComponent,
-    TestresultComponent,
-    ViewlistComponent,
-    CovidrevenuesComponent,
- 
-    FeedbacksComponent,
- 
+   
     MaternityQrcodeComponent,
     FeedbackGraphsComponent,
     FilterPipe,
-
-    CallPatientsComponent,BirthdaymessengesComponent,
-   MaternityfeedbackComponent,DashboardReportComponent,
-    AdminSetupsComponent,MaternityCalendarComponent,
+    CallPatientsComponent,
+    MaternityfeedbackComponent,
+    DashboardReportComponent,
     AdminSetupsComponent,
-  
-   
-
-    
-      
-
-
-
+    AdminSetupsComponent,
     BookAppointmentComponent,
     BookMaternityComponent,
     BookVaccinationComponent,
     BookCovidtestingComponent,
-    ViewmaternityComponent,
- 
-    PatientsuploadsComponent,
-    MaternityupgradeModalComponent
-    
+    MaternityupgradeModalComponent,
+    RoomSetupComponent,
+  FreeroomsComponent,AllbookingsComponent
+    // SignUpComponent
 
   ],
   imports: [

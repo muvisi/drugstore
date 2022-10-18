@@ -40,26 +40,26 @@ export const navItems: NavData[] = [
     name: 'Main'
   },
   {
-    name: 'SMS Links',
-    url: '/dashboard/registration-link',
-    icon: 'fas fa-address-book',
+    name: 'Available Rooms',
+    url: '/dashboard/rooms-available/',
+    icon: 'fa fa-university',
   
   },
 
 
-  // {
-  //   name: 'Bookings',
-  //   icon: 'fa fa-calendar-o',
-  //   url: '/dashboard/booking',
-  // },
+  {
+    name: 'Rooms Set-Up',
+    icon: 'fa fa-tag',
+    url: '/dashboard/Room-set-up/',
+  },
 
 
 
-  // {
-  //   name: 'Maternity',
-  //   icon: 'fa fa-h-square',
-  //   url: '/dashboard/view-maternity-booking',
-  // },
+  {
+    name: 'Clients bookings',
+    icon: 'fa fa-bed',
+    url: '/dashboard/clients-bookings/',
+  },
   // {
   //   name: 'Claim Forms',
   //   url: '/dashboard/InsuranceclaimsForm',

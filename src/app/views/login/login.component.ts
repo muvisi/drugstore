@@ -57,4 +57,12 @@ export class LoginComponent implements OnInit  {
       this.toastr.error('Wrong Email Address');
     })
   }
+  RegisterAccount(){
+    this.router.navigateByUrl('register');
+
+
+
+
+    
+  }
  }

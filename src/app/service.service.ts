@@ -78,6 +78,10 @@ export class ServiceService {
     return this.http.post(endpoint+ 'api/booking-payment-update/'+id+'/',data).pipe(
       map(this.extractData));
   }
+  setuprooms(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/set-up-rooms/',data).pipe(
+      map(this.extractData));
+  }
   feedbackmaternity(): Observable<any> {
     return this.http.get(endpoint+ 'api/maternityfeedback/').pipe(
       map(this.extractData));
@@ -119,8 +123,23 @@ nonregisteredpatients(): Observable<any> {
     return this.http.get(payment_url+'?phone_number='+phone).pipe(
       map(this.extractData));
   }
+  bookroom(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/book-room/',data).pipe(
+      map(this.extractData));
+  }
 
-
+  getavailablerooms(): Observable<any> {
+    return this.http.get(endpoint+ 'api/setuprooms/').pipe(
+      map(this.extractData));
+  }
+  getbookings(): Observable<any> {
+    return this.http.get(endpoint+ 'api/booked-rooms/').pipe(
+      map(this.extractData));
+  }
+  freeroom(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/free-rooms/',data).pipe(
+      map(this.extractData));
+  }
   requestStkPush(data): Observable<any> {
     return this.http.post(stk_url,data).pipe(
       map(this.extractData));

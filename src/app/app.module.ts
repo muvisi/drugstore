@@ -59,17 +59,9 @@ import { FusionChartsModule } from 'angular-fusioncharts';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
 import { CookieService } from 'ngx-cookie-service';
-import { DashboardReportComponent } from './views/dashboard-report/dashboard-report.component';
-import { AdminSetupsComponent } from './views/admin-setups/admin-setups.component';
-import { ViewmaternityComponent } from './viewmaternity/viewmaternity.component';
-import { MaternityCalendarComponent } from './maternity-calendar/maternity-calendar.component';
-// import { MaternityupgradeModalComponent } from './views/maternityupgrade-modal/maternityupgrade-modal.component';
-// import { MaternityfeedbackComponent } from './views/maternityfeedback/maternityfeedback.component';
-// import { BirthdaymessengesComponent } from './views/birthdaymessenges/birthdaymessenges.component';
-// import { FeedbackGraphsComponent } from './views/feedback-graphs/feedback-graphs.component';
-// import { MaternityQrcodeComponent } from './views/maternity-qrcode/maternity-qrcode.component';
-// import { NgChartsModule } from 'ng2-charts';
-
+import { AllbookingsComponent } from './allbookings/allbookings.component';
+// import { FreeroomsComponent } from './views/freerooms/freerooms.component';
+// 
 
 
 
@@ -130,17 +122,8 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
-    // MaternityupgradeModalComponent,
-    // MaternityCalendarComponent,
-    // PatientsuploadsComponent,
-    // ViewmaternityComponent,
-    // AdminSetupsComponent,
-    // DashboardReportComponent,
-    // MaternityfeedbackComponent,
-    // BirthdaymessengesComponent,
-    // CallPatientsComponent,
-    // FeedbackGraphsComponent,
-    // MaternityQrcodeComponent,
+    // AllbookingsComponent,
+   
 
   ],
   providers: [{

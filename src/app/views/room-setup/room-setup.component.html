@@ -1,41 +1,41 @@
 <br>
 <fieldset>
-  <legend>Book Room</legend>
+  <legend>Room Set Up</legend>
   <div class="col-sm-12">
    
-      <form [formGroup]="BookRoomForm" >
+      <form [formGroup]="AditionalDataForm" >
           <div class="row">
               <div class="col-sm-4">
                   <mat-form-field appearance="outline">
-                    <mat-label>Your Names</mat-label>
-                      <input matInput placeholder="your name" formControlName="Patient_names">
+                    <mat-label>Room Block</mat-label>
+                      <input matInput placeholder="room block" formControlName="room_block">
                       
                     </mat-form-field>
               </div>
             <div class="col-sm-4">
               <mat-form-field appearance="outline">
-                <mat-label>Your Email</mat-label>
-                  <input matInput placeholder="your email" type="email" formControlName="Patient_email">
+                <mat-label>Room Number</mat-label>
+                  <input matInput placeholder="Room number" formControlName="room_number">
                 </mat-form-field>
             </div>
       
           <div class="col-sm-4">
             <mat-form-field appearance="outline">
-              <mat-label>Age</mat-label>
-                <input matInput placeholder="age" type="number" formControlName="Patient_age">
+              <mat-label> Room package</mat-label>
+                <input matInput placeholder=" room package" formControlName="room_package">
                
               </mat-form-field>
         </div>
          <div class="col-sm-4">
           <mat-form-field appearance="outline">
-            <mat-label>Telephone Number</mat-label>
-            <input matInput placeholder="telephone number" type="number" formControlName="Patient_phone">
+            <mat-label>Room Price</mat-label>
+            <input matInput placeholder="room price" formControlName="room_price">
           </mat-form-field>
          </div>
          <div class="col-sm-4">
           <mat-form-field appearance="outline">
-            <mat-label>Gender</mat-label>
-              <input matInput placeholder="Gender" formControlName="Patient_gender">
+            <mat-label>Boarding Package</mat-label>
+              <input matInput placeholder="Boading package" formControlName="boarding_package">
             </mat-form-field>
         </div>
          
@@ -104,7 +104,7 @@
       </div> -->
 
       <div class="col-sm-8">
-      <button class="btn btn-success pull-right" (click)="BookpRoom()">Book Room</button>
+      <button class="btn btn-success pull-right" (click)="SetUpRoom()">Setup Room</button>
       </div>
           </div>
         </form>
