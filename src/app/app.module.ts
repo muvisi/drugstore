@@ -46,7 +46,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { from } from 'rxjs';
 import {NgxPrintModule} from 'ngx-print';
@@ -60,6 +60,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AllbookingsComponent } from './allbookings/allbookings.component';
+// import { ReportsComponent } from './views/reports/reports.component';
 // import { FreeroomsComponent } from './views/freerooms/freerooms.component';
 // 
 
@@ -103,7 +104,7 @@ export function tokenGetter() {
     NgxMaterialTimepickerModule,
         // Specify FusionChartsModule as import
         FusionChartsModule,
-        ChartsModule,
+        ChartsModule, ReactiveFormsModule,
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.rectangleBounce,
       backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
@@ -122,6 +123,7 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+    // ReportsComponent,
     // AllbookingsComponent,
    
 

@@ -27,6 +27,8 @@ export class CallPatientsComponent implements OnInit {
       Patient_age: ['',Validators.required],
      Patient_phone:['',Validators.required],
       Patient_gender:['',Validators.required],
+      date:['',Validators.required],
+      time:['',Validators.required],
       id: this.route.snapshot.params.id,
      
   });

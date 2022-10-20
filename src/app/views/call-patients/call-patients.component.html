@@ -1,4 +1,10 @@
-<br>
+
+
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-header bg-success">Book For Room</h5>
+    <br>
 <fieldset>
   <legend>Book Room</legend>
   <div class="col-sm-12">
@@ -39,69 +45,29 @@
             </mat-form-field>
         </div>
          
-         <!-- <div class="col-sm-4">
+        <legend>Booking Date and Time</legend>
+         <div class="col-sm-12" style="margin-top: 10px;">
+         <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Booking Date</mat-label>
+                <input matInput placeholder="booking date" [readonly]="outfilled"  formControlName="date" [matDatepicker]="picker" [max]="maxDate">
+                <!-- <mat-error *ngIf="f.age.errors?.required">Date of birth is required</mat-error> -->
+                <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              
+        </div>
+        <div class="col-sm-4">
           <mat-form-field appearance="outline">
-            <mat-label>Last Prenatal Clinic Date</mat-label>
-              <input matInput placeholder="Last Prenatal Clinic Date (DD/MM/YYYY)"  formControlName="last_prenatal_clinic" >
-           
+            <mat-label>Time</mat-label>
+              <input matInput placeholder="Gender"  type="time" formControlName="time">
             </mat-form-field>
-        </div> -->
-        <!-- <div class="col-sm-4">
+        </div>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Date </mat-label>
-              <input matInput placeholder="Last Prenatal Clinic Date"   [matDatepicker]="picker4"  formControlName="last_prenatal_clinic" autocomplete="off">
-              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-              <mat-datepicker #picker4></mat-datepicker>
-            </mat-form-field> -->
-      <!-- </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Last Form of Contraception</mat-label>
-               <input matInput placeholder="Last Form of Contraception" formControlName="contraception_form">
-             </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Are your Periods Regular?</mat-label>
-               <input matInput placeholder="Are your Periods Regular" formControlName="period_regular">
-          </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Any medical Conditions</mat-label>
-              <input matInput placeholder="Any medical Conditions" formControlName="medical_conditions">
-            </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-              <mat-label>Family Medical History</mat-label>
-          
-                <input matInput placeholder="Family Medical History" formControlName="family_medical_history">
-            </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Other Non-Medical Concerns</mat-label>
-              <input matInput placeholder="Other Non-Medical Concerns" formControlName="non_medical_concerns">
-            </mat-form-field>
-        </div> -->
-        <!-- <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>First date of last period</mat-label>
-              <input matInput placeholder="First date of last period (DD/MM/YYYY)"  formControlName="last_period_date" >
-           
-            </mat-form-field>
-        </div> -->
-        <!-- <div class="col-sm-4">
+         </div>
 
-          <mat-form-field appearance="outline">
-            <mat-label>First date of last period</mat-label>
-              <input matInput placeholder="First date of last period"   [matDatepicker]="picker44"  formControlName="last_period_date" autocomplete="off">
-              <mat-datepicker-toggle matSuffix [for]="picker44"></mat-datepicker-toggle>
-              <mat-datepicker #picker44></mat-datepicker>
-            </mat-form-field>
-      </div> -->
+         </div>
 
       <div class="col-sm-8">
       <button class="btn btn-success pull-right" (click)="BookpRoom()">Book Room</button>
@@ -111,4 +77,16 @@
 
 
   </div>
+
+
+
+
+
 </fieldset>
+
+    
+  </div>
+</div>
+
+
+

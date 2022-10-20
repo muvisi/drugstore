@@ -23,6 +23,7 @@ import { RoomSetupComponent } from '../room-setup/room-setup.component';
 import { FreeroomsComponent } from '../freerooms/freerooms.component';
 import { freemem } from 'os';
 import { AllbookingsComponent } from '../../allbookings/allbookings.component';
+import { ReportsComponent } from '../reports/reports.component';
 // import { SignUpComponent } from '../sign-up/sign-up.component';
 
 const routes: Routes = [
@@ -61,17 +62,15 @@ const routes: Routes = [
   },
 
  
-  // {
-  //   path: 'rooms-available',
-  //   component:FreeroomsComponent,
-  //   canActivate: [AuthGuard],
-    
-    
-  // },
  
   {
     path: 'call-patients',
     component:CallPatientsComponent,
+    
+  },
+  {
+    path: 'Report',
+    component:ReportsComponent,
     
   },
 
@@ -89,9 +88,7 @@ const routes: Routes = [
     path: 'rooms-available',
     component: FeedbackGraphsComponent,
     canActivate: [AuthGuard],
-    // data: {
-    //   title: 'Book Appointment'
-    // }
+   
   },
   {
     path: 'personal-booking/:id',

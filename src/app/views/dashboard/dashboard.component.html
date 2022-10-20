@@ -69,6 +69,26 @@
       </a>
     </div>
 
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'admin'" >
+      <a routerLink="Report/">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <span class="fa-stack fa-4x">
+                <i class=" fa-stack-2x icon-background4"></i>
+                <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
+    
+                <i class="fa fa-bar-chart" style="color:#A6CF39;"></i>
+              </span>
+            </div>
+            <div class="text-center item" >Hotel Reports</div>
+    
+    
+          </div>
+        </div>
+      </a>
+    </div>
+
 
     <!-- <div class="col-sm-6 col-md-3" *ngIf="user.role == 'admin' ||user.role == 'hospital_cashiers' || user.role == 'hospital_finance' || user.role == 'hospital_admin' || user.role == 'hospital_admin'|| user.role == 'hospital_super_admin'"  >
       <a routerLink="InsuranceclaimsForm">

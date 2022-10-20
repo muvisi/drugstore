@@ -82,6 +82,10 @@ export class ServiceService {
     return this.http.post(endpoint+ 'api/set-up-rooms/',data).pipe(
       map(this.extractData));
   }
+  registerpatient(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/register-patient/',data).pipe(
+      map(this.extractData));
+  }
   feedbackmaternity(): Observable<any> {
     return this.http.get(endpoint+ 'api/maternityfeedback/').pipe(
       map(this.extractData));
@@ -136,8 +140,16 @@ nonregisteredpatients(): Observable<any> {
     return this.http.get(endpoint+ 'api/booked-rooms/').pipe(
       map(this.extractData));
   }
+  getbookingsreport(): Observable<any> {
+    return this.http.get(endpoint+ 'api/booked-rooms-report/').pipe(
+      map(this.extractData));
+  }
   freeroom(data): Observable<any> {
     return this.http.post(endpoint+ 'api/free-rooms/',data).pipe(
+      map(this.extractData));
+  }
+  pushstk(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/online/lipa/',data).pipe(
       map(this.extractData));
   }
   requestStkPush(data): Observable<any> {

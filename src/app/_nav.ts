@@ -45,6 +45,7 @@ export const navItems: NavData[] = [
     icon: 'fa fa-university',
   
   },
+  
 
 
   {
@@ -60,11 +61,11 @@ export const navItems: NavData[] = [
     icon: 'fa fa-bed',
     url: '/dashboard/clients-bookings/',
   },
-  // {
-  //   name: 'Claim Forms',
-  //   url: '/dashboard/InsuranceclaimsForm',
-  //   icon: 'fa fa-print',
-  // },
+  {
+    name: 'Hotel Reports',
+    url: '/dashboard/Report',
+    icon: 'fa fa-bar-chart',
+  },
   // {
   //   name: 'Calendar',
   //   url: '/dashboard/calendar',
@@ -132,9 +133,10 @@ export const navItemscashiers: NavData[] = [
     name: 'Main'
   },
   {
-    name: 'Claim Forms',
-    url: '/dashboard/InsuranceclaimsForm',
-    icon: 'fa fa-print',
+    name: 'Available Rooms',
+    url: '/dashboard/rooms-available/',
+    icon: 'fa fa-university',
+  
   },
 
   // {

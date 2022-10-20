@@ -3,15 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../service.service';
+// import { ServiceService } from '../service.service';
 
 @Component({
-  selector: 'app-feedback-graphs',
-  templateUrl: './feedback-graphs.component.html',
-  styleUrls: ['./feedback-graphs.component.scss']
+  selector: 'app-reports',
+  templateUrl: './reports.component.html',
+  styleUrls: ['./reports.component.scss']
 })
-export class FeedbackGraphsComponent implements OnInit {
+export class ReportsComponent implements OnInit {
   dataSource
-  Columns: string[] = ['sn','created','room_number','room_block','room_package','room_price','boarding_package','status','action','pay']
+  Columns: string[] = ['sn','created','room_number','room_block','room_package','room_price','boarding_package','status']
 
   constructor(public service: ServiceService,private router: Router,private toast:ToastrService) { }
 
@@ -20,7 +21,7 @@ export class FeedbackGraphsComponent implements OnInit {
   }
   
   AvailableRooms() {
-    this.service.getavailablerooms().subscribe((res) => {
+    this.service.getbookingsreport().subscribe((res) => {
       console.log("my data",res)
      this.dataSource = res;
     }
@@ -35,13 +36,29 @@ BookRoom(item){
   }
   this.router.navigateByUrl("dashboard/personal-booking/"+item.id)
 
-//   console.log("data item",item)
-//   this.service.bookroom(data).subscribe((res) => {
-//     console.log("my data",res)
-//    this.dataSource = res;
-//   }
-//   );
+
 }
+FreeRoom(item){
+ 
+  let data={
+    room_id:item.room.id,
+    booking_id:item.id
+
+  }
+  console.log(data)
+  this.service.freeroom(data).subscribe((res) => {
+    console.log("my data",res)
+   this.toast.success("Success","Room is now Free")
+   this.AvailableRooms()
+  }
+  );
+
+
+
+
+
+}
+
 
 PushSTK(item){
   var num="254"
