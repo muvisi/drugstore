@@ -3,10 +3,10 @@
 
 <div class="card">
   <div class="card-body">
-    <h5 class="card-header bg-success">Book For Room</h5>
+    <h5 class="card-header bg-success">Rooms Booking</h5>
     <br>
 <fieldset>
-  <legend>Book Room</legend>
+  <legend>Book For Room</legend>
   <div class="col-sm-12">
    
       <form [formGroup]="BookRoomForm" >
@@ -21,8 +21,12 @@
             <div class="col-sm-4">
               <mat-form-field appearance="outline">
                 <mat-label>Your Email</mat-label>
-                  <input matInput placeholder="your email" type="email" formControlName="Patient_email">
+                  <input matInput placeholder="your email" type="email" class="form-control" formControlName="Patient_email"  [ngClass]="{ 'is-invalid': submitted && f.Patient_email.errors }">
                 </mat-form-field>
+                <div *ngIf="submitted && f.Patient_email.errors" class="invalid-feedback">
+                  <div *ngIf="f.Patient_email.errors.required">Email is required</div>
+                  <div *ngIf="f.Patient_email.errors.email">Email must be a valid email address</div>
+              </div>
             </div>
       
           <div class="col-sm-4">
@@ -35,13 +39,22 @@
          <div class="col-sm-4">
           <mat-form-field appearance="outline">
             <mat-label>Telephone Number</mat-label>
-            <input matInput placeholder="telephone number" type="number" formControlName="Patient_phone">
+            <input matInput placeholder="telephone number" class="form-control" formControlName="Patient_phone"  [ngClass]="{ 'is-invalid': submitted && f.Patient_phone.errors }">
           </mat-form-field>
+          <div *ngIf="submitted &&  f.Patient_phone.errors" class="invalid-feedback">
+            <div *ngIf="f.Patient_phone.errors.required">Password is required</div>
+            <div *ngIf="f.Patient_phone.errors.minlength">Password must be at least 9 characters</div>
+        </div>
          </div>
          <div class="col-sm-4">
           <mat-form-field appearance="outline">
             <mat-label>Gender</mat-label>
-              <input matInput placeholder="Gender" formControlName="Patient_gender">
+            <mat-select formControlName="Patient_gender" >
+              <mat-option *ngFor="let item of ['Male','Female']" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+              <!-- <input matInput placeholder="Gender" formControlName="Patient_gender"> -->
             </mat-form-field>
         </div>
          
@@ -51,7 +64,7 @@
           <div class="col-sm-4">
             <mat-form-field appearance="outline">
                 <mat-label>Booking Date</mat-label>
-                <input matInput placeholder="booking date" [readonly]="outfilled"  formControlName="date" [matDatepicker]="picker" [max]="maxDate">
+                <input matInput placeholder="booking date" [readonly]="outfilled"  formControlName="date" [matDatepicker]="picker" [min]="minDate">
                 <!-- <mat-error *ngIf="f.age.errors?.required">Date of birth is required</mat-error> -->
                 <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>

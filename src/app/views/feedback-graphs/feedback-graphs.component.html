@@ -63,6 +63,12 @@
                         <button type="button"  (click)="PushSTK(item=element)" class="btn btn-dark">pay</button>
                          </td>
                     </ng-container>
+                    <ng-container matColumnDef="edit">
+                      <th mat-header-cell *matHeaderCellDef>Edit</th>
+                      <td mat-cell *matCellDef="let element">
+                        <button type="button"  (click)="editdata(item=element)" class="btn btn-dark">edit</button>
+                         </td>
+                    </ng-container>
                   
           
                   
@@ -80,3 +86,59 @@
       </div>
     </div>
   </div>
+
+
+   
+  <div class="modal fade" bsModal #ConfirmAppointment="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+    <div class="modal-content">
+     <div class="modal-header">
+       <h5 id="dialog-static-name" class="modal-title pull-left">Edit Rooms</h5>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="ConfirmAppointment.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+     <div class="modal-body">    
+      <div class="col-sm-12">
+  
+        <form  >
+          <div class="row" style="width:100%">
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Room Block</mat-label>
+                <input matInput placeholder="Room Block" [(ngModel)]="room_block" name="room_block">
+              </mat-form-field>
+            </div>
+            
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Room Number</mat-label>
+                <input matInput placeholder="room Number" [(ngModel)]="room_number" name="room_number">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Room Price</mat-label>
+                <input matInput placeholder="room price" [(ngModel)]="room_price" name="room_price">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Room Package</mat-label>
+                <input matInput placeholder="room Package" [(ngModel)]="room_package" name="room_package">
+              </mat-form-field>
+            </div>
+            
+             
+             
+          </div>
+          </form>
+         
+        <button class="btn btn-danger btn-sm" (click)="ConfirmAppointment.hide()" > close</button>
+        <button class="btn btn-success btn-sm" (click)="editDatarooms()" >Edit</button>
+      </div>
+      
+     </div>
+    </div>
+    </div>
+    </div>

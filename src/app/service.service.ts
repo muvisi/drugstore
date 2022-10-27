@@ -148,6 +148,10 @@ nonregisteredpatients(): Observable<any> {
     return this.http.post(endpoint+ 'api/free-rooms/',data).pipe(
       map(this.extractData));
   }
+  editrooms(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/edit-rooms/',data).pipe(
+      map(this.extractData));
+  }
   pushstk(data): Observable<any> {
     return this.http.post(endpoint+ 'api/online/lipa/',data).pipe(
       map(this.extractData));
