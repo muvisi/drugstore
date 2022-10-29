@@ -21,7 +21,7 @@ export class RoomSetupComponent implements OnInit {
       room_number: ['',Validators.required],
       room_price: ['',Validators.required],
       room_package:['',Validators.required],
-      boarding_package:['',Validators.required],
+      // boarding_package:['',Validators.required],
      
   });
   }

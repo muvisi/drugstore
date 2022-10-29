@@ -60,6 +60,7 @@ import { RoomSetupComponent } from '../room-setup/room-setup.component';
 import { FreeroomsComponent } from '../freerooms/freerooms.component';
 import { AllbookingsComponent } from '../../allbookings/allbookings.component';
 import { ReportsComponent } from '../reports/reports.component';
+import { ClientBoookroomComponent } from '../client-boookroom/client-boookroom.component';
 // import { SignUpComponent } from '../sign-up/sign-up.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -81,7 +82,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     BookCovidtestingComponent,
     MaternityupgradeModalComponent,
     RoomSetupComponent,
-  FreeroomsComponent,AllbookingsComponent,ReportsComponent
+  FreeroomsComponent,AllbookingsComponent,ReportsComponent,ClientBoookroomComponent
     // SignUpComponent
 
   ],

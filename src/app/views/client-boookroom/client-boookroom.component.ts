@@ -5,12 +5,14 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../service.service';
 
+
 @Component({
-  selector: 'app-feedback-graphs',
-  templateUrl: './feedback-graphs.component.html',
-  styleUrls: ['./feedback-graphs.component.scss']
+  selector: 'app-client-boookroom',
+  templateUrl: './client-boookroom.component.html',
+  styleUrls: ['./client-boookroom.component.scss']
 })
-export class FeedbackGraphsComponent implements OnInit {
+export class ClientBoookroomComponent implements OnInit {
+
   dataSource;
   room_block;
   room_price;
@@ -18,7 +20,7 @@ export class FeedbackGraphsComponent implements OnInit {
   room_package
   room_id
   @ViewChild('ConfirmAppointment', { static: false }) confirmAppointmentModal: ModalDirective;
-  Columns: string[] = ['sn','created','room_number','room_block','room_package','room_price','boarding_package','status','action','edit','delete']
+  Columns: string[] = ['sn','created','room_number','room_block','room_package','room_price','boarding_package','status','action']
 
   constructor(public service: ServiceService,private router: Router,private toast:ToastrService) { }
 
@@ -90,18 +92,6 @@ editDatarooms(){
   }
   );
 
-}
-Delete(element){
-  console.log(element)
-  let data={
-    id:element.id
-  }
-  this.service.deleteroom(data).subscribe((res) => {
-    console.log("my data",res)
-    this.toast.success("deleted successfully","You Have Successfully Deleted")
- this.AvailableRooms()
-  }
-  );
 }
 }
 

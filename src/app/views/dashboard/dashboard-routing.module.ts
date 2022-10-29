@@ -24,6 +24,7 @@ import { FreeroomsComponent } from '../freerooms/freerooms.component';
 import { freemem } from 'os';
 import { AllbookingsComponent } from '../../allbookings/allbookings.component';
 import { ReportsComponent } from '../reports/reports.component';
+import { ClientBoookroomComponent } from '../client-boookroom/client-boookroom.component';
 // import { SignUpComponent } from '../sign-up/sign-up.component';
 
 const routes: Routes = [
@@ -82,7 +83,12 @@ const routes: Routes = [
     title: 'Reports'
   }
   },
-
+  {
+    path: 'rooms-available-client',
+    component: ClientBoookroomComponent,
+    canActivate: [AuthGuard],
+   
+  },
  
   {
     path: 'rooms-available',

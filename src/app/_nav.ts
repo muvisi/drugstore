@@ -134,15 +134,15 @@ export const navItemscashiers: NavData[] = [
   },
   {
     name: 'Available Rooms',
-    url: '/dashboard/rooms-available/',
+    url: '/dashboard/rooms-available-client/',
     icon: 'fa fa-university',
   
   },
 
   // {
-  //   name: 'Bookings',
+  //   name: 'Avail',
   //   icon: 'fa fa-calendar-o',
-  //   url: '/dashboard/booking',
+  //   url: '/dashboard/rooms-available-client/',
   // },
   // {
   //   name: 'Calendar',

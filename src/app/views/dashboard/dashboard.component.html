@@ -8,7 +8,7 @@
 <div class="animated fadeIn">
 
   <div class="row">
-    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'client' ||user.role == 'admin' "  >
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'admin' "  >
       <a routerLink="rooms-available/">
         <div class="card">
           <div class="card-body">
@@ -21,6 +21,25 @@
               </span>
             </div>
             <div class="text-center item" >Book Room</div>
+    
+    
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-6 col-md-3" *ngIf="user.role == 'client' " >
+      <a routerLink="rooms-available-client/">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <span class="fa-stack fa-4x">
+                <i class=" fa-stack-2x icon-background4"></i>
+                <i class="fa fa-circle-thin fa-stack-2x icon-background6"></i>
+    
+                <i class="fa fa-university fa-stack-4x" style="color:#A6CF39;"></i>
+              </span>
+            </div>
+            <div class="text-center item" >Book Room-client</div>
     
     
           </div>

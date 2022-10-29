@@ -1,114 +1,60 @@
-<br>
-<fieldset>
-  <legend>Room Set Up</legend>
-  <div class="col-sm-12">
-   
-      <form [formGroup]="AditionalDataForm" >
-          <div class="row">
-              <div class="col-sm-4">
-                  <mat-form-field appearance="outline">
-                    <mat-label>Room Block</mat-label>
-                      <input matInput placeholder="room block" formControlName="room_block">
-                      
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header bg-success" >
+          <h5>Room Set Up</h5>
+        </div>
+        <div class="card-body">
+          <br>
+          <fieldset>
+            <legend>Room Set Up</legend>
+            <div class="col-sm-12">
+             
+                <form [formGroup]="AditionalDataForm" >
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Room Block</mat-label>
+                                <input matInput placeholder="room block" formControlName="room_block">
+                                
+                              </mat-form-field>
+                        </div>
+                      <div class="col-sm-4">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Room Number</mat-label>
+                            <input matInput placeholder="Room number" formControlName="room_number">
+                          </mat-form-field>
+                      </div>
+                
+                    <div class="col-sm-4">
+                      <mat-form-field appearance="outline">
+                        <mat-label> Room package</mat-label>
+                          <input matInput placeholder=" room package" formControlName="room_package">
+                         
+                        </mat-form-field>
+                  </div>
+                   <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Room Price</mat-label>
+                      <input matInput placeholder="room price" type="number" formControlName="room_price">
                     </mat-form-field>
-              </div>
-            <div class="col-sm-4">
-              <mat-form-field appearance="outline">
-                <mat-label>Room Number</mat-label>
-                  <input matInput placeholder="Room number" formControlName="room_number">
-                </mat-form-field>
-            </div>
-      
-          <div class="col-sm-4">
-            <mat-form-field appearance="outline">
-              <mat-label> Room package</mat-label>
-                <input matInput placeholder=" room package" formControlName="room_package">
-               
-              </mat-form-field>
-        </div>
-         <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Room Price</mat-label>
-            <input matInput placeholder="room price" formControlName="room_price">
-          </mat-form-field>
-         </div>
-         <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Boarding Package</mat-label>
-              <input matInput placeholder="Boading package" formControlName="boarding_package">
-            </mat-form-field>
-        </div>
-         
-         <!-- <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Last Prenatal Clinic Date</mat-label>
-              <input matInput placeholder="Last Prenatal Clinic Date (DD/MM/YYYY)"  formControlName="last_prenatal_clinic" >
-           
-            </mat-form-field>
-        </div> -->
-        <!-- <div class="col-sm-4">
-
-          <mat-form-field appearance="outline">
-            <mat-label>Date </mat-label>
-              <input matInput placeholder="Last Prenatal Clinic Date"   [matDatepicker]="picker4"  formControlName="last_prenatal_clinic" autocomplete="off">
-              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-              <mat-datepicker #picker4></mat-datepicker>
-            </mat-form-field> -->
-      <!-- </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Last Form of Contraception</mat-label>
-               <input matInput placeholder="Last Form of Contraception" formControlName="contraception_form">
-             </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Are your Periods Regular?</mat-label>
-               <input matInput placeholder="Are your Periods Regular" formControlName="period_regular">
-          </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Any medical Conditions</mat-label>
-              <input matInput placeholder="Any medical Conditions" formControlName="medical_conditions">
-            </mat-form-field>
-        </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-              <mat-label>Family Medical History</mat-label>
+                   </div>
+                  
           
-                <input matInput placeholder="Family Medical History" formControlName="family_medical_history">
-            </mat-form-field>
+                <div class="col-sm-8">
+                <button class="btn btn-success pull-right" (click)="SetUpRoom()">Setup Room</button>
+                </div>
+                    </div>
+                  </form>
+          
+          
+            </div>
+          </fieldset>
+      
+         
         </div>
-        <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Other Non-Medical Concerns</mat-label>
-              <input matInput placeholder="Other Non-Medical Concerns" formControlName="non_medical_concerns">
-            </mat-form-field>
-        </div> -->
-        <!-- <div class="col-sm-4">
-          <mat-form-field appearance="outline">
-            <mat-label>First date of last period</mat-label>
-              <input matInput placeholder="First date of last period (DD/MM/YYYY)"  formControlName="last_period_date" >
-           
-            </mat-form-field>
-        </div> -->
-        <!-- <div class="col-sm-4">
-
-          <mat-form-field appearance="outline">
-            <mat-label>First date of last period</mat-label>
-              <input matInput placeholder="First date of last period"   [matDatepicker]="picker44"  formControlName="last_period_date" autocomplete="off">
-              <mat-datepicker-toggle matSuffix [for]="picker44"></mat-datepicker-toggle>
-              <mat-datepicker #picker44></mat-datepicker>
-            </mat-form-field>
-      </div> -->
-
-      <div class="col-sm-8">
-      <button class="btn btn-success pull-right" (click)="SetUpRoom()">Setup Room</button>
       </div>
-          </div>
-        </form>
-
-
+    </div>
   </div>
-</fieldset>
+

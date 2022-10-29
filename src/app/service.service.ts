@@ -152,6 +152,10 @@ nonregisteredpatients(): Observable<any> {
     return this.http.post(endpoint+ 'api/edit-rooms/',data).pipe(
       map(this.extractData));
   }
+  deleteroom(data): Observable<any> {
+    return this.http.post(endpoint+ 'api/delete-room/',data).pipe(
+      map(this.extractData));
+  }
   pushstk(data): Observable<any> {
     return this.http.post(endpoint+ 'api/online/lipa/',data).pipe(
       map(this.extractData));
@@ -1755,7 +1759,7 @@ searchScheme(payer, searchTerm): Observable<any> {
 
   }
   changePassword(data): Observable<any> {
-    return this.http.post(endpoint + 'users/change_password/', data ).pipe(
+    return this.http.post(endpoint + 'api/change_password/', data ).pipe(
       map(this.extractData));
 
   }

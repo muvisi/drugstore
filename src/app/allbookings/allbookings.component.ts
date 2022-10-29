@@ -64,7 +64,7 @@ PushSTK(item){
   var num="254"
 
   let data={
-    phone:num.concat(item.phone),
+    phone:item.phone,
     amount:item.room.room_price
   }
   console.log("stk data",data)

@@ -60,6 +60,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AllbookingsComponent } from './allbookings/allbookings.component';
+// import { ClientBoookroomComponent } from './views/client-boookroom/client-boookroom.component';
 // import { ReportsComponent } from './views/reports/reports.component';
 // import { FreeroomsComponent } from './views/freerooms/freerooms.component';
 // 
@@ -123,6 +124,7 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
+    // ClientBoookroomComponent,
     // ReportsComponent,
     // AllbookingsComponent,
    

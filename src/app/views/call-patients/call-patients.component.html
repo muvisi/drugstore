@@ -39,7 +39,7 @@
          <div class="col-sm-4">
           <mat-form-field appearance="outline">
             <mat-label>Telephone Number</mat-label>
-            <input matInput placeholder="telephone number" class="form-control" formControlName="Patient_phone"  [ngClass]="{ 'is-invalid': submitted && f.Patient_phone.errors }">
+            <input matInput placeholder="telephone number" type="number" minlength="9" class="form-control" formControlName="Patient_phone"  [ngClass]="{ 'is-invalid': submitted && f.Patient_phone.errors }">
           </mat-form-field>
           <div *ngIf="submitted &&  f.Patient_phone.errors" class="invalid-feedback">
             <div *ngIf="f.Patient_phone.errors.required">Password is required</div>
@@ -54,7 +54,6 @@
                 {{item}}
               </mat-option>
             </mat-select>
-              <!-- <input matInput placeholder="Gender" formControlName="Patient_gender"> -->
             </mat-form-field>
         </div>
          
@@ -65,7 +64,6 @@
             <mat-form-field appearance="outline">
                 <mat-label>Booking Date</mat-label>
                 <input matInput placeholder="booking date" [readonly]="outfilled"  formControlName="date" [matDatepicker]="picker" [min]="minDate">
-                <!-- <mat-error *ngIf="f.age.errors?.required">Date of birth is required</mat-error> -->
                 <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>

@@ -26,7 +26,7 @@ export class CallPatientsComponent implements OnInit {
       Patient_names: ['',Validators.required],
       // Patient_email: ['',Validators.required],
       Patient_age: ['',Validators.required],
-     Patient_phone: ['', [Validators.minLength(9),Validators.required]],
+     Patient_phone: ['',Validators.pattern('(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})')],
       Patient_gender:['',Validators.required],
       date:['',Validators.required],
       time:['',Validators.required],
@@ -48,6 +48,10 @@ export class CallPatientsComponent implements OnInit {
 
 
 BookpRoom(){
+
+if(this.BookRoomForm.get("Patient_phone").hasError("pattern")){
+  this.toast.warning("phone number is not valid","Oops!")
+}
   this.submitted = true;
     // stop here if form is invalid
 if (this.BookRoomForm.invalid) {
