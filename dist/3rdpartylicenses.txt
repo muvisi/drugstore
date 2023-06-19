@@ -105,8 +105,6 @@ THE SOFTWARE.
 
 @angular/material/select
 
-@angular/material/sort
-
 @angular/material/stepper
 
 @angular/material/table

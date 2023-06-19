@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5>Client Bookings</h5>
+          <h5>Reports</h5>
         </div>
         <div class="card-body">
         
@@ -20,24 +20,24 @@
                   <th mat-header-cell *matHeaderCellDef>Created</th>
                   <td mat-cell *matCellDef="let element"> {{element.created | date: 'medium'}} </td>
                 </ng-container>
-                <ng-container matColumnDef="room_number">
+                <ng-container matColumnDef="client">
                     <th mat-header-cell *matHeaderCellDef>Client Name</th>
                     <td mat-cell *matCellDef="let element"> {{element.names}} </td>
                   </ng-container>
-                <ng-container matColumnDef="room_block">
+                <ng-container matColumnDef="phone">
                   <th mat-header-cell *matHeaderCellDef>phone Number</th>
                   <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;">0{{element.phone}} </td>
                 </ng-container>
-                <ng-container matColumnDef="room_package">
+                <ng-container matColumnDef="age">
                   <th mat-header-cell *matHeaderCellDef>Age</th>
                   <td mat-cell *matCellDef="let element"> {{element.age}} </td>
                 </ng-container>
-                  <ng-container matColumnDef="room_price">
-                              <th mat-header-cell *matHeaderCellDef>Room Booked</th>
+                  <ng-container matColumnDef="drug_name">
+                              <th mat-header-cell *matHeaderCellDef>drug name</th>
                               <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.room.room_number}}  </td>
                   </ng-container>
-                  <ng-container matColumnDef="boarding_package">
-                    <th mat-header-cell *matHeaderCellDef>Room Price</th>
+                  <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef>drug quantity</th>
                     <td mat-cell *matCellDef="let element"> {{element.room.room_price}} </td>
                   </ng-container>
                      <ng-container matColumnDef="status">
@@ -45,7 +45,7 @@
                       <td mat-cell *matCellDef="let element"> 
                         <span *ngIf="element.status=='FREE'"><span class="badge badge-success">Checked Out</span>
                       </span>
-                      <span *ngIf="element.status=='BOOKED'"><span class="badge badge-dark">Already Boarding</span>
+                      <span *ngIf="element.status=='BOOKED'"><span class="badge badge-dark">Already Issued</span>
                     </span>
                       </td>
                     </ng-container> 

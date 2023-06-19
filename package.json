@@ -1,9 +1,9 @@
 {
-  "name": "@healthix/uilabs",
+  "name": "@invetory/uilabs",
   "version": "2.5.2",
   "description": "",
   "author": {
-    "name": "Healthix"
+    "name": "Inventory"
   },
   "license": "MIT",
   "scripts": {

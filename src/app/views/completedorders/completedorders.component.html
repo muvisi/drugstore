@@ -1,0 +1,80 @@
+
+  <!-- <div class="app-body" style="background:transparent url('assets/img/avatars/bg.jpg') no-repeat center center /cover"> -->
+
+    <div class="row">
+
+        <div class="col-sm-12">
+          <div class="card">
+    
+            <div class="card-header bg-success">
+              <h5>Drugs Issued</h5>
+            </div>
+            <div class="card-body">
+            
+          
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="mat-elevation-z8 table-responsive">
+                    <table mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="sn">
+                            <th mat-header-cell *matHeaderCellDef>S/No</th>
+                            <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="created">
+                      <th mat-header-cell *matHeaderCellDef>Created</th>
+                      <td mat-cell *matCellDef="let element"> {{element.created | date: 'medium'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="client">
+                        <th mat-header-cell *matHeaderCellDef>Client Name</th>
+                        <td mat-cell *matCellDef="let element"> {{element.names}} </td>
+                      </ng-container>
+                    <ng-container matColumnDef="phone">
+                      <th mat-header-cell *matHeaderCellDef>phone Number</th>
+                      <td mat-cell *matCellDef="let element"  style="text-transform: capitalize;">{{element.phone}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="age">
+                      <th mat-header-cell *matHeaderCellDef>Age</th>
+                      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                    </ng-container>
+                      <ng-container matColumnDef="prescription">
+                                  <th mat-header-cell *matHeaderCellDef>Prescription</th>
+                                  <td mat-cell *matCellDef="let element" style="text-transform: capitalize;"> {{element.room.room_number}}  </td>
+                      </ng-container>
+                      <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                        <td mat-cell *matCellDef="let element"> {{element.room.room_price}} </td>
+                      </ng-container>
+                        <ng-container matColumnDef="status">
+                          <th mat-header-cell *matHeaderCellDef>Status</th>
+                          <td mat-cell *matCellDef="let element"> 
+                            <span *ngIf="element.status=='FREE'"><span class="badge badge-success">Drug Available</span>
+                          </span>
+                          <span *ngIf="element.status=='BOOKED'"><span class="badge badge-dark">Already Issued</span>
+                        </span>
+                          </td>
+                        </ng-container> 
+                     
+                        <ng-container matColumnDef="stk">
+                          <th mat-header-cell *matHeaderCellDef>Stk</th>
+                          <td mat-cell *matCellDef="let element">
+                            <button type="button"  (click)="PushSTK(item=element)" class="btn btn-dark">push stk</button>
+                             </td>
+                        </ng-container>  
+                      
+              
+                      
+                    
+                      <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+                      <tr mat-row *matRowDef="let row; columns:Columns;"></tr>
+                    </table>
+              
+                    <mat-paginator [pageSizeOptions]="[19,50]" showFirstLastButtons></mat-paginator>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     

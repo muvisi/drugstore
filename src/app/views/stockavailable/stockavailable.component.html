@@ -1,0 +1,83 @@
+
+
+
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-header bg-success">Issue Drugs</h5>
+      <br>
+  <fieldset>
+    <legend>Issue Drug</legend>
+    <div class="col-sm-12">
+     
+        <form [formGroup]="BookRoomForm" >
+            <div class="row">
+                <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Your Names</mat-label>
+                        <input matInput placeholder="your name" formControlName="Patient_names">
+                        
+                      </mat-form-field>
+                </div>
+              <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Your Email</mat-label>
+                    <input matInput placeholder="your email" type="email" class="form-control" formControlName="Patient_email"  [ngClass]="{ 'is-invalid': submitted && f.Patient_email.errors }">
+                  </mat-form-field>
+                  <div *ngIf="submitted && f.Patient_email.errors" class="invalid-feedback">
+                    <div *ngIf="f.Patient_email.errors.required">Email is required</div>
+                    <div *ngIf="f.Patient_email.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+        
+            <div class="col-sm-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Age</mat-label>
+                  <input matInput placeholder="age" type="number" formControlName="Patient_age">
+                 
+                </mat-form-field>
+          </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Telephone Number</mat-label>
+              <input matInput placeholder="telephone number" type="number" minlength="9" class="form-control" formControlName="Patient_phone"  [ngClass]="{ 'is-invalid': submitted && f.Patient_phone.errors }">
+            </mat-form-field>
+            <div *ngIf="submitted &&  f.Patient_phone.errors" class="invalid-feedback">
+              <div *ngIf="f.Patient_phone.errors.required">Password is required</div>
+              <div *ngIf="f.Patient_phone.errors.minlength">Password must be at least 9 characters</div>
+          </div>
+           </div>
+           <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="Patient_gender" >
+                <mat-option *ngFor="let item of ['Male','Female']" [value]="item">
+                  {{item}}
+                </mat-option>
+              </mat-select>
+              </mat-form-field>
+          </div>
+           
+        
+  
+        <div class="col-sm-8">
+        <button class="btn btn-success pull-right" (click)="BookpRoom()">Issue Drugs</button>
+        </div>
+            </div>
+          </form>
+  
+  
+    </div>
+  
+  
+  
+  
+  
+  </fieldset>
+  
+      
+    </div>
+  </div>
+  
+  
+  
+  

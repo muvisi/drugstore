@@ -40,8 +40,8 @@ export const navItems: NavData[] = [
     name: 'Main'
   },
   {
-    name: 'Available Rooms',
-    url: '/dashboard/rooms-available/',
+    name: 'Drugs Available',
+    url: '/dashboard/drugs-available/',
     icon: 'fa fa-university',
   
   },
@@ -49,20 +49,20 @@ export const navItems: NavData[] = [
 
 
   {
-    name: 'Rooms Set-Up',
+    name: 'Drugs Set-Up',
     icon: 'fa fa-tag',
-    url: '/dashboard/Room-set-up/',
+    url: '/dashboard/drugs-set-up/',
   },
 
 
 
   {
-    name: 'Clients bookings',
+    name: 'Drugs status',
     icon: 'fa fa-bed',
-    url: '/dashboard/clients-bookings/',
+    url: '/dashboard/drugs-issued/',
   },
   {
-    name: 'Hotel Reports',
+    name: 'Reports',
     url: '/dashboard/Report',
     icon: 'fa fa-bar-chart',
   },
@@ -133,7 +133,7 @@ export const navItemscashiers: NavData[] = [
     name: 'Main'
   },
   {
-    name: 'Available Rooms',
+    name: 'Available Drugs',
     url: '/dashboard/rooms-available-client/',
     icon: 'fa fa-university',
   

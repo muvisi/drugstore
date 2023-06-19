@@ -52,18 +52,11 @@ import { from } from 'rxjs';
 import {NgxPrintModule} from 'ngx-print';
 import { TokenInterceptor } from './interceptor';
 import { SignatureService } from './signature.service';
-// import { NgxPrintElementModule } from 'ngx-print-element';
-// import { FeedbacksComponent } from './feedbacks/feedbacks.component';
-// Import angular-fusioncharts
+
 import { FusionChartsModule } from 'angular-fusioncharts';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ServiceService } from './service.service';
 import { CookieService } from 'ngx-cookie-service';
-import { AllbookingsComponent } from './allbookings/allbookings.component';
-// import { ClientBoookroomComponent } from './views/client-boookroom/client-boookroom.component';
-// import { ReportsComponent } from './views/reports/reports.component';
-// import { FreeroomsComponent } from './views/freerooms/freerooms.component';
-// 
 
 
 
@@ -124,9 +117,9 @@ export function tokenGetter() {
     P500Component,
     LoginComponent,
     RegisterComponent,
-    // ClientBoookroomComponent,
-    // ReportsComponent,
-    // AllbookingsComponent,
+    // StockavailableComponent,
+    // CompletedordersComponent,
+  
    
 
   ],

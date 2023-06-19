@@ -1,0 +1,60 @@
+
+<div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header bg-success" >
+          <h5>Drugs Set Up</h5>
+        </div>
+        <div class="card-body">
+          <br>
+          <fieldset>
+            <legend>Drugs Set Up</legend>
+            <div class="col-sm-12">
+             
+                <form [formGroup]="AditionalDataForm">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Drug Name</mat-label>
+                                <input matInput placeholder="drug name" formControlName="room_block">
+                                
+                              </mat-form-field>
+                        </div>
+                      <div class="col-sm-4">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Prescription</mat-label>
+                            <input matInput placeholder="Prescription" formControlName="room_number">
+                          </mat-form-field>
+                      </div>
+                
+                    <div class="col-sm-4">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Price</mat-label>
+                          <input matInput placeholder="age" formControlName="room_package">
+                         
+                        </mat-form-field>
+                  </div>
+                   <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Quantity</mat-label>
+                      <input matInput placeholder="Quantity" type="number" formControlName="room_price">
+                    </mat-form-field>
+                   </div>
+                  
+          
+                <div class="col-sm-8">
+                <button class="btn btn-success pull-right" (click)="SetUpRoom()">Setup Drugs</button>
+                </div>
+                    </div>
+                  </form>
+          
+          
+            </div>
+          </fieldset>
+      
+         
+        </div>
+      </div>
+    </div>
+  </div>
+

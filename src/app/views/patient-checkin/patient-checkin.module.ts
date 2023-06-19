@@ -41,26 +41,30 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
-import { MaternityQrcodeComponent } from '../maternity-qrcode/maternity-qrcode.component';
+// import { MaternityQrcodeComponent } from '../maternity-qrcode/maternity-qrcode.component';
 
-import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
-import { CallPatientsComponent } from '../call-patients/call-patients.component';
+// import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
+// import { CallPatientsComponent } from '../call-patients/call-patients.component';
 import { FilterPipe } from '../../filter.pipe';
-import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
-import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
-import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
-import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
-import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
+// import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
+// import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
+// import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
+// import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
+// import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 
 import { RatingModule } from 'ng-starrating';
-import { MaternityupgradeModalComponent } from '../maternityupgrade-modal/maternityupgrade-modal.component';
+// import { MaternityupgradeModalComponent } from '../maternityupgrade-modal/maternityupgrade-modal.component';
 import { RoomSetupComponent } from '../room-setup/room-setup.component';
 import { FreeroomsComponent } from '../freerooms/freerooms.component';
-import { AllbookingsComponent } from '../../allbookings/allbookings.component';
+// import { AllbookingsComponent } from '../../allbookings/allbookings.component';
 import { ReportsComponent } from '../reports/reports.component';
 import { ClientBoookroomComponent } from '../client-boookroom/client-boookroom.component';
+import { DrugsissueComponent } from '../drugsissue/drugsissue.component';
+import { SetupdrugsComponent } from '../setupdrugs/setupdrugs.component';
+import { StockavailableComponent } from '../stockavailable/stockavailable.component';
+import { CompletedordersComponent } from '../completedorders/completedorders.component';
 // import { SignUpComponent } from '../sign-up/sign-up.component';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
@@ -68,22 +72,22 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
   declarations: [
     
    
-    MaternityQrcodeComponent,
-    FeedbackGraphsComponent,
+    // MaternityQrcodeComponent,
+    // FeedbackGraphsComponent,
     FilterPipe,
-    CallPatientsComponent,
-    MaternityfeedbackComponent,
+    // CallPatientsComponent,
+    // MaternityfeedbackComponent,
     DashboardReportComponent,
     AdminSetupsComponent,
     AdminSetupsComponent,
-    BookAppointmentComponent,
-    BookMaternityComponent,
-    BookVaccinationComponent,
-    BookCovidtestingComponent,
-    MaternityupgradeModalComponent,
+    // BookAppointmentComponent,
+    // BookMaternityComponent,
+    // BookVaccinationComponent,
+    // BookCovidtestingComponent,
+    // MaternityupgradeModalComponent,
     RoomSetupComponent,
-  FreeroomsComponent,AllbookingsComponent,ReportsComponent,ClientBoookroomComponent
-    // SignUpComponent
+  FreeroomsComponent,ReportsComponent,ClientBoookroomComponent,DrugsissueComponent,SetupdrugsComponent
+,StockavailableComponent,CompletedordersComponent
 
   ],
   imports: [
@@ -140,7 +144,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, Widgets);
     MonthAgendaService],
   entryComponents: [
      
-      MaternityupgradeModalComponent
+      // MaternityupgradeModalComponent
     ]
   
 

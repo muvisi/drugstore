@@ -7,25 +7,28 @@ import { AuthGuard } from '../../auth.guard';
 import { ToastrService } from 'ngx-toastr';
 
 
-import { MaternityQrcodeComponent } from '../maternity-qrcode/maternity-qrcode.component';
+// import { MaternityQrcodeComponent } from '../maternity-qrcode/maternity-qrcode.component';
 
-import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
-import { CallPatientsComponent } from '../call-patients/call-patients.component';
-import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
-import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
-import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
-import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
+// import { FeedbackGraphsComponent } from '../feedback-graphs/feedback-graphs.component';
+// import { CallPatientsComponent } from '../call-patients/call-patients.component';
+// import { BookAppointmentComponent } from '../add/book-appointment/book-appointment.component';
+// import { BookVaccinationComponent } from '../add/book-vaccination/book-vaccination.component';
+// import { BookMaternityComponent } from '../add/book-maternity/book-maternity.component';
+// import { BookCovidtestingComponent } from '../add/book-covidtesting/book-covidtesting.component';
 
-import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
+// import { MaternityfeedbackComponent } from '../maternityfeedback/maternityfeedback.component';
 import { DashboardReportComponent } from '../dashboard-report/dashboard-report.component';
 import { AdminSetupsComponent } from '../admin-setups/admin-setups.component';
 import { RoomSetupComponent } from '../room-setup/room-setup.component';
 import { FreeroomsComponent } from '../freerooms/freerooms.component';
-import { freemem } from 'os';
-import { AllbookingsComponent } from '../../allbookings/allbookings.component';
+// import { freemem } from 'os';
+// import { AllbookingsComponent } from '../../allbookings/allbookings.component';
 import { ReportsComponent } from '../reports/reports.component';
 import { ClientBoookroomComponent } from '../client-boookroom/client-boookroom.component';
-// import { SignUpComponent } from '../sign-up/sign-up.component';
+import { DrugsissueComponent } from '../drugsissue/drugsissue.component';
+import { SetupdrugsComponent } from '../setupdrugs/setupdrugs.component';
+import { StockavailableComponent } from '../stockavailable/stockavailable.component';
+import { CompletedordersComponent } from '../completedorders/completedorders.component';
 
 const routes: Routes = [
   {
@@ -39,23 +42,12 @@ const routes: Routes = [
 
  
  
+  
   {
-    path: 'maternityfeedback-qrcode-download',
-    component: MaternityfeedbackComponent,
-  },
- 
-  {
-    path: 'maternity-qrcode-download',
-    component: MaternityQrcodeComponent,
-  },
-
- 
-  {
-    path: 'Room-set-up',
-    component:RoomSetupComponent,
+    path: 'drugs-set-up',
+    component:SetupdrugsComponent,
     canActivate: [AuthGuard]
   },
- 
   {
     path: 'admin-setups',
     component:AdminSetupsComponent,
@@ -64,11 +56,11 @@ const routes: Routes = [
 
  
  
-  {
-    path: 'call-patients',
-    component:CallPatientsComponent,
+  // {
+  //   path: 'call-patients',
+  //   component:CallPatientsComponent,
     
-  },
+  // },
   {
     path: 'Report',
     component:ReportsComponent,
@@ -89,44 +81,58 @@ const routes: Routes = [
     canActivate: [AuthGuard],
    
   },
- 
   {
-    path: 'rooms-available',
-    component: FeedbackGraphsComponent,
+    path: 'drugs-available',
+    component: DrugsissueComponent,
     canActivate: [AuthGuard],
    
   },
   {
+    path: '',
+    component: DrugsissueComponent,
+    canActivate: [AuthGuard],
+   
+  },
+  // {
+  //   path: 'rooms-available',
+  //   component: FeedbackGraphsComponent,
+  //   canActivate: [AuthGuard],
+   
+  // },
+  {
     path: 'personal-booking/:id',
-    component: CallPatientsComponent,
-    // canActivate: [AuthGuard],
-    // data: {
-    //   title: 'Book vaccination'
-    // }
+    component: StockavailableComponent,
+
   },
   {
-    path: 'clients-bookings',
-    component: AllbookingsComponent,
+    path: 'drugs-issued',
+    component: CompletedordersComponent,
     canActivate: [AuthGuard],
   
   },
-  {
-    path: 'book-covid-testing',
-    component: BookCovidtestingComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'Book vaccination'
-    }
-  },
+  // {
+  //   path: 'clients-bookings',
+  //   component: AllbookingsComponent,
+  //   canActivate: [AuthGuard],
+  
+  // },
+  // {
+  //   path: 'book-covid-testing',
+  //   component: BookCovidtestingComponent,
+  //   canActivate: [AuthGuard],
+  //   data: {
+  //     title: 'Book vaccination'
+  //   }
+  // },
 
-  {
-    path: 'book-maternity',
-    component: BookMaternityComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'Book Maternity'
-    }
-  }
+  // {
+  //   path: 'book-maternity',
+  //   component: BookMaternityComponent,
+  //   canActivate: [AuthGuard],
+  //   data: {
+  //     title: 'Book Maternity'
+  //   }
+  // }
   
 ];
 

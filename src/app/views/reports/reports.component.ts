@@ -12,7 +12,7 @@ import { ServiceService } from '../../service.service';
 })
 export class ReportsComponent implements OnInit {
   dataSource
-  Columns: string[] = ['sn','created','room_number','room_block','room_package','room_price','boarding_package','status']
+  Columns: string[] = ['sn','created','client','phone','age','quantity','drug_name','status']
 
   constructor(public service: ServiceService,private router: Router,private toast:ToastrService) { }
 
